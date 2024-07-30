@@ -16,20 +16,23 @@ public class Enemy : MonoBehaviour
     public RuntimeAnimatorController[] animCon;
     public Rigidbody2D target;
 
+    private Collider2D coll;
     private Rigidbody2D rigid;
     private SpriteRenderer spriter;
     private Animator anim;
-
+    private WaitForFixedUpdate wait;
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+        coll = GetComponent<Collider2D>();
         spriter = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        wait = new WaitForFixedUpdate();
     }
 
     private void FixedUpdate()
     {
-        if (!isLive)
+        if (!isLive || anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
             return;
 
         Vector2 dirVec = target.position - rigid.position; // 타겟 방향
@@ -49,7 +52,12 @@ public class Enemy : MonoBehaviour
     private void OnEnable()
     {
         target = GameManager.instance.player.GetComponent<Rigidbody2D>();
+        // 초기화
         isLive = true;
+        coll.enabled = true;
+        rigid.simulated = true;
+        spriter.sortingOrder = 2;
+        anim.SetBool("Dead", false);
         health = maxHealth;
     }
 
@@ -63,19 +71,36 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Bullet"))
+        if (!collision.CompareTag("Bullet") || !isLive)
             return;
 
-        health -= collision.GetComponent<Bullet>().damage;
-
+        health -= collision.GetComponent<Bullet>().damage; // 체력 감소
+        StartCoroutine(KnockBack()); // 넉백
+        
         if (health > 0)
         {
-
+            anim.SetTrigger("Hit"); // 맞는 애니메이션 재생
         }
+
         else // 체력 0 이하 사망
         {
-            Dead();
+            isLive = false;
+            coll.enabled = false; // 콜라이더 끄기
+            rigid.simulated = false;
+            spriter.sortingOrder = 1;
+            anim.SetBool("Dead", true);
+
+            GameManager.instance.kill++;
+            GameManager.instance.GetExp();
         }
+    }
+
+    private IEnumerator KnockBack()
+    {
+        yield return wait; // 다음 하나의 물리 프레임 딜레이
+        Vector3 playerPos = target.transform.position;
+        Vector3 dirVec = transform.position - playerPos;
+        rigid.AddForce(dirVec.normalized * 1.5f, ForceMode2D.Impulse);
     }
 
     private void Dead()

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,8 +9,16 @@ public class Weapon : MonoBehaviour
     public int prefabId; // 생성할 불릿의 프리팹 ID
     public float damage; // 무기 데미지
     public int count; // 불릿 수
+    [Header("근접: 회전 속도 / 원거리: 발사 텀(초당 발사)")]
     public float speed; // 무기의 회전 속도
 
+    private float timer;
+    private Player player;
+
+    private void Awake()
+    {
+        player = GetComponentInParent<Player>();
+    }
     private void Start()
     {
         Init(); // 초기 설정 실행
@@ -24,11 +33,18 @@ public class Weapon : MonoBehaviour
                 break;
 
             default:
+                timer += Time.deltaTime;
+
+                if (timer > speed)
+                {
+                    timer = 0f;
+                    Fire();
+                }
                 break;
         }
 
-        if (Input.GetButtonDown("Jump")) // 점프 버튼(스페이스 바) 눌렀을 때
-            LevelUp(20, 1); // 레벨 업 함수 실행
+        if (Input.GetButtonDown("Jump"))
+            LevelUp(20, 1); 
     }
 
     public void LevelUp(float damage, int count)
@@ -37,24 +53,26 @@ public class Weapon : MonoBehaviour
         this.count += count; // 불릿 수 증가
 
         if (id == 0)
-            Batch(); // 배치 함수 호출
+            Batch(); 
     }
 
-    public void Init() // 초기 설정 함수
+    // 초기 설정 함수
+    public void Init()
     {
         switch (id)
         {
             case 0:
-                speed = 150; // 속도 설정
-                Batch(); // 배치 함수 호출
+                //speed = 150; // 속도 설정
+                Batch();
                 break;
 
             default:
+                //speed = 0.3f; // 연사 속도 (초당)
                 break;
         }
     }
-
-    private void Batch() // 불릿 배치 함수
+    // 불릿 배치 함수
+    private void Batch() 
     {
         for (int index = 0; index < count; index++) // 불릿 수만큼 반복
         {
@@ -65,7 +83,7 @@ public class Weapon : MonoBehaviour
             }
             else
             {
-                bullet = GameManager.instance.pool.Get(prefabId).transform; // 새 불릿 생성
+                bullet = GameManager.instance.pool.Get(prefabId).transform; 
                 bullet.parent = transform; // 부모 설정
             }
 
@@ -75,7 +93,24 @@ public class Weapon : MonoBehaviour
             Vector3 rotVec = Vector3.forward * 360 * index / count; // 불릿 회전 벡터 계산
             bullet.Rotate(rotVec); // 불릿 회전
             bullet.Translate(bullet.up * 1.5f, Space.World); // 지정된 거리만큼 이동
-            bullet.GetComponent<Bullet>().Init(damage, -1); // 불릿 초기화 (데미지 설정 및 무한 관통)
+            bullet.GetComponent<Bullet>().Init(damage, -1, Vector3.zero); // 불릿 초기화 (데미지 설정 및 관통 설정 -1은 무한 관통)
         }
     }
+    private void Fire()
+    {
+        if (player.scanner.nearestTarget == null)
+            return;
+        
+        Vector3 targetPos = player.scanner.nearestTarget.position;
+        Vector3 dir = targetPos - transform.position;
+        dir = dir.normalized;
+
+        Transform bullet = GameManager.instance.pool.Get(prefabId).transform;
+        bullet.parent = transform;
+        bullet.position = transform.position;
+        bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
+        bullet.GetComponent<Bullet>().Init(damage, count, dir); // 불릿 초기화 (데미지 설정 및 관통 설정)
+
+    }
+
 }
