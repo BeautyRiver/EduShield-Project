@@ -9,7 +9,7 @@ public class Weapon : MonoBehaviour
     public int prefabId; // 생성할 불릿의 프리팹 ID
     public float damage; // 무기 데미지
     public int count; // 불릿 수
-    [Header("근접: 회전 속도 / 원거리: 발사 텀(초당 발사)")]
+    [Header("# 근접: 회전 속도 / 원거리: 발사 텀(초당 발사)")]
     public float speed; // 무기의 회전 속도
 
     private float timer;
@@ -17,19 +17,14 @@ public class Weapon : MonoBehaviour
 
     private void Awake()
     {
-        player = GetComponentInParent<Player>();
+        player = GameManager.instance.player;
     }
-    private void Start()
-    {
-        Init(); // 초기 설정 실행
-    }
-
     private void Update()
     {
         switch (id) // 무기 ID에 따른 행동
         {
             case 0:
-                transform.Rotate(Vector3.back * speed * Time.deltaTime); // 시간에 따라 무기 회전
+                transform.Rotate(Vector3.back * speed * Time.deltaTime); // 무기 회전
                 break;
 
             default:
@@ -43,6 +38,7 @@ public class Weapon : MonoBehaviour
                 break;
         }
 
+        // Test Code...
         if (Input.GetButtonDown("Jump"))
             LevelUp(20, 1); 
     }
@@ -53,23 +49,45 @@ public class Weapon : MonoBehaviour
         this.count += count; // 불릿 수 증가
 
         if (id == 0)
-            Batch(); 
+            Batch();
+
+        player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
     }
 
     // 초기 설정 함수
-    public void Init()
+    public void Init(ItemData data)
     {
+        // 기본 세팅
+        gameObject.name = "Weapon " + data.itemId;
+        transform.parent = player.transform;
+        transform.localPosition = Vector3.zero; // 플레이어 안에서 위치 초기화
+
+        // 속성 세팅
+        id = data.itemId;
+        damage = data.baseDamage;
+        count = data.baseCount;
+
+        for (int index = 0; index < GameManager.instance.pool.prefabs.Length; index++)
+        {
+            if (data.projectile == GameManager.instance.pool.prefabs[index])
+            {
+                prefabId = index;
+            }
+        }
+
         switch (id)
         {
             case 0:
-                //speed = 150; // 속도 설정
+                speed = 150; // 속도 설정
                 Batch();
                 break;
 
             default:
-                //speed = 0.3f; // 연사 속도 (초당)
+                speed = 0.5f; // 연사 속도 (초당)
                 break;
         }
+
+        player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
     }
     // 불릿 배치 함수
     private void Batch() 
