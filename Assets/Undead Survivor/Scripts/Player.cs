@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     public Vector2 inputVec;
     public float speed;
     public Scanner scanner;
+    public Hand[] hands;
 
     private SpriteRenderer spriter;
     private Rigidbody2D rigid;
@@ -17,28 +18,64 @@ public class Player : MonoBehaviour
         spriter = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         scanner = GetComponent<Scanner>();
+        hands = GetComponentsInChildren<Hand>(true);
     }
 
     private void Update()
     {
-        inputVec.x = Input.GetAxisRaw("Horizontal");
-        inputVec.y = Input.GetAxisRaw("Vertical");
+        if (GameManager.instance.isLive)
+        {
+            inputVec.x = Input.GetAxisRaw("Horizontal");
+            inputVec.y = Input.GetAxisRaw("Vertical");
+        }
     }
 
     private void FixedUpdate()
     {
-        Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
-        rigid.MovePosition(rigid.position + nextVec);     
+        if (GameManager.instance.isLive)
+        {
+            Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
+            rigid.MovePosition(rigid.position + nextVec);
+        }
     }
 
     private void LateUpdate()
     {
-        // Animator 技泼
-        anim.SetFloat("Speed", inputVec.magnitude);
-        // flipX 包府
-        if (inputVec.x != 0)
+        if (GameManager.instance.isLive)
         {
-            spriter.flipX = inputVec.x < 0;
+            // Animator 技泼
+            anim.SetFloat("Speed", inputVec.magnitude);
+            // flipX 包府
+            if (inputVec.x != 0)
+            {
+                spriter.flipX = inputVec.x < 0;
+            }
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (GameManager.instance.isLive && collision.gameObject.CompareTag("Enemy"))
+        {
+            GameManager.instance.health -= Time.deltaTime * 10;
+            spriter.color = new Color(1, 0.4198f, 0.4198f);
+            if (GameManager.instance.health < 0)
+            {
+                for (int index = 2; index < transform.childCount; index++)
+                {
+                    transform.GetChild(index).gameObject.SetActive(false);
+                }
+
+                anim.SetTrigger("Dead");
+                GameManager.instance.GameOver();
+            }
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (GameManager.instance.isLive && collision.gameObject.CompareTag("Enemy"))
+        {
+            spriter.color = Color.white;
         }
     }
 }

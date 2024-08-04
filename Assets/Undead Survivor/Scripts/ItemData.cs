@@ -11,7 +11,8 @@ public class ItemData : ScriptableObject
     [Header("# 핵심 속성")]
     public int itemId;
     public string itemName;
-    public string idemDesc;
+    [TextArea]
+    public string itemDesc;
     public Sprite itemIcon;
 
     [Header("# 레벨 데이터")]
@@ -22,5 +23,6 @@ public class ItemData : ScriptableObject
 
     [Header("# 무기")]
     public GameObject projectile;
+    public Sprite hand;
 }
 

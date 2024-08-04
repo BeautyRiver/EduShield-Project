@@ -32,21 +32,28 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isLive || anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
-            return;
+        if (GameManager.instance.isLive && isLive)
+        {
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
+                return;
 
-        Vector2 dirVec = target.position - rigid.position; // 타겟 방향
-        Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
-        rigid.MovePosition(rigid.position + nextVec);
-        rigid.velocity = Vector2.zero;
+            Vector2 dirVec = target.position - rigid.position; // 타겟 방향
+            Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
+            rigid.MovePosition(rigid.position + nextVec);
+            rigid.velocity = Vector2.zero;
+        }
+        else
+            return;
     }
 
     private void LateUpdate()
     {
-        if (!isLive)
+        if (GameManager.instance.isLive && isLive)
+        {
+            spriter.flipX = target.position.x < rigid.position.x;
+        }
+        else
             return;
-
-        spriter.flipX = target.position.x < rigid.position.x;    
     }
 
     private void OnEnable()
@@ -71,28 +78,30 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Bullet") || !isLive)
+        if (collision.CompareTag("Bullet") && isLive)
+        {
+            health -= collision.GetComponent<Bullet>().damage; // 체력 감소
+            StartCoroutine(KnockBack()); // 넉백
+
+            if (health > 0)
+            {
+                anim.SetTrigger("Hit"); // 맞는 애니메이션 재생
+            }
+
+            else // 체력 0 이하 사망
+            {
+                isLive = false;
+                coll.enabled = false; // 콜라이더 끄기
+                rigid.simulated = false;
+                spriter.sortingOrder = 1;
+                anim.SetBool("Dead", true);
+
+                GameManager.instance.kill++;
+                GameManager.instance.GetExp();
+            }
+        }
+        else
             return;
-
-        health -= collision.GetComponent<Bullet>().damage; // 체력 감소
-        StartCoroutine(KnockBack()); // 넉백
-        
-        if (health > 0)
-        {
-            anim.SetTrigger("Hit"); // 맞는 애니메이션 재생
-        }
-
-        else // 체력 0 이하 사망
-        {
-            isLive = false;
-            coll.enabled = false; // 콜라이더 끄기
-            rigid.simulated = false;
-            spriter.sortingOrder = 1;
-            anim.SetBool("Dead", true);
-
-            GameManager.instance.kill++;
-            GameManager.instance.GetExp();
-        }
     }
 
     private IEnumerator KnockBack()

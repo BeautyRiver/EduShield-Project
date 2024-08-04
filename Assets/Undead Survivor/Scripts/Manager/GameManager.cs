@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,10 +10,11 @@ public class GameManager : MonoBehaviour
     [Header("# 게임 컨트롤")]
     public float gameTime;
     public float maxGameTime = 2 * 10f;
+    public bool isLive;
 
     [Header("# 플레이어 정보")]
-    public int health;
-    public int maxHealth = 100;
+    public float health;
+    public float maxHealth = 100;
     public int level;
     public int kill;
     public int exp;
@@ -21,34 +23,93 @@ public class GameManager : MonoBehaviour
     [Header("# 참조")]
     public PoolManager pool;
     public Player player;
+    public LevelUp uiLevelUp;
+    public Result uiResult;
+    public GameObject enemyCleaner;
 
     private void Awake()
     {
-        instance = this;            
-    }
-
-    private void Start()
-    {
-        health = maxHealth;
+        instance = this;
     }
 
     private void Update()
     {
-        gameTime += Time.deltaTime;
-        if (gameTime > maxGameTime)
+        if (isLive)
         {
-            gameTime = maxGameTime;
+            // 시간 계산
+            gameTime += Time.deltaTime;
+            if (gameTime > maxGameTime)
+            {
+                gameTime = maxGameTime;
+                GameVictory();
+            }
+        }
+        else
+            return;
+    }
+    public void GameStart()
+    {
+        health = maxHealth;
+        uiLevelUp.Select(0); // 임시 스크립트 (첫번째 캐릭터 선택)
+        isLive = true;
+        Resume();
+    }
+
+    public void GameOver()
+    {
+        StartCoroutine(GameOverRoutine());
+    }
+
+    private IEnumerator GameOverRoutine()
+    {
+        isLive = false;
+        yield return new WaitForSeconds(0.5f);
+        uiResult.gameObject.SetActive(true);
+        uiResult.Lose();
+        Stop();
+    }
+
+    public void GameVictory()
+    {
+        StartCoroutine(GameVictoryRoutine());
+    }
+
+    private IEnumerator GameVictoryRoutine()
+    {
+        isLive = false;
+        enemyCleaner.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        uiResult.gameObject.SetActive(true);
+        uiResult.Win();
+        Stop();
+    }
+    public void GameRetry()
+    {
+        SceneManager.LoadScene(0);
+    }
+    public void GetExp()
+    {
+        if (isLive)
+        {
+            exp++;
+
+            if (exp == nextExp[Mathf.Min(level, nextExp.Length - 1)])
+            {
+                level++;
+                exp = 0;
+                uiLevelUp.Show();
+            }
         }
     }
 
-    public void GetExp()
+    public void Stop()
     {
-        exp++;
-
-        if (exp == nextExp[level])
-        {
-            level++;
-            exp = 0;
-        }
+        isLive = false;
+        Time.timeScale = 0;
+    }
+    public void Resume()
+    {
+        isLive = true;
+        Time.timeScale = 1;
     }
 }

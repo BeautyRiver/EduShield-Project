@@ -15,18 +15,22 @@ public class Spawner : MonoBehaviour
     }
     private void Update()
     {
-        timer += Time.deltaTime;
-        level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / 10f), spawnData.Length - 1);
-
-        if (timer > spawnData[level].spawnTime)
+        if (GameManager.instance.isLive)
         {
-            timer = 0f;
-            Spawn();
-        }
+            // 소환 로직
+            timer += Time.deltaTime;
+            level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / 10f), spawnData.Length - 1);
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Spawn();
+            if (timer > spawnData[level].spawnTime)
+            {
+                timer = 0f;
+                Spawn();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Spawn();
+            }
         }
     }
 

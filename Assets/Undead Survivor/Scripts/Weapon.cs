@@ -21,26 +21,29 @@ public class Weapon : MonoBehaviour
     }
     private void Update()
     {
-        switch (id) // 무기 ID에 따른 행동
+        if (GameManager.instance.isLive)
         {
-            case 0:
-                transform.Rotate(Vector3.back * speed * Time.deltaTime); // 무기 회전
-                break;
+            switch (id) // 무기 ID에 따른 행동
+            {
+                case 0:
+                    transform.Rotate(Vector3.back * speed * Time.deltaTime); // 무기 회전
+                    break;
 
-            default:
-                timer += Time.deltaTime;
+                default:
+                    timer += Time.deltaTime;
 
-                if (timer > speed)
-                {
-                    timer = 0f;
-                    Fire();
-                }
-                break;
+                    if (timer > speed)
+                    {
+                        timer = 0f;
+                        Fire();
+                    }
+                    break;
+            }
+
+            // Test Code...
+            if (Input.GetButtonDown("Jump"))
+                LevelUp(20, 1);
         }
-
-        // Test Code...
-        if (Input.GetButtonDown("Jump"))
-            LevelUp(20, 1); 
     }
 
     public void LevelUp(float damage, int count)
@@ -86,6 +89,11 @@ public class Weapon : MonoBehaviour
                 speed = 0.5f; // 연사 속도 (초당)
                 break;
         }
+
+        // 손 무기 세팅
+        Hand hand = player.hands[(int)data.itemType];
+        hand.spriter.sprite = data.hand;
+        hand.gameObject.SetActive(true);
 
         player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
     }
