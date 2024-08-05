@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public bool isLive;
 
     [Header("# 플레이어 정보")]
+    public int playerId;
     public float health;
     public float maxHealth = 100;
     public int level;
@@ -47,11 +48,13 @@ public class GameManager : MonoBehaviour
         else
             return;
     }
-    public void GameStart()
+    public void GameStart(int id)
     {
-        health = maxHealth;
-        uiLevelUp.Select(0); // 임시 스크립트 (첫번째 캐릭터 선택)
         isLive = true;
+        playerId = id;
+        health = maxHealth;
+        player.gameObject.SetActive(true);
+        uiLevelUp.Select(playerId % 2);
         Resume();
     }
 

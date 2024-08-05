@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public float speed;
     public Scanner scanner;
     public Hand[] hands;
+    public RuntimeAnimatorController[] animCon; // 플레이어 애니메이터 관리
 
     private SpriteRenderer spriter;
     private Rigidbody2D rigid;
@@ -20,7 +21,11 @@ public class Player : MonoBehaviour
         scanner = GetComponent<Scanner>();
         hands = GetComponentsInChildren<Hand>(true);
     }
-
+    private void OnEnable()
+    {
+        speed *= Character.Speed;
+        anim.runtimeAnimatorController = animCon[GameManager.instance.playerId];   
+    }
     private void Update()
     {
         if (GameManager.instance.isLive)
