@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Vector2 inputVec;
+    public Vector2 inputVec;    
     public float speed;
     public Scanner scanner;
     public Hand[] hands;
@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     private SpriteRenderer spriter;
     private Rigidbody2D rigid;
     private Animator anim;
+    private Color hitColor;
+    
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -20,6 +22,7 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         scanner = GetComponent<Scanner>();
         hands = GetComponentsInChildren<Hand>(true);
+        hitColor = new Color(1, 0.4198f, 0.4198f);
     }
     private void OnEnable()
     {
@@ -63,7 +66,7 @@ public class Player : MonoBehaviour
         if (GameManager.instance.isLive && collision.gameObject.CompareTag("Enemy"))
         {
             GameManager.instance.health -= Time.deltaTime * 10;
-            spriter.color = new Color(1, 0.4198f, 0.4198f);
+            spriter.color = hitColor;
             if (GameManager.instance.health < 0)
             {
                 for (int index = 2; index < transform.childCount; index++)

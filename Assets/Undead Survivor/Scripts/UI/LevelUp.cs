@@ -17,11 +17,15 @@ public class LevelUp : MonoBehaviour
         Next();
         rect.localScale = Vector3.one;
         GameManager.instance.Stop();
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.LevelUp); // 음향재생
+        AudioManager.instance.EffectBgm(true); // 배경음 필터 끄기
     }
     public void Hide()
     {
         rect.localScale = Vector3.zero;
         GameManager.instance.Resume();
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Select); // 음향재생
+        AudioManager.instance.EffectBgm(false); // 배경음 필터 끄기
     }
 
     public void Select(int index)

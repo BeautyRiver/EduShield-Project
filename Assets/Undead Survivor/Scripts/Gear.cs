@@ -10,7 +10,7 @@ public class Gear : MonoBehaviour
     public void Init(ItemData data)
     {
         // 기본 세팅
-        gameObject.name = "Gear" + data.itemId;
+        gameObject.name = "Apply Gear" + data.itemId;
         transform.parent = GameManager.instance.player.transform;
         transform.localPosition = Vector3.zero; // 플레이어 안에서 위치 초기화
 
