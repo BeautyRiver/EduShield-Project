@@ -10,34 +10,54 @@ public class Reposition : MonoBehaviour
     {
         coll = GetComponent<Collider2D>();    
     }
+
+    private void FixedUpdate()
+    {
+                
+    }
+
+    private void OnDrawGizmos()
+    {
+        
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Area"))
         {
             Vector3 playerPos = GameManager.instance.player.transform.position;
             Vector3 myPos = transform.position;
-            
+
+            // 거리 계산
+            float dirX = playerPos.x - myPos.x;
+            float dirY= playerPos.y - myPos.y;
+
+            float diffX = Mathf.Abs(dirX);
+            float diffY = Mathf.Abs(dirY);
+
+            dirX = dirX > 0 ? 1 : -1;
+            dirY = dirY > 0 ? 1 : -1;
+
+
+
             switch (transform.tag)
             {
                 // 땅일때 (배경)
-                case "Ground":
-                    // 거리 계산
-                    float diffX = playerPos.x - myPos.x;
-                    float diffY = playerPos.y - myPos.y;
+                case "Ground":                   
 
-                    float dirX = diffX < 0 ? -1 : 1;
-                    float dirY = diffY < 0 ? -1 : 1;
-
-                    diffX = Mathf.Abs(diffX);
-                    diffY = Mathf.Abs(diffY);
-
-                    if (diffX > diffY) // x축의 차이가 더 크면 x축으로 이동해서 배치하면 되므로
+                    if (Mathf.Abs(diffX - diffY) <= 0.1f) 
                     {
-                        transform.Translate(Vector3.right * dirX * 60);
+                        transform.Translate(Vector3.up * dirY * 40);
+                        transform.Translate(Vector3.right * dirX * 40);
                     }
-                    else if (diffX < diffY) // y축의 차이가 더 크면 y축으로 이동해서 배치하면 되므로
+                    else if (diffX > diffY)
                     {
-                        transform.Translate(Vector3.up * dirY * 60);
+                        transform.Translate(Vector3.right * dirX * 40);
+                    }
+
+                    else if (diffX < diffY) 
+                    {
+                        transform.Translate(Vector3.up * dirY * 40);
                     }
 
                     break;
