@@ -11,55 +11,36 @@ public class Reposition : MonoBehaviour
         coll = GetComponent<Collider2D>();    
     }
 
-    private void FixedUpdate()
-    {
-                
-    }
-
-    private void OnDrawGizmos()
-    {
-        
-    }
-
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Area"))
         {
-            Vector3 playerPos = GameManager.instance.player.transform.position;
-            Vector3 myPos = transform.position;
+            Vector3 playerPos = GameManager.instance.player.transform.position; // 플레이어 포지션
+            Vector3 myPos = transform.position; // 이 오브젝트의 포지션
 
             // 거리 계산
-            float dirX = playerPos.x - myPos.x;
-            float dirY= playerPos.y - myPos.y;
+            float distX = playerPos.x - myPos.x;
+            float distY= playerPos.y - myPos.y;
 
-            float diffX = Mathf.Abs(dirX);
-            float diffY = Mathf.Abs(dirY);
+            float dirX = distX > 0 ? 1 : -1;
+            float dirY = distY > 0 ? 1 : -1;
 
-            dirX = dirX > 0 ? 1 : -1;
-            dirY = dirY > 0 ? 1 : -1;
-
-
-
+            distX = Mathf.Abs(distX);
+            distY = Mathf.Abs(distY);
             switch (transform.tag)
             {
+                
                 // 땅일때 (배경)
-                case "Ground":                   
-
-                    if (Mathf.Abs(diffX - diffY) <= 0.1f) 
+                case "Ground":
+                    Debug.Log(transform.name + " 범위 벗어남");
+                    if (distX > distY)
                     {
-                        transform.Translate(Vector3.up * dirY * 40);
-                        transform.Translate(Vector3.right * dirX * 40);
+                        transform.Translate(Vector2.right * dirX * 40);
                     }
-                    else if (diffX > diffY)
+                    else if (distY > distX)
                     {
-                        transform.Translate(Vector3.right * dirX * 40);
+                        transform.Translate(Vector2.up * dirY * 40);
                     }
-
-                    else if (diffX < diffY) 
-                    {
-                        transform.Translate(Vector3.up * dirY * 40);
-                    }
-
                     break;
 
                     // Enemy일때

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Vector2 inputVec;    
+    public Vector2 inputVec;
     public float speed;
     public Scanner scanner;
     public Hand[] hands;
@@ -13,8 +13,13 @@ public class Player : MonoBehaviour
     private SpriteRenderer spriter;
     private Rigidbody2D rigid;
     private Animator anim;
+
+    // 색상
     private Color hitColor;
-    
+    private Color normalColor;
+
+    private WaitForSeconds hitingTime;
+    private bool isHiting;
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -22,12 +27,15 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         scanner = GetComponent<Scanner>();
         hands = GetComponentsInChildren<Hand>(true);
-        hitColor = new Color(1, 0.4198f, 0.4198f);
+        hitColor = new Color(1, 0.42f, 0.42f);
+        normalColor = spriter.color;
+
+        hitingTime = new WaitForSeconds(0.2f);
     }
     private void OnEnable()
     {
         speed *= Character.Speed;
-        anim.runtimeAnimatorController = animCon[GameManager.instance.playerId];   
+        anim.runtimeAnimatorController = animCon[GameManager.instance.playerId];
     }
     private void Update()
     {
@@ -63,10 +71,17 @@ public class Player : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (GameManager.instance.isLive && collision.gameObject.CompareTag("Enemy"))
+        // 플레이어가 생존중이 아니라면 실행 X
+        if (GameManager.instance.isLive == false)
+            return;
+
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             GameManager.instance.health -= Time.deltaTime * 10;
-            spriter.color = hitColor;
+
+            if (!isHiting)
+                StartCoroutine(ColorChangeCol());
+
             if (GameManager.instance.health < 0)
             {
                 for (int index = 2; index < transform.childCount; index++)
@@ -77,13 +92,26 @@ public class Player : MonoBehaviour
                 anim.SetTrigger("Dead");
                 GameManager.instance.GameOver();
             }
-        }
+        }        
+    }
+
+    private IEnumerator ColorChangeCol()
+    {
+        isHiting = true;
+        spriter.color = hitColor;
+        yield return hitingTime;
+        spriter.color = normalColor;
+        isHiting = false;
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (GameManager.instance.isLive && collision.gameObject.CompareTag("Enemy"))
+        // 플레이어가 생존중이 아니라면 실행 X
+        if (GameManager.instance.isLive == false)
+            return;
+
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            spriter.color = Color.white;
+            spriter.color = normalColor;
         }
     }
 }
