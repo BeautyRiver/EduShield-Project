@@ -100,11 +100,12 @@ public class Weapon : MonoBehaviour
                 break;
         }
 
-        // 손 무기 세팅
+       /* // 손 무기 세팅
         Hand hand = player.hands[(int)data.itemType];
         hand.spriter.sprite = data.hand;
-        hand.gameObject.SetActive(true);
+        hand.gameObject.SetActive(true);*/
 
+        // 기어(추가된 능력치) 적용
         player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
     }
     // 불릿 배치 함수
