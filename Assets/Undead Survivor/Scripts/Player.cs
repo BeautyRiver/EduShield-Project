@@ -1,26 +1,31 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Vector2 inputVec;
-    public float speed = 3f;
-    public Scanner scanner;
-    public Hand[] hands;
-    public RuntimeAnimatorController[] animCon; // 플레이어 애니메이터 관리
+    [Header("플레이어")]
+    public Vector2 inputVec; // 입력 벡터 (방향)
+    public float speed = 3f; // 이동 속도    
+    public Scanner scanner; // 적 탐색기
+    public Hand[] hands; // 플레이어 무기 (손) 배열    
+    public RuntimeAnimatorController[] animCon; // 플레이어 애니메이터 컨트롤러
 
-    private SpriteRenderer spriter;
-    private Rigidbody2D rigid;
-    private Animator anim;
 
     // 플레이어 피격 관리
-    private Color hitColor;
-    private Color normalColor;
-    private WaitForSeconds hitingTime;
-    private bool isHiting;
+    private Color hitColor; // 피격 시 색상
+    private Color normalColor; // 기본 색상
+    private WaitForSeconds hitingTime; // 피격 지속 시간
+    private bool isHiting; // 피격 중 여부
 
-    private GameManager gameManager;
+    // 기타 컴포넌트
+    private SpriteRenderer spriter;
+    private Rigidbody2D rigid; 
+    private Animator anim;
+    private GameManager gameManager; // 게임 매니저 참조
+
     private void Awake()
     {        
         rigid = GetComponent<Rigidbody2D>();
@@ -28,22 +33,18 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         scanner = GetComponent<Scanner>();
         hands = GetComponentsInChildren<Hand>(true);
+
         hitColor = new Color(1, 0.42f, 0.42f);
         normalColor = spriter.color;
-
         hitingTime = new WaitForSeconds(0.2f);
     }
 
     private void Start()
     {
-        gameManager = GameManager.instance;
-        speed = speed * gameManager.playerData.speedMult; // 플레이어 기본 이동속도 적용
-        anim.runtimeAnimatorController = animCon[gameManager.playerId];
+        gameManager = GameManager.instance;        
+        PlayerInit(); // 플레이어 초기화
     }
-    private void OnEnable()
-    {
-        
-    }
+
     private void Update()
     {
         if (gameManager.isLive)
@@ -76,6 +77,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    // 물리 충돌 일어날 때
     private void OnCollisionStay2D(Collision2D collision)
     {
         // 플레이어가 생존중이 아니라면 실행 X
@@ -103,14 +105,7 @@ public class Player : MonoBehaviour
         }        
     }
 
-    private IEnumerator ColorChangeCol()
-    {
-        isHiting = true;
-        spriter.color = hitColor;
-        yield return hitingTime;
-        spriter.color = normalColor;
-        isHiting = false;
-    }
+    // 물리 충돌 벗어날 때
     private void OnCollisionExit2D(Collision2D collision)
     {
         // 플레이어가 생존중이 아니라면 실행 X
@@ -121,5 +116,22 @@ public class Player : MonoBehaviour
         {
             spriter.color = normalColor;
         }
+    }
+
+    // 피격 색상 변경 코루틴
+    private IEnumerator ColorChangeCol()
+    {
+        isHiting = true;
+        spriter.color = hitColor;
+        yield return hitingTime;
+        spriter.color = normalColor;
+        isHiting = false;
+    }
+
+    // 플레이어 초기화
+    private void PlayerInit()
+    {
+        speed = speed * gameManager.playerData.speedMult; // 플레이어 기본 이동속도 적용
+        anim.runtimeAnimatorController = animCon[gameManager.playerId]; ;
     }
 }

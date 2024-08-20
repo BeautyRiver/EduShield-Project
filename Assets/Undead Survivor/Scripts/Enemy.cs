@@ -82,14 +82,10 @@ public class Enemy : MonoBehaviour
         {
             health -= collision.GetComponent<Bullet>().damage; // 체력 감소
             StartCoroutine(KnockBack()); // 넉백
+            anim.SetTrigger("Hit"); // 맞는 애니메이션 재생
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit); // 음향재생
 
-            if (health > 0)
-            {
-                anim.SetTrigger("Hit"); // 맞는 애니메이션 재생
-                AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit); // 음향재생
-            }
-
-            else // 체력 0 이하 사망
+            if (health <= 0) // 체력 0 이하 사망
             {
                 isLive = false;
                 coll.enabled = false; // 콜라이더 끄기
@@ -102,7 +98,7 @@ public class Enemy : MonoBehaviour
 
                 if (GameManager.instance.isLive)
                     AudioManager.instance.PlaySfx(AudioManager.Sfx.Dead); // 음향재생
-            }
+            }                       
         }
         else
             return;

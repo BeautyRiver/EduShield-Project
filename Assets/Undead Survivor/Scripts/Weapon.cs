@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    [Header("# 무기 세팅")]
     public int id; // 무기의 고유 ID
     public int prefabId; // 생성할 불릿의 프리팹 ID
     public float damage; // 무기 데미지
     public int count; // 무기 수
+
     [Header("# 근접: 회전 속도 / 원거리: 발사 텀(초당 발사)")]
     public float speed; // 무기의 회전 속도
     private float timer_1;
@@ -29,7 +31,7 @@ public class Weapon : MonoBehaviour
                     transform.Rotate(Vector3.back * speed * Time.deltaTime); // 무기 회전
                     break;
 
-                case 1: // 단발총                    
+                case 50: // 단발총                    
                     timer_1 += Time.deltaTime;
 
                     if (timer_1 > speed)
@@ -38,7 +40,7 @@ public class Weapon : MonoBehaviour
                         FireWeaon_1();
                     }
                     break;
-                case 2: // 대포
+                case 51: // 대포
                     timer_2 += Time.deltaTime;
                     if (timer_2 > speed)
                     {
@@ -67,18 +69,18 @@ public class Weapon : MonoBehaviour
     public void Init(ItemData data)
     {
         // 기본 세팅
-        gameObject.name = "Equip Weapon " + data.itemId;
+        gameObject.name = "Equip Weapon: " + data.itemType.ToString();
         transform.parent = player.transform;
         transform.localPosition = Vector3.zero; // 플레이어 안에서 위치 초기화
 
         // 속성 세팅
         id = data.itemId; // 아이디 설정
-        damage = data.baseDamage * Character.Damage; // 데미지 설정
-        count = data.baseCount + Character.Count; // 개수 or 관통 수 설정
+        damage = data.baseDamage * Character.Damage; // 기본 데미지 설정
+        count = data.baseCount + Character.Count; // 기본 개수 or 관통 수 설정
 
         for (int index = 0; index < GameManager.instance.pool.prefabs.Length; index++)
         {
-            if (data.projectile == GameManager.instance.pool.prefabs[index])
+            if (data.prefab == GameManager.instance.pool.prefabs[index])
             {
                 prefabId = index;
             }
@@ -86,16 +88,18 @@ public class Weapon : MonoBehaviour
 
         switch (id)
         {
-            case 0: // 회전 무기
+            // 근접 무기
+            case 0: // 삽
                 speed = 150 * GameManager.instance.playerData.atkSpeedMult; // 캐릭터별 무기 회전 속도 설정
                 Batch();
                 break;
 
-            case 1: // 단발 총
+            // 원거리 무기
+            case 49: // 총
                 speed = 0.5f * GameManager.instance.playerData.atkDelayMult; // 캐릭터별 무기 연사속도 설정
                 break;
 
-            case 2: // 대포
+            case 50: // 대포
                 speed = 1.5f * GameManager.instance.playerData.atkDelayMult; // 캐릭터별 무기 연사속도 설정
                 break;
         }
@@ -133,6 +137,8 @@ public class Weapon : MonoBehaviour
             bullet.GetComponent<Bullet>().Init(damage, -100, Vector3.zero); // 불릿 초기화 (데미지 설정 및 관통 설정 -100은 무한 관통)
         }
     }
+
+    #region 원거리 무기
     private void FireWeaon_1()
     {
         // 플레이어의 스캐너가 가장 가까운 타겟을 찾지 못하면 함수 종료
@@ -171,5 +177,5 @@ public class Weapon : MonoBehaviour
         bullet.GetComponent<Bullet>().Init(damage, count, dir); // 불릿을 초기화 (데미지와 관통 횟수 설정)        
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Range); // 사운드 효과 재생
     }
-
+    #endregion
 }

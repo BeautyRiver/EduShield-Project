@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static ItemData;
 public class Item : MonoBehaviour
 {
+    [Header("# 아이템 데이터")]
     public ItemData data;
-    public int level;
-    public Weapon weapon;
+    public Weapon weapon;    
     public Gear gear;
+    public int level;
     
-
     private Image icon;
     private Text textLevel;
     private Text textName;
@@ -17,9 +18,11 @@ public class Item : MonoBehaviour
 
     private void Awake()
     {
+        // 아이콘 설정 및 세팅
         icon = GetComponentsInChildren<Image>()[1];
         icon.sprite = data.itemIcon;
 
+        // 레벨, 이름, 설명 텍스트 설정
         Text[] texts = GetComponentsInChildren<Text>();
         textLevel = texts[0];
         textName = texts[1];
@@ -29,32 +32,35 @@ public class Item : MonoBehaviour
 
     private void OnEnable()
     {
-        // 설명글 작성
+        // 설명글 세팅
         textLevel.text = "Lv." + (level + 1); // 레벨 표기
-        switch (data.itemType)
+        switch (data.itemCategory)
         {
-            case ItemData.ItemType.Melee:
-            case ItemData.ItemType.Range:
-                textDesc.text = string.Format(data.itemDesc, data.damages[level] * 100, data.counts[level]); // 아이템 설명글
+            // Weapons
+            case ItemCategory.Weapon:            
+                textDesc.text = string.Format(data.itemDesc, data.damages[level] * 100, data.counts[level]); // 무기 설명글
                 break;
 
-            case ItemData.ItemType.Glove:
-            case ItemData.ItemType.Shoe:
-                textDesc.text = string.Format(data.itemDesc, data.damages[level] * 100); // 아이템 설명글
+            // Gears
+            case ItemCategory.Gear:            
+                textDesc.text = string.Format(data.itemDesc, data.damages[level] * 100); // 기어 설명글
                 break;
-            default:
+
+            // Etc
+            case ItemCategory.Etc:
                 textDesc.text = string.Format(data.itemDesc); // 아이템 설명글
                 break;
         }
     }    
 
+    // 아이템 클릭 시
     public void OnClick()
-    {
-        switch (data.itemType)
+    {        
+        switch (data.itemType) // 지니고 있는 데이터 타입에 따라
         {
             // 무기 Setting
-            case ItemData.ItemType.Melee:                
-            case ItemData.ItemType.Range:
+            case ItemType.Shovel:                
+            case ItemType.Gun:
                 if (level == 0) // 무기가 없을때 초기화 시키기 (생성)
                 {
                     GameObject newWeapon = new GameObject();
@@ -75,8 +81,8 @@ public class Item : MonoBehaviour
                 break;
 
             // 기어 Setting
-            case ItemData.ItemType.Glove:
-            case ItemData.ItemType.Shoe:
+            case ItemType.Glove:
+            case ItemType.Shoe:
                 if (level == 0)
                 {
                     GameObject newGear = new GameObject();
@@ -91,7 +97,7 @@ public class Item : MonoBehaviour
                 level++;
                 break;
 
-            case ItemData.ItemType.Heal:
+            case ItemType.Heal:
                 GameManager.instance.health = GameManager.instance.maxHealth;
                 break;
         }

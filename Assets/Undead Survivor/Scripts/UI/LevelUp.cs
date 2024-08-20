@@ -23,9 +23,7 @@ public class LevelUp : MonoBehaviour
         AudioManager.instance.EffectBgm(true); // 배경음 필터 끄기
     }
     public void Hide()
-    {
-        Debug.Log("Hide function called.");
-
+    {        
         rect.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBack).SetUpdate(true).OnComplete(() => 
         GameManager.instance.Resume());
 
@@ -46,31 +44,54 @@ public class LevelUp : MonoBehaviour
         {
             item.gameObject.SetActive(false);
         }
-        // 그 중에서 랜덤 3개 아이템 활성화
-        int[] ran = new int[3];
-        while (true)
-        {
-            ran[0] = Random.Range(0, items.Length);
-            ran[1] = Random.Range(0, items.Length);
-            ran[2] = Random.Range(0, items.Length);
 
-            if (ran[0] != ran[1] && ran[1] != ran[2] && ran[0] != ran[2])
-                break;
-        }
+        // 소비 아이템과 골드 아이템 외의 모든 아이템이 만렙인지 확인
+        List<Item> availableItems = new List<Item>();
+        bool allMaxLevel = true;
 
-        for (int index = 0; index < ran.Length; index++)
+        foreach (Item item in items)
         {
-            Item ranItem = items[ran[index]];
-            // 만렙 아이템의 경우는 소비아이템으로 대체
-            if (ranItem.level == ranItem.data.damages.Length)
+            if (item.data.itemType != ItemData.ItemType.Heal &&
+                item.data.itemType != ItemData.ItemType.Gold &&
+                item.level < item.data.damages.Length)
             {
-                items[items.Length - 1].gameObject.SetActive(true); ;
-            }
-            else
-            {
-                ranItem.gameObject.SetActive(true);
+                availableItems.Add(item);
+                allMaxLevel = false;
             }
         }
 
+        if (allMaxLevel)
+        {
+            // 모든 아이템이 만렙이라면 소비 아이템과 골드 아이템만 활성화
+            foreach (Item item in items)
+            {
+                if (item.data.itemType == ItemData.ItemType.Heal || item.data.itemType == ItemData.ItemType.Gold)
+                {
+                    item.gameObject.SetActive(true);
+                }
+            }
+            return;
+        }
+
+        // 활성화할 아이템 수를 결정 (최대 3개)
+        int itemsToActivate = Mathf.Min(3, availableItems.Count);
+
+        // 랜덤으로 아이템 선택
+        List<int> selectedItem = new List<int>();
+        while (selectedItem.Count < itemsToActivate)
+        {
+            int randIndex = Random.Range(0, availableItems.Count);
+            if (!selectedItem.Contains(randIndex))
+            {
+                selectedItem.Add(randIndex);
+            }
+        }
+
+        // 선택된 아이템 활성화
+        foreach (int index in selectedItem)
+        {
+            availableItems[index].gameObject.SetActive(true);
+        }
     }
+
 }
