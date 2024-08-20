@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Vector2 inputVec;
-    public float speed;
+    public float speed = 3f;
     public Scanner scanner;
     public Hand[] hands;
     public RuntimeAnimatorController[] animCon; // 플레이어 애니메이터 관리
@@ -14,14 +14,15 @@ public class Player : MonoBehaviour
     private Rigidbody2D rigid;
     private Animator anim;
 
-    // 색상
+    // 플레이어 피격 관리
     private Color hitColor;
     private Color normalColor;
-
     private WaitForSeconds hitingTime;
     private bool isHiting;
+
+    private GameManager gameManager;
     private void Awake()
-    {
+    {        
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
@@ -32,14 +33,20 @@ public class Player : MonoBehaviour
 
         hitingTime = new WaitForSeconds(0.2f);
     }
+
+    private void Start()
+    {
+        gameManager = GameManager.instance;
+        speed = speed * gameManager.playerData.speedMult; // 플레이어 기본 이동속도 적용
+        anim.runtimeAnimatorController = animCon[gameManager.playerId];
+    }
     private void OnEnable()
     {
-        speed *= Character.Speed;
-        anim.runtimeAnimatorController = animCon[GameManager.instance.playerId];
+        
     }
     private void Update()
     {
-        if (GameManager.instance.isLive)
+        if (gameManager.isLive)
         {
             inputVec.x = Input.GetAxisRaw("Horizontal");
             inputVec.y = Input.GetAxisRaw("Vertical");
@@ -48,7 +55,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameManager.instance.isLive)
+        if (gameManager.isLive)
         {
             Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
             rigid.MovePosition(rigid.position + nextVec);
@@ -57,7 +64,7 @@ public class Player : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (GameManager.instance.isLive)
+        if (gameManager.isLive)
         {
             // Animator 세팅
             anim.SetFloat("Speed", inputVec.magnitude);
@@ -72,17 +79,18 @@ public class Player : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
         // 플레이어가 생존중이 아니라면 실행 X
-        if (GameManager.instance.isLive == false)
+        if (gameManager.isLive == false)
             return;
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            GameManager.instance.health -= Time.deltaTime * 10;
+            gameManager.health -= Time.deltaTime * 10;
 
+            // 플레이어 피격색상 변경
             if (!isHiting)
                 StartCoroutine(ColorChangeCol());
 
-            if (GameManager.instance.health < 0)
+            if (gameManager.health < 0)
             {
                 for (int index = 2; index < transform.childCount; index++)
                 {
@@ -90,7 +98,7 @@ public class Player : MonoBehaviour
                 }
 
                 anim.SetTrigger("Dead");
-                GameManager.instance.GameOver();
+                gameManager.GameOver();
             }
         }        
     }
@@ -106,7 +114,7 @@ public class Player : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         // 플레이어가 생존중이 아니라면 실행 X
-        if (GameManager.instance.isLive == false)
+        if (gameManager.isLive == false)
             return;
 
         if (collision.gameObject.CompareTag("Enemy"))

@@ -29,6 +29,7 @@ public class Item : MonoBehaviour
 
     private void OnEnable()
     {
+        // 설명글 작성
         textLevel.text = "Lv." + (level + 1); // 레벨 표기
         switch (data.itemType)
         {
@@ -51,7 +52,7 @@ public class Item : MonoBehaviour
     {
         switch (data.itemType)
         {
-            // 무기 Set
+            // 무기 Setting
             case ItemData.ItemType.Melee:                
             case ItemData.ItemType.Range:
                 if (level == 0) // 무기가 없을때 초기화 시키기 (생성)
@@ -68,12 +69,12 @@ public class Item : MonoBehaviour
                     nextDamage += data.baseDamage * data.damages[level];
                     nextCount += data.counts[level];
 
-                    weapon.LevelUp(nextDamage, nextCount);
+                    weapon.WeaonLevelUp(nextDamage, nextCount);
                 }
                 level++;
                 break;
 
-            // 기어 Set
+            // 기어 Setting
             case ItemData.ItemType.Glove:
             case ItemData.ItemType.Shoe:
                 if (level == 0)
@@ -85,7 +86,7 @@ public class Item : MonoBehaviour
                 else
                 {
                     float nextRate = data.damages[level];
-                    gear.LevelUp(nextRate);
+                    gear.GearLevelUp(nextRate);
                 }
                 level++;
                 break;

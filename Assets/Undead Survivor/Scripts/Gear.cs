@@ -20,7 +20,7 @@ public class Gear : MonoBehaviour
         ApplyGear();
     }
 
-    public void LevelUp(float rate)
+    public void GearLevelUp(float rate)
     {
         this.rate = rate;
         ApplyGear();
@@ -31,7 +31,7 @@ public class Gear : MonoBehaviour
         switch (type)
         {            
             case ItemData.ItemType.Glove:
-                RateUp();
+                AttackSpeedUp();
                 break;
 
             case ItemData.ItemType.Shoe:
@@ -41,7 +41,7 @@ public class Gear : MonoBehaviour
     }
 
     // 모든 무기 연사력 증가 함수
-    private void RateUp()
+    private void AttackSpeedUp()
     {
         Weapon[] weapons = transform.parent.GetComponentsInChildren<Weapon>();
 
@@ -49,13 +49,15 @@ public class Gear : MonoBehaviour
         {
             switch (weapon.id)
             {
+                // 회전 무기
                 case 0:
-                    float speed = 150 * Character.WeaponSpeed;
+                    float speed = 150 * GameManager.instance.playerData.atkSpeedMult; 
                     weapon.speed = speed + (speed * rate);
                     break;
 
+                 // 원거리 무기
                 default:
-                    speed = 0.5f * Character.WeaponRate;
+                    speed = 0.5f * GameManager.instance.playerData.atkDelayMult;
                     weapon.speed = speed * (1f - rate);
                     break;
             }
@@ -64,7 +66,7 @@ public class Gear : MonoBehaviour
 
     private void SpeedUp()
     {
-        float speed = 3 * Character.Speed; // 캐릭터별 기본 속도 다르기 때문에 체크
+        float speed = 3 * GameManager.instance.playerData.speedMult; // 캐릭터별 기본 속도 다르기 때문에 체크
         GameManager.instance.player.speed = speed + speed * rate;
     }
 }

@@ -30,7 +30,13 @@ public class TitleSelection : MonoBehaviour
     }
 
     private void Update()
-    {
+    {        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log($"{index}번째 버튼 실행");
+            buttons[index].onClick.Invoke();
+        }
+
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             MoveDown();

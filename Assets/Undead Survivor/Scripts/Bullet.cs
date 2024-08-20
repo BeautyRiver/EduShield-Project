@@ -42,6 +42,7 @@ public class Bullet : MonoBehaviour
     {
         if (!collision.CompareTag("Area") || per == -100)
             return;
+
         gameObject.SetActive(false);
     }
 }

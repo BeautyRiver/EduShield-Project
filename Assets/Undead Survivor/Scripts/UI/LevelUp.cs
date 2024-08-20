@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 public class LevelUp : MonoBehaviour
 {
     private RectTransform rect;
-    private Item[] items;
+    [SerializeField] private Item[] items;
     private void Awake()
     {
         rect = GetComponent<RectTransform>();
@@ -15,15 +16,20 @@ public class LevelUp : MonoBehaviour
     public void Show()
     {
         Next();
-        rect.localScale = Vector3.one;
         GameManager.instance.Stop();
+        rect.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack).SetUpdate(true);
+
         AudioManager.instance.PlaySfx(AudioManager.Sfx.LevelUp); // 음향재생
         AudioManager.instance.EffectBgm(true); // 배경음 필터 끄기
     }
     public void Hide()
     {
-        rect.localScale = Vector3.zero;
-        GameManager.instance.Resume();
+        Debug.Log("Hide function called.");
+
+        rect.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBack).SetUpdate(true).OnComplete(() => 
+        GameManager.instance.Resume());
+
+
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Select); // 음향재생
         AudioManager.instance.EffectBgm(false); // 배경음 필터 끄기
     }
@@ -65,6 +71,6 @@ public class LevelUp : MonoBehaviour
                 ranItem.gameObject.SetActive(true);
             }
         }
-        
+
     }
 }

@@ -8,10 +8,9 @@ public class Weapon : MonoBehaviour
     public int id; // 무기의 고유 ID
     public int prefabId; // 생성할 불릿의 프리팹 ID
     public float damage; // 무기 데미지
-    public int count; // 불릿 수
+    public int count; // 무기 수
     [Header("# 근접: 회전 속도 / 원거리: 발사 텀(초당 발사)")]
     public float speed; // 무기의 회전 속도
-
     private float timer_1;
     private float timer_2;
     private Player player;
@@ -51,7 +50,7 @@ public class Weapon : MonoBehaviour
             }
         }
     }
-    public void LevelUp(float damage, int count)
+    public void WeaonLevelUp(float damage, int count)
     {
         this.damage = damage * Character.Damage; // 데미지 업데이트
         this.count += count; // 불릿 수 증가
@@ -60,6 +59,7 @@ public class Weapon : MonoBehaviour
         if (id == 0)
             Batch();
 
+        // 기어 강화 적용
         player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
     }
 
@@ -87,16 +87,16 @@ public class Weapon : MonoBehaviour
         switch (id)
         {
             case 0: // 회전 무기
-                speed = 150 * Character.WeaponSpeed; // 캐릭터별 무기 회전 속도 설정
+                speed = 150 * GameManager.instance.playerData.atkSpeedMult; // 캐릭터별 무기 회전 속도 설정
                 Batch();
                 break;
 
             case 1: // 단발 총
-                speed = 0.5f * Character.WeaponRate; // 캐릭터별 무기 연사속도 설정
+                speed = 0.5f * GameManager.instance.playerData.atkDelayMult; // 캐릭터별 무기 연사속도 설정
                 break;
 
             case 2: // 대포
-                speed = 1.5f * Character.WeaponRate; // 캐릭터별 무기 연사속도 설정
+                speed = 1.5f * GameManager.instance.playerData.atkDelayMult; // 캐릭터별 무기 연사속도 설정
                 break;
         }
 

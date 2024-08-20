@@ -27,9 +27,17 @@ public class GameManager : MonoBehaviour
     public LevelUp uiLevelUp;
     public Result uiResult;
     public GameObject enemyCleaner;
+    public PlayerData playerData;
+
     private void Awake()
     {
-        instance = this; // 싱글톤 인스턴스 설정
+        instance = this; // 싱글톤 인스턴스 설정        
+        playerData = DataManager.instance.currentPlayerData;
+    }
+
+    private void Start()
+    {
+        GameStart(playerData.characterId);
     }
 
     private void Update()
@@ -50,15 +58,16 @@ public class GameManager : MonoBehaviour
 
     // 게임 시작 설정
     public void GameStart(int id)
-    {
+    {      
         isLive = true;
-        playerId = id;
-        health = maxHealth;
+        playerId = id; // 플레이어 아이디 세팅
+        health = maxHealth * playerData.maxHpMult; // 플레이어 체력 세팅 
+        uiLevelUp.Select(playerData.characterId); // 플레이어 기본 무기 부여
         player.gameObject.SetActive(true);
-        uiLevelUp.Select(playerId % 2);
-        Resume();
-        AudioManager.instance.PlayBgm(true); // 배경음악 재생
-        AudioManager.instance.PlaySfx(AudioManager.Sfx.Select); // 효과음 재생
+
+        //Resume();
+        //AudioManager.instance.PlayBgm(true); // 배경음악 재생
+        //AudioManager.instance.PlaySfx(AudioManager.Sfx.Select); // 효과음 재생
     }
 
     // 게임 오버 처리
