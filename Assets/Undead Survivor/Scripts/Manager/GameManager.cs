@@ -31,8 +31,10 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this; // 싱글톤 인스턴스 설정        
-        playerData = DataManager.instance.currentPlayerData;
+        instance = this; // 싱글톤 인스턴스 설정
+
+        if (gameObject.transform.Find("DataManager") != null)
+            playerData = DataManager.instance.currentPlayerData;
     }
 
     private void Start()
@@ -42,8 +44,16 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        // 디버깅용 레벨업
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("레벨업");
+            GetExp(nextExp[level]);
+        }
+
         if (isLive)
         {
+           
             // 시간 계산
             gameTime += Time.deltaTime;
             if (gameTime > maxGameTime)
@@ -128,13 +138,13 @@ public class GameManager : MonoBehaviour
 
 
     // 경험치 획득 및 레벨업 처리
-    public void GetExp()
+    public void GetExp(int getExp)
     {
         if (isLive)
         {
-            exp++;
+            exp += getExp;
 
-            if (exp == nextExp[Mathf.Min(level, nextExp.Length - 1)])
+            if (exp >= nextExp[Mathf.Min(level, nextExp.Length - 1)])
             {
                 level++;
                 exp = 0;

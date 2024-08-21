@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Etc 1
   m_EditorClassIdentifier: 
   itemCategory: 2
-  itemType: 5
+  itemType: 201
   itemId: 201
   itemName: "\uACE8\uB4DC"
   itemDesc: "10\uACE8\uB4DC \uD68D\uB4DD"

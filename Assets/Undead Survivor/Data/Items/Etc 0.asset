@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Etc 0
   m_EditorClassIdentifier: 
   itemCategory: 2
-  itemType: 4
+  itemType: 200
   itemId: 200
   itemName: "\uC74C\uB8CC\uC218"
   itemDesc: "\uCCB4\uB825 \uC804\uBD80 \uD68C\uBCF5"

@@ -90,16 +90,16 @@ public class Weapon : MonoBehaviour
         {
             // 근접 무기
             case 0: // 삽
-                speed = 150 * GameManager.instance.playerData.atkSpeedMult; // 캐릭터별 무기 회전 속도 설정
+                speed = 100f * GameManager.instance.playerData.atkSpeedMult; // 캐릭터별 무기 회전 속도 설정
                 Batch();
                 break;
 
             // 원거리 무기
-            case 49: // 총
+            case 50: // 총
                 speed = 0.5f * GameManager.instance.playerData.atkDelayMult; // 캐릭터별 무기 연사속도 설정
                 break;
 
-            case 50: // 대포
+            case 51: // 대포
                 speed = 1.5f * GameManager.instance.playerData.atkDelayMult; // 캐릭터별 무기 연사속도 설정
                 break;
         }

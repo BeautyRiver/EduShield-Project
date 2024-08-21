@@ -94,7 +94,7 @@ public class Enemy : MonoBehaviour
                 anim.SetBool("Dead", true);
 
                 GameManager.instance.kill++;
-                GameManager.instance.GetExp();
+                GameManager.instance.GetExp(1);
 
                 if (GameManager.instance.isLive)
                     AudioManager.instance.PlaySfx(AudioManager.Sfx.Dead); // 음향재생

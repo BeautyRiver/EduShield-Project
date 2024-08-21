@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gear 0
   m_EditorClassIdentifier: 
   itemCategory: 1
-  itemType: 3
+  itemType: 100
   itemId: 100
   itemName: "\uD0DC\uD06C\uB2C8\uCEEC \uC7A5\uAC10"
   itemDesc: "\uC5F0\uC0AC\uC18D\uB3C4 {0}% \uC99D\uAC00"

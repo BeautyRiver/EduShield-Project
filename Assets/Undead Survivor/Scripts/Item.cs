@@ -23,7 +23,7 @@ public class Item : MonoBehaviour
         icon.sprite = data.itemIcon;
 
         // 레벨, 이름, 설명 텍스트 설정
-        Text[] texts = GetComponentsInChildren<Text>();
+        Text[] texts = GetComponentsInChildren<Text>();        
         textLevel = texts[0];
         textName = texts[1];
         textDesc = texts[2];
@@ -61,6 +61,7 @@ public class Item : MonoBehaviour
             // 무기 Setting
             case ItemType.Shovel:                
             case ItemType.Gun:
+            case ItemType.Cannon:
                 if (level == 0) // 무기가 없을때 초기화 시키기 (생성)
                 {
                     GameObject newWeapon = new GameObject();

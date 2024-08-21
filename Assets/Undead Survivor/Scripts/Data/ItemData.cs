@@ -7,10 +7,14 @@ public class ItemData : ScriptableObject
 {
     public enum ItemCategory { Weapon, Gear, Etc }
     public enum ItemType 
-    { 
-        Shovel, Gun, Cannon, // 무기 류
-        Glove, Shoe, // 기어 류
-        Heal, Gold // 기타템 류
+    {
+        // 무기 류
+        Shovel, // 근접
+        Gun = 10, Cannon, // 원거리
+
+        Glove = 100, Shoe, // 기어 류
+
+        Heal = 200, Gold // 기타템 류
     }
 
     [Header("# 아이템 속성")]
@@ -30,6 +34,8 @@ public class ItemData : ScriptableObject
     [Header("# 레벨 데이터")]
     public float baseDamage;
     public int baseCount;
+
+    [Header("# Gear 일 경우 Gear rate")]
     public float[] damages;
     public int[] counts;
 
