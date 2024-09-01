@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class TitleSelection : MonoBehaviour
 {
-    public Transform titleButtons;
+    public Transform titleButtonList;
     public Button[] buttons;
     public RectTransform[] buttonRects;
     public int index;
@@ -15,7 +15,7 @@ public class TitleSelection : MonoBehaviour
     private void Awake()
     {
         index = 0;
-        buttons = titleButtons.GetComponentsInChildren<Button>();        
+        buttons = titleButtonList.GetComponentsInChildren<Button>();        
         buttonRects = new RectTransform[buttons.Length];
 
         for (int i = 0; i < buttons.Length; i++)

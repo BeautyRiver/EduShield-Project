@@ -1011,7 +1011,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 30, y: 30, z: 30}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1408414429}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1091,7 +1091,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97eb99a6e2616a64e88b08afd90332f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleButtons: {fileID: 751774419}
+  titleButtonList: {fileID: 0}
   buttons: []
   buttonRects: []
   index: 0
@@ -1106,7 +1106,7 @@ GameObject:
   - component: {fileID: 751774419}
   - component: {fileID: 751774420}
   m_Layer: 5
-  m_Name: Titles Buttons
+  m_Name: Title Button List
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1305,7 +1305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97eb99a6e2616a64e88b08afd90332f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleButtons: {fileID: 751774419}
+  titleButtonList: {fileID: 0}
   buttons: []
   buttonRects: []
   index: 0
@@ -2836,7 +2836,7 @@ RectTransform:
   m_GameObject: {fileID: 2035720260}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1395288297}
