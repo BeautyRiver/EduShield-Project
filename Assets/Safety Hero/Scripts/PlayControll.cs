@@ -6,6 +6,6 @@ public class PlayControll : MonoBehaviour
 {
     private void Awake()
     {
-        GameManager.instance.GameStart(GameManager.instance.playerData.characterId);
+       // GameManager.instance.playerData = DataManager.instance.currentPlayerData;
     }
 }

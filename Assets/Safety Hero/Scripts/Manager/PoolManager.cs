@@ -7,8 +7,8 @@ public class PoolManager : MonoBehaviour
     // 프리펩 보관 변수
     public GameObject[] prefabs;
 
-    // 풀 담당 리스트
-    private List<GameObject>[] pools;
+    // 풀 담당 리스트    
+    [SerializeField] private List<GameObject>[] pools;
 
     private void Awake()
     {
@@ -25,7 +25,7 @@ public class PoolManager : MonoBehaviour
     {
         GameObject select = null;
 
-        // 선택한 풀의 비활성화 된 게임오브젝트 접근!
+        // 선택한 풀의 비활성화 된 게임오브젝트 접근
         foreach (GameObject item in pools[index])
         {
             if (item.activeSelf == false)

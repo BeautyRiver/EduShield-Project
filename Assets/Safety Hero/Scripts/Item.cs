@@ -71,12 +71,10 @@ public class Item : MonoBehaviour
     // 아이템 클릭 시
     public void OnClick()
     {
-        switch (data.itemType) // 지니고 있는 데이터 타입에 따라
+        switch (data.itemCategory) // 지니고 있는 데이터 타입에 따라
         {
             // 무기 Setting
-            case ItemType.Shovel:
-            case ItemType.Gun:
-            case ItemType.Cannon:
+            case ItemCategory.Weapon:
                 if (level == 0) // 무기가 없을때 초기화 시키기 (생성)
                 {
                     GameObject newWeapon = new GameObject();
@@ -97,8 +95,7 @@ public class Item : MonoBehaviour
                 break;
 
             // 기어 Setting
-            case ItemType.Glove:
-            case ItemType.Shoe:
+            case ItemCategory.Gear:
                 if (level == 0)
                 {
                     GameObject newGear = new GameObject();
@@ -113,7 +110,7 @@ public class Item : MonoBehaviour
                 level++;
                 break;
 
-            case ItemType.Heal:
+            case ItemCategory.Etc:
                 GameManager.instance.health = GameManager.instance.maxHealth;
                 break;
         }

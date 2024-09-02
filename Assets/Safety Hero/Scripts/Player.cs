@@ -42,7 +42,6 @@ public class Player : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.instance;        
-        PlayerInit(); // 플레이어 초기화
     }
 
     private void Update()
@@ -129,9 +128,10 @@ public class Player : MonoBehaviour
     }
 
     // 플레이어 초기화
-    private void PlayerInit()
+    public void PlayerInit()
     {
         speed = speed * gameManager.playerData.speedMult; // 플레이어 기본 이동속도 적용
         anim.runtimeAnimatorController = animCon[gameManager.playerId]; ;
+        Debug.Log($"애니메이션 컨트롤러 변경 {gameManager.playerId}");
     }
 }

@@ -40,7 +40,7 @@ public class TitleManager : MonoBehaviour
     #region 캐릭터 버튼 관리
     public void SelectCharacter(PlayerData playerData)
     {
-        DataManager.instance.currentPlayerData = playerData;
+        DataManager.instance.currentPlayerData = playerData;        
         LoadScene("Game Scene");
     }
     #endregion

@@ -75,8 +75,8 @@ public class Weapon : MonoBehaviour
 
         // 속성 세팅
         id = data.itemId; // 아이디 설정
-        damage = data.baseDamage * Character.Damage; // 기본 데미지 설정
-        count = data.baseCount + Character.Count; // 기본 개수 or 관통 수 설정
+        damage = data.baseDamage * GameManager.instance.playerData.damageMult; // 기본 데미지 설정
+        count = data.baseCount; // 기본 개수 or 관통 수 설정
 
         for (int index = 0; index < GameManager.instance.pool.prefabs.Length; index++)
         {

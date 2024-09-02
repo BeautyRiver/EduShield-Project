@@ -460,7 +460,7 @@ GameObject:
   - component: {fileID: 122408105}
   - component: {fileID: 122408104}
   - component: {fileID: 122408103}
-  - component: {fileID: 122408102}
+  - component: {fileID: 122408108}
   m_Layer: 0
   m_Name: Tilemap 2
   m_TagString: Ground
@@ -483,20 +483,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 470481065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &122408102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 122408100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48131cc8fc1d0af48bff72a0c45585fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tileMapSize: 40
-  checkInterval: 0.5
 --- !u!66 &122408103
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -16738,6 +16724,20 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &122408108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122408100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37755fbd2e5947c4e9dde2d544ef5df2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileMapSize: 40
+  checkInterval: 0.5
 --- !u!1 &131234878
 GameObject:
   m_ObjectHideFlags: 0
@@ -17012,7 +17012,7 @@ GameObject:
   - component: {fileID: 184955511}
   - component: {fileID: 184955510}
   - component: {fileID: 184955509}
-  - component: {fileID: 184955508}
+  - component: {fileID: 184955514}
   m_Layer: 0
   m_Name: Tilemap 1
   m_TagString: Ground
@@ -17035,20 +17035,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 470481065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &184955508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 184955506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48131cc8fc1d0af48bff72a0c45585fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tileMapSize: 40
-  checkInterval: 0.5
 --- !u!66 &184955509
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -33290,6 +33276,20 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &184955514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184955506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37755fbd2e5947c4e9dde2d544ef5df2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileMapSize: 40
+  checkInterval: 0.5
 --- !u!1 &190388430
 GameObject:
   m_ObjectHideFlags: 0
@@ -50206,7 +50206,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 271682460}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48131cc8fc1d0af48bff72a0c45585fd, type: 3}
+  m_Script: {fileID: 11500000, guid: 37755fbd2e5947c4e9dde2d544ef5df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tileMapSize: 40
@@ -50348,15 +50348,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37755fbd2e5947c4e9dde2d544ef5df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 905882070}
-  tileSize: 40
-  tilemaps:
-  - {fileID: 271682461}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  lastPlayerPosition: {x: 0, y: 0, z: 0}
-  debugPos: {x: 0, y: 0, z: 0}
+  tileMapSize: 40
+  checkInterval: 0.5
 --- !u!1 &290423837
 GameObject:
   m_ObjectHideFlags: 0
@@ -50666,7 +50659,7 @@ GameObject:
   - component: {fileID: 397019425}
   - component: {fileID: 397019424}
   - component: {fileID: 397019423}
-  - component: {fileID: 397019422}
+  - component: {fileID: 397019428}
   m_Layer: 0
   m_Name: Tilemap 3
   m_TagString: Ground
@@ -50689,20 +50682,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 470481065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &397019422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 397019420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48131cc8fc1d0af48bff72a0c45585fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tileMapSize: 40
-  checkInterval: 0.5
 --- !u!66 &397019423
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -66944,6 +66923,20 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &397019428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397019420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37755fbd2e5947c4e9dde2d544ef5df2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileMapSize: 40
+  checkInterval: 0.5
 --- !u!1 &438253886
 GameObject:
   m_ObjectHideFlags: 0
@@ -68641,7 +68634,7 @@ GameObject:
   - component: {fileID: 626105142}
   - component: {fileID: 626105141}
   - component: {fileID: 626105140}
-  - component: {fileID: 626105139}
+  - component: {fileID: 626105145}
   m_Layer: 0
   m_Name: Tilemap 7
   m_TagString: Ground
@@ -68664,20 +68657,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 470481065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &626105139
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 626105137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48131cc8fc1d0af48bff72a0c45585fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tileMapSize: 40
-  checkInterval: 0.5
 --- !u!66 &626105140
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -84919,6 +84898,20 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &626105145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626105137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37755fbd2e5947c4e9dde2d544ef5df2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileMapSize: 40
+  checkInterval: 0.5
 --- !u!1 &628768439
 GameObject:
   m_ObjectHideFlags: 0
@@ -85012,7 +85005,7 @@ GameObject:
   - component: {fileID: 648602361}
   - component: {fileID: 648602360}
   - component: {fileID: 648602359}
-  - component: {fileID: 648602358}
+  - component: {fileID: 648602364}
   m_Layer: 0
   m_Name: Tilemap 4
   m_TagString: Ground
@@ -85035,20 +85028,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 470481065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &648602358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 648602356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48131cc8fc1d0af48bff72a0c45585fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tileMapSize: 40
-  checkInterval: 0.5
 --- !u!66 &648602359
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -101290,6 +101269,20 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &648602364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648602356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37755fbd2e5947c4e9dde2d544ef5df2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileMapSize: 40
+  checkInterval: 0.5
 --- !u!1 &658823400
 GameObject:
   m_ObjectHideFlags: 0
@@ -102816,7 +102809,7 @@ GameObject:
   - component: {fileID: 942473384}
   - component: {fileID: 942473383}
   - component: {fileID: 942473382}
-  - component: {fileID: 942473381}
+  - component: {fileID: 942473387}
   m_Layer: 0
   m_Name: Tilemap 6
   m_TagString: Ground
@@ -102839,20 +102832,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 470481065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &942473381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 942473379}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48131cc8fc1d0af48bff72a0c45585fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tileMapSize: 40
-  checkInterval: 0.5
 --- !u!66 &942473382
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -119094,6 +119073,20 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &942473387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942473379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37755fbd2e5947c4e9dde2d544ef5df2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileMapSize: 40
+  checkInterval: 0.5
 --- !u!1 &951291292
 GameObject:
   m_ObjectHideFlags: 0
@@ -120360,7 +120353,7 @@ GameObject:
   - component: {fileID: 1263946189}
   - component: {fileID: 1263946188}
   - component: {fileID: 1263946187}
-  - component: {fileID: 1263946186}
+  - component: {fileID: 1263946192}
   m_Layer: 0
   m_Name: Tilemap 8
   m_TagString: Ground
@@ -120383,20 +120376,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 470481065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1263946186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1263946184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48131cc8fc1d0af48bff72a0c45585fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tileMapSize: 40
-  checkInterval: 0.5
 --- !u!66 &1263946187
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -136638,6 +136617,20 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1263946192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263946184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37755fbd2e5947c4e9dde2d544ef5df2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileMapSize: 40
+  checkInterval: 0.5
 --- !u!1 &1283426545
 GameObject:
   m_ObjectHideFlags: 0
@@ -136858,7 +136851,7 @@ GameObject:
   - component: {fileID: 1314984967}
   - component: {fileID: 1314984966}
   - component: {fileID: 1314984965}
-  - component: {fileID: 1314984964}
+  - component: {fileID: 1314984970}
   m_Layer: 0
   m_Name: Tilemap 9
   m_TagString: Ground
@@ -136881,20 +136874,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 470481065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1314984964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1314984962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48131cc8fc1d0af48bff72a0c45585fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tileMapSize: 40
-  checkInterval: 0.5
 --- !u!66 &1314984965
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -153136,6 +153115,20 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1314984970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314984962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37755fbd2e5947c4e9dde2d544ef5df2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileMapSize: 40
+  checkInterval: 0.5
 --- !u!1 &1334179326
 GameObject:
   m_ObjectHideFlags: 0
@@ -153350,7 +153343,7 @@ MonoBehaviour:
   uiLevelUp: {fileID: 259957426}
   uiResult: {fileID: 927738641}
   enemyCleaner: {fileID: 1689566429}
-  playerData: {fileID: 11400000, guid: e46da10fa0948124ab17ebcceb64080c, type: 2}
+  playerData: {fileID: 0}
 --- !u!4 &1358241787
 Transform:
   m_ObjectHideFlags: 0
@@ -156993,7 +156986,7 @@ GameObject:
   - component: {fileID: 2116731557}
   - component: {fileID: 2116731556}
   - component: {fileID: 2116731555}
-  - component: {fileID: 2116731554}
+  - component: {fileID: 2116731560}
   m_Layer: 0
   m_Name: Tilemap 5
   m_TagString: Ground
@@ -157016,20 +157009,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 470481065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2116731554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2116731552}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48131cc8fc1d0af48bff72a0c45585fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tileMapSize: 40
-  checkInterval: 0.5
 --- !u!66 &2116731555
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -173271,6 +173250,20 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &2116731560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116731552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37755fbd2e5947c4e9dde2d544ef5df2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileMapSize: 40
+  checkInterval: 0.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -32,13 +32,11 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this; // 싱글톤 인스턴스 설정
-
-        if (gameObject.transform.Find("DataManager") != null)
-            playerData = DataManager.instance.currentPlayerData;
     }
 
     private void Start()
     {
+        playerData = DataManager.instance.currentPlayerData;
         GameStart(playerData.characterId);
     }
 
@@ -73,6 +71,8 @@ public class GameManager : MonoBehaviour
         playerId = id; // 플레이어 아이디 세팅
         health = maxHealth * playerData.maxHpMult; // 플레이어 체력 세팅 
         uiLevelUp.Select(playerData.characterId); // 플레이어 기본 무기 부여
+
+        player.PlayerInit(); // 플레이어 초기화
         player.gameObject.SetActive(true);
 
         //Resume();
