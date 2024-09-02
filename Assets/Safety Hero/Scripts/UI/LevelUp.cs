@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelUp : MonoBehaviour
 {
@@ -16,6 +17,13 @@ public class LevelUp : MonoBehaviour
     public void Show()
     {
         Next();
+
+        Button[] buttons = transform.GetComponentsInChildren<Button>();
+        foreach (var btn in buttons)
+        {
+            btn.interactable = true;
+        }
+
         GameManager.instance.Stop();
         rect.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack).SetUpdate(true);
 
@@ -23,10 +31,15 @@ public class LevelUp : MonoBehaviour
         AudioManager.instance.EffectBgm(true); // 배경음 필터 끄기
     }
     public void Hide()
-    {        
+    {
+        Button[] buttons = transform.GetComponentsInChildren<Button>();
+        foreach (var btn in buttons)
+        {
+            btn.interactable = false;
+        }
+
         rect.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBack).SetUpdate(true).OnComplete(() => 
         GameManager.instance.Resume());
-
 
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Select); // 음향재생
         AudioManager.instance.EffectBgm(false); // 배경음 필터 끄기

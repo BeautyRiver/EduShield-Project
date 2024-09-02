@@ -118,7 +118,7 @@ public class Item : MonoBehaviour
                 break;
         }
 
-
+        
         if (level == data.damages.Length)
         {
             GetComponent<Button>().interactable = false;

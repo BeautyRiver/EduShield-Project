@@ -4,49 +4,56 @@ using UnityEngine;
 
 public class ScrollingTileMap : MonoBehaviour
 {
-    public Transform player;  // 플레이어의 위치
-    public float tileSize;    // 타일맵 하나의 크기 (타일맵이 정사각형이라고 가정)
-    public Transform[] tilemaps;  // A, B, C, D 타일맵
+    private Collider2D coll;
+    private Player player;
+    public float tileMapSize = 40f; // 타일맵 이동 거리
+    public float checkInterval = 0.5f; // 검사 간격 (초)
 
-    private Vector3 lastPlayerPosition;
-    public Vector3 debugPos;
+    private float nextCheckTime = 0f; // 다음 검사 시간
+    private Vector3 previousPlayerPos; // 이전 플레이어 위치
 
-    void Start()
+    private void Start()
     {
-        lastPlayerPosition = player.position;  // 시작할 때 플레이어 위치 저장
+        coll = GetComponent<Collider2D>();
+        player = GameManager.instance.player;
+        previousPlayerPos = player.transform.position;
     }
 
-    void Update()
+    private void FixedUpdate()
     {
-        Vector3 playerMovement = player.position - lastPlayerPosition;
-        debugPos = playerMovement;
-        if (Mathf.Abs(playerMovement.x) > 10 || playerMovement.magnitude > tileSize / 2)  // 플레이어가 타일맵 크기만큼 이동했을 때
+        // 현재 시간이 다음 검사 시간을 넘었는지 확인
+        if (Time.time >= nextCheckTime)
         {
-            RepositionTiles(playerMovement);
-            lastPlayerPosition = player.position;
-        }
-    }
+            Debug.Log("검사중");
+            Vector3 playerPos = player.transform.position; // 플레이어 위치
+            Vector3 myPos = transform.position; // 현재 오브젝트 위치
+            float dirX = playerPos.x - myPos.x;
+            float dirY = playerPos.y - myPos.y;
 
-    void RepositionTiles(Vector3 movement)
-    {
-        foreach (Transform tilemap in tilemaps)
-        {
-            if (movement.x > 0 && tilemap.position.x < player.position.x - tileSize)
+            float diffX = Mathf.Abs(dirX);
+            float diffY = Mathf.Abs(dirY);
+
+            dirX = Mathf.Sign(dirX);
+            dirY = Mathf.Sign(dirY);
+
+            if (diffX > tileMapSize * 1.5f || diffY > tileMapSize * 2)
             {
-                tilemap.position += new Vector3(tileSize * 2, 0, 0);  // 오른쪽으로 재배치
+                if (diffX > diffY)
+                {
+                    transform.Translate(Vector3.right * dirX * tileMapSize * 3);
+                }
+                else if (diffX < diffY)
+                {
+                    transform.Translate(Vector3.up * dirY * tileMapSize * 3);
+                }
+                else
+                {
+                    transform.Translate(new Vector3(dirX, dirY, 0) * tileMapSize * 3);
+                }
             }
-            else if (movement.x < 0 && tilemap.position.x > player.position.x + tileSize)
-            {
-                tilemap.position -= new Vector3(tileSize * 2, 0, 0);  // 왼쪽으로 재배치
-            }
-            if (movement.y > 0 && tilemap.position.y < player.position.y - tileSize)
-            {
-                tilemap.position += new Vector3(0, tileSize , 0);  // 위로 재배치
-            }
-            else if (movement.y < 0 && tilemap.position.y > player.position.y + tileSize)
-            {
-                tilemap.position -= new Vector3(0, tileSize , 0);  // 아래로 재배치
-            }
+
+            previousPlayerPos = playerPos; // 플레이어 위치 업데이트
+            nextCheckTime = Time.time + checkInterval; // 다음 검사 시간 설정
         }
     }
 }
