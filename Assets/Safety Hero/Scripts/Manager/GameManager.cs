@@ -36,7 +36,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        playerData = DataManager.instance.currentPlayerData;
+        if (playerData == null) 
+            playerData = DataManager.instance.currentPlayerData;
+
         GameStart(playerData.characterId);
     }
 
@@ -46,7 +48,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("레벨업");
-            GetExp(nextExp[level]);
+            GetExp(nextExp[Mathf.Min(level, nextExp.Length - 1)]); // 최대 인덱스를 초과하지 않게
         }
 
         if (isLive)

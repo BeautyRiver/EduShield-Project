@@ -15,9 +15,11 @@ public class Bullet : MonoBehaviour
     public void Init(float damage, int per, Vector3 dir)
     {
         this.damage = damage;
+
         this.per = per;
 
-        // 근접 무기 아닐때 (관통 제한 있을때)
+        // 근접 무기 아닐때 (관통 제한 있을때) 
+        // 속도 세팅
         if (per >= 0)
         {
             rigid.velocity = dir * 15f;

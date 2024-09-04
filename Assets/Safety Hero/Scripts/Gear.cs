@@ -52,13 +52,13 @@ public class Gear : MonoBehaviour
                 // 회전 무기
                 case 0:
                     float speed = 150 * GameManager.instance.playerData.atkSpeedMult; 
-                    weapon.speed = speed + (speed * rate);
+                    weapon.weaponDealay = speed + (speed * rate);
                     break;
 
                  // 원거리 무기
                 default:
-                    speed = 0.5f * GameManager.instance.playerData.atkDelayMult;
-                    weapon.speed = speed * (1f - rate);
+                    speed = 0.5f * GameManager.instance.playerData.atkDelay;
+                    weapon.weaponDealay = speed * (1f - rate);
                     break;
             }
         }

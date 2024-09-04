@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
 {
     [Header("플레이어")]
     public Vector2 inputVec; // 입력 벡터 (방향)
+    public Vector2 lastInputVec;
+
     public float speed = 3f; // 이동 속도    
     public Scanner scanner; // 적 탐색기
     public Hand[] hands; // 플레이어 무기 (손) 배열    
@@ -48,8 +50,14 @@ public class Player : MonoBehaviour
     {
         if (gameManager.isLive)
         {
+            // 입력 벡터 설정
             inputVec.x = Input.GetAxisRaw("Horizontal");
             inputVec.y = Input.GetAxisRaw("Vertical");
+
+            if (inputVec != Vector2.zero)
+            {
+                lastInputVec = inputVec;
+            }
         }
     }
 

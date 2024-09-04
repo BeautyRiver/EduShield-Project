@@ -16,7 +16,9 @@ public class PlayerData : ScriptableObject
     public float damageMult = 1f; // 데미지 배율
 
     [Header("Attack Speed Settings")]
-    public float atkDelayMult = 1f; // 공격 딜레이 배율
+    [Header("낮을 수록 빠름")]
+    public float atkDelay = 1f; // 공격 딜레이 배율
+    [Header("높을 수록 빠름")]
     public float atkSpeedMult = 1f; // 공격속도 배율
 
     [Header("Movement Settings")]
