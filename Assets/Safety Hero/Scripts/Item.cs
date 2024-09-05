@@ -85,11 +85,11 @@ public class Item : MonoBehaviour
                 {
                     float nextDamage = data.baseDamage;
                     int nextCount = 0;
-
+                    int nextPer = 0;
                     nextDamage += data.baseDamage * data.damages[level];
                     nextCount += data.counts[level];
-
-                    weapon.WeaonLevelUp(nextDamage, nextCount);
+                    nextPer += data.pers[level];
+                    weapon.WeaonLevelUp(nextDamage, nextCount, nextPer);
                 }
                 level++;
                 break;
@@ -114,7 +114,6 @@ public class Item : MonoBehaviour
                 GameManager.instance.health = GameManager.instance.maxHealth;
                 break;
         }
-
         
         if (level == data.damages.Length)
         {

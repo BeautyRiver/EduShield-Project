@@ -10,7 +10,7 @@ public class ItemData : ScriptableObject
     {
         // 무기 류
         Shovel, // 근접
-        Gun = 10, Cannon, // 원거리
+        Gun = 10, Cannon, Spear, // 원거리
 
         Glove = 100, Shoe, // 기어 류
 
@@ -34,10 +34,12 @@ public class ItemData : ScriptableObject
     [Header("# 레벨 데이터")]
     public float baseDamage;
     public int baseCount;
+    public int basePer;
 
     [Header("# Gear 일 경우 Gear rate")]
-    public float[] damages;
-    public int[] counts;
+    public float[] damages; // 데미지
+    public int[] counts; // 개수
+    public int[] pers; // 관통력
 
     [Header("# 무기")]
     public GameObject prefab;
