@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static ItemData;
@@ -11,19 +12,24 @@ public class Item : MonoBehaviour
     public Gear gear;
     public int level;
 
+    private static int weaponCount = 0; // 획득한 무기 개수
+    private static int gearCount = 0;   // 획득한 기어 개수
+    private static int maxItemCount = 5; // 무기와 기어의 최대 개수
+
     private Image icon;
-    private Text textLevel;
-    private Text textName;
-    private Text textDesc;
+    private TextMeshProUGUI textLevel;
+    private TextMeshProUGUI textName;
+    private TextMeshProUGUI textDesc;
 
     private void Awake()
     {
+        
         // 아이콘 설정 및 세팅
         icon = GetComponentsInChildren<Image>()[1];
         icon.sprite = data.itemIcon;
 
         // 레벨, 이름, 설명 텍스트 설정
-        Text[] texts = GetComponentsInChildren<Text>();
+        TextMeshProUGUI[] texts = GetComponentsInChildren<TextMeshProUGUI>();
         switch (data.itemCategory)
         {
             case ItemCategory.Weapon:
@@ -80,6 +86,7 @@ public class Item : MonoBehaviour
                     GameObject newWeapon = new GameObject();
                     weapon = newWeapon.AddComponent<Weapon>();
                     weapon.Init(data);
+                    GameManager.instance.weaponCount++; // 무기 개수 추가(최대 5개)
                 }
                 else // 무기가 존재할때
                 {
@@ -101,6 +108,7 @@ public class Item : MonoBehaviour
                     GameObject newGear = new GameObject();
                     gear = newGear.AddComponent<Gear>();
                     gear.Init(data);
+                    GameManager.instance.gearCount++; // 기어 개수 추가(최대 5개)
                 }
                 else
                 {
