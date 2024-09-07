@@ -21,13 +21,17 @@ MonoBehaviour:
   baseDamage: 10
   baseCount: 1
   basePer: 0
+  baseDelay: 0.2
+  baseSpeed: 1
   damages:
-  - 0.35
-  - 0.7
-  - 1
-  - 1.4
-  - 2
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  weaponSpeeds: []
   counts: 0100000001000000010000000100000001000000
   pers: 0000000000000000000000000000000000000000
+  speeds: []
   prefab: {fileID: 8191457858479555690, guid: 321abbc004976c84d993cf8d03f989a7, type: 3}
   hand: {fileID: 1772703093, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}

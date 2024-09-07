@@ -21,12 +21,14 @@ MonoBehaviour:
   baseDamage: 3
   baseCount: 1
   basePer: -100
+  baseDelay: 0
+  baseSpeed: 100
   damages:
-  - 0.5
-  - 1
-  - 1.5
-  - 2
-  - 3
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
   counts: 0100000001000000010000000100000001000000
   pers: 0000000000000000000000000000000000000000
   prefab: {fileID: 8887909641685150018, guid: a44e82b83c01bc9459417e36e0ff8e08, type: 3}

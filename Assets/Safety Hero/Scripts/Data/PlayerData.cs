@@ -6,22 +6,19 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerData : ScriptableObject
 {
-    [Header("Character Info")]
+    [Header("캐릭터 아이디")]
     public int characterId = 0; // 선택된 캐릭터
 
-    [Header("Health Settings")]
+    [Header("최대 체력 비율")]
     public float maxHpMult = 1f; // 최대 체력 배율
 
-    [Header("Damage Settings")]
+    [Header("데미지 배율")]
     public float damageMult = 1f; // 데미지 배율
 
-    [Header("Attack Speed Settings")]
-    [Header("낮을 수록 빠름")]
-    public float atkDelay = 1f; // 공격 딜레이 배율
-    [Header("높을 수록 빠름")]
+    [Header("공격속도 배율")]
     public float atkSpeedMult = 1f; // 공격속도 배율
 
-    [Header("Movement Settings")]
+    [Header("이동속도 배율")]
     public float speedMult = 1f; // 이동속도 배율
     //public int gold = 0; // 골드량
 }

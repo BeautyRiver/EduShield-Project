@@ -6,17 +6,21 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [Header("플레이어")]
+    [Header("입력 및 이동")]
     public Vector2 inputVec; // 입력 벡터 (방향)
     public Vector2 lastInputVec;
+    public float defaluSpeed = 3f;
+    public float speed = 3f; // 이동 속도
 
-    public float speed = 3f; // 이동 속도    
+
+    [Header("게임 오브젝트 참조")]
     public Scanner scanner; // 적 탐색기
-    public Hand[] hands; // 플레이어 무기 (손) 배열    
+    public Hand[] hands; // 플레이어 무기 (손) 배열
+
+    [Header("애니메이션")]
     public RuntimeAnimatorController[] animCon; // 플레이어 애니메이터 컨트롤러
 
-
-    // 플레이어 피격 관리
+    [Header("피격 관리")]
     private Color hitColor; // 피격 시 색상
     private Color normalColor; // 기본 색상
     private WaitForSeconds hitingTime; // 피격 지속 시간
@@ -138,8 +142,8 @@ public class Player : MonoBehaviour
     // 플레이어 초기화
     public void PlayerInit()
     {
-        speed = speed * gameManager.playerData.speedMult; // 플레이어 기본 이동속도 적용
-        anim.runtimeAnimatorController = animCon[gameManager.playerId]; ;
+        speed = defaluSpeed * gameManager.playerData.speedMult; // 플레이어 기본 이동속도 적용
+        anim.runtimeAnimatorController = animCon[gameManager.playerId];
         Debug.Log($"애니메이션 컨트롤러 변경 {gameManager.playerId}");
     }
 }

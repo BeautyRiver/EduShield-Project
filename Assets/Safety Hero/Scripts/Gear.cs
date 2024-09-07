@@ -5,25 +5,49 @@ using UnityEngine;
 public class Gear : MonoBehaviour
 {
     public ItemData.ItemType type;
-    public float rate; // 증가량
+    public float atkSpdRate; // 공격 속도 증가율
+    public float spdRate;    // 이동 속도 증가율
+    private GameManager gameManager;
+    private Player player;
+    private void Awake()
+    {
+        gameManager = GameManager.instance;
+        player = gameManager.player;
+    }
 
     public void Init(ItemData data)
     {
         // 기본 세팅
         gameObject.name = "Apply Gear" + data.itemId;
-        transform.parent = GameManager.instance.player.transform;
+        transform.parent = player.transform;
         transform.localPosition = Vector3.zero; // 플레이어 안에서 위치 초기화
 
-        // 속성 세팅
+        // 속성 세팅                                                                                     
         type = data.itemType;
-        rate = data.damages[0];
+        switch (type)
+        {
+            case ItemData.ItemType.Glove:
+                atkSpdRate = data.weaponSpeeds[0];
+                break;
+            case ItemData.ItemType.Shoe:
+                spdRate = data.speeds[0];
+                break;
+        }
         ApplyGear();
     }
 
-    public void GearLevelUp(float rate)
+    public void GearLevelUp(ItemData.ItemType gearType, float value1)
     {
-        this.rate = rate;
-        ApplyGear();
+        switch (gearType)
+        {
+            case ItemData.ItemType.Glove:
+                atkSpdRate = value1;
+                break;
+            case ItemData.ItemType.Shoe:
+                spdRate = value1;
+                break;
+        }
+        ApplyGear(); // 기어 적용
     }
 
     private void ApplyGear()
@@ -50,15 +74,17 @@ public class Gear : MonoBehaviour
             switch (weapon.id)
             {
                 // 회전 무기
-                case 0:
-                    float speed = 150 * GameManager.instance.playerData.atkSpeedMult; 
-                    weapon.weaponDealay = speed + (speed * rate);
+                case 0: //삽
+                    float weaponSpeed = (float)System.Math.Round(weapon.baseSpeed * gameManager.playerData.atkSpeedMult, 2); 
+                    weapon.weaponSpeed = weaponSpeed + (weaponSpeed * atkSpdRate);
                     break;
 
-                 // 원거리 무기
-                default:
-                    speed = 0.5f * GameManager.instance.playerData.atkDelay;
-                    weapon.weaponDealay = speed * (1f - rate);
+                // 원거리 무기
+                case 50: // 총
+                case 51: // 대포
+                case 52: // 창
+                    weaponSpeed = (float)System.Math.Round(weapon.baseSpeed / gameManager.playerData.atkSpeedMult,2);
+                    weapon.weaponSpeed = weaponSpeed * (1f - atkSpdRate);
                     break;
             }
         }
@@ -66,7 +92,8 @@ public class Gear : MonoBehaviour
 
     private void SpeedUp()
     {
-        float speed = 3 * GameManager.instance.playerData.speedMult; // 캐릭터별 기본 속도 다르기 때문에 체크
-        GameManager.instance.player.speed = speed + speed * rate;
+        // defalutSpeed is 3
+        float speed = player.defaluSpeed * gameManager.playerData.speedMult; // 캐릭터별 기본 속도 다르기 때문에 체크
+        gameManager.player.speed = speed + speed * spdRate;
     }
 }

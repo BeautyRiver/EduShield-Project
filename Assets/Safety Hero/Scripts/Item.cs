@@ -23,7 +23,7 @@ public class Item : MonoBehaviour
 
     private void Awake()
     {
-        
+
         // 아이콘 설정 및 세팅
         icon = GetComponentsInChildren<Image>()[1];
         icon.sprite = data.itemIcon;
@@ -64,7 +64,14 @@ public class Item : MonoBehaviour
 
             // Gears
             case ItemCategory.Gear:
-                textDesc.text = string.Format(data.itemDesc, data.damages[level] * 100); // 기어 설명글
+                if (ItemType.Glove == data.itemType)
+                {
+                    textDesc.text = string.Format(data.itemDesc, data.weaponSpeeds[level] * 100); // 기어 설명글
+                }
+                else if (ItemType.Shoe == data.itemType)
+                {
+                    textDesc.text = string.Format(data.itemDesc, data.speeds[level] * 100); // 기어 설명글
+                }
                 break;
 
             // Etc
@@ -77,10 +84,13 @@ public class Item : MonoBehaviour
     // 아이템 클릭 시
     public void OnClick()
     {
-        switch (data.itemCategory) // 지니고 있는 데이터 타입에 따라
+        switch (data.itemType) // 지니고 있는 데이터 타입에 따라
         {
             // 무기 Setting
-            case ItemCategory.Weapon:
+            case ItemType.Shovel:
+            case ItemType.Gun:
+            case ItemType.Cannon:
+            case ItemType.Spear:
                 if (level == 0) // 무기가 없을때 초기화 시키기 (생성)
                 {
                     GameObject newWeapon = new GameObject();
@@ -96,13 +106,14 @@ public class Item : MonoBehaviour
                     nextDamage += data.baseDamage * data.damages[level];
                     nextCount += data.counts[level];
                     nextPer += data.pers[level];
-                    weapon.WeaonLevelUp(nextDamage, nextCount, nextPer);
+                    weapon.WeaonLevelUp(nextDamage, nextCount, nextPer, level);
                 }
                 level++;
                 break;
 
             // 기어 Setting
-            case ItemCategory.Gear:
+            case ItemType.Glove:
+            case ItemType.Shoe:
                 if (level == 0)
                 {
                     GameObject newGear = new GameObject();
@@ -112,18 +123,30 @@ public class Item : MonoBehaviour
                 }
                 else
                 {
-                    float nextRate = data.damages[level];
-                    gear.GearLevelUp(nextRate);
+                    switch (data.itemType)
+                    {
+                        case ItemType.Glove:
+                            float atkSpdMult = data.weaponSpeeds[level]; // 공속
+                            gear.GearLevelUp(data.itemType, atkSpdMult);
+                            break;
+                        case ItemType.Shoe:
+                            float spdMult = data.speeds[level];
+                            gear.GearLevelUp(data.itemType, spdMult);
+                            break;
+                    }
                 }
                 level++;
                 break;
 
-            case ItemCategory.Etc:
-                GameManager.instance.health = GameManager.instance.maxHealth;
+            case ItemType.Heal:
+                GameManager.instance.health += 15f;
+                break;
+
+            case ItemType.Gold:
                 break;
         }
-        
-        if (level == data.damages.Length)
+
+        if (level == GameManager.instance.maxLevel)
         {
             GetComponent<Button>().interactable = false;
         }
