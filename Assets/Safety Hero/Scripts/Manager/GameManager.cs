@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public int weaponCount = 0;  // 획득한 무기 개수
     public int gearCount = 0;    // 획득한 기어 개수
     public int maxItemCount = 1; // 최대 장착 가능한 무기/기어 개수
+    public int maxLevel = 5;
     public float dieMsgDelay;
 
     [Header("# 플레이어 정보")]
@@ -82,9 +83,7 @@ public class GameManager : MonoBehaviour
         player.PlayerInit(); // 플레이어 초기화
         player.gameObject.SetActive(true);
 
-        //Resume();
-        //AudioManager.instance.PlayBgm(true); // 배경음악 재생
-        //AudioManager.instance.PlaySfx(AudioManager.Sfx.Select); // 효과음 재생
+        AudioManager.instance.PlayBgm(true); // 배경음악 재생
     }
 
     // 게임 오버 처리
@@ -141,8 +140,6 @@ public class GameManager : MonoBehaviour
 #endif
         Application.Quit();
     }
-
-
 
     // 경험치 획득 및 레벨업 처리
     public void GetExp(int getExp)

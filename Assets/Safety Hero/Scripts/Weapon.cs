@@ -1,6 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -8,18 +8,20 @@ public class Weapon : MonoBehaviour
     [Header("# 무기 세팅")]
     public int id; // 무기의 고유 ID
     public int prefabId; // 생성할 불릿의 프리팹 ID
+    public int level = 1; // 현재 레벨
     public float damage; // 무기 데미지
     public int count; // 무기 개수
     public int per; // 관통력
+    public float buletDelay; // 총알 사이 딜레이 (Range)   
+    public float weaponSpeed; // 무기 속도    
 
-    [Header("# 근접: 회전 속도 / 원거리: 발사 텀(초당 발사)")]
-    public float weaponDealay; // 무기의 딜레이 속도
-    private float[] rWeaponTimers = { 0, 0, 0, 0, 0 };
+    public float baseSpeed; 
+    private float[] rangeTimer = { 0, 0, 0, 0, 0 }; // 원거리 무기 타이머
     private Player player;
 
     private void Awake()
     {
-        player = GameManager.instance.player;        
+        player = GameManager.instance.player;
     }
     private void Update()
     {
@@ -28,31 +30,31 @@ public class Weapon : MonoBehaviour
             switch (id)
             {
                 case 0: // 회전무기
-                    transform.Rotate(Vector3.back * weaponDealay * Time.deltaTime);
+                    transform.Rotate(Vector3.back * weaponSpeed * Time.deltaTime);
                     break;
 
                 case 50: // 단발총
-                    rWeaponTimers[0] += Time.deltaTime;
-                    if (rWeaponTimers[0] > weaponDealay)
+                    rangeTimer[0] += Time.deltaTime;
+                    if (rangeTimer[0] > weaponSpeed)
                     {
-                        rWeaponTimers[0] = 0f;
-                        StartCoroutine(AutoFireRangedWeapon());
+                        rangeTimer[0] = 0f;
+                        StartCoroutine(FireAuto());
                     }
                     break;
                 case 51: // 대포
-                    rWeaponTimers[1] += Time.deltaTime;
-                    if (rWeaponTimers[1] > weaponDealay)
+                    rangeTimer[1] += Time.deltaTime;
+                    if (rangeTimer[1] > weaponSpeed)
                     {
-                        rWeaponTimers[1] = 0f;
-                        StartCoroutine(AutoFireRangedWeapon());
+                        rangeTimer[1] = 0f;
+                        StartCoroutine(FireAuto());
                     }
                     break;
                 case 52: // 창던지기
-                    rWeaponTimers[2] += Time.deltaTime;
-                    if (rWeaponTimers[2] > weaponDealay)
+                    rangeTimer[2] += Time.deltaTime;
+                    if (rangeTimer[2] > weaponSpeed)
                     {
-                        rWeaponTimers[2] = 0f;
-                        StartCoroutine(DirFireRangedWeapon());
+                        rangeTimer[2] = 0f;
+                        StartCoroutine(FireDir());
                     }
                     break;
             }
@@ -71,7 +73,8 @@ public class Weapon : MonoBehaviour
         damage = data.baseDamage * GameManager.instance.playerData.damageMult; // 기본 데미지 설정
         count = data.baseCount; // 기본 개수 설정
         per = data.basePer; // 기본 관통력 설정
-
+        buletDelay = data.baseDelay; // 기본 딜레이 설정
+        baseSpeed = data.baseSpeed;
         for (int index = 0; index < GameManager.instance.pool.prefabs.Length; index++)
         {
             if (data.prefab == GameManager.instance.pool.prefabs[index])
@@ -84,40 +87,36 @@ public class Weapon : MonoBehaviour
         {
             // 근접 무기
             case 0: // 삽
-                weaponDealay = 100f * GameManager.instance.playerData.atkSpeedMult; // 캐릭터별 무기 회전 속도 설정
+                // 캐릭터별 무기 회전 속도 설정
+                weaponSpeed = (float)System.Math.Round(data.baseSpeed * GameManager.instance.playerData.atkSpeedMult, 2);  
                 Batch();
                 break;
 
             // 원거리 무기
             case 50: // 총
-                weaponDealay = 0.5f * GameManager.instance.playerData.atkDelay; // 캐릭터별 무기 연사속도 설정
-                break;
-
             case 51: // 대포
-                weaponDealay = 3f * GameManager.instance.playerData.atkDelay; // 캐릭터별 무기 연사속도 설정
-                break;
-
-            case 52:
-                weaponDealay = 3f * GameManager.instance.playerData.atkDelay; // 캐릭터별 무기 연사속도 설정
+            case 52: // 창
+                // 캐릭터별 무기 연사속도 설정
+                weaponSpeed = (float)System.Math.Round(data.baseSpeed / GameManager.instance.playerData.atkSpeedMult, 2); 
                 break;
 
         }
 
-       /* // 손 무기 세팅
-        Hand hand = player.hands[(int)data.itemType];
-        hand.spriter.sprite = data.hand;
-        hand.gameObject.SetActive(true);*/
+        /* // 손 무기 세팅
+         Hand hand = player.hands[(int)data.itemType];
+         hand.spriter.sprite = data.hand;
+         hand.gameObject.SetActive(true);*/
 
         // 기어(추가된 능력치) 적용
         player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
     }
 
-    public void WeaonLevelUp(float damage, int count, int per)
+    public void WeaonLevelUp(float damage, int count, int per, int currentLevel)
     {
         this.damage = damage * Character.Damage; // 데미지 업데이트
         this.count += count; // 불릿 수 증가
         this.per += per;
-
+        level = currentLevel;
         // 회전 무기는 다시 자연스럽게 추가시키기 위해서 재배치
         if (id == 0)
             Batch();
@@ -154,7 +153,7 @@ public class Weapon : MonoBehaviour
 
     #region 원거리 무기
     // 원거리 무기 순차 발사 함수 (count만큼 딜레이를 두고 순차적으로 발사)
-    private IEnumerator AutoFireRangedWeapon()
+    private IEnumerator FireAuto()
     {
         if (player.scanner.nearestTarget == null)
             yield break;
@@ -172,29 +171,38 @@ public class Weapon : MonoBehaviour
             bullet.GetComponent<Bullet>().Init(damage, per, dir);
 
             // 발사 후 약간의 딜레이 추가
-            yield return new WaitForSeconds(0.1f); // 총알 사이의 딜레이 설정 (0.1초, 필요에 따라 조정 가능)
+            yield return new WaitForSeconds(buletDelay); // 총알 사이의 딜레이 설정 (0.1초, 필요에 따라 조정 가능)
         }
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
     }
-    private IEnumerator DirFireRangedWeapon()
+    private IEnumerator FireDir()
     {
-        Vector3 dir = new Vector3(player.lastInputVec.x, player.lastInputVec.y, 0);
-        
-        dir = dir.normalized;
-
         for (int i = 0; i < count; i++)
         {
+            Vector3 dir = new Vector3(player.lastInputVec.x, player.lastInputVec.y, 0).normalized;
             Transform bullet = GameManager.instance.pool.Get(prefabId).transform;
             bullet.parent = transform;
-            bullet.position = transform.position;
-            bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
+            Vector3 spreadOffset = Vector3.zero;
+
+            float random = Random.Range(-4, 5) * 0.1f;
+            // 발사 방향에 따라 발사체 간격을 조절 (오른쪽/왼쪽, 위쪽/아래쪽 모두 지원)
+            spreadOffset = Vector3.Cross(dir, Vector3.forward) * ((i - (count / 2)) * random);
+            Debug.Log(Vector3.Cross(dir, Vector3.forward));
+            // 발사체의 시작 위치를 조정
+            Vector3 startPosition = transform.position + spreadOffset;
+
+            bullet.position = startPosition;
+            bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);  // 발사 방향에 맞게 회전 설정
 
             bullet.GetComponent<Bullet>().Init(damage, per, dir);
 
             // 발사 후 약간의 딜레이 추가
-            yield return new WaitForSeconds(0.1f); // 총알 사이의 딜레이 설정 (0.1초, 필요에 따라 조정 가능)
+            yield return new WaitForSeconds(buletDelay);  // 총알 사이의 딜레이 설정 (0.1초)
         }
+
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
     }
+
+
     #endregion
 }
