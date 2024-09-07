@@ -27,11 +27,12 @@ public class GameManager : MonoBehaviour
 
     [Header("# ÂüÁ¶")]
     public PoolManager pool;
-    public Player player;
     public LevelUp uiLevelUp;
+    public Player player;
     public Result uiResult;
-    public GameObject enemyCleaner;
     public PlayerData playerData;
+    public CurrentData currentData;
+    public GameObject enemyCleaner;
 
     private void Awake()
     {

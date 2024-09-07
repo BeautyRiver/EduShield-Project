@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class LevelUp : MonoBehaviour
 {
     private RectTransform rect;
-    public GameObject blackWindow;
+    public Image blackWindow;
     [SerializeField] private List<Item> items;
+    public List<Item> availableItems;
+
     private void Awake()
     {
         rect = GetComponent<RectTransform>();
@@ -20,7 +23,7 @@ public class LevelUp : MonoBehaviour
     {
         CurrentData.OnItemCurrentState?.Invoke(); // 이벤트 호출
 
-        blackWindow.SetActive(true); // 검은 배경 On
+        blackWindow.DOFade(0.7f, 0.5f).SetUpdate(true); // 검은 배경 On
         Next(); // 섞기
         Button[] buttons = transform.GetComponentsInChildren<Button>();
         foreach (var btn in buttons)
@@ -29,7 +32,7 @@ public class LevelUp : MonoBehaviour
         }
 
         GameManager.instance.Stop();
-        rect.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack).SetUpdate(true);
+        rect.DOAnchorPos(Vector3.zero, 0.5f).SetEase(Ease.OutBack, 1f).SetUpdate(true);
 
         AudioManager.instance.PlaySfx(AudioManager.Sfx.LevelUp); // 음향재생
         AudioManager.instance.EffectBgm(true); // 배경음 필터 끄기
@@ -42,11 +45,11 @@ public class LevelUp : MonoBehaviour
             btn.interactable = false;
         }
 
-        rect.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBack).SetUpdate(true).OnComplete(() =>
+        blackWindow.DOFade(0f, 0.5f).SetUpdate(true); // 검은 배경 Off
+
+        rect.DOAnchorPos(new Vector3(0, -1300f, 0), 0.5f).SetEase(Ease.InBack, 1f).SetUpdate(true).OnComplete(() =>
         {
             GameManager.instance.Resume();
-            blackWindow.SetActive(false); // 검은 배경 Off
-
         });
 
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Select); // 음향재생
@@ -67,63 +70,69 @@ public class LevelUp : MonoBehaviour
             item.gameObject.SetActive(false);
         }
 
-
         // 활성화 가능한 아이템을 담는 리스트
-        List<Item> availableItems = new List<Item>();
-        bool allMaxLevel = true;
-        bool weaponMaxLevel = true;
-        bool gearMaxLevel = true;
-        // 현재 무기와 기어의 개수 확인
-        int currentWeaponCount = GameManager.instance.weaponCount;
-        int currentGearCount = GameManager.instance.gearCount;
-        int maxItemCount = GameManager.instance.maxItemCount;
+        availableItems = new List<Item>();
 
-        // 기타 아이템이 아니 아이템들 만렙인지 확인
+        bool allMaxLevel = true;
+
         foreach (Item item in items)
         {
-            // 무기와 기어의 경우, 최대 개수에 도달하지 않았고 최대 레벨이 아닌 경우에만 추가
-            if (item.data.itemCategory != ItemData.ItemCategory.Etc )
+            switch (item.data.itemCategory)
             {
-                if (item.level >= item.data.damages.Length)
-                { 
-                }
-                availableItems.Add(item);
-                allMaxLevel = false;
+                case ItemData.ItemCategory.Weapon:
+                    // 이미 획득한 무기이거나, 새로운 무기를 획득할 수 있는 경우
+                    if (item.level > 0 || GameManager.instance.weaponCount < GameManager.instance.maxItemCount)
+                    {
+                        if (item.level < item.data.damages.Length)
+                        {
+                            availableItems.Add(item);
+                            allMaxLevel = false;
+                        }
+                    }
+                    break;
 
+                case ItemData.ItemCategory.Gear:
+                    // 이미 획득한 기어이거나, 새로운 기어를 획득할 수 있는 경우
+                    if (item.level > 0 || GameManager.instance.gearCount < GameManager.instance.maxItemCount)
+                    {
+                        if (item.level < item.data.damages.Length)
+                        {
+                            availableItems.Add(item);
+                            allMaxLevel = false;
+                        }
+                    }
+                    break;
             }
-
         }
-        Debug.Log($"allMaxLevel : {allMaxLevel.ToString()}");
 
-        // 모든 아이템이 만렙이라면 소비 아이템과 골드 아이템만 활성화
+        // 모든 무기와 기어가 최대 레벨에 도달했다면 Etc 아이템만 활성화
         if (allMaxLevel)
         {
             foreach (Item item in items)
             {
-                if (item.data.itemType == ItemData.ItemType.Heal || item.data.itemType == ItemData.ItemType.Gold)
+                if (item.data.itemCategory == ItemData.ItemCategory.Etc)
                 {
-                    item.gameObject.SetActive(true);
+                    availableItems.Add(item);
                 }
-            }
-            return;
+            }            
         }
 
         // 활성화할 아이템 수를 결정 (최대 3개)
         int itemsToActivate = Mathf.Min(3, availableItems.Count);
 
         // 랜덤으로 아이템 선택
-        List<int> selectedItem = new List<int>();
-        while (selectedItem.Count < itemsToActivate)
+        List<int> selectedItems = new List<int>();
+        while (selectedItems.Count < itemsToActivate)
         {
             int randIndex = Random.Range(0, availableItems.Count);
-            if (!selectedItem.Contains(randIndex))
+            if (!selectedItems.Contains(randIndex))
             {
-                selectedItem.Add(randIndex);
+                selectedItems.Add(randIndex);
             }
         }
 
         // 선택된 아이템 활성화
-        foreach (int index in selectedItem)
+        foreach (int index in selectedItems)
         {
             availableItems[index].gameObject.SetActive(true);
         }
