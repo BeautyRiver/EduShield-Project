@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d1bd397b1903a34ba35468b05a5746b, type: 3}
   m_Name: TEST 1
   m_EditorClassIdentifier: 
+  maxLevel: 5
   itemCategory: 0
   itemType: 0
   itemId: 0
@@ -21,13 +22,17 @@ MonoBehaviour:
   baseDamage: 3
   baseCount: 1
   basePer: -100
+  baseDelay: 0
+  baseSpeed: 0
   damages:
   - 0.5
   - 1
   - 1.5
   - 2
   - 3
+  weaponSpeeds: []
   counts: 0100000001000000010000000100000001000000
   pers: 0000000000000000000000000000000000000000
+  speeds: []
   prefab: {fileID: 8887909641685150018, guid: a44e82b83c01bc9459417e36e0ff8e08, type: 3}
   hand: {fileID: 143021600, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}

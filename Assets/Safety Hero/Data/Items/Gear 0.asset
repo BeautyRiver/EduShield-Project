@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemCategory: 1
   itemType: 100
+  maxLevel: 3
   itemId: 100
   itemName: "\uD0DC\uD06C\uB2C8\uCEEC \uC7A5\uAC10"
   itemDesc: "\uACF5\uACA9 \uC18D\uB3C4 {0}% \uC99D\uAC00"
@@ -25,11 +26,9 @@ MonoBehaviour:
   baseSpeed: 0
   damages: []
   weaponSpeeds:
-  - 0.1
   - 0.2
   - 0.3
-  - 0.5
-  - 0.8
+  - 0.4
   counts: 
   pers: 
   speeds: []

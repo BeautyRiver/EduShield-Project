@@ -156662,11 +156662,12 @@ MonoBehaviour:
   isLive: 0
   weaponCount: 0
   gearCount: 0
-  maxItemCount: 2
+  maxItemCount: 5
+  maxLevel: 5
   dieMsgDelay: 8.38
   playerId: 0
   health: 0
-  maxHealth: 1
+  maxHealth: 100
   level: 0
   kill: 0
   exp: 0
@@ -159596,7 +159597,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1797792831
 Transform:
   m_ObjectHideFlags: 0
