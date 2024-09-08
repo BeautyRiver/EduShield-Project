@@ -17,7 +17,7 @@ MonoBehaviour:
   maxLevel: 5
   itemId: 101
   itemName: "\uC804\uD22C \uC7A5\uD654"
-  itemDesc: "\uC774\uB3D9\uC18D\uB3C4 {0}\uB85C\uC99D\uAC00"
+  itemDesc: "\uC774\uB3D9\uC18D\uB3C4 {0}% "
   itemIcon: {fileID: -966295699, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
   baseDamage: 0
   baseCount: 0
@@ -25,14 +25,13 @@ MonoBehaviour:
   baseDelay: 0
   baseSpeed: 0
   damages: []
-  weaponSpeeds: []
   counts: 
   pers: 
-  speeds:
-  - 0.1
+  gearRates:
   - 0.15
-  - 0.2
+  - 0.3
   - 0.5
-  - 1
+  - 0.8
+  - 1.1
   prefab: {fileID: 0}
   hand: {fileID: 0}

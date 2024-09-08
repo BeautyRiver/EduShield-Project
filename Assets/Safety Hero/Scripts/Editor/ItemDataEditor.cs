@@ -24,11 +24,9 @@ public class ItemDataEditor : Editor
 
     // 기어 속성
     SerializedProperty damages;
-    SerializedProperty weaponSpeeds;
     SerializedProperty counts;
     SerializedProperty pers;
-    SerializedProperty speeds;
-
+    SerializedProperty gearRates;
     private void OnEnable()
     {
         // 아이템 속성 로드
@@ -51,10 +49,9 @@ public class ItemDataEditor : Editor
 
         // 기어 속성 로드
         damages = serializedObject.FindProperty("damages");
-        weaponSpeeds = serializedObject.FindProperty("weaponSpeeds");
+        gearRates = serializedObject.FindProperty("gearRates");
         counts = serializedObject.FindProperty("counts");
         pers = serializedObject.FindProperty("pers");
-        speeds = serializedObject.FindProperty("speeds");
     }
 
     public override void OnInspectorGUI()
@@ -88,7 +85,6 @@ public class ItemDataEditor : Editor
             EditorGUILayout.PropertyField(baseDelay);
             EditorGUILayout.PropertyField(baseSpeed);
             EditorGUILayout.PropertyField(damages);
-            EditorGUILayout.PropertyField(weaponSpeeds);
             EditorGUILayout.PropertyField(counts);
             EditorGUILayout.PropertyField(pers);
             EditorGUILayout.PropertyField(prefab);
@@ -98,27 +94,7 @@ public class ItemDataEditor : Editor
         {
             // 기어 관련 속성만 표시
             EditorGUILayout.LabelField("기어 속성", EditorStyles.boldLabel);
-            switch (type)
-            {
-                case ItemData.ItemType.Glove:
-                    EditorGUILayout.PropertyField(weaponSpeeds);
-                    break;
-
-                case ItemData.ItemType.Shoe:
-                    EditorGUILayout.PropertyField(speeds);
-                    break;
-
-                case ItemData.ItemType.PowerUp:
-                    EditorGUILayout.PropertyField(damages);
-                    break;
-
-                default:
-                    // 기타 기어 속성
-                    EditorGUILayout.PropertyField(counts);
-                    EditorGUILayout.PropertyField(pers);
-                    break;
-            }
-
+            EditorGUILayout.PropertyField(gearRates);
         }
         else if (category == ItemData.ItemCategory.Etc)
         {

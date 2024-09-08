@@ -44,14 +44,12 @@ public class ItemData : ScriptableObject
     [Header("# 레벨별 스탯")]
     [Header("데미지")]
     public float[] damages; // 데미지
-    [Header("공격 속도")]
-    public float[] weaponSpeeds; // 무기 공격속도
     [Header("개수")]
     public int[] counts; // 개수
     [Header("관통력")]
     public int[] pers; // 관통력
-
-    public float[] speeds; // 플레이어 이동속도
+    [Header("기어 능력치")]
+    public float[] gearRates;
 
     [Header("무기 관련")]
     public GameObject prefab;

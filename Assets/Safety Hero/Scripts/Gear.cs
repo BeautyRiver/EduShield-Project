@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,8 @@ using UnityEngine;
 public class Gear : MonoBehaviour
 {
     public ItemData.ItemType type;
-    public float atkSpdRate; // 공격 속도 증가율
-    public float spdRate;    // 이동 속도 증가율
+    public float rate; // 공격 속도 증가율
+
     private GameManager gameManager;
     private Player player;
     private void Awake()
@@ -27,25 +28,23 @@ public class Gear : MonoBehaviour
         switch (type)
         {
             case ItemData.ItemType.Glove:
-                atkSpdRate = data.weaponSpeeds[0];
-                break;
             case ItemData.ItemType.Shoe:
-                spdRate = data.speeds[0];
-                break;
+            case ItemData.ItemType.PowerUp:
+                rate = data.gearRates[0];
+                break;                
         }
         ApplyGear();
     }
 
-    public void GearLevelUp(ItemData.ItemType gearType, float value1)
+    public void GearLevelUp(ItemData.ItemType gearType, float rate)
     {
         switch (gearType)
         {
             case ItemData.ItemType.Glove:
-                atkSpdRate = value1;
-                break;
             case ItemData.ItemType.Shoe:
-                spdRate = value1;
-                break;
+            case ItemData.ItemType.PowerUp:
+                this.rate = rate;
+                break;                
         }
         ApplyGear(); // 기어 적용
     }
@@ -61,6 +60,31 @@ public class Gear : MonoBehaviour
             case ItemData.ItemType.Shoe:
                 SpeedUp();
                 break;            
+            case ItemData.ItemType.PowerUp:
+                PowerUp();
+                break;
+        }
+    }
+
+    private void PowerUp()
+    {
+        Weapon[] weapons = transform.parent.GetComponentsInChildren<Weapon>();
+
+        foreach (Weapon weapon in weapons)
+        {
+            float damage = weapon.damage;
+            damage += weapon.baseDamage * rate;
+
+            weapon.damage = damage;
+
+            if (weapon.id == 0)
+            {
+                Bullet[] bullet = weapon.GetComponentsInChildren<Bullet>();
+                for (int i = 0; i < weapon.count; i++)
+                {
+                    bullet[i].damage = damage;
+                }
+            }
         }
     }
 
@@ -76,7 +100,7 @@ public class Gear : MonoBehaviour
                 // 회전 무기
                 case 0: //삽
                     float weaponSpeed = (float)System.Math.Round(weapon.baseSpeed * gameManager.playerData.atkSpeedMult, 2); 
-                    weapon.weaponSpeed = weaponSpeed + (weaponSpeed * atkSpdRate);
+                    weapon.weaponSpeed = weaponSpeed + (weaponSpeed * rate - 1);
                     break;
 
                 // 원거리 무기
@@ -84,7 +108,7 @@ public class Gear : MonoBehaviour
                 case 51: // 대포
                 case 52: // 창
                     weaponSpeed = (float)System.Math.Round(weapon.baseSpeed / gameManager.playerData.atkSpeedMult,2);
-                    weapon.weaponSpeed = weaponSpeed * (1f - atkSpdRate);
+                    weapon.weaponSpeed = weaponSpeed * (1f - (rate-1));
                     break;
             }
         }
@@ -94,6 +118,6 @@ public class Gear : MonoBehaviour
     {
         // defalutSpeed is 3
         float speed = player.defaluSpeed * gameManager.playerData.speedMult; // 캐릭터별 기본 속도 다르기 때문에 체크
-        gameManager.player.speed = speed + speed * spdRate;
+        gameManager.player.speed = speed + speed * rate;
     }
 }

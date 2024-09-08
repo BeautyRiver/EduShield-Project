@@ -15,6 +15,5 @@ MonoBehaviour:
   characterId: 1
   maxHpMult: 1
   damageMult: 1
-  bulletDelayMult: 1.1
   atkSpeedMult: 1.1
   speedMult: 1

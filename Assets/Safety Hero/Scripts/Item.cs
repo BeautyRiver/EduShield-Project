@@ -61,24 +61,31 @@ public class Item : MonoBehaviour
             case ItemCategory.Weapon:
                 if (level == 0)
                 {
-
+                    switch (data.itemType)
+                    {
+                        case ItemType.Shovel:
+                            textDesc.text = "회전하며 적을 공격합니다.";
+                            break;
+                        case ItemType.Gun:
+                            textDesc.text = "적을 자동 조준하는 무기를 장착합니다.";
+                            break;
+                        case ItemType.Cannon:
+                            textDesc.text = "관통할 수 있는 무기를 장착합니다.";
+                            break;
+                        case ItemType.Spear:
+                            textDesc.text = "바라보는 방향으로 무기를 투척합니다.";
+                            break;
+                    }
                 }
                 else
                 {
-                    textDesc.text = string.Format(data.itemDesc, data.damages[level] * 100, data.counts[level]); // 무기 설명글
+                    textDesc.text = string.Format(data.itemDesc, data.damages[level], data.counts[level]); // 무기 설명글
                 }
                 break;
 
             // Gears
             case ItemCategory.Gear:
-                if (ItemType.Glove == data.itemType)
-                {
-                    textDesc.text = string.Format(data.itemDesc, data.weaponSpeeds[level] * 100); // 기어 설명글
-                }
-                else if (ItemType.Shoe == data.itemType)
-                {
-                    textDesc.text = string.Format(data.itemDesc, data.speeds[level] * 100); // 기어 설명글
-                }
+                textDesc.text = string.Format(data.itemDesc, data.gearRates[level] * 100); // 기어 설명글
                 break;
 
             // Etc
@@ -104,11 +111,11 @@ public class Item : MonoBehaviour
                 }
                 else // 무기가 존재할때
                 {
-                    
-                    float nextDamage = data.baseDamage;
+                    float nextDamage = 0;
                     int nextCount = 0;
                     int nextPer = 0;
-                    nextDamage += data.baseDamage * data.damages[level];
+
+                    nextDamage += data.damages[level];
                     nextCount += data.counts[level];
                     nextPer += data.pers[level];
                     weapon.WeaonLevelUp(nextDamage, nextCount, nextPer, level);
@@ -127,19 +134,8 @@ public class Item : MonoBehaviour
                 }
                 else
                 {
-                    switch (data.itemType)
-                    {
-                        case ItemType.Glove:
-                            float atkSpdMult = data.weaponSpeeds[level]; // 공속
-                            gear.GearLevelUp(data.itemType, atkSpdMult);
-                            break;
-                        case ItemType.Shoe:
-                            {
-                                float spdMult = data.speeds[level];
-                                gear.GearLevelUp(data.itemType, spdMult);
-                                break;
-                            }
-                    }
+                    float atkSpdMult = data.gearRates[level]; // 공속
+                    gear.GearLevelUp(data.itemType, atkSpdMult);
                 }
                 level++;
                 break;

@@ -14,10 +14,12 @@ public class Weapon : MonoBehaviour
     public float damage; // 무기 데미지
     public int count; // 무기 개수
     public int per; // 관통력
+
     public float buletDelay; // 총알 사이 딜레이 (Range)   
     public float weaponSpeed; // 무기 속도    
 
-    public float baseSpeed; 
+    public float baseSpeed;
+    public float baseDamage;
     private float[] rangeTimer = { 0, 0, 0, 0, 0 }; // 원거리 무기 타이머
     private Player player;
 
@@ -72,11 +74,13 @@ public class Weapon : MonoBehaviour
 
         // 속성 세팅
         id = data.itemId; // 아이디 설정
+        buletDelay = data.baseDelay; // 기본 딜레이 저장
+        baseSpeed = data.baseSpeed; // 기본 공격속도 저장
+        baseDamage = data.baseDamage; // 기본 공격력 저장
+                                      // 
         damage = data.baseDamage * GameManager.instance.playerData.damageMult; // 기본 데미지 설정
         count = data.baseCount; // 기본 개수 설정
         per = data.basePer; // 기본 관통력 설정
-        buletDelay = data.baseDelay; // 기본 딜레이 설정
-        baseSpeed = data.baseSpeed;
         for (int index = 0; index < GameManager.instance.pool.prefabs.Length; index++)
         {
             if (data.prefab == GameManager.instance.pool.prefabs[index])
@@ -115,7 +119,7 @@ public class Weapon : MonoBehaviour
 
     public void WeaonLevelUp(float damage, int count, int per, int currentLevel)
     {
-        this.damage = damage * Character.Damage; // 데미지 업데이트
+        this.damage = damage * GameManager.instance.playerData.damageMult; // 데미지 업데이트
         this.count += count; // 불릿 수 증가
         this.per += per;
         level = currentLevel;
