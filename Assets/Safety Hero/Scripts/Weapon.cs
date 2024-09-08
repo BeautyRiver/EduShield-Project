@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    public static event System.Action OnWeaponLevelUp; 
+
     [Header("# 무기 세팅")]
     public int id; // 무기의 고유 ID
     public int prefabId; // 생성할 불릿의 프리팹 ID
-    public int level = 1; // 현재 레벨
+    public int level = 0; // 현재 레벨
     public float damage; // 무기 데미지
     public int count; // 무기 개수
     public int per; // 관통력
@@ -187,7 +189,6 @@ public class Weapon : MonoBehaviour
             float random = Random.Range(-4, 5) * 0.1f;
             // 발사 방향에 따라 발사체 간격을 조절 (오른쪽/왼쪽, 위쪽/아래쪽 모두 지원)
             spreadOffset = Vector3.Cross(dir, Vector3.forward) * ((i - (count / 2)) * random);
-            Debug.Log(Vector3.Cross(dir, Vector3.forward));
             // 발사체의 시작 위치를 조정
             Vector3 startPosition = transform.position + spreadOffset;
 

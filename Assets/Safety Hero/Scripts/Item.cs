@@ -59,7 +59,14 @@ public class Item : MonoBehaviour
         {
             // Weapons
             case ItemCategory.Weapon:
-                textDesc.text = string.Format(data.itemDesc, data.damages[level] * 100, data.counts[level]); // 무기 설명글
+                if (level == 0)
+                {
+
+                }
+                else
+                {
+                    textDesc.text = string.Format(data.itemDesc, data.damages[level] * 100, data.counts[level]); // 무기 설명글
+                }
                 break;
 
             // Gears
@@ -84,13 +91,10 @@ public class Item : MonoBehaviour
     // 아이템 클릭 시
     public void OnClick()
     {
-        switch (data.itemType) // 지니고 있는 데이터 타입에 따라
+        switch (data.itemCategory) // 지니고 있는 데이터 타입에 따라
         {
             // 무기 Setting
-            case ItemType.Shovel:
-            case ItemType.Gun:
-            case ItemType.Cannon:
-            case ItemType.Spear:
+            case ItemCategory.Weapon:
                 if (level == 0) // 무기가 없을때 초기화 시키기 (생성)
                 {
                     GameObject newWeapon = new GameObject();
@@ -100,6 +104,7 @@ public class Item : MonoBehaviour
                 }
                 else // 무기가 존재할때
                 {
+                    
                     float nextDamage = data.baseDamage;
                     int nextCount = 0;
                     int nextPer = 0;
@@ -112,8 +117,7 @@ public class Item : MonoBehaviour
                 break;
 
             // 기어 Setting
-            case ItemType.Glove:
-            case ItemType.Shoe:
+            case ItemCategory.Gear:
                 if (level == 0)
                 {
                     GameObject newGear = new GameObject();
@@ -130,23 +134,31 @@ public class Item : MonoBehaviour
                             gear.GearLevelUp(data.itemType, atkSpdMult);
                             break;
                         case ItemType.Shoe:
-                            float spdMult = data.speeds[level];
-                            gear.GearLevelUp(data.itemType, spdMult);
-                            break;
+                            {
+                                float spdMult = data.speeds[level];
+                                gear.GearLevelUp(data.itemType, spdMult);
+                                break;
+                            }
                     }
                 }
                 level++;
                 break;
 
-            case ItemType.Heal:
-                GameManager.instance.health += 15f;
-                break;
+            case ItemCategory.Etc:
+                switch (data.itemType)
+                {
+                    case ItemType.Heal:
+                        GameManager.instance.health += 15f;
+                        break;
 
-            case ItemType.Gold:
+                    case ItemType.Gold:
+                        Debug.Log("15골드 획득");
+                        break;
+                }
                 break;
         }
 
-        if (level == GameManager.instance.maxLevel)
+        if (level == data.maxLevel)
         {
             GetComponent<Button>().interactable = false;
         }

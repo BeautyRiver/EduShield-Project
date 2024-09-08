@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemDataEditor : Editor
 {
     // Serialized Properties 선언
+    SerializedProperty maxLevel;
     SerializedProperty itemCategory;
     SerializedProperty itemType;
     SerializedProperty itemId;
@@ -31,6 +32,7 @@ public class ItemDataEditor : Editor
     private void OnEnable()
     {
         // 아이템 속성 로드
+        maxLevel = serializedObject.FindProperty("maxLevel");
         itemCategory = serializedObject.FindProperty("itemCategory");
         itemType = serializedObject.FindProperty("itemType");
         itemId = serializedObject.FindProperty("itemId");
@@ -60,28 +62,33 @@ public class ItemDataEditor : Editor
         // 인스펙터 업데이트
         serializedObject.Update();
 
-        // 아이템 속성 표시
-        EditorGUILayout.PropertyField(itemCategory);
-        EditorGUILayout.PropertyField(itemType);
-        EditorGUILayout.PropertyField(itemId);
-        EditorGUILayout.PropertyField(itemName);
-        EditorGUILayout.PropertyField(itemDesc);
-        EditorGUILayout.PropertyField(itemIcon);
-
         // itemCategory에 따른 필드 구분
         ItemData.ItemCategory category = (ItemData.ItemCategory)itemCategory.enumValueIndex;
-        ItemData.ItemType type = (ItemData.ItemType)itemCategory.enumValueIndex;
 
+        // itemType을 enum의 실제 값(int)으로 가져와 분류
+        int itemTypeValue = itemType.intValue;
+        ItemData.ItemType type = (ItemData.ItemType)itemTypeValue;  // int 값을 enum으로 변환
+
+        // 아이템 속성 표시
+        EditorGUILayout.PropertyField(itemCategory);
+        EditorGUILayout.PropertyField(itemType);  
+        EditorGUILayout.PropertyField(maxLevel);  
+        EditorGUILayout.PropertyField(itemName);
+        EditorGUILayout.PropertyField(itemDesc);
+        EditorGUILayout.PropertyField(itemIcon);               
+        
         if (category == ItemData.ItemCategory.Weapon)
         {
             // 무기 관련 속성만 표시
             EditorGUILayout.LabelField("무기 속성", EditorStyles.boldLabel);
+
             EditorGUILayout.PropertyField(baseDamage);
             EditorGUILayout.PropertyField(baseCount);
             EditorGUILayout.PropertyField(basePer);
             EditorGUILayout.PropertyField(baseDelay);
             EditorGUILayout.PropertyField(baseSpeed);
             EditorGUILayout.PropertyField(damages);
+            EditorGUILayout.PropertyField(weaponSpeeds);
             EditorGUILayout.PropertyField(counts);
             EditorGUILayout.PropertyField(pers);
             EditorGUILayout.PropertyField(prefab);
@@ -91,11 +98,27 @@ public class ItemDataEditor : Editor
         {
             // 기어 관련 속성만 표시
             EditorGUILayout.LabelField("기어 속성", EditorStyles.boldLabel);
-            EditorGUILayout.PropertyField(damages);
-            EditorGUILayout.PropertyField(weaponSpeeds);
-            EditorGUILayout.PropertyField(counts);
-            EditorGUILayout.PropertyField(pers);
-            EditorGUILayout.PropertyField(speeds);
+            switch (type)
+            {
+                case ItemData.ItemType.Glove:
+                    EditorGUILayout.PropertyField(weaponSpeeds);
+                    break;
+
+                case ItemData.ItemType.Shoe:
+                    EditorGUILayout.PropertyField(speeds);
+                    break;
+
+                case ItemData.ItemType.PowerUp:
+                    EditorGUILayout.PropertyField(damages);
+                    break;
+
+                default:
+                    // 기타 기어 속성
+                    EditorGUILayout.PropertyField(counts);
+                    EditorGUILayout.PropertyField(pers);
+                    break;
+            }
+
         }
         else if (category == ItemData.ItemCategory.Etc)
         {
@@ -107,3 +130,4 @@ public class ItemDataEditor : Editor
         serializedObject.ApplyModifiedProperties();
     }
 }
+

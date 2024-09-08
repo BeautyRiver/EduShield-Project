@@ -12,7 +12,7 @@ public class ItemData : ScriptableObject
         Shovel, // 근접
         Gun = 10, Cannon, Spear, // 원거리
 
-        Glove = 100, Shoe, // 기어 류
+        Glove = 100, Shoe, PowerUp,// 기어 류
 
         Heal = 200, Gold // 기타템 류
     }
@@ -20,6 +20,9 @@ public class ItemData : ScriptableObject
     [Header("# 아이템 속성")]
     public ItemCategory itemCategory;
     public ItemType itemType;
+
+    [Header("# 아이템 최대 레벨")]
+    public int maxLevel;
 
     [Header("# 근접: 0 ~ 49 / 원거리: 50 ~ 99\n" +
         "# 기어: 100 ~ 199 / 기타: 200 ~ 299")]
