@@ -68,7 +68,9 @@ public class ItemDataEditor : Editor
 
         // 아이템 속성 표시
         EditorGUILayout.PropertyField(itemCategory);
-        EditorGUILayout.PropertyField(itemType);  
+        EditorGUILayout.PropertyField(itemType);
+        EditorGUILayout.PropertyField(itemId);
+
         EditorGUILayout.PropertyField(maxLevel);  
         EditorGUILayout.PropertyField(itemName);
         EditorGUILayout.PropertyField(itemDesc);

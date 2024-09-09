@@ -133,6 +133,7 @@ public class Item : MonoBehaviour
                 {
                     float atkSpdMult = data.gearRates[level]; // °ø¼Ó
                     gear.GearLevelUp(data.itemType, atkSpdMult);
+                    gear.level = level;
                 }
                 level++;
                 break;

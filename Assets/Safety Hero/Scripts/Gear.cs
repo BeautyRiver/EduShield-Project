@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class Gear : MonoBehaviour
 {
+    public ItemData data;
     public ItemData.ItemType type;
     public float rate; // 공격 속도 증가율
-
+    public int level;
+    public float accumulatedRate = 1f; // 누적 증가율
     private GameManager gameManager;
     private Player player;
     private void Awake()
@@ -16,9 +19,10 @@ public class Gear : MonoBehaviour
         player = gameManager.player;
     }
 
-    public void Init(ItemData data)
+    public void Init(ItemData newData)
     {
         // 기본 세팅
+        data = newData;
         gameObject.name = "Apply Gear" + data.itemId;
         transform.parent = player.transform;
         transform.localPosition = Vector3.zero; // 플레이어 안에서 위치 초기화
@@ -30,8 +34,8 @@ public class Gear : MonoBehaviour
             case ItemData.ItemType.Glove:
             case ItemData.ItemType.Shoe:
             case ItemData.ItemType.PowerUp:
-                rate = data.gearRates[0];
-                break;                
+                rate = newData.gearRates[0];
+                break;
         }
         ApplyGear();
     }
@@ -44,22 +48,24 @@ public class Gear : MonoBehaviour
             case ItemData.ItemType.Shoe:
             case ItemData.ItemType.PowerUp:
                 this.rate = rate;
-                break;                
+                break;
         }
+        accumulatedRate *= (1 + rate);
         ApplyGear(); // 기어 적용
     }
 
-    private void ApplyGear()
+
+    public void ApplyGear()
     {
         switch (type)
-        {            
+        {
             case ItemData.ItemType.Glove:
                 AttackSpeedUp();
                 break;
 
             case ItemData.ItemType.Shoe:
                 SpeedUp();
-                break;            
+                break;
             case ItemData.ItemType.PowerUp:
                 PowerUp();
                 break;
@@ -72,18 +78,17 @@ public class Gear : MonoBehaviour
 
         foreach (Weapon weapon in weapons)
         {
-            weapon.orignalDamage += weapon.orignalDamage * rate;
-            float damage = weapon.orignalDamage * gameManager.playerData.damageMult;
-            weapon.damage = damage;
+            weapon.damage += weapon.damage * rate;
 
             if (weapon.id == 0)
             {
                 Bullet[] bullet = weapon.GetComponentsInChildren<Bullet>();
                 for (int i = 0; i < weapon.count; i++)
                 {
-                    bullet[i].damage = damage;
+                    bullet[i].damage = weapon.damage;
                 }
             }
+
         }
     }
 
@@ -100,19 +105,18 @@ public class Gear : MonoBehaviour
                 case 0: //삽
 
                     //float weaponSpeed = (float)System.Math.Round(weapon.baseSpeed * gameManager.playerData.atkSpeedMult, 2); 
-                    weapon.orignalWeaponspd = weapon.orignalWeaponspd + (weapon.orignalWeaponspd * rate);
-                    weapon.weaponSpeed = weapon.orignalWeaponspd * gameManager.playerData.atkSpeedMult;
+                    weapon.weaponSpeed += weapon.weaponSpeed * rate;
                     break;
 
                 // 원거리 무기
                 case 50: // 총
                 case 51: // 대포
                 case 52: // 창
-                    //weaponSpeed = (float)System.Math.Round(weapon.baseSpeed / gameManager.playerData.atkSpeedMult,2);
-                    weapon.orignalWeaponspd = weapon.orignalWeaponspd * (1f - rate);
-                    weapon.weaponSpeed = weapon.orignalWeaponspd / gameManager.playerData.atkSpeedMult;
+                         //weaponSpeed = (float)System.Math.Round(weapon.baseSpeed / gameManager.playerData.atkSpeedMult,2);
+                    weapon.weaponSpeed *= (1f - rate);
                     break;
             }
+
         }
     }
 

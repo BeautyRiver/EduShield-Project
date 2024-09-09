@@ -6,14 +6,12 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public static event System.Action OnWeaponLevelUp; 
-
+    public ItemData.ItemType type;
     [Header("# 무기 세팅")]
     public int id; // 무기의 고유 ID
     public int prefabId; // 생성할 불릿의 프리팹 ID    
     public int level = 0; // 현재 레벨
 
-    public float orignalDamage; // 원래 데미지
     public float damage; // 무기 데미지    
 
     public int count; // 무기 개수
@@ -21,9 +19,7 @@ public class Weapon : MonoBehaviour
 
     public float buletDelay; // 총알 사이 딜레이 (Range)   
     public float weaponSpeed; // 무기 속도    
-    public float orignalWeaponspd; // 원래 무기 속도
 
-    public float baseSpeed;
     private float[] rangeTimer = { 0, 0, 0, 0, 0 }; // 원거리 무기 타이머
     private GameManager gameManager;
     private Player player;
@@ -81,20 +77,21 @@ public class Weapon : MonoBehaviour
         // 속성 세팅
         id = data.itemId; // 아이디 설정
         buletDelay = data.baseDelay; // 기본 딜레이 저장
-        baseSpeed = data.baseSpeed; // 기본 공격속도 저장
-        orignalDamage = data.baseDamage; // 기본 공격력 저장
-        orignalWeaponspd = data.baseSpeed;
+        weaponSpeed = data.baseSpeed; // 기본 공격속도 저장
+        damage = data.baseDamage; // 기본 공격력 저장
         count = data.baseCount; // 기본 개수 설정
         per = data.basePer; // 기본 관통력 설정
+
         for (int index = 0; index < GameManager.instance.pool.prefabs.Length; index++)
         {
             if (data.prefab == gameManager.pool.prefabs[index])
             {
                 prefabId = index;
+                break;
             }
         }
         // 기본 데미지 설정
-        damage = orignalDamage * gameManager.playerData.damageMult; 
+        damage *= gameManager.playerData.damageMult;
 
         // 기본 공격 속도 설정
         switch (id)
@@ -102,7 +99,7 @@ public class Weapon : MonoBehaviour
             // 근접 무기
             case 0: // 삽
                 // 캐릭터별 무기 회전 속도 설정
-                weaponSpeed = (float)System.Math.Round(orignalWeaponspd * gameManager.playerData.atkSpeedMult, 2);  
+                weaponSpeed = (float)System.Math.Round(weaponSpeed * gameManager.playerData.atkSpeedMult, 2);
                 Batch(); // 회전 무기 배치
                 break;
 
@@ -111,24 +108,35 @@ public class Weapon : MonoBehaviour
             case 51: // 대포
             case 52: // 창
                 // 캐릭터별 무기 연사속도 설정
-                weaponSpeed = (float)System.Math.Round(orignalWeaponspd / gameManager.playerData.atkSpeedMult, 2); 
+                weaponSpeed = (float)System.Math.Round(weaponSpeed / gameManager.playerData.atkSpeedMult, 2);
                 break;
-
         }
 
+        Gear[] gears = transform.parent.GetComponentsInChildren<Gear>();
+        if (gears != null)
+        {
+            foreach (Gear gear in gears)
+            {
+                gear.GearLevelUp(gear.data.itemType, gear.accumulatedRate);
+            }
+        }
+
+        level++;
         /* // 손 무기 세팅
          Hand hand = player.hands[(int)data.itemType];
          hand.spriter.sprite = data.hand;
          hand.gameObject.SetActive(true);*/
 
         // 기어(추가된 능력치) 적용
+
         //player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
     }
 
+
     public void WeaonLevelUp(float damage, int count, int per, int currentLevel)
     {
-        this.orignalDamage += damage; // 데미지 업데이트
-        this.damage = orignalDamage * gameManager.playerData.damageMult;
+        // 데미지 업데이트
+        this.damage += damage;
         this.count += count; // 불릿 수 증가
         this.per += per;
         level = currentLevel;
