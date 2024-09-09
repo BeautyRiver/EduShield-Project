@@ -22,7 +22,7 @@ MonoBehaviour:
   baseDamage: 5
   baseCount: 1
   basePer: 0
-  baseDelay: 0.2
+  baseDelay: 0.5
   baseSpeed: 1
   damages:
   - 1

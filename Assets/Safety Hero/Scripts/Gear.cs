@@ -72,8 +72,8 @@ public class Gear : MonoBehaviour
 
         foreach (Weapon weapon in weapons)
         {
-            float gearMultiplier = 1f + rate;
-            float damage = weapon.damage * GameManager.instance.playerData.damageMult * gearMultiplier;
+            weapon.orignalDamage += weapon.orignalDamage * rate;
+            float damage = weapon.orignalDamage * gameManager.playerData.damageMult;
             weapon.damage = damage;
 
             if (weapon.id == 0)
@@ -98,16 +98,19 @@ public class Gear : MonoBehaviour
             {
                 // 회전 무기
                 case 0: //삽
-                    float weaponSpeed = (float)System.Math.Round(weapon.baseSpeed * gameManager.playerData.atkSpeedMult, 2); 
-                    weapon.weaponSpeed = weaponSpeed + (weaponSpeed * rate - 1);
+
+                    //float weaponSpeed = (float)System.Math.Round(weapon.baseSpeed * gameManager.playerData.atkSpeedMult, 2); 
+                    weapon.orignalWeaponspd = weapon.orignalWeaponspd + (weapon.orignalWeaponspd * rate);
+                    weapon.weaponSpeed = weapon.orignalWeaponspd * gameManager.playerData.atkSpeedMult;
                     break;
 
                 // 원거리 무기
                 case 50: // 총
                 case 51: // 대포
                 case 52: // 창
-                    weaponSpeed = (float)System.Math.Round(weapon.baseSpeed / gameManager.playerData.atkSpeedMult,2);
-                    weapon.weaponSpeed = weaponSpeed * (1f - (rate-1));
+                    //weaponSpeed = (float)System.Math.Round(weapon.baseSpeed / gameManager.playerData.atkSpeedMult,2);
+                    weapon.orignalWeaponspd = weapon.orignalWeaponspd * (1f - rate);
+                    weapon.weaponSpeed = weapon.orignalWeaponspd / gameManager.playerData.atkSpeedMult;
                     break;
             }
         }

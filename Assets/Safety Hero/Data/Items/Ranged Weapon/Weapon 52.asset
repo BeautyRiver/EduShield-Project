@@ -20,10 +20,10 @@ MonoBehaviour:
   itemDesc: "\uB370\uBBF8\uC9C0 {0} \uC99D\uAC00\n\uAD00\uD1B5\uB825 {1} \uCD94\uAC00"
   itemIcon: {fileID: -1786786079, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
   baseDamage: 10
-  baseCount: 2
+  baseCount: 1
   basePer: 1
-  baseDelay: 0.2
-  baseSpeed: 2
+  baseDelay: 0.5
+  baseSpeed: 1.5
   damages:
   - 2
   - 3

@@ -1,3 +1,4 @@
+using DG.Tweening.Core.Easing;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -9,27 +10,32 @@ public class Weapon : MonoBehaviour
 
     [Header("# 무기 세팅")]
     public int id; // 무기의 고유 ID
-    public int prefabId; // 생성할 불릿의 프리팹 ID
+    public int prefabId; // 생성할 불릿의 프리팹 ID    
     public int level = 0; // 현재 레벨
-    public float damage; // 무기 데미지
+
+    public float orignalDamage; // 원래 데미지
+    public float damage; // 무기 데미지    
+
     public int count; // 무기 개수
     public int per; // 관통력
 
     public float buletDelay; // 총알 사이 딜레이 (Range)   
     public float weaponSpeed; // 무기 속도    
+    public float orignalWeaponspd; // 원래 무기 속도
 
     public float baseSpeed;
-    public float baseDamage;
     private float[] rangeTimer = { 0, 0, 0, 0, 0 }; // 원거리 무기 타이머
+    private GameManager gameManager;
     private Player player;
 
     private void Awake()
     {
-        player = GameManager.instance.player;
+        gameManager = GameManager.instance;
+        player = gameManager.player;
     }
     private void Update()
     {
-        if (GameManager.instance.isLive)
+        if (gameManager.isLive)
         {
             switch (id)
             {
@@ -76,26 +82,28 @@ public class Weapon : MonoBehaviour
         id = data.itemId; // 아이디 설정
         buletDelay = data.baseDelay; // 기본 딜레이 저장
         baseSpeed = data.baseSpeed; // 기본 공격속도 저장
-        baseDamage = data.baseDamage; // 기본 공격력 저장
-                                      // 
-        damage = data.baseDamage * GameManager.instance.playerData.damageMult; // 기본 데미지 설정
+        orignalDamage = data.baseDamage; // 기본 공격력 저장
+        orignalWeaponspd = data.baseSpeed;
         count = data.baseCount; // 기본 개수 설정
         per = data.basePer; // 기본 관통력 설정
         for (int index = 0; index < GameManager.instance.pool.prefabs.Length; index++)
         {
-            if (data.prefab == GameManager.instance.pool.prefabs[index])
+            if (data.prefab == gameManager.pool.prefabs[index])
             {
                 prefabId = index;
             }
         }
+        // 기본 데미지 설정
+        damage = orignalDamage * gameManager.playerData.damageMult; 
 
+        // 기본 공격 속도 설정
         switch (id)
         {
             // 근접 무기
             case 0: // 삽
                 // 캐릭터별 무기 회전 속도 설정
-                weaponSpeed = (float)System.Math.Round(data.baseSpeed * GameManager.instance.playerData.atkSpeedMult, 2);  
-                Batch();
+                weaponSpeed = (float)System.Math.Round(orignalWeaponspd * gameManager.playerData.atkSpeedMult, 2);  
+                Batch(); // 회전 무기 배치
                 break;
 
             // 원거리 무기
@@ -103,7 +111,7 @@ public class Weapon : MonoBehaviour
             case 51: // 대포
             case 52: // 창
                 // 캐릭터별 무기 연사속도 설정
-                weaponSpeed = (float)System.Math.Round(data.baseSpeed / GameManager.instance.playerData.atkSpeedMult, 2); 
+                weaponSpeed = (float)System.Math.Round(orignalWeaponspd / gameManager.playerData.atkSpeedMult, 2); 
                 break;
 
         }
@@ -114,21 +122,19 @@ public class Weapon : MonoBehaviour
          hand.gameObject.SetActive(true);*/
 
         // 기어(추가된 능력치) 적용
-        player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
+        //player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
     }
 
     public void WeaonLevelUp(float damage, int count, int per, int currentLevel)
     {
-        this.damage += damage; // 데미지 업데이트
+        this.orignalDamage += damage; // 데미지 업데이트
+        this.damage = orignalDamage * gameManager.playerData.damageMult;
         this.count += count; // 불릿 수 증가
         this.per += per;
         level = currentLevel;
         // 회전 무기는 다시 자연스럽게 추가시키기 위해서 재배치
         if (id == 0)
             Batch();
-
-        // 기어 강화 적용
-        player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
     }
 
     // 불릿 배치 함수 (회전 무기)
@@ -143,7 +149,7 @@ public class Weapon : MonoBehaviour
             }
             else
             {
-                bullet = GameManager.instance.pool.Get(prefabId).transform;
+                bullet = gameManager.pool.Get(prefabId).transform;
                 bullet.parent = transform; // 부모 설정
             }
 

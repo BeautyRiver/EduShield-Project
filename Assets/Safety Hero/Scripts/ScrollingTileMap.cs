@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class ScrollingTileMap : MonoBehaviour
 {
+    [ExecuteInEditMode]
+
     private Collider2D coll;
     private Player player;
     public float tileMapSize = 40f; // 타일맵 이동 거리
@@ -55,5 +58,15 @@ public class ScrollingTileMap : MonoBehaviour
             previousPlayerPos = playerPos; // 플레이어 위치 업데이트
             nextCheckTime = Time.time + checkInterval; // 다음 검사 시간 설정
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (coll == null)
+            coll = GetComponent<TilemapCollider2D>();
+
+        Gizmos.color = Color.green;
+        Bounds bound = coll.bounds;
+        Gizmos.DrawWireCube(bound.center, bound.size);
     }
 }
