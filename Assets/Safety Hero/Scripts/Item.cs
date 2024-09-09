@@ -111,13 +111,10 @@ public class Item : MonoBehaviour
                 }
                 else // 무기가 존재할때
                 {
-                    float nextDamage = 0;
-                    int nextCount = 0;
-                    int nextPer = 0;
+                    float nextDamage = data.damages[level];
+                    int nextCount = data.counts[level];
+                    int nextPer = data.pers[level];
 
-                    nextDamage += data.damages[level];
-                    nextCount += data.counts[level];
-                    nextPer += data.pers[level];
                     weapon.WeaonLevelUp(nextDamage, nextCount, nextPer, level);
                 }
                 level++;

@@ -119,7 +119,7 @@ public class Weapon : MonoBehaviour
 
     public void WeaonLevelUp(float damage, int count, int per, int currentLevel)
     {
-        this.damage = damage * GameManager.instance.playerData.damageMult; // 데미지 업데이트
+        this.damage += damage; // 데미지 업데이트
         this.count += count; // 불릿 수 증가
         this.per += per;
         level = currentLevel;

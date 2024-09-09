@@ -72,9 +72,8 @@ public class Gear : MonoBehaviour
 
         foreach (Weapon weapon in weapons)
         {
-            float damage = weapon.damage;
-            damage += weapon.baseDamage * rate;
-
+            float gearMultiplier = 1f + rate;
+            float damage = weapon.damage * GameManager.instance.playerData.damageMult * gearMultiplier;
             weapon.damage = damage;
 
             if (weapon.id == 0)
