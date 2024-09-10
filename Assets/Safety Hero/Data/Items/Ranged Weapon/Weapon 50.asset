@@ -13,11 +13,15 @@ MonoBehaviour:
   m_Name: Weapon 50
   m_EditorClassIdentifier: 
   itemCategory: 0
+  weaponType: 1
   itemType: 10
-  maxLevel: 5
+  maxLevel: 8
   itemId: 50
   itemName: "\uC5FD\uCD1D"
-  itemDesc: "\uB370\uBBF8\uC9C0 {0} \uC99D\uAC00\n\uAD00\uD1B5\uB825 {1} \uCD94\uAC00"
+  itemDesc:
+  - "\uB370\uBBF8\uC9C0\uAC00 {0}% \uC99D\uAC00"
+  - "\uAC1C\uC218\uAC00 {0}\uAC1C \uC99D\uAC00"
+  - "\uAD00\uD1B5\uB825\uC774 {0} \uC99D\uAC00"
   itemIcon: {fileID: -205726582, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
   baseDamage: 8
   baseCount: 1
@@ -27,11 +31,8 @@ MonoBehaviour:
   damages:
   - 1
   - 2
-  - 3
-  - 4
-  - 5
-  counts: 0100000001000000010000000200000003000000
-  pers: 0000000000000000000000000000000000000000
+  counts: 010000000100000001000000
+  pers: 000000000000000000000000
   gearRates: []
   prefab: {fileID: 8191457858479555690, guid: fb9b18fe80588aa42851c78eab484920, type: 3}
   hand: {fileID: -353751291, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}

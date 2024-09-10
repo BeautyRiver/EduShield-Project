@@ -11,10 +11,7 @@ public class Item : MonoBehaviour
     public Weapon weapon;
     public Gear gear;
     public int level;
-
-    private static int weaponCount = 0; // 획득한 무기 개수
-    private static int gearCount = 0;   // 획득한 기어 개수
-    private static int maxItemCount = 5; // 무기와 기어의 최대 개수
+    public int rateIndex;
 
     private Image icon;
     private TextMeshProUGUI textLevel;
@@ -23,7 +20,6 @@ public class Item : MonoBehaviour
 
     private void Awake()
     {
-
         // 아이콘 설정 및 세팅
         icon = GetComponentsInChildren<Image>()[1];
         icon.sprite = data.itemIcon;
@@ -45,6 +41,7 @@ public class Item : MonoBehaviour
                 textDesc = texts[1];
                 break;
         }
+
         textName.text = data.itemName;
     }
 
@@ -55,6 +52,7 @@ public class Item : MonoBehaviour
         {
             textLevel.text = "Lv." + (level + 1); // 레벨 표기
         }
+
         switch (data.itemCategory)
         {
             // Weapons
@@ -64,33 +62,46 @@ public class Item : MonoBehaviour
                     switch (data.itemType)
                     {
                         case ItemType.Shovel:
-                            textDesc.text = "회전하며 적을 공격합니다.";
+                            textDesc.text = "회전하며 적을 공격";
                             break;
                         case ItemType.Gun:
-                            textDesc.text = "적을 자동 조준하는 무기를 장착합니다.";
+                            textDesc.text = "적을 자동 조준하는 총 발사";
                             break;
                         case ItemType.Cannon:
-                            textDesc.text = "관통할 수 있는 무기를 장착합니다.";
+                            textDesc.text = "바라보는 방향으로 크게 관통하는 대포 발사";
                             break;
                         case ItemType.Spear:
-                            textDesc.text = "바라보는 방향으로 무기를 투척합니다.";
+                            textDesc.text = "바라보는 방향으로 무기 투척";
                             break;
                     }
                 }
                 else
                 {
-                    textDesc.text = string.Format(data.itemDesc, data.damages[level], data.counts[level]); // 무기 설명글
+                    float selectRate = 0f;
+                    switch (rateIndex)
+                    {
+                        case 0:
+                            selectRate = data.damages[rateIndex];
+                            break;
+                        case 1:
+                            selectRate = data.counts[rateIndex];
+                            break;
+                        case 2:
+                            selectRate = data.pers[rateIndex];
+                            break;
+                    }
+                    textDesc.text = string.Format(data.itemDesc[rateIndex], selectRate); // 무기 설명글
                 }
                 break;
 
             // Gears
             case ItemCategory.Gear:
-                textDesc.text = string.Format(data.itemDesc, data.gearRates[level] * 100); // 기어 설명글
+                textDesc.text = string.Format(data.itemDesc[0], data.gearRates[level] * 100); // 기어 설명글
                 break;
 
             // Etc
             case ItemCategory.Etc:
-                textDesc.text = string.Format(data.itemDesc); // 아이템 설명글
+                textDesc.text = string.Format(data.itemDesc[0]); // 아이템 설명글
                 break;
         }
     }
@@ -111,9 +122,15 @@ public class Item : MonoBehaviour
                 }
                 else // 무기가 존재할때
                 {
-                    float nextDamage = data.damages[level];
-                    int nextCount = data.counts[level];
-                    int nextPer = data.pers[level];
+                    float nextDamage = 0;
+                    int nextCount = (data.counts.Length != 0 && level < data.maxLevel) ? data.counts[level] : 0;
+                    int nextPer = (data.pers.Length != 0 && level < data.maxLevel) ? data.pers[level] : 0;
+                    switch (rateIndex)
+                    {
+                        case 0:
+                            nextDamage = (data.damages.Length != 0 && level < data.maxLevel) ? data.damages[level] : 0;
+                            break;
+                    }
 
                     weapon.WeaonLevelUp(nextDamage, nextCount, nextPer, level);
                 }

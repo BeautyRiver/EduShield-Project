@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Etc 1
   m_EditorClassIdentifier: 
   itemCategory: 2
+  weaponType: 0
   itemType: 201
+  maxLevel: 5
   itemId: 201
   itemName: "\uACE8\uB4DC"
-  itemDesc: "10\uACE8\uB4DC \uD68D\uB4DD"
+  itemDesc:
+  - "15\uACE8\uB4DC\uB97C \uD68D\uB4DD\uD569\uB2C8\uB2E4."
   itemIcon: {fileID: -1002307068, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
   baseDamage: 0
   baseCount: 0
@@ -29,10 +32,8 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  weaponSpeeds: []
-  weaponDealays: []
   counts: 
   pers: 
-  speeds: []
+  gearRates: []
   prefab: {fileID: 0}
   hand: {fileID: 0}
