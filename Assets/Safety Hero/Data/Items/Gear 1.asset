@@ -28,10 +28,8 @@ MonoBehaviour:
   counts: 
   pers: 
   gearRates:
-  - 0.15
-  - 0.3
-  - 0.5
-  - 0.8
-  - 1.1
+  - 0.1
+  - 0.1
+  - 0.21
   prefab: {fileID: 0}
   hand: {fileID: 0}

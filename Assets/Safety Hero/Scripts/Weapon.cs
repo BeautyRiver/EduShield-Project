@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+
+public class Weapon : MonoBehaviour 
 {
-    public ItemData.ItemType type;
     [Header("# 무기 세팅")]
+    public ItemData.ItemType type;
     public int id; // 무기의 고유 ID
     public int prefabId; // 생성할 불릿의 프리팹 ID    
     public int level = 0; // 현재 레벨
@@ -70,6 +71,7 @@ public class Weapon : MonoBehaviour
     public void Init(ItemData data)
     {
         // 기본 세팅
+        type = data.itemType;
         gameObject.name = "Equip Weapon: " + data.itemType.ToString();
         transform.parent = player.transform;
         transform.localPosition = Vector3.zero; // 플레이어 안에서 위치 초기화
@@ -114,10 +116,11 @@ public class Weapon : MonoBehaviour
 
         Gear[] gears = transform.parent.GetComponentsInChildren<Gear>();
         if (gears != null)
-        {
+        {            
             foreach (Gear gear in gears)
             {
-                gear.GearLevelUp(gear.data.itemType, gear.accumulatedRate);
+                gear.rate = gear.accumulatedRate-1;
+                gear.ApplyGearToWeapon(this);
             }
         }
 

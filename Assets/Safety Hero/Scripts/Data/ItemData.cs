@@ -42,6 +42,7 @@ public class ItemData : ScriptableObject
     public float baseSpeed;
 
     [Header("# 레벨별 스탯")]
+
     [Header("데미지")]
     public float[] damages; // 데미지
     [Header("개수")]
@@ -49,6 +50,8 @@ public class ItemData : ScriptableObject
     [Header("관통력")]
     public int[] pers; // 관통력
     [Header("기어 능력치")]
+    [Header("배율방식 / 0.5 = 1.5배 (50%)증가")]
+    [Header("\b*현재 상태에서 곱해지는 방식이므로\n 큰 수를 곱할시 값이 매우 커짐 주의*")]
     public float[] gearRates;
 
     [Header("무기 관련")]

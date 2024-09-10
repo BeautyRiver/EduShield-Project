@@ -19,7 +19,7 @@ MonoBehaviour:
   itemName: "\uB300\uD3EC"
   itemDesc: "\uB370\uBBF8\uC9C0 {0} \uC99D\uAC00\n\uAD00\uD1B5\uB825 {1} \uCD94\uAC00"
   itemIcon: {fileID: -762074860, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-  baseDamage: 10
+  baseDamage: 8
   baseCount: 1
   basePer: 3
   baseDelay: 0.5

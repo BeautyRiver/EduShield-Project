@@ -131,8 +131,8 @@ public class Item : MonoBehaviour
                 }
                 else
                 {
-                    float atkSpdMult = data.gearRates[level]; // 공속
-                    gear.GearLevelUp(data.itemType, atkSpdMult);
+                    float newRate = data.gearRates[level]; // 공속
+                    gear.GearLevelUp(newRate);
                     gear.level = level;
                 }
                 level++;

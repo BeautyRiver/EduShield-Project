@@ -21000,7 +21000,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.4375
+  orthographic size: 8.277778
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -55972,8 +55972,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputVec: {x: 0, y: 0}
   lastInputVec: {x: 0, y: 0}
-  defaluSpeed: 3
-  speed: 30
+  speed: 3
   scanner: {fileID: 0}
   hands: []
   animCon:
@@ -61230,7 +61229,7 @@ MonoBehaviour:
   level: 0
   kill: 0
   exp: 0
-  nextExp: 050000000a0000000f000000140000001e00000028000000320000003c0000004600000050000000
+  nextExp: 10270000
   pool: {fileID: 1381120192}
   uiLevelUp: {fileID: 259957426}
   player: {fileID: 905882072}
@@ -145612,9 +145611,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: []
   spawnData:
-  - spawnTime: 0.1
+  - spawnTime: 0.5
     spriteType: 0
-    health: 100
+    health: 10
     speed: 1.5
   - spawnTime: 0.5
     spriteType: 1

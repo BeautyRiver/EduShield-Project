@@ -37,93 +37,101 @@ public class Gear : MonoBehaviour
                 rate = newData.gearRates[0];
                 break;
         }
-        ApplyGear();
+        GearLevelUp(newData.gearRates[0]);
     }
 
-    public void GearLevelUp(ItemData.ItemType gearType, float rate)
+    public void GearLevelUp(float newRate)
     {
-        switch (gearType)
-        {
-            case ItemData.ItemType.Glove:
-            case ItemData.ItemType.Shoe:
-            case ItemData.ItemType.PowerUp:
-                this.rate = rate;
-                break;
-        }
+        rate = newRate;
         accumulatedRate *= (1 + rate);
-        ApplyGear(); // 기어 적용
+        ApplyGearEffect();
     }
-
-
-    public void ApplyGear()
+    public void ApplyGearEffect()
     {
         switch (type)
         {
             case ItemData.ItemType.Glove:
-                AttackSpeedUp();
+            case ItemData.ItemType.PowerUp:
+                ApplyToAllWeapons();
                 break;
-
             case ItemData.ItemType.Shoe:
-                SpeedUp();
+                ApplySpeedUp();
+                break;
+        }
+    }
+    /// <summary>
+    /// 모든 무기에 무기에 영향을 끼치는 기어 적용
+    /// </summary>
+    private void ApplyToAllWeapons()
+    {
+        Weapon[] weapons = transform.parent.GetComponentsInChildren<Weapon>();
+        foreach (Weapon weapon in weapons)
+        {
+            ApplyGearToWeapon(weapon);
+        }
+    }
+
+    /// <summary>
+    /// 무기에 영향이 가는 기어들 적용
+    /// </summary>
+    public void ApplyGearToWeapon(Weapon weapon)
+    {
+        switch (type)
+        {
+            case ItemData.ItemType.Glove:
+                ApplyAttackSpeedUp(weapon);
                 break;
             case ItemData.ItemType.PowerUp:
-                PowerUp();
+                ApplyPowerUp(weapon);
                 break;
         }
     }
 
-    private void PowerUp()
+    /// <summary>
+    /// 공격속도 증가 기어
+    /// </summary>    
+    private void ApplyAttackSpeedUp(Weapon weapon)
     {
-        Weapon[] weapons = transform.parent.GetComponentsInChildren<Weapon>();
-
-        foreach (Weapon weapon in weapons)
+        switch (weapon.type)
         {
-            weapon.damage += weapon.damage * rate;
-
-            if (weapon.id == 0)
-            {
-                Bullet[] bullet = weapon.GetComponentsInChildren<Bullet>();
-                for (int i = 0; i < weapon.count; i++)
-                {
-                    bullet[i].damage = weapon.damage;
-                }
-            }
-
+            case ItemData.ItemType.Shovel: // 회전 무기
+                weapon.weaponSpeed *= (1 + rate);
+                Debug.Log($"{weapon.name} To {type.ToString()}업그레이드. x {1 + rate}배");
+                break;
+            case ItemData.ItemType.Gun: // 총
+            case ItemData.ItemType.Cannon: // 대포
+            case ItemData.ItemType.Spear: // 창
+                weapon.weaponSpeed /= (1  + rate);
+                Debug.Log($"{weapon.name} To {type.ToString()}업그레이드. / {1 + rate}");
+                break;
         }
+        
     }
 
-    // 모든 무기 연사력 증가 함수
-    private void AttackSpeedUp()
+    /// <summary>
+    /// 데미지 증가 기어
+    /// </summary>
+    private void ApplyPowerUp(Weapon weapon)
     {
-        Weapon[] weapons = transform.parent.GetComponentsInChildren<Weapon>();
-
-        foreach (Weapon weapon in weapons)
+        weapon.damage *= (1 + rate);
+        if (weapon.id == 0)
         {
-            switch (weapon.id)
+            foreach (Bullet bullet in weapon.GetComponentsInChildren<Bullet>())
             {
-                // 회전 무기
-                case 0: //삽
-
-                    //float weaponSpeed = (float)System.Math.Round(weapon.baseSpeed * gameManager.playerData.atkSpeedMult, 2); 
-                    weapon.weaponSpeed += weapon.weaponSpeed * rate;
-                    break;
-
-                // 원거리 무기
-                case 50: // 총
-                case 51: // 대포
-                case 52: // 창
-                         //weaponSpeed = (float)System.Math.Round(weapon.baseSpeed / gameManager.playerData.atkSpeedMult,2);
-                    weapon.weaponSpeed *= (1f - rate);
-                    break;
+                bullet.damage = weapon.damage;
             }
-
         }
+        Debug.Log($"{weapon.name} To {type.ToString()}업그레이드. x {1 + rate}배");
     }
 
-    private void SpeedUp()
+    /// <summary>
+    /// 이동속도 증가 기어
+    /// </summary>
+    private void ApplySpeedUp()
     {
-        // defalutSpeed is 3
-        float speed = player.defaluSpeed * gameManager.playerData.speedMult; // 캐릭터별 기본 속도 다르기 때문에 체크
-        gameManager.player.speed = speed + speed * rate;
+        float speed = player.speed;
+        gameManager.player.speed *= (1 + rate);
+        Debug.Log($"{type.ToString()}업그레이드. x {1 + rate}배");
     }
 }
+
