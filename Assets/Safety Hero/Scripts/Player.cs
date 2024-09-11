@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rigid; 
     private Animator anim;
     private GameManager gameManager; // 게임 매니저 참조
+    private Collider2D collider; 
 
     private void Awake()
     {        
@@ -38,7 +39,7 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         scanner = GetComponent<Scanner>();
         hands = GetComponentsInChildren<Hand>(true);
-
+        collider = GetComponent<Collider2D>(); 
         hitColor = new Color(1, 0.42f, 0.42f);
         normalColor = spriter.color;
         hitingTime = new WaitForSeconds(0.2f);
@@ -108,9 +109,7 @@ public class Player : MonoBehaviour
                 {
                     transform.GetChild(index).gameObject.SetActive(false);
                 }
-
-                anim.SetTrigger("Dead");
-                gameManager.GameOver();
+                PlayerDead();
             }
         }        
     }
@@ -144,5 +143,12 @@ public class Player : MonoBehaviour
         speed = speed * gameManager.playerData.speedMult; // 플레이어 기본 이동속도 적용
         anim.runtimeAnimatorController = animCon[gameManager.playerId];
         Debug.Log($"애니메이션 컨트롤러 변경 {gameManager.playerId}");
+    }
+
+    public void PlayerDead()
+    {
+        collider.enabled = false;
+        anim.SetTrigger("Dead");
+        gameManager.GameOver();
     }
 }

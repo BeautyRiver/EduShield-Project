@@ -1,11 +1,8 @@
-using DG.Tweening.Core.Easing;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 
-public class Weapon : MonoBehaviour 
+public class Weapon : MonoBehaviour
 {
     [Header("# 무기 세팅")]
     public ItemData.ItemType type;
@@ -53,7 +50,7 @@ public class Weapon : MonoBehaviour
                     if (rangeTimer[1] > weaponSpeed)
                     {
                         rangeTimer[1] = 0f;
-                        StartCoroutine(FireAuto());
+                        StartCoroutine(FireDir_00());
                     }
                     break;
                 case 52: // 창던지기
@@ -61,7 +58,7 @@ public class Weapon : MonoBehaviour
                     if (rangeTimer[2] > weaponSpeed)
                     {
                         rangeTimer[2] = 0f;
-                        StartCoroutine(FireDir());
+                        StartCoroutine(FireDir_01());
                     }
                     break;
             }
@@ -116,10 +113,10 @@ public class Weapon : MonoBehaviour
 
         Gear[] gears = transform.parent.GetComponentsInChildren<Gear>();
         if (gears != null)
-        {            
+        {
             foreach (Gear gear in gears)
             {
-                gear.rate = gear.accumulatedRate-1;
+                gear.rate = gear.accumulatedRate - 1;
                 gear.ApplyGearToWeapon(this);
             }
         }
@@ -136,12 +133,26 @@ public class Weapon : MonoBehaviour
     }
 
 
-    public void WeaonLevelUp(float damage, int count, int per, int currentLevel)
+    public void WeaonLevelUp(float rate, int rateIndex, int currentLevel)
     {
         // 데미지 업데이트
-        this.damage += damage;
-        this.count += count; // 불릿 수 증가
-        this.per += per;
+        switch (rateIndex)
+        {
+            case 0:
+                damage += rate;
+                Debug.Log($"{this.name}: Damage {rate}만큼 증가했습니다.");
+                break;
+            case 1:
+                count += (int)rate;
+                Debug.Log($"{this.name}: Count {rate}만큼 증가했습니다.");
+
+                break;
+            case 2:
+                per += (int)rate;
+                Debug.Log($"{this.name}: Per {rate}만큼 증가했습니다.");
+
+                break;
+        }
         level = currentLevel;
         // 회전 무기는 다시 자연스럽게 추가시키기 위해서 재배치
         if (id == 0)
@@ -198,7 +209,30 @@ public class Weapon : MonoBehaviour
         }
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
     }
-    private IEnumerator FireDir()
+    private IEnumerator FireDir_00()
+    {
+        for (int i = 0; i < count; i++)
+        {
+            Vector3 dir = new Vector3(player.lastInputVec.x, player.lastInputVec.y, 0).normalized;
+            Transform bullet = GameManager.instance.pool.Get(prefabId).transform;
+            bullet.parent = transform;
+
+            // 발사체의 시작 위치를 조정
+            Vector3 startPosition = transform.position;
+
+            bullet.position = startPosition;
+            bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);  // 발사 방향에 맞게 회전 설정
+
+            bullet.GetComponent<Bullet>().Init(damage, per, dir);
+
+            // 발사 후 약간의 딜레이 추가
+            yield return new WaitForSeconds(buletDelay);  // 총알 사이의 딜레이 설정 (0.1초)
+        }
+
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
+    }
+
+    private IEnumerator FireDir_01()
     {
         for (int i = 0; i < count; i++)
         {
@@ -210,6 +244,7 @@ public class Weapon : MonoBehaviour
             float random = Random.Range(-4, 5) * 0.1f;
             // 발사 방향에 따라 발사체 간격을 조절 (오른쪽/왼쪽, 위쪽/아래쪽 모두 지원)
             spreadOffset = Vector3.Cross(dir, Vector3.forward) * ((i - (count / 2)) * random);
+
             // 발사체의 시작 위치를 조정
             Vector3 startPosition = transform.position + spreadOffset;
 

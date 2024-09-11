@@ -7,6 +7,7 @@ public class ItemDataEditor : Editor
     // Serialized Properties 선언
     SerializedProperty maxLevel;
     SerializedProperty itemCategory;
+    SerializedProperty weaponType;
     SerializedProperty itemType;
     SerializedProperty itemId;
     SerializedProperty itemName;
@@ -32,6 +33,7 @@ public class ItemDataEditor : Editor
         // 아이템 속성 로드
         maxLevel = serializedObject.FindProperty("maxLevel");
         itemCategory = serializedObject.FindProperty("itemCategory");
+        weaponType = serializedObject.FindProperty("weaponType");
         itemType = serializedObject.FindProperty("itemType");
         itemId = serializedObject.FindProperty("itemId");
         itemName = serializedObject.FindProperty("itemName");
@@ -71,7 +73,6 @@ public class ItemDataEditor : Editor
         EditorGUILayout.PropertyField(itemType);
         EditorGUILayout.PropertyField(itemId);
 
-        EditorGUILayout.PropertyField(maxLevel);  
         EditorGUILayout.PropertyField(itemName);
         EditorGUILayout.PropertyField(itemDesc);
         EditorGUILayout.PropertyField(itemIcon);               
@@ -80,7 +81,8 @@ public class ItemDataEditor : Editor
         {
             // 무기 관련 속성만 표시
             EditorGUILayout.LabelField("무기 속성", EditorStyles.boldLabel);
-
+            EditorGUILayout.PropertyField(weaponType);
+            EditorGUILayout.PropertyField(maxLevel);
             EditorGUILayout.PropertyField(baseDamage);
             EditorGUILayout.PropertyField(baseCount);
             EditorGUILayout.PropertyField(basePer);
@@ -96,7 +98,9 @@ public class ItemDataEditor : Editor
         {
             // 기어 관련 속성만 표시
             EditorGUILayout.LabelField("기어 속성", EditorStyles.boldLabel);
+            EditorGUILayout.PropertyField(maxLevel);
             EditorGUILayout.PropertyField(gearRates);
+
         }
         else if (category == ItemData.ItemCategory.Etc)
         {
