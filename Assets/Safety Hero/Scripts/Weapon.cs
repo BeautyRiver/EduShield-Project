@@ -5,8 +5,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [Header("# 무기 세팅")]
-    public ItemData.ItemType type;
-    public int id; // 무기의 고유 ID
+    public ItemData data;
     public int prefabId; // 생성할 불릿의 프리팹 ID    
     public int level = 0; // 현재 레벨
 
@@ -31,13 +30,13 @@ public class Weapon : MonoBehaviour
     {
         if (gameManager.isLive)
         {
-            switch (id)
+            switch (data.itemType)
             {
-                case 0: // 회전무기
+                case ItemData.ItemType.Shovel: // 회전무기
                     transform.Rotate(Vector3.back * weaponSpeed * Time.deltaTime);
                     break;
 
-                case 50: // 단발총
+                case ItemData.ItemType.Gun: // 단발총
                     rangeTimer[0] += Time.deltaTime;
                     if (rangeTimer[0] > weaponSpeed)
                     {
@@ -45,7 +44,7 @@ public class Weapon : MonoBehaviour
                         StartCoroutine(FireAuto());
                     }
                     break;
-                case 51: // 대포
+                case ItemData.ItemType.Cannon: // 대포
                     rangeTimer[1] += Time.deltaTime;
                     if (rangeTimer[1] > weaponSpeed)
                     {
@@ -53,7 +52,7 @@ public class Weapon : MonoBehaviour
                         StartCoroutine(FireDir_00());
                     }
                     break;
-                case 52: // 창던지기
+                case ItemData.ItemType.Spear: // 창던지기
                     rangeTimer[2] += Time.deltaTime;
                     if (rangeTimer[2] > weaponSpeed)
                     {
@@ -68,13 +67,12 @@ public class Weapon : MonoBehaviour
     public void Init(ItemData data)
     {
         // 기본 세팅
-        type = data.itemType;
-        gameObject.name = "Equip Weapon: " + data.itemType.ToString();
+        this.data = data;
+        gameObject.name = "Equip Weapon: " + data.itemType.ToString();        
         transform.parent = player.transform;
         transform.localPosition = Vector3.zero; // 플레이어 안에서 위치 초기화
 
         // 속성 세팅
-        id = data.itemId; // 아이디 설정
         buletDelay = data.baseDelay; // 기본 딜레이 저장
         weaponSpeed = data.baseSpeed; // 기본 공격속도 저장
         damage = data.baseDamage; // 기본 공격력 저장
@@ -93,19 +91,19 @@ public class Weapon : MonoBehaviour
         damage *= gameManager.playerData.damageMult;
 
         // 기본 공격 속도 설정
-        switch (id)
+        switch (data.itemType)
         {
             // 근접 무기
-            case 0: // 삽
+            case ItemData.ItemType.Shovel: // 삽
                 // 캐릭터별 무기 회전 속도 설정
                 weaponSpeed = (float)System.Math.Round(weaponSpeed * gameManager.playerData.atkSpeedMult, 2);
                 Batch(); // 회전 무기 배치
                 break;
 
             // 원거리 무기
-            case 50: // 총
-            case 51: // 대포
-            case 52: // 창
+            case ItemData.ItemType.Gun:
+            case ItemData.ItemType.Cannon:
+            case ItemData.ItemType.Spear:            
                 // 캐릭터별 무기 연사속도 설정
                 weaponSpeed = (float)System.Math.Round(weaponSpeed / gameManager.playerData.atkSpeedMult, 2);
                 break;
@@ -126,10 +124,6 @@ public class Weapon : MonoBehaviour
          Hand hand = player.hands[(int)data.itemType];
          hand.spriter.sprite = data.hand;
          hand.gameObject.SetActive(true);*/
-
-        // 기어(추가된 능력치) 적용
-
-        //player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
     }
 
 
@@ -155,7 +149,7 @@ public class Weapon : MonoBehaviour
         }
         level = currentLevel;
         // 회전 무기는 다시 자연스럽게 추가시키기 위해서 재배치
-        if (id == 0)
+        if (data.itemType == ItemData.ItemType.Shovel)
             Batch();
     }
 

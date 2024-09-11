@@ -6,12 +6,11 @@ using UnityEngine;
 public class ItemData : ScriptableObject
 {
     public enum ItemCategory { Weapon, Gear, Etc }
-    public enum WeaponType { Melee, Ranged }
     public enum ItemType 
     {    
         // 무기 류
         Shovel, // 근접
-        Gun = 10, Cannon, Spear, // 원거리
+        Gun = 50, Cannon, Spear, // 원거리
 
         Glove = 100, Shoe, PowerUp,// 기어 류
 
@@ -21,7 +20,6 @@ public class ItemData : ScriptableObject
     [Header("# 아이템 속성")]
     public ItemCategory itemCategory;
     [Header("# Melee -근접 / Ranged -원거리")]
-    public WeaponType weaponType;
     public ItemType itemType;
 
     [Header("# 아이템 최대 레벨")]
@@ -47,7 +45,7 @@ public class ItemData : ScriptableObject
     [Header("# 레벨별 스탯")]
 
     [Header("데미지")]
-    public float[] damages; // 데미지
+    public int[] damages; // 데미지
     [Header("개수")]
     public int[] counts; // 개수
     [Header("관통력")]
@@ -65,7 +63,7 @@ public class ItemData : ScriptableObject
     private void OnValidate()
     {
         // 각 배열의 최대 길이를 구해 maxLevel로 설정
-        maxLevel = damages.Length + counts.Length + pers.Length + gearRates.Length;
+        maxLevel = damages.Length + counts.Length + pers.Length + gearRates.Length + 1;
     }
 }
 

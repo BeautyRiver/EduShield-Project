@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Weapon 0
   m_EditorClassIdentifier: 
   itemCategory: 0
-  weaponType: 0
   itemType: 0
   maxLevel: 8
   itemId: 0
@@ -27,12 +26,8 @@ MonoBehaviour:
   basePer: -100
   baseDelay: 0
   baseSpeed: 100
-  damages:
-  - 5
-  - 10
-  - 10
-  - 10
-  counts: 01000000010000000100000001000000
+  damages: 01000000020000000300000004000000
+  counts: 01000000020000000300000004000000
   pers: 
   gearRates: []
   prefab: {fileID: 8887909641685150018, guid: a44e82b83c01bc9459417e36e0ff8e08, type: 3}

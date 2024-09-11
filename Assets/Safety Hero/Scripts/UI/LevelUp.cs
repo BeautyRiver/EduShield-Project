@@ -95,7 +95,7 @@ public class LevelUp : MonoBehaviour
                     // 이미 획득한 기어이거나, 새로운 기어를 획득할 수 있는 경우
                     if (item.level > 0 || GameManager.instance.gearCount < GameManager.instance.maxItemCount)
                     {
-                        if (item.level < item.data.maxLevel)
+                        if (item.level < item.data.maxLevel - 1)
                         {
                             availableItems.Add(item);
                             allMaxLevel = false;

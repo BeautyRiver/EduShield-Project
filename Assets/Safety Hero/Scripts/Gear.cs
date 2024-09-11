@@ -92,7 +92,7 @@ public class Gear : MonoBehaviour
     /// </summary>    
     private void ApplyAttackSpeedUp(Weapon weapon)
     {
-        switch (weapon.type)
+        switch (weapon.data.itemType)
         {
             case ItemData.ItemType.Shovel: // 회전 무기
                 weapon.weaponSpeed *= (1 + rate);
@@ -114,7 +114,7 @@ public class Gear : MonoBehaviour
     private void ApplyPowerUp(Weapon weapon)
     {
         weapon.damage *= (1 + rate);
-        if (weapon.id == 0)
+        if (weapon.data.itemType == ItemData.ItemType.Shovel)
         {
             foreach (Bullet bullet in weapon.GetComponentsInChildren<Bullet>())
             {

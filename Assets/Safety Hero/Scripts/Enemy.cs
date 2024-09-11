@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Enemy : MonoBehaviour
 {
@@ -21,12 +22,14 @@ public class Enemy : MonoBehaviour
     private SpriteRenderer spriter;
     private Animator anim;
     private WaitForFixedUpdate wait;
+    private SortingGroup sortingGroup;
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
         spriter = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        sortingGroup = GetComponent<SortingGroup>();
         wait = new WaitForFixedUpdate();
     }
 
@@ -60,10 +63,10 @@ public class Enemy : MonoBehaviour
     {
         target = GameManager.instance.player.GetComponent<Rigidbody2D>();
         // √ ±‚»≠
+        sortingGroup.sortingOrder = 1;
         isLive = true;
         coll.enabled = true;
         rigid.simulated = true;
-        spriter.sortingOrder = 2;
         anim.SetBool("Dead", false);
         health = maxHealth;
     }
@@ -112,6 +115,10 @@ public class Enemy : MonoBehaviour
         rigid.AddForce(dirVec.normalized * 1.5f, ForceMode2D.Impulse);
     }
 
+    public void SetOrderLayer()
+    {
+        sortingGroup.sortingOrder = 0;
+    }
     private void Dead()
     {
         gameObject.SetActive(false);

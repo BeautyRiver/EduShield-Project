@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static ItemData;
+
 public class Item : MonoBehaviour
 {
     [Header("# 아이템 데이터")]
@@ -13,8 +14,12 @@ public class Item : MonoBehaviour
     public int level;
 
     [Header("# 현재 강화Index")]
-    public int weaponRateIndex = 0;
-    private float weaponSelectRate;
+    public int outsideRateIdx = 0;
+    public int insideRateIdx = 0;
+    public float increaseRate = 0;
+
+    [SerializeField]
+    private List<int[]> statusRateList = new List<int[]>();
 
     private Image icon;
     private TextMeshProUGUI textLevel;
@@ -33,6 +38,15 @@ public class Item : MonoBehaviour
         {
             case ItemCategory.Weapon:
             case ItemCategory.Gear:
+                if (data.damages.Length > 0)
+                    statusRateList.Add(data.damages);
+
+                if (data.counts.Length > 0)
+                    statusRateList.Add(data.counts);
+
+                if (data.pers.Length > 0)
+                    statusRateList.Add(data.pers);
+
                 textLevel = texts[0];
                 textName = texts[1];
                 textDesc = texts[2];
@@ -81,20 +95,8 @@ public class Item : MonoBehaviour
                 // 레벨이 0이 아닐때
                 else
                 {
-                    switch (weaponRateIndex)
-                    {
-                        case 0:
-                            weaponSelectRate = data.damages[weaponRateIndex];
-                            break;
-                        case 1:
-                            weaponSelectRate = data.counts[weaponRateIndex];
-                            break;
-                        case 2:
-                            weaponSelectRate = data.pers[weaponRateIndex];
-                            break;
-                    }
-
-                    textDesc.text = string.Format(data.itemDesc[weaponRateIndex], weaponSelectRate); // 무기 설명글
+                    increaseRate = statusRateList[outsideRateIdx][insideRateIdx];                    
+                    textDesc.text = string.Format(data.itemDesc[outsideRateIdx], increaseRate); // 무기 설명글
                 }
                 break;
 
@@ -125,11 +127,23 @@ public class Item : MonoBehaviour
                     GameManager.instance.weaponCount++; // 무기 개수 추가(최대 5개)
                 }
                 else // 무기가 존재할때
-                {                    
-                    weapon.WeaonLevelUp(weaponSelectRate, weaponRateIndex, level);
-                    weaponRateIndex++;
-                    if (weaponRateIndex >= data.itemDesc.Length)
-                        weaponRateIndex = 0;
+                {
+                    weapon.WeaonLevelUp(increaseRate, outsideRateIdx, level);
+
+                    outsideRateIdx += 1;
+
+                    if (outsideRateIdx >= data.itemDesc.Length)
+                    {
+                        outsideRateIdx = 0;
+                        insideRateIdx += 1;
+                    }
+
+                    // 스탯레벨업이 최대에 도달하면 리스트에서 삭제
+                    if (insideRateIdx >= statusRateList[outsideRateIdx].Length)
+                    {
+                        Debug.Log($"Removed : statusRateList[{outsideRateIdx}]");
+                        statusRateList.RemoveAt(outsideRateIdx);                        
+                    }
                 }
                 level++;
                 break;

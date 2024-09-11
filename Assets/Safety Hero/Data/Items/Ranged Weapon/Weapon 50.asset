@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Weapon 50
   m_EditorClassIdentifier: 
   itemCategory: 0
-  weaponType: 1
-  itemType: 10
+  itemType: 50
   maxLevel: 7
   itemId: 50
   itemName: "\uC5FD\uCD1D"
@@ -28,11 +27,9 @@ MonoBehaviour:
   basePer: 0
   baseDelay: 0.5
   baseSpeed: 3
-  damages:
-  - 5
-  - 10
-  counts: 010000000100000001000000
-  pers: 0100000000000000
+  damages: 0100000002000000
+  counts: 01000000
+  pers: 010000000200000003000000
   gearRates: []
   prefab: {fileID: 8191457858479555690, guid: fb9b18fe80588aa42851c78eab484920, type: 3}
   hand: {fileID: -353751291, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}

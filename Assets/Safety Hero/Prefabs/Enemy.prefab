@@ -164,7 +164,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2002500792, guid: 9897989b58317454ea153e2ec46e90dc, type: 3}
+  m_Sprite: {fileID: 19513898, guid: a49f95c8ef8c017468401cf671813117, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -255,8 +255,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.7, y: 0.9}
+  m_Offset: {x: 0, y: -0.16281843}
+  m_Size: {x: 0.7, y: 1.225637}
   m_Direction: 0
 --- !u!114 &8638903223392992360
 MonoBehaviour:
@@ -297,7 +297,7 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6506317341284564746}
   m_Enabled: 1
-  m_SortingLayerID: 409021669
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_SortAtRoot: 0
+  m_SortingLayerID: -1456109347
+  m_SortingLayer: -1
+  m_SortingOrder: 1
+  m_SortAtRoot: 1
