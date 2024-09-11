@@ -15,11 +15,11 @@ MonoBehaviour:
   itemCategory: 0
   weaponType: 1
   itemType: 12
-  maxLevel: 8
+  maxLevel: 7
   itemId: 52
   itemName: "\uCC3D"
   itemDesc:
-  - "\uB370\uBBF8\uC9C0\uAC00 {0}% \uC99D\uAC00"
+  - "\uB370\uBBF8\uC9C0\uAC00 {0} \uC99D\uAC00"
   - "\uAC1C\uC218\uAC00 {0}\uAC1C \uC99D\uAC00"
   - "\uAD00\uD1B5\uB825\uC774 {0} \uC99D\uAC00"
   itemIcon: {fileID: -1786786079, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
@@ -29,10 +29,10 @@ MonoBehaviour:
   baseDelay: 0.5
   baseSpeed: 3
   damages:
-  - 2
-  - 3
+  - 5
+  - 10
   counts: 010000000100000001000000
-  pers: 010000000000000001000000
+  pers: 0100000001000000
   gearRates: []
   prefab: {fileID: 8191457858479555690, guid: 054894a582249144fa8669ad0e7893e6, type: 3}
   hand: {fileID: 1349035616, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}

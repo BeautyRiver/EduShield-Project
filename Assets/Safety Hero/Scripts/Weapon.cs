@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 
-public class Weapon : MonoBehaviour 
+public class Weapon : MonoBehaviour
 {
     [Header("# 무기 세팅")]
     public ItemData.ItemType type;
@@ -113,10 +113,10 @@ public class Weapon : MonoBehaviour
 
         Gear[] gears = transform.parent.GetComponentsInChildren<Gear>();
         if (gears != null)
-        {            
+        {
             foreach (Gear gear in gears)
             {
-                gear.rate = gear.accumulatedRate-1;
+                gear.rate = gear.accumulatedRate - 1;
                 gear.ApplyGearToWeapon(this);
             }
         }
@@ -133,12 +133,26 @@ public class Weapon : MonoBehaviour
     }
 
 
-    public void WeaonLevelUp(float damage, int count, int per, int currentLevel)
+    public void WeaonLevelUp(float rate, int rateIndex, int currentLevel)
     {
         // 데미지 업데이트
-        this.damage += damage;
-        this.count += count; // 불릿 수 증가
-        this.per += per;
+        switch (rateIndex)
+        {
+            case 0:
+                damage += rate;
+                Debug.Log($"{this.name}: Damage {rate}만큼 증가했습니다.");
+                break;
+            case 1:
+                count += (int)rate;
+                Debug.Log($"{this.name}: Count {rate}만큼 증가했습니다.");
+
+                break;
+            case 2:
+                per += (int)rate;
+                Debug.Log($"{this.name}: Per {rate}만큼 증가했습니다.");
+
+                break;
+        }
         level = currentLevel;
         // 회전 무기는 다시 자연스럽게 추가시키기 위해서 재배치
         if (id == 0)

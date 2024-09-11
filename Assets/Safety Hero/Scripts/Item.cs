@@ -11,7 +11,10 @@ public class Item : MonoBehaviour
     public Weapon weapon;
     public Gear gear;
     public int level;
-    public int rateIndex;
+
+    [Header("# 현재 강화Index")]
+    public int weaponRateIndex = 0;
+    private float weaponSelectRate;
 
     private Image icon;
     private TextMeshProUGUI textLevel;
@@ -75,22 +78,23 @@ public class Item : MonoBehaviour
                             break;
                     }
                 }
+                // 레벨이 0이 아닐때
                 else
                 {
-                    float selectRate = 0f;
-                    switch (rateIndex)
+                    switch (weaponRateIndex)
                     {
                         case 0:
-                            selectRate = data.damages[rateIndex];
+                            weaponSelectRate = data.damages[weaponRateIndex];
                             break;
                         case 1:
-                            selectRate = data.counts[rateIndex];
+                            weaponSelectRate = data.counts[weaponRateIndex];
                             break;
                         case 2:
-                            selectRate = data.pers[rateIndex];
+                            weaponSelectRate = data.pers[weaponRateIndex];
                             break;
                     }
-                    textDesc.text = string.Format(data.itemDesc[rateIndex], selectRate); // 무기 설명글
+
+                    textDesc.text = string.Format(data.itemDesc[weaponRateIndex], weaponSelectRate); // 무기 설명글
                 }
                 break;
 
@@ -121,18 +125,11 @@ public class Item : MonoBehaviour
                     GameManager.instance.weaponCount++; // 무기 개수 추가(최대 5개)
                 }
                 else // 무기가 존재할때
-                {
-                    float nextDamage = 0;
-                    int nextCount = (data.counts.Length != 0 && level < data.maxLevel) ? data.counts[level] : 0;
-                    int nextPer = (data.pers.Length != 0 && level < data.maxLevel) ? data.pers[level] : 0;
-                    switch (rateIndex)
-                    {
-                        case 0:
-                            nextDamage = (data.damages.Length != 0 && level < data.maxLevel) ? data.damages[level] : 0;
-                            break;
-                    }
-
-                    weapon.WeaonLevelUp(nextDamage, nextCount, nextPer, level);
+                {                    
+                    weapon.WeaonLevelUp(weaponSelectRate, weaponRateIndex, level);
+                    weaponRateIndex++;
+                    if (weaponRateIndex >= data.itemDesc.Length)
+                        weaponRateIndex = 0;
                 }
                 level++;
                 break;

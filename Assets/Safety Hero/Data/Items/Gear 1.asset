@@ -32,6 +32,6 @@ MonoBehaviour:
   gearRates:
   - 0.1
   - 0.1
-  - 0.21
+  - 0.2
   prefab: {fileID: 0}
   hand: {fileID: 0}
