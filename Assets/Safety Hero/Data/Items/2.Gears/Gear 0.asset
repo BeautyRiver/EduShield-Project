@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Gear 0
   m_EditorClassIdentifier: 
   itemCategory: 1
-  weaponType: 0
   itemType: 100
-  maxLevel: 3
+  maxLevel: 2
   itemId: 100
   itemName: "\uD0DC\uD06C\uB2C8\uCEEC \uC7A5\uAC10"
   itemDesc:
@@ -26,12 +25,10 @@ MonoBehaviour:
   basePer: 0
   baseDelay: 0
   baseSpeed: 0
-  damages: []
+  damages: 
   counts: 
   pers: 
   gearRates:
-  - 0.1
-  - 0.1
   - 0.1
   prefab: {fileID: 0}
   hand: {fileID: 0}

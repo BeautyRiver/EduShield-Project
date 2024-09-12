@@ -23,6 +23,7 @@ public class Item : MonoBehaviour
     private List<int[]> statusRateList = new List<int[]>();
 
     private Image icon;
+    private Image newIcon;
     private TextMeshProUGUI textName;
     private TextMeshProUGUI textDesc;
     private TextMeshProUGUI textLevel;
@@ -31,19 +32,19 @@ public class Item : MonoBehaviour
     {
         // 아이콘 설정
         icon = GetComponentsInChildren<Image>()[1];
+        newIcon = GetComponentsInChildren<Image>()[2];
+        
         icon.sprite = data.itemIcon;
 
         // 공통 텍스트 필드 설정
         TextMeshProUGUI[] texts = GetComponentsInChildren<TextMeshProUGUI>();
         textName = texts[0];
         textDesc = texts[1];
+        textLevel = texts[2];
 
         if (data.itemCategory == ItemCategory.Weapon || data.itemCategory == ItemCategory.Gear)
         {
-            textLevel = texts[2];
-            // 무기와 기어의 데이터 세팅
-
-
+                // 무기와 기어의 데이터 세팅
                 statusRateList.Add(data.damages);
 
                 statusRateList.Add(data.counts);
@@ -53,7 +54,7 @@ public class Item : MonoBehaviour
             // 최대 인덱스 구하기
             foreach (var item in statusRateList)
                 maxmumInsideIdx = Mathf.Max(maxmumInsideIdx, item.Length);
-        }
+        }        
 
         textName.text = data.itemName;
     }
@@ -73,6 +74,7 @@ public class Item : MonoBehaviour
             case ItemCategory.Weapon:
                 if (level == 0)
                 {
+                    newIcon.gameObject.SetActive(true);
                     switch (data.itemType)
                     {
                         case ItemType.Shovel:
@@ -92,6 +94,7 @@ public class Item : MonoBehaviour
                 // 레벨이 0이 아닐때
                 else
                 {
+                    newIcon.gameObject.SetActive(false);
                     while (outsideRateIdx < statusRateList.Count && statusRateList[outsideRateIdx].Length == 0)
                     {
                         outsideRateIdx++; // 비어있는 배열을 건너뛰기 위해 증가
@@ -107,12 +110,24 @@ public class Item : MonoBehaviour
 
             // Gears
             case ItemCategory.Gear:
-                textDesc.text = string.Format(data.itemDesc[0], data.gearRates[level] * 100); // 기어 설명글
+                newIcon.gameObject.SetActive(false);
+                textDesc.text = string.Format(data.itemDesc[0], data.gearRates[level] * 100); // 기어 설명글    
                 break;
 
             // Etc
             case ItemCategory.Etc:
+                newIcon.gameObject.SetActive(false);
                 textDesc.text = string.Format(data.itemDesc[0]); // 아이템 설명글
+                textLevel.fontSize = 40;
+                switch (data.itemType)
+                {                       
+                    case ItemType.Heal:
+                        textLevel.text = "특별한 맛";
+                        break;
+                    case ItemType.Gold:
+                        textLevel.text = "부자가 되보자";
+                        break;
+                }
                 break;
         }
     }
