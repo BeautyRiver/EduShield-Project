@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemCategory: 0
   itemType: 51
-  maxLevel: 9
+  maxLevel: 4
   itemId: 51
   itemName: "\uB300\uD3EC"
   itemDesc:
@@ -27,9 +27,9 @@ MonoBehaviour:
   basePer: 3
   baseDelay: 0.5
   baseSpeed: 3
-  damages: 0100000002000000
-  counts: 01000000020000000300000004000000
-  pers: 0100000002000000
+  damages: 01000000
+  counts: 01000000
+  pers: 01000000
   gearRates: []
   prefab: {fileID: 8191457858479555690, guid: 321abbc004976c84d993cf8d03f989a7, type: 3}
   hand: {fileID: 1772703093, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}

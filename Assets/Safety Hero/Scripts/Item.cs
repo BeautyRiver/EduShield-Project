@@ -42,11 +42,12 @@ public class Item : MonoBehaviour
         {
             textLevel = texts[0];
             // 무기와 기어의 데이터 세팅
-            if (data.damages.Length > 0)
+
+
                 statusRateList.Add(data.damages);
-            if (data.counts.Length > 0)
+
                 statusRateList.Add(data.counts);
-            if (data.pers.Length > 0)
+
                 statusRateList.Add(data.pers);
 
             // 최대 인덱스 구하기
@@ -91,8 +92,16 @@ public class Item : MonoBehaviour
                 // 레벨이 0이 아닐때
                 else
                 {
-                    increaseRate = statusRateList[outsideRateIdx][insideRateIdx];
-                    textDesc.text = string.Format(data.itemDesc[outsideRateIdx], increaseRate); // 무기 설명글
+                    while (outsideRateIdx < statusRateList.Count && statusRateList[outsideRateIdx].Length == 0)
+                    {
+                        outsideRateIdx++; // 비어있는 배열을 건너뛰기 위해 증가
+                    }
+
+                    if (outsideRateIdx < statusRateList.Count)
+                    {
+                        increaseRate = statusRateList[outsideRateIdx][insideRateIdx];
+                        textDesc.text = string.Format(data.itemDesc[outsideRateIdx], increaseRate); // 무기 설명글
+                    }
                 }
                 break;
 
@@ -172,7 +181,7 @@ public class Item : MonoBehaviour
             GameManager.instance.weaponCount++; // 무기 개수 추가(최대 5개)
         }
         else // 무기가 존재할때
-        {
+        {            
             weapon.WeaonLevelUp(increaseRate, outsideRateIdx, level);
             // 인덱스 값이 범위를 넘는 경우 계속 조정
             outsideRateIdx++;

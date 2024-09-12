@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 {
     [Header("입력 및 이동")]
     public Vector2 inputVec; // 입력 벡터 (방향)
-    public Vector2 lastInputVec = new Vector2(0,1);
+    public Vector2 lastInputVec;
     public float speed = 3f; // 이동 속도
 
 

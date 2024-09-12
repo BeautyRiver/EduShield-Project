@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemCategory: 0
   itemType: 52
-  maxLevel: 9
+  maxLevel: 5
   itemId: 52
   itemName: "\uCC3D"
   itemDesc:
@@ -25,11 +25,11 @@ MonoBehaviour:
   baseDamage: 8
   baseCount: 1
   basePer: 1
-  baseDelay: 0.5
-  baseSpeed: 3
-  damages: 0100000002000000
-  counts: 0200000003000000
-  pers: 01000000020000000300000004000000
+  baseDelay: 0.15
+  baseSpeed: 2
+  damages: 
+  counts: 01000000020000000300000004000000
+  pers: 
   gearRates: []
   prefab: {fileID: 8191457858479555690, guid: 054894a582249144fa8669ad0e7893e6, type: 3}
   hand: {fileID: 1349035616, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}

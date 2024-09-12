@@ -227,7 +227,7 @@ public class Weapon : MonoBehaviour
     }
 
     private IEnumerator FireDir_01()
-    {
+    {        
         for (int i = 0; i < count; i++)
         {
             Vector3 dir = new Vector3(player.lastInputVec.x, player.lastInputVec.y, 0).normalized;
@@ -235,7 +235,7 @@ public class Weapon : MonoBehaviour
             bullet.parent = transform;
             Vector3 spreadOffset = Vector3.zero;
 
-            float random = Random.Range(-4, 5) * 0.1f;
+            float random = Random.Range(-4, 5) * 0.05f;
             // 발사 방향에 따라 발사체 간격을 조절 (오른쪽/왼쪽, 위쪽/아래쪽 모두 지원)
             spreadOffset = Vector3.Cross(dir, Vector3.forward) * ((i - (count / 2)) * random);
 
