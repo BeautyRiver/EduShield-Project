@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d1bd397b1903a34ba35468b05a5746b, type: 3}
+  m_Name: Weapon 52
+  m_EditorClassIdentifier: 
+  itemCategory: 0
+  itemType: 52
+  maxLevel: 5
+  itemId: 52
+  itemName: "\uCC3D"
+  itemDesc:
+  - "\uB370\uBBF8\uC9C0\uAC00 {0} \uC99D\uAC00"
+  - "\uAC1C\uC218\uAC00 {0}\uAC1C \uC99D\uAC00"
+  - "\uAD00\uD1B5\uB825\uC774 {0} \uC99D\uAC00"
+  itemIcon: {fileID: -1786786079, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+  baseDamage: 8
+  baseCount: 1
+  basePer: 1
+  baseDelay: 0.15
+  baseSpeed: 2
+  damages: 
+  counts: 01000000020000000300000004000000
+  pers: 
+  gearRates: []
+  prefab: {fileID: 8191457858479555690, guid: 054894a582249144fa8669ad0e7893e6, type: 3}
+  hand: {fileID: 1349035616, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}

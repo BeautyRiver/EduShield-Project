@@ -23,7 +23,7 @@ public class LevelUp : MonoBehaviour
     {
         CurrentData.OnItemCurrentState?.Invoke(); // 이벤트 호출
 
-        blackWindow.DOFade(0.7f, 0.5f).SetUpdate(true); // 검은 배경 On
+        blackWindow.DOFade(0.75f, 0.5f).SetUpdate(true); // 검은 배경 On
         Next(); // 섞기
         Button[] buttons = transform.GetComponentsInChildren<Button>();
         foreach (var btn in buttons)
@@ -32,7 +32,7 @@ public class LevelUp : MonoBehaviour
         }
 
         GameManager.instance.Stop();
-        rect.DOAnchorPos(Vector3.zero, 0.5f).SetEase(Ease.OutBack, 1f).SetUpdate(true);
+        rect.DOAnchorPos(Vector3.zero, 0.1f).SetEase(Ease.Linear).SetUpdate(true);
 
         AudioManager.instance.PlaySfx(AudioManager.Sfx.LevelUp); // 음향재생
         AudioManager.instance.EffectBgm(true); // 배경음 필터 끄기
@@ -47,7 +47,7 @@ public class LevelUp : MonoBehaviour
 
         blackWindow.DOFade(0f, 0.5f).SetUpdate(true); // 검은 배경 Off
 
-        rect.DOAnchorPos(new Vector3(0, -1300f, 0), 0.5f).SetEase(Ease.InBack, 1f).SetUpdate(true).OnComplete(() =>
+        rect.DOAnchorPos(new Vector3(0, -1500f, 0), 0.1f).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() =>
         {
             GameManager.instance.Resume();
         });

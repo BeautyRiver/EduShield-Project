@@ -23,9 +23,9 @@ public class Item : MonoBehaviour
     private List<int[]> statusRateList = new List<int[]>();
 
     private Image icon;
-    private TextMeshProUGUI textLevel;
     private TextMeshProUGUI textName;
     private TextMeshProUGUI textDesc;
+    private TextMeshProUGUI textLevel;
 
     private void Awake()
     {
@@ -35,12 +35,12 @@ public class Item : MonoBehaviour
 
         // 공통 텍스트 필드 설정
         TextMeshProUGUI[] texts = GetComponentsInChildren<TextMeshProUGUI>();
-        textName = texts[1];
-        textDesc = texts[2];
+        textName = texts[0];
+        textDesc = texts[1];
 
         if (data.itemCategory == ItemCategory.Weapon || data.itemCategory == ItemCategory.Gear)
         {
-            textLevel = texts[0];
+            textLevel = texts[2];
             // 무기와 기어의 데이터 세팅
 
 
