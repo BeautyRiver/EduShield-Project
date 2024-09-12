@@ -27,7 +27,7 @@ public class ScrollingTileMap : MonoBehaviour
         // 현재 시간이 다음 검사 시간을 넘었는지 확인
         if (Time.time >= nextCheckTime)
         {
-            Debug.Log("검사중");
+            //Debug.Log("검사중");
             Vector3 playerPos = player.transform.position; // 플레이어 위치
             Vector3 myPos = transform.position; // 현재 오브젝트 위치
             float dirX = playerPos.x - myPos.x;

@@ -16,7 +16,8 @@ public class Item : MonoBehaviour
     [Header("# 현재 강화Index")]
     public int outsideRateIdx = 0;
     public int insideRateIdx = 0;
-    public float increaseRate = 0;
+    public int maxmumInsideIdx = 0;
+    private float increaseRate = 0;
 
     [SerializeField]
     private List<int[]> statusRateList = new List<int[]>();
@@ -28,39 +29,34 @@ public class Item : MonoBehaviour
 
     private void Awake()
     {
-        // 아이콘 설정 및 세팅
+        // 아이콘 설정
         icon = GetComponentsInChildren<Image>()[1];
         icon.sprite = data.itemIcon;
 
-        // 레벨, 이름, 설명 텍스트 설정
+        // 공통 텍스트 필드 설정
         TextMeshProUGUI[] texts = GetComponentsInChildren<TextMeshProUGUI>();
-        switch (data.itemCategory)
+        textName = texts[1];
+        textDesc = texts[2];
+
+        if (data.itemCategory == ItemCategory.Weapon || data.itemCategory == ItemCategory.Gear)
         {
-            case ItemCategory.Weapon:
-            case ItemCategory.Gear:
-                if (data.damages.Length > 0)
-                    statusRateList.Add(data.damages);
+            textLevel = texts[0];
+            // 무기와 기어의 데이터 세팅
+            if (data.damages.Length > 0)
+                statusRateList.Add(data.damages);
+            if (data.counts.Length > 0)
+                statusRateList.Add(data.counts);
+            if (data.pers.Length > 0)
+                statusRateList.Add(data.pers);
 
-                if (data.counts.Length > 0)
-                    statusRateList.Add(data.counts);
-
-                if (data.pers.Length > 0)
-                    statusRateList.Add(data.pers);
-
-                textLevel = texts[0];
-                textName = texts[1];
-                textDesc = texts[2];
-                break;
-
-            case ItemCategory.Etc:
-                textLevel = null;
-                textName = texts[0];
-                textDesc = texts[1];
-                break;
+            // 최대 인덱스 구하기
+            foreach (var item in statusRateList)
+                maxmumInsideIdx = Mathf.Max(maxmumInsideIdx, item.Length);
         }
 
         textName.text = data.itemName;
     }
+
 
     private void OnEnable()
     {
@@ -95,7 +91,7 @@ public class Item : MonoBehaviour
                 // 레벨이 0이 아닐때
                 else
                 {
-                    increaseRate = statusRateList[outsideRateIdx][insideRateIdx];                    
+                    increaseRate = statusRateList[outsideRateIdx][insideRateIdx];
                     textDesc.text = string.Format(data.itemDesc[outsideRateIdx], increaseRate); // 무기 설명글
                 }
                 break;
@@ -119,51 +115,12 @@ public class Item : MonoBehaviour
         {
             // 무기 Setting
             case ItemCategory.Weapon:
-                if (level == 0) // 무기가 없을때 초기화 시키기 (생성)
-                {
-                    GameObject newWeapon = new GameObject();
-                    weapon = newWeapon.AddComponent<Weapon>();
-                    weapon.Init(data);
-                    GameManager.instance.weaponCount++; // 무기 개수 추가(최대 5개)
-                }
-                else // 무기가 존재할때
-                {
-                    weapon.WeaonLevelUp(increaseRate, outsideRateIdx, level);
-
-                    outsideRateIdx += 1;
-
-                    if (outsideRateIdx >= data.itemDesc.Length)
-                    {
-                        outsideRateIdx = 0;
-                        insideRateIdx += 1;
-                    }
-
-                    // 스탯레벨업이 최대에 도달하면 리스트에서 삭제
-                    if (insideRateIdx >= statusRateList[outsideRateIdx].Length)
-                    {
-                        Debug.Log($"Removed : statusRateList[{outsideRateIdx}]");
-                        statusRateList.RemoveAt(outsideRateIdx);                        
-                    }
-                }
-                level++;
+                LevelUpWeapon();
                 break;
 
             // 기어 Setting
             case ItemCategory.Gear:
-                if (level == 0)
-                {
-                    GameObject newGear = new GameObject();
-                    gear = newGear.AddComponent<Gear>();
-                    gear.Init(data);
-                    GameManager.instance.gearCount++; // 기어 개수 추가(최대 5개)
-                }
-                else
-                {
-                    float newRate = data.gearRates[level]; // 공속
-                    gear.GearLevelUp(newRate);
-                    gear.level = level;
-                }
-                level++;
+                LevelUpGear();
                 break;
 
             case ItemCategory.Etc:
@@ -185,5 +142,54 @@ public class Item : MonoBehaviour
             GetComponent<Button>().interactable = false;
         }
 
+    }
+
+    private void LevelUpGear()
+    {
+        if (level == 0)
+        {
+            GameObject newGear = new GameObject();
+            gear = newGear.AddComponent<Gear>();
+            gear.Init(data);
+            GameManager.instance.gearCount++; // 기어 개수 추가(최대 5개)
+        }
+        else
+        {
+            float newRate = data.gearRates[level]; // 공속
+            gear.GearLevelUp(newRate);
+            gear.level = level;
+        }
+        level++;
+    }
+
+    private void LevelUpWeapon()
+    {
+        if (level == 0) // 무기가 없을때 초기화 시키기 (생성)
+        {
+            GameObject newWeapon = new GameObject();
+            weapon = newWeapon.AddComponent<Weapon>();
+            weapon.Init(data);
+            GameManager.instance.weaponCount++; // 무기 개수 추가(최대 5개)
+        }
+        else // 무기가 존재할때
+        {
+            weapon.WeaonLevelUp(increaseRate, outsideRateIdx, level);
+            // 인덱스 값이 범위를 넘는 경우 계속 조정
+            outsideRateIdx++;
+            while (outsideRateIdx >= data.itemDesc.Length || insideRateIdx >= statusRateList[outsideRateIdx].Length)
+            {
+                if (outsideRateIdx >= data.itemDesc.Length)
+                {
+                    outsideRateIdx = 0;
+                    insideRateIdx++;
+                }
+                if (insideRateIdx >= maxmumInsideIdx)
+                    break;
+
+                if (insideRateIdx >= statusRateList[outsideRateIdx].Length)
+                    outsideRateIdx++;
+            }
+        }
+        level++;
     }
 }
