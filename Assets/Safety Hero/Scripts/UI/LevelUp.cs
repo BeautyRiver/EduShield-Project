@@ -9,6 +9,7 @@ public class LevelUp : MonoBehaviour
 {
     private RectTransform rect;
     public Image blackWindow;
+    public float showLeveUpDuration;
     [SerializeField] private List<Item> items;
     public List<Item> availableItems;
 
@@ -31,7 +32,7 @@ public class LevelUp : MonoBehaviour
         }
 
         GameManager.instance.Stop();
-        rect.DOAnchorPos(Vector3.zero, 0.1f).SetEase(Ease.Linear).SetUpdate(true);
+        rect.DOAnchorPos(Vector3.zero, showLeveUpDuration).SetEase(Ease.Linear).SetUpdate(true);
 
         AudioManager.instance.PlaySfx(AudioManager.Sfx.LevelUp); // 음향재생
         AudioManager.instance.EffectBgm(true); // 배경음 필터 끄기
@@ -46,7 +47,7 @@ public class LevelUp : MonoBehaviour
 
         blackWindow.DOFade(0f, 0.5f).SetUpdate(true); // 검은 배경 Off
 
-        rect.DOAnchorPos(new Vector3(0, -1500f, 0), 0.1f).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() =>
+        rect.DOAnchorPos(new Vector3(0, -1500f, 0), showLeveUpDuration).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() =>
         {
             GameManager.instance.Resume();
         });

@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public int gearCount = 0;    // 획득한 기어 개수
     public int maxItemCount = 1; // 최대 장착 가능한 무기/기어 개수
     public float dieMsgDelay;
+    public int selectStageIdx;
+    private bool isGamestart;
 
     [Header("# 플레이어 정보")]
     public int playerId; // 플레이어 ID
@@ -27,6 +29,7 @@ public class GameManager : MonoBehaviour
 
     [Header("# 참조")]
     public PoolManager pool;
+    public AiManager aiManager;
     public LevelUp uiLevelUp;
     public Player player;
     public Result uiResult;
@@ -36,7 +39,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this; 
+        instance = this;
+        selectStageIdx = Random.Range(0, aiManager.alertMessages.Length);
     }
 
     private void Start()
@@ -45,6 +49,7 @@ public class GameManager : MonoBehaviour
             playerData = DataManager.instance.currentPlayerData;
 
         GameStart(playerData.characterId);
+        StartCoroutine(AIMsgShowAndHide());        
     }
 
     private void Update()
@@ -56,7 +61,7 @@ public class GameManager : MonoBehaviour
             GetExp(nextExp[Mathf.Min(level, nextExp.Length - 1)]); // 최대 인덱스를 초과하지 않게
         }
 
-        if (isLive)
+        if (isLive && isGamestart)
         {
            
             // 시간 계산
@@ -71,11 +76,28 @@ public class GameManager : MonoBehaviour
             return;
     }
 
+    // Ai 메세지 띄어주기
+    IEnumerator AIMsgShowAndHide()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        aiManager.AppearAiImage(selectStageIdx);
+        yield return new WaitForSeconds(3f);
+
+        if (!isGamestart)
+        {
+            player.spawner.gameObject.SetActive(true);
+            isGamestart = true;
+        }
+        yield return new WaitForSeconds(4f);
+
+        aiManager.HideAi();
+    }
     // 게임 시작 설정
-    public void GameStart(int id)
+    public void GameStart(int playerId)
     {      
         isLive = true;
-        playerId = id; // 플레이어 아이디 세팅
+        this.playerId = playerId; // 플레이어 아이디 세팅
         health = maxHealth * playerData.maxHpMult; // 플레이어 체력 세팅 
         uiLevelUp.Select(playerData.characterId); // 플레이어 기본 무기 부여
 
