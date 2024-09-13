@@ -14,7 +14,8 @@ public class Player : MonoBehaviour
 
     [Header("게임 오브젝트 참조")]
     public Scanner scanner; // 적 탐색기
-    public Hand[] hands; // 플레이어 무기 (손) 배열
+    public Hand[] hands; // 플레이어 무기 (손) 배열    
+    [HideInInspector] public Spawner spawner;
 
     [Header("애니메이션")]
     public RuntimeAnimatorController[] animCon; // 플레이어 애니메이터 컨트롤러
@@ -30,7 +31,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rigid; 
     private Animator anim;
     private GameManager gameManager; // 게임 매니저 참조
-    private Collider2D collider; 
+    private CapsuleCollider2D col; 
 
     private void Awake()
     {        
@@ -39,15 +40,16 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         scanner = GetComponent<Scanner>();
         hands = GetComponentsInChildren<Hand>(true);
-        collider = GetComponent<Collider2D>(); 
-        hitColor = new Color(1, 0.42f, 0.42f);
+        spawner = GetComponentInChildren<Spawner>(true);
+        col = GetComponent<CapsuleCollider2D>(); 
+        hitColor = new Color(0.86f, 0.2f, 0.2f);
         normalColor = spriter.color;
         hitingTime = new WaitForSeconds(0.2f);
     }
 
     private void Start()
     {
-        gameManager = GameManager.instance;        
+        gameManager = GameManager.instance;              
     }
 
     private void Update()
@@ -147,7 +149,7 @@ public class Player : MonoBehaviour
 
     public void PlayerDead()
     {
-        collider.enabled = false;
+        col.enabled = false;
         anim.SetTrigger("Dead");
         gameManager.GameOver();
     }
