@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public enum DebugMode
+    {
+        Debug,Game
+    }
+    public DebugMode selectMode;
+
     public static GameManager instance;
 
     [Header("# 게임 컨트롤")]
@@ -37,11 +43,27 @@ public class GameManager : MonoBehaviour
     public CurrentData currentData;
     public GameObject enemyCleaner;
 
+    [SerializeField] private float[] aiMsgShowTime = { 1.5f, 3f, 4f };
     private void Awake()
     {
         instance = this;
         //selectStageIdx = Random.Range(0, aiManager.alertMessages.Length);
         selectStageIdx = 1;
+
+        if (selectMode == DebugMode.Debug)
+        {
+            player.speed = 10f;
+            maxHealth = 100000f;
+            aiMsgShowTime[0] = 0;
+            aiMsgShowTime[1] = 0;
+        }
+        else
+        {
+            player.speed = 3f;
+            maxHealth = 100f;
+            aiMsgShowTime[0] = 1.5f;
+            aiMsgShowTime[1] = 3f;
+        }
     }
 
     private void Start()
@@ -80,10 +102,10 @@ public class GameManager : MonoBehaviour
     // Ai 메세지 띄어주기
     IEnumerator AIMsgShowAndHide()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(aiMsgShowTime[0]);
 
         aiManager.AppearAiImage(selectStageIdx);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(aiMsgShowTime[1]);
 
         if (!isGamestart)
         {
@@ -91,7 +113,7 @@ public class GameManager : MonoBehaviour
             player.spawner.gameObject.SetActive(true);
             isGamestart = true;
         }
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(aiMsgShowTime[2]);
 
         aiManager.HideAi();
     }

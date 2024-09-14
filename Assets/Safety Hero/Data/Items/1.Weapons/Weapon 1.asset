@@ -24,8 +24,8 @@ MonoBehaviour:
   baseDamage: 8
   baseCount: 2
   basePer: -100
-  baseDelay: 0
-  baseSpeed: 100
+  baseDelay: 100
+  baseSpeed: 5
   damages: 01000000
   counts: 01000000
   pers: 01000000

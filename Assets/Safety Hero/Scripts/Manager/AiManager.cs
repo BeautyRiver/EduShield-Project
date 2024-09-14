@@ -45,13 +45,14 @@ public class AiManager : MonoBehaviour
     // 메시지창 등장
     private void AppearAiMessage()
     {
-        MoveRectToPosition(aiTextAreaRect, new Vector3(465f, 40f, 0), Ease.OutExpo, () => ShowAlertMessage());
+        MoveRectToPosition(aiTextAreaRect, new Vector3(420f, 40f, 0), Ease.OutExpo, () => ShowAlertMessage());
     }
 
     // 메시지창 속 메시지 등장
     private void ShowAlertMessage()
     {
         scriptText.DOText(alertMessages[selectStageIdx], textDuration, true).SetEase(Ease.Linear);
+        aiTextAreaRect.transform.DOShakePosition(textDuration,2f,fadeOut:false).SetEase(Ease.Linear);
     }
 
     // 공통된 애니메이션 동작
