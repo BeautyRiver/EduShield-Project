@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemCategory: 0
   itemType: 52
-  maxLevel: 2
+  maxLevel: 3
   itemId: 52
   itemName: "\uCC3D"
   itemDesc:
@@ -28,7 +28,7 @@ MonoBehaviour:
   baseDelay: 0.15
   baseSpeed: 2
   damages: 00000000
-  counts: 
+  counts: 00000000
   pers: 
   gearRates: []
   prefab: {fileID: 8191457858479555690, guid: 054894a582249144fa8669ad0e7893e6, type: 3}

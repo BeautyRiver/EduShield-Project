@@ -77,6 +77,10 @@ public class Item : MonoBehaviour
                     newIcon.gameObject.SetActive(true);
                     switch (data.itemType)
                     {
+                        case ItemType.Smoke:
+                            textDesc.text = "전방의 적을 공격";
+                            break;
+
                         case ItemType.Shovel:
                             textDesc.text = "회전하며 적을 공격";
                             break;

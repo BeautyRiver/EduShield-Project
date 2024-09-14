@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public float damage;
     public int per;
-
+    
     private Rigidbody2D rigid;
     private void Awake()
     {
@@ -45,6 +45,11 @@ public class Bullet : MonoBehaviour
         if (!collision.CompareTag("Area") || per == -100)
             return;
 
+        gameObject.SetActive(false);
+    }
+
+    private void ActiveFalse()
+    {
         gameObject.SetActive(false);
     }
 }

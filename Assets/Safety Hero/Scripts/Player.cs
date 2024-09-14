@@ -8,7 +8,8 @@ public class Player : MonoBehaviour
 {
     [Header("입력 및 이동")]
     public Vector2 inputVec; // 입력 벡터 (방향)
-    public Vector2 lastInputVec;
+    public Vector2 lastInputVec = new Vector2(1f,0f);
+    public float lastXInputVec = 1f;  // 마지막 x축 방향만 기억
     public float speed = 3f; // 이동 속도
 
 
@@ -63,6 +64,12 @@ public class Player : MonoBehaviour
             if (inputVec != Vector2.zero)
             {
                 lastInputVec = inputVec;
+
+                // x축이 0이 아닐 때만 마지막 x축 방향을 저장
+                if (inputVec.x != 0)
+                {
+                    lastXInputVec = inputVec.x;
+                }
             }
         }
     }

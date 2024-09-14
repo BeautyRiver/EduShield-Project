@@ -29,14 +29,15 @@ public class Gear : MonoBehaviour
 
         // 속성 세팅                                                                                     
         type = data.itemType;
-        switch (type)
+        /*switch (type)
         {
             case ItemData.ItemType.Glove:
             case ItemData.ItemType.Shoe:
             case ItemData.ItemType.PowerUp:
                 rate = newData.gearRates[0];
                 break;
-        }
+        }*/
+        rate = newData.gearRates[0];
         GearLevelUp(newData.gearRates[0]);
     }
 
@@ -52,6 +53,7 @@ public class Gear : MonoBehaviour
         {
             case ItemData.ItemType.Glove:
             case ItemData.ItemType.PowerUp:
+            case ItemData.ItemType.RangeUp:
                 ApplyToAllWeapons();
                 break;
             case ItemData.ItemType.Shoe:
@@ -84,7 +86,17 @@ public class Gear : MonoBehaviour
             case ItemData.ItemType.PowerUp:
                 ApplyPowerUp(weapon);
                 break;
+            case ItemData.ItemType.RangeUp:
+                ApplyRangeUp(weapon);
+                break;
         }
+    }
+    /// <summary>
+    /// 공격 범위 증가 기어
+    /// </summary>   
+    private void ApplyRangeUp(Weapon weapon)
+    {
+        throw new NotImplementedException();
     }
 
     /// <summary>
@@ -98,14 +110,26 @@ public class Gear : MonoBehaviour
                 weapon.weaponSpeed *= (1 + rate);
                 Debug.Log($"{weapon.name} To {type.ToString()}업그레이드. x {1 + rate}배");
                 break;
+
+            case ItemData.ItemType.Smoke: // 가스
             case ItemData.ItemType.Gun: // 총
             case ItemData.ItemType.Cannon: // 대포
             case ItemData.ItemType.Spear: // 창
-                weapon.weaponSpeed /= (1  + rate);
+                weapon.weaponSpeed /= (1 + rate);
                 Debug.Log($"{weapon.name} To {type.ToString()}업그레이드. / {1 + rate}");
                 break;
         }
-        
+
+    }
+
+    /// <summary>
+    /// 이동속도 증가 기어
+    /// </summary>
+    private void ApplySpeedUp()
+    {
+        float speed = player.speed;
+        gameManager.player.speed *= (1 + rate);
+        Debug.Log($"{type.ToString()}업그레이드. x {1 + rate}배");
     }
 
     /// <summary>
@@ -122,16 +146,6 @@ public class Gear : MonoBehaviour
             }
         }
         Debug.Log($"{weapon.name} To {type.ToString()}업그레이드. x {1 + rate}배");
-    }
-
-    /// <summary>
-    /// 이동속도 증가 기어
-    /// </summary>
-    private void ApplySpeedUp()
-    {
-        float speed = player.speed;
-        gameManager.player.speed *= (1 + rate);
-        Debug.Log($"{type.ToString()}업그레이드. x {1 + rate}배");
     }
 }
 

@@ -40,7 +40,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        selectStageIdx = Random.Range(0, aiManager.alertMessages.Length);
+        //selectStageIdx = Random.Range(0, aiManager.alertMessages.Length);
+        selectStageIdx = 1;
     }
 
     private void Start()
@@ -86,6 +87,7 @@ public class GameManager : MonoBehaviour
 
         if (!isGamestart)
         {
+            uiLevelUp.Select(playerData.characterId); // 플레이어 기본 무기 부여
             player.spawner.gameObject.SetActive(true);
             isGamestart = true;
         }
@@ -99,7 +101,6 @@ public class GameManager : MonoBehaviour
         isLive = true;
         this.playerId = playerId; // 플레이어 아이디 세팅
         health = maxHealth * playerData.maxHpMult; // 플레이어 체력 세팅 
-        uiLevelUp.Select(playerData.characterId); // 플레이어 기본 무기 부여
 
         player.PlayerInit(); // 플레이어 초기화
         player.gameObject.SetActive(true);

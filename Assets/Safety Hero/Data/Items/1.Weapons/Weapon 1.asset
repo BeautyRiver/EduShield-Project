@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d1bd397b1903a34ba35468b05a5746b, type: 3}
-  m_Name: Weapon 0
+  m_Name: Weapon 1
   m_EditorClassIdentifier: 
   itemCategory: 0
-  itemType: 0
-  maxLevel: 5
-  itemId: 0
-  itemName: "\uC2A4\uBAA8\uD06C"
+  itemType: 1
+  maxLevel: 4
+  itemId: 1
+  itemName: "\uC0BD"
   itemDesc:
   - "\uB370\uBBF8\uC9C0\uAC00 {0} \uC99D\uAC00"
   - "\uAC1C\uC218\uAC00 {0}\uAC1C \uC99D\uAC00"
-  itemIcon: {fileID: 1727593965, guid: 889af1860a89f6948ba42cddfa904553, type: 3}
+  itemIcon: {fileID: -181907988, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
   baseDamage: 8
-  baseCount: 1
+  baseCount: 2
   basePer: -100
-  baseDelay: 0.15
-  baseSpeed: 2
-  damages: 
-  counts: 01000000010000000100000001000000
-  pers: 
+  baseDelay: 0
+  baseSpeed: 100
+  damages: 01000000
+  counts: 01000000
+  pers: 01000000
   gearRates: []
-  prefab: {fileID: 6866283732698310354, guid: 3423fc5066175b94d80fdba216bac3a2, type: 3}
-  hand: {fileID: 1727593965, guid: 889af1860a89f6948ba42cddfa904553, type: 3}
+  prefab: {fileID: 8887909641685150018, guid: a44e82b83c01bc9459417e36e0ff8e08, type: 3}
+  hand: {fileID: 143021600, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}

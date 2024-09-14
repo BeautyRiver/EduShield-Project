@@ -9,17 +9,18 @@ public class ItemData : ScriptableObject
     public enum ItemType 
     {    
         // 무기 류
-        Shovel, // 근접
+        Smoke, Shovel, // 근접
         Gun = 50, Cannon, Spear, // 원거리
 
-        Glove = 100, Shoe, PowerUp,// 기어 류
+        Glove = 100, Shoe, PowerUp, RangeUp,// 기어 류
 
         Heal = 200, Gold // 기타템 류
     }
 
     [Header("# 아이템 속성")]
     public ItemCategory itemCategory;
-    [Header("# Melee -근접 / Ranged -원거리")]
+
+    [Header("# 아이템 타입")]
     public ItemType itemType;
 
     [Header("# 아이템 최대 레벨")]
@@ -49,7 +50,8 @@ public class ItemData : ScriptableObject
     [Header("개수")]
     public int[] counts; // 개수
     [Header("관통력")]
-    public int[] pers; // 관통력
+    public int[] pers; // 관통력    
+
     [Header("기어 능력치")]
     [Header("배율방식 / 0.5 = 1.5배 (50%)증가")]
     [Header("\b*현재 상태에서 곱해지는 방식이므로\n 큰 수를 곱할시 값이 매우 커짐 주의*")]

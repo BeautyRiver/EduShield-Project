@@ -8,13 +8,14 @@ public class Spawner : MonoBehaviour
     public SpawnData[] spawnData; // 레벨별 소환 데이터 배열
     public float levelTime; // 레벨별 시간 간격
 
-    private int level; // 현재 레벨
-    private float timer; // 소환 타이머
+    [SerializeField] private int level; // 현재 레벨
+    [SerializeField] private float timer; // 소환 타이머
 
     private void Awake()
     {
         // 초기 설정
         spawnPoint = GetComponentsInChildren<Transform>();
+        level = GameManager.instance.selectStageIdx;
         levelTime = GameManager.instance.maxGameTime / spawnData.Length;
     }
 
@@ -24,7 +25,7 @@ public class Spawner : MonoBehaviour
         {
             // 소환 로직
             timer += Time.deltaTime;
-            level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / levelTime), spawnData.Length - 1);
+            //level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / levelTime), spawnData.Length - 1);
 
             // 소환 타이머가 소환 시간을 초과하면 소환
             if (timer > spawnData[level].spawnTime)
@@ -38,7 +39,7 @@ public class Spawner : MonoBehaviour
     private void Spawn()
     {
         // 적 소환
-        GameObject enemy = GameManager.instance.pool.Get(0);
+        GameObject enemy = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 0);
         enemy.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position;
         enemy.GetComponent<Enemy>().Init(spawnData[level]);
     }

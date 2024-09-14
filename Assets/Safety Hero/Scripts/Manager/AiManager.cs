@@ -38,6 +38,7 @@ public class AiManager : MonoBehaviour
     // Ai 이미지 등장
     public void AppearAiImage(int selectStage)
     {
+        selectStageIdx = selectStage;
         MoveRectToPosition(aiImageRect, new Vector3(-3.25f, 225, 0), Ease.OutBack, () => AppearAiMessage());
     }
 
