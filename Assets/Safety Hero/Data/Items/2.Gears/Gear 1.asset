@@ -14,21 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemCategory: 1
   itemType: 101
-  maxLevel: 2
+  maxLevel: 4
   itemId: 101
-  itemName: "\uC804\uD22C \uC7A5\uD654"
+  itemName: "\uBE44\uC0C1\uAD6C"
   itemDesc:
-  - "\uC774\uB3D9\uC18D\uB3C4 {0}% \uC99D\uAC00"
+  - "\uBE44\uC0C1\uAD6C\uB85C \uB300\uD53C\uD574\uC57C\uC9C0!\n\n\uC774\uB3D9\uC18D\uB3C4
+    {0}% \uC99D\uAC00"
   itemIcon: {fileID: -966295699, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
   baseDamage: 0
   baseCount: 0
   basePer: 0
   baseDelay: 0
   baseSpeed: 0
+  baseScale: {x: 0, y: 0, z: 0}
   damages: 
   counts: 
   pers: 
   gearRates:
+  - 0.1
+  - 0.1
   - 0.1
   prefab: {fileID: 0}
   hand: {fileID: 0}

@@ -78,20 +78,25 @@ public class Item : MonoBehaviour
                     switch (data.itemType)
                     {
                         case ItemType.Smoke:
-                            textDesc.text = "전방의 적을 공격";
+                            textDesc.text = "만능 소화기\n\n" +
+                                "바라보는 방향 소화";
                             break;
 
                         case ItemType.Shovel:
-                            textDesc.text = "회전하며 적을 공격";
+                            textDesc.text = "보통화재에 강함\n\n" +
+                                "주위를 돌면서 공격";
                             break;
                         case ItemType.Gun:
-                            textDesc.text = "적을 자동 조준하는 총 발사";
+                            textDesc.text = "휘발유 등의 화재에 강함\n\n" +
+                                "가장 가까운 적 공격";
                             break;
                         case ItemType.Cannon:
-                            textDesc.text = "바라보는 방향으로 크게 관통하는 대포 발사";
+                            textDesc.text = "전기관련 화재에 강함\n\n" +
+                                "바라보는 방향으로 관통공격";
                             break;
                         case ItemType.Spear:
-                            textDesc.text = "바라보는 방향으로 무기 투척";
+                            textDesc.text = "식용유 등의 화재에 강함\n\n" +
+                                "바라보는 방향으로 공격";
                             break;
                     }
                 }
@@ -116,6 +121,13 @@ public class Item : MonoBehaviour
             case ItemCategory.Gear:
                 newIcon.gameObject.SetActive(false);
                 textDesc.text = string.Format(data.itemDesc[0], data.gearRates[level] * 100); // 기어 설명글    
+                switch (data.itemType)
+                {                   
+                    case ItemType.Glove:
+                        int ran = Random.Range(0,data.itemDesc.Length);
+                        textDesc.text = string.Format(data.itemDesc[ran], data.gearRates[level] * 100); // 기어 설명글    
+                        break;                    
+                }
                 break;
 
             // Etc

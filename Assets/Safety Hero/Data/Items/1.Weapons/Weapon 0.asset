@@ -16,7 +16,7 @@ MonoBehaviour:
   itemType: 0
   maxLevel: 5
   itemId: 0
-  itemName: "\uC2A4\uBAA8\uD06C"
+  itemName: "ABC \uC18C\uD654\uAE30"
   itemDesc:
   - "\uB370\uBBF8\uC9C0\uAC00 {0} \uC99D\uAC00"
   - "\uAC1C\uC218\uAC00 {0}\uAC1C \uC99D\uAC00"

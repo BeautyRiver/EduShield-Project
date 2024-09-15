@@ -16,15 +16,16 @@ MonoBehaviour:
   itemType: 102
   maxLevel: 2
   itemId: 101
-  itemName: "\uD30C\uC6CC \uC5C5"
+  itemName: "\uBB3C\uC218\uAC74"
   itemDesc:
-  - "\uB370\uBBF8\uC9C0 {0}% \uC99D\uAC00"
+  - "\uC785\uACFC \uCF54\uB97C \uB9C9\uC790!\n\n\uB370\uBBF8\uC9C0 {0}% \uC99D\uAC00"
   itemIcon: {fileID: -1002307068, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
   baseDamage: 0
   baseCount: 0
   basePer: 0
   baseDelay: 0
   baseSpeed: 0
+  baseScale: {x: 0, y: 0, z: 0}
   damages: 
   counts: 
   pers: 
