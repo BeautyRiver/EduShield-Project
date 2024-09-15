@@ -19,6 +19,7 @@ public class ItemDataEditor : Editor
     SerializedProperty basePer;
     SerializedProperty baseDelay;
     SerializedProperty baseSpeed;
+    SerializedProperty baseScale;
     SerializedProperty prefab;
     SerializedProperty hand;
 
@@ -44,6 +45,7 @@ public class ItemDataEditor : Editor
         basePer = serializedObject.FindProperty("basePer");
         baseDelay = serializedObject.FindProperty("baseDelay");
         baseSpeed = serializedObject.FindProperty("baseSpeed");
+        baseScale = serializedObject.FindProperty("baseScale");
         prefab = serializedObject.FindProperty("prefab");
         hand = serializedObject.FindProperty("hand");
 
@@ -85,6 +87,8 @@ public class ItemDataEditor : Editor
             EditorGUILayout.PropertyField(basePer);
             EditorGUILayout.PropertyField(baseDelay);
             EditorGUILayout.PropertyField(baseSpeed);
+            EditorGUILayout.PropertyField(baseScale);
+
             EditorGUILayout.PropertyField(damages);
             EditorGUILayout.PropertyField(counts);
             EditorGUILayout.PropertyField(pers);

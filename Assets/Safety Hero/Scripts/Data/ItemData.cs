@@ -42,6 +42,7 @@ public class ItemData : ScriptableObject
     public int basePer;
     public float baseDelay;
     public float baseSpeed;
+    public Vector3 baseScale;
 
     [Header("# 레벨별 스탯")]
 
@@ -66,6 +67,9 @@ public class ItemData : ScriptableObject
     {
         // 각 배열의 최대 길이를 구해 maxLevel로 설정
         maxLevel = damages.Length + counts.Length + pers.Length + gearRates.Length + 1;
+
+        if (prefab != null ) 
+        baseScale = prefab.transform.localScale;
     }
 }
 

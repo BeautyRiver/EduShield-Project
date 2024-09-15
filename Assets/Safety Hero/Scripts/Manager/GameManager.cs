@@ -4,13 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
-{
-    public enum DebugMode
-    {
-        Debug,Game
-    }
-    public DebugMode selectMode;
-
+{ 
     public static GameManager instance;
 
     [Header("# 게임 컨트롤")]
@@ -49,21 +43,6 @@ public class GameManager : MonoBehaviour
         instance = this;
         //selectStageIdx = Random.Range(0, aiManager.alertMessages.Length);
         selectStageIdx = 1;
-
-        if (selectMode == DebugMode.Debug)
-        {
-            player.speed = 10f;
-            maxHealth = 100000f;
-            aiMsgShowTime[0] = 0;
-            aiMsgShowTime[1] = 0;
-        }
-        else
-        {
-            player.speed = 3f;
-            maxHealth = 100f;
-            aiMsgShowTime[0] = 1.5f;
-            aiMsgShowTime[1] = 3f;
-        }
     }
 
     private void Start()

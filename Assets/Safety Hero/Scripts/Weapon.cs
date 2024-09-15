@@ -12,9 +12,13 @@ public class Weapon : MonoBehaviour
     public float damage; // 무기 데미지    
     public int count; // 무기 개수
     public int per; // 관통력
-    public float range = 1.5f; // 공격 범위
+
+    public float attackRange = 1.3f; // 공격 범위
+    public Vector3 bulletSize;// 총알(무기) 크기
+
     public float buletDelay; // 총알 사이 딜레이 (Range)   
     public float weaponSpeed; // 무기 속도    
+    public float roationTime = 3f;
     [SerializeField] private bool isAttacking; // 공격중인지 체크
     [SerializeField] private float speedTimer; // 원거리 무기 타이머
     private GameManager gameManager;
@@ -56,11 +60,11 @@ public class Weapon : MonoBehaviour
 
         // 속성 세팅
         buletDelay = data.baseDelay; // 기본 딜레이 저장
+        bulletSize = data.baseScale; // 기본 사이즈 저장
         weaponSpeed = data.baseSpeed; // 기본 공격속도 저장
         damage = data.baseDamage; // 기본 공격력 저장
         count = data.baseCount; // 기본 개수 설정
         per = data.basePer; // 기본 관통력 설정
-
         for (int index = 0; index < GameManager.instance.pool.weaponPrefabs.Length; index++)
         {
             if (data.prefab == gameManager.pool.weaponPrefabs[index])
@@ -159,8 +163,8 @@ public class Weapon : MonoBehaviour
             Vector3 rotVec = Vector3.forward * 360 * index / count; // 불릿 회전 벡터 계산
             bullet.Rotate(rotVec); // 불릿 회전                        
             bullet.localScale = Vector3.zero;
-            bullet.Translate(bullet.up * 1.5f, Space.World); // 지정된 거리만큼 이동
-            bullet.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBounce); // 크기를 0.5초 동안 자연스럽게 확장
+            bullet.Translate(bullet.up * attackRange * 1.5f, Space.World); // 지정된 거리만큼 이동
+            bullet.DOScale(bulletSize, 0.5f).SetEase(Ease.OutBounce); // 크기를 0.5초 동안 자연스럽게 확장
             bullet.GetComponent<Bullet>().Init(damage, -100, Vector3.zero); // 불릿 초기화 (데미지 설정 및 관통 설정 -100은 무한 관통)
         }
     }
@@ -220,8 +224,9 @@ public class Weapon : MonoBehaviour
             bullet.parent = transform;
 
             // 발사체 위치 설정 (약간의 높이 차이 추가)
-            bullet.position = transform.position + new Vector3(0, i * 0.3f, 0); // 무기 개수에 따라 높이 증가
-            bullet.Translate(bullet.right * dir.x * 1.5f); // 지정된 거리만큼 이동
+            bullet.localScale = bulletSize;
+            bullet.position = transform.position + new Vector3(0, i * 1f, 0); // 무기 개수에 따라 높이 증가
+            bullet.Translate(bullet.right * dir.x * 0.2f); // 지정된 거리만큼 이동
 
 
             // 발사 방향에 따라 발사체 회전 설정 (왼쪽으로 발사될 때는 180도 회전)
@@ -246,7 +251,7 @@ public class Weapon : MonoBehaviour
     {
         Debug.Log("Melee_01 접속");
         Batch();
-        yield return new WaitForSeconds(weaponSpeed);
+        yield return new WaitForSeconds(roationTime);
         for (int index = 0; index < count; index++) // 불릿 수만큼 반복
         {
             Transform bullet;
@@ -260,7 +265,7 @@ public class Weapon : MonoBehaviour
                 bullet.parent = transform; // 부모 설정
             }
 
-            bullet.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBounce); // 크기를 0.5초 동안 자연스럽게 확장
+            bullet.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBounce); // 크기를 0.5초 동안 자연스럽게 축소
         }
         isAttacking = false;
     }
@@ -277,6 +282,8 @@ public class Weapon : MonoBehaviour
             // 총알 발사
             Transform bullet = GameManager.instance.pool.Get(PoolManager.PoolType.Weapon, prefabId).transform;
             bullet.parent = transform;
+
+            bullet.localScale = bulletSize;
             bullet.position = transform.position;
             bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
             bullet.GetComponent<Bullet>().Init(damage, per, dir);
@@ -297,6 +304,7 @@ public class Weapon : MonoBehaviour
 
             // 발사체의 시작 위치를 조정
             Vector3 startPosition = transform.position;
+            bullet.localScale = bulletSize;
             bullet.position = startPosition;
             bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);  // 발사 방향에 맞게 회전 설정
 
@@ -325,6 +333,7 @@ public class Weapon : MonoBehaviour
             // 발사체의 시작 위치를 조정
             Vector3 startPosition = transform.position + spreadOffset;
 
+            bullet.localScale = bulletSize;
             bullet.position = startPosition;
             bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);  // 발사 방향에 맞게 회전 설정
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,9 @@ public class ForDebug : MonoBehaviour
     public Sprite[] uiImages;
     public Item[] items;
     public ItemData[] itemData;
+
+    public TextMeshProUGUI debugText;
+    private bool isInvinsible;
 
     private void Start()
     {
@@ -36,10 +40,37 @@ public class ForDebug : MonoBehaviour
                 default:
                     break;
             }
-
             idx++;
         }
+    }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            if (!isInvinsible)
+            {
+                isInvinsible = true;
+                GameManager.instance.health = 99999999999;
+                debugText.text = "公利";
+            }
+            else
+            {
+                isInvinsible = false;
+                GameManager.instance.health = 100;
+                debugText.text = "公利 秦力";
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            GameManager.instance.player.speed += 1f;
+            debugText.text = "加档 刘啊";
+        }
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            GameManager.instance.player.speed -= 1f;
+            debugText.text = "加档 皑家";
+        }
     }
 }
 #endif

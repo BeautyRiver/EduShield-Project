@@ -91,13 +91,6 @@ public class Gear : MonoBehaviour
                 break;
         }
     }
-    /// <summary>
-    /// 공격 범위 증가 기어
-    /// </summary>   
-    private void ApplyRangeUp(Weapon weapon)
-    {
-        throw new NotImplementedException();
-    }
 
     /// <summary>
     /// 공격속도 증가 기어
@@ -146,6 +139,26 @@ public class Gear : MonoBehaviour
             }
         }
         Debug.Log($"{weapon.name} To {type.ToString()}업그레이드. x {1 + rate}배");
+    }
+
+    /// <summary>
+    /// 공격 범위 증가 기어
+    /// </summary>   
+    private void ApplyRangeUp(Weapon weapon)
+    {
+        switch (weapon.data.itemType)
+        {
+            case ItemData.ItemType.Shovel: // 회전 무기
+                weapon.bulletSize *= (1 + rate);
+                weapon.attackRange *= (1 + rate);
+                Debug.Log($"{weapon.name} To {type.ToString()}업그레이드. x {1 + rate}배");
+                break;
+
+            default:
+                weapon.bulletSize *= (1 + rate);
+                Debug.Log($"{weapon.name} To {type.ToString()}업그레이드. / {1 + rate}");
+                break;
+        }
     }
 }
 

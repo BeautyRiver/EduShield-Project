@@ -7,7 +7,12 @@ using UnityEngine.Rendering;
 
 public class Enemy : MonoBehaviour
 {
+    public enum EnemyType
+    {
+        Normal, Uniqe,
+    }
     [Header("적 상태")]
+    public EnemyType enemyType;
     public float speed;
     public float health;
     public float maxHealth;
@@ -23,6 +28,8 @@ public class Enemy : MonoBehaviour
     private Animator anim;
     private WaitForFixedUpdate wait;
     private SortingGroup sortingGroup;
+    private Vector2 nextVec;
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -40,9 +47,18 @@ public class Enemy : MonoBehaviour
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
                 return;
 
-            Vector2 dirVec = target.position - rigid.position; // 타겟 방향
-            Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
-            rigid.MovePosition(rigid.position + nextVec);
+            if (enemyType == EnemyType.Normal)
+            {
+                Vector2 dirVec = target.position - rigid.position; // 타겟 방향
+                nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
+                rigid.MovePosition(rigid.position + nextVec);
+            }
+
+            else if (enemyType == EnemyType.Uniqe)
+            {
+                rigid.MovePosition(rigid.position + (nextVec * speed * Time.fixedDeltaTime));
+            }
+
             rigid.velocity = Vector2.zero;
         }
         else
@@ -53,7 +69,8 @@ public class Enemy : MonoBehaviour
     {
         if (GameManager.instance.isLive && isLive)
         {
-            spriter.flipX = target.position.x < rigid.position.x;
+            if (enemyType == EnemyType.Normal)
+                spriter.flipX = target.position.x < rigid.position.x;
         }
         else
             return;
@@ -69,6 +86,19 @@ public class Enemy : MonoBehaviour
         rigid.simulated = true;
         anim.SetBool("Dead", false);
         health = maxHealth;
+
+        if (enemyType == EnemyType.Uniqe)
+        {
+            StartCoroutine(UniqueEnemyMove());
+        }
+    }
+
+    private IEnumerator UniqueEnemyMove()
+    {
+        yield return null;
+        yield return null;
+        nextVec = (target.position - rigid.position).normalized;
+        spriter.flipX = target.position.x < rigid.position.x;
     }
 
     public void Init(SpawnData data)
@@ -77,6 +107,8 @@ public class Enemy : MonoBehaviour
         speed = data.speed;
         maxHealth = data.health;
         health = maxHealth;
+
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -101,7 +133,7 @@ public class Enemy : MonoBehaviour
 
                 if (GameManager.instance.isLive)
                     AudioManager.instance.PlaySfx(AudioManager.Sfx.Dead); // 음향재생
-            }                       
+            }
         }
         else
             return;
