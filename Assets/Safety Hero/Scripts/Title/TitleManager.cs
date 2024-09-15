@@ -2,12 +2,89 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TitleManager : MonoBehaviour
 {
-    public GameObject characterSelect; // 캐릭터 선택 창
+    [SerializeField] private GameObject characterSelect; // 캐릭터 선택 창
+    [SerializeField] private GameObject stageImage;
+    [SerializeField] private RectTransform[] stageImageRects;
+    [SerializeField] private Image[] images;
+    [SerializeField] private int idx = 0;
+    [SerializeField] private Vector2[] stageImageScale;
+    [SerializeField] private Vector2[] stageImagePos;
+    [SerializeField] private Color noneSelectColor;
+    private void Awake()
+    {
+        // 부모 rect는 필터링
+        stageImageRects = stageImage.GetComponentsInChildren<RectTransform>(true)
+                                 .Where(rt => rt != stageImage.GetComponent<RectTransform>())
+                                 .ToArray();
+
+        images = stageImage.GetComponentsInChildren<Image>();
+    }
+    private void Update()
+    {
+        Debug.Log(stageImageRects.Length);
+    }
+  
+    public void PressNextButton()
+    {
+        if (idx >= stageImageRects.Length - 1)
+            return;
+
+        // 맨 앞에 이미지 왼편으로 치워 버리기
+        if (idx > 0)
+            MoveStageImage(idx - 1, stageImagePos[0], stageImageScale[0], noneSelectColor);
+
+        // 현재 가운데 이미지 왼쪽으로 한칸 이동
+        MoveStageImage(idx, stageImagePos[1], stageImageScale[1], noneSelectColor);
+
+        // 다음 이미지 가운데로 이동
+        MoveStageImage(idx + 1, stageImagePos[2], stageImageScale[2], Color.white);
+        
+        if (idx + 2 <= stageImageRects.Length - 1)
+            MoveStageImage(idx + 2, stageImagePos[3], stageImageScale[1], noneSelectColor);
+
+        // 인덱스 증가
+        idx++;
+    }
+
+    public void PressPrevButton()
+    {
+        if (idx <= 0)
+            return;
+
+        if (idx - 2 >= 0)
+            MoveStageImage(idx - 2, stageImagePos[1], stageImageScale[1], noneSelectColor);
+
+        MoveStageImage(idx - 1, stageImagePos[2], stageImageScale[2], Color.white);
+        MoveStageImage(idx, stageImagePos[3], stageImageScale[1], noneSelectColor);
+
+        if (idx < stageImageRects.Length - 1)
+            MoveStageImage(idx + 1, stageImagePos[4], stageImageScale[0], noneSelectColor);
+
+        // 인덱스 감소
+        idx--;
+    }
+
+
+    private void MoveStageImage(int index, Vector3 pos, Vector3 scale, Color color)
+    {
+        if (index < 0 || index >= stageImageRects.Length) return; // 범위 체크
+        stageImageRects[index].DOAnchorPos(pos, 0.5f);
+        stageImageRects[index].DOScale(scale, 0.5f);
+        images[index].DOColor(color, 0.5f);
+    }
+
+    // 씬 전환 설정
+    public void LoadScene(string SceneName)
+    {
+        SceneManager.LoadScene(SceneName);
+    }
 
     // 게임 종료
     public void GameQuit()
@@ -17,30 +94,10 @@ public class TitleManager : MonoBehaviour
 #endif
         Application.Quit();
     }
-
-    // 씬 전환 설정
-    public void LoadScene(string SceneName)
-    {
-        SceneManager.LoadScene(SceneName);
-    }
-
-    // 캐릭터 선택창 관리
-    public void CharcterSelecter(bool turnOn)
-    {
-        if (turnOn)
-        {
-            characterSelect.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);        
-        }
-        else if (!turnOn)
-        {
-            characterSelect.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBack);
-        }
-    }
-
     #region 캐릭터 버튼 관리
     public void SelectCharacter(PlayerData playerData)
     {
-        DataManager.instance.currentPlayerData = playerData;        
+        DataManager.instance.currentPlayerData = playerData;
         LoadScene("Game Scene");
     }
     #endregion
