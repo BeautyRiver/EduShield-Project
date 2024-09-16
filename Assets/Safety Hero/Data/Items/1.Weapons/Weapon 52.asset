@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemCategory: 0
   itemType: 52
-  maxLevel: 6
+  maxLevel: 5
   itemId: 52
   itemName: "K\uAE09 \uC18C\uD654 \uAC15\uD654"
   itemDesc:
@@ -22,13 +22,13 @@ MonoBehaviour:
   - "\uAC1C\uC218\uAC00 {0}\uAC1C \uC99D\uAC00"
   - "\uAD00\uD1B5\uB825\uC774 {0} \uC99D\uAC00"
   itemIcon: {fileID: -1786786079, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-  baseDamage: 8
-  baseCount: 1
+  baseDamage: 1
+  baseCount: 5
   basePer: 1
   baseDelay: 0.15
   baseSpeed: 1
   baseScale: {x: 1, y: 1, z: 1}
-  damages: 00000000
+  damages: 
   counts: 01000000010000000100000001000000
   pers: 
   gearRates: []

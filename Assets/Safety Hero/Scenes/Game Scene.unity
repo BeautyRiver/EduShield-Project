@@ -20890,13 +20890,13 @@ MonoBehaviour:
   alertMessages:
   - "\uB098\uBB34\uC5D0 \uBD88\uC774 \uBD99\uAE30 \uC2DC\uC791\uD588\uC5B4! \uD0C0\uACE0
     \uB098\uBA74 \uC7AC\uAC00 \uB0A8\uB294 <color=red>A\uAE09 \uD654\uC7AC</color>\uC57C!\n"
-  - "\uC8FC\uBC29\uC5D0\uC11C \uB3D9\uC2DD\uBB3C\uC720 \uAE30\uB984 \uB54C\uBB38\uC5D0
-    \uC790\uC8FC \uBC1C\uC0DD\uB418\uB294 <color=red>K\uAE09 \uD654\uC7AC</color>\uC57C!"
   - "\uAE30\uB984\uC5D0 \uBD88\uC774 \uBD99\uAE30 \uC2DC\uC791\uD588\uC5B4! \uD0C0\uACE0
     \uB098\uC11C\uB3C4 \uC7AC\uAC00 \uB0A8\uC9C0 \uC54A\uB294 <color=red>B\uAE09
     \uD654\uC7AC</color>\uC57C!"
   - "\uC804\uAE30\uAC00 \uD750\uB974\uB294 \uACF3\uC5D0 \uC77C\uC5B4\uB09C <color=red>C\uAE09
     \uD654\uC7AC</color>\uC57C!"
+  - "\uC8FC\uBC29\uC5D0\uC11C \uB3D9\uC2DD\uBB3C\uC720 \uAE30\uB984 \uB54C\uBB38\uC5D0
+    \uC790\uC8FC \uBC1C\uC0DD\uB418\uB294 <color=red>K\uAE09 \uD654\uC7AC</color>\uC57C!"
   scriptText: {fileID: 2019996819}
   textDuration: 1
   appearAiDuration: 0.8
@@ -24587,7 +24587,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.4375
+  orthographic size: 8.277778
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -37169,7 +37169,7 @@ MonoBehaviour:
   level: 0
   kill: 0
   exp: 0
-  nextExp: 10270000
+  nextExp: 0a0000000f00000014000000190000001e000000280000002d0000003200000064000000
   pool: {fileID: 1381120192}
   aiManager: {fileID: 370664442}
   uiLevelUp: {fileID: 259957426}
@@ -37501,6 +37501,7 @@ MonoBehaviour:
   - {fileID: 8191457858479555690, guid: 321abbc004976c84d993cf8d03f989a7, type: 3}
   - {fileID: 8191457858479555690, guid: 054894a582249144fa8669ad0e7893e6, type: 3}
   enemyPrefabs:
+  - {fileID: 2933867301590162278, guid: 701704af8681d4c4fb1ef2cdd529249a, type: 3}
   - {fileID: 6506317341284564746, guid: 1cda2a9794b8f9747871322b3030b36e, type: 3}
   - {fileID: 6506317341284564746, guid: cb6c709d5f2c1ce4d8b0210cabaabb6b, type: 3}
 --- !u!4 &1381120193
@@ -42778,18 +42779,11 @@ MonoBehaviour:
   - {fileID: 395172547}
   - {fileID: 1901902083}
   normalSpawnData:
-  - minTime: 0.1
-    maxTime: 1
-    spawnTime: 0
+  - minTime: 0
+    maxTime: 0
+    spawnTime: 1
     spawnCount: 1
     spriteType: 0
-    health: 10
-    speed: 2
-  - minTime: 0.1
-    maxTime: 1
-    spawnTime: 0
-    spawnCount: 1
-    spriteType: 1
     health: 10
     speed: 2
   uniqeSpawnData:

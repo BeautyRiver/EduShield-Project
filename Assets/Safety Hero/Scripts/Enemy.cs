@@ -1,6 +1,7 @@
-using System;
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -115,7 +116,13 @@ public class Enemy : MonoBehaviour
     {
         if (collision.CompareTag("Bullet") && isLive)
         {
-            health -= collision.GetComponent<Bullet>().damage; // 체력 감소
+            float damage = collision.GetComponent<Bullet>().damage;
+            health -= damage; // 체력 감소
+
+            // 충돌한 지점의 정확한 위치를 구하기
+            Vector2 hitPos = collision.ClosestPoint(transform.position);
+            ShowDamageText(damage, hitPos);
+
             StartCoroutine(KnockBack()); // 넉백
             anim.SetTrigger("Hit"); // 맞는 애니메이션 재생
             AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit); // 음향재생
@@ -137,6 +144,23 @@ public class Enemy : MonoBehaviour
         }
         else
             return;
+    }
+
+    private void ShowDamageText(float damage, Vector2 hitPos)
+    {
+        GameObject damageTextobj = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 0);
+        TextMeshPro damageText = damageTextobj.GetComponent<TextMeshPro>();
+
+        damageTextobj.transform.localPosition = hitPos;
+        damageText.text = $"{damage}";
+        damageText.DOScale(1f, 0.3f);
+        StartCoroutine(OffDamageText(damageText));
+    }
+
+    private IEnumerator OffDamageText(TextMeshPro damageText)
+    {
+        yield return new WaitForSeconds(0.35f);
+        damageText.DOScale(0, 0.5f).OnComplete(()=> damageText.gameObject.SetActive(false));
     }
 
     private IEnumerator KnockBack()

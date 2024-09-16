@@ -280,6 +280,11 @@ MonoBehaviour:
   - {fileID: 22100000, guid: e11aa1893c5c5864a86aee56d03b1ea5, type: 2}
   - {fileID: 22100000, guid: 8d1d920724ffb8a409ce0e458dc4b7a9, type: 2}
   target: {fileID: 0}
+  damageText: {fileID: 7010437674781232877, guid: 701704af8681d4c4fb1ef2cdd529249a, type: 3}
+  damageTextPos:
+  - {x: -0.8, y: 0.65}
+  - {x: -0.64, y: -0.4}
+  - {x: 0.5, y: 0.295}
 --- !u!114 &8909060666931256850
 MonoBehaviour:
   m_ObjectHideFlags: 0
