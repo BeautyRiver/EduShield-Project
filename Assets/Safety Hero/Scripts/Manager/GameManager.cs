@@ -41,8 +41,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        //selectStageIdx = Random.Range(0, aiManager.alertMessages.Length);
-        selectStageIdx = 1;
+        selectStageIdx = Random.Range(0, aiManager.alertMessages.Length);
     }
 
     private void Start()

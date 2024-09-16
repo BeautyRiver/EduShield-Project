@@ -22,8 +22,8 @@ MonoBehaviour:
   - "\uAC1C\uC218\uAC00 {0}\uAC1C \uC99D\uAC00"
   - "\uAD00\uD1B5\uB825\uC774 {0} \uC99D\uAC00"
   itemIcon: {fileID: -205726582, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-  baseDamage: 8
-  baseCount: 10
+  baseDamage: 1
+  baseCount: 5
   basePer: 0
   baseDelay: 0.1
   baseSpeed: 1

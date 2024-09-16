@@ -30,6 +30,7 @@ public class ScrollingTileMap : MonoBehaviour
             //Debug.Log("검사중");
             Vector3 playerPos = player.transform.position; // 플레이어 위치
             Vector3 myPos = transform.position; // 현재 오브젝트 위치
+
             float dirX = playerPos.x - myPos.x;
             float dirY = playerPos.y - myPos.y;
 

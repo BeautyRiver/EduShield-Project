@@ -26,17 +26,14 @@ public class Spawner : MonoBehaviour
     {
         // 초기 설정
         //spawnPoint = GetComponentsInChildren<Transform>();
-        level = GameManager.instance.selectStageIdx;
         levelTime = GameManager.instance.maxGameTime / normalSpawnData.Length;               
-        timer = new float[2];
+        timer = new float[2];        
+        level = 0;
+        normalSpawnData[0].spriteType = GameManager.instance.selectStageIdx;
 
-        foreach (var item in normalSpawnData)
+        foreach (var uniqeData in uniqeSpawnData)
         {
-            item.spawnTime = Random.Range(item.minTime, item.maxTime);
-        }
-        foreach (var item2 in uniqeSpawnData)
-        {
-            item2.spawnTime = Random.Range(item2.minTime, item2.maxTime);
+            uniqeData.spawnTime = Random.Range(uniqeData.minTime, uniqeData.maxTime);
         }
     }
 
@@ -71,7 +68,7 @@ public class Spawner : MonoBehaviour
         int ran = Random.Range(0, uniqeSpawnPoint.Length);
         for (int i = 0; i < uniqeSpawnData[0].spawnCount; i++)
         {
-            GameObject enemy = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 1);
+            GameObject enemy = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 2);
             Vector3 ranPos = new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), 0);
             enemy.transform.position = uniqeSpawnPoint[ran].position + ranPos;
             enemy.GetComponent<Enemy>().Init(uniqeSpawnData[0]);
@@ -84,9 +81,9 @@ public class Spawner : MonoBehaviour
         // 적 소환
         for (int i = 0; i < normalSpawnData[level].spawnCount; i++)
         {
-            GameObject enemy = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 0);
+            GameObject enemy = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 1);
             enemy.transform.position = spawnPoint[Random.Range(0, spawnPoint.Length)].position;
-            enemy.GetComponent<Enemy>().Init(normalSpawnData[level]);
+            enemy.GetComponent<Enemy>().Init(normalSpawnData[0]);
         }
     }
 }
