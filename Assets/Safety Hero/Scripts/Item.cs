@@ -77,24 +77,24 @@ public class Item : MonoBehaviour
                     newIcon.gameObject.SetActive(true);
                     switch (data.itemType)
                     {
-                        case ItemType.Smoke:
+                        case ItemType.MWeapon_0:
                             textDesc.text = "만능 소화기\n\n" +
                                 "바라보는 방향 소화";
                             break;
 
-                        case ItemType.Shovel:
+                        case ItemType.MWeapon_1:
                             textDesc.text = "보통화재에 강함\n\n" +
                                 "주위를 돌면서 공격";
                             break;
-                        case ItemType.Gun:
+                        case ItemType.RWeapon_0:
                             textDesc.text = "휘발유 등의 화재에 강함\n\n" +
                                 "가장 가까운 적 공격";
                             break;
-                        case ItemType.Cannon:
+                        case ItemType.RWeapon_1:
                             textDesc.text = "전기관련 화재에 강함\n\n" +
                                 "바라보는 방향으로 관통공격";
                             break;
-                        case ItemType.Spear:
+                        case ItemType.RWeapon_2:
                             textDesc.text = "식용유 등의 화재에 강함\n\n" +
                                 "바라보는 방향으로 공격";
                             break;

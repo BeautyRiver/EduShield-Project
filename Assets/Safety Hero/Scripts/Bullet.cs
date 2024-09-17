@@ -6,16 +6,16 @@ public class Bullet : MonoBehaviour
 {
     public float damage;
     public int per;
-    
+    public int id;
     private Rigidbody2D rigid;
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
     }
-    public void Init(float damage, int per, Vector3 dir)
+    public void Init(float damage, int per, Vector3 dir, int id)
     {
         this.damage = damage;
-
+        this.id = id;
         this.per = per;
 
         // 근접 무기 아닐때 (관통 제한 있을때) 

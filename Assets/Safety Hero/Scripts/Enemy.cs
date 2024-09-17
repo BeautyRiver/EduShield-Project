@@ -17,8 +17,9 @@ public class Enemy : MonoBehaviour
     public float speed;
     public float health;
     public float maxHealth;
-    private bool isLive;
+    public int id;
 
+    private bool isLive;
     [Header("참조")]
     public RuntimeAnimatorController[] animCon;
     public Rigidbody2D target;
@@ -104,7 +105,8 @@ public class Enemy : MonoBehaviour
 
     public void Init(SpawnData data)
     {
-        anim.runtimeAnimatorController = animCon[data.spriteType];
+        id = data.spriteType;
+        anim.runtimeAnimatorController = animCon[id];
         speed = data.speed;
         maxHealth = data.health;
         health = maxHealth;
@@ -115,14 +117,25 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Bullet") && isLive)
-        {
-            float damage = collision.GetComponent<Bullet>().damage;
+        {            
+            Bullet bulletInfo = collision.GetComponent<Bullet>();
+            Vector2 hitPos;
+            float damage = bulletInfo.damage;
+            
+
+
             health -= damage; // 체력 감소
-
             // 충돌한 지점의 정확한 위치를 구하기
-            Vector2 hitPos = collision.ClosestPoint(transform.position);
-            ShowDamageText(damage, hitPos);
+            hitPos = collision.ClosestPoint(transform.position);
+            ShowDamageText(damage, hitPos, Color.white);
 
+            if (bulletInfo.id == id)
+            {
+                health -= damage * 0.5f;
+                // 충돌한 지점의 정확한 위치를 구하기
+                hitPos = collision.ClosestPoint(transform.position);
+                ShowDamageText(damage * 0.5f, new Vector2(hitPos.x,hitPos.y + 0.5f), Color.red);
+            }
             StartCoroutine(KnockBack()); // 넉백
             anim.SetTrigger("Hit"); // 맞는 애니메이션 재생
             AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit); // 음향재생
@@ -146,11 +159,12 @@ public class Enemy : MonoBehaviour
             return;
     }
 
-    private void ShowDamageText(float damage, Vector2 hitPos)
+    private void ShowDamageText(float damage, Vector2 hitPos, Color color)
     {
         GameObject damageTextobj = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 0);
         TextMeshPro damageText = damageTextobj.GetComponent<TextMeshPro>();
 
+        damageText.color = color;
         damageTextobj.transform.localPosition = hitPos;
         damageText.text = $"{damage}";
         damageText.DOScale(1f, 0.3f);

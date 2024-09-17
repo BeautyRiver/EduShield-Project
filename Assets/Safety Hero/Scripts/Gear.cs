@@ -23,7 +23,7 @@ public class Gear : MonoBehaviour
     {
         // 기본 세팅
         data = newData;
-        gameObject.name = "Apply Gear" + data.itemId;
+        gameObject.name = "Apply Gear" + data.itemType.ToString();
         transform.parent = player.transform;
         transform.localPosition = Vector3.zero; // 플레이어 안에서 위치 초기화
 
@@ -99,15 +99,15 @@ public class Gear : MonoBehaviour
     {
         switch (weapon.data.itemType)
         {
-            case ItemData.ItemType.Shovel: // 회전 무기
+            case ItemData.ItemType.MWeapon_1: // 회전 무기
                 weapon.weaponSpeed *= (1 + rate);
                 Debug.Log($"{weapon.name} To {type.ToString()}업그레이드. x {1 + rate}배");
                 break;
 
-            case ItemData.ItemType.Smoke: // 가스
-            case ItemData.ItemType.Gun: // 총
-            case ItemData.ItemType.Cannon: // 대포
-            case ItemData.ItemType.Spear: // 창
+            case ItemData.ItemType.MWeapon_0: // 가스
+            case ItemData.ItemType.RWeapon_0: // 총
+            case ItemData.ItemType.RWeapon_1: // 대포
+            case ItemData.ItemType.RWeapon_2: // 창
                 weapon.weaponSpeed /= (1 + rate);
                 Debug.Log($"{weapon.name} To {type.ToString()}업그레이드. / {1 + rate}");
                 break;
@@ -131,7 +131,7 @@ public class Gear : MonoBehaviour
     private void ApplyPowerUp(Weapon weapon)
     {
         weapon.damage *= (1 + rate);
-        if (weapon.data.itemType == ItemData.ItemType.Shovel)
+        if (weapon.data.itemType == ItemData.ItemType.MWeapon_1)
         {
             foreach (Bullet bullet in weapon.GetComponentsInChildren<Bullet>())
             {
@@ -148,7 +148,7 @@ public class Gear : MonoBehaviour
     {
         switch (weapon.data.itemType)
         {
-            case ItemData.ItemType.Shovel: // 회전 무기
+            case ItemData.ItemType.MWeapon_1: // 회전 무기
                 weapon.bulletSize *= (1 + rate);
                 weapon.attackRange *= (1 + rate);
                 Debug.Log($"{weapon.name} To {type.ToString()}업그레이드. x {1 + rate}배");
