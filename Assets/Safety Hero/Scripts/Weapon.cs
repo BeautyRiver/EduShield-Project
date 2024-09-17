@@ -35,15 +35,15 @@ public class Weapon : MonoBehaviour
         {
             switch (data.itemType)
             {
-                case ItemData.ItemType.Shovel: // 회전무기                                               
+                case ItemData.ItemType.MWeapon_1: // 회전무기                                               
                     transform.Rotate(Vector3.back * buletDelay * Time.deltaTime); // 무기 회전
                     UpdateTimer(); 
                     break;
 
-                case ItemData.ItemType.Smoke: // 가스
-                case ItemData.ItemType.Gun: // 단발총                   
-                case ItemData.ItemType.Cannon: // 대포                   
-                case ItemData.ItemType.Spear: // 창던지기
+                case ItemData.ItemType.MWeapon_0: // 가스
+                case ItemData.ItemType.RWeapon_0: // 단발총                   
+                case ItemData.ItemType.RWeapon_1: // 대포                   
+                case ItemData.ItemType.RWeapon_2: // 창던지기
                     UpdateTimer();
                     break;
             }
@@ -80,17 +80,17 @@ public class Weapon : MonoBehaviour
         // 기본 공격 속도 설정
         switch (data.itemType)
         {
-            case ItemData.ItemType.Shovel: // 삽
+            case ItemData.ItemType.MWeapon_1: // 삽
                 // 캐릭터별 무기 회전 속도 설정
                 buletDelay = (float)System.Math.Round(buletDelay * gameManager.playerData.atkSpeedMult, 2);
                 //Batch(); // 회전 무기 배치
                 break;
 
             // 무기 딜레이
-            case ItemData.ItemType.Smoke:
-            case ItemData.ItemType.Gun:
-            case ItemData.ItemType.Cannon:
-            case ItemData.ItemType.Spear:
+            case ItemData.ItemType.MWeapon_0:
+            case ItemData.ItemType.RWeapon_0:
+            case ItemData.ItemType.RWeapon_1:
+            case ItemData.ItemType.RWeapon_2:
                 // 캐릭터별 무기 연사속도 설정
                 weaponSpeed = (float)System.Math.Round(weaponSpeed / gameManager.playerData.atkSpeedMult, 2);
                 break;
@@ -126,7 +126,7 @@ public class Weapon : MonoBehaviour
             case 1:
                 count += (int)rate;
                 // 회전 무기는 다시 자연스럽게 추가시키기 위해서 재배치
-                if (data.itemType == ItemData.ItemType.Shovel)
+                if (data.itemType == ItemData.ItemType.MWeapon_1)
                     Batch();
                 Debug.Log($"{this.name}: Count {rate}만큼 증가했습니다.");
 
@@ -165,7 +165,7 @@ public class Weapon : MonoBehaviour
             bullet.localScale = Vector3.zero;
             bullet.Translate(bullet.up * attackRange * 1.5f, Space.World); // 지정된 거리만큼 이동
             bullet.DOScale(bulletSize, 0.5f).SetEase(Ease.OutBounce); // 크기를 0.5초 동안 자연스럽게 확장
-            bullet.GetComponent<Bullet>().Init(damage, -100, Vector3.zero); // 불릿 초기화 (데미지 설정 및 관통 설정 -100은 무한 관통)
+            bullet.GetComponent<Bullet>().Init(damage, -100, Vector3.zero, data.itemId); // 불릿 초기화 (데미지 설정 및 관통 설정 -100은 무한 관통)
         }
     }
 
@@ -177,7 +177,7 @@ public class Weapon : MonoBehaviour
 
             if (speedTimer >= weaponSpeed)
             {
-                bool shouldAttack = data.itemType != ItemData.ItemType.Gun ||
+                bool shouldAttack = data.itemType != ItemData.ItemType.RWeapon_0 ||
                                     player.scanner.nearestTarget != null;
 
                 if (shouldAttack)
@@ -194,19 +194,19 @@ public class Weapon : MonoBehaviour
     {
         switch (data.itemType)
         {
-            case ItemData.ItemType.Smoke:
+            case ItemData.ItemType.MWeapon_0:
                 StartCoroutine(Melee_00());
                 break;
-            case ItemData.ItemType.Shovel:
+            case ItemData.ItemType.MWeapon_1:
                 StartCoroutine(Melee_01());
                 break;
-            case ItemData.ItemType.Gun:
+            case ItemData.ItemType.RWeapon_0:
                 StartCoroutine(FireAuto());
                 break;
-            case ItemData.ItemType.Cannon:
+            case ItemData.ItemType.RWeapon_1:
                 StartCoroutine(FireDir_00());
                 break;
-            case ItemData.ItemType.Spear:
+            case ItemData.ItemType.RWeapon_2:
                 StartCoroutine(FireDir_01());
                 break;
         }
@@ -237,7 +237,7 @@ public class Weapon : MonoBehaviour
                 bullet.localRotation = Quaternion.identity; // 오른쪽을 기본 방향으로 유지
 
             // 발사체 초기화
-            bullet.GetComponent<Bullet>().Init(damage, per, Vector3.zero);
+            bullet.GetComponent<Bullet>().Init(damage, per, Vector3.zero, data.itemId);
 
             // 발사 후 딜레이 추가
             yield return new WaitForSeconds(buletDelay);  // 각 공격 사이의 딜레이 설정
@@ -286,7 +286,7 @@ public class Weapon : MonoBehaviour
             bullet.localScale = bulletSize;
             bullet.position = transform.position;
             bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
-            bullet.GetComponent<Bullet>().Init(damage, per, dir);
+            bullet.GetComponent<Bullet>().Init(damage, per, dir, data.itemId);
 
             // 발사 후 약간의 딜레이 추가
             yield return new WaitForSeconds(buletDelay); // 총알 사이의 딜레이 설정 (0.1초, 필요에 따라 조정 가능)
@@ -308,7 +308,7 @@ public class Weapon : MonoBehaviour
             bullet.position = startPosition;
             bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);  // 발사 방향에 맞게 회전 설정
 
-            bullet.GetComponent<Bullet>().Init(damage, per, dir);
+            bullet.GetComponent<Bullet>().Init(damage, per, dir, data.itemId);
 
             // 발사 후 약간의 딜레이 추가
             yield return new WaitForSeconds(buletDelay);  // 총알 사이의 딜레이 설정 (0.1초)
@@ -337,7 +337,7 @@ public class Weapon : MonoBehaviour
             bullet.position = startPosition;
             bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);  // 발사 방향에 맞게 회전 설정
 
-            bullet.GetComponent<Bullet>().Init(damage, per, dir);
+            bullet.GetComponent<Bullet>().Init(damage, per, dir, data.itemId);
             AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
             // 발사 후 약간의 딜레이 추가
             yield return new WaitForSeconds(buletDelay);  // 총알 사이의 딜레이 설정 (0.1초)

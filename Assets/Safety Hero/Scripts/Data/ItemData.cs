@@ -9,8 +9,8 @@ public class ItemData : ScriptableObject
     public enum ItemType 
     {    
         // 무기 류
-        Smoke, Shovel, // 근접
-        Gun = 50, Cannon, Spear, // 원거리
+        MWeapon_0, MWeapon_1, // 근접
+        RWeapon_0 = 50, RWeapon_1, RWeapon_2, // 원거리
 
         Glove = 100, Shoe, PowerUp, RangeUp,// 기어 류
 
