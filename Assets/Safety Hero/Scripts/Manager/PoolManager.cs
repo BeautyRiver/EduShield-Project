@@ -29,12 +29,12 @@ public class PoolManager : MonoBehaviour
             enemyPools[index] = new List<GameObject>();
         }
 
-        // ItemPool 초기화
+       /* // ItemPool 초기화
         itemPools = new List<GameObject>[itemPools.Length];
         for (int index = 0;index < itemPools.Length; index++)
         {
             itemPools[index] = new List<GameObject>();
-        }
+        }*/
 
     }
 
