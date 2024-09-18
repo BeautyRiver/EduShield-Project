@@ -11,6 +11,8 @@ public class TitleManager : MonoBehaviour
 {
     [SerializeField] private GameObject characterSelect; // 캐릭터 선택 창
     [SerializeField] private GameObject stageImage;
+    [SerializeField] private GameObject optionScreen;
+
     [SerializeField] private RectTransform[] stageImageRects;
     [SerializeField] private Image[] images;
     [SerializeField] private int idx = 0;
@@ -26,11 +28,9 @@ public class TitleManager : MonoBehaviour
 
         images = stageImage.GetComponentsInChildren<Image>();
     }
-    private void Update()
-    {
-        Debug.Log(stageImageRects.Length);
-    }
   
+  
+    // 다음 버튼
     public void PressNextButton()
     {
         if (idx >= stageImageRects.Length - 1)
@@ -53,6 +53,7 @@ public class TitleManager : MonoBehaviour
         idx++;
     }
 
+    // 이전 버튼
     public void PressPrevButton()
     {
         if (idx <= 0)
@@ -70,7 +71,7 @@ public class TitleManager : MonoBehaviour
         // 인덱스 감소
         idx--;
     }
-
+    
 
     private void MoveStageImage(int index, Vector3 pos, Vector3 scale, Color color)
     {
