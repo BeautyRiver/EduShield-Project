@@ -16,6 +16,7 @@ public class ForDebug : MonoBehaviour
 
     public TextMeshProUGUI debugText;
     private bool isInvinsible;
+    private bool is2xSpeed;
 
     private void Start()
     {
@@ -70,6 +71,21 @@ public class ForDebug : MonoBehaviour
         {
             GameManager.instance.player.speed -= 1f;
             debugText.text = "加档 皑家";
+        }
+        if (Input.GetKeyDown(KeyCode.F4))
+        {
+            if (!is2xSpeed)
+            {
+                is2xSpeed = true;
+                Time.timeScale = 2.5f;
+                debugText.text = "2.5硅加";
+            }
+            else
+            {
+                is2xSpeed = false;
+                Time.timeScale = 1f;
+                debugText.text = "2硅加 秦力";
+            }
         }
     }
 }

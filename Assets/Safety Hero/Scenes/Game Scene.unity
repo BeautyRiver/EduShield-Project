@@ -28126,7 +28126,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 21, y: 131.65}
+  m_AnchoredPosition: {x: 26, y: 88.1}
   m_SizeDelta: {x: 415.53, y: 143.4147}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!1 &671512450
@@ -32041,7 +32041,7 @@ GameObject:
   - component: {fileID: 905882074}
   m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32239,7 +32239,12 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
+  expLayer:
+    serializedVersion: 2
+    m_Bits: 256
   nearestTarget: {fileID: 0}
+  expCollectionRange: 1
+  expValue: 1
 --- !u!1 &924859866
 GameObject:
   m_ObjectHideFlags: 0
@@ -37502,6 +37507,7 @@ MonoBehaviour:
   - {fileID: 8191457858479555690, guid: 054894a582249144fa8669ad0e7893e6, type: 3}
   enemyPrefabs:
   - {fileID: 2933867301590162278, guid: 701704af8681d4c4fb1ef2cdd529249a, type: 3}
+  - {fileID: 1855123590967745078, guid: 9b3a2208bd9f2e443942c176635e4c97, type: 3}
   - {fileID: 6506317341284564746, guid: 1cda2a9794b8f9747871322b3030b36e, type: 3}
   - {fileID: 6506317341284564746, guid: cb6c709d5f2c1ce4d8b0210cabaabb6b, type: 3}
 --- !u!4 &1381120193
@@ -42989,8 +42995,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB514\uBC84\uADF8 \uBAA8\uB4DC\nF1-\uBB34\uC801 (\uBB34\uC801\uD574\uC81C)\nF2-\uC774\uC18D\uC99D\uAC00\nF3-\uC774\uC18D\uAC10\uC18C\nSpace-
-    \uB808\uBCA8\uC5C5"
+  m_text: "\uB514\uBC84\uADF8 \uBAA8\uB4DC\nF1-\uBB34\uC801 (\uBB34\uC801\uD574\uC81C)\nF2-\uC774\uC18D\uC99D\uAC00\nF3-\uC774\uC18D\uAC10\uC18C\nF4-2.5\uBC30\uC18D
+    (\uD574\uC81C)\nSpace- \uB808\uBCA8\uC5C5"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b5dcc817003f5774599e6486198b9d2d, type: 2}
   m_sharedMaterial: {fileID: -3734822029891073224, guid: b5dcc817003f5774599e6486198b9d2d, type: 2}

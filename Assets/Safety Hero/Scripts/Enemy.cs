@@ -122,19 +122,17 @@ public class Enemy : MonoBehaviour
             Vector2 hitPos;
             float damage = bulletInfo.damage;
             
+            health -= damage; // 체력 감소            
+            hitPos = collision.ClosestPoint(transform.position); // 충돌한 지점의 정확한 위치를 구하기
+            ShowDamageText(damage.ToString(), damage, hitPos, Color.white); // 기본 데미지
 
-
-            health -= damage; // 체력 감소
-            // 충돌한 지점의 정확한 위치를 구하기
-            hitPos = collision.ClosestPoint(transform.position);
-            ShowDamageText(damage, hitPos, Color.white);
-
+            // 추가 데미지 구현 로직
             if (bulletInfo.id == id)
             {
                 health -= damage * 0.5f;
                 // 충돌한 지점의 정확한 위치를 구하기
                 hitPos = collision.ClosestPoint(transform.position);
-                ShowDamageText(damage * 0.5f, new Vector2(hitPos.x,hitPos.y + 0.5f), Color.red);
+                ShowDamageText($"+{(damage* 0.5f).ToString()}", damage * 0.5f, new Vector2(hitPos.x,hitPos.y + 0.5f), Color.red);
             }
             StartCoroutine(KnockBack()); // 넉백
             anim.SetTrigger("Hit"); // 맞는 애니메이션 재생
@@ -142,6 +140,9 @@ public class Enemy : MonoBehaviour
 
             if (health <= 0) // 체력 0 이하 사망
             {
+                GameObject exp = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 1); // Exp 드랍시키기
+                exp.transform.position = transform.position;
+
                 isLive = false;
                 coll.enabled = false; // 콜라이더 끄기
                 rigid.simulated = false;
@@ -149,7 +150,6 @@ public class Enemy : MonoBehaviour
                 anim.SetBool("Dead", true);
 
                 GameManager.instance.kill++;
-                GameManager.instance.GetExp(1);
 
                 if (GameManager.instance.isLive)
                     AudioManager.instance.PlaySfx(AudioManager.Sfx.Dead); // 음향재생
@@ -159,14 +159,14 @@ public class Enemy : MonoBehaviour
             return;
     }
 
-    private void ShowDamageText(float damage, Vector2 hitPos, Color color)
+    private void ShowDamageText(string text, float damage, Vector2 hitPos, Color color)
     {
         GameObject damageTextobj = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 0);
         TextMeshPro damageText = damageTextobj.GetComponent<TextMeshPro>();
 
         damageText.color = color;
         damageTextobj.transform.localPosition = hitPos;
-        damageText.text = $"{damage}";
+        damageText.text = text;
         damageText.DOScale(1f, 0.3f);
         StartCoroutine(OffDamageText(damageText));
     }
@@ -190,7 +190,7 @@ public class Enemy : MonoBehaviour
         sortingGroup.sortingOrder = 0;
     }
     private void Dead()
-    {
+    {        
         gameObject.SetActive(false);
     }
 }

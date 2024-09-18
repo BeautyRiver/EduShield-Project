@@ -68,7 +68,7 @@ public class Spawner : MonoBehaviour
         int ran = Random.Range(0, uniqeSpawnPoint.Length);
         for (int i = 0; i < uniqeSpawnData[0].spawnCount; i++)
         {
-            GameObject enemy = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 2);
+            GameObject enemy = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 3);
             Vector3 ranPos = new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), 0);
             enemy.transform.position = uniqeSpawnPoint[ran].position + ranPos;
             enemy.GetComponent<Enemy>().Init(uniqeSpawnData[0]);
@@ -81,7 +81,7 @@ public class Spawner : MonoBehaviour
         // Àû ¼ÒÈ¯
         for (int i = 0; i < normalSpawnData[level].spawnCount; i++)
         {
-            GameObject enemy = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 1);
+            GameObject enemy = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 2);
             enemy.transform.position = spawnPoint[Random.Range(0, spawnPoint.Length)].position;
             enemy.GetComponent<Enemy>().Init(normalSpawnData[0]);
         }
