@@ -44,13 +44,13 @@ public class Spawner : MonoBehaviour
             // 소환 로직
             timer[0] += Time.deltaTime;
             timer[1] += Time.deltaTime;
-            //level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / levelTime), spawnData.Length - 1);
+            level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / levelTime), normalSpawnData.Length - 1);
 
             // 소환 타이머가 소환 시간을 초과하면 소환
             if (timer[0] > normalSpawnData[level].spawnTime)
             {
                 timer[0] = 0f;
-                Spawn();
+                SpawnNormal();
             }
 
             // 소환 타이머가 소환 시간을 초과하면 소환
@@ -76,7 +76,7 @@ public class Spawner : MonoBehaviour
         
     }
 
-    private void Spawn()
+    private void SpawnNormal()
     {
         // 적 소환
         for (int i = 0; i < normalSpawnData[level].spawnCount; i++)

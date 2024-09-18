@@ -37351,7 +37351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameTime: 0
-  maxGameTime: 200
+  maxGameTime: 10
   isLive: 0
   weaponCount: 0
   gearCount: 0
@@ -37696,7 +37696,7 @@ MonoBehaviour:
   - {fileID: 8191457858479555690, guid: 321abbc004976c84d993cf8d03f989a7, type: 3}
   - {fileID: 8191457858479555690, guid: 054894a582249144fa8669ad0e7893e6, type: 3}
   enemyPrefabs:
-  - {fileID: 2933867301590162278, guid: 701704af8681d4c4fb1ef2cdd529249a, type: 3}
+  - {fileID: 8898011092013875072, guid: 701704af8681d4c4fb1ef2cdd529249a, type: 3}
   - {fileID: 1855123590967745078, guid: 9b3a2208bd9f2e443942c176635e4c97, type: 3}
   - {fileID: 6506317341284564746, guid: 1cda2a9794b8f9747871322b3030b36e, type: 3}
   - {fileID: 6506317341284564746, guid: cb6c709d5f2c1ce4d8b0210cabaabb6b, type: 3}
@@ -43063,7 +43063,7 @@ MonoBehaviour:
   normalSpawnData:
   - minTime: 0
     maxTime: 0
-    spawnTime: 1
+    spawnTime: 2
     spawnCount: 1
     spriteType: 0
     health: 10
