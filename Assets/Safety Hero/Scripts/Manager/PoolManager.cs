@@ -1,14 +1,17 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PoolManager : MonoBehaviour
 {
-    public enum PoolType { Weapon, Enemy }  // 풀 타입을 구분하는 enum
+    public enum PoolType { Weapon, Enemy, Item }  // 풀 타입을 구분하는 enum
     public GameObject[] weaponPrefabs;
     public GameObject[] enemyPrefabs;
+    public GameObject[] itemPrefabs;
 
     private List<GameObject>[] weaponPools;
     private List<GameObject>[] enemyPools;
+    private List<GameObject>[] itemPools;
 
     private void Awake()
     {
@@ -25,6 +28,14 @@ public class PoolManager : MonoBehaviour
         {
             enemyPools[index] = new List<GameObject>();
         }
+
+        // ItemPool 초기화
+        itemPools = new List<GameObject>[itemPools.Length];
+        for (int index = 0;index < itemPools.Length; index++)
+        {
+            itemPools[index] = new List<GameObject>();
+        }
+
     }
 
     public GameObject Get(PoolType poolType, int index)
@@ -42,6 +53,11 @@ public class PoolManager : MonoBehaviour
         {
             selectedPool = enemyPools;
             selectedPrefabs = enemyPrefabs;
+        }
+        else if (poolType == PoolType.Item)
+        {
+            selectedPool = itemPools;
+            selectedPrefabs = itemPrefabs;
         }
 
         if (selectedPool == null || selectedPrefabs == null) return null;
