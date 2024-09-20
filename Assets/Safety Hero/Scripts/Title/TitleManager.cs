@@ -86,7 +86,9 @@ public class TitleManager : MonoBehaviour
     // 씬 전환 설정
     public void LoadScene()
     {
-        SceneManager.LoadScene(idx+1);
+        //LoadingSceneController.LoadScene(SceneManager.GetSceneByBuildIndex(idx).name);
+        LoadingSceneController.LoadScene("Game Scene");
+
     }
 
     // 게임 종료

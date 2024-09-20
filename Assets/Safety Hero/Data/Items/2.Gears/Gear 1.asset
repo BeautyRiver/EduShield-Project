@@ -20,7 +20,7 @@ MonoBehaviour:
   itemDesc:
   - "\uBE44\uC0C1\uAD6C\uB85C \uB300\uD53C\uD574\uC57C\uC9C0!\n\n\uC774\uB3D9\uC18D\uB3C4
     {0}% \uC99D\uAC00"
-  itemIcon: {fileID: 21300000, guid: 17344ea8e8bf4e746bb63127828a43a7, type: 3}
+  itemIcon: {fileID: -966295699, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
   baseDamage: 0
   baseCount: 0
   basePer: 0
