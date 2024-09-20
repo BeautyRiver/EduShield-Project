@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Safety Hero/2.Scenes/Loading Scene.unity
+    guid: aa641de4b4e6eb44489c6b6c9608dbf7
+  - enabled: 1
     path: Assets/Safety Hero/2.Scenes/Title Scene.unity
     guid: 27758ba6213884d4b8ee85cce072b6f5
   - enabled: 1

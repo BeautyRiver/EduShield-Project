@@ -159,7 +159,7 @@ public class GameManager : MonoBehaviour
     public void GoTitle()
     {
         Time.timeScale = 1.0f;
-        SceneManager.LoadScene(0);
+        LoadingSceneController.LoadScene("Title Scene");
     }
     // 게임 종료
     public void GameQuit()
