@@ -22,7 +22,7 @@ MonoBehaviour:
   - "\uAC1C\uC218\uAC00 {0}\uAC1C \uC99D\uAC00"
   itemIcon: {fileID: 21300000, guid: 0e34e7a51fb70fd46a679eb98623fc78, type: 3}
   baseDamage: 1
-  baseCount: 5
+  baseCount: 1
   basePer: -100
   baseDelay: 100
   baseSpeed: 1

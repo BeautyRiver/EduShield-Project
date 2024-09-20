@@ -1,3 +1,4 @@
+using DarkTonic.MasterAudio;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,13 +28,14 @@ public class TitleManager : MonoBehaviour
                                  .ToArray();
 
         images = stageImage.GetComponentsInChildren<Image>();
+        MasterAudio.ChangePlaylistByName("Title Bgm");
     }
-  
-  
+
+
     // 다음 버튼
     public void PressNextButton()
     {
-        if (idx >= stageImageRects.Length - 1)
+        if (idx >= stageImageRects.Length - 1 || DataManager.instance.IsUnlockStages[idx+1] == false)
             return;
 
         // 맨 앞에 이미지 왼편으로 치워 버리기
@@ -82,9 +84,9 @@ public class TitleManager : MonoBehaviour
     }
 
     // 씬 전환 설정
-    public void LoadScene(string SceneName)
+    public void LoadScene()
     {
-        SceneManager.LoadScene(SceneName);
+        SceneManager.LoadScene(idx+1);
     }
 
     // 게임 종료
@@ -95,12 +97,12 @@ public class TitleManager : MonoBehaviour
 #endif
         Application.Quit();
     }
-    #region 캐릭터 버튼 관리
-    public void SelectCharacter(PlayerData playerData)
+
+    
+   /* public void SelectCharacter(PlayerData playerData)
     {
         DataManager.instance.currentPlayerData = playerData;
-        LoadScene("Game Scene");
-    }
-    #endregion
+        SceneManager.LoadScene(idx + 1);
+    }*/
 
 }

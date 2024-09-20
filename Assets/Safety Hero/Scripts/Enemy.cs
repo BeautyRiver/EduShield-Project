@@ -1,3 +1,4 @@
+using DarkTonic.MasterAudio;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
@@ -116,6 +117,14 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.CompareTag("Cleaner"))
+        {
+            isLive = false;
+            coll.enabled = false; // 콜라이더 끄기
+            rigid.simulated = false;
+            anim.SetBool("Dead", true);
+        }
+
         if (collision.CompareTag("Bullet") && isLive)
         {            
             Bullet bulletInfo = collision.GetComponent<Bullet>();
@@ -135,8 +144,8 @@ public class Enemy : MonoBehaviour
                 ShowDamageText($"+{(damage* 0.5f).ToString()}", damage * 0.5f, new Vector2(hitPos.x,hitPos.y + 0.5f), Color.red);
             }
             StartCoroutine(KnockBack()); // 넉백
-            anim.SetTrigger("Hit"); // 맞는 애니메이션 재생
-            AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit); // 음향재생
+            anim.SetTrigger("Hit"); // 맞는 애니메이션 재생                                    
+            MasterAudio.PlaySound("Hit"); // 사운드 재생
 
             if (health <= 0) // 체력 0 이하 사망
             {
@@ -146,13 +155,12 @@ public class Enemy : MonoBehaviour
                 isLive = false;
                 coll.enabled = false; // 콜라이더 끄기
                 rigid.simulated = false;
-                spriter.sortingOrder = 1;
                 anim.SetBool("Dead", true);
 
                 GameManager.instance.kill++;
 
                 if (GameManager.instance.isLive)
-                    AudioManager.instance.PlaySfx(AudioManager.Sfx.Dead); // 음향재생
+                    MasterAudio.PlaySound("Dead");
             }
         }
         else

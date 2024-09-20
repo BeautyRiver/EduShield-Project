@@ -8,8 +8,8 @@ public class DataManager : MonoBehaviour
 {
     public static DataManager instance;
 
-    public PlayerData currentPlayerData;
-
+    [field: SerializeField] public PlayerData CurrentPlayerData { get; private set; }
+    [field: SerializeField] public bool[] IsUnlockStages { get; private set; }
     private void Awake()
     {
         if (instance == null)

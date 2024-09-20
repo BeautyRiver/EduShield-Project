@@ -1,3 +1,4 @@
+using DarkTonic.MasterAudio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -47,7 +48,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         if (playerData == null) 
-            playerData = DataManager.instance.currentPlayerData;
+            playerData = DataManager.instance.CurrentPlayerData;
 
         GameStart(playerData.characterId);
         StartCoroutine(AIMsgShowAndHide());        
@@ -97,15 +98,16 @@ public class GameManager : MonoBehaviour
     }
     // 게임 시작 설정
     public void GameStart(int playerId)
-    {      
-        isLive = true;
+    {
+        Resume();
+        MasterAudio.ChangePlaylistByName("Game Bgm");
+        MasterAudio.PlaylistsMuted = false;
         this.playerId = playerId; // 플레이어 아이디 세팅
         health = maxHealth * playerData.maxHpMult; // 플레이어 체력 세팅 
 
         player.PlayerInit(); // 플레이어 초기화
         player.gameObject.SetActive(true);
 
-        AudioManager.instance.PlayBgm(true); // 배경음악 재생
     }
 
     // 게임 오버 처리
@@ -124,8 +126,8 @@ public class GameManager : MonoBehaviour
         uiResult.Lose();
         Stop();
 
-        AudioManager.instance.PlayBgm(false); // 배경음악 종료
-        AudioManager.instance.PlaySfx(AudioManager.Sfx.Lose); // 패배 효과음 재생
+        MasterAudio.PlaylistsMuted = true; // 배경음악 종료        
+        MasterAudio.PlaySound("Lose");
     }
 
     // 게임 승리 처리
@@ -142,18 +144,23 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         uiResult.gameObject.SetActive(true);
         uiResult.Win();
-        Stop();
+        isLive = false;
 
-        AudioManager.instance.PlayBgm(false); // 배경음악 종료
-        AudioManager.instance.PlaySfx(AudioManager.Sfx.Win); // 승리 효과음 재생
+        MasterAudio.PlaylistsMuted = true; // 배경음악 종료        
+        MasterAudio.PlaySound("Win");
     }
 
     // 게임 재시작
     public void GameRetry()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void GoTitle()
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene(0);
+    }
     // 게임 종료
     public void GameQuit()
     {
