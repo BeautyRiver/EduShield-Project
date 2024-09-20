@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Safety Hero/Scenes/Title Scene.unity
     guid: 27758ba6213884d4b8ee85cce072b6f5
   - enabled: 1

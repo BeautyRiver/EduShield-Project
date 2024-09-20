@@ -22,14 +22,14 @@ MonoBehaviour:
   - "\uAC1C\uC218\uAC00 {0}\uAC1C \uC99D\uAC00"
   - "\uAD00\uD1B5\uB825\uC774 {0} \uC99D\uAC00"
   itemIcon: {fileID: -762074860, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-  baseDamage: 1
-  baseCount: 5
-  basePer: 3
-  baseDelay: 0.5
-  baseSpeed: 1
+  baseDamage: 6
+  baseCount: 1
+  basePer: 10
+  baseDelay: 2
+  baseSpeed: 1.5
   baseScale: {x: 3, y: 3, z: 3}
-  damages: 
-  counts: 01000000010000000100000001000000
+  damages: 02000000020000000200000002000000
+  counts: 
   pers: 
   gearRates: []
   prefab: {fileID: 8191457858479555690, guid: 321abbc004976c84d993cf8d03f989a7, type: 3}
