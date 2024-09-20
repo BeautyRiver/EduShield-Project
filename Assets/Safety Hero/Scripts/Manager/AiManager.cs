@@ -52,7 +52,8 @@ public class AiManager : MonoBehaviour
     private void ShowAlertMessage()
     {
         scriptText.DOText(alertMessages[selectStageIdx], textDuration, true).SetEase(Ease.Linear);
-        aiTextAreaRect.transform.DOShakePosition(textDuration,2f,fadeOut:false).SetEase(Ease.Linear);
+        aiImageRect.transform.DOShakePosition(textDuration, 5f, fadeOut: false).SetEase(Ease.Linear);
+        //aiTextAreaRect.transform.DOShakePosition(textDuration,2f,fadeOut:false).SetEase(Ease.Linear);
     }
 
     // 공통된 애니메이션 동작

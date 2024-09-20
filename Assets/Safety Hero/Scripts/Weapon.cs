@@ -1,3 +1,4 @@
+using DarkTonic.MasterAudio;
 using DG.Tweening;
 using System.Collections;
 using UnityEngine;
@@ -238,14 +239,14 @@ public class Weapon : MonoBehaviour
 
             // 발사체 초기화
             bullet.GetComponent<Bullet>().Init(damage, per, Vector3.zero, data.itemId);
-
+            MasterAudio.PlaySound("Weapon0");
             // 발사 후 딜레이 추가
             yield return new WaitForSeconds(buletDelay);  // 각 공격 사이의 딜레이 설정
         }
 
         // 공격이 끝나면 상태 초기화
         isAttacking = false;
-        AudioManager.instance.PlaySfx(AudioManager.Sfx.Range); // 공격 사운드 재생
+        //AudioManager.instance.PlaySfx(AudioManager.Sfx.Range); // 공격 사운드 재생
     }
     private IEnumerator Melee_01()
     {
@@ -288,11 +289,14 @@ public class Weapon : MonoBehaviour
             bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
             bullet.GetComponent<Bullet>().Init(damage, per, dir, data.itemId);
 
+            // 발사 사운드
+            MasterAudio.PlaySound("Weapon50");
+
             // 발사 후 약간의 딜레이 추가
             yield return new WaitForSeconds(buletDelay); // 총알 사이의 딜레이 설정 (0.1초, 필요에 따라 조정 가능)
         }
         isAttacking = false;
-        AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
+        //AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
     }
     private IEnumerator FireDir_00()
     {
@@ -310,11 +314,14 @@ public class Weapon : MonoBehaviour
 
             bullet.GetComponent<Bullet>().Init(damage, per, dir, data.itemId);
 
+            // 발사 사운드
+            MasterAudio.PlaySound("Weapon51");
+
             // 발사 후 약간의 딜레이 추가
             yield return new WaitForSeconds(buletDelay);  // 총알 사이의 딜레이 설정 (0.1초)
         }
         isAttacking = false;
-        AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
+        //AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
     }
 
     private IEnumerator FireDir_01()
@@ -338,7 +345,11 @@ public class Weapon : MonoBehaviour
             bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);  // 발사 방향에 맞게 회전 설정
 
             bullet.GetComponent<Bullet>().Init(damage, per, dir, data.itemId);
-            AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
+            //AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
+
+            // 발사 사운드
+            MasterAudio.PlaySound("Weapon52");
+
             // 발사 후 약간의 딜레이 추가
             yield return new WaitForSeconds(buletDelay);  // 총알 사이의 딜레이 설정 (0.1초)
         }
