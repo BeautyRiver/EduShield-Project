@@ -18,6 +18,8 @@ public class Enemy : MonoBehaviour
     public float speed;
     public float health;
     public float maxHealth;
+    public float damage;
+    public int exp;
     public int id;
 
     private bool isLive;
@@ -111,8 +113,8 @@ public class Enemy : MonoBehaviour
         speed = data.speed;
         maxHealth = data.health;
         health = maxHealth;
-
-        
+        exp = data.exp;
+        damage = data.damage;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -133,7 +135,7 @@ public class Enemy : MonoBehaviour
             
             health -= damage; // 체력 감소            
             hitPos = collision.ClosestPoint(transform.position); // 충돌한 지점의 정확한 위치를 구하기
-            ShowDamageText(damage.ToString(), damage, hitPos, Color.white); // 기본 데미지
+            ShowDamageText(damage.ToString("F1"), damage, hitPos, Color.white); // 기본 데미지
 
             // 추가 데미지 구현 로직
             if (bulletInfo.id == id)
@@ -141,7 +143,7 @@ public class Enemy : MonoBehaviour
                 health -= damage * 0.5f;
                 // 충돌한 지점의 정확한 위치를 구하기
                 hitPos = collision.ClosestPoint(transform.position);
-                ShowDamageText($"+{(damage* 0.5f).ToString()}", damage * 0.5f, new Vector2(hitPos.x,hitPos.y + 0.5f), Color.red);
+                ShowDamageText($"+{(damage* 0.5f).ToString("F1")}", damage * 0.5f, new Vector2(hitPos.x,hitPos.y + 0.5f), Color.red);
             }
             StartCoroutine(KnockBack()); // 넉백
             anim.SetTrigger("Hit"); // 맞는 애니메이션 재생                                    
@@ -149,8 +151,9 @@ public class Enemy : MonoBehaviour
 
             if (health <= 0) // 체력 0 이하 사망
             {
-                GameObject exp = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 1); // Exp 드랍시키기
-                exp.transform.position = transform.position;
+                GameObject expObj = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 1); // Exp 드랍시키기
+                expObj.transform.position = transform.position;
+                expObj.GetComponent<Exp>().exp = this.exp;
 
                 isLive = false;
                 coll.enabled = false; // 콜라이더 끄기

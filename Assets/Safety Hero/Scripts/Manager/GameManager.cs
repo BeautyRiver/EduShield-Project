@@ -33,16 +33,17 @@ public class GameManager : MonoBehaviour
     public AiManager aiManager;
     public LevelUp uiLevelUp;
     public Player player;
-    public Result uiResult;
+    public Result result;
     public PlayerData playerData;
     public CurrentData currentData;
     public GameObject enemyCleaner;
-
+    
     [SerializeField] private float[] aiMsgShowTime = { 1.5f, 3f, 4f };
     private void Awake()
     {
+        selectStageIdx = -1;
         instance = this;
-        selectStageIdx = Random.Range(0, aiManager.alertMessages.Length);
+        RandomStageIndex();
     }
 
     private void Start()
@@ -55,7 +56,7 @@ public class GameManager : MonoBehaviour
     }
 
     private void Update()
-    {
+    {        
         // 디버깅용 레벨업
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -79,13 +80,13 @@ public class GameManager : MonoBehaviour
     }
 
     // Ai 메세지 띄어주기
-    IEnumerator AIMsgShowAndHide()
+    public IEnumerator AIMsgShowAndHide()
     {
         yield return new WaitForSeconds(aiMsgShowTime[0]);
 
         aiManager.AppearAiImage(selectStageIdx);
-        yield return new WaitForSeconds(aiMsgShowTime[1]);
 
+        yield return new WaitForSeconds(aiMsgShowTime[1]);
         if (!isGamestart)
         {
             uiLevelUp.Select(playerData.characterId); // 플레이어 기본 무기 부여
@@ -96,11 +97,25 @@ public class GameManager : MonoBehaviour
 
         aiManager.HideAi();
     }
+    public void RandomStageIndex()
+    {
+        int ranIdx;
+        do
+        {
+            ranIdx = Random.Range(0, aiManager.alertMessages.Length);
+        } while (ranIdx == selectStageIdx);  // 같은 값일 때만 반복
+
+        selectStageIdx = ranIdx;
+    }
     // 게임 시작 설정
     public void GameStart(int playerId)
     {
         Resume();
-        MasterAudio.ChangePlaylistByName("Game Bgm");
+        if (TitleManager.playlistController.CurrentPlaylist.playlistName != "Game Bgm")
+            MasterAudio.ChangePlaylistByName("Game Bgm");
+        else
+            MasterAudio.StartPlaylist("Game Bgm");
+
         MasterAudio.PlaylistsMuted = false;
         this.playerId = playerId; // 플레이어 아이디 세팅
         health = maxHealth * playerData.maxHpMult; // 플레이어 체력 세팅 
@@ -122,8 +137,8 @@ public class GameManager : MonoBehaviour
         isLive = false;
         yield return new WaitForSeconds(dieMsgDelay);
 
-        uiResult.gameObject.SetActive(true);
-        uiResult.Lose();
+        result.gameObject.SetActive(true);
+        result.Lose();
         Stop();
 
         MasterAudio.PlaylistsMuted = true; // 배경음악 종료        
@@ -139,36 +154,18 @@ public class GameManager : MonoBehaviour
     // 게임 승리 로직 (코루틴)
     private IEnumerator GameVictoryRoutine()
     {
+        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         isLive = false;
         enemyCleaner.SetActive(true);
         yield return new WaitForSeconds(0.5f);
-        uiResult.gameObject.SetActive(true);
-        uiResult.Win();
+        result.gameObject.SetActive(true);
+        result.Win();
         isLive = false;
 
         MasterAudio.PlaylistsMuted = true; // 배경음악 종료        
         MasterAudio.PlaySound("Win");
     }
-
-    // 게임 재시작
-    public void GameRetry()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    public void GoTitle()
-    {
-        Time.timeScale = 1.0f;
-        LoadingSceneController.LoadScene("Title Scene");
-    }
-    // 게임 종료
-    public void GameQuit()
-    {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
-        Application.Quit();
-    }
+    
 
     // 경험치 획득 및 레벨업 처리
     public void GetExp(int getExp)

@@ -20,6 +20,7 @@ public class Spawner : MonoBehaviour
 
     [Header("# 레벨 관련")]
     [SerializeField] private int level; // 현재 레벨
+    [SerializeField] private int prevLevel; // 이전 레벨 (비교용)
     [SerializeField] private float[] timer; // 소환 타이머
 
     private void Awake()
@@ -29,6 +30,7 @@ public class Spawner : MonoBehaviour
         levelTime = GameManager.instance.maxGameTime / normalSpawnData.Length;               
         timer = new float[2];        
         level = 0;
+        prevLevel = level;
         normalSpawnData[0].spriteType = GameManager.instance.selectStageIdx;
 
         foreach (var uniqeData in uniqeSpawnData)
@@ -42,9 +44,20 @@ public class Spawner : MonoBehaviour
         if (GameManager.instance.isLive)
         {
             // 소환 로직
-            timer[0] += Time.deltaTime;
-            timer[1] += Time.deltaTime;
-            level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / levelTime), normalSpawnData.Length - 1);
+            timer[0] += Time.deltaTime; // Normal timer
+            timer[1] += Time.deltaTime; // Unique timer
+            level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / levelTime), normalSpawnData.Length - 1);   
+            
+            // 레벨 변화 체크
+            if (prevLevel != level)
+            {
+                GameManager.instance.RandomStageIndex();
+                normalSpawnData[level].spriteType = GameManager.instance.selectStageIdx;
+                StartCoroutine(GameManager.instance.AIMsgShowAndHide());
+                prevLevel = level; // 이전 레벨을 현재 레벨로 업데이트
+                uniqeSpawnData[0].minTime -= 5f;
+                uniqeSpawnData[0].maxTime -= 5f;
+            }
 
             // 소환 타이머가 소환 시간을 초과하면 소환
             if (timer[0] > normalSpawnData[level].spawnTime)
@@ -73,7 +86,11 @@ public class Spawner : MonoBehaviour
             enemy.transform.position = uniqeSpawnPoint[ran].position + ranPos;
             enemy.GetComponent<Enemy>().Init(uniqeSpawnData[0]);
         }
-        
+        foreach (var uniqeData in uniqeSpawnData)
+        {
+            uniqeData.spawnTime = Random.Range(uniqeData.minTime, uniqeData.maxTime);
+        }
+
     }
 
     private void SpawnNormal()
@@ -83,7 +100,7 @@ public class Spawner : MonoBehaviour
         {
             GameObject enemy = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 2);
             enemy.transform.position = spawnPoint[Random.Range(0, spawnPoint.Length)].position;
-            enemy.GetComponent<Enemy>().Init(normalSpawnData[0]);
+            enemy.GetComponent<Enemy>().Init(normalSpawnData[level]);
         }
     }
 }
@@ -102,5 +119,7 @@ public class SpawnData
     [Header("# 몬스터 기본 스탯")]
     public int health; // 적의 체력
     public float speed; // 적의 속도
+    public float damage; // 적의 데미지
+    public int exp; // 적의 획득 경험치량
 }
 

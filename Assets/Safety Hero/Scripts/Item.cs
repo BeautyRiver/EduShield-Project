@@ -83,19 +83,19 @@ public class Item : MonoBehaviour
                             break;
 
                         case ItemType.MWeapon_1:
-                            textDesc.text = "보통화재에 강함\n\n" +
+                            textDesc.text = "<b><color=#00FAFF>일반 화재</color></b>에 강함\n\n" +
                                 "주위를 돌면서 공격";
                             break;
                         case ItemType.RWeapon_0:
-                            textDesc.text = "휘발유 등의 화재에 강함\n\n" +
+                            textDesc.text = "<b><color=#00FAFF>휘발유 등의 화재</color></b>에 강함\n\n" +
                                 "가장 가까운 적 공격";
                             break;
                         case ItemType.RWeapon_1:
-                            textDesc.text = "전기관련 화재에 강함\n\n" +
-                                "바라보는 방향으로 관통공격";
+                            textDesc.text = "<b><color=#00FAFF>전기관련 화재</color></b>에 강함\n\n" +
+                                "바라보는 방향 반대로 관통공격";
                             break;
                         case ItemType.RWeapon_2:
-                            textDesc.text = "식용유 등의 화재에 강함\n\n" +
+                            textDesc.text = "<b><color=#00FAFF>식용유 등의 화재</color></b>에 강함\n\n" +
                                 "바라보는 방향으로 공격";
                             break;
                     }

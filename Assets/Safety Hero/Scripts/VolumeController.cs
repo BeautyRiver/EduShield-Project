@@ -50,4 +50,13 @@ public class VolumeController : MonoBehaviour
     {
         PlayerPrefs.Save();  // 저장된 값을 디스크에 기록
     }
+
+    public void OptionEnable(bool enable)
+    {
+        if (enable)
+            gameObject.transform.localScale = Vector3.one;
+        else
+            gameObject.transform.localScale = Vector3.zero;
+
+    }
 }

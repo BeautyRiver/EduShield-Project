@@ -21,15 +21,15 @@ MonoBehaviour:
   - "\uB370\uBBF8\uC9C0\uAC00 {0} \uC99D\uAC00"
   - "\uAC1C\uC218\uAC00 {0}\uAC1C \uC99D\uAC00"
   - "\uAD00\uD1B5\uB825\uC774 {0} \uC99D\uAC00"
-  itemIcon: {fileID: -762074860, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-  baseDamage: 6
+  itemIcon: {fileID: 21300000, guid: 13d4dc4718284944cb94f083856443d8, type: 3}
+  baseDamage: 8
   baseCount: 1
   basePer: 10
-  baseDelay: 2
-  baseSpeed: 1.5
+  baseDelay: 1
+  baseSpeed: 1.2
   baseScale: {x: 3, y: 3, z: 3}
-  damages: 02000000020000000200000002000000
-  counts: 
+  damages: 020000000300000004000000
+  counts: 00000000
   pers: 
   gearRates: []
   prefab: {fileID: 8191457858479555690, guid: 321abbc004976c84d993cf8d03f989a7, type: 3}

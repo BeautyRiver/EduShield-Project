@@ -302,7 +302,7 @@ public class Weapon : MonoBehaviour
     {
         for (int i = 0; i < count; i++)
         {
-            Vector3 dir = new Vector3(player.lastInputVec.x, player.lastInputVec.y, 0).normalized;
+            Vector3 dir = new Vector3(-player.lastInputVec.x, -player.lastInputVec.y, 0).normalized; // 플레이어 반대 방향으로 발사
             Transform bullet = GameManager.instance.pool.Get(PoolManager.PoolType.Weapon, prefabId).transform;
             bullet.parent = transform;
 

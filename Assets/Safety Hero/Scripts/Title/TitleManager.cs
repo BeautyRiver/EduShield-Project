@@ -20,6 +20,8 @@ public class TitleManager : MonoBehaviour
     [SerializeField] private Vector2[] stageImageScale;
     [SerializeField] private Vector2[] stageImagePos;
     [SerializeField] private Color noneSelectColor;
+
+    public static PlaylistController playlistController;
     private void Awake()
     {
         // 부모 rect는 필터링
@@ -28,9 +30,18 @@ public class TitleManager : MonoBehaviour
                                  .ToArray();
 
         images = stageImage.GetComponentsInChildren<Image>();
-        MasterAudio.ChangePlaylistByName("Title Bgm");
+
     }
 
+    private void Start()
+    {
+        playlistController = MasterAudio.OnlyPlaylistController;
+
+        if (playlistController.CurrentPlaylist.playlistName != "Title Bgm")
+            MasterAudio.ChangePlaylistByName("Title Bgm");
+        else
+            MasterAudio.StartPlaylist("Title Bgm");
+    }
 
     // 다음 버튼
     public void PressNextButton()

@@ -9,6 +9,10 @@ public class LoadingSceneController : MonoBehaviour
     static string nextScene;
     [SerializeField]
     private Image progressBar;
+
+    [SerializeField]
+    private float fillSpeed = 0.5f; // 프로그레스 바가 천천히 차오르게 하는 속도 (작을수록 느림)
+
     public static void LoadScene(string sceneName)
     {
         nextScene = sceneName;
@@ -17,24 +21,39 @@ public class LoadingSceneController : MonoBehaviour
     
     void Start()
     {
-        StartCoroutine(LoadSceneProcess());
+        StartCoroutine(LoadScene());
     }
-
-    IEnumerator LoadSceneProcess()
+    IEnumerator LoadScene()
     {
+        yield return null;
         AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;
 
-        float timer = 0f;
+        float timer = 0.0f;
+
         while (!op.isDone)
         {
-
             yield return null;
-            timer += Time.time;
-            progressBar.fillAmount = timer / 10f;
+            timer += Time.deltaTime;
 
-            if (timer > 10f)
-                op.allowSceneActivation = true;
+            if (op.progress < 0.9f)
+            {
+                progressBar.fillAmount = Mathf.Lerp(progressBar.fillAmount, op.progress, Time.deltaTime);
+
+                if (progressBar.fillAmount >= op.progress)
+                {
+                    timer = 0f;
+                }
+            }
+            else
+            {
+                progressBar.fillAmount = Mathf.Lerp(progressBar.fillAmount, 1f, timer);
+                if (progressBar.fillAmount == 1.0f)
+                {
+                    op.allowSceneActivation = true;
+                    yield break;
+                }
+            }
         }
     }
 }

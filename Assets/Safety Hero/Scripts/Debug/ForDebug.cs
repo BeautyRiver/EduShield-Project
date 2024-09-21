@@ -77,14 +77,14 @@ public class ForDebug : MonoBehaviour
             if (!is2xSpeed)
             {
                 is2xSpeed = true;
-                Time.timeScale = 2.5f;
-                debugText.text = "2.5硅加";
+                Time.timeScale = 5f;
+                debugText.text = "5硅加";
             }
             else
             {
                 is2xSpeed = false;
                 Time.timeScale = 1f;
-                debugText.text = "2硅加 秦力";
+                debugText.text = "5硅加 秦力";
             }
         }
     }
