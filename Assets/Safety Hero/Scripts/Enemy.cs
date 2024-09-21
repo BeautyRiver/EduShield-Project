@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
 {
     public enum EnemyType
     {
-        Normal, Uniqe,
+        Normal, Uniqe, Box
     }
     [Header("적 상태")]
     public EnemyType enemyType;
@@ -119,6 +119,9 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!isLive)
+            return;
+
         if (collision.CompareTag("Cleaner"))
         {
             isLive = false;
@@ -127,12 +130,16 @@ public class Enemy : MonoBehaviour
             anim.SetBool("Dead", true);
         }
 
-        if (collision.CompareTag("Bullet") && isLive)
+        if (collision.CompareTag("Bullet"))
         {            
             Bullet bulletInfo = collision.GetComponent<Bullet>();
             Vector2 hitPos;
             float damage = bulletInfo.damage;
-            
+
+            // 이펙트
+            GameObject effect = GameManager.instance.pool.Get(PoolManager.PoolType.Effect, 0);
+            effect.transform.position = collision.ClosestPoint(transform.position);
+
             health -= damage; // 체력 감소            
             hitPos = collision.ClosestPoint(transform.position); // 충돌한 지점의 정확한 위치를 구하기
             ShowDamageText(damage.ToString("F1"), damage, hitPos, Color.white); // 기본 데미지

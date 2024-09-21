@@ -11,7 +11,7 @@ public class ForDebug : MonoBehaviour
 {
     public GameObject itemParent;
     public Sprite[] uiImages;
-    public Item[] items;
+    public ItemSetting[] items;
     public ItemData[] itemData;
 
     public TextMeshProUGUI debugText;
@@ -20,9 +20,9 @@ public class ForDebug : MonoBehaviour
 
     private void Start()
     {
-        items = itemParent.GetComponentsInChildren<Item>();
+        items = itemParent.GetComponentsInChildren<ItemSetting>();
         int idx = 0;
-        foreach (Item item in items)
+        foreach (ItemSetting item in items)
         {
             item.data = itemData[idx];
             item.gameObject.name = itemData[idx].name;

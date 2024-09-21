@@ -27,9 +27,9 @@ MonoBehaviour:
   basePer: 10
   baseDelay: 1
   baseSpeed: 1.2
-  baseScale: {x: 3, y: 3, z: 3}
+  baseScale: {x: 1, y: 1, z: 1}
   damages: 020000000300000004000000
-  counts: 00000000
+  counts: 01000000
   pers: 
   gearRates: []
   prefab: {fileID: 8191457858479555690, guid: 321abbc004976c84d993cf8d03f989a7, type: 3}

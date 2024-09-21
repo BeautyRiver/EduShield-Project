@@ -298,6 +298,7 @@ public class Weapon : MonoBehaviour
         isAttacking = false;
         //AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
     }
+    // 대포
     private IEnumerator FireDir_00()
     {
         for (int i = 0; i < count; i++)
@@ -307,7 +308,7 @@ public class Weapon : MonoBehaviour
             bullet.parent = transform;
 
             // 발사체의 시작 위치를 조정
-            Vector3 startPosition = transform.position;
+            Vector3 startPosition = transform.position + dir * 1.5f;
             bullet.localScale = bulletSize;
             bullet.position = startPosition;
             bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);  // 발사 방향에 맞게 회전 설정
@@ -324,6 +325,7 @@ public class Weapon : MonoBehaviour
         //AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
     }
 
+    // 창
     private IEnumerator FireDir_01()
     {
         for (int i = 0; i < count; i++)
@@ -342,7 +344,8 @@ public class Weapon : MonoBehaviour
 
             bullet.localScale = bulletSize;
             bullet.position = startPosition;
-            bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);  // 발사 방향에 맞게 회전 설정
+            //bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);  // 발사 방향에 맞게 회전 설정
+            bullet.rotation = Quaternion.Euler(new Vector3(bullet.transform.eulerAngles.x, bullet.transform.eulerAngles.y, Random.Range(0, 360f)));
 
             bullet.GetComponent<Bullet>().Init(damage, per, dir, data.itemId);
             //AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);

@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class PoolManager : MonoBehaviour
 {
-    public enum PoolType { Weapon, Enemy, Item }  // 풀 타입을 구분하는 enum
+    public enum PoolType { Weapon, Enemy, Item, Effect }  // 풀 타입을 구분하는 enum
     public GameObject[] weaponPrefabs;
     public GameObject[] enemyPrefabs;
     public GameObject[] itemPrefabs;
+    public GameObject[] effectPrefabs;
 
     private List<GameObject>[] weaponPools;
     private List<GameObject>[] enemyPools;
     private List<GameObject>[] itemPools;
+    private List<GameObject>[] effectPools;
 
     private void Awake()
     {
@@ -29,13 +31,19 @@ public class PoolManager : MonoBehaviour
             enemyPools[index] = new List<GameObject>();
         }
 
-       /* // ItemPool 초기화
-        itemPools = new List<GameObject>[itemPools.Length];
+        // ItemPool 초기화
+        itemPools = new List<GameObject>[itemPrefabs.Length];
         for (int index = 0;index < itemPools.Length; index++)
         {
             itemPools[index] = new List<GameObject>();
-        }*/
+        }
 
+        // EfectPool 초기화
+        effectPools = new List<GameObject>[effectPrefabs.Length];
+        for (int index = 0; index < effectPools.Length; index++)
+        {
+            effectPools[index] = new List<GameObject>();
+        }
     }
 
     public GameObject Get(PoolType poolType, int index)
@@ -44,21 +52,30 @@ public class PoolManager : MonoBehaviour
         GameObject[] selectedPrefabs = null;
 
         // 풀 타입에 따라 풀과 프리팹 배열 선택
-        if (poolType == PoolType.Weapon)
+
+        switch (poolType)
         {
-            selectedPool = weaponPools;
-            selectedPrefabs = weaponPrefabs;
+            case PoolType.Weapon:
+                selectedPool = weaponPools;
+                selectedPrefabs = weaponPrefabs;
+                break;
+
+            case PoolType.Enemy:
+                selectedPool = enemyPools;
+                selectedPrefabs = enemyPrefabs;
+                break;
+
+            case PoolType.Item:
+                selectedPool = itemPools;
+                selectedPrefabs = itemPrefabs;
+                break;
+
+            case PoolType.Effect:
+                selectedPool = effectPools;
+                selectedPrefabs = effectPrefabs;
+                break;
         }
-        else if (poolType == PoolType.Enemy)
-        {
-            selectedPool = enemyPools;
-            selectedPrefabs = enemyPrefabs;
-        }
-        else if (poolType == PoolType.Item)
-        {
-            selectedPool = itemPools;
-            selectedPrefabs = itemPrefabs;
-        }
+
 
         if (selectedPool == null || selectedPrefabs == null) return null;
 

@@ -11,13 +11,13 @@ public class LevelUp : MonoBehaviour
     private RectTransform rect;
     public Image blackWindow;
     public float showLeveUpDuration;
-    [SerializeField] private List<Item> items;
-    public List<Item> availableItems;
+    [SerializeField] private List<ItemSetting> items;
+    public List<ItemSetting> availableItems;
 
     private void Awake()
     {
         rect = GetComponent<RectTransform>();
-        items = GetComponentsInChildren<Item>(true).ToList();
+        items = GetComponentsInChildren<ItemSetting>(true).ToList();
     }
 
     public void Show()
@@ -70,17 +70,17 @@ public class LevelUp : MonoBehaviour
     private void Next()
     {
         // 모든 아이템 비활성화
-        foreach (Item item in items)
+        foreach (ItemSetting item in items)
         {
             item.gameObject.SetActive(false);
         }
 
         // 활성화 가능한 아이템을 담는 리스트
-        availableItems = new List<Item>();
+        availableItems = new List<ItemSetting>();
 
         bool allMaxLevel = true;
 
-        foreach (Item item in items)
+        foreach (ItemSetting item in items)
         {
             switch (item.data.itemCategory)
             {
@@ -113,7 +113,7 @@ public class LevelUp : MonoBehaviour
         // 모든 무기와 기어가 최대 레벨에 도달했다면 Etc 아이템만 활성화
         if (allMaxLevel)
         {
-            foreach (Item item in items)
+            foreach (ItemSetting item in items)
             {
                 if (item.data.itemCategory == ItemData.ItemCategory.Etc)
                 {

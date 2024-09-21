@@ -7,6 +7,12 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    [Header("# 레벨 관련")]
+    public float levelTime; // 레벨별 시간 간격
+    [SerializeField] private int level; // 현재 레벨
+    [SerializeField] private int prevLevel; // 이전 레벨 (비교용)
+    [SerializeField] private float[] timer; // 소환 타이머
+
     [Header("# 적 소환 위치")]
     public Transform[] spawnPoint; // 적 소환 위치 배열
     public Transform[] uniqeSpawnPoint; // 특별한 적 소환위치 배열
@@ -16,19 +22,15 @@ public class Spawner : MonoBehaviour
 
     [Header("# 특수 적 소환 데이터")]
     public SpawnData[] uniqeSpawnData; // 레벨별 소환 데이터 배열
-    public float levelTime; // 레벨별 시간 간격
 
-    [Header("# 레벨 관련")]
-    [SerializeField] private int level; // 현재 레벨
-    [SerializeField] private int prevLevel; // 이전 레벨 (비교용)
-    [SerializeField] private float[] timer; // 소환 타이머
+    [Header("# Box 소환")]
+    public float boxSpawnTime;
 
     private void Awake()
     {
         // 초기 설정
-        //spawnPoint = GetComponentsInChildren<Transform>();
-        levelTime = GameManager.instance.maxGameTime / normalSpawnData.Length;               
-        timer = new float[2];        
+        levelTime = GameManager.instance.maxGameTime / normalSpawnData.Length;                              
+        timer = new float[3];        
         level = 0;
         prevLevel = level;
         normalSpawnData[0].spriteType = GameManager.instance.selectStageIdx;
@@ -46,6 +48,8 @@ public class Spawner : MonoBehaviour
             // 소환 로직
             timer[0] += Time.deltaTime; // Normal timer
             timer[1] += Time.deltaTime; // Unique timer
+            timer[2] += Time.deltaTime; // Box timer
+
             level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / levelTime), normalSpawnData.Length - 1);   
             
             // 레벨 변화 체크
@@ -72,6 +76,15 @@ public class Spawner : MonoBehaviour
                 timer[1] = 0f;
                 SpawnUnique();
             }
+
+            // 소환 타이머가 소환 시간을 초과하면 소환
+            if (timer[2] > boxSpawnTime)
+            {
+                timer[2] = 0f;
+                SpawnBox();
+            }
+
+
         }
     }
 
@@ -103,8 +116,31 @@ public class Spawner : MonoBehaviour
             enemy.GetComponent<Enemy>().Init(normalSpawnData[level]);
         }
     }
-}
+    private void SpawnBox()
+    {
+        Vector3 spawnPosition = Vector3.zero;
+        bool isSafePosition = false; // 충돌 없는 안전한 위치인지 확인하는 변수
+        float boxRadius = 0.5f; // 박스의 크기에 맞는 반지름으로 설정
+        LayerMask collisionMask = LayerMask.GetMask("GroundPhyscis"); // 충돌을 감지할 레이어 (필요에 맞게 설정)
 
+        // 충돌 없는 위치를 찾을 때까지 반복
+        while (!isSafePosition)
+        {
+            spawnPosition = spawnPoint[Random.Range(0, spawnPoint.Length)].position;
+
+            // 충돌 검사: 박스가 스폰될 위치에 다른 콜라이더가 있는지 확인 (OverlapCircle 사용)
+            if (Physics2D.OverlapCircle(spawnPosition, boxRadius, collisionMask) == null)
+            {
+                isSafePosition = true; // 충돌이 없으면 안전한 위치로 설정
+            }
+        }
+
+        // 안전한 위치가 확인되면 박스 생성
+        GameObject box = GameManager.instance.pool.Get(PoolManager.PoolType.Item, 0);
+        box.transform.position = spawnPosition;
+    }   
+
+}
 [System.Serializable]
 public class SpawnData
 {

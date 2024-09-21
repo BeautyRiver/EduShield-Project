@@ -19,8 +19,8 @@ public class CurrentData : MonoBehaviour
     public List<Image> equipImages;
     public List<TextMeshProUGUI> equipLevelTexts;
     
-    private List<Item> _data;
-    private List<Item> _sortData;
+    private List<ItemSetting> _data;
+    private List<ItemSetting> _sortData;
     private void Awake()
     {
         // 초기화        
@@ -31,7 +31,7 @@ public class CurrentData : MonoBehaviour
     public void UpdateCurrentData()
     {
         // 모든 아이템을 순회하며 레벨이 0보다 크고 아직 정렬 리스트에 없는 아이템을 추가
-        foreach (Item item in _data)
+        foreach (ItemSetting item in _data)
         {
             if (item.level > 0 && !_sortData.Contains(item))
             {
@@ -54,16 +54,16 @@ public class CurrentData : MonoBehaviour
     private void InitialSettings()
     {
         // 데이터 구조 초기화
-        _data = new List<Item>();
-        _sortData = new List<Item>();
+        _data = new List<ItemSetting>();
+        _sortData = new List<ItemSetting>();
         equipImages = new List<Image>();
         equipLevelTexts = new List<TextMeshProUGUI>();
 
-        // 아이템 그룹에서 모든 Item 컴포넌트 가져오기
-        Item[] items = itemGroup.GetComponentsInChildren<Item>(true);
+        // 아이템 그룹에서 모든 ItemSetting 컴포넌트 가져오기
+        ItemSetting[] items = itemGroup.GetComponentsInChildren<ItemSetting>(true);
 
         // 현재 아이템 그룹에서 무기와 기어 데이터를 분류하여 추가
-        foreach (Item item in items)
+        foreach (ItemSetting item in items)
         {
             if (item.data.itemCategory == ItemData.ItemCategory.Weapon && category == Category.Weapon)
                 _data.Add(item);
