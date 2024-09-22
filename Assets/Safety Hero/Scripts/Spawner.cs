@@ -67,9 +67,7 @@ public class Spawner : MonoBehaviour
                     uniqeData.maxTime -= 5f;
                 }
 
-                miniBossSpawnData[level-1].spriteType = GameManager.instance.selectStageIdx;
-                SpawnMiniBoss(); // 웨이브 변환시 미니 보스 한마리씩 등장
-                Debug.Log("Level Change");
+                StartCoroutine(MiniBossSpawn());
             }
 
             // 기본 몬스터 소환
@@ -97,6 +95,15 @@ public class Spawner : MonoBehaviour
 
 
         }
+    }
+
+    private IEnumerator MiniBossSpawn()
+    {
+        yield return new WaitForSeconds(1f);
+        // 웨이브 변환시 미니 보스 한마리씩 등장
+        miniBossSpawnData[level - 1].spriteType = GameManager.instance.selectStageIdx;
+        SpawnMiniBoss();
+        Debug.Log("Level Change");
     }
 
     private void SpawnMiniBoss()

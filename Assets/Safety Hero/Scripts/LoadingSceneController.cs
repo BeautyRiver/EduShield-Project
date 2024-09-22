@@ -60,13 +60,11 @@ public class LoadingSceneController : MonoBehaviour
                     yield break;
                 }
             }
-            progressText.text = progressBar.fillAmount.ToString("F0") + " %";
-            // 이미지가 로딩바를 따라 움직이게
-            MoveImageAlongProgressBar();
+            progressText.text = (progressBar.fillAmount * 100f).ToString("F0") + " %";
         }
     }
 
-    private void MoveImageAlongProgressBar()
+    /*private void MoveImageAlongProgressBar()
     {
         // 이동할 위치의 범위: -825에서 825까지
         float minPosition = -825f;
@@ -80,6 +78,6 @@ public class LoadingSceneController : MonoBehaviour
         newPos.x = newX;
 
         movingImage.rectTransform.anchoredPosition = newPos;
-    }
+    }*/
 
 }

@@ -56,7 +56,10 @@ public class VolumeController : MonoBehaviour
         if (enable)
             gameObject.transform.localScale = Vector3.one;
         else
+        {
             gameObject.transform.localScale = Vector3.zero;
+            PlayerPrefs.Save();
+        }
 
     }
 }

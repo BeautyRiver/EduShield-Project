@@ -16,7 +16,7 @@ public class Item : MonoBehaviour
             switch (itemType)
             {
                 case ItemType.Heal:                    
-                    GameManager.instance.health = Mathf.Min(GameManager.instance.maxHealth, GameManager.instance.health + 15f);
+                    GameManager.instance.health = Mathf.Min(GameManager.instance.maxHealth, GameManager.instance.health + 5f);
                     MasterAudio.PlaySound("Heal");
                     GameObject healEffect = GameManager.instance.pool.Get(PoolManager.PoolType.Effect, 1); // Èú ÀÌÆåÆ®
                     healEffect.transform.parent = GameManager.instance.player.transform;

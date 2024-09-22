@@ -154,9 +154,12 @@ public class Enemy : MonoBehaviour
                 hitPos = collision.ClosestPoint(transform.position);
                 ShowDamageText($"+{(damage* 0.5f).ToString("F1")}", damage * 0.5f, new Vector2(hitPos.x,hitPos.y + 0.5f), Color.red);
             }
-            StartCoroutine(KnockBack()); // 넉백
             anim.SetTrigger("Hit"); // 맞는 애니메이션 재생                                    
             MasterAudio.PlaySound("Hit"); // 사운드 재생
+
+            // 보스는 넉벡 X
+            if (enemyType != EnemyType.MiniBoss)
+                StartCoroutine(KnockBack()); // 넉백
 
             // 체력 0 이하 사망
             if (health <= 0) 

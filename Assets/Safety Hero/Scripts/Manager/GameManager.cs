@@ -56,14 +56,15 @@ public class GameManager : MonoBehaviour
     }
 
     private void Update()
-    {        
+    {
+#if UNITY_EDITOR
         // 디버깅용 레벨업
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("레벨업");
             GetExp(nextExp[Mathf.Min(level, nextExp.Length - 1)]); // 최대 인덱스를 초과하지 않게
         }
-
+#endif
         if (isLive && isGamestart)
         {
            
@@ -90,8 +91,8 @@ public class GameManager : MonoBehaviour
         if (!isGamestart)
         {
             uiLevelUp.Select(playerData.characterId); // 플레이어 기본 무기 부여
-            player.spawner.gameObject.SetActive(true);
             isGamestart = true;
+            player.spawner.gameObject.SetActive(true);
         }
         yield return new WaitForSeconds(aiMsgShowTime[2]);
 
