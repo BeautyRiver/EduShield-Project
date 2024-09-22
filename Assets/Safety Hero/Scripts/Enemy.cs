@@ -76,7 +76,7 @@ public class Enemy : MonoBehaviour
     {
         if (GameManager.instance.isLive && isLive)
         {
-            if (enemyType == EnemyType.Normal)
+            if (enemyType != EnemyType.Uniqe)
                 spriter.flipX = target.position.x < rigid.position.x;
         }
         else

@@ -9,7 +9,7 @@ public class Spawner : MonoBehaviour
 {
     [Header("# 레벨 관련")]
     public float levelTime; // 레벨별 시간 간격
-    [SerializeField] private int level; // 현재 레벨
+    public int level; // 현재 레벨
     [SerializeField] private int prevLevel; // 이전 레벨 (비교용)
     [SerializeField] private float[] timer; // 소환 타이머
 

@@ -13,6 +13,7 @@ public class TitleManager : MonoBehaviour
     [SerializeField] private GameObject characterSelect; // 캐릭터 선택 창
     [SerializeField] private GameObject stageImage;
     [SerializeField] private GameObject optionScreen;
+    [SerializeField] private Image fadeImage; // 페이드 인 아웃 이미지
 
     [SerializeField] private RectTransform[] stageImageRects;
     [SerializeField] private Image[] images;
@@ -30,17 +31,24 @@ public class TitleManager : MonoBehaviour
                                  .ToArray();
 
         images = stageImage.GetComponentsInChildren<Image>();
-
+        
     }
 
     private void Start()
     {
         playlistController = MasterAudio.OnlyPlaylistController;
-
         if (playlistController.CurrentPlaylist.playlistName != "Title Bgm")
             MasterAudio.ChangePlaylistByName("Title Bgm");
         else
             MasterAudio.StartPlaylist("Title Bgm");
+
+        fadeImage.gameObject.SetActive(true);
+        fadeImage.DOFade(0, 0.5f).OnComplete(() => 
+        {
+            fadeImage.gameObject.SetActive(false);            
+        });
+
+      
     }
 
     // 다음 버튼

@@ -15,24 +15,25 @@ public class UIManager : MonoBehaviour
     private GameManager gm;
     private void Start()
     {
+        fadeImage.gameObject.SetActive(true);
         gm = GameManager.instance;
         fadeImage.DOFade(0, fadeTime).OnComplete(()=> fadeImage.gameObject.SetActive(false));
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && GameManager.instance.isLive)
         {
             if (uiOption.localScale != Vector3.one)
             {
                 MasterAudio.PlaySound("BtnClick");
                 uiOption.localScale = Vector3.one;
-                gm.Stop();
+                Time.timeScale = 0f;
             }
             else
             {
                 MasterAudio.PlaySound("BtnClick");
                 uiOption.localScale = Vector3.zero;
-                gm.Resume();
+                Time.timeScale = 1f;
             }
         }
     }

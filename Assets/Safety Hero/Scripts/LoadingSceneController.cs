@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -12,10 +13,10 @@ public class LoadingSceneController : MonoBehaviour
     private Image progressBar;
 
     [SerializeField]
-    private Image movingImage;
+    private TextMeshProUGUI progressText;
 
     [SerializeField]
-    private float fillSpeed = 0.5f; // 프로그레스 바가 천천히 차오르게 하는 속도 (작을수록 느림)
+    private Image movingImage;
 
     public static void LoadScene(string sceneName)
     {
@@ -59,6 +60,7 @@ public class LoadingSceneController : MonoBehaviour
                     yield break;
                 }
             }
+            progressText.text = progressBar.fillAmount.ToString("F0") + " %";
             // 이미지가 로딩바를 따라 움직이게
             MoveImageAlongProgressBar();
         }
