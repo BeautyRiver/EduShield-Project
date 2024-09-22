@@ -23,22 +23,24 @@ public class Spawner : MonoBehaviour
     [Header("# 특수 적 소환 데이터")]
     public SpawnData[] uniqeSpawnData; // 레벨별 소환 데이터 배열
 
-    [Header("# Box 소환")]
-    public float boxSpawnTime;
+    [Header("# 미니 보스 소환 데이터")]
+    public SpawnData[] miniBossSpawnData; // 레벨별 소환 데이터 배열
 
+    [Header("# 박스 소환 시간")]
+    public float boxSpawnTime; // 레벨별 소환 데이터 배열
     private void Awake()
     {
         // 초기 설정
         levelTime = GameManager.instance.maxGameTime / normalSpawnData.Length;                              
-        timer = new float[3];        
+        timer = new float[4];        
         level = 0;
         prevLevel = level;
         normalSpawnData[0].spriteType = GameManager.instance.selectStageIdx;
 
-        foreach (var uniqeData in uniqeSpawnData)
-        {
-            uniqeData.spawnTime = Random.Range(uniqeData.minTime, uniqeData.maxTime);
-        }
+        uniqeSpawnData[0].spawnTime = Random.Range(uniqeSpawnData[0].minTime, uniqeSpawnData[0].maxTime);
+
+        miniBossSpawnData[0].spawnTime = Random.Range(miniBossSpawnData[0].minTime, miniBossSpawnData[0].maxTime);
+        normalSpawnData[0].spriteType = GameManager.instance.selectStageIdx;        
     }
 
     private void Update()
@@ -48,7 +50,7 @@ public class Spawner : MonoBehaviour
             // 소환 로직
             timer[0] += Time.deltaTime; // Normal timer
             timer[1] += Time.deltaTime; // Unique timer
-            timer[2] += Time.deltaTime; // Box timer
+            timer[3] += Time.deltaTime; // Box timer
 
             level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / levelTime), normalSpawnData.Length - 1);   
             
@@ -56,35 +58,55 @@ public class Spawner : MonoBehaviour
             if (prevLevel != level)
             {
                 GameManager.instance.RandomStageIndex();
-                normalSpawnData[level].spriteType = GameManager.instance.selectStageIdx;
                 StartCoroutine(GameManager.instance.AIMsgShowAndHide());
+                normalSpawnData[level].spriteType = GameManager.instance.selectStageIdx;
                 prevLevel = level; // 이전 레벨을 현재 레벨로 업데이트
-                uniqeSpawnData[0].minTime -= 5f;
-                uniqeSpawnData[0].maxTime -= 5f;
+                foreach (var uniqeData in uniqeSpawnData)
+                {
+                    uniqeData.minTime -= 5f;
+                    uniqeData.maxTime -= 5f;
+                }
+
+                miniBossSpawnData[level-1].spriteType = GameManager.instance.selectStageIdx;
+                SpawnMiniBoss(); // 웨이브 변환시 미니 보스 한마리씩 등장
+                Debug.Log("Level Change");
             }
 
-            // 소환 타이머가 소환 시간을 초과하면 소환
+            // 기본 몬스터 소환
             if (timer[0] > normalSpawnData[level].spawnTime)
             {
                 timer[0] = 0f;
                 SpawnNormal();
             }
 
-            // 소환 타이머가 소환 시간을 초과하면 소환
+            // 유니크 몬스터 소환
             if (timer[1] > uniqeSpawnData[0].spawnTime)
             {
                 timer[1] = 0f;
                 SpawnUnique();
             }
 
-            // 소환 타이머가 소환 시간을 초과하면 소환
-            if (timer[2] > boxSpawnTime)
+
+            // 박스 소환
+            if (timer[3] > boxSpawnTime)
             {
-                timer[2] = 0f;
+                timer[3] = 0f;
+                SpawnBox();
                 SpawnBox();
             }
 
 
+        }
+    }
+
+    private void SpawnMiniBoss()
+    {
+        // 적 소환
+        for (int i = 0; i < miniBossSpawnData[level-1].spawnCount; i++)
+        {
+            GameObject enemy = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 4);
+            enemy.transform.position = spawnPoint[Random.Range(0, spawnPoint.Length)].position;
+            enemy.GetComponent<Enemy>().Init(miniBossSpawnData[level - 1]);
         }
     }
 

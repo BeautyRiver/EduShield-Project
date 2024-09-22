@@ -49,12 +49,14 @@ public class UIManager : MonoBehaviour
     // 게임 재시작
     public void GameRetry()
     {
+        MasterAudio.PlaylistsMuted = false; // 배경음악 On        
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void GoTitle()
     {
-       gm.Resume();
+        MasterAudio.PlaylistsMuted = false; // 배경음악 On         
+        gm.Resume();
         LoadingSceneController.LoadScene("Title Scene");
     }
     // 게임 종료

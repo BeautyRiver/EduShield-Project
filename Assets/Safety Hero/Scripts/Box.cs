@@ -7,6 +7,7 @@ using UnityEngine;
 public class Box : MonoBehaviour
 {
     public float health;
+    public float maxHealth;
     private Animator anim;
     private BoxCollider2D coll;
     private void Awake()
@@ -14,18 +15,24 @@ public class Box : MonoBehaviour
         anim = GetComponent<Animator>();
         coll = GetComponent<BoxCollider2D>();
     }
+
+    private void OnEnable()
+    {
+        health = maxHealth;
+        anim.SetBool("Dead", false);
+        coll.enabled = true;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Bullet"))
         {
-            Debug.Log("Bullet IN");
             health -= 1;
             anim.SetTrigger("Hit"); // 맞는 애니메이션 재생                                    
             MasterAudio.PlaySound("Hit"); // 사운드 재생
 
             if (health <= 0) // 체력 0 이하 사망
             {
-                int select = (Random.Range(0, 10) >= 9) ? 2 : 1;
+                int select = (Random.Range(0, 10) >= 8) ? 2 : 1;
 
                 GameObject itemObj = GameManager.instance.pool.Get(PoolManager.PoolType.Item, select); // 아이템 드랍시키기
                 itemObj.transform.position = transform.position;
@@ -45,6 +52,9 @@ public class Box : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
+  
+
 }
 
 

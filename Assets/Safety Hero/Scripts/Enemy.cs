@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
 {
     public enum EnemyType
     {
-        Normal, Uniqe, Box
+        Normal, Uniqe, MiniBoss,
     }
     [Header("적 상태")]
     public EnemyType enemyType;
@@ -52,14 +52,16 @@ public class Enemy : MonoBehaviour
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
                 return;
 
-            if (enemyType == EnemyType.Normal)
+            // 유니크 몬스터가 아닐때 기본 이동
+            if (enemyType != EnemyType.Uniqe)
             {
                 Vector2 dirVec = target.position - rigid.position; // 타겟 방향
                 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
                 rigid.MovePosition(rigid.position + nextVec);
             }
 
-            else if (enemyType == EnemyType.Uniqe)
+            // 유니크 몬스터
+            else
             {
                 rigid.MovePosition(rigid.position + (nextVec * speed * Time.fixedDeltaTime));
             }
@@ -156,17 +158,26 @@ public class Enemy : MonoBehaviour
             anim.SetTrigger("Hit"); // 맞는 애니메이션 재생                                    
             MasterAudio.PlaySound("Hit"); // 사운드 재생
 
-            if (health <= 0) // 체력 0 이하 사망
+            // 체력 0 이하 사망
+            if (health <= 0) 
             {
-                GameObject expObj = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 1); // Exp 드랍시키기
-                expObj.transform.position = transform.position;
-                expObj.GetComponent<Exp>().exp = this.exp;
+                // 미니 보스가 아닐때
+                if (enemyType != EnemyType.MiniBoss)
+                {
+                    GameObject expObj = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 1); // Exp 드랍시키기
+                    expObj.transform.position = transform.position;
+                    expObj.GetComponent<Exp>().exp = this.exp;
+                }
+                else
+                {
+                    GameObject reward = GameManager.instance.pool.Get(PoolManager.PoolType.Item, 3);
+                    reward.transform.position = transform.position;
+                }
 
                 isLive = false;
                 coll.enabled = false; // 콜라이더 끄기
                 rigid.simulated = false;
                 anim.SetBool("Dead", true);
-
                 GameManager.instance.kill++;
 
                 if (GameManager.instance.isLive)

@@ -219,8 +219,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 540265050}
-  - {fileID: 1702076832}
   - {fileID: 1876841561}
+  - {fileID: 1702076832}
   - {fileID: 1026380483}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -242,7 +242,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progressBar: {fileID: 1026380484}
-  progressBarRect: {fileID: 1026380483}
   movingImage: {fileID: 1876841563}
   fillSpeed: 0.5
 --- !u!1 &540265049

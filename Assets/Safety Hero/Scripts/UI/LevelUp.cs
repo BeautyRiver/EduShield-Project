@@ -38,8 +38,8 @@ public class LevelUp : MonoBehaviour
         MasterAudio.PlaySound("LevelUp");
 
         // 비율 기반으로 BGM 볼륨 감소
-        float currentBGMVolume = PlayerPrefs.GetFloat("BGM");
-        MasterAudio.PlaylistMasterVolume = currentBGMVolume * 0.25f;
+        /*float currentBGMVolume = PlayerPrefs.GetFloat("BGM");
+        MasterAudio.PlaylistMasterVolume = currentBGMVolume * 0.25f;*/
     }
     public void Hide()
     {
@@ -59,7 +59,7 @@ public class LevelUp : MonoBehaviour
         MasterAudio.PlaySound("Select");
 
         // 원래 BGM 볼륨으로 복구
-        MasterAudio.PlaylistMasterVolume = PlayerPrefs.GetFloat("BGM");
+        //MasterAudio.PlaylistMasterVolume = PlayerPrefs.GetFloat("BGM");
     }
 
     public void Select(int index)

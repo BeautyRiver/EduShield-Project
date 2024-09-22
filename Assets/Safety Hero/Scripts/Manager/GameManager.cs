@@ -154,7 +154,7 @@ public class GameManager : MonoBehaviour
     // 게임 승리 로직 (코루틴)
     private IEnumerator GameVictoryRoutine()
     {
-        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        player.GetComponent<Animator>().SetFloat("Speed", 0f);
         isLive = false;
         enemyCleaner.SetActive(true);
         yield return new WaitForSeconds(0.5f);
