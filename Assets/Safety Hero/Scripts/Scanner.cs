@@ -10,6 +10,7 @@ public class Scanner : MonoBehaviour
     [Header("# 스캔 (범위 : 사거리)")]
     public float scanRange; 
     public LayerMask targetLayer;
+    public LayerMask miniBossEnemyLayer;
     public LayerMask expLayer;
     public RaycastHit2D[] targets;
     public Transform nearestTarget;
@@ -19,10 +20,16 @@ public class Scanner : MonoBehaviour
     public int expValue = 1; // 획득할 경험치 양
 
     private List<Collider2D> collectedExpItems = new List<Collider2D>(); // 이미 수집된 경험치 아이템 리스트
+    private int combinedLayerMask;
 
+    private void Awake()
+    {
+        combinedLayerMask = targetLayer | miniBossEnemyLayer; // 두 레이어를 함께 검사
+
+    }
     private void FixedUpdate()
     {        
-        targets = Physics2D.CircleCastAll(transform.position, scanRange, Vector2.zero, 0, targetLayer);        
+        targets = Physics2D.CircleCastAll(transform.position, scanRange, Vector2.zero, 0, combinedLayerMask);        
         nearestTarget = GetNearest();
 
         // 경험치 아이템 감지 및 획득

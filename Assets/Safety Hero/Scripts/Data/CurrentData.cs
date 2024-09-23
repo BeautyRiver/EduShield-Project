@@ -28,6 +28,10 @@ public class CurrentData : MonoBehaviour
         OnItemCurrentState += UpdateCurrentData; // 이벤트 등록
     }
 
+    private void OnEnable()
+    {
+        UpdateCurrentData();
+    }
     public void UpdateCurrentData()
     {
         // 모든 아이템을 순회하며 레벨이 0보다 크고 아직 정렬 리스트에 없는 아이템을 추가

@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public GameObject[] titles;
-    public Transform uiOption;
+    public GameObject uiOption;
     public Image fadeImage;
     [SerializeField] float fadeTime;
     private GameManager gm;
@@ -23,16 +23,16 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && GameManager.instance.isLive)
         {
-            if (uiOption.localScale != Vector3.one)
+            if (!uiOption.activeSelf)
             {
                 MasterAudio.PlaySound("BtnClick");
-                uiOption.localScale = Vector3.one;
+                uiOption.SetActive(true);
                 Time.timeScale = 0f;
             }
             else
             {
                 MasterAudio.PlaySound("BtnClick");
-                uiOption.localScale = Vector3.zero;
+                uiOption.SetActive(false);                
                 Time.timeScale = 1f;
             }
         }

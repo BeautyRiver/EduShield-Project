@@ -1,3 +1,4 @@
+using DarkTonic.MasterAudio;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +25,10 @@ public class BoxReward : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            if (arrowAni.gameObject.activeSelf)
+            {
+                MasterAudio.PlaySound("RewardBoxOpen");
+            }
             arrowAni.gameObject.SetActive(false);
             anim.SetBool("Open", true);
             Debug.Log("상자 오픈~");
@@ -33,22 +38,24 @@ public class BoxReward : MonoBehaviour
 
     private IEnumerator ShowReward()
     {
-        int count = Random.Range(25, 60);
+        int count = Random.Range(20, 60);
         for (int i = 0; i < count; i++)
         {
             GameObject exp = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 1);
+            CircleCollider2D coll = exp.GetComponent<CircleCollider2D>();
+            coll.enabled = false;
             exp.GetComponent<Exp>().exp = Random.Range(1, GameManager.instance.player.spawner.level+1);
             exp.transform.position = transform.position;
 
-            Vector2 randomDir = new Vector2(Random.Range(-1f, 1f), 0); // 좌우로만 튀어나가게 설정
+            Vector2 randomDir = new Vector2(Random.Range(-0.7f, 0.7f), Random.Range(-0.2f, 0.2f)); // 좌우로만 튀어나가게 설정
 
             // 무작위 높이와 거리 설정
             float jumpPower = Random.Range(2f, 3f); // 위로 튀어오를 힘 (점프 높이)
-            float randomDistance = Random.Range(2f, 5f);  // 이동할 거리
+            float randomDistance = Random.Range(2f, 4f);  // 이동할 거리
 
             // DOTween으로 점프 애니메이션: 좌우 방향으로 randomDistance만큼 점프
-            exp.transform.DOJump((Vector2)transform.position + randomDir * randomDistance, jumpPower, 1, 0.5f)
-                .SetEase(Ease.OutQuad);
+            exp.transform.DOJump((Vector2)transform.position + randomDir * randomDistance, jumpPower, 1, 1f)
+                .SetEase(Ease.OutQuad).OnComplete(() => { coll.enabled = true; });
             yield return new WaitForSeconds(0.1f);
         }
         gameObject.SetActive(false);

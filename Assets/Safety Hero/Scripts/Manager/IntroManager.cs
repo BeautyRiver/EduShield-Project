@@ -36,6 +36,10 @@ public class IntroManager : MonoBehaviour
     [SerializeField] private Sprite heroImage; // 히어로 이미지
     [SerializeField] private Sprite[] newsImages; // 뉴스 이미지에 사용할 이미지들
 
+    private void Awake()
+    {
+        Application.targetFrameRate = 60;
+    }
     private void Start()
     {
         isTextSkipOk = true;
@@ -77,6 +81,8 @@ public class IntroManager : MonoBehaviour
     {
         if (currentScriptIndex >= scripts.Length)
         {
+            scriptArrow.SetActive(false);
+            isTextSkipOk = false;
             fadeImage.gameObject.SetActive(true);
             fadeImage.DOFade(1, 1f).OnComplete(() =>
             {

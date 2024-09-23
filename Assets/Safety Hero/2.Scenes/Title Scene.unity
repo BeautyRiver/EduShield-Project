@@ -4821,7 +4821,7 @@ MonoBehaviour:
       clip: {fileID: 8300000, guid: 81153410c24f2c7488755c1fd3a2a399, type: 3}
       songName: Title [Juhani Junkala]
       resourceFileName: 
-      volume: 0.1
+      volume: 0.56234133
       pitch: 1
       isExpanded: 1
       isLoop: 1
@@ -7980,7 +7980,7 @@ MonoBehaviour:
   variationTemplate: {fileID: 100000, guid: c00c191bd9edebb4aabab20dce59c26a, type: 3}
   useClipAgePriority: 0
   alwaysHighestPriority: 0
-  groupMasterVolume: 0.1
+  groupMasterVolume: 0.31622776
   retriggerPercentage: 100
   curVariationSequence: 0
   useNoRepeatRefill: 1

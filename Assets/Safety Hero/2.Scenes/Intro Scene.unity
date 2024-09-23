@@ -2693,7 +2693,7 @@ MonoBehaviour:
   groupPlayType: 0
   isSelected: 0
   isExpanded: 1
-  groupMasterVolume: 0.8128305
+  groupMasterVolume: 1
   retriggerPercentage: 100
   curVariationMode: 0
   alwaysHighestPriority: 0
@@ -2740,7 +2740,7 @@ MonoBehaviour:
   soundPlayedEventActive: 0
   soundPlayedCustomEvent: 
   willCleanUpDelegatesAfterStop: 1
-  frames: 189
+  frames: 606
 --- !u!1 &1083903642
 GameObject:
   m_ObjectHideFlags: 0
@@ -3098,7 +3098,7 @@ MonoBehaviour:
   groupPlayType: 0
   isSelected: 0
   isExpanded: 1
-  groupMasterVolume: 0.53703177
+  groupMasterVolume: 1
   retriggerPercentage: 100
   curVariationMode: 0
   alwaysHighestPriority: 0
@@ -3145,7 +3145,7 @@ MonoBehaviour:
   soundPlayedEventActive: 0
   soundPlayedCustomEvent: 
   willCleanUpDelegatesAfterStop: 1
-  frames: 1421
+  frames: 2537
 --- !u!1 &1220471502
 GameObject:
   m_ObjectHideFlags: 0
@@ -3917,7 +3917,7 @@ MonoBehaviour:
   groupPlayType: 0
   isSelected: 0
   isExpanded: 1
-  groupMasterVolume: 0.08317637
+  groupMasterVolume: 0.15488164
   retriggerPercentage: 100
   curVariationMode: 0
   alwaysHighestPriority: 0
@@ -3964,7 +3964,7 @@ MonoBehaviour:
   soundPlayedEventActive: 0
   soundPlayedCustomEvent: 
   willCleanUpDelegatesAfterStop: 1
-  frames: 1947
+  frames: 3191
 --- !u!1 &1671059764
 GameObject:
   m_ObjectHideFlags: 0
@@ -5836,7 +5836,7 @@ MonoBehaviour:
       clip: {fileID: 8300000, guid: 312e39a1df39c9e498a6708ea1a23d12, type: 3}
       songName: News
       resourceFileName: 
-      volume: 0.1
+      volume: 0.31622776
       pitch: 1
       isExpanded: 1
       isLoop: 0

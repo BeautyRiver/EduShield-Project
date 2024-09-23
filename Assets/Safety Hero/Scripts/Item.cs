@@ -16,11 +16,9 @@ public class Item : MonoBehaviour
             switch (itemType)
             {
                 case ItemType.Heal:                    
-                    GameManager.instance.health = Mathf.Min(GameManager.instance.maxHealth, GameManager.instance.health + 5f);
+                    GameManager.instance.health = Mathf.Min(GameManager.instance.maxHealth, GameManager.instance.health + 15f);
                     MasterAudio.PlaySound("Heal");
-                    GameObject healEffect = GameManager.instance.pool.Get(PoolManager.PoolType.Effect, 1); // »˙ ¿Ã∆Â∆Æ
-                    healEffect.transform.parent = GameManager.instance.player.transform;
-                    healEffect.transform.localPosition = Vector3.zero;
+                    
                     gameObject.SetActive(false);
                     break;
                 case ItemType.Magnet:
@@ -28,6 +26,9 @@ public class Item : MonoBehaviour
                     StartCoroutine(GetMagnet());
                     break;         
             }
+            GameObject effect = GameManager.instance.pool.Get(PoolManager.PoolType.Effect, 1); // »˙ ¿Ã∆Â∆Æ
+            effect.transform.parent = GameManager.instance.player.transform;
+            effect.transform.localPosition = Vector3.zero;
         }
     }
     IEnumerator GetMagnet()

@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
     {
         if (GameManager.instance.isLive && isLive)
         {
-            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Hit") && enemyType != EnemyType.MiniBoss)
                 return;
 
             // 유니크 몬스터가 아닐때 기본 이동

@@ -301,7 +301,43 @@ public class Weapon : MonoBehaviour
     // 대포
     private IEnumerator FireDir_00()
     {
+        bool isReverse = false;
         for (int i = 0; i < count; i++)
+        {
+            // isReverse 플래그에 따라 발사 방향 결정 (true면 정방향, false면 반대 방향)
+            Vector3 dir = isReverse ? new Vector3(player.lastInputVec.x, player.lastInputVec.y, 0).normalized : new Vector3(-player.lastInputVec.x, -player.lastInputVec.y, 0).normalized;
+
+
+            Transform bullet = GameManager.instance.pool.Get(PoolManager.PoolType.Weapon, prefabId).transform;
+            bullet.parent = transform;
+            Vector3 spreadOffset = Vector3.zero;
+
+            float random = Random.Range(-4, 5) * 0.2f;
+            // 발사 방향에 따라 발사체 간격을 조절 (오른쪽/왼쪽, 위쪽/아래쪽 모두 지원)
+            spreadOffset = Vector3.Cross(dir, Vector3.forward) * ((i - (count / 2)) * random);
+
+            // 발사체의 시작 위치를 조정
+            Vector3 startPosition = transform.position + spreadOffset;
+
+            bullet.localScale = bulletSize;
+            bullet.position = startPosition;
+            bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);  // 발사 방향에 맞게 회전 설정
+
+            bullet.GetComponent<Bullet>().Init(damage, per, dir, data.itemId);
+            //AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
+
+            // 발사 사운드
+            MasterAudio.PlaySound("Weapon51");
+
+            // 발사 후 약간의 딜레이 추가
+            yield return new WaitForSeconds(buletDelay);  // 총알 사이의 딜레이 설정 (0.1초)        
+                                                          
+            isReverse = !isReverse; // 매번 방향을 반대로 변경
+        }
+
+        isAttacking = false;
+
+        /*for (int i = 0; i < count; i++)
         {
             Vector3 dir = new Vector3(-player.lastInputVec.x, -player.lastInputVec.y, 0).normalized; // 플레이어 반대 방향으로 발사
             Transform bullet = GameManager.instance.pool.Get(PoolManager.PoolType.Weapon, prefabId).transform;
@@ -322,7 +358,7 @@ public class Weapon : MonoBehaviour
             yield return new WaitForSeconds(buletDelay);  // 총알 사이의 딜레이 설정 (0.1초)
         }
         isAttacking = false;
-        //AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
+        //AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);*/
     }
 
     // 창
