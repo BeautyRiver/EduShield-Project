@@ -2693,7 +2693,7 @@ MonoBehaviour:
   groupPlayType: 0
   isSelected: 0
   isExpanded: 1
-  groupMasterVolume: 0.66069347
+  groupMasterVolume: 0.8128305
   retriggerPercentage: 100
   curVariationMode: 0
   alwaysHighestPriority: 0
@@ -3098,7 +3098,7 @@ MonoBehaviour:
   groupPlayType: 0
   isSelected: 0
   isExpanded: 1
-  groupMasterVolume: 1
+  groupMasterVolume: 0.53703177
   retriggerPercentage: 100
   curVariationMode: 0
   alwaysHighestPriority: 0
@@ -3145,7 +3145,7 @@ MonoBehaviour:
   soundPlayedEventActive: 0
   soundPlayedCustomEvent: 
   willCleanUpDelegatesAfterStop: 1
-  frames: 1413
+  frames: 1421
 --- !u!1 &1220471502
 GameObject:
   m_ObjectHideFlags: 0
@@ -3201,8 +3201,8 @@ MonoBehaviour:
     \uB300\uC751</color>\uAE4C\uC9C0, \uB2E4\uC591\uD55C \uC7AC\uB09C \uC0C1\uD669\uC5D0\uC11C
     \uC2DC\uBBFC\uB4E4\uC744 \uC9C0\uD0A4\uACE0 \uC788\uC2B5\uB2C8\uB2E4."
   - "\uACFC\uC5F0 \uC774 \uC601\uC6C5 \uB355\uBD84\uC5D0 \uC2DC\uBBFC\uB4E4\uC774
-    \uC7AC\uB09C\uC5D0 \uB300\uD55C \uB450\uB824\uC6C0 \uC5C6\uC774 \uC548\uC804\uC744
-    \uB418\uCC3E\uC744 \uC218 \uC788\uC744\uAE4C\uC694?"
+    \uC7AC\uB09C\uC5D0 \uB300\uD55C \uB450\uB824\uC6C0\uC744 \uB5A8\uCE60 \uC218
+    \uC788\uC744\uAE4C\uC694 ?"
   - "\uC774\uC0C1, \uC694\uC998 \uD654\uC7AC\uC600\uB358 <b><color=#B0FFA8>\"\uC138\uC774\uD504\uD2F0
     \uD788\uC5B4\uB85C\"</color></b>\uC5D0 \uAD00\uD55C \uB0B4\uC6A9\uC774\uC600\uC2B5\uB2C8\uB2E4."
   - "\uB2E4\uC74C \uC18C\uC2DD\uC785\uB2C8\uB2E4...."
@@ -3964,7 +3964,7 @@ MonoBehaviour:
   soundPlayedEventActive: 0
   soundPlayedCustomEvent: 
   willCleanUpDelegatesAfterStop: 1
-  frames: 1889
+  frames: 1947
 --- !u!1 &1671059764
 GameObject:
   m_ObjectHideFlags: 0

@@ -200,7 +200,7 @@ MonoBehaviour:
       clip: {fileID: 8300000, guid: 0adb3d6853b29574caad23a38639ff75, type: 3}
       songName: Game 0 [Juhani Junkala]
       resourceFileName: 
-      volume: 0.17782794
+      volume: 0.1
       pitch: 1
       isExpanded: 1
       isLoop: 0
@@ -227,7 +227,7 @@ MonoBehaviour:
       clip: {fileID: 8300000, guid: a61bd11333682da48abff12879122660, type: 3}
       songName: Game 1 [Juhani Junkala]
       resourceFileName: 
-      volume: 0.17782794
+      volume: 0.1
       pitch: 1
       isExpanded: 1
       isLoop: 0
@@ -1286,7 +1286,7 @@ MonoBehaviour:
   variationTemplate: {fileID: 100000, guid: c00c191bd9edebb4aabab20dce59c26a, type: 3}
   useClipAgePriority: 0
   alwaysHighestPriority: 0
-  groupMasterVolume: 0.31622776
+  groupMasterVolume: 0.17782794
   retriggerPercentage: 100
   curVariationSequence: 0
   useNoRepeatRefill: 1
@@ -4431,7 +4431,7 @@ MonoBehaviour:
   variationTemplate: {fileID: 100000, guid: c00c191bd9edebb4aabab20dce59c26a, type: 3}
   useClipAgePriority: 0
   alwaysHighestPriority: 0
-  groupMasterVolume: 1
+  groupMasterVolume: 0.25118864
   retriggerPercentage: 100
   curVariationSequence: 0
   useNoRepeatRefill: 1
@@ -6794,7 +6794,7 @@ MonoBehaviour:
   variationTemplate: {fileID: 100000, guid: c00c191bd9edebb4aabab20dce59c26a, type: 3}
   useClipAgePriority: 0
   alwaysHighestPriority: 0
-  groupMasterVolume: 1
+  groupMasterVolume: 0.17782794
   retriggerPercentage: 100
   curVariationSequence: 0
   useNoRepeatRefill: 1
@@ -33410,7 +33410,7 @@ MonoBehaviour:
   variationTemplate: {fileID: 100000, guid: c00c191bd9edebb4aabab20dce59c26a, type: 3}
   useClipAgePriority: 0
   alwaysHighestPriority: 0
-  groupMasterVolume: 0.56234133
+  groupMasterVolume: 0.31622776
   retriggerPercentage: 100
   curVariationSequence: 0
   useNoRepeatRefill: 1
@@ -33509,7 +33509,7 @@ MonoBehaviour:
   variationTemplate: {fileID: 100000, guid: c00c191bd9edebb4aabab20dce59c26a, type: 3}
   useClipAgePriority: 0
   alwaysHighestPriority: 0
-  groupMasterVolume: 1
+  groupMasterVolume: 0.56234133
   retriggerPercentage: 100
   curVariationSequence: 0
   useNoRepeatRefill: 1
@@ -38487,7 +38487,7 @@ MonoBehaviour:
   variationTemplate: {fileID: 100000, guid: c00c191bd9edebb4aabab20dce59c26a, type: 3}
   useClipAgePriority: 0
   alwaysHighestPriority: 0
-  groupMasterVolume: 1
+  groupMasterVolume: 0.56234133
   retriggerPercentage: 100
   curVariationSequence: 0
   useNoRepeatRefill: 1
@@ -38584,7 +38584,7 @@ MonoBehaviour:
   variationTemplate: {fileID: 100000, guid: c00c191bd9edebb4aabab20dce59c26a, type: 3}
   useClipAgePriority: 0
   alwaysHighestPriority: 0
-  groupMasterVolume: 0.31622776
+  groupMasterVolume: 0.1
   retriggerPercentage: 100
   curVariationSequence: 0
   useNoRepeatRefill: 1
@@ -38756,7 +38756,7 @@ MonoBehaviour:
   variationTemplate: {fileID: 100000, guid: c00c191bd9edebb4aabab20dce59c26a, type: 3}
   useClipAgePriority: 0
   alwaysHighestPriority: 0
-  groupMasterVolume: 0.31622776
+  groupMasterVolume: 0.17782794
   retriggerPercentage: 100
   curVariationSequence: 0
   useNoRepeatRefill: 1
@@ -38959,7 +38959,7 @@ MonoBehaviour:
   variationTemplate: {fileID: 100000, guid: c00c191bd9edebb4aabab20dce59c26a, type: 3}
   useClipAgePriority: 0
   alwaysHighestPriority: 0
-  groupMasterVolume: 1
+  groupMasterVolume: 0.17782794
   retriggerPercentage: 100
   curVariationSequence: 0
   useNoRepeatRefill: 1
@@ -44936,7 +44936,7 @@ MonoBehaviour:
   variationTemplate: {fileID: 100000, guid: c00c191bd9edebb4aabab20dce59c26a, type: 3}
   useClipAgePriority: 0
   alwaysHighestPriority: 0
-  groupMasterVolume: 1
+  groupMasterVolume: 0.31622776
   retriggerPercentage: 100
   curVariationSequence: 0
   useNoRepeatRefill: 1
@@ -53010,7 +53010,7 @@ MonoBehaviour:
   variationTemplate: {fileID: 100000, guid: c00c191bd9edebb4aabab20dce59c26a, type: 3}
   useClipAgePriority: 0
   alwaysHighestPriority: 0
-  groupMasterVolume: 0.31622776
+  groupMasterVolume: 0.17782794
   retriggerPercentage: 100
   curVariationSequence: 0
   useNoRepeatRefill: 1
@@ -54745,7 +54745,7 @@ MonoBehaviour:
   variationTemplate: {fileID: 100000, guid: c00c191bd9edebb4aabab20dce59c26a, type: 3}
   useClipAgePriority: 0
   alwaysHighestPriority: 0
-  groupMasterVolume: 1
+  groupMasterVolume: 0.31622776
   retriggerPercentage: 100
   curVariationSequence: 0
   useNoRepeatRefill: 1
@@ -56020,7 +56020,7 @@ MonoBehaviour:
   variationTemplate: {fileID: 100000, guid: c00c191bd9edebb4aabab20dce59c26a, type: 3}
   useClipAgePriority: 0
   alwaysHighestPriority: 0
-  groupMasterVolume: 1
+  groupMasterVolume: 0.17782794
   retriggerPercentage: 100
   curVariationSequence: 0
   useNoRepeatRefill: 1
@@ -56998,7 +56998,7 @@ MonoBehaviour:
   variationTemplate: {fileID: 100000, guid: c00c191bd9edebb4aabab20dce59c26a, type: 3}
   useClipAgePriority: 0
   alwaysHighestPriority: 0
-  groupMasterVolume: 0.31622776
+  groupMasterVolume: 0.1
   retriggerPercentage: 100
   curVariationSequence: 0
   useNoRepeatRefill: 1
