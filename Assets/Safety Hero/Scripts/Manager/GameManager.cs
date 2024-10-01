@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public int weaponCount = 0;  // 획득한 무기 개수
     public int gearCount = 0;    // 획득한 기어 개수
     public int maxItemCount = 1; // 최대 장착 가능한 무기/기어 개수
+    public float nowTimeScale = 1f;
     public float dieMsgDelay;
     public int selectStageIdx;
     private bool isGamestart;
@@ -195,6 +196,6 @@ public class GameManager : MonoBehaviour
     public void Resume()
     {
         isLive = true;
-        Time.timeScale = 1;
+        Time.timeScale = nowTimeScale;
     }
 }

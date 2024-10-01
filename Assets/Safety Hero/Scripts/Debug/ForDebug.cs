@@ -74,18 +74,16 @@ public class ForDebug : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F4))
         {
-            if (!is2xSpeed)
-            {
-                is2xSpeed = true;
-                Time.timeScale = 5f;
-                debugText.text = "5배속";
-            }
-            else
-            {
-                is2xSpeed = false;
-                Time.timeScale = 1f;
-                debugText.text = "5배속 해제";
-            }
+            //is2xSpeed = true;
+            GameManager.instance.nowTimeScale += 0.5f;
+            Time.timeScale = GameManager.instance.nowTimeScale;
+            debugText.text = $"+0.5배속 / 현재 TimeScale: {GameManager.instance.nowTimeScale}";
+        }
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            GameManager.instance.nowTimeScale -= 0.5f;
+            Time.timeScale = GameManager.instance.nowTimeScale;
+            debugText.text = $"-0.5배속 / 현재 TimeScale: {GameManager.instance.nowTimeScale}";
         }
     }
 }

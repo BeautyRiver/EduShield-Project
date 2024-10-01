@@ -33,7 +33,7 @@ public class UIManager : MonoBehaviour
             {
                 MasterAudio.PlaySound("BtnClick");
                 uiOption.SetActive(false);                
-                Time.timeScale = 1f;
+                Time.timeScale = GameManager.instance.nowTimeScale;
             }
         }
     }
