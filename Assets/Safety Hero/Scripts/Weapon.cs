@@ -24,7 +24,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private float speedTimer; // 원거리 무기 타이머
     private GameManager gameManager;
     private Player player;
-
+    
     private void Awake()
     {
         gameManager = GameManager.instance;
@@ -32,23 +32,30 @@ public class Weapon : MonoBehaviour
     }
     private void Update()
     {
-        if (gameManager.isLive)
-        {
-            switch (data.itemType)
-            {
-                case ItemData.ItemType.MWeapon_1: // 회전무기                                               
-                    transform.Rotate(Vector3.back * buletDelay * Time.deltaTime); // 무기 회전
-                    UpdateTimer(); 
-                    break;
+        if (!gameManager.isLive)
+            return;
+        
+        switch (data.itemType)
+         {            
+             case ItemData.ItemType.MWeapon_1: // 회전무기                                                               
+                 transform.Rotate(Vector3.back * buletDelay * Time.deltaTime); // 무기 회전
+                 UpdateTimer();
+                 break;
 
-                case ItemData.ItemType.MWeapon_0: // 가스
-                case ItemData.ItemType.RWeapon_0: // 단발총                   
-                case ItemData.ItemType.RWeapon_1: // 대포                   
-                case ItemData.ItemType.RWeapon_2: // 창던지기
-                    UpdateTimer();
-                    break;
-            }
-        }
+             case ItemData.ItemType.MWeapon_0: // 가스
+             case ItemData.ItemType.RWeapon_0: // 단발총                   
+             case ItemData.ItemType.RWeapon_1: // 대포                   
+             case ItemData.ItemType.RWeapon_2: // 창던지기
+                 UpdateTimer();
+                 break;
+         }
+
+    }
+    private void OnEnable()
+    {        
+        StopAllCoroutines();
+        isAttacking = false;
+        speedTimer = weaponSpeed - 0.01f;
     }
     // 초기 설정 함수
     public void Init(ItemData data)
@@ -81,10 +88,9 @@ public class Weapon : MonoBehaviour
         // 기본 공격 속도 설정
         switch (data.itemType)
         {
-            case ItemData.ItemType.MWeapon_1: // 삽
+            case ItemData.ItemType.MWeapon_1: // 회전무기
                 // 캐릭터별 무기 회전 속도 설정
                 buletDelay = (float)System.Math.Round(buletDelay * gameManager.playerData.atkSpeedMult, 2);
-                //Batch(); // 회전 무기 배치
                 break;
 
             // 무기 딜레이
@@ -250,7 +256,6 @@ public class Weapon : MonoBehaviour
     }
     private IEnumerator Melee_01()
     {
-        Debug.Log("Melee_01 접속");
         Batch();
         yield return new WaitForSeconds(roationTime);
         for (int index = 0; index < count; index++) // 불릿 수만큼 반복

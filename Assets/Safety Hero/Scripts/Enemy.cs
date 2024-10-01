@@ -147,7 +147,7 @@ public class Enemy : MonoBehaviour
             ShowDamageText(damage.ToString("F1"), damage, hitPos, Color.white); // 기본 데미지
 
             // 추가 데미지 구현 로직
-            if (bulletInfo.id == id)
+            if (bulletInfo.id == id + 1)
             {
                 health -= damage * 0.5f;
                 // 충돌한 지점의 정확한 위치를 구하기

@@ -22,7 +22,7 @@ public class LevelUp : MonoBehaviour
 
     public void Show()
     {
-        CurrentData.OnItemCurrentState?.Invoke(); // 이벤트 호출
+        //EquipmentManager.OnItemCurrentState?.Invoke(); // 이벤트 호출
 
         blackWindow.DOFade(0.75f, 0.5f).SetUpdate(true); // 검은 배경 On
         Next(); // 섞기
@@ -62,9 +62,16 @@ public class LevelUp : MonoBehaviour
         //MasterAudio.PlaylistMasterVolume = PlayerPrefs.GetFloat("BGM");
     }
 
-    public void Select(int index)
+    public void FirstGiveWeapon(int index)
     {
-        items[index].OnClick();
+        //items[index].OnClick();
+        foreach (var item in items)
+        {
+            if (item.data.itemCategory == ItemData.ItemCategory.Weapon) // itemCategory가 Weapon인 경우
+            {
+                item.OnClick(); // OnClick 실행                
+            }
+        }
     }
 
     private void Next()

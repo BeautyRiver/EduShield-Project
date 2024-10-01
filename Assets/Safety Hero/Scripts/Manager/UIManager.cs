@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public Image fadeImage;
     [SerializeField] float fadeTime;
     private GameManager gm;
+    
     private void Start()
     {
         fadeImage.gameObject.SetActive(true);
