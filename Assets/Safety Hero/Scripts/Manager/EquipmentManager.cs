@@ -131,10 +131,10 @@ public class EquipmentManager : MonoBehaviour
                 coolDownImages[index].DOFillAmount(0f, gm.swapDelay).OnComplete(() =>
                 {
                     Vector3 originalVec = equipImages[index].transform.localScale;
-                    equipImages[index].rectTransform.DOScale(originalVec * 1.2f, 0.2f).OnComplete(() =>
+                    equipImages[index].rectTransform.DOScale(originalVec * 1.2f, 0.05f).OnComplete(() =>
                     {
-                        equipImages[index].rectTransform.DOScale(originalVec, 0.2f);
-                        equipImages[index].DOFade(0.15f, 0.1f).SetLoops(2, LoopType.Yoyo);
+                        equipImages[index].DOFade(0.2f, 0.1f).SetLoops(2, LoopType.Yoyo);
+                        equipImages[index].rectTransform.DOScale(originalVec, 0.1f);
                     });
                 });
             }
