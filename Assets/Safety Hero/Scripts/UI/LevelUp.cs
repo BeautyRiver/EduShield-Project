@@ -22,7 +22,7 @@ public class LevelUp : MonoBehaviour
 
     public void Show()
     {
-        //EquipmentManager.OnItemCurrentState?.Invoke(); // 이벤트 호출
+        //EquipmentManager.onItemCurrentState?.Invoke(); // 이벤트 호출
 
         blackWindow.DOFade(0.75f, 0.5f).SetUpdate(true); // 검은 배경 On
         Next(); // 섞기

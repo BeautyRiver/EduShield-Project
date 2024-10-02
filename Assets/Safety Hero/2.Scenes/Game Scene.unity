@@ -24266,7 +24266,7 @@ GameObject:
   - component: {fileID: 351259401}
   - component: {fileID: 351259400}
   m_Layer: 5
-  m_Name: Weapons
+  m_Name: Can Swap Weapons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24311,6 +24311,7 @@ MonoBehaviour:
   category: 2
   itemGroup: {fileID: 2139165606}
   equipImages: []
+  coolDownImages: []
   equipLevelTexts: []
 --- !u!114 &351259401
 MonoBehaviour:
@@ -33227,6 +33228,12 @@ MonoBehaviour:
   - {fileID: 960636969}
   uiOption: {fileID: 1789267625}
   fadeImage: {fileID: 121583205}
+  swapCoolDownImages:
+  - {fileID: 1846149356}
+  - {fileID: 338498873}
+  - {fileID: 1779911420}
+  - {fileID: 1552062207}
+  - {fileID: 1641514762}
   fadeTime: 1
 --- !u!1 &609075547
 GameObject:
@@ -35036,6 +35043,7 @@ MonoBehaviour:
   category: 1
   itemGroup: {fileID: 2139165606}
   equipImages: []
+  coolDownImages: []
   equipLevelTexts: []
 --- !u!114 &663614236
 MonoBehaviour:
@@ -43119,6 +43127,7 @@ MonoBehaviour:
   category: 0
   itemGroup: {fileID: 2139165606}
   equipImages: []
+  coolDownImages: []
   equipLevelTexts: []
 --- !u!1 &1075935331
 GameObject:
@@ -44527,6 +44536,7 @@ MonoBehaviour:
   category: 1
   itemGroup: {fileID: 2139165606}
   equipImages: []
+  coolDownImages: []
   equipLevelTexts: []
 --- !u!114 &1152832281
 MonoBehaviour:
@@ -50004,7 +50014,7 @@ MonoBehaviour:
   nowTimeScale: 1
   dieMsgDelay: 3
   selectStageIdx: 0
-  nextExp: 0a0000000f00000014000000230000002d00000041000000550000006e0000008c000000aa000000d2000000f00000000e0100002c010000
+  nextExp: 0a0000000f00000014000000230000002d00000041000000550000006e0000008c000000aa000000d2000000f00000000e0100002c0100005e010000
   playerId: 0
   health: 0
   maxHealth: 100
@@ -56537,6 +56547,7 @@ MonoBehaviour:
   category: 0
   itemGroup: {fileID: 2139165606}
   equipImages: []
+  coolDownImages: []
   equipLevelTexts: []
 --- !u!114 &1659822015
 MonoBehaviour:

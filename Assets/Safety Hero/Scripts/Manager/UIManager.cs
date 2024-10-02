@@ -1,7 +1,9 @@
 using DarkTonic.MasterAudio;
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,19 +12,26 @@ public class UIManager : MonoBehaviour
 {
     public GameObject[] titles;
     public GameObject uiOption;
+
     public Image fadeImage;
-    [SerializeField] float fadeTime;
+    public Image[] swapCoolDownImages;
+    [SerializeField]
+    private float fadeTime;
+
     private GameManager gm;
-    
+
     private void Start()
     {
         fadeImage.gameObject.SetActive(true);
         gm = GameManager.instance;
-        fadeImage.DOFade(0, fadeTime).OnComplete(()=> fadeImage.gameObject.SetActive(false));
+        fadeImage.DOFade(0, fadeTime).OnComplete(() => fadeImage.gameObject.SetActive(false));
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && GameManager.instance.isLive)
+        if (!gm.isLive)
+            return;
+
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (!uiOption.activeSelf)
             {
@@ -33,12 +42,13 @@ public class UIManager : MonoBehaviour
             else
             {
                 MasterAudio.PlaySound("BtnClick");
-                uiOption.SetActive(false);                
-                Time.timeScale = GameManager.instance.nowTimeScale;
+                uiOption.SetActive(false);
+                Time.timeScale = gm.nowTimeScale;
             }
         }
     }
-        public void Lose()
+
+    public void Lose()
     {
         titles[0].SetActive(true);
     }

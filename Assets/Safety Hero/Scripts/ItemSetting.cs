@@ -176,7 +176,7 @@ public class ItemSetting : MonoBehaviour
                 }
                 break;
         }
-        EquipmentManager.OnItemCurrentState?.Invoke(); // 이벤트 호출
+        EquipmentManager.onItemCurrentState?.Invoke(); // 이벤트 호출
         if (level == data.maxLevel)
         {
             GetComponent<Button>().interactable = false;
@@ -210,7 +210,6 @@ public class ItemSetting : MonoBehaviour
             weapon = newWeapon.AddComponent<Weapon>();
             weapon.Init(data);
             GameManager.instance.weaponCount++; // 무기 개수 추가(최대 5개)
-            weapon.gameObject.SetActive(false);
         }
         else // 무기가 존재할때
         {            
