@@ -28,10 +28,7 @@ public class GameManager : MonoBehaviour
     public int level; // 현재 레벨
     public int kill; // 처치한 적 수
     public int exp; // 현재 경험치
-    public bool[] equipWeaponState; // 현재 장착한 무기
-    public float swapDelay = 3f; // 무기 스왑 딜레이
-    public float swapTimer; // 무기 스왑 딜레이 타이머
-    public int weaponIndex; // 현재 선택된 무기 인덱스
+ 
     [Header("# 참조")]
     public PoolManager pool;
     public AiManager aiManager;
@@ -45,12 +42,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float[] aiMsgShowTime = { 1.5f, 3f, 4f };
     private void Awake()
     {
-        equipWeaponState = new bool[] { true, false, false, false, false };
-        swapTimer = swapDelay;
-
-        weaponIndex = 0; // 기본 무기 = 0번무기
-        selectStageIdx = -1;
         instance = this;
+
+        selectStageIdx = -1;
         StartCoroutine(RandomStageIndex());
     }
 
@@ -66,42 +60,9 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (!isLive || !isGamestart)
-            return;
+            return;        
 
-        swapTimer = Mathf.Max(swapTimer - Time.deltaTime, 0f);
-
-        if ((Input.GetKeyDown(KeyCode.Alpha1) ||
-            Input.GetKeyDown(KeyCode.Alpha2) ||
-            Input.GetKeyDown(KeyCode.Alpha3) ||
-            Input.GetKeyDown(KeyCode.Alpha4) ||
-            Input.GetKeyDown(KeyCode.Alpha5)) && swapTimer <= 0)
-        {
-            // 이전 무기 인덱스를 저장
-            int previousWeaponIndex = weaponIndex;
-
-            if (Input.GetKeyDown(KeyCode.Alpha1)) weaponIndex = 0;
-            else if (Input.GetKeyDown(KeyCode.Alpha2)) weaponIndex = 1;
-            else if (Input.GetKeyDown(KeyCode.Alpha3)) weaponIndex = 2;
-            else if (Input.GetKeyDown(KeyCode.Alpha4)) weaponIndex = 3;
-            else if (Input.GetKeyDown(KeyCode.Alpha5)) weaponIndex = 4;
-
-            // 현재 선택한 무기가 이전과 동일하면 리턴 (무기 변경하지 않음)
-            if (weaponIndex == previousWeaponIndex)
-            {
-                return;
-            }
-
-            // 무기 스왑이 발생했을 때 UI 업데이트 이벤트 호출
-            EquipmentManager.coolDownImageEvent?.Invoke();
-
-            // 스왑 타이머 리셋
-            swapTimer = swapDelay;
-
-            // 모든 무기 상태를 false로 초기화하고, 선택한 무기만 true로 설정
-            EquipWeaponActiveOn();
-        }
-
-        // 시간 계산
+        // 게임 시간 계산
         gameTime += Time.deltaTime;
         if (gameTime > maxGameTime)
         {
@@ -110,15 +71,12 @@ public class GameManager : MonoBehaviour
         }
 
     }
-
-    private void EquipWeaponActiveOn()
+    // 이펙트 생성시키기
+    public void GenerateEffect(int index, Transform parentTransform)
     {
-        for (int i = 0; i < equipWeaponState.Length; i++)
-        {
-            Weapon[] weapons = player.gameObject.GetComponentsInChildren<Weapon>(true);
-            weapons[i].gameObject.SetActive(weapons[i].data.itemId == weaponIndex);
-            equipWeaponState[i] = (i == weaponIndex);
-        }
+        GameObject effect = pool.Get(PoolManager.PoolType.Effect, index); // 힐 이펙트
+        effect.transform.parent = parentTransform;
+        effect.transform.localPosition = Vector3.zero;
     }
 
     // Ai 메세지 띄어주기
@@ -133,8 +91,6 @@ public class GameManager : MonoBehaviour
         {
             isGamestart = true;
             uiLevelUp.FirstGiveWeapon(playerData.characterId); // 플레이어 기본 무기 부여
-            EquipmentManager.coolDownImageEvent?.Invoke(); // 무기 쿨 다운 이미지 작동
-            EquipWeaponActiveOn(); // 모든 무기 상태를 false로 초기화하고, 선택한 무기만 true로 설정 (기본무기 키기)
             player.spawner.gameObject.SetActive(true);
         }
         yield return new WaitForSeconds(aiMsgShowTime[2]);

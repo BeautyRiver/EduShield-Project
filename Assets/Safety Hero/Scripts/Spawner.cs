@@ -57,7 +57,7 @@ public class Spawner : MonoBehaviour
             // 레벨 변화 체크
             if (prevLevel != level)
             {
-                GameManager.instance.RandomStageIndex();
+                StartCoroutine(GameManager.instance.RandomStageIndex());
                 StartCoroutine(GameManager.instance.AIMsgShowAndHide());
                 normalSpawnData[level].spriteType = GameManager.instance.selectStageIdx;
                 prevLevel = level; // 이전 레벨을 현재 레벨로 업데이트

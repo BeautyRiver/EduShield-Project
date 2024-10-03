@@ -64,14 +64,7 @@ public class LevelUp : MonoBehaviour
 
     public void FirstGiveWeapon(int index)
     {
-        //items[index].OnClick();
-        foreach (var item in items)
-        {
-            if (item.data.itemCategory == ItemData.ItemCategory.Weapon) // itemCategory가 Weapon인 경우
-            {
-                item.OnClick(); // OnClick 실행                
-            }
-        }
+        items[index].OnClick();        
     }
 
     private void Next()

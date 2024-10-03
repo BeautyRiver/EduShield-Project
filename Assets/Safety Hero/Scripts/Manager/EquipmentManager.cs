@@ -9,9 +9,8 @@ using DG.Tweening;
 public class EquipmentManager : MonoBehaviour
 {
     public static Action onItemCurrentState; // Action 이벤트
-    public static Action coolDownImageEvent;
 
-    public enum Category { Weapon, Gear, SwapWeaponUI }
+    public enum Category { Weapon, Gear }
 
     [Header("Settings")]
     public Category category;
@@ -20,7 +19,6 @@ public class EquipmentManager : MonoBehaviour
 
     [Header("UI References")]
     public List<Image> equipImages;
-    public List<Image> coolDownImages;
     public List<TextMeshProUGUI> equipLevelTexts;
 
     private List<ItemSetting> _data;
@@ -35,12 +33,10 @@ public class EquipmentManager : MonoBehaviour
     {
         UpdateCurrentData();
         onItemCurrentState += UpdateCurrentData; // 이벤트 등록
-        coolDownImageEvent += CoolDownImageChangeFillAmount;
     }
     private void OnDestroy()
     {
         onItemCurrentState -= UpdateCurrentData;
-        coolDownImageEvent -= CoolDownImageChangeFillAmount;
     }
 
     public void UpdateCurrentData()
@@ -73,7 +69,6 @@ public class EquipmentManager : MonoBehaviour
         _sortData = new List<ItemSetting>();
         equipImages = new List<Image>();
         equipLevelTexts = new List<TextMeshProUGUI>();
-        coolDownImages = new List<Image>();
 
         // 아이템 그룹에서 모든 ItemSetting 컴포넌트 가져오기
         ItemSetting[] items = itemGroup.GetComponentsInChildren<ItemSetting>(true);
@@ -81,7 +76,7 @@ public class EquipmentManager : MonoBehaviour
         // 현재 아이템 그룹에서 무기와 기어 데이터를 분류하여 추가
         foreach (ItemSetting item in items)
         {
-            if (item.data.itemCategory == ItemData.ItemCategory.Weapon && (category == Category.Weapon || category == Category.SwapWeaponUI))
+            if (item.data.itemCategory == ItemData.ItemCategory.Weapon && category == Category.Weapon)
                 _data.Add(item);
 
             else if (item.data.itemCategory == ItemData.ItemCategory.Gear && category == Category.Gear)
@@ -94,9 +89,6 @@ public class EquipmentManager : MonoBehaviour
             Image[] images = transform.GetChild(i).GetComponentsInChildren<Image>();
             equipLevelTexts.Add(images[0].gameObject.GetComponentInChildren<TextMeshProUGUI>(true));
             equipImages.Add(images[1]);
-
-            if (category == Category.SwapWeaponUI)
-                coolDownImages.Add(images[2]);
         }
 
         // 총 행(row) 수 저장
@@ -110,37 +102,7 @@ public class EquipmentManager : MonoBehaviour
         }
     }
 
-    private void CoolDownImageChangeFillAmount()
-    {
-        GameManager gm = GameManager.instance;
-        // 모든 쿨다운 이미지를 초기화
-        foreach (var item in coolDownImages)
-        {
-            item.fillAmount = 1f;
-        }
-
-        for (int i = 0; i < coolDownImages.Count; i++)
-        {
-            if (i != gm.weaponIndex)
-            {
-                // 지역 변수로 i 값을 고정
-                int index = i;
-
-                coolDownImages[index].DOKill();
-                // 안전한 범위 내에서만 Tween 실행
-                coolDownImages[index].DOFillAmount(0f, gm.swapDelay).OnComplete(() =>
-                {
-                    Vector3 originalVec = equipImages[index].transform.localScale;
-                    equipImages[index].rectTransform.DOScale(originalVec * 1.2f, 0.05f).OnComplete(() =>
-                    {
-                        equipImages[index].DOFade(0.2f, 0.1f).SetLoops(2, LoopType.Yoyo);
-                        equipImages[index].rectTransform.DOScale(originalVec, 0.1f);
-                    });
-                });
-            }
-        }
-
-    }
+   
 }
 
 

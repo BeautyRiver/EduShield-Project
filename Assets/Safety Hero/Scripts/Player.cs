@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ public class Player : MonoBehaviour
     [HideInInspector] public Spawner spawner;
 
     [Header("애니메이션")]
-    public RuntimeAnimatorController[] animCon; // 플레이어 애니메이터 컨트롤러
+    [SerializeField] private List<PlayerAnimatorControll> animCon; // 플레이어 애니메이터 컨트롤러
 
     [Header("피격 관리")]
     private Color hitColor; // 피격 시 색상
@@ -31,8 +32,9 @@ public class Player : MonoBehaviour
     private SpriteRenderer spriter;
     private Rigidbody2D rigid; 
     private Animator anim;
-    private GameManager gameManager; // 게임 매니저 참조
-    private CapsuleCollider2D col; 
+    private GameManager gm; // 게임 매니저 참조
+    private CapsuleCollider2D col;
+    private bool isTransforming;
 
     private void Awake()
     {        
@@ -50,12 +52,12 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        gameManager = GameManager.instance;              
+        gm = GameManager.instance;              
     }
 
     private void Update()
     {
-        if (gameManager.isLive)
+        if (gm.isLive)
         {
             // 입력 벡터 설정
             inputVec.x = Input.GetAxisRaw("Horizontal");
@@ -76,7 +78,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (gameManager.isLive)
+        if (gm.isLive)
         {
             Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
             rigid.MovePosition(rigid.position + nextVec);
@@ -85,7 +87,7 @@ public class Player : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (gameManager.isLive)
+        if (gm.isLive)
         {
             // Animator 세팅
             anim.SetFloat("Speed", inputVec.magnitude);
@@ -101,18 +103,18 @@ public class Player : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
         // 플레이어가 생존중이 아니라면 실행 X
-        if (gameManager.isLive == false)
+        if (gm.isLive == false)
             return;
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            gameManager.health -= Time.deltaTime * collision.gameObject.GetComponent<Enemy>().damage;
+            gm.health -= Time.deltaTime * collision.gameObject.GetComponent<Enemy>().damage;
 
             // 플레이어 피격색상 변경
-            if (!isHiting)
-                StartCoroutine(ColorChangeCol());
+            if (!isHiting && !isTransforming)
+                StartCoroutine(HitColor());
 
-            if (gameManager.health < 0)
+            if (gm.health < 0)
             {
                 for (int index = 2; index < transform.childCount; index++)
                 {
@@ -127,7 +129,7 @@ public class Player : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         // 플레이어가 생존중이 아니라면 실행 X
-        if (gameManager.isLive == false)
+        if (gm.isLive == false)
             return;
 
         if (collision.gameObject.CompareTag("Enemy"))
@@ -137,7 +139,7 @@ public class Player : MonoBehaviour
     }
 
     // 피격 색상 변경 코루틴
-    private IEnumerator ColorChangeCol()
+    private IEnumerator HitColor()
     {
         isHiting = true;
         spriter.color = hitColor;
@@ -146,18 +148,46 @@ public class Player : MonoBehaviour
         isHiting = false;
     }
 
+    // 변신중 색상 변경 코루틴
+    public IEnumerator TransformationColor(int idx)
+    {
+        isTransforming = true;
+        gm.GenerateEffect(1, transform);
+        Vector3 originalScale = transform.localScale;
+
+        transform.DOScale(originalScale * 1.2f, 0.05f).OnComplete(() =>
+        {
+            spriter.DOFade(0.2f, 0.1f).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
+            {
+                anim.runtimeAnimatorController = animCon[gm.playerId].runAniCon[idx];
+            });
+            transform.DOScale(originalScale, 0.1f);
+        });
+        yield return new WaitForSeconds(0.2f);
+
+        isTransforming = false;
+    }
+
     // 플레이어 초기화
     public void PlayerInit()
     {
-        speed = speed * gameManager.playerData.speedMult; // 플레이어 기본 이동속도 적용
-        anim.runtimeAnimatorController = animCon[gameManager.playerId];
-        Debug.Log($"애니메이션 컨트롤러 변경 {gameManager.playerId}");
+        speed = speed * gm.playerData.speedMult; // 플레이어 기본 이동속도 적용
+        anim.runtimeAnimatorController = animCon[gm.playerId].runAniCon[0];
+        Debug.Log($"애니메이션 컨트롤러 변경 {gm.playerId}");
     }
 
     public void PlayerDead()
     {
         col.enabled = false;
         anim.SetTrigger("Dead");
-        gameManager.GameOver();
+        gm.GameOver();
+    }
+
+    [System.Serializable]
+    public class PlayerAnimatorControll
+    {
+        public RuntimeAnimatorController[] runAniCon;
     }
 }
+
+

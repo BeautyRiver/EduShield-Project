@@ -7,7 +7,11 @@ public class Item : MonoBehaviour
 {
     public enum ItemType { Heal, Magnet }
     public ItemType itemType;
-
+    public GameManager gm;
+    private void Awake()
+    {
+        gm = gameObject.GetComponent<GameManager>();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -15,28 +19,27 @@ public class Item : MonoBehaviour
             Debug.Log("Compare");
             switch (itemType)
             {
-                case ItemType.Heal:                    
-                    GameManager.instance.health = Mathf.Min(GameManager.instance.maxHealth, GameManager.instance.health + 15f);
+                case ItemType.Heal:
+                    gm.health = Mathf.Min(gm.maxHealth, gm.health + 15f);
                     MasterAudio.PlaySound("Heal");
-                    
+
                     gameObject.SetActive(false);
                     break;
                 case ItemType.Magnet:
                     MasterAudio.PlaySound("Magnet");
                     StartCoroutine(GetMagnet());
-                    break;         
+                    break;
             }
-            GameObject effect = GameManager.instance.pool.Get(PoolManager.PoolType.Effect, 1); // »˙ ¿Ã∆Â∆Æ
-            effect.transform.parent = GameManager.instance.player.transform;
-            effect.transform.localPosition = Vector3.zero;
+            gm.GenerateEffect(1, gm.player.transform);
         }
     }
+
     IEnumerator GetMagnet()
     {
-        float orignal = GameManager.instance.player.scanner.expCollectionRange;
-        GameManager.instance.player.scanner.expCollectionRange = 999f;
+        float orignal = gm.player.scanner.expCollectionRange;
+        gm.player.scanner.expCollectionRange = 999f;
         yield return new WaitForSeconds(0.1f);
-        GameManager.instance.player.scanner.expCollectionRange = orignal;
+        gm.player.scanner.expCollectionRange = orignal;
         gameObject.SetActive(false);
     }
 }
