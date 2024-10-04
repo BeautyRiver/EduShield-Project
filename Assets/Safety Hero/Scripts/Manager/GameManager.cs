@@ -30,13 +30,15 @@ public class GameManager : MonoBehaviour
     public int exp; // 현재 경험치
  
     [Header("# 참조")]
+    public AiManager ai;
+    public EquipmentManager equipment;
+    public TypeControlManager typeControll;
     public PoolManager pool;
-    public AiManager aiManager;
+
     public LevelUp uiLevelUp;
     public Player player;
     public Result result;
     public PlayerData playerData;
-    public EquipmentManager currentData;
     public GameObject enemyCleaner;
 
     [SerializeField] private float[] aiMsgShowTime = { 1.5f, 3f, 4f };
@@ -72,11 +74,13 @@ public class GameManager : MonoBehaviour
 
     }
     // 이펙트 생성시키기
-    public void GenerateEffect(int index, Transform parentTransform)
-    {
+    public void GenerateEffect(int index, Transform parentTransform, Color? setColor = null)
+    {            
         GameObject effect = pool.Get(PoolManager.PoolType.Effect, index); // 힐 이펙트
         effect.transform.parent = parentTransform;
         effect.transform.localPosition = Vector3.zero;
+        if (setColor != null)
+            effect.gameObject.GetComponent<SpriteRenderer>().color = setColor ?? Color.white;
     }
 
     // Ai 메세지 띄어주기
@@ -84,7 +88,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(aiMsgShowTime[0]);
 
-        aiManager.AppearAiImage(selectStageIdx);
+        ai.AppearAiImage(selectStageIdx);
 
         yield return new WaitForSeconds(aiMsgShowTime[1]);
         if (!isGamestart)
@@ -95,7 +99,7 @@ public class GameManager : MonoBehaviour
         }
         yield return new WaitForSeconds(aiMsgShowTime[2]);
 
-        aiManager.HideAi();
+        ai.HideAi();
     }
     public IEnumerator RandomStageIndex()
     {
@@ -103,7 +107,7 @@ public class GameManager : MonoBehaviour
         do
         {
             yield return null;
-            ranIdx = Random.Range(0, aiManager.alertMessages.Length);
+            ranIdx = Random.Range(0, ai.alertMessages.Length);
         } while (ranIdx == selectStageIdx);  // 같은 값일 때만 반복
 
         selectStageIdx = ranIdx;

@@ -568,7 +568,7 @@ GameObject:
   - component: {fileID: 58503994}
   - component: {fileID: 58503993}
   - component: {fileID: 58503992}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1347,7 +1347,7 @@ GameObject:
   - component: {fileID: 81371412}
   - component: {fileID: 81371414}
   - component: {fileID: 81371413}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1452,7 +1452,7 @@ GameObject:
   m_Component:
   - component: {fileID: 84949250}
   - component: {fileID: 84949251}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1468,7 +1468,7 @@ Transform:
   m_GameObject: {fileID: 84949249}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.67, y: -17.46, z: 0}
+  m_LocalPosition: {x: 1.6700001, y: -17.46, z: 0}
   m_LocalScale: {x: 1.12, y: 1.12, z: 1.12}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1476,7 +1476,7 @@ Transform:
   - {fileID: 253255921}
   - {fileID: 1825133428}
   - {fileID: 704214928}
-  m_Father: {fileID: 1379700552359339110}
+  m_Father: {fileID: 1521350305}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &84949251
 BoxCollider2D:
@@ -1534,7 +1534,7 @@ GameObject:
   - component: {fileID: 98040741}
   - component: {fileID: 98040743}
   - component: {fileID: 98040742}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2033,7 +2033,7 @@ GameObject:
   - component: {fileID: 129360015}
   - component: {fileID: 129360017}
   - component: {fileID: 129360016}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2139,7 +2139,7 @@ GameObject:
   - component: {fileID: 132503934}
   - component: {fileID: 132503936}
   - component: {fileID: 132503935}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2245,7 +2245,7 @@ GameObject:
   - component: {fileID: 132674946}
   - component: {fileID: 132674948}
   - component: {fileID: 132674947}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2351,7 +2351,7 @@ GameObject:
   - component: {fileID: 136266529}
   - component: {fileID: 136266531}
   - component: {fileID: 136266530}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2944,7 +2944,7 @@ GameObject:
   - component: {fileID: 211345041}
   - component: {fileID: 211345043}
   - component: {fileID: 211345042}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: no_collider_table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3544,7 +3544,7 @@ GameObject:
   - component: {fileID: 230543866}
   - component: {fileID: 230543868}
   - component: {fileID: 230543867}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4102,7 +4102,7 @@ GameObject:
   - component: {fileID: 253255921}
   - component: {fileID: 253255923}
   - component: {fileID: 253255922}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4541,7 +4541,7 @@ GameObject:
   m_Component:
   - component: {fileID: 274252915}
   - component: {fileID: 274252916}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: fire (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4565,7 +4565,7 @@ Transform:
   - {fileID: 1969170597}
   - {fileID: 98040741}
   - {fileID: 1655413234}
-  m_Father: {fileID: 318948131}
+  m_Father: {fileID: 969027520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &274252916
 BoxCollider2D:
@@ -4914,7 +4914,7 @@ GameObject:
   - component: {fileID: 285134988}
   - component: {fileID: 285134990}
   - component: {fileID: 285134989}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7331,7 +7331,7 @@ GameObject:
   - component: {fileID: 318948134}
   - component: {fileID: 318948133}
   - component: {fileID: 318948132}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tilemap 0 (6)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -7353,12 +7353,6 @@ Transform:
   m_Children:
   - {fileID: 548287261}
   - {fileID: 2111535251}
-  - {fileID: 1010953153}
-  - {fileID: 1591998214}
-  - {fileID: 1219179554}
-  - {fileID: 561140253}
-  - {fileID: 274252915}
-  - {fileID: 1566624970}
   m_Father: {fileID: 3313542816876685246}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &318948132
@@ -7408,7 +7402,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -23777,7 +23771,7 @@ GameObject:
   m_Component:
   - component: {fileID: 325889639}
   - component: {fileID: 325889640}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23801,7 +23795,7 @@ Transform:
   - {fileID: 1748628955}
   - {fileID: 1287659753}
   - {fileID: 1474426866}
-  m_Father: {fileID: 6284450130007707716}
+  m_Father: {fileID: 791339182}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &325889640
 BoxCollider2D:
@@ -23934,7 +23928,7 @@ GameObject:
   - component: {fileID: 334280489}
   - component: {fileID: 334280491}
   - component: {fileID: 334280490}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24228,9 +24222,8 @@ GameObject:
   - component: {fileID: 351259403}
   - component: {fileID: 351259402}
   - component: {fileID: 351259401}
-  - component: {fileID: 351259404}
   m_Layer: 5
-  m_Name: TypeControllManager
+  m_Name: TypeControll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24323,30 +24316,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 351259398}
   m_CullTransparentMesh: 1
---- !u!114 &351259404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 351259398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4d2c50fea5228e47ba472fe789af610, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stageTypes:
-  - sprite:
-    - {fileID: 19513898, guid: a49f95c8ef8c017468401cf671813117, type: 3}
-    - {fileID: 19513898, guid: 30ece1994e772524b8715a6985182657, type: 3}
-    - {fileID: 19513898, guid: edf48d3393d9892438ea8a838a6e24a1, type: 3}
-    - {fileID: 19513898, guid: 12d429bdc250f66499c0108a6a8ad735, type: 3}
-  equipImages: []
-  coolDownImages: []
-  equipWeaponState: 
-  swapDelay: 3
-  swapTimer: 0
-  typeIndex: 0
 --- !u!1 &353552803
 GameObject:
   m_ObjectHideFlags: 0
@@ -24824,7 +24793,7 @@ GameObject:
   m_Component:
   - component: {fileID: 377925319}
   - component: {fileID: 377925320}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: fire (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24848,7 +24817,7 @@ Transform:
   - {fileID: 671512451}
   - {fileID: 877575435}
   - {fileID: 2032771455}
-  m_Father: {fileID: 6284450130007707716}
+  m_Father: {fileID: 791339182}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &377925320
 BoxCollider2D:
@@ -25526,7 +25495,7 @@ GameObject:
   - component: {fileID: 416615002}
   - component: {fileID: 416615004}
   - component: {fileID: 416615003}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25765,7 +25734,7 @@ GameObject:
   m_Component:
   - component: {fileID: 432943406}
   - component: {fileID: 432943407}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: fire (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25789,7 +25758,7 @@ Transform:
   - {fileID: 1779825672}
   - {fileID: 416615002}
   - {fileID: 1957918738}
-  m_Father: {fileID: 1379700552359339110}
+  m_Father: {fileID: 1521350305}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &432943407
 BoxCollider2D:
@@ -26655,7 +26624,7 @@ GameObject:
   - component: {fileID: 483599120}
   - component: {fileID: 483599119}
   - component: {fileID: 483599118}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26674,7 +26643,8 @@ Transform:
   m_LocalPosition: {x: -0.2, y: -0.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 769012680}
   m_Father: {fileID: 1901612779}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!66 &483599118
@@ -28503,7 +28473,7 @@ GameObject:
   - component: {fileID: 501584079}
   - component: {fileID: 501584081}
   - component: {fileID: 501584080}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28743,7 +28713,7 @@ GameObject:
   - component: {fileID: 512493424}
   - component: {fileID: 512493426}
   - component: {fileID: 512493425}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29447,7 +29417,7 @@ GameObject:
   - component: {fileID: 541744900}
   - component: {fileID: 541744902}
   - component: {fileID: 541744901}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29633,7 +29603,7 @@ GameObject:
   - component: {fileID: 548287264}
   - component: {fileID: 548287263}
   - component: {fileID: 548287262}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29654,6 +29624,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1962681112}
+  - {fileID: 969027520}
   m_Father: {fileID: 318948131}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!66 &548287262
@@ -30650,7 +30621,7 @@ GameObject:
   - component: {fileID: 557730395}
   - component: {fileID: 557730397}
   - component: {fileID: 557730396}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30755,7 +30726,7 @@ GameObject:
   m_Component:
   - component: {fileID: 558169069}
   - component: {fileID: 558169070}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: fire_back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30771,13 +30742,13 @@ Transform:
   m_GameObject: {fileID: 558169068}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.056407325, w: 0.99840784}
-  m_LocalPosition: {x: 1.11, y: -3.86, z: 0}
+  m_LocalPosition: {x: 1.1100006, y: -3.8600006, z: 0}
   m_LocalScale: {x: 0.78999996, y: 0.78999996, z: 0.78999996}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 136266529}
   - {fileID: 1845738724}
-  m_Father: {fileID: 6284450130007707716}
+  m_Father: {fileID: 791339182}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 6.467}
 --- !u!61 &558169070
 BoxCollider2D:
@@ -30909,7 +30880,7 @@ GameObject:
   m_Component:
   - component: {fileID: 561140253}
   - component: {fileID: 561140254}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30925,7 +30896,7 @@ Transform:
   m_GameObject: {fileID: 561140252}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.67, y: -17.46, z: 0}
+  m_LocalPosition: {x: 1.6699982, y: -17.46, z: 0}
   m_LocalScale: {x: 1.12, y: 1.12, z: 1.12}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -30933,7 +30904,7 @@ Transform:
   - {fileID: 501584079}
   - {fileID: 654184696}
   - {fileID: 719849223}
-  m_Father: {fileID: 318948131}
+  m_Father: {fileID: 969027520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &561140254
 BoxCollider2D:
@@ -31066,7 +31037,7 @@ GameObject:
   - component: {fileID: 579914172}
   - component: {fileID: 579914174}
   - component: {fileID: 579914173}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31325,7 +31296,7 @@ GameObject:
   - component: {fileID: 593801244}
   - component: {fileID: 593801246}
   - component: {fileID: 593801245}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33588,7 +33559,7 @@ GameObject:
   - component: {fileID: 617681499}
   - component: {fileID: 617681498}
   - component: {fileID: 617681497}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33607,7 +33578,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 791339182}
   m_Father: {fileID: 6284450130007707716}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!66 &617681497
@@ -34323,7 +34295,7 @@ GameObject:
   - component: {fileID: 633972758}
   - component: {fileID: 633972760}
   - component: {fileID: 633972759}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34859,7 +34831,7 @@ GameObject:
   - component: {fileID: 654184696}
   - component: {fileID: 654184698}
   - component: {fileID: 654184697}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35254,7 +35226,7 @@ GameObject:
   - component: {fileID: 671512451}
   - component: {fileID: 671512453}
   - component: {fileID: 671512452}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35360,7 +35332,7 @@ GameObject:
   - component: {fileID: 676385906}
   - component: {fileID: 676385908}
   - component: {fileID: 676385907}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35678,7 +35650,7 @@ GameObject:
   - component: {fileID: 703882492}
   - component: {fileID: 703882491}
   - component: {fileID: 703882490}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35697,7 +35669,8 @@ Transform:
   m_LocalPosition: {x: -0.2, y: -0.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1916442014}
   m_Father: {fileID: 5538085405915586354}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &703882488
@@ -37374,7 +37347,7 @@ GameObject:
   - component: {fileID: 704214928}
   - component: {fileID: 704214930}
   - component: {fileID: 704214929}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37480,7 +37453,7 @@ GameObject:
   - component: {fileID: 704908159}
   - component: {fileID: 704908161}
   - component: {fileID: 704908160}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37694,7 +37667,7 @@ GameObject:
   - component: {fileID: 719849223}
   - component: {fileID: 719849225}
   - component: {fileID: 719849224}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38151,6 +38124,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 764665862}
   m_CullTransparentMesh: 1
+--- !u!1 &769012679
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 769012680}
+  m_Layer: 11
+  m_Name: Fires
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &769012680
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769012679}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.2, y: 0.11, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 990001553}
+  - {fileID: 1964067106}
+  - {fileID: 1099325884}
+  m_Father: {fileID: 483599117}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &769239578
 GameObject:
   m_ObjectHideFlags: 0
@@ -38371,7 +38378,7 @@ GameObject:
   - component: {fileID: 780317763}
   - component: {fileID: 780317765}
   - component: {fileID: 780317764}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38656,6 +38663,42 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &791339181
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 791339182}
+  m_Layer: 11
+  m_Name: Fires
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &791339182
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791339181}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 558169069}
+  - {fileID: 849675604}
+  - {fileID: 1721191842}
+  - {fileID: 325889639}
+  - {fileID: 377925319}
+  m_Father: {fileID: 617681496}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &794884368
 GameObject:
   m_ObjectHideFlags: 0
@@ -39167,7 +39210,7 @@ GameObject:
   - component: {fileID: 832125034}
   - component: {fileID: 832125036}
   - component: {fileID: 832125035}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39504,7 +39547,7 @@ GameObject:
   - component: {fileID: 847881684}
   - component: {fileID: 847881686}
   - component: {fileID: 847881685}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39609,7 +39652,7 @@ GameObject:
   m_Component:
   - component: {fileID: 849675604}
   - component: {fileID: 849675605}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: fire_back (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39625,13 +39668,13 @@ Transform:
   m_GameObject: {fileID: 849675603}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.056407325, w: 0.99840784}
-  m_LocalPosition: {x: 19.23, y: -4.02, z: 0}
+  m_LocalPosition: {x: 19.23, y: -4.0200005, z: 0}
   m_LocalScale: {x: 0.78999996, y: 0.78999996, z: 0.78999996}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2116741893}
   - {fileID: 285134988}
-  m_Father: {fileID: 6284450130007707716}
+  m_Father: {fileID: 791339182}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 6.467}
 --- !u!61 &849675605
 BoxCollider2D:
@@ -39853,7 +39896,7 @@ GameObject:
   m_Component:
   - component: {fileID: 858217906}
   - component: {fileID: 858217907}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: fire_back (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39869,13 +39912,13 @@ Transform:
   m_GameObject: {fileID: 858217905}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.056407325, w: 0.99840784}
-  m_LocalPosition: {x: -9.41, y: 1.38, z: 0}
+  m_LocalPosition: {x: -9.41, y: 1.3800011, z: 0}
   m_LocalScale: {x: 0.78999996, y: 0.78999996, z: 0.78999996}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1865898856}
   - {fileID: 593801244}
-  m_Father: {fileID: 1379700552359339110}
+  m_Father: {fileID: 1521350305}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 6.467}
 --- !u!61 &858217907
 BoxCollider2D:
@@ -40278,7 +40321,7 @@ GameObject:
   - component: {fileID: 877575435}
   - component: {fileID: 877575437}
   - component: {fileID: 877575436}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40450,6 +40493,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 888407947}
   m_CullTransparentMesh: 1
+--- !u!1 &889940056
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 889940057}
+  m_Layer: 0
+  m_Name: test
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &889940057
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889940056}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.46, y: 6.5, z: 0.015045775}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &901457464
 GameObject:
   m_ObjectHideFlags: 0
@@ -40461,7 +40535,7 @@ GameObject:
   - component: {fileID: 901457465}
   - component: {fileID: 901457467}
   - component: {fileID: 901457466}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40768,6 +40842,12 @@ MonoBehaviour:
     - {fileID: 22100000, guid: 0263d443671267a47b91212e368fda59, type: 2}
     - {fileID: 22100000, guid: 3ca8aa41599d24b48a43ccba712e456d, type: 2}
     - {fileID: 22100000, guid: a8d899dfeb54bfb46b84c3ddbc63c299, type: 2}
+  transformingColor:
+  - {r: 0.10763585, g: 0.8018868, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0.39156342, b: 0.9716981, a: 1}
+  - {r: 1, g: 0.8158516, b: 0, a: 1}
 --- !u!95 &905882073
 Animator:
   serializedVersion: 5
@@ -41013,7 +41093,7 @@ GameObject:
   - component: {fileID: 939238118}
   - component: {fileID: 939238120}
   - component: {fileID: 939238119}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41829,6 +41909,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 061002aae5391574abaa5ec5bdda1f10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &969027519
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 969027520}
+  m_Layer: 11
+  m_Name: Fires
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &969027520
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969027519}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -36.09, y: 0.7099991, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1010953153}
+  - {fileID: 1591998214}
+  - {fileID: 1219179554}
+  - {fileID: 561140253}
+  - {fileID: 274252915}
+  - {fileID: 1566624970}
+  m_Father: {fileID: 548287261}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &988454445
 GameObject:
   m_ObjectHideFlags: 0
@@ -42003,7 +42120,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 990001553}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42019,14 +42136,14 @@ Transform:
   m_GameObject: {fileID: 990001552}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.1, y: 5.97, z: 0}
+  m_LocalPosition: {x: -3.1000004, y: 5.970001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1151678565}
   - {fileID: 230543866}
   - {fileID: 132674946}
-  m_Father: {fileID: 1901612779}
+  m_Father: {fileID: 769012680}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &991937696
 GameObject:
@@ -42307,7 +42424,7 @@ GameObject:
   - component: {fileID: 1005945932}
   - component: {fileID: 1005945934}
   - component: {fileID: 1005945933}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42412,7 +42529,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1010953153}
   - component: {fileID: 1010953154}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: fire_back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42428,13 +42545,13 @@ Transform:
   m_GameObject: {fileID: 1010953152}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.056407325, w: 0.99840784}
-  m_LocalPosition: {x: 11.1, y: -11.6, z: 0}
+  m_LocalPosition: {x: 11.099998, y: -11.599998, z: 0}
   m_LocalScale: {x: 0.78999996, y: 0.78999996, z: 0.78999996}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1741056029}
   - {fileID: 1333320389}
-  m_Father: {fileID: 318948131}
+  m_Father: {fileID: 969027520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 6.467}
 --- !u!61 &1010953154
 BoxCollider2D:
@@ -43523,7 +43640,7 @@ GameObject:
   - component: {fileID: 1098313973}
   - component: {fileID: 1098313975}
   - component: {fileID: 1098313974}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43627,7 +43744,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1099325884}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: fire_back (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43643,13 +43760,13 @@ Transform:
   m_GameObject: {fileID: 1099325883}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.056407325, w: 0.99840784}
-  m_LocalPosition: {x: -17.47, y: -1.04, z: 0}
+  m_LocalPosition: {x: -17.47, y: -1.0400009, z: 0}
   m_LocalScale: {x: 0.79, y: 0.79, z: 0.79}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1161204217}
   - {fileID: 676385906}
-  m_Father: {fileID: 1901612779}
+  m_Father: {fileID: 769012680}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 6.467}
 --- !u!1 &1101780977
 GameObject:
@@ -43834,7 +43951,7 @@ GameObject:
   - component: {fileID: 1106562534}
   - component: {fileID: 1106562536}
   - component: {fileID: 1106562535}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44246,7 +44363,7 @@ GameObject:
   - component: {fileID: 1143611274}
   - component: {fileID: 1143611276}
   - component: {fileID: 1143611275}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44352,7 +44469,7 @@ GameObject:
   - component: {fileID: 1151678565}
   - component: {fileID: 1151678567}
   - component: {fileID: 1151678566}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44582,7 +44699,7 @@ GameObject:
   - component: {fileID: 1161204217}
   - component: {fileID: 1161204219}
   - component: {fileID: 1161204218}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45049,7 +45166,7 @@ GameObject:
   - component: {fileID: 1183783609}
   - component: {fileID: 1183783611}
   - component: {fileID: 1183783610}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45154,7 +45271,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1200431840}
   - component: {fileID: 1200431841}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: fire_back (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45170,13 +45287,13 @@ Transform:
   m_GameObject: {fileID: 1200431839}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.056407325, w: 0.99840784}
-  m_LocalPosition: {x: 18.33, y: -15.64, z: 0}
+  m_LocalPosition: {x: 18.330002, y: -15.639999, z: 0}
   m_LocalScale: {x: 0.79, y: 0.79, z: 0.79}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1846157395}
   - {fileID: 512493424}
-  m_Father: {fileID: 5538085405915586354}
+  m_Father: {fileID: 1916442014}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 6.467}
 --- !u!61 &1200431841
 BoxCollider2D:
@@ -45308,7 +45425,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1219179554}
   - component: {fileID: 1219179555}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: fire_back (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45324,13 +45441,13 @@ Transform:
   m_GameObject: {fileID: 1219179553}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.056407325, w: 0.99840784}
-  m_LocalPosition: {x: -9.41, y: 1.38, z: 0}
+  m_LocalPosition: {x: -9.410004, y: 1.3799973, z: 0}
   m_LocalScale: {x: 0.78999996, y: 0.78999996, z: 0.78999996}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1183783609}
   - {fileID: 2011006830}
-  m_Father: {fileID: 318948131}
+  m_Father: {fileID: 969027520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 6.467}
 --- !u!61 &1219179555
 BoxCollider2D:
@@ -45778,7 +45895,7 @@ GameObject:
   - component: {fileID: 1232883877}
   - component: {fileID: 1232883879}
   - component: {fileID: 1232883878}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: food
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47832,7 +47949,7 @@ GameObject:
   - component: {fileID: 1265272454}
   - component: {fileID: 1265272456}
   - component: {fileID: 1265272455}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47938,7 +48055,7 @@ GameObject:
   - component: {fileID: 1271446613}
   - component: {fileID: 1271446615}
   - component: {fileID: 1271446614}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48392,7 +48509,7 @@ GameObject:
   - component: {fileID: 1287659753}
   - component: {fileID: 1287659755}
   - component: {fileID: 1287659754}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49199,7 +49316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1307714194}
   - component: {fileID: 1307714195}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: fire_back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49215,13 +49332,13 @@ Transform:
   m_GameObject: {fileID: 1307714193}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.056407325, w: 0.99840784}
-  m_LocalPosition: {x: 0.84, y: 2.06, z: 0}
+  m_LocalPosition: {x: 0.84000015, y: 2.0599976, z: 0}
   m_LocalScale: {x: 0.79, y: 0.79, z: 0.79}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1005945932}
   - {fileID: 334280489}
-  m_Father: {fileID: 5538085405915586354}
+  m_Father: {fileID: 1916442014}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 6.467}
 --- !u!61 &1307714195
 BoxCollider2D:
@@ -49315,7 +49432,7 @@ GameObject:
   - component: {fileID: 1333320389}
   - component: {fileID: 1333320391}
   - component: {fileID: 1333320390}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49990,13 +50107,14 @@ MonoBehaviour:
   level: 0
   kill: 0
   exp: 0
+  ai: {fileID: 370664442}
+  equipment: {fileID: 0}
+  typeControll: {fileID: 1512466566}
   pool: {fileID: 1381120192}
-  aiManager: {fileID: 370664442}
   uiLevelUp: {fileID: 259957426}
   player: {fileID: 905882072}
   result: {fileID: 927738641}
   playerData: {fileID: 11400000, guid: e46da10fa0948124ab17ebcceb64080c, type: 2}
-  currentData: {fileID: 0}
   enemyCleaner: {fileID: 1689566429}
   aiMsgShowTime:
   - 1
@@ -50359,7 +50477,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1388014932}
   - component: {fileID: 1388014933}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: fire_back (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50375,13 +50493,13 @@ Transform:
   m_GameObject: {fileID: 1388014931}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.056407325, w: 0.99840784}
-  m_LocalPosition: {x: -0.58, y: -9.76, z: 0}
+  m_LocalPosition: {x: -0.5799999, y: -9.760002, z: 0}
   m_LocalScale: {x: 0.79, y: 0.79, z: 0.79}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1098313973}
   - {fileID: 129360015}
-  m_Father: {fileID: 5538085405915586354}
+  m_Father: {fileID: 1916442014}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 6.467}
 --- !u!61 &1388014933
 BoxCollider2D:
@@ -51913,7 +52031,7 @@ GameObject:
   - component: {fileID: 1474426866}
   - component: {fileID: 1474426868}
   - component: {fileID: 1474426867}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52674,6 +52792,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1511335363}
   m_CullTransparentMesh: 1
+--- !u!1 &1512466565
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1512466567}
+  - component: {fileID: 1512466566}
+  m_Layer: 5
+  m_Name: TypeControllManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1512466566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512466565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4d2c50fea5228e47ba472fe789af610, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stageTypes:
+  - sprite:
+    - {fileID: 19513898, guid: a49f95c8ef8c017468401cf671813117, type: 3}
+    - {fileID: 19513898, guid: 30ece1994e772524b8715a6985182657, type: 3}
+    - {fileID: 19513898, guid: edf48d3393d9892438ea8a838a6e24a1, type: 3}
+    - {fileID: 19513898, guid: 12d429bdc250f66499c0108a6a8ad735, type: 3}
+  typeControllUI: {fileID: 351259399}
+  equipImages: []
+  coolDownImages: []
+  equipWeaponState: 
+  swapDelay: 3
+  swapTimer: 0
+--- !u!4 &1512466567
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512466565}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1515438550
 GameObject:
   m_ObjectHideFlags: 0
@@ -52942,6 +53116,43 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1516084175}
   m_CullTransparentMesh: 1
+--- !u!1 &1521350304
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1521350305}
+  m_Layer: 11
+  m_Name: Fires
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1521350305
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521350304}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -36.09, y: 0.7099991, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2135417753}
+  - {fileID: 1679864159}
+  - {fileID: 858217906}
+  - {fileID: 84949250}
+  - {fileID: 432943406}
+  - {fileID: 1898823366}
+  m_Father: {fileID: 1110206395813271951}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1529155827
 GameObject:
   m_ObjectHideFlags: 0
@@ -54087,7 +54298,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1566624970}
   - component: {fileID: 1566624971}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: fire_back (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54103,13 +54314,13 @@ Transform:
   m_GameObject: {fileID: 1566624969}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.056407325, w: 0.99840784}
-  m_LocalPosition: {x: 22.55, y: -4.57, z: 0}
+  m_LocalPosition: {x: 22.55, y: -4.5699997, z: 0}
   m_LocalScale: {x: 0.78999996, y: 0.78999996, z: 0.78999996}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1902125842}
   - {fileID: 1106562534}
-  m_Father: {fileID: 318948131}
+  m_Father: {fileID: 969027520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 6.467}
 --- !u!61 &1566624971
 BoxCollider2D:
@@ -54242,7 +54453,7 @@ GameObject:
   - component: {fileID: 1573009782}
   - component: {fileID: 1573009784}
   - component: {fileID: 1573009783}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: food
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55255,7 +55466,7 @@ GameObject:
   - component: {fileID: 1583745924}
   - component: {fileID: 1583745926}
   - component: {fileID: 1583745925}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55457,7 +55668,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1591998214}
   - component: {fileID: 1591998215}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: fire_back (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55473,13 +55684,13 @@ Transform:
   m_GameObject: {fileID: 1591998213}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.056407325, w: 0.99840784}
-  m_LocalPosition: {x: 8.38, y: -13.79, z: 0}
+  m_LocalPosition: {x: 8.380001, y: -13.790001, z: 0}
   m_LocalScale: {x: 0.78999996, y: 0.78999996, z: 0.78999996}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1611103080}
   - {fileID: 2080013723}
-  m_Father: {fileID: 318948131}
+  m_Father: {fileID: 969027520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 6.467}
 --- !u!61 &1591998215
 BoxCollider2D:
@@ -55659,7 +55870,7 @@ GameObject:
   - component: {fileID: 1611103080}
   - component: {fileID: 1611103082}
   - component: {fileID: 1611103081}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56130,7 +56341,7 @@ GameObject:
   - component: {fileID: 1655413234}
   - component: {fileID: 1655413236}
   - component: {fileID: 1655413235}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56549,7 +56760,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1679864159}
   - component: {fileID: 1679864160}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: fire_back (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56565,13 +56776,13 @@ Transform:
   m_GameObject: {fileID: 1679864158}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.056407325, w: 0.99840784}
-  m_LocalPosition: {x: 8.38, y: -13.79, z: 0}
+  m_LocalPosition: {x: 8.380001, y: -13.790001, z: 0}
   m_LocalScale: {x: 0.78999996, y: 0.78999996, z: 0.78999996}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 832125034}
   - {fileID: 939238118}
-  m_Father: {fileID: 1379700552359339110}
+  m_Father: {fileID: 1521350305}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 6.467}
 --- !u!61 &1679864160
 BoxCollider2D:
@@ -57104,7 +57315,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1721191842}
   - component: {fileID: 1721191843}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: fire_back (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57119,14 +57330,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1721191841}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.42, y: 4.76, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 12.42, y: 4.760002, z: 0}
   m_LocalScale: {x: 0.78999996, y: 0.78999996, z: 0.78999996}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2044109489}
   - {fileID: 1583745924}
-  m_Father: {fileID: 6284450130007707716}
+  m_Father: {fileID: 791339182}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1721191843
 BoxCollider2D:
@@ -57317,7 +57528,7 @@ GameObject:
   - component: {fileID: 1731686248}
   - component: {fileID: 1731686250}
   - component: {fileID: 1731686249}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57557,7 +57768,7 @@ GameObject:
   - component: {fileID: 1741056029}
   - component: {fileID: 1741056031}
   - component: {fileID: 1741056030}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57853,7 +58064,7 @@ GameObject:
   - component: {fileID: 1748628955}
   - component: {fileID: 1748628957}
   - component: {fileID: 1748628956}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58255,7 +58466,7 @@ GameObject:
   - component: {fileID: 1779825672}
   - component: {fileID: 1779825674}
   - component: {fileID: 1779825673}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58736,7 +58947,7 @@ MonoBehaviour:
   normalSpawnData:
   - minTime: 0
     maxTime: 0
-    spawnTime: 1.8
+    spawnTime: 999
     spawnCount: 3
     spriteType: 0
     health: 5
@@ -58844,7 +59055,8 @@ MonoBehaviour:
     speed: 2.5
     damage: 55
     exp: 0
-  boxSpawnTime: 23
+  boxSpawnTime: 1
+  test: {fileID: 889940057}
 --- !u!1 &1800423200
 GameObject:
   m_ObjectHideFlags: 0
@@ -59201,7 +59413,7 @@ GameObject:
   - component: {fileID: 1825133428}
   - component: {fileID: 1825133430}
   - component: {fileID: 1825133429}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59307,7 +59519,7 @@ GameObject:
   - component: {fileID: 1835246271}
   - component: {fileID: 1835246273}
   - component: {fileID: 1835246272}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59512,7 +59724,7 @@ GameObject:
   - component: {fileID: 1845738724}
   - component: {fileID: 1845738726}
   - component: {fileID: 1845738725}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59693,7 +59905,7 @@ GameObject:
   - component: {fileID: 1846157395}
   - component: {fileID: 1846157397}
   - component: {fileID: 1846157396}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60070,7 +60282,7 @@ GameObject:
   - component: {fileID: 1865898856}
   - component: {fileID: 1865898858}
   - component: {fileID: 1865898857}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60830,7 +61042,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1898823366}
   - component: {fileID: 1898823367}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: fire_back (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60846,13 +61058,13 @@ Transform:
   m_GameObject: {fileID: 1898823365}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.056407325, w: 0.99840784}
-  m_LocalPosition: {x: 22.55, y: -4.57, z: 0}
+  m_LocalPosition: {x: 22.55, y: -4.5699997, z: 0}
   m_LocalScale: {x: 0.78999996, y: 0.78999996, z: 0.78999996}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 541744900}
   - {fileID: 901457465}
-  m_Father: {fileID: 1379700552359339110}
+  m_Father: {fileID: 1521350305}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 6.467}
 --- !u!61 &1898823367
 BoxCollider2D:
@@ -60914,7 +61126,7 @@ GameObject:
   - component: {fileID: 1901612782}
   - component: {fileID: 1901612781}
   - component: {fileID: 1901612780}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tilemap 0 (5)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -60936,9 +61148,6 @@ Transform:
   m_Children:
   - {fileID: 483599117}
   - {fileID: 2130839309}
-  - {fileID: 990001553}
-  - {fileID: 1964067106}
-  - {fileID: 1099325884}
   m_Father: {fileID: 3313542816876685246}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1901612780
@@ -60988,7 +61197,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -77254,7 +77463,7 @@ GameObject:
   - component: {fileID: 1902125842}
   - component: {fileID: 1902125844}
   - component: {fileID: 1902125843}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77514,6 +77723,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1915557117}
   m_CullTransparentMesh: 1
+--- !u!1 &1916442013
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1916442014}
+  m_Layer: 11
+  m_Name: Fires
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1916442014
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916442013}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.2, y: 0.11, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2037641368}
+  - {fileID: 1307714194}
+  - {fileID: 1388014932}
+  - {fileID: 1200431840}
+  m_Father: {fileID: 703882487}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1929126662
 GameObject:
   m_ObjectHideFlags: 0
@@ -79614,7 +79858,7 @@ GameObject:
   - component: {fileID: 1957918738}
   - component: {fileID: 1957918740}
   - component: {fileID: 1957918739}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79723,7 +79967,7 @@ GameObject:
   - component: {fileID: 1962681115}
   - component: {fileID: 1962681114}
   - component: {fileID: 1962681113}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: obj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81925,7 +82169,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1964067106}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: fire_back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81941,13 +82185,13 @@ Transform:
   m_GameObject: {fileID: 1964067105}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.056407325, w: 0.99840784}
-  m_LocalPosition: {x: 1.45, y: 5.26, z: 0}
+  m_LocalPosition: {x: 1.4500008, y: 5.260002, z: 0}
   m_LocalScale: {x: 0.79, y: 0.79, z: 0.79}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 81371412}
   - {fileID: 704908159}
-  m_Father: {fileID: 1901612779}
+  m_Father: {fileID: 769012680}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 6.467}
 --- !u!1 &1969170596
 GameObject:
@@ -81960,7 +82204,7 @@ GameObject:
   - component: {fileID: 1969170597}
   - component: {fileID: 1969170599}
   - component: {fileID: 1969170598}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82275,7 +82519,7 @@ GameObject:
   - component: {fileID: 1993522199}
   - component: {fileID: 1993522201}
   - component: {fileID: 1993522200}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82649,7 +82893,7 @@ GameObject:
   - component: {fileID: 2011006830}
   - component: {fileID: 2011006832}
   - component: {fileID: 2011006831}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84971,7 +85215,7 @@ GameObject:
   - component: {fileID: 2032771455}
   - component: {fileID: 2032771457}
   - component: {fileID: 2032771456}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85266,7 +85510,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2037641368}
   - component: {fileID: 2037641369}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85282,7 +85526,7 @@ Transform:
   m_GameObject: {fileID: 2037641367}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.78, y: -13.39, z: 0}
+  m_LocalPosition: {x: 15.779999, y: -13.389999, z: 0}
   m_LocalScale: {x: 1.12, y: 1.12, z: 1.12}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -85290,7 +85534,7 @@ Transform:
   - {fileID: 847881684}
   - {fileID: 557730395}
   - {fileID: 1143611274}
-  m_Father: {fileID: 5538085405915586354}
+  m_Father: {fileID: 1916442014}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2037641369
 BoxCollider2D:
@@ -85472,7 +85716,7 @@ GameObject:
   - component: {fileID: 2044109489}
   - component: {fileID: 2044109491}
   - component: {fileID: 2044109490}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86068,7 +86312,7 @@ GameObject:
   - component: {fileID: 2068695834}
   - component: {fileID: 2068695833}
   - component: {fileID: 2068695832}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86817,7 +87061,7 @@ GameObject:
   - component: {fileID: 2080013723}
   - component: {fileID: 2080013725}
   - component: {fileID: 2080013724}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87356,7 +87600,7 @@ GameObject:
   - component: {fileID: 2111535251}
   - component: {fileID: 2111535253}
   - component: {fileID: 2111535252}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: food
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88023,7 +88267,7 @@ GameObject:
   - component: {fileID: 2116741893}
   - component: {fileID: 2116741895}
   - component: {fileID: 2116741894}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireAni (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88394,7 +88638,7 @@ GameObject:
   - component: {fileID: 2130839309}
   - component: {fileID: 2130839311}
   - component: {fileID: 2130839310}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: food
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89063,7 +89307,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2135417753}
   - component: {fileID: 2135417754}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: fire_back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89079,13 +89323,13 @@ Transform:
   m_GameObject: {fileID: 2135417752}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.056407325, w: 0.99840784}
-  m_LocalPosition: {x: 11.1, y: -11.6, z: 0}
+  m_LocalPosition: {x: 11.099998, y: -11.599998, z: 0}
   m_LocalScale: {x: 0.78999996, y: 0.78999996, z: 0.78999996}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 132503934}
   - {fileID: 1835246271}
-  m_Father: {fileID: 1379700552359339110}
+  m_Father: {fileID: 1521350305}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 6.467}
 --- !u!61 &2135417754
 BoxCollider2D:
@@ -105993,7 +106237,7 @@ GameObject:
   - component: {fileID: 7580419576476927912}
   - component: {fileID: 7580419576476927911}
   - component: {fileID: 7580419576476927910}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: obj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106225,7 +106469,7 @@ GameObject:
   - component: {fileID: 4003865459996376574}
   - component: {fileID: 4003865459996376573}
   - component: {fileID: 4003865459996376572}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106279,7 +106523,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -106317,6 +106561,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 471083106877000429}
+  - {fileID: 1521350305}
   m_Father: {fileID: 1379700552359339110}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1178398478247709793
@@ -106330,7 +106575,7 @@ GameObject:
   - component: {fileID: 5652250127710250637}
   - component: {fileID: 6477319771059461031}
   - component: {fileID: 8397435187423686368}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: food
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106388,7 +106633,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -106655,12 +106900,6 @@ Transform:
   m_Children:
   - {fileID: 1110206395813271951}
   - {fileID: 7170544376996418646}
-  - {fileID: 2135417753}
-  - {fileID: 1679864159}
-  - {fileID: 858217906}
-  - {fileID: 84949250}
-  - {fileID: 432943406}
-  - {fileID: 1898823366}
   m_Father: {fileID: 3313542816876685246}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &1432098732103622829
@@ -122851,7 +123090,7 @@ GameObject:
   - component: {fileID: 1829552839498167757}
   - component: {fileID: 2599191104205801720}
   - component: {fileID: 998501590223662769}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tilemap 0 (3)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -122873,7 +123112,7 @@ GameObject:
   - component: {fileID: 1440456396378482884}
   - component: {fileID: 4740943092846351130}
   - component: {fileID: 7240658820631059883}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tilemap 0 (4)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -122992,7 +123231,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -124623,7 +124862,7 @@ GameObject:
   - component: {fileID: 2318183935900644437}
   - component: {fileID: 5181507479861369046}
   - component: {fileID: 1301376987126677260}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: food
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124641,7 +124880,7 @@ GameObject:
   - component: {fileID: 7170544376996418646}
   - component: {fileID: 301098160283401105}
   - component: {fileID: 5535310309543439603}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: food
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124762,7 +125001,7 @@ GameObject:
   - component: {fileID: 8715926207579939959}
   - component: {fileID: 8715926207579939958}
   - component: {fileID: 8715926207579939957}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140957,7 +141196,7 @@ GameObject:
   - component: {fileID: 4550177701753893768}
   - component: {fileID: 1203332582684766568}
   - component: {fileID: 1999992409895701694}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tilemap 0 (7)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -141540,7 +141779,7 @@ GameObject:
   - component: {fileID: 8704034393871738339}
   - component: {fileID: 8704034393871738338}
   - component: {fileID: 8704034393871738337}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141580,7 +141819,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -141668,7 +141907,7 @@ GameObject:
   - component: {fileID: 5846850510984940979}
   - component: {fileID: 9187741502301928898}
   - component: {fileID: 777214787893081977}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tilemap 0 (1)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -142583,10 +142822,6 @@ Transform:
   m_Children:
   - {fileID: 703882487}
   - {fileID: 1573009782}
-  - {fileID: 2037641368}
-  - {fileID: 1307714194}
-  - {fileID: 1388014932}
-  - {fileID: 1200431840}
   m_Father: {fileID: 3313542816876685246}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &5608629847447240263
@@ -142646,7 +142881,7 @@ GameObject:
   - component: {fileID: 3588296165804753808}
   - component: {fileID: 1033957641691408231}
   - component: {fileID: 2846075709234955846}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tilemap 0 (8)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -160070,13 +160305,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1232883877}
   - {fileID: 617681496}
-  - {fileID: 558169069}
-  - {fileID: 849675604}
-  - {fileID: 1721191842}
-  - {fileID: 325889639}
-  - {fileID: 377925319}
+  - {fileID: 1232883877}
   m_Father: {fileID: 3313542816876685246}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &6378329800681444739
@@ -160866,7 +161096,7 @@ GameObject:
   - component: {fileID: 8471863612623807417}
   - component: {fileID: 8464193809550067534}
   - component: {fileID: 1969714600470411579}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tilemap 0 (2)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -160884,7 +161114,7 @@ GameObject:
   - component: {fileID: 7479826751705945035}
   - component: {fileID: 1344945471954257650}
   - component: {fileID: 3322313477991692415}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: food
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177061,7 +177291,7 @@ GameObject:
   - component: {fileID: 6378329800681444739}
   - component: {fileID: 900509512966037895}
   - component: {fileID: 3527727068073354878}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: food
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193914,7 +194144,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -194003,7 +194233,7 @@ GameObject:
   - component: {fileID: 922685512279234141}
   - component: {fileID: 8896341247333075625}
   - component: {fileID: 8484620448409916913}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tilemap 0
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -194749,7 +194979,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -210943,7 +211173,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -210977,6 +211207,7 @@ SceneRoots:
   - {fileID: 169440165}
   - {fileID: 1358241787}
   - {fileID: 1381120193}
+  - {fileID: 1512466567}
   - {fileID: 1997503530}
   - {fileID: 290236892}
   - {fileID: 3313542816876685246}
@@ -210988,3 +211219,4 @@ SceneRoots:
   - {fileID: 2072628778}
   - {fileID: 2117255713}
   - {fileID: 905882070}
+  - {fileID: 889940057}

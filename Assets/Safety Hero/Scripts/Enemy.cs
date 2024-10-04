@@ -23,7 +23,9 @@ public class Enemy : MonoBehaviour
     public int id;
 
     private bool isLive;
+
     [Header("참조")]
+    public TypeControlManager typeControlManager;
     public RuntimeAnimatorController[] animCon;
     public Rigidbody2D target;
 
@@ -33,6 +35,7 @@ public class Enemy : MonoBehaviour
     private Animator anim;
     private WaitForFixedUpdate wait;
     private SortingGroup sortingGroup;
+    private GameManager gm;
     private Vector2 nextVec;
 
     private void Awake()
@@ -43,11 +46,12 @@ public class Enemy : MonoBehaviour
         anim = GetComponent<Animator>();
         sortingGroup = GetComponent<SortingGroup>();
         wait = new WaitForFixedUpdate();
+        gm = GameManager.instance;
     }
 
     private void FixedUpdate()
     {
-        if (GameManager.instance.isLive && isLive)
+        if (gm.isLive && isLive)
         {
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("Hit") && enemyType != EnemyType.MiniBoss)
                 return;
@@ -74,7 +78,7 @@ public class Enemy : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (GameManager.instance.isLive && isLive)
+        if (gm.isLive && isLive)
         {
             if (enemyType != EnemyType.Uniqe)
                 spriter.flipX = target.position.x < rigid.position.x;
@@ -85,7 +89,7 @@ public class Enemy : MonoBehaviour
 
     private void OnEnable()
     {
-        target = GameManager.instance.player.GetComponent<Rigidbody2D>();
+        target = gm.player.GetComponent<Rigidbody2D>();
         // 초기화
         sortingGroup.sortingOrder = 1;
         isLive = true;
@@ -139,21 +143,33 @@ public class Enemy : MonoBehaviour
             float damage = bulletInfo.damage;
 
             // 이펙트
-            GameObject effect = GameManager.instance.pool.Get(PoolManager.PoolType.Effect, 0);
-            effect.transform.position = collision.ClosestPoint(transform.position);
-
-            health -= damage; // 체력 감소            
             hitPos = collision.ClosestPoint(transform.position); // 충돌한 지점의 정확한 위치를 구하기
-            ShowDamageText(damage.ToString("F1"), damage, hitPos, Color.white); // 기본 데미지
+            GameObject effect = gm.pool.Get(PoolManager.PoolType.Effect, 0);
+            effect.transform.position = hitPos;
 
-            // 추가 데미지 구현 로직
-            if (bulletInfo.id == id + 1)
-            {
-                health -= damage * 0.5f;
-                // 충돌한 지점의 정확한 위치를 구하기
-                hitPos = collision.ClosestPoint(transform.position);
-                ShowDamageText($"+{(damage* 0.5f).ToString("F1")}", damage * 0.5f, new Vector2(hitPos.x,hitPos.y + 0.5f), Color.red);
+            // 기본 타입일 때
+            if (gm.typeControll.TypeIndex == -1)
+            {                
+                Damaged(damage.ToString("F1"), damage, hitPos, Color.white); // 기본 데미지 표시 
             }
+            // 기본 타입이 아닐 때
+            else 
+            {
+                if (gm.typeControll.TypeIndex == id)
+                {
+                    Damaged(damage.ToString("F1"), damage, hitPos, Color.white); // 기본 데미지 표시 
+                    // 추가 데미지
+                    float plusDamage = damage;                    
+                    Damaged($"+{(plusDamage).ToString("F1")}", plusDamage, new Vector2(hitPos.x, hitPos.y + 0.5f), Color.red);
+                }
+                else
+                {
+                    // 데미지 반감 로직
+                    damage = damage * 0.5f;
+                    Damaged(damage.ToString("F1"), damage, hitPos, Color.gray); // 기본 데미지 표시 
+                }
+            }
+
             anim.SetTrigger("Hit"); // 맞는 애니메이션 재생                                    
             MasterAudio.PlaySound("Hit"); // 사운드 재생
 
@@ -167,13 +183,13 @@ public class Enemy : MonoBehaviour
                 // 미니 보스가 아닐때
                 if (enemyType != EnemyType.MiniBoss)
                 {
-                    GameObject expObj = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 1); // Exp 드랍시키기
+                    GameObject expObj = gm.pool.Get(PoolManager.PoolType.Enemy, 1); // Exp 드랍시키기
                     expObj.transform.position = transform.position;
                     expObj.GetComponent<Exp>().exp = this.exp;
                 }
                 else
                 {
-                    GameObject reward = GameManager.instance.pool.Get(PoolManager.PoolType.Item, 3);
+                    GameObject reward = gm.pool.Get(PoolManager.PoolType.Item, 3);
                     reward.transform.position = transform.position;
                 }
 
@@ -181,9 +197,9 @@ public class Enemy : MonoBehaviour
                 coll.enabled = false; // 콜라이더 끄기
                 rigid.simulated = false;
                 anim.SetBool("Dead", true);
-                GameManager.instance.kill++;
+                gm.kill++;
 
-                if (GameManager.instance.isLive)
+                if (gm.isLive)
                     MasterAudio.PlaySound("Dead");
             }
         }
@@ -191,22 +207,23 @@ public class Enemy : MonoBehaviour
             return;
     }
 
-    private void ShowDamageText(string text, float damage, Vector2 hitPos, Color color)
+    private void Damaged(string text, float damage, Vector2 hitPos, Color color)
     {
-        GameObject damageTextobj = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 0);
+        GameObject damageTextobj = gm.pool.Get(PoolManager.PoolType.Enemy, 0);
         TextMeshPro damageText = damageTextobj.GetComponent<TextMeshPro>();
 
+        health -= damage; // 체력 감소            
         damageText.color = color;
         damageTextobj.transform.localPosition = hitPos;
         damageText.text = text;
-        damageText.DOScale(1f, 0.3f);
+        damageText.DOScale(1f, 0.1f);
         StartCoroutine(OffDamageText(damageText));
     }
 
     private IEnumerator OffDamageText(TextMeshPro damageText)
     {
         yield return new WaitForSeconds(0.35f);
-        damageText.DOScale(0, 0.5f).OnComplete(()=> damageText.gameObject.SetActive(false));
+        damageText.DOScale(0, 0.35f).OnComplete(()=> damageText.gameObject.SetActive(false));
     }
 
     private IEnumerator KnockBack()

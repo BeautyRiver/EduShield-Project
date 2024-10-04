@@ -10,7 +10,7 @@ public class Item : MonoBehaviour
     public GameManager gm;
     private void Awake()
     {
-        gm = gameObject.GetComponent<GameManager>();
+        gm = GameManager.instance;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

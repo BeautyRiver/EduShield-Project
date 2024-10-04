@@ -28,6 +28,8 @@ public class Spawner : MonoBehaviour
 
     [Header("# 박스 소환 시간")]
     public float boxSpawnTime; // 레벨별 소환 데이터 배열
+
+    public Transform test;
     private void Awake()
     {
         // 초기 설정
@@ -151,10 +153,18 @@ public class Spawner : MonoBehaviour
         bool isSafePosition = false; // 충돌 없는 안전한 위치인지 확인하는 변수
         float boxRadius = 0.5f; // 박스의 크기에 맞는 반지름으로 설정
         LayerMask collisionMask = LayerMask.GetMask("GroundPhyscis"); // 충돌을 감지할 레이어 (필요에 맞게 설정)
+        LayerMask groundMask = LayerMask.GetMask("Ground");
+        Transform parentTransform = transform;
 
+        int loopNo = 0;
         // 충돌 없는 위치를 찾을 때까지 반복
         while (!isSafePosition)
         {
+            if (loopNo >= 1000)
+            {
+                Debug.LogError("무한루프");
+                return;
+            }
             spawnPosition = spawnPoint[Random.Range(0, spawnPoint.Length)].position;
 
             // 충돌 검사: 박스가 스폰될 위치에 다른 콜라이더가 있는지 확인 (OverlapCircle 사용)
@@ -162,10 +172,23 @@ public class Spawner : MonoBehaviour
             {
                 isSafePosition = true; // 충돌이 없으면 안전한 위치로 설정
             }
+            else
+            {
+                Debug.LogError("생성 실패");
+            }
+
+            if (isSafePosition)
+            {
+                parentTransform = Physics2D.OverlapCircle(spawnPosition, boxRadius, groundMask).transform;
+                Debug.Log("부모 설정 완료 : " + parentTransform.name);
+            }
+            loopNo++;
         }
 
         // 안전한 위치가 확인되면 박스 생성
+        Debug.Log("생성 완료");
         GameObject box = GameManager.instance.pool.Get(PoolManager.PoolType.Item, 0);
+        box.transform.parent = parentTransform;
         box.transform.position = spawnPosition;
     }   
 

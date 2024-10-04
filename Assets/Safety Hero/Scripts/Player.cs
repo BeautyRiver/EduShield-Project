@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     [Header("피격 관리")]
     private Color hitColor; // 피격 시 색상
     private Color normalColor; // 기본 색상
+    [SerializeField] private Color[] transformingColor; // 변신 색상들
     private WaitForSeconds hitingTime; // 피격 지속 시간
     private bool isHiting; // 피격 중 여부
 
@@ -149,17 +150,18 @@ public class Player : MonoBehaviour
     }
 
     // 변신중 색상 변경 코루틴
-    public IEnumerator TransformationColor(int idx)
+    public IEnumerator TransformationColor(int typeIdx)
     {
+        typeIdx += 1; // typeindex보다 1 크게 (타입이 -1<기본타입> 부터 시작해서)
         isTransforming = true;
-        gm.GenerateEffect(1, transform);
+        gm.GenerateEffect(1, transform, transformingColor[typeIdx]); // 이팩트 생성 시키기
         Vector3 originalScale = transform.localScale;
 
         transform.DOScale(originalScale * 1.2f, 0.05f).OnComplete(() =>
         {
             spriter.DOFade(0.2f, 0.1f).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
             {
-                anim.runtimeAnimatorController = animCon[gm.playerId].runAniCon[idx];
+                anim.runtimeAnimatorController = animCon[gm.playerId].runAniCon[typeIdx]; 
             });
             transform.DOScale(originalScale, 0.1f);
         });
