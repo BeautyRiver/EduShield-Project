@@ -19,7 +19,7 @@ public class TypeControlManager : MonoBehaviour
     [SerializeField] private bool[] equipWeaponState; // 현재 장착한 무기
     [SerializeField] private float swapDelay = 3f; // 타입 스왑 딜레이
     [SerializeField] private float swapTimer; // 타입 스왑 딜레이 타이머
-    public int TypeIndex { get; private set; } // 현재 선택된 타입 인덱스
+    [field: SerializeField] public int TypeIndex { get; private set; } // 현재 선택된 타입 인덱스
     private int spriteCount; 
 
     private void Awake()

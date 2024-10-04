@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     public LevelUp uiLevelUp;
     public Player player;
     public Result result;
+    public PlayerData orignalPlayerData;
     public PlayerData playerData;
     public GameObject enemyCleaner;
 
@@ -52,9 +53,11 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        // 원본 훼손 안시키기 위함
         if (playerData == null)
-            playerData = DataManager.instance.CurrentPlayerData;
+            playerData = Instantiate(orignalPlayerData);
 
+        
         GameStart(playerData.characterId);
         StartCoroutine(AIMsgShowAndHide());
     }

@@ -77,24 +77,24 @@ public class ItemSetting : MonoBehaviour
                     newIcon.gameObject.SetActive(true);
                     switch (data.itemType)
                     {
-                        case ItemType.MWeapon_0:
+                        case ItemType.M0_Default:
                             textDesc.text = "만능 소화기\n\n" +
                                 "바라보는 방향 소화";
                             break;
 
-                        case ItemType.MWeapon_1:
+                        case ItemType.M1_Rotating:
                             textDesc.text = "<b><color=#00FAFF>일반 화재</color></b>에 강함\n\n" +
                                 "주위를 돌면서 공격";
                             break;
-                        case ItemType.RWeapon_0:
+                        case ItemType.R0_TargetGun:
                             textDesc.text = "<b><color=#00FAFF>휘발유 등의 화재</color></b>에 강함\n\n" +
                                 "가장 가까운 적 공격";
                             break;
-                        case ItemType.RWeapon_1:
+                        case ItemType.R1_Cannon:
                             textDesc.text = "<b><color=#00FAFF>전기관련 화재</color></b>에 강함\n\n" +
                                 "바라보는 방향 반대로 관통공격";
                             break;
-                        case ItemType.RWeapon_2:
+                        case ItemType.R2_Throw:
                             textDesc.text = "<b><color=#00FAFF>식용유 등의 화재</color></b>에 강함\n\n" +
                                 "바라보는 방향으로 공격";
                             break;
@@ -123,7 +123,7 @@ public class ItemSetting : MonoBehaviour
                 textDesc.text = string.Format(data.itemDesc[0], data.gearRates[level] * 100); // 기어 설명글    
                 switch (data.itemType)
                 {                   
-                    case ItemType.Glove:
+                    case ItemType.G0_WeaponSpeed:
                         int ran = Random.Range(0,data.itemDesc.Length);
                         textDesc.text = string.Format(data.itemDesc[ran], data.gearRates[level] * 100); // 기어 설명글    
                         break;                    
@@ -137,10 +137,10 @@ public class ItemSetting : MonoBehaviour
                 textLevel.fontSize = 40;
                 switch (data.itemType)
                 {                       
-                    case ItemType.Heal:
+                    case ItemType.E0_Heal:
                         textLevel.text = "특별한 맛";
                         break;
-                    case ItemType.Gold:
+                    case ItemType.E1_Gold:
                         textLevel.text = "부자가 되보자";
                         break;
                 }
@@ -166,16 +166,17 @@ public class ItemSetting : MonoBehaviour
             case ItemCategory.Etc:
                 switch (data.itemType)
                 {
-                    case ItemType.Heal:
+                    case ItemType.E0_Heal:
                         GameManager.instance.health = Mathf.Min(GameManager.instance.maxHealth, GameManager.instance.health + 15f);
                         break;
 
-                    case ItemType.Gold:
+                    case ItemType.E1_Gold:
                         Debug.Log("15골드 획득");
                         break;
                 }
                 break;
         }
+
         EquipmentManager.onItemCurrentState?.Invoke(); // 이벤트 호출
         if (level == data.maxLevel)
         {

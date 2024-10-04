@@ -27,6 +27,7 @@ MonoBehaviour:
   basePer: 2
   baseDelay: 0.2
   baseSpeed: 0.8
+  baseRange: 0
   baseScale: {x: 0.6, y: 0.6, z: 0.6}
   damages: 0200000002000000
   counts: 0100000002000000

@@ -40493,37 +40493,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 888407947}
   m_CullTransparentMesh: 1
---- !u!1 &889940056
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 889940057}
-  m_Layer: 0
-  m_Name: test
-  m_TagString: Untagged
-  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &889940057
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 889940056}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.46, y: 6.5, z: 0.015045775}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &901457464
 GameObject:
   m_ObjectHideFlags: 0
@@ -40831,6 +40800,7 @@ MonoBehaviour:
   inputVec: {x: 0, y: 0}
   lastInputVec: {x: 1, y: 0}
   lastXInputVec: 1
+  baseSpeed: 3
   speed: 3.8
   scanner: {fileID: 0}
   hands: []
@@ -50114,7 +50084,8 @@ MonoBehaviour:
   uiLevelUp: {fileID: 259957426}
   player: {fileID: 905882072}
   result: {fileID: 927738641}
-  playerData: {fileID: 11400000, guid: e46da10fa0948124ab17ebcceb64080c, type: 2}
+  orignalPlayerData: {fileID: 11400000, guid: e46da10fa0948124ab17ebcceb64080c, type: 2}
+  playerData: {fileID: 0}
   enemyCleaner: {fileID: 1689566429}
   aiMsgShowTime:
   - 1
@@ -52833,6 +52804,7 @@ MonoBehaviour:
   equipWeaponState: 
   swapDelay: 3
   swapTimer: 0
+  <TypeIndex>k__BackingField: 0
 --- !u!4 &1512466567
 Transform:
   m_ObjectHideFlags: 0
@@ -58947,7 +58919,7 @@ MonoBehaviour:
   normalSpawnData:
   - minTime: 0
     maxTime: 0
-    spawnTime: 999
+    spawnTime: 2
     spawnCount: 3
     spriteType: 0
     health: 5
@@ -59055,8 +59027,7 @@ MonoBehaviour:
     speed: 2.5
     damage: 55
     exp: 0
-  boxSpawnTime: 1
-  test: {fileID: 889940057}
+  boxSpawnTime: 23
 --- !u!1 &1800423200
 GameObject:
   m_ObjectHideFlags: 0
@@ -211219,4 +211190,3 @@ SceneRoots:
   - {fileID: 2072628778}
   - {fileID: 2117255713}
   - {fileID: 905882070}
-  - {fileID: 889940057}

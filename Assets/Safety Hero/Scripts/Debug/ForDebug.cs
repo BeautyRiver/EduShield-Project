@@ -92,7 +92,6 @@ public class ForDebug : MonoBehaviour
         // 디버깅용 레벨업
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("레벨업");
             GameManager.instance.GetExp(GameManager.instance.nextExp[Mathf.Min(GameManager.instance.level, GameManager.instance.nextExp.Length - 1)]); // 최대 인덱스를 초과하지 않게
         }
 #endif

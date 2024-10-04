@@ -29,7 +29,6 @@ public class Spawner : MonoBehaviour
     [Header("# 박스 소환 시간")]
     public float boxSpawnTime; // 레벨별 소환 데이터 배열
 
-    public Transform test;
     private void Awake()
     {
         // 초기 설정
@@ -171,22 +170,18 @@ public class Spawner : MonoBehaviour
             if (Physics2D.OverlapCircle(spawnPosition, boxRadius, collisionMask) == null)
             {
                 isSafePosition = true; // 충돌이 없으면 안전한 위치로 설정
-            }
-            else
-            {
-                Debug.LogError("생성 실패");
-            }
+            }            
 
             if (isSafePosition)
             {
                 parentTransform = Physics2D.OverlapCircle(spawnPosition, boxRadius, groundMask).transform;
-                Debug.Log("부모 설정 완료 : " + parentTransform.name);
+                //Debug.Log("부모 설정 완료 : " + parentTransform.name);
             }
             loopNo++;
         }
 
         // 안전한 위치가 확인되면 박스 생성
-        Debug.Log("생성 완료");
+        //Debug.Log("생성 완료");
         GameObject box = GameManager.instance.pool.Get(PoolManager.PoolType.Item, 0);
         box.transform.parent = parentTransform;
         box.transform.position = spawnPosition;

@@ -9,12 +9,12 @@ public class ItemData : ScriptableObject
     public enum ItemType 
     {    
         // 무기 류
-        MWeapon_0, MWeapon_1, // 근접
-        RWeapon_0 = 50, RWeapon_1, RWeapon_2, // 원거리
+        M0_Default, M1_Rotating, // 근접
+        R0_TargetGun = 50, R1_Cannon, R2_Throw, // 원거리
 
-        Glove = 100, Shoe, PowerUp, RangeUp,// 기어 류
+        G0_WeaponSpeed = 100, G1_Speed, G2_Power, G3_Range,// 기어 류
 
-        Heal = 200, Gold // 기타템 류
+        E0_Heal = 200, E1_Gold // 기타템 류
     }
 
     [Header("# 아이템 속성")]
@@ -42,6 +42,7 @@ public class ItemData : ScriptableObject
     public int basePer;
     public float baseDelay;
     public float baseSpeed;
+    public float baseRange;
     public Vector3 baseScale;
 
     [Header("# 레벨별 스탯")]

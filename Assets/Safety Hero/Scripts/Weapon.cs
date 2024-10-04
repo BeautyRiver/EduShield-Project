@@ -1,6 +1,7 @@
 using DarkTonic.MasterAudio;
 using DG.Tweening;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -22,30 +23,30 @@ public class Weapon : MonoBehaviour
     public float roationTime = 3f;
     [SerializeField] private bool isAttacking; // 공격중인지 체크
     [SerializeField] private float speedTimer; // 원거리 무기 타이머
-    private GameManager gameManager;
+    private GameManager gm;
     private Player player;
     
     private void Awake()
     {
-        gameManager = GameManager.instance;
-        player = gameManager.player;
+        gm = GameManager.instance;
+        player = gm.player;
     }
     private void Update()
     {
-        if (!gameManager.isLive)
+        if (!gm.isLive)
             return;
         
         switch (data.itemType)
          {            
-             case ItemData.ItemType.MWeapon_1: // 회전무기                                                               
+             case ItemData.ItemType.M1_Rotating: // 회전무기                                                               
                  transform.Rotate(Vector3.back * buletDelay * Time.deltaTime); // 무기 회전
                  UpdateTimer();
                  break;
 
-             case ItemData.ItemType.MWeapon_0: // 가스
-             case ItemData.ItemType.RWeapon_0: // 단발총                   
-             case ItemData.ItemType.RWeapon_1: // 대포                   
-             case ItemData.ItemType.RWeapon_2: // 창던지기
+             case ItemData.ItemType.M0_Default: // 가스
+             case ItemData.ItemType.R0_TargetGun: // 단발총                   
+             case ItemData.ItemType.R1_Cannon: // 대포                   
+             case ItemData.ItemType.R2_Throw: // 창던지기
                  UpdateTimer();
                  break;
          }
@@ -61,49 +62,53 @@ public class Weapon : MonoBehaviour
     public void Init(ItemData data)
     {
         // 기본 세팅
-        this.data = data;
+        this.data = Instantiate(data);  // 값 복사
+       
         gameObject.name = "Equip Weapon: " + data.itemType.ToString();
         transform.parent = player.transform;
         transform.localPosition = Vector3.zero; // 플레이어 안에서 위치 초기화
 
         // 속성 세팅
         buletDelay = data.baseDelay; // 기본 딜레이 저장
-        bulletSize = data.baseScale; // 기본 사이즈 저장
-        weaponSpeed = data.baseSpeed; // 기본 공격속도 저장
         damage = data.baseDamage; // 기본 공격력 저장
         count = data.baseCount; // 기본 개수 설정
+        weaponSpeed = data.baseSpeed; // 기본 공격속도 저장
+        attackRange = data.baseRange; // 기본 범위 저장
+        bulletSize = data.baseScale; // 기본 사이즈 저장
         per = data.basePer; // 기본 관통력 설정
         for (int index = 0; index < GameManager.instance.pool.weaponPrefabs.Length; index++)
         {
-            if (data.prefab == gameManager.pool.weaponPrefabs[index])
+            if (data.prefab == gm.pool.weaponPrefabs[index])
             {
                 prefabId = index;
                 break;
             }
         }
-        // 기본 데미지 설정
-        damage *= gameManager.playerData.damageMult;
         speedTimer = weaponSpeed;
 
+        // 기본 데미지 설정
+        damage = data.baseDamage * gm.playerData.damageMult;
+        attackRange = data.baseRange * gm.playerData.atkRangeMult;
+        bulletSize = data.baseScale * gm.playerData.atkRangeMult;
         // 기본 공격 속도 설정
         switch (data.itemType)
         {
-            case ItemData.ItemType.MWeapon_1: // 회전무기
+            case ItemData.ItemType.M1_Rotating: // 회전무기
                 // 캐릭터별 무기 회전 속도 설정
-                buletDelay = (float)System.Math.Round(buletDelay * gameManager.playerData.atkSpeedMult, 2);
+                buletDelay = (float)System.Math.Round(buletDelay * gm.playerData.atkSpeedMult, 2);
                 break;
 
             // 무기 딜레이
-            case ItemData.ItemType.MWeapon_0:
-            case ItemData.ItemType.RWeapon_0:
-            case ItemData.ItemType.RWeapon_1:
-            case ItemData.ItemType.RWeapon_2:
+            case ItemData.ItemType.M0_Default:
+            case ItemData.ItemType.R0_TargetGun:
+            case ItemData.ItemType.R1_Cannon:
+            case ItemData.ItemType.R2_Throw:
                 // 캐릭터별 무기 연사속도 설정
-                weaponSpeed = (float)System.Math.Round(weaponSpeed / gameManager.playerData.atkSpeedMult, 2);
+                weaponSpeed = (float)System.Math.Round(weaponSpeed / gm.playerData.atkSpeedMult, 2);
                 break;
         }
 
-        Gear[] gears = transform.parent.GetComponentsInChildren<Gear>();
+       /* Gear[] gears = transform.parent.GetComponentsInChildren<Gear>();
         if (gears != null)
         {
             foreach (Gear gear in gears)
@@ -111,13 +116,9 @@ public class Weapon : MonoBehaviour
                 gear.rate = gear.accumulatedRate - 1;
                 gear.ApplyGearToWeapon(this);
             }
-        }
+        }*/
 
         level++;
-        /* // 손 무기 세팅
-         Hand hand = player.hands[(int)data.itemType];
-         hand.spriter.sprite = data.hand;
-         hand.gameObject.SetActive(true);*/
     }
 
 
@@ -127,13 +128,14 @@ public class Weapon : MonoBehaviour
         switch (rateIndex)
         {
             case 0:
-                damage += rate;
+                data.baseDamage += rate;
+                damage = data.baseDamage * gm.playerData.damageMult;
                 Debug.Log($"{this.name}: Damage {rate}만큼 증가했습니다.");
                 break;
             case 1:
                 count += (int)rate;
                 // 회전 무기는 다시 자연스럽게 추가시키기 위해서 재배치
-                if (data.itemType == ItemData.ItemType.MWeapon_1)
+                if (data.itemType == ItemData.ItemType.M1_Rotating)
                     Batch();
                 Debug.Log($"{this.name}: Count {rate}만큼 증가했습니다.");
 
@@ -144,6 +146,15 @@ public class Weapon : MonoBehaviour
 
                 break;
         }
+        /*Gear[] gears = GameManager.instance.player.transform.GetComponentsInChildren<Gear>();
+        if (gears != null)
+        {
+            foreach (Gear gear in gears)
+            {
+                gear.GearLevelUp(0);
+                Debug.Log(gear.name + "적용완료");
+            }
+        }*/
         level = currentLevel;
     }
 
@@ -159,7 +170,7 @@ public class Weapon : MonoBehaviour
             }
             else
             {
-                bullet = gameManager.pool.Get(PoolManager.PoolType.Weapon, prefabId).transform;
+                bullet = gm.pool.Get(PoolManager.PoolType.Weapon, prefabId).transform;
                 bullet.parent = transform; // 부모 설정
             }
 
@@ -184,7 +195,7 @@ public class Weapon : MonoBehaviour
 
             if (speedTimer >= weaponSpeed)
             {
-                bool shouldAttack = data.itemType != ItemData.ItemType.RWeapon_0 ||
+                bool shouldAttack = data.itemType != ItemData.ItemType.R0_TargetGun ||
                                     player.scanner.nearestTarget != null;
 
                 if (shouldAttack)
@@ -201,19 +212,19 @@ public class Weapon : MonoBehaviour
     {
         switch (data.itemType)
         {
-            case ItemData.ItemType.MWeapon_0:
+            case ItemData.ItemType.M0_Default:
                 StartCoroutine(Melee_00());
                 break;
-            case ItemData.ItemType.MWeapon_1:
+            case ItemData.ItemType.M1_Rotating:
                 StartCoroutine(Melee_01());
                 break;
-            case ItemData.ItemType.RWeapon_0:
+            case ItemData.ItemType.R0_TargetGun:
                 StartCoroutine(FireAuto());
                 break;
-            case ItemData.ItemType.RWeapon_1:
+            case ItemData.ItemType.R1_Cannon:
                 StartCoroutine(FireDir_00());
                 break;
-            case ItemData.ItemType.RWeapon_2:
+            case ItemData.ItemType.R2_Throw:
                 StartCoroutine(FireDir_01());
                 break;
         }
@@ -267,7 +278,7 @@ public class Weapon : MonoBehaviour
             }
             else
             {
-                bullet = gameManager.pool.Get(PoolManager.PoolType.Weapon, prefabId).transform;
+                bullet = gm.pool.Get(PoolManager.PoolType.Weapon, prefabId).transform;
                 bullet.parent = transform; // 부모 설정
             }
 

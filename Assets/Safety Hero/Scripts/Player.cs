@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public Vector2 inputVec; // 입력 벡터 (방향)
     public Vector2 lastInputVec = new Vector2(1f,0f);
     public float lastXInputVec = 1f;  // 마지막 x축 방향만 기억
+    public float baseSpeed = 3f;
     public float speed = 3f; // 이동 속도
 
 
@@ -173,7 +174,8 @@ public class Player : MonoBehaviour
     // 플레이어 초기화
     public void PlayerInit()
     {
-        speed = speed * gm.playerData.speedMult; // 플레이어 기본 이동속도 적용
+        baseSpeed = baseSpeed * gm.playerData.speedMult; // 플레이어 기본 이동속도 적용
+        speed = baseSpeed;
         anim.runtimeAnimatorController = animCon[gm.playerId].runAniCon[0];
         Debug.Log($"애니메이션 컨트롤러 변경 {gm.playerId}");
     }

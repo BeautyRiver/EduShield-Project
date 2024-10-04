@@ -11,12 +11,12 @@ public class Gear : MonoBehaviour
     public float rate; // 공격 속도 증가율
     public int level;
     public float accumulatedRate = 1f; // 누적 증가율
-    private GameManager gameManager;
+    private GameManager gm;
     private Player player;
     private void Awake()
     {
-        gameManager = GameManager.instance;
-        player = gameManager.player;
+        gm = GameManager.instance;
+        player = gm.player;
     }
 
     public void Init(ItemData newData)
@@ -31,9 +31,9 @@ public class Gear : MonoBehaviour
         type = data.itemType;
         /*switch (type)
         {
-            case ItemData.ItemType.Glove:
-            case ItemData.ItemType.Shoe:
-            case ItemData.ItemType.PowerUp:
+            case ItemData.ItemType.G0_WeaponSpeed:
+            case ItemData.ItemType.G1_Speed:
+            case ItemData.ItemType.G2_Power:
                 rate = newData.gearRates[0];
                 break;
         }*/
@@ -44,22 +44,22 @@ public class Gear : MonoBehaviour
     public void GearLevelUp(float newRate)
     {
         rate = newRate;
-        accumulatedRate *= (1 + rate);
+        accumulatedRate +=  rate;
         ApplyGearEffect();
     }
     public void ApplyGearEffect()
     {
         switch (type)
         {
-            case ItemData.ItemType.Glove:
-            case ItemData.ItemType.PowerUp:
-            case ItemData.ItemType.RangeUp:
+            case ItemData.ItemType.G0_WeaponSpeed:
+            case ItemData.ItemType.G2_Power:
+            case ItemData.ItemType.G3_Range:
                 ApplyToAllWeapons();
                 break;
-            case ItemData.ItemType.Shoe:
+            case ItemData.ItemType.G1_Speed:
                 ApplySpeedUp();
                 break;
-        }
+        }        
     }
     /// <summary>
     /// 모든 무기에 무기에 영향을 끼치는 기어 적용
@@ -70,7 +70,7 @@ public class Gear : MonoBehaviour
         foreach (Weapon weapon in weapons)
         {
             ApplyGearToWeapon(weapon);
-        }
+        }        
     }
 
     /// <summary>
@@ -80,39 +80,16 @@ public class Gear : MonoBehaviour
     {
         switch (type)
         {
-            case ItemData.ItemType.Glove:
+            case ItemData.ItemType.G0_WeaponSpeed:
                 ApplyAttackSpeedUp(weapon);
                 break;
-            case ItemData.ItemType.PowerUp:
+            case ItemData.ItemType.G2_Power:
                 ApplyPowerUp(weapon);
                 break;
-            case ItemData.ItemType.RangeUp:
+            case ItemData.ItemType.G3_Range:
                 ApplyRangeUp(weapon);
                 break;
         }
-    }
-
-    /// <summary>
-    /// 공격속도 증가 기어
-    /// </summary>    
-    private void ApplyAttackSpeedUp(Weapon weapon)
-    {
-        switch (weapon.data.itemType)
-        {
-            case ItemData.ItemType.MWeapon_1: // 회전 무기
-                weapon.weaponSpeed *= (1 + rate);
-                Debug.Log($"{weapon.name} To {type.ToString()}업그레이드. x {1 + rate}배");
-                break;
-
-            case ItemData.ItemType.MWeapon_0: // 가스
-            case ItemData.ItemType.RWeapon_0: // 총
-            case ItemData.ItemType.RWeapon_1: // 대포
-            case ItemData.ItemType.RWeapon_2: // 창
-                weapon.weaponSpeed /= (1 + rate);
-                Debug.Log($"{weapon.name} To {type.ToString()}업그레이드. / {1 + rate}");
-                break;
-        }
-
     }
 
     /// <summary>
@@ -120,9 +97,9 @@ public class Gear : MonoBehaviour
     /// </summary>
     private void ApplySpeedUp()
     {
-        float speed = player.speed;
-        gameManager.player.speed *= (1 + rate);
-        Debug.Log($"{type.ToString()}업그레이드. x {1 + rate}배");
+        gm.playerData.speedMult += rate;
+        gm.player.speed = gm.player.baseSpeed * gm.playerData.speedMult;
+        Debug.Log($"{name}현재 배율: {gm.playerData.speedMult}배");
     }
 
     /// <summary>
@@ -130,33 +107,57 @@ public class Gear : MonoBehaviour
     /// </summary>
     private void ApplyPowerUp(Weapon weapon)
     {
-        weapon.damage *= (1 + rate);
-        if (weapon.data.itemType == ItemData.ItemType.MWeapon_1)
+       gm.playerData.damageMult += rate;
+        weapon.damage = weapon.data.baseDamage * gm.playerData.damageMult;
+        if (weapon.data.itemType == ItemData.ItemType.M1_Rotating)
         {
             foreach (Bullet bullet in weapon.GetComponentsInChildren<Bullet>())
             {
                 bullet.damage = weapon.damage;
             }
         }
-        Debug.Log($"{weapon.name} To {type.ToString()}업그레이드. x {1 + rate}배");
+        Debug.Log($"{name}현재 배율: {gm.playerData.damageMult}배");
     }
+    /// <summary>
+    /// 공격속도 증가 기어
+    /// </summary>    
+    private void ApplyAttackSpeedUp(Weapon weapon)
+    {
+        gm.playerData.atkSpeedMult += rate;
+        switch (weapon.data.itemType)
+        {
+            case ItemData.ItemType.M1_Rotating: // 회전 무기
+                weapon.weaponSpeed = weapon.data.baseSpeed * gm.playerData.atkSpeedMult;
+                Debug.Log($"{name}현재 배율: {gm.playerData.atkSpeedMult}배");
+                break;
 
+            case ItemData.ItemType.M0_Default: // 가스
+            case ItemData.ItemType.R0_TargetGun: // 총
+            case ItemData.ItemType.R1_Cannon: // 대포
+            case ItemData.ItemType.R2_Throw: // 창
+                weapon.weaponSpeed = weapon.data.baseSpeed / gm.playerData.atkSpeedMult;
+                Debug.Log($"{name}현재 배율: {gm.playerData.atkSpeedMult}배");
+                break;
+        }
+
+    }
     /// <summary>
     /// 공격 범위 증가 기어
     /// </summary>   
     private void ApplyRangeUp(Weapon weapon)
     {
+        gm.playerData.atkRangeMult += rate;
         switch (weapon.data.itemType)
         {
-            case ItemData.ItemType.MWeapon_1: // 회전 무기
-                weapon.bulletSize *= (1 + rate);
-                weapon.attackRange *= (1 + rate);
-                Debug.Log($"{weapon.name} To {type.ToString()}업그레이드. x {1 + rate}배");
+            case ItemData.ItemType.M1_Rotating: // 회전 무기
+                weapon.bulletSize = weapon.data.baseScale * gm.playerData.atkRangeMult;
+                weapon.attackRange = weapon.data.baseRange * gm.playerData.atkRangeMult;
+                Debug.Log($"{name}현재 배율: {gm.playerData.atkRangeMult}배");
                 break;
 
             default:
-                weapon.bulletSize *= (1 + rate);
-                Debug.Log($"{weapon.name} To {type.ToString()}업그레이드. / {1 + rate}");
+                weapon.bulletSize = weapon.data.baseScale * gm.playerData.atkRangeMult;
+                Debug.Log($"{name}현재 배율: {gm.playerData.atkRangeMult}배");
                 break;
         }
     }
