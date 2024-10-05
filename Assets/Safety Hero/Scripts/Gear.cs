@@ -52,11 +52,19 @@ public class Gear : MonoBehaviour
         switch (type)
         {
             case ItemData.ItemType.G0_WeaponSpeed:
+                gm.playerData.atkSpeedMult += rate;
+                ApplyToAllWeapons();
+                break;
             case ItemData.ItemType.G2_Power:
+                gm.playerData.damageMult += rate;
+                ApplyToAllWeapons();
+                break;
             case ItemData.ItemType.G3_Range:
+                gm.playerData.atkRangeMult += rate;
                 ApplyToAllWeapons();
                 break;
             case ItemData.ItemType.G1_Speed:
+                gm.playerData.speedMult += rate;
                 ApplySpeedUp();
                 break;
         }        
@@ -97,7 +105,6 @@ public class Gear : MonoBehaviour
     /// </summary>
     private void ApplySpeedUp()
     {
-        gm.playerData.speedMult += rate;
         gm.player.speed = gm.player.baseSpeed * gm.playerData.speedMult;
         Debug.Log($"{name}현재 배율: {gm.playerData.speedMult}배");
     }
@@ -107,7 +114,6 @@ public class Gear : MonoBehaviour
     /// </summary>
     private void ApplyPowerUp(Weapon weapon)
     {
-       gm.playerData.damageMult += rate;
         weapon.damage = weapon.data.baseDamage * gm.playerData.damageMult;
         if (weapon.data.itemType == ItemData.ItemType.M1_Rotating)
         {
@@ -123,7 +129,6 @@ public class Gear : MonoBehaviour
     /// </summary>    
     private void ApplyAttackSpeedUp(Weapon weapon)
     {
-        gm.playerData.atkSpeedMult += rate;
         switch (weapon.data.itemType)
         {
             case ItemData.ItemType.M1_Rotating: // 회전 무기
@@ -146,7 +151,6 @@ public class Gear : MonoBehaviour
     /// </summary>   
     private void ApplyRangeUp(Weapon weapon)
     {
-        gm.playerData.atkRangeMult += rate;
         switch (weapon.data.itemType)
         {
             case ItemData.ItemType.M1_Rotating: // 회전 무기

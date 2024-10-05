@@ -23,37 +23,38 @@ public class Weapon : MonoBehaviour
     public float roationTime = 3f;
     [SerializeField] private bool isAttacking; // 공격중인지 체크
     [SerializeField] private float speedTimer; // 원거리 무기 타이머
-    private GameManager gm;
-    private Player player;
-    
+    [SerializeField] private GameManager gm;
+    [SerializeField] private Player player;
+
     private void Awake()
     {
         gm = GameManager.instance;
         player = gm.player;
     }
+
     private void Update()
     {
         if (!gm.isLive)
             return;
-        
-        switch (data.itemType)
-         {            
-             case ItemData.ItemType.M1_Rotating: // 회전무기                                                               
-                 transform.Rotate(Vector3.back * buletDelay * Time.deltaTime); // 무기 회전
-                 UpdateTimer();
-                 break;
 
-             case ItemData.ItemType.M0_Default: // 가스
-             case ItemData.ItemType.R0_TargetGun: // 단발총                   
-             case ItemData.ItemType.R1_Cannon: // 대포                   
-             case ItemData.ItemType.R2_Throw: // 창던지기
-                 UpdateTimer();
-                 break;
-         }
+        switch (data.itemType)
+        {
+            case ItemData.ItemType.M1_Rotating: // 회전무기                                                               
+                transform.Rotate(Vector3.back * buletDelay * Time.deltaTime); // 무기 회전
+                UpdateTimer();
+                break;
+
+            case ItemData.ItemType.M0_Default: // 가스
+            case ItemData.ItemType.R0_TargetGun: // 단발총                   
+            case ItemData.ItemType.R1_Cannon: // 대포                   
+            case ItemData.ItemType.R2_Throw: // 창던지기
+                UpdateTimer();
+                break;
+        }
 
     }
     private void OnEnable()
-    {        
+    {
         StopAllCoroutines();
         isAttacking = false;
         speedTimer = weaponSpeed - 0.01f;
@@ -63,7 +64,7 @@ public class Weapon : MonoBehaviour
     {
         // 기본 세팅
         this.data = Instantiate(data);  // 값 복사
-       
+
         gameObject.name = "Equip Weapon: " + data.itemType.ToString();
         transform.parent = player.transform;
         transform.localPosition = Vector3.zero; // 플레이어 안에서 위치 초기화
@@ -108,15 +109,15 @@ public class Weapon : MonoBehaviour
                 break;
         }
 
-       /* Gear[] gears = transform.parent.GetComponentsInChildren<Gear>();
-        if (gears != null)
-        {
-            foreach (Gear gear in gears)
-            {
-                gear.rate = gear.accumulatedRate - 1;
-                gear.ApplyGearToWeapon(this);
-            }
-        }*/
+        /* Gear[] gears = transform.parent.GetComponentsInChildren<Gear>();
+         if (gears != null)
+         {
+             foreach (Gear gear in gears)
+             {
+                 gear.rate = gear.accumulatedRate - 1;
+                 gear.ApplyGearToWeapon(this);
+             }
+         }*/
 
         level++;
     }
@@ -146,15 +147,7 @@ public class Weapon : MonoBehaviour
 
                 break;
         }
-        /*Gear[] gears = GameManager.instance.player.transform.GetComponentsInChildren<Gear>();
-        if (gears != null)
-        {
-            foreach (Gear gear in gears)
-            {
-                gear.GearLevelUp(0);
-                Debug.Log(gear.name + "적용완료");
-            }
-        }*/
+
         level = currentLevel;
     }
 
@@ -181,7 +174,7 @@ public class Weapon : MonoBehaviour
             Vector3 rotVec = Vector3.forward * 360 * index / count; // 불릿 회전 벡터 계산
             bullet.Rotate(rotVec); // 불릿 회전                        
             bullet.localScale = Vector3.zero;
-            bullet.Translate(bullet.up * attackRange * 1.5f, Space.World); // 지정된 거리만큼 이동
+            bullet.Translate(bullet.up * attackRange, Space.World); // 지정된 거리만큼 이동
             bullet.DOScale(bulletSize, 0.5f).SetEase(Ease.OutBounce); // 크기를 0.5초 동안 자연스럽게 확장
             bullet.GetComponent<Bullet>().Init(damage, -100, Vector3.zero, data.itemId); // 불릿 초기화 (데미지 설정 및 관통 설정 -100은 무한 관통)
         }
@@ -213,23 +206,23 @@ public class Weapon : MonoBehaviour
         switch (data.itemType)
         {
             case ItemData.ItemType.M0_Default:
-                StartCoroutine(Melee_00());
+                StartCoroutine(M0_Bullet());
                 break;
             case ItemData.ItemType.M1_Rotating:
-                StartCoroutine(Melee_01());
+                StartCoroutine(M1_Bullet());
                 break;
             case ItemData.ItemType.R0_TargetGun:
-                StartCoroutine(FireAuto());
+                StartCoroutine(R0_Bullet());
                 break;
             case ItemData.ItemType.R1_Cannon:
-                StartCoroutine(FireDir_00());
+                StartCoroutine(R1_Bullet());
                 break;
             case ItemData.ItemType.R2_Throw:
-                StartCoroutine(FireDir_01());
+                StartCoroutine(R2_Bullet());
                 break;
         }
     }
-    private IEnumerator Melee_00()
+    private IEnumerator M0_Bullet()
     {
         // 첫 번째 공격은 플레이어가 바라보는 방향, 두 번째는 반대 방향으로 발사
         for (int i = 0; i < count; i++)
@@ -256,7 +249,7 @@ public class Weapon : MonoBehaviour
 
             // 발사체 초기화
             bullet.GetComponent<Bullet>().Init(damage, per, Vector3.zero, data.itemId);
-            MasterAudio.PlaySound("Weapon0");
+            MasterAudio.PlaySound("M0_Default");
             // 발사 후 딜레이 추가
             yield return new WaitForSeconds(buletDelay);  // 각 공격 사이의 딜레이 설정
         }
@@ -265,7 +258,8 @@ public class Weapon : MonoBehaviour
         isAttacking = false;
         //AudioManager.instance.PlaySfx(AudioManager.Sfx.Range); // 공격 사운드 재생
     }
-    private IEnumerator Melee_01()
+    // 회전 무기
+    private IEnumerator M1_Bullet()
     {
         Batch();
         yield return new WaitForSeconds(roationTime);
@@ -286,16 +280,17 @@ public class Weapon : MonoBehaviour
         }
         isAttacking = false;
     }
-    private IEnumerator FireAuto()
-    {
-        if (player.scanner.nearestTarget == null)
-            yield break;
-
-        Vector3 targetPos = player.scanner.nearestTarget.position;
-        Vector3 dir = (targetPos - transform.position).normalized;
-
+    // 총
+    private IEnumerator R0_Bullet()
+    {           
         for (int i = 0; i < count; i++)
-        {
+        {            
+            if (player.scanner.nearestTarget == null)
+                yield break;
+
+            Vector3 targetPos = player.scanner.nearestTarget.position;
+            Vector3 dir = (targetPos - transform.position).normalized;
+
             // 총알 발사
             Transform bullet = GameManager.instance.pool.Get(PoolManager.PoolType.Weapon, prefabId).transform;
             bullet.parent = transform;
@@ -306,7 +301,7 @@ public class Weapon : MonoBehaviour
             bullet.GetComponent<Bullet>().Init(damage, per, dir, data.itemId);
 
             // 발사 사운드
-            MasterAudio.PlaySound("Weapon50");
+            MasterAudio.PlaySound("R0_TargetGun");
 
             // 발사 후 약간의 딜레이 추가
             yield return new WaitForSeconds(buletDelay); // 총알 사이의 딜레이 설정 (0.1초, 필요에 따라 조정 가능)
@@ -315,7 +310,7 @@ public class Weapon : MonoBehaviour
         //AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
     }
     // 대포
-    private IEnumerator FireDir_00()
+    private IEnumerator R1_Bullet()
     {
         bool isReverse = false;
         for (int i = 0; i < count; i++)
@@ -343,16 +338,16 @@ public class Weapon : MonoBehaviour
             //AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
 
             // 발사 사운드
-            MasterAudio.PlaySound("Weapon51");
+            MasterAudio.PlaySound("R1_Cannon");
 
             // 발사 후 약간의 딜레이 추가
             yield return new WaitForSeconds(buletDelay);  // 총알 사이의 딜레이 설정 (0.1초)        
-                                                          
+
             isReverse = !isReverse; // 매번 방향을 반대로 변경
         }
 
         isAttacking = false;
-
+        // 기존 로직
         /*for (int i = 0; i < count; i++)
         {
             Vector3 dir = new Vector3(-player.lastInputVec.x, -player.lastInputVec.y, 0).normalized; // 플레이어 반대 방향으로 발사
@@ -378,7 +373,7 @@ public class Weapon : MonoBehaviour
     }
 
     // 창
-    private IEnumerator FireDir_01()
+    private IEnumerator R2_Bullet()
     {
         for (int i = 0; i < count; i++)
         {
@@ -403,7 +398,7 @@ public class Weapon : MonoBehaviour
             //AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
 
             // 발사 사운드
-            MasterAudio.PlaySound("Weapon52");
+            MasterAudio.PlaySound("R2_Throw");
 
             // 발사 후 약간의 딜레이 추가
             yield return new WaitForSeconds(buletDelay);  // 총알 사이의 딜레이 설정 (0.1초)

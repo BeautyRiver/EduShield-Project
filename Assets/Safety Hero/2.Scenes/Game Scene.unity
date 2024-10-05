@@ -568,7 +568,7 @@ GameObject:
   - component: {fileID: 58503994}
   - component: {fileID: 58503993}
   - component: {fileID: 58503992}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1250,7 +1250,7 @@ GameObject:
   - component: {fileID: 78359444}
   - component: {fileID: 78359445}
   m_Layer: 0
-  m_Name: Weapon0
+  m_Name: M0_Default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4623,7 +4623,7 @@ GameObject:
   - component: {fileID: 275539624}
   - component: {fileID: 275539625}
   m_Layer: 0
-  m_Name: Weapon50
+  m_Name: R0_TargetGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5587,7 +5587,7 @@ GameObject:
   - component: {fileID: 299274070}
   - component: {fileID: 299274071}
   m_Layer: 0
-  m_Name: Weapon52
+  m_Name: R2_Throw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39450,7 +39450,7 @@ GameObject:
   - component: {fileID: 846493024}
   - component: {fileID: 846493025}
   m_Layer: 0
-  m_Name: Weapon51
+  m_Name: R1_Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86283,7 +86283,7 @@ GameObject:
   - component: {fileID: 2068695834}
   - component: {fileID: 2068695833}
   - component: {fileID: 2068695832}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: table
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -36,10 +36,9 @@ public class Spawner : MonoBehaviour
         timer = new float[4];        
         level = 0;
         prevLevel = level;
+
         normalSpawnData[0].spriteType = GameManager.instance.selectStageIdx;
-
         uniqeSpawnData[0].spawnTime = Random.Range(uniqeSpawnData[0].minTime, uniqeSpawnData[0].maxTime);
-
         miniBossSpawnData[0].spawnTime = Random.Range(miniBossSpawnData[0].minTime, miniBossSpawnData[0].maxTime);
         normalSpawnData[0].spriteType = GameManager.instance.selectStageIdx;        
     }
@@ -61,14 +60,14 @@ public class Spawner : MonoBehaviour
                 StartCoroutine(GameManager.instance.RandomStageIndex());
                 StartCoroutine(GameManager.instance.AIMsgShowAndHide());
                 normalSpawnData[level].spriteType = GameManager.instance.selectStageIdx;
-                prevLevel = level; // 이전 레벨을 현재 레벨로 업데이트
                 foreach (var uniqeData in uniqeSpawnData)
                 {
                     uniqeData.minTime -= 5f;
                     uniqeData.maxTime -= 5f;
                 }
+                StartCoroutine(SpawnMiniBoss());
 
-                StartCoroutine(MiniBossSpawn());
+                prevLevel = level; // 이전 레벨을 현재 레벨로 업데이트
             }
 
             // 기본 몬스터 소환
@@ -93,29 +92,24 @@ public class Spawner : MonoBehaviour
                 SpawnBox();
                 SpawnBox();
             }
-
-
         }
     }
 
-    private IEnumerator MiniBossSpawn()
+    private IEnumerator SpawnMiniBoss()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         // 웨이브 변환시 미니 보스 한마리씩 등장
         miniBossSpawnData[level - 1].spriteType = GameManager.instance.selectStageIdx;
-        SpawnMiniBoss();
-        Debug.Log("Level Change");
-    }
 
-    private void SpawnMiniBoss()
-    {
         // 적 소환
-        for (int i = 0; i < miniBossSpawnData[level-1].spawnCount; i++)
+        for (int i = 0; i < miniBossSpawnData[level - 1].spawnCount; i++)
         {
             GameObject enemy = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 4);
             enemy.transform.position = spawnPoint[Random.Range(0, spawnPoint.Length)].position;
             enemy.GetComponent<Enemy>().Init(miniBossSpawnData[level - 1]);
         }
+
+        Debug.Log("Level Change");
     }
 
     private void SpawnUnique()
