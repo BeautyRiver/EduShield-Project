@@ -79,12 +79,16 @@ public class ItemSetting : MonoBehaviour
                     {
                         case ItemType.M0_Default:
                             textDesc.text = "만능 소화기\n\n" +
-                                "바라보는 방향 소화";
+                                "기본 근접 공격";
                             break;
 
                         case ItemType.M1_Rotating:
                             textDesc.text = "<b><color=#00FAFF>일반 화재</color></b>에 강함\n\n" +
                                 "주위를 돌면서 공격";
+                            break;
+                        case ItemType.M2_MagneticField:
+                            textDesc.text = "<b><color=#00FAFF>TEST</color></b>\n\n" +
+                                "자기장으로 주변 공격";
                             break;
                         case ItemType.R0_TargetGun:
                             textDesc.text = "<b><color=#00FAFF>휘발유 등의 화재</color></b>에 강함\n\n" +
@@ -92,7 +96,7 @@ public class ItemSetting : MonoBehaviour
                             break;
                         case ItemType.R1_Cannon:
                             textDesc.text = "<b><color=#00FAFF>전기관련 화재</color></b>에 강함\n\n" +
-                                "바라보는 방향 반대로 관통공격";
+                                "바라보는 방향 반대로 관통 공격";
                             break;
                         case ItemType.R2_Throw:
                             textDesc.text = "<b><color=#00FAFF>식용유 등의 화재</color></b>에 강함\n\n" +

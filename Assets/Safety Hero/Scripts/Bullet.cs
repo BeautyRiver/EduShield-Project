@@ -7,16 +7,20 @@ public class Bullet : MonoBehaviour
     public float damage;
     public int per;
     public int id;
+    public float knockBackDistance;
+    public float damageInterval;
     private Rigidbody2D rigid;
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
     }
-    public void Init(float damage, int per, Vector3 dir, int id)
+    public void Init(float damage, int per, Vector3 dir, int id, float knockBack = 1.5f, float interval = 1f)
     {
         this.damage = damage;
         this.id = id;
         this.per = per;
+        this.knockBackDistance = knockBack;
+        this.damageInterval = interval;
 
         // 근접 무기 아닐때 (관통 제한 있을때) 
         // 속도 세팅

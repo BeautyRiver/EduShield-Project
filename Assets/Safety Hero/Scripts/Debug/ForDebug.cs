@@ -10,6 +10,9 @@ using static Cinemachine.DocumentationSortingAttribute;
 
 public class ForDebug : MonoBehaviour
 {
+    [Header("# Sorting ¿©ºÎ")]
+    public bool beSort;
+    [Header("----------------------------------------------------")]
     public GameObject itemParent;
     public Sprite[] uiImages;
     public ItemSetting[] items;
@@ -21,6 +24,9 @@ public class ForDebug : MonoBehaviour
 
     private void Start()
     {
+        if (!beSort)
+            return;
+
         items = itemParent.GetComponentsInChildren<ItemSetting>();
         int idx = 0;
         foreach (ItemSetting item in items)

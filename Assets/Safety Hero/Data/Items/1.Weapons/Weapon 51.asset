@@ -15,7 +15,7 @@ MonoBehaviour:
   itemCategory: 0
   itemType: 51
   maxLevel: 5
-  itemId: 3
+  itemId: 51
   itemName: "C\uAE09 \uC18C\uD654 \uAC15\uD654"
   itemDesc:
   - "\uB370\uBBF8\uC9C0\uAC00 {0} \uC99D\uAC00"
@@ -27,6 +27,7 @@ MonoBehaviour:
   basePer: 10
   baseDelay: 0.3
   baseSpeed: 1.2
+  baseRange: 0
   baseScale: {x: 1, y: 1, z: 1}
   damages: 020000000300000004000000
   counts: 01000000

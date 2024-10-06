@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public float gameTime; // 현재 게임 시간
     public float maxGameTime = 2 * 10f; // 최대 게임 시간
     public bool isLive; // 게임 진행 여부
+    public bool isGameRealEnd; // 게임 진짜 끝났는지 여부
     public int weaponCount = 0;  // 획득한 무기 개수
     public int gearCount = 0;    // 획득한 기어 개수
     public int maxItemCount = 1; // 최대 장착 가능한 무기/기어 개수

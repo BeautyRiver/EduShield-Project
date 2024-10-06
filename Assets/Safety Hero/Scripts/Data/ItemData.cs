@@ -9,7 +9,7 @@ public class ItemData : ScriptableObject
     public enum ItemType 
     {    
         // 무기 류
-        M0_Default, M1_Rotating, // 근접
+        M0_Default, M1_Rotating, M2_MagneticField, // 근접
         R0_TargetGun = 50, R1_Cannon, R2_Throw, // 원거리
 
         G0_WeaponSpeed = 100, G1_Speed, G2_Power, G3_Range,// 기어 류
@@ -38,6 +38,7 @@ public class ItemData : ScriptableObject
 
     [Header("# 기본 스탯")]
     public float baseDamage;
+    public float baseDamageInterval = 2f;
     public int baseCount;
     public int basePer;
     public float baseDelay;
@@ -70,7 +71,7 @@ public class ItemData : ScriptableObject
         maxLevel = damages.Length + counts.Length + pers.Length + gearRates.Length + 1;
 
         if (prefab != null ) 
-        baseScale = prefab.transform.localScale;
+            baseScale = prefab.transform.localScale;
     }
 }
 

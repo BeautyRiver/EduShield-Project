@@ -18,6 +18,7 @@ public class ItemDataEditor : Editor
     SerializedProperty baseCount;
     SerializedProperty basePer;
     SerializedProperty baseDelay;
+    SerializedProperty baseDamageInterval;
     SerializedProperty baseSpeed;
     SerializedProperty baseRange;
     SerializedProperty baseScale;
@@ -46,6 +47,7 @@ public class ItemDataEditor : Editor
         baseCount = serializedObject.FindProperty("baseCount");
         basePer = serializedObject.FindProperty("basePer");
         baseDelay = serializedObject.FindProperty("baseDelay");
+        baseDamageInterval = serializedObject.FindProperty("baseDamageInterval");
         baseSpeed = serializedObject.FindProperty("baseSpeed");
         baseRange = serializedObject.FindProperty("baseRange");
         baseScale = serializedObject.FindProperty("baseScale");
@@ -81,6 +83,7 @@ public class ItemDataEditor : Editor
             EditorGUILayout.LabelField("무기 속성", EditorStyles.boldLabel);
             EditorGUILayout.PropertyField(maxLevel);
             EditorGUILayout.PropertyField(baseDamage);
+            EditorGUILayout.PropertyField(baseDamageInterval);
             EditorGUILayout.PropertyField(baseCount);
             EditorGUILayout.PropertyField(basePer);
             EditorGUILayout.PropertyField(baseDelay);
