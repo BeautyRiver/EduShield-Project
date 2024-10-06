@@ -3,9 +3,9 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
+using Unity.VisualScripting;
 
 public class Enemy : MonoBehaviour
 {
@@ -22,8 +22,9 @@ public class Enemy : MonoBehaviour
     public int exp;
     public int id;
     public bool isLive;
+
     [SerializeField]
-    private Dictionary<Collider2D, float> damageCooldowns;
+    public SerializableDictionary<Collider2D, float> damageCooldowns;
 
     [Header("# 참조")]
     public TypeControlManager typeControlManager;
@@ -90,7 +91,7 @@ public class Enemy : MonoBehaviour
 
     private void OnEnable()
     {
-        damageCooldowns = new Dictionary<Collider2D, float>();
+        damageCooldowns = new SerializableDictionary<Collider2D, float>();
         target = gm.player.GetComponent<Rigidbody2D>();
         // 초기화
         sortingGroup.sortingOrder = 1;
@@ -105,7 +106,39 @@ public class Enemy : MonoBehaviour
             StartCoroutine(UniqueEnemyMove());
         }
     }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (!isLive)
+            return;
 
+        if (collision.CompareTag("Bullet"))
+        {
+            Bullet bulletInfo = collision.GetComponent<Bullet>();
+            if (!damageCooldowns.ContainsKey(collision))
+            {
+                damageCooldowns.Add(collision, Time.time);
+                DamgedLogic(collision, bulletInfo.damage); // 처음 들어왔을 때 데미지
+            }
+            else
+            {
+                // 쿨타임 체크
+                if (Time.time >= damageCooldowns[collision] + bulletInfo.damageInterval)
+                {
+                    damageCooldowns[collision] = Time.time;
+                    DamgedLogic(collision, bulletInfo.damage);
+                }
+            }
+        }
+
+        if (collision.CompareTag("Cleaner"))
+        {
+            isLive = false;
+            coll.enabled = false; // 콜라이더 끄기
+            rigid.simulated = false;
+            anim.SetBool("Dead", true);
+        }
+
+    }
     private IEnumerator UniqueEnemyMove()
     {
         yield return null;
@@ -125,37 +158,12 @@ public class Enemy : MonoBehaviour
         damage = data.damage;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (!isLive)
-            return;
+   
 
-        if (collision.CompareTag("Bullet"))
-        {
-            Bullet bulletInfo = collision.GetComponent<Bullet>();
-            float currentTime = Time.time;
-            if (damageCooldowns.ContainsKey(collision))
-            {
-
-            }
-            DamgedLogic(collision);
-        }
-
-        if (collision.CompareTag("Cleaner"))
-        {
-            isLive = false;
-            coll.enabled = false; // 콜라이더 끄기
-            rigid.simulated = false;
-            anim.SetBool("Dead", true);
-        }
-
-    }
-
-    public void DamgedLogic(Collider2D collision)
+    public void DamgedLogic(Collider2D collision, float damage)
     {
         Bullet bulletInfo = collision.GetComponent<Bullet>();
-        Vector2 hitPos;
-        float damage = bulletInfo.damage;
+        Vector2 hitPos;        
 
         // 이펙트
         hitPos = collision.ClosestPoint(transform.position); // 충돌한 지점의 정확한 위치를 구하기

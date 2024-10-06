@@ -28,6 +28,7 @@ MonoBehaviour:
     {0}% \uC99D\uAC00"
   itemIcon: {fileID: 21300000, guid: 7ea83eef0ad8dcd4ab1521235b6fc99e, type: 3}
   baseDamage: 0
+  baseDamageInterval: 2
   baseCount: 0
   basePer: 0
   baseDelay: 0
@@ -37,11 +38,7 @@ MonoBehaviour:
   damages: 
   counts: 
   pers: 
-  gearRates:
-  - 0.1
-  - 0.1
-  - 0.1
-  - 0.1
-  - 0.2
+  sizes: 
+  gearRates: 0a0000000a0000000a0000000a00000014000000
   prefab: {fileID: 0}
   hand: {fileID: 0}

@@ -42,7 +42,7 @@ public class ItemSetting : MonoBehaviour
         textDesc = texts[1];
         textLevel = texts[2];
 
-        if (data.itemCategory == ItemCategory.Weapon || data.itemCategory == ItemCategory.Gear)
+        if (data.itemCategory == ItemCategory.Weapon)
         {
                 // 무기와 기어의 데이터 세팅
                 statusRateList.Add(data.damages);
@@ -50,6 +50,9 @@ public class ItemSetting : MonoBehaviour
                 statusRateList.Add(data.counts);
 
                 statusRateList.Add(data.pers);
+
+                statusRateList.Add(data.sizes);
+
 
             // 최대 인덱스 구하기
             foreach (var item in statusRateList)
@@ -124,12 +127,12 @@ public class ItemSetting : MonoBehaviour
             // Gears
             case ItemCategory.Gear:
                 newIcon.gameObject.SetActive(false);
-                textDesc.text = string.Format(data.itemDesc[0], data.gearRates[level] * 100); // 기어 설명글    
+                textDesc.text = string.Format(data.itemDesc[0], data.gearRates[level]); // 기어 설명글    
                 switch (data.itemType)
                 {                   
                     case ItemType.G0_WeaponSpeed:
                         int ran = Random.Range(0,data.itemDesc.Length);
-                        textDesc.text = string.Format(data.itemDesc[ran], data.gearRates[level] * 100); // 기어 설명글    
+                        textDesc.text = string.Format(data.itemDesc[ran], data.gearRates[level]); // 기어 설명글    
                         break;                    
                 }
                 break;
@@ -209,32 +212,40 @@ public class ItemSetting : MonoBehaviour
 
     private void LevelUpWeapon()
     {
-        if (level == 0) // 무기가 없을때 초기화 시키기 (생성)
+        if (level == 0) // 무기 레벨이 0일 때: 무기가 없으므로 무기를 새로 생성한다.
         {
+            // 새로운 무기 객체를 생성
             GameObject newWeapon = new GameObject();
-            weapon = newWeapon.AddComponent<Weapon>();
-            weapon.Init(data);
-            GameManager.instance.weaponCount++; // 무기 개수 추가(최대 5개)
+            weapon = newWeapon.AddComponent<Weapon>();            
+            weapon.Init(data); // 무기 초기화 
+            
+            GameManager.instance.weaponCount++; // 게임 매니저에서 관리하는 전체 무기 개수 증가 (최대 5개)
         }
-        else // 무기가 존재할때
+        else // 무기가 이미 있을 때 (레벨이 0이 아님)
         {            
-            weapon.WeaonLevelUp(increaseRate, outsideRateIdx, level);
-            // 인덱스 값이 범위를 넘는 경우 계속 조정
-            outsideRateIdx++;
+            weapon.WeaonLevelUp(increaseRate, outsideRateIdx, level); // 기존 무기의 레벨을 올림            
+            outsideRateIdx++; // 다음 적용할 인덱스를 증가시킴 (ex: Damage -> Count)
+
+            // 인덱스 값이 설정 범위를 넘어가는 경우 계속 조정해주는 로직
             while (outsideRateIdx >= data.itemDesc.Length || insideRateIdx >= statusRateList[outsideRateIdx].Length)
             {
+                // 만약 외부 인덱스가 data.itemDesc의 범위를 넘을 경우, 인덱스를 0으로 초기화하고 내부 인덱스를 증가
                 if (outsideRateIdx >= data.itemDesc.Length)
                 {
                     outsideRateIdx = 0;
                     insideRateIdx++;
                 }
+
+                // 내부 인덱스가 최대값을 초과하는 경우 루프를 종료
                 if (insideRateIdx >= maxmumInsideIdx)
                     break;
 
+                // 내부 인덱스가 현재 외부 인덱스에 해당하는 리스트의 길이를 초과한 경우 외부 인덱스를 증가
                 if (insideRateIdx >= statusRateList[outsideRateIdx].Length)
                     outsideRateIdx++;
             }
-        }
-        level++;
+        }        
+        level++;  // 무기 레벨을 하나 증가
     }
+
 }

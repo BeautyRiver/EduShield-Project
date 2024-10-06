@@ -44,6 +44,7 @@ public class ItemData : ScriptableObject
     public float baseDelay;
     public float baseSpeed;
     public float baseRange;
+    [Header("# Scale은 Prefab에서 변경!")]
     public Vector3 baseScale;
 
     [Header("# 레벨별 스탯")]
@@ -55,10 +56,13 @@ public class ItemData : ScriptableObject
     [Header("관통력")]
     public int[] pers; // 관통력    
 
+    [Header("크기 [10 = 10%]")]
+    public int[] sizes;
+    
+
     [Header("기어 능력치")]
-    [Header("배율방식 / 0.5 = 1.5배 (50%)증가")]
-    [Header("\b*현재 상태에서 곱해지는 방식이므로\n 큰 수를 곱할시 값이 매우 커짐 주의*")]
-    public float[] gearRates;
+    [Header("배율방식 / 50 = 50%증가")]
+    public int[] gearRates;
 
     [Header("무기 관련")]
     public GameObject prefab;
@@ -68,7 +72,7 @@ public class ItemData : ScriptableObject
     private void OnValidate()
     {
         // 각 배열의 최대 길이를 구해 maxLevel로 설정
-        maxLevel = damages.Length + counts.Length + pers.Length + gearRates.Length + 1;
+        maxLevel = damages.Length + counts.Length + pers.Length + gearRates.Length + sizes.Length + 1;
 
         if (prefab != null ) 
             baseScale = prefab.transform.localScale;

@@ -43,7 +43,7 @@ public class Gear : MonoBehaviour
 
     public void GearLevelUp(float newRate)
     {
-        rate = newRate;
+        rate = newRate * 0.01f;
         accumulatedRate +=  rate;
         ApplyGearEffect();
     }
@@ -133,7 +133,8 @@ public class Gear : MonoBehaviour
         {            
             case ItemData.ItemType.M1_Rotating: // 회전 무기
                 weapon.weaponSpeed = weapon.data.baseSpeed / gm.playerData.atkSpeedMult;       
-                weapon.buletDelay = weapon.data.baseDelay * gm.playerData.atkSpeedMult;
+                weapon.bulletDelay = weapon.data.baseDelay * gm.playerData.atkSpeedMult;
+                weapon.damageInterval = weapon.data.baseDamageInterval / gm.playerData.atkSpeedMult;
                 Debug.Log($"{name}현재 배율: {gm.playerData.atkSpeedMult}배");
                 break;
 
@@ -143,6 +144,7 @@ public class Gear : MonoBehaviour
             case ItemData.ItemType.R1_Cannon: // 대포
             case ItemData.ItemType.R2_Throw: // 창
                 weapon.weaponSpeed = weapon.data.baseSpeed / gm.playerData.atkSpeedMult;
+                weapon.damageInterval = weapon.data.baseDamageInterval / gm.playerData.atkSpeedMult;
                 Debug.Log($"{name}현재 배율: {gm.playerData.atkSpeedMult}배");
                 break;                
         }

@@ -29,6 +29,8 @@ public class ItemDataEditor : Editor
     SerializedProperty damages;
     SerializedProperty counts;
     SerializedProperty pers;
+    SerializedProperty sizes;
+
     SerializedProperty gearRates;
 
     private void OnEnable()
@@ -59,6 +61,7 @@ public class ItemDataEditor : Editor
         gearRates = serializedObject.FindProperty("gearRates");
         counts = serializedObject.FindProperty("counts");
         pers = serializedObject.FindProperty("pers");
+        sizes = serializedObject.FindProperty("sizes");
     }
 
     public override void OnInspectorGUI()
@@ -94,6 +97,7 @@ public class ItemDataEditor : Editor
             EditorGUILayout.PropertyField(damages);
             EditorGUILayout.PropertyField(counts);
             EditorGUILayout.PropertyField(pers);
+            EditorGUILayout.PropertyField(sizes);
             EditorGUILayout.PropertyField(prefab);
             EditorGUILayout.PropertyField(hand);
             GUILayout.EndVertical();

@@ -50504,6 +50504,7 @@ MonoBehaviour:
   gameTime: 0
   maxGameTime: 300
   isLive: 0
+  isGameRealEnd: 0
   weaponCount: 0
   gearCount: 0
   maxItemCount: 5
