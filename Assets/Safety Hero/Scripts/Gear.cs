@@ -43,7 +43,7 @@ public class Gear : MonoBehaviour
 
     public void GearLevelUp(float newRate)
     {
-        rate = newRate * 0.01f;
+        rate = newRate * 0.01f; // 기어 단위  수정
         accumulatedRate +=  rate;
         ApplyGearEffect();
     }
@@ -160,6 +160,13 @@ public class Gear : MonoBehaviour
             case ItemData.ItemType.M1_Rotating: // 회전 무기
                 weapon.bulletSize = weapon.data.baseScale * gm.playerData.atkRangeMult;
                 weapon.attackRange = weapon.data.baseRange * gm.playerData.atkRangeMult;
+                weapon.M1_Batch();
+                Debug.Log($"{name}현재 배율: {gm.playerData.atkRangeMult}배");
+                break;
+
+            case ItemData.ItemType.M2_MagneticField: // 자기장
+                weapon.bulletSize = weapon.data.baseScale * gm.playerData.atkRangeMult;
+                weapon.M2_Batch(weapon.transform.GetChild(0));
                 Debug.Log($"{name}현재 배율: {gm.playerData.atkRangeMult}배");
                 break;
 

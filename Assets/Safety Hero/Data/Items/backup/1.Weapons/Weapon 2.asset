@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemCategory: 0
   itemType: 2
-  maxLevel: 3
+  maxLevel: 6
   itemId: 2
   itemName: "\uC790\uAE30\uC7A5"
   itemDesc:
@@ -29,10 +29,10 @@ MonoBehaviour:
   baseSpeed: 3
   baseRange: 0
   baseScale: {x: 3.5, y: 3.5, z: 3.5}
-  damages: 01000000
+  damages: 0100000001000000
   counts: 
   pers: 
-  sizes: 0a000000
+  sizes: 0a0000000a00000014000000
   gearRates: 
   prefab: {fileID: 6100579441663806301, guid: 8bb52263d8d12da45b8cff1fbbe1db0e, type: 3}
   hand: {fileID: 143021600, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}

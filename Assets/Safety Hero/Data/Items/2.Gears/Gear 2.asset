@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemCategory: 1
   itemType: 102
-  maxLevel: 4
+  maxLevel: 2
   itemId: 101
   itemName: "\uBB3C\uC218\uAC74"
   itemDesc:
@@ -33,6 +33,6 @@ MonoBehaviour:
   counts: 
   pers: 
   sizes: 
-  gearRates: 0a0000001400000014000000
+  gearRates: 0a000000
   prefab: {fileID: 0}
   hand: {fileID: 0}

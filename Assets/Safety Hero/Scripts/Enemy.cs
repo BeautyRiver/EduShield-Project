@@ -225,6 +225,8 @@ public class Enemy : MonoBehaviour
             if (gm.isLive)
                 MasterAudio.PlaySound("Dead");
         }
+        // 관통력 --시키기
+        bulletInfo.PerDown();
     }
 
     private void Damaged(string text, float damage, Vector2 hitPos, Color color)

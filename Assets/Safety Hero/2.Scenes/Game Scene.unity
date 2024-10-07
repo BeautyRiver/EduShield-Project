@@ -1267,6 +1267,7 @@ MonoBehaviour:
   outsideRateIdx: 0
   insideRateIdx: 0
   maxmumInsideIdx: 0
+  statusRateList: []
 --- !u!114 &66423925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5166,6 +5167,7 @@ MonoBehaviour:
   outsideRateIdx: 0
   insideRateIdx: 0
   maxmumInsideIdx: 0
+  statusRateList: []
 --- !u!114 &292424314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25832,6 +25834,7 @@ MonoBehaviour:
   outsideRateIdx: 0
   insideRateIdx: 0
   maxmumInsideIdx: 0
+  statusRateList: []
 --- !u!114 &436203972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34277,6 +34280,7 @@ MonoBehaviour:
   outsideRateIdx: 0
   insideRateIdx: 0
   maxmumInsideIdx: 0
+  statusRateList: []
 --- !u!114 &619941297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34773,6 +34777,7 @@ MonoBehaviour:
   outsideRateIdx: 0
   insideRateIdx: 0
   maxmumInsideIdx: 0
+  statusRateList: []
 --- !u!114 &643941226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43592,6 +43597,7 @@ MonoBehaviour:
   outsideRateIdx: 0
   insideRateIdx: 0
   maxmumInsideIdx: 0
+  statusRateList: []
 --- !u!114 &1080046730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43761,6 +43767,7 @@ MonoBehaviour:
   outsideRateIdx: 0
   insideRateIdx: 0
   maxmumInsideIdx: 0
+  statusRateList: []
 --- !u!114 &1093140489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44989,6 +44996,7 @@ MonoBehaviour:
   outsideRateIdx: 0
   insideRateIdx: 0
   maxmumInsideIdx: 0
+  statusRateList: []
 --- !u!114 &1160064083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49286,6 +49294,7 @@ MonoBehaviour:
   outsideRateIdx: 0
   insideRateIdx: 0
   maxmumInsideIdx: 0
+  statusRateList: []
 --- !u!114 &1298520224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51097,6 +51106,7 @@ MonoBehaviour:
   outsideRateIdx: 0
   insideRateIdx: 0
   maxmumInsideIdx: 0
+  statusRateList: []
 --- !u!114 &1390658990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53024,6 +53034,7 @@ MonoBehaviour:
   outsideRateIdx: 0
   insideRateIdx: 0
   maxmumInsideIdx: 0
+  statusRateList: []
 --- !u!114 &1505540242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56651,6 +56662,7 @@ MonoBehaviour:
   outsideRateIdx: 0
   insideRateIdx: 0
   maxmumInsideIdx: 0
+  statusRateList: []
 --- !u!114 &1632456285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90103,10 +90115,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1160064081}
-  - {fileID: 1080046728}
   - {fileID: 66423923}
   - {fileID: 643941224}
+  - {fileID: 1080046728}
+  - {fileID: 1160064081}
   - {fileID: 436203970}
   - {fileID: 1093140487}
   - {fileID: 1632456283}
