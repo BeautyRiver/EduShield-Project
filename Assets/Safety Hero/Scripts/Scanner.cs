@@ -67,7 +67,7 @@ public class Scanner : MonoBehaviour
             if (!exp.isMoving)
             {
                 exp.isMoving = true;
-                // 플레이어 반대 방향으로 이동 후 코루틴 시작
+                // 아이템 애니메이션
                 ItemMoveLogic(item.transform);
             }
         }

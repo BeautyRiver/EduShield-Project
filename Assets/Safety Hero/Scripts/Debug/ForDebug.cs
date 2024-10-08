@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static Cinemachine.DocumentationSortingAttribute;
 
 #if UNITY_EDITOR
 [ExecuteInEditMode]
 
 public class ForDebug : MonoBehaviour
 {
+    [Header("# Sorting 여부")]
+    public bool beSort;
+    [Header("----------------------------------------------------")]
     public GameObject itemParent;
     public Sprite[] uiImages;
     public ItemSetting[] items;
@@ -20,6 +24,9 @@ public class ForDebug : MonoBehaviour
 
     private void Start()
     {
+        if (!beSort)
+            return;
+
         items = itemParent.GetComponentsInChildren<ItemSetting>();
         int idx = 0;
         foreach (ItemSetting item in items)
@@ -47,6 +54,7 @@ public class ForDebug : MonoBehaviour
 
     private void Update()
     {
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.F1))
         {
             if (!isInvinsible)
@@ -85,6 +93,14 @@ public class ForDebug : MonoBehaviour
             Time.timeScale = GameManager.instance.nowTimeScale;
             debugText.text = $"-0.5배속 / 현재 TimeScale: {GameManager.instance.nowTimeScale}";
         }
+
+
+        // 디버깅용 레벨업
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameManager.instance.GetExp(GameManager.instance.nextExp[Mathf.Min(GameManager.instance.level, GameManager.instance.nextExp.Length - 1)]); // 최대 인덱스를 초과하지 않게
+        }
+#endif
     }
 }
 #endif

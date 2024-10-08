@@ -28,6 +28,7 @@ public class Spawner : MonoBehaviour
 
     [Header("# 박스 소환 시간")]
     public float boxSpawnTime; // 레벨별 소환 데이터 배열
+
     private void Awake()
     {
         // 초기 설정
@@ -35,10 +36,9 @@ public class Spawner : MonoBehaviour
         timer = new float[4];        
         level = 0;
         prevLevel = level;
+
         normalSpawnData[0].spriteType = GameManager.instance.selectStageIdx;
-
         uniqeSpawnData[0].spawnTime = Random.Range(uniqeSpawnData[0].minTime, uniqeSpawnData[0].maxTime);
-
         miniBossSpawnData[0].spawnTime = Random.Range(miniBossSpawnData[0].minTime, miniBossSpawnData[0].maxTime);
         normalSpawnData[0].spriteType = GameManager.instance.selectStageIdx;        
     }
@@ -57,17 +57,9 @@ public class Spawner : MonoBehaviour
             // 레벨 변화 체크
             if (prevLevel != level)
             {
-                GameManager.instance.RandomStageIndex();
-                StartCoroutine(GameManager.instance.AIMsgShowAndHide());
-                normalSpawnData[level].spriteType = GameManager.instance.selectStageIdx;
+                // 레벨 변환시 실행되는 로직
+                StartCoroutine(LevelChangeRoutine());
                 prevLevel = level; // 이전 레벨을 현재 레벨로 업데이트
-                foreach (var uniqeData in uniqeSpawnData)
-                {
-                    uniqeData.minTime -= 5f;
-                    uniqeData.maxTime -= 5f;
-                }
-
-                StartCoroutine(MiniBossSpawn());
             }
 
             // 기본 몬스터 소환
@@ -92,29 +84,40 @@ public class Spawner : MonoBehaviour
                 SpawnBox();
                 SpawnBox();
             }
-
-
         }
     }
-
-    private IEnumerator MiniBossSpawn()
+    private IEnumerator LevelChangeRoutine()
     {
-        yield return new WaitForSeconds(1f);
-        // 웨이브 변환시 미니 보스 한마리씩 등장
-        miniBossSpawnData[level - 1].spriteType = GameManager.instance.selectStageIdx;
-        SpawnMiniBoss();
-        Debug.Log("Level Change");
+        yield return StartCoroutine(GameManager.instance.RandomStageIndex()); // StageIndex 변경이 완료될 때까지 대기
+        normalSpawnData[level].spriteType = GameManager.instance.selectStageIdx;
+
+        StartCoroutine(GameManager.instance.AIMsgShowAndHide());
+
+        // uniqe몬스터 스폰률 증가
+        foreach (var uniqeData in uniqeSpawnData)
+        {
+            uniqeData.minTime -= 5f;
+            uniqeData.maxTime -= 5f;
+        }
+
+        StartCoroutine(SpawnMiniBoss());
     }
 
-    private void SpawnMiniBoss()
+    private IEnumerator SpawnMiniBoss()
     {
+        yield return new WaitForSeconds(2f);
+        // 웨이브 변환시 미니 보스 한마리씩 등장
+        miniBossSpawnData[level - 1].spriteType = GameManager.instance.selectStageIdx;
+
         // 적 소환
-        for (int i = 0; i < miniBossSpawnData[level-1].spawnCount; i++)
+        for (int i = 0; i < miniBossSpawnData[level - 1].spawnCount; i++)
         {
             GameObject enemy = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 4);
             enemy.transform.position = spawnPoint[Random.Range(0, spawnPoint.Length)].position;
             enemy.GetComponent<Enemy>().Init(miniBossSpawnData[level - 1]);
         }
+
+        Debug.Log("Level Change");
     }
 
     private void SpawnUnique()
@@ -151,21 +154,38 @@ public class Spawner : MonoBehaviour
         bool isSafePosition = false; // 충돌 없는 안전한 위치인지 확인하는 변수
         float boxRadius = 0.5f; // 박스의 크기에 맞는 반지름으로 설정
         LayerMask collisionMask = LayerMask.GetMask("GroundPhyscis"); // 충돌을 감지할 레이어 (필요에 맞게 설정)
+        LayerMask groundMask = LayerMask.GetMask("Ground");
+        Transform parentTransform = transform;
 
+        int loopNo = 0;
         // 충돌 없는 위치를 찾을 때까지 반복
         while (!isSafePosition)
         {
+            if (loopNo >= 1000)
+            {
+                Debug.LogError("무한루프");
+                return;
+            }
             spawnPosition = spawnPoint[Random.Range(0, spawnPoint.Length)].position;
 
             // 충돌 검사: 박스가 스폰될 위치에 다른 콜라이더가 있는지 확인 (OverlapCircle 사용)
             if (Physics2D.OverlapCircle(spawnPosition, boxRadius, collisionMask) == null)
             {
                 isSafePosition = true; // 충돌이 없으면 안전한 위치로 설정
+            }            
+
+            if (isSafePosition)
+            {
+                parentTransform = Physics2D.OverlapCircle(spawnPosition, boxRadius, groundMask).transform;
+                //Debug.Log("부모 설정 완료 : " + parentTransform.name);
             }
+            loopNo++;
         }
 
         // 안전한 위치가 확인되면 박스 생성
+        //Debug.Log("생성 완료");
         GameObject box = GameManager.instance.pool.Get(PoolManager.PoolType.Item, 0);
+        box.transform.parent = parentTransform;
         box.transform.position = spawnPosition;
     }   
 

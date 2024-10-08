@@ -15,15 +15,15 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - GroundPhyscis
+  - 
   - Water
   - UI
   - Enemy
   - Player
   - Exp
   - MiniBossEnemy
-  - 
-  - 
+  - Ground
+  - GroundPhyscis
   - 
   - 
   - 
