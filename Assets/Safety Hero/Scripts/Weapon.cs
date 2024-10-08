@@ -115,24 +115,7 @@ public class Weapon : MonoBehaviour
                 // 캐릭터별 무기 연사속도 설정
                 weaponSpeed = (float)System.Math.Round(weaponSpeed / gm.playerData.atkSpeedMult, 2);
                 break;
-        }
-
-        /*switch (data.itemType)
-        {
-            case ItemData.ItemType.M2_MagneticField:
-                Attack();
-                break;
-        }*/
-
-        /* Gear[] gears = transform.parent.GetComponentsInChildren<Gear>();
-         if (gears != null)
-         {
-             foreach (Gear gear in gears)
-             {
-                 gear.rate = gear.accumulatedRate - 1;
-                 gear.ApplyGearToWeapon(this);
-             }
-         }*/
+        }        
 
         level++;
     }
@@ -171,7 +154,7 @@ public class Weapon : MonoBehaviour
                         attackRange = data.baseRange * gm.playerData.atkRangeMult;
                         M1_Batch();
                         break;
-                    case ItemData.ItemType.M2_MagneticField:
+                    case ItemData.ItemType.M2_MagneticField: // 자기장 무기
                         bulletSize = data.baseScale * gm.playerData.atkRangeMult;
                         M2_Batch(transform.GetChild(0));
                         break;

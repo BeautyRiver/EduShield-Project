@@ -10,9 +10,6 @@ using static Cinemachine.DocumentationSortingAttribute;
 
 public class ForDebug : MonoBehaviour
 {
-    [Header("# Sorting 여부")]
-    public bool beSort;
-    [Header("----------------------------------------------------")]
     public GameObject itemParent;
     public Sprite[] uiImages;
     public ItemSetting[] items;
@@ -21,36 +18,6 @@ public class ForDebug : MonoBehaviour
     public TextMeshProUGUI debugText;
     private bool isInvinsible;
     private bool is2xSpeed;
-
-    private void Start()
-    {
-        if (!beSort)
-            return;
-
-        items = itemParent.GetComponentsInChildren<ItemSetting>();
-        int idx = 0;
-        foreach (ItemSetting item in items)
-        {
-            item.data = itemData[idx];
-            item.gameObject.name = itemData[idx].name;
-
-            switch (item.data.itemCategory)
-            {
-                case ItemData.ItemCategory.Weapon:
-                    item.GetComponent<Image>().sprite = uiImages[0];
-                    break;
-                case ItemData.ItemCategory.Gear:
-                    item.GetComponent<Image>().sprite = uiImages[1];
-                    break;
-                case ItemData.ItemCategory.Etc:
-                    item.GetComponent<Image>().sprite = uiImages[2];
-                    break;
-                default:
-                    break;
-            }
-            idx++;
-        }
-    }
 
     private void Update()
     {
@@ -101,6 +68,33 @@ public class ForDebug : MonoBehaviour
             GameManager.instance.GetExp(GameManager.instance.nextExp[Mathf.Min(GameManager.instance.level, GameManager.instance.nextExp.Length - 1)]); // 최대 인덱스를 초과하지 않게
         }
 #endif
+    }
+
+    public void InitializeItems()
+    {
+        items = itemParent.GetComponentsInChildren<ItemSetting>();
+        int idx = 0;
+        foreach (ItemSetting item in items)
+        {
+            item.data = itemData[idx];
+            item.gameObject.name = itemData[idx].name;
+
+            switch (item.data.itemCategory)
+            {
+                case ItemData.ItemCategory.Weapon:
+                    item.GetComponent<Image>().sprite = uiImages[0];
+                    break;
+                case ItemData.ItemCategory.Gear:
+                    item.GetComponent<Image>().sprite = uiImages[1];
+                    break;
+                case ItemData.ItemCategory.Etc:
+                    item.GetComponent<Image>().sprite = uiImages[2];
+                    break;
+                default:
+                    break;
+            }
+            idx++;
+        }
     }
 }
 #endif
