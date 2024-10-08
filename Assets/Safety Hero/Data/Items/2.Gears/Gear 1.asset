@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemCategory: 1
   itemType: 101
-  maxLevel: 2
+  maxLevel: 5
   itemId: 101
   itemName: "\uBE44\uC0C1\uAD6C"
   itemDesc:
-  - "<b><color=green>\uBE44\uC0C1\uAD6C\uB85C \uB300\uD53C\uD574\uC57C\uC9C0!</color></b>\n\n\uC774\uB3D9\uC18D\uB3C4
-    {0}% \uC99D\uAC00"
+  - "<size=90%>\uBE60\uB974\uAC8C \uBE44\uC0C1\uAD6C\uB85C \uB300\uD53C!</size>\n\n<b><color=yellow>\uC774\uB3D9\uC18D\uB3C4
+    {0}%</color> \uC99D\uAC00</b>"
   itemIcon: {fileID: 21300000, guid: 17344ea8e8bf4e746bb63127828a43a7, type: 3}
   baseDamage: 0
   baseDamageInterval: 2
@@ -33,6 +33,6 @@ MonoBehaviour:
   counts: 
   pers: 
   sizes: 
-  gearRates: 14000000
+  gearRates: 140000001400000014000000140000001e000000
   prefab: {fileID: 0}
   hand: {fileID: 0}

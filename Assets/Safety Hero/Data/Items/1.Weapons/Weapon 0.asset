@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemCategory: 0
   itemType: 0
-  maxLevel: 3
+  maxLevel: 5
   itemId: 0
   itemName: "ABC \uC18C\uD654\uAE30"
   itemDesc:
-  - "\uB370\uBBF8\uC9C0\uAC00 {0} \uC99D\uAC00"
-  - "\uAC1C\uC218\uAC00 {0}\uAC1C \uC99D\uAC00"
+  - "<b><color=yellow>\uAE30\uBCF8 \uB370\uBBF8\uC9C0 {0}</color> \uC99D\uAC00</b>"
+  - "<b><color=yellow>\uAC1C\uC218 {0}\uAC1C</color> \uC99D\uAC00</b>"
   itemIcon: {fileID: 21300000, guid: 5fc3d85edd78fa642bb8ed32e702c2d4, type: 3}
   baseDamage: 5
   baseDamageInterval: 2
@@ -29,8 +29,8 @@ MonoBehaviour:
   baseSpeed: 1.1
   baseRange: 0
   baseScale: {x: 1.5, y: 1.5, z: 1.5}
-  damages: 02000000
-  counts: 01000000
+  damages: 0200000003000000
+  counts: 0100000001000000
   pers: 
   sizes: 
   gearRates: 

@@ -105,22 +105,22 @@ public class ItemSetting : MonoBehaviour
                     switch (data.itemType)
                     {
                         case ItemType.M0_Default:
-                            textDesc.text = "만능 소화기\n\n기본 근접 공격";
+                            textDesc.text = "<color=#99FF8A>새로운 무기!</color>\r\n\r\n<size=90%>좌우로 적을 관통 공격</size>";
                             break;
                         case ItemType.M1_Rotating:
-                            textDesc.text = "<b><color=#00FAFF>일반 화재</color></b>에 강함\n\n주위를 돌면서 공격";
+                            textDesc.text = "<color=#99FF8A>새로운 무기!</color>\r\n\r\n<size=90%>주변을 회전하며 공격</size>";
                             break;
                         case ItemType.M2_MagneticField:
-                            textDesc.text = "<b><color=#00FAFF>TEST</color></b>\n\n자기장으로 주변 공격";
+                            textDesc.text = "<color=#99FF8A>새로운 무기!</color>\r\n\r\n<size=90%>범위 내 적 지속 공격</size>";
                             break;
                         case ItemType.R0_TargetGun:
-                            textDesc.text = "<b><color=#00FAFF>휘발유 등의 화재</color></b>에 강함\n\n가장 가까운 적 공격";
+                            textDesc.text = "<color=#99FF8A>새로운 무기!</color>\r\n\r\n<size=90%>가장 가까운 적 공격</size>";
                             break;
                         case ItemType.R1_Cannon:
-                            textDesc.text = "<b><color=#00FAFF>전기관련 화재</color></b>에 강함\n\n바라보는 방향 반대로 관통 공격";
+                            textDesc.text = "<color=#99FF8A>새로운 무기!</color>\r\n\r\n<size=90%>반대 방향으로 강력한 관통 공격</size>";
                             break;
                         case ItemType.R2_Throw:
-                            textDesc.text = "<b><color=#00FAFF>식용유 등의 화재</color></b>에 강함\n\n바라보는 방향으로 공격";
+                            textDesc.text = "<color=#99FF8A>새로운 무기!</color>\r\n\r\n<size=90%>바라보는 방향으로 공격</size>";
                             break;
                     }
                 }
@@ -144,13 +144,6 @@ public class ItemSetting : MonoBehaviour
             case ItemCategory.Gear:
                 newIcon.gameObject.SetActive(false);
                 textDesc.text = string.Format(data.itemDesc[0], data.gearRates[level]); // 기어 설명글    
-                switch (data.itemType)
-                {
-                    case ItemType.G0_WeaponSpeed:
-                        int ran = Random.Range(0, data.itemDesc.Length);
-                        textDesc.text = string.Format(data.itemDesc[ran], data.gearRates[level]); // 기어 설명글    
-                        break;
-                }
                 break;
 
             // Etc
@@ -262,5 +255,6 @@ public class ItemSetting : MonoBehaviour
             }
         }
         level++;  // 무기 레벨을 하나 증가
+        _currentLevel = level;
     }
 }

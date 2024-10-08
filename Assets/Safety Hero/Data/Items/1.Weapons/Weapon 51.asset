@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemCategory: 0
   itemType: 51
-  maxLevel: 4
+  maxLevel: 6
   itemId: 51
   itemName: "C\uAE09 \uC18C\uD654 \uAC15\uD654"
   itemDesc:
-  - "\uB370\uBBF8\uC9C0\uAC00 {0} \uC99D\uAC00"
-  - "\uAC1C\uC218\uAC00 {0}\uAC1C \uC99D\uAC00\n\n\uC591 \uCABD\uC73C\uB85C \uBC1C\uC0AC"
-  - "\uAD00\uD1B5\uB825\uC774 {0} \uC99D\uAC00"
+  - "<b><color=yellow>\uAE30\uBCF8 \uB370\uBBF8\uC9C0 {0}</color> \uC99D\uAC00</b>"
+  - "<b><color=yellow>\uAC1C\uC218 {0}\uAC1C</color> \uC99D\uAC00</b>\n\n\uC591 \uBC29\uD5A5
+    \uBC1C\uC0AC"
+  - "<b><color=yellow>\uAD00\uD1B5\uB825 {0}</color> \uC99D\uAC00</b>"
   itemIcon: {fileID: 21300000, guid: 13d4dc4718284944cb94f083856443d8, type: 3}
   baseDamage: 8
   baseDamageInterval: 2
@@ -30,9 +31,9 @@ MonoBehaviour:
   baseSpeed: 1.2
   baseRange: 0
   baseScale: {x: 1, y: 1, z: 1}
-  damages: 00000000
+  damages: 020000000300000004000000
   counts: 01000000
-  pers: 00000000
+  pers: 05000000
   sizes: 
   gearRates: 
   prefab: {fileID: 8191457858479555690, guid: 321abbc004976c84d993cf8d03f989a7, type: 3}

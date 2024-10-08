@@ -72,7 +72,15 @@ public class ItemData : ScriptableObject
     private void OnValidate()
     {
         // 각 배열의 최대 길이를 구해 maxLevel로 설정
-        maxLevel = damages.Length + counts.Length + pers.Length + sizes.Length + gearRates.Length + 1;
+        switch (itemCategory)
+        {
+            case ItemCategory.Weapon:
+                maxLevel = damages.Length + counts.Length + pers.Length + sizes.Length + gearRates.Length + 1;
+                break;
+            case ItemCategory.Gear:
+                maxLevel = damages.Length + counts.Length + pers.Length + sizes.Length + gearRates.Length;
+                break;
+        }
 
         if (prefab != null ) 
             baseScale = prefab.transform.localScale;

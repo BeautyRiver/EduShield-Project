@@ -57,16 +57,8 @@ public class Spawner : MonoBehaviour
             // 레벨 변화 체크
             if (prevLevel != level)
             {
-                StartCoroutine(GameManager.instance.RandomStageIndex());
-                StartCoroutine(GameManager.instance.AIMsgShowAndHide());
-                normalSpawnData[level].spriteType = GameManager.instance.selectStageIdx;
-                foreach (var uniqeData in uniqeSpawnData)
-                {
-                    uniqeData.minTime -= 5f;
-                    uniqeData.maxTime -= 5f;
-                }
-                StartCoroutine(SpawnMiniBoss());
-
+                // 레벨 변환시 실행되는 로직
+                StartCoroutine(LevelChangeRoutine());
                 prevLevel = level; // 이전 레벨을 현재 레벨로 업데이트
             }
 
@@ -93,6 +85,22 @@ public class Spawner : MonoBehaviour
                 SpawnBox();
             }
         }
+    }
+    private IEnumerator LevelChangeRoutine()
+    {
+        yield return StartCoroutine(GameManager.instance.RandomStageIndex()); // StageIndex 변경이 완료될 때까지 대기
+        normalSpawnData[level].spriteType = GameManager.instance.selectStageIdx;
+
+        StartCoroutine(GameManager.instance.AIMsgShowAndHide());
+
+        // uniqe몬스터 스폰률 증가
+        foreach (var uniqeData in uniqeSpawnData)
+        {
+            uniqeData.minTime -= 5f;
+            uniqeData.maxTime -= 5f;
+        }
+
+        StartCoroutine(SpawnMiniBoss());
     }
 
     private IEnumerator SpawnMiniBoss()

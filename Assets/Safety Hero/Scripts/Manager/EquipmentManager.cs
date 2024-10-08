@@ -56,7 +56,9 @@ public class EquipmentManager : MonoBehaviour
             // 아이템 아이콘 & 텍스트 설정
             equipImages[i].sprite = _sortData[i].data.itemIcon;
             equipLevelTexts[i].text = $"Lv{_sortData[i].level}";
-
+            // 만렙일때            
+            if (_sortData[i].level == _sortData[i]._maxLevel)
+                equipLevelTexts[i].text = $"<color=yellow>Max</color>";
             // UI 요소 활성화
             equipImages[i].gameObject.SetActive(true);
             equipLevelTexts[i].gameObject.SetActive(true);

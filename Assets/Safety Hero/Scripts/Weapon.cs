@@ -458,7 +458,7 @@ public class Weapon : MonoBehaviour
         switch (data.itemType)
         {
             case ItemData.ItemType.M0_Default:
-                bullet.Init(damage, per, direction, data.itemId);
+                bullet.Init(damage, per, direction, data.itemId, 1.5f, weaponSpeed);
                 break;
 
             case ItemData.ItemType.M1_Rotating:

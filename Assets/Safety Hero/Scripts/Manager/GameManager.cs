@@ -107,14 +107,21 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator RandomStageIndex()
     {
-        int ranIdx;
-        do
-        {
-            yield return null;
-            ranIdx = Random.Range(0, ai.alertMessages.Length);
-        } while (ranIdx == selectStageIdx);  // 같은 값일 때만 반복
+        List<int> availableIndices = new List<int>();
 
-        selectStageIdx = ranIdx;
+        // 현재 선택된 스테이지 인덱스를 제외하고 가능한 인덱스를 추가
+        for (int i = 0; i < ai.alertMessages.Length; i++)
+        {
+            if (i != selectStageIdx)
+            {
+                availableIndices.Add(i);
+            }
+        }
+
+        // 가능한 인덱스들 중 하나를 랜덤으로 선택
+        selectStageIdx = availableIndices[Random.Range(0, availableIndices.Count)];
+
+        yield break; // 코루틴을 바로 종료
     }
     // 게임 시작 설정
     public void GameStart(int playerId)
