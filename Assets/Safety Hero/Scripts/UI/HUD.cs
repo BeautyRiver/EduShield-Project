@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static Cinemachine.DocumentationSortingAttribute;
@@ -9,12 +10,12 @@ public class HUD : MonoBehaviour
     public enum InfoType { Exp, Level, Kill, Time, Helath }
     public InfoType type;
 
-    private Text myText;
+    private TextMeshProUGUI myText;
     private Slider mySlider;
 
     private void Awake()
     {
-        myText = GetComponent<Text>();
+        myText = GetComponent<TextMeshProUGUI>();
         mySlider = GetComponent<Slider>();
     }
 

@@ -1,3 +1,4 @@
+using DarkTonic.MasterAudio;
 using DG.Tweening;
 using System.Collections;
 using UnityEngine;
@@ -238,14 +239,14 @@ public class Weapon : MonoBehaviour
 
             // 발사체 초기화
             bullet.GetComponent<Bullet>().Init(damage, per, Vector3.zero, data.itemId);
-
+            MasterAudio.PlaySound("Weapon0");
             // 발사 후 딜레이 추가
             yield return new WaitForSeconds(buletDelay);  // 각 공격 사이의 딜레이 설정
         }
 
         // 공격이 끝나면 상태 초기화
         isAttacking = false;
-        AudioManager.instance.PlaySfx(AudioManager.Sfx.Range); // 공격 사운드 재생
+        //AudioManager.instance.PlaySfx(AudioManager.Sfx.Range); // 공격 사운드 재생
     }
     private IEnumerator Melee_01()
     {
@@ -288,35 +289,79 @@ public class Weapon : MonoBehaviour
             bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
             bullet.GetComponent<Bullet>().Init(damage, per, dir, data.itemId);
 
+            // 발사 사운드
+            MasterAudio.PlaySound("Weapon50");
+
             // 발사 후 약간의 딜레이 추가
             yield return new WaitForSeconds(buletDelay); // 총알 사이의 딜레이 설정 (0.1초, 필요에 따라 조정 가능)
         }
         isAttacking = false;
-        AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
+        //AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
     }
+    // 대포
     private IEnumerator FireDir_00()
     {
+        bool isReverse = false;
         for (int i = 0; i < count; i++)
         {
-            Vector3 dir = new Vector3(player.lastInputVec.x, player.lastInputVec.y, 0).normalized;
+            // isReverse 플래그에 따라 발사 방향 결정 (true면 정방향, false면 반대 방향)
+            Vector3 dir = isReverse ? new Vector3(player.lastInputVec.x, player.lastInputVec.y, 0).normalized : new Vector3(-player.lastInputVec.x, -player.lastInputVec.y, 0).normalized;
+
+
+            Transform bullet = GameManager.instance.pool.Get(PoolManager.PoolType.Weapon, prefabId).transform;
+            bullet.parent = transform;
+            Vector3 spreadOffset = Vector3.zero;
+
+            float random = Random.Range(-4, 5) * 0.2f;
+            // 발사 방향에 따라 발사체 간격을 조절 (오른쪽/왼쪽, 위쪽/아래쪽 모두 지원)
+            spreadOffset = Vector3.Cross(dir, Vector3.forward) * ((i - (count / 2)) * random);
+
+            // 발사체의 시작 위치를 조정
+            Vector3 startPosition = transform.position + spreadOffset;
+
+            bullet.localScale = bulletSize;
+            bullet.position = startPosition;
+            bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);  // 발사 방향에 맞게 회전 설정
+
+            bullet.GetComponent<Bullet>().Init(damage, per, dir, data.itemId);
+            //AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
+
+            // 발사 사운드
+            MasterAudio.PlaySound("Weapon51");
+
+            // 발사 후 약간의 딜레이 추가
+            yield return new WaitForSeconds(buletDelay);  // 총알 사이의 딜레이 설정 (0.1초)        
+                                                          
+            isReverse = !isReverse; // 매번 방향을 반대로 변경
+        }
+
+        isAttacking = false;
+
+        /*for (int i = 0; i < count; i++)
+        {
+            Vector3 dir = new Vector3(-player.lastInputVec.x, -player.lastInputVec.y, 0).normalized; // 플레이어 반대 방향으로 발사
             Transform bullet = GameManager.instance.pool.Get(PoolManager.PoolType.Weapon, prefabId).transform;
             bullet.parent = transform;
 
             // 발사체의 시작 위치를 조정
-            Vector3 startPosition = transform.position;
+            Vector3 startPosition = transform.position + dir * 1.5f;
             bullet.localScale = bulletSize;
             bullet.position = startPosition;
             bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);  // 발사 방향에 맞게 회전 설정
 
             bullet.GetComponent<Bullet>().Init(damage, per, dir, data.itemId);
 
+            // 발사 사운드
+            MasterAudio.PlaySound("Weapon51");
+
             // 발사 후 약간의 딜레이 추가
             yield return new WaitForSeconds(buletDelay);  // 총알 사이의 딜레이 설정 (0.1초)
         }
         isAttacking = false;
-        AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
+        //AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);*/
     }
 
+    // 창
     private IEnumerator FireDir_01()
     {
         for (int i = 0; i < count; i++)
@@ -335,10 +380,15 @@ public class Weapon : MonoBehaviour
 
             bullet.localScale = bulletSize;
             bullet.position = startPosition;
-            bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);  // 발사 방향에 맞게 회전 설정
+            //bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);  // 발사 방향에 맞게 회전 설정
+            bullet.rotation = Quaternion.Euler(new Vector3(bullet.transform.eulerAngles.x, bullet.transform.eulerAngles.y, Random.Range(0, 360f)));
 
             bullet.GetComponent<Bullet>().Init(damage, per, dir, data.itemId);
-            AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
+            //AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
+
+            // 발사 사운드
+            MasterAudio.PlaySound("Weapon52");
+
             // 발사 후 약간의 딜레이 추가
             yield return new WaitForSeconds(buletDelay);  // 총알 사이의 딜레이 설정 (0.1초)
         }

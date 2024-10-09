@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f68e12c71e204034eb1621647afd66f3
+guid: eda966a1305d06c4eab8df3bca4591ee
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -132,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 64
       height: 64
-    spriteID: f8eb0e65a9f7cb94eba1542bc19c2691
+    spriteID: 5c6f7f098bfe13c48932535790ebef30
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -152,7 +152,7 @@ ScriptedImporter:
       y: 76
       width: 64
       height: 64
-    spriteID: bb64f91aae7aa704c9b373a2ca27b665
+    spriteID: ad35de627e75dc24b8959a7d78979cef
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -172,7 +172,7 @@ ScriptedImporter:
       y: 148
       width: 64
       height: 64
-    spriteID: 174f1494b9ee2e440afc4b7231251a87
+    spriteID: fbf01a52ac90186439301fed194a0328
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -192,7 +192,7 @@ ScriptedImporter:
       y: 220
       width: 64
       height: 64
-    spriteID: f0bb24dddfdb3f841804ccc4e0c99122
+    spriteID: aa31f57a0ece7fb4986ae8b70762c2da
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -212,7 +212,7 @@ ScriptedImporter:
       y: 292
       width: 64
       height: 64
-    spriteID: 085a8dfa0cd7f1e40a83913ff110b4cb
+    spriteID: f6f0fdcc485ac3f429efd1dcf42ebca9
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -232,7 +232,7 @@ ScriptedImporter:
       y: 364
       width: 64
       height: 64
-    spriteID: d5fe2d04a41024b41b66e0561274e926
+    spriteID: 1bd272c8cde4e5e4e945346a2b9421b5
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -252,7 +252,7 @@ ScriptedImporter:
       y: 436
       width: 64
       height: 64
-    spriteID: 668742ceecd2aa54b92b9c9b4429deb7
+    spriteID: da4e62d7d1e45124c90e5a1e18917922
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -272,7 +272,7 @@ ScriptedImporter:
       y: 4
       width: 64
       height: 64
-    spriteID: ef36fd18e27d80141951ddf81e7f3faa
+    spriteID: 43b7b4d80f0ba014cad531ddb3d2e89e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -292,7 +292,7 @@ ScriptedImporter:
       y: 76
       width: 64
       height: 64
-    spriteID: 7ff53f542f219bb44a53fc464ca971a5
+    spriteID: 00e246faa0ca3694c9dcfd7a9cd8222d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -312,7 +312,7 @@ ScriptedImporter:
       y: 148
       width: 64
       height: 64
-    spriteID: 485d95d4354379c4d897d1bc9c022898
+    spriteID: 7e9492553c1befd49930e5135a1a31ac
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -332,7 +332,7 @@ ScriptedImporter:
       y: 220
       width: 64
       height: 64
-    spriteID: 6a0b39df4569d664e8256f6fe27483de
+    spriteID: 9b28037df6c753f4994f444915789124
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -352,7 +352,7 @@ ScriptedImporter:
       y: 292
       width: 64
       height: 64
-    spriteID: ade27204e00ddfa47834d6c90ff14a67
+    spriteID: 7e90d70b905eff94caa8c5d511393096
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -372,7 +372,7 @@ ScriptedImporter:
       y: 364
       width: 64
       height: 64
-    spriteID: c13e269da0248fe4b89f09dd026716a3
+    spriteID: 68db4e29d68292e47863a052fa574f70
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -392,7 +392,7 @@ ScriptedImporter:
       y: 436
       width: 64
       height: 64
-    spriteID: 012382e96a9a0bb438afa2688ebf5d0b
+    spriteID: 8c8779c905c850e4cb024ec0aa96e00f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -412,7 +412,7 @@ ScriptedImporter:
       y: 4
       width: 64
       height: 64
-    spriteID: 8ebe2f0d1ad2d5840bdcb0cc634163a5
+    spriteID: 57501a4bd0e571e4fa649e5faaa65238
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -432,7 +432,7 @@ ScriptedImporter:
       y: 76
       width: 64
       height: 64
-    spriteID: 385629c657b90bd4d81013522f2d2493
+    spriteID: 7bfcdb56d38374646ad4880b9af8cdbd
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -457,7 +457,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: f8eb0e65a9f7cb94eba1542bc19c2691
+      spriteId: 5c6f7f098bfe13c48932535790ebef30
     - name: Palm Tree_Frame_1
       frameIndex: 1
       cellRect:
@@ -465,7 +465,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: bb64f91aae7aa704c9b373a2ca27b665
+      spriteId: ad35de627e75dc24b8959a7d78979cef
     - name: Palm Tree_Frame_2
       frameIndex: 2
       cellRect:
@@ -473,7 +473,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: 174f1494b9ee2e440afc4b7231251a87
+      spriteId: fbf01a52ac90186439301fed194a0328
     - name: Palm Tree_Frame_3
       frameIndex: 3
       cellRect:
@@ -481,7 +481,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: f0bb24dddfdb3f841804ccc4e0c99122
+      spriteId: aa31f57a0ece7fb4986ae8b70762c2da
     - name: Palm Tree_Frame_4
       frameIndex: 4
       cellRect:
@@ -489,7 +489,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: 085a8dfa0cd7f1e40a83913ff110b4cb
+      spriteId: f6f0fdcc485ac3f429efd1dcf42ebca9
     - name: Palm Tree_Frame_5
       frameIndex: 5
       cellRect:
@@ -497,7 +497,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: d5fe2d04a41024b41b66e0561274e926
+      spriteId: 1bd272c8cde4e5e4e945346a2b9421b5
     - name: Palm Tree_Frame_6
       frameIndex: 6
       cellRect:
@@ -505,7 +505,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: 668742ceecd2aa54b92b9c9b4429deb7
+      spriteId: da4e62d7d1e45124c90e5a1e18917922
     - name: Palm Tree_Frame_7
       frameIndex: 7
       cellRect:
@@ -513,7 +513,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: ef36fd18e27d80141951ddf81e7f3faa
+      spriteId: 43b7b4d80f0ba014cad531ddb3d2e89e
     - name: Palm Tree_Frame_8
       frameIndex: 8
       cellRect:
@@ -521,7 +521,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: 7ff53f542f219bb44a53fc464ca971a5
+      spriteId: 00e246faa0ca3694c9dcfd7a9cd8222d
     - name: Palm Tree_Frame_9
       frameIndex: 9
       cellRect:
@@ -529,7 +529,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: 485d95d4354379c4d897d1bc9c022898
+      spriteId: 7e9492553c1befd49930e5135a1a31ac
     - name: Palm Tree_Frame_10
       frameIndex: 10
       cellRect:
@@ -537,7 +537,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: 6a0b39df4569d664e8256f6fe27483de
+      spriteId: 9b28037df6c753f4994f444915789124
     - name: Palm Tree_Frame_11
       frameIndex: 11
       cellRect:
@@ -545,7 +545,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: ade27204e00ddfa47834d6c90ff14a67
+      spriteId: 7e90d70b905eff94caa8c5d511393096
     - name: Palm Tree_Frame_12
       frameIndex: 12
       cellRect:
@@ -553,7 +553,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: c13e269da0248fe4b89f09dd026716a3
+      spriteId: 68db4e29d68292e47863a052fa574f70
     - name: Palm Tree_Frame_13
       frameIndex: 13
       cellRect:
@@ -561,7 +561,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: 012382e96a9a0bb438afa2688ebf5d0b
+      spriteId: 8c8779c905c850e4cb024ec0aa96e00f
     - name: Palm Tree_Frame_14
       frameIndex: 14
       cellRect:
@@ -569,7 +569,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: 8ebe2f0d1ad2d5840bdcb0cc634163a5
+      spriteId: 57501a4bd0e571e4fa649e5faaa65238
     - name: Palm Tree_Frame_15
       frameIndex: 15
       cellRect:
@@ -577,7 +577,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: 385629c657b90bd4d81013522f2d2493
+      spriteId: 7bfcdb56d38374646ad4880b9af8cdbd
     linkedCells: []
     parentIndex: -1
   platformSettings: []

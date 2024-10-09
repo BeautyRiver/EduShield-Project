@@ -38,13 +38,14 @@ public class AiManager : MonoBehaviour
     // Ai 이미지 등장
     public void AppearAiImage(int selectStage)
     {
+        scriptText.text = string.Empty;
         selectStageIdx = selectStage;
         MoveRectToPosition(aiImageRect, new Vector3(-3.25f, 225, 0), Ease.OutBack, () => AppearAiMessage());
     }
 
     // 메시지창 등장
     private void AppearAiMessage()
-    {
+    {        
         MoveRectToPosition(aiTextAreaRect, new Vector3(420f, 40f, 0), Ease.OutExpo, () => ShowAlertMessage());
     }
 
@@ -52,12 +53,13 @@ public class AiManager : MonoBehaviour
     private void ShowAlertMessage()
     {
         scriptText.DOText(alertMessages[selectStageIdx], textDuration, true).SetEase(Ease.Linear);
-        aiTextAreaRect.transform.DOShakePosition(textDuration,2f,fadeOut:false).SetEase(Ease.Linear);
+        aiImageRect.transform.DOShakePosition(textDuration, 5f, fadeOut: false).SetEase(Ease.Linear);
+        //aiTextAreaRect.transform.DOShakePosition(textDuration,2f,fadeOut:false).SetEase(Ease.Linear);
     }
 
     // 공통된 애니메이션 동작
     private void MoveRectToPosition(RectTransform rect, Vector3 targetPos, Ease easeType, TweenCallback onComplete = null)
     {
-        rect.DOAnchorPos(targetPos, appearAiDuration).SetEase(easeType).SetUpdate(true).OnComplete(onComplete);
+        rect.DOAnchorPos(targetPos, appearAiDuration).SetEase(easeType).OnComplete(onComplete);
     }
 }

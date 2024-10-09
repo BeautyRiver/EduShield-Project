@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b9c220310ebc23e4b838808886a099aa
+guid: f2b13ff3636ee2a48a725551f4fbb5f8
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -132,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 64
       height: 64
-    spriteID: 40ab9f1615a9ca44db58d13290cbfc95
+    spriteID: 696315e75fece9747bda6ab79d5082f1
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -152,7 +152,7 @@ ScriptedImporter:
       y: 76
       width: 64
       height: 64
-    spriteID: 938372a60162e794e9b1d5b305b2995b
+    spriteID: f0d37478bec07934aa9e60f3d46dc16b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -172,7 +172,7 @@ ScriptedImporter:
       y: 148
       width: 64
       height: 64
-    spriteID: 1cbda0e13f4a16245b3619826896640b
+    spriteID: 205ff7597eed3fc4b9b9abca2d199643
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -192,7 +192,7 @@ ScriptedImporter:
       y: 220
       width: 64
       height: 64
-    spriteID: 64775db271c99f448a453c1b4f2671ee
+    spriteID: d689b39da98211c4799d93a1f3a4654a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -212,7 +212,7 @@ ScriptedImporter:
       y: 292
       width: 64
       height: 64
-    spriteID: 513e6b9da4005144abbd3625c23ef13b
+    spriteID: 33e583ab101ae1945a620d49c44e0650
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -232,7 +232,7 @@ ScriptedImporter:
       y: 364
       width: 64
       height: 64
-    spriteID: 2dc3b9a3e7e678649b0d9042ef5eb716
+    spriteID: b7cb4005ca12d28409004d6e9bdbf26b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -252,7 +252,7 @@ ScriptedImporter:
       y: 436
       width: 64
       height: 64
-    spriteID: e5b39134cc633824880800a0057aa950
+    spriteID: fea740e217a06e7449b8084f84620e0b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -272,7 +272,7 @@ ScriptedImporter:
       y: 4
       width: 64
       height: 64
-    spriteID: 4e334f2097a88264496757d837493c0c
+    spriteID: 2484addb0bf4331459785c1bcf90cd8a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -292,7 +292,7 @@ ScriptedImporter:
       y: 76
       width: 64
       height: 64
-    spriteID: 49931f4a3bded8a498b4c9c039446339
+    spriteID: 23907c9056984834985e2ac8301557f9
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -312,7 +312,7 @@ ScriptedImporter:
       y: 148
       width: 64
       height: 64
-    spriteID: 01371457cd785bb459f32a1223847e3d
+    spriteID: 418657fdfc2ce564eb2885700f77fc83
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -337,7 +337,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: 40ab9f1615a9ca44db58d13290cbfc95
+      spriteId: 696315e75fece9747bda6ab79d5082f1
     - name: Ship Helm_Frame_1
       frameIndex: 1
       cellRect:
@@ -345,7 +345,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: 938372a60162e794e9b1d5b305b2995b
+      spriteId: f0d37478bec07934aa9e60f3d46dc16b
     - name: Ship Helm_Frame_2
       frameIndex: 2
       cellRect:
@@ -353,7 +353,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: 1cbda0e13f4a16245b3619826896640b
+      spriteId: 205ff7597eed3fc4b9b9abca2d199643
     - name: Ship Helm_Frame_3
       frameIndex: 3
       cellRect:
@@ -361,7 +361,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: 64775db271c99f448a453c1b4f2671ee
+      spriteId: d689b39da98211c4799d93a1f3a4654a
     - name: Ship Helm_Frame_4
       frameIndex: 4
       cellRect:
@@ -369,7 +369,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: 513e6b9da4005144abbd3625c23ef13b
+      spriteId: 33e583ab101ae1945a620d49c44e0650
     - name: Ship Helm_Frame_5
       frameIndex: 5
       cellRect:
@@ -377,7 +377,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: 2dc3b9a3e7e678649b0d9042ef5eb716
+      spriteId: b7cb4005ca12d28409004d6e9bdbf26b
     - name: Ship Helm_Frame_6
       frameIndex: 6
       cellRect:
@@ -385,7 +385,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: e5b39134cc633824880800a0057aa950
+      spriteId: fea740e217a06e7449b8084f84620e0b
     - name: Ship Helm_Frame_7
       frameIndex: 7
       cellRect:
@@ -393,7 +393,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: 4e334f2097a88264496757d837493c0c
+      spriteId: 2484addb0bf4331459785c1bcf90cd8a
     - name: Ship Helm_Frame_8
       frameIndex: 8
       cellRect:
@@ -401,7 +401,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: 49931f4a3bded8a498b4c9c039446339
+      spriteId: 23907c9056984834985e2ac8301557f9
     - name: Ship Helm_Frame_9
       frameIndex: 9
       cellRect:
@@ -409,7 +409,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: 01371457cd785bb459f32a1223847e3d
+      spriteId: 418657fdfc2ce564eb2885700f77fc83
     linkedCells: []
     parentIndex: -1
   platformSettings: []

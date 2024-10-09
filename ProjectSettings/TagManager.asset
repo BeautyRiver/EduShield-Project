@@ -9,17 +9,19 @@ TagManager:
   - Enemy
   - Bullet
   - Exp
+  - Cleaner
+  - MiniBossEnemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ground
+  - GroundPhyscis
   - Water
   - UI
   - Enemy
   - Player
   - Exp
-  - 
+  - MiniBossEnemy
   - 
   - 
   - 

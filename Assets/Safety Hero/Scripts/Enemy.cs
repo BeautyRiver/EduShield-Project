@@ -1,3 +1,4 @@
+using DarkTonic.MasterAudio;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,13 +11,15 @@ public class Enemy : MonoBehaviour
 {
     public enum EnemyType
     {
-        Normal, Uniqe,
+        Normal, Uniqe, MiniBoss,
     }
     [Header("적 상태")]
     public EnemyType enemyType;
     public float speed;
     public float health;
     public float maxHealth;
+    public float damage;
+    public int exp;
     public int id;
 
     private bool isLive;
@@ -46,17 +49,19 @@ public class Enemy : MonoBehaviour
     {
         if (GameManager.instance.isLive && isLive)
         {
-            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Hit") && enemyType != EnemyType.MiniBoss)
                 return;
 
-            if (enemyType == EnemyType.Normal)
+            // 유니크 몬스터가 아닐때 기본 이동
+            if (enemyType != EnemyType.Uniqe)
             {
                 Vector2 dirVec = target.position - rigid.position; // 타겟 방향
                 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
                 rigid.MovePosition(rigid.position + nextVec);
             }
 
-            else if (enemyType == EnemyType.Uniqe)
+            // 유니크 몬스터
+            else
             {
                 rigid.MovePosition(rigid.position + (nextVec * speed * Time.fixedDeltaTime));
             }
@@ -71,7 +76,7 @@ public class Enemy : MonoBehaviour
     {
         if (GameManager.instance.isLive && isLive)
         {
-            if (enemyType == EnemyType.Normal)
+            if (enemyType != EnemyType.Uniqe)
                 spriter.flipX = target.position.x < rigid.position.x;
         }
         else
@@ -110,21 +115,36 @@ public class Enemy : MonoBehaviour
         speed = data.speed;
         maxHealth = data.health;
         health = maxHealth;
-
-        
+        exp = data.exp;
+        damage = data.damage;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Bullet") && isLive)
+        if (!isLive)
+            return;
+
+        if (collision.CompareTag("Cleaner"))
+        {
+            isLive = false;
+            coll.enabled = false; // 콜라이더 끄기
+            rigid.simulated = false;
+            anim.SetBool("Dead", true);
+        }
+
+        if (collision.CompareTag("Bullet"))
         {            
             Bullet bulletInfo = collision.GetComponent<Bullet>();
             Vector2 hitPos;
             float damage = bulletInfo.damage;
-            
+
+            // 이펙트
+            GameObject effect = GameManager.instance.pool.Get(PoolManager.PoolType.Effect, 0);
+            effect.transform.position = collision.ClosestPoint(transform.position);
+
             health -= damage; // 체력 감소            
             hitPos = collision.ClosestPoint(transform.position); // 충돌한 지점의 정확한 위치를 구하기
-            ShowDamageText(damage.ToString(), damage, hitPos, Color.white); // 기본 데미지
+            ShowDamageText(damage.ToString("F1"), damage, hitPos, Color.white); // 기본 데미지
 
             // 추가 데미지 구현 로직
             if (bulletInfo.id == id)
@@ -132,27 +152,39 @@ public class Enemy : MonoBehaviour
                 health -= damage * 0.5f;
                 // 충돌한 지점의 정확한 위치를 구하기
                 hitPos = collision.ClosestPoint(transform.position);
-                ShowDamageText($"+{(damage* 0.5f).ToString()}", damage * 0.5f, new Vector2(hitPos.x,hitPos.y + 0.5f), Color.red);
+                ShowDamageText($"+{(damage* 0.5f).ToString("F1")}", damage * 0.5f, new Vector2(hitPos.x,hitPos.y + 0.5f), Color.red);
             }
-            StartCoroutine(KnockBack()); // 넉백
-            anim.SetTrigger("Hit"); // 맞는 애니메이션 재생
-            AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit); // 음향재생
+            anim.SetTrigger("Hit"); // 맞는 애니메이션 재생                                    
+            MasterAudio.PlaySound("Hit"); // 사운드 재생
 
-            if (health <= 0) // 체력 0 이하 사망
+            // 보스는 넉벡 X
+            if (enemyType != EnemyType.MiniBoss)
+                StartCoroutine(KnockBack()); // 넉백
+
+            // 체력 0 이하 사망
+            if (health <= 0) 
             {
-                GameObject exp = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 1); // Exp 드랍시키기
-                exp.transform.position = transform.position;
+                // 미니 보스가 아닐때
+                if (enemyType != EnemyType.MiniBoss)
+                {
+                    GameObject expObj = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 1); // Exp 드랍시키기
+                    expObj.transform.position = transform.position;
+                    expObj.GetComponent<Exp>().exp = this.exp;
+                }
+                else
+                {
+                    GameObject reward = GameManager.instance.pool.Get(PoolManager.PoolType.Item, 3);
+                    reward.transform.position = transform.position;
+                }
 
                 isLive = false;
                 coll.enabled = false; // 콜라이더 끄기
                 rigid.simulated = false;
-                spriter.sortingOrder = 1;
                 anim.SetBool("Dead", true);
-
                 GameManager.instance.kill++;
 
                 if (GameManager.instance.isLive)
-                    AudioManager.instance.PlaySfx(AudioManager.Sfx.Dead); // 음향재생
+                    MasterAudio.PlaySound("Dead");
             }
         }
         else

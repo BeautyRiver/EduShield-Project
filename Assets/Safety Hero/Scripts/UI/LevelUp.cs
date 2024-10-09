@@ -1,3 +1,4 @@
+using DarkTonic.MasterAudio;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,13 +11,13 @@ public class LevelUp : MonoBehaviour
     private RectTransform rect;
     public Image blackWindow;
     public float showLeveUpDuration;
-    [SerializeField] private List<Item> items;
-    public List<Item> availableItems;
+    [SerializeField] private List<ItemSetting> items;
+    public List<ItemSetting> availableItems;
 
     private void Awake()
     {
         rect = GetComponent<RectTransform>();
-        items = GetComponentsInChildren<Item>(true).ToList();
+        items = GetComponentsInChildren<ItemSetting>(true).ToList();
     }
 
     public void Show()
@@ -34,8 +35,11 @@ public class LevelUp : MonoBehaviour
         GameManager.instance.Stop();
         rect.DOAnchorPos(Vector3.zero, showLeveUpDuration).SetEase(Ease.Linear).SetUpdate(true);
 
-        AudioManager.instance.PlaySfx(AudioManager.Sfx.LevelUp); // 음향재생
-        AudioManager.instance.EffectBgm(true); // 배경음 필터 끄기
+        MasterAudio.PlaySound("LevelUp");
+
+        // 비율 기반으로 BGM 볼륨 감소
+        /*float currentBGMVolume = PlayerPrefs.GetFloat("BGM");
+        MasterAudio.PlaylistMasterVolume = currentBGMVolume * 0.25f;*/
     }
     public void Hide()
     {
@@ -52,9 +56,10 @@ public class LevelUp : MonoBehaviour
             GameManager.instance.Resume();
         });
 
-        AudioManager.instance.PlaySfx(AudioManager.Sfx.Select); // 음향재생
-        AudioManager.instance.EffectBgm(false); // 배경음 필터 끄기
+        MasterAudio.PlaySound("Select");
 
+        // 원래 BGM 볼륨으로 복구
+        //MasterAudio.PlaylistMasterVolume = PlayerPrefs.GetFloat("BGM");
     }
 
     public void Select(int index)
@@ -65,17 +70,17 @@ public class LevelUp : MonoBehaviour
     private void Next()
     {
         // 모든 아이템 비활성화
-        foreach (Item item in items)
+        foreach (ItemSetting item in items)
         {
             item.gameObject.SetActive(false);
         }
 
         // 활성화 가능한 아이템을 담는 리스트
-        availableItems = new List<Item>();
+        availableItems = new List<ItemSetting>();
 
         bool allMaxLevel = true;
 
-        foreach (Item item in items)
+        foreach (ItemSetting item in items)
         {
             switch (item.data.itemCategory)
             {
@@ -108,7 +113,7 @@ public class LevelUp : MonoBehaviour
         // 모든 무기와 기어가 최대 레벨에 도달했다면 Etc 아이템만 활성화
         if (allMaxLevel)
         {
-            foreach (Item item in items)
+            foreach (ItemSetting item in items)
             {
                 if (item.data.itemCategory == ItemData.ItemCategory.Etc)
                 {

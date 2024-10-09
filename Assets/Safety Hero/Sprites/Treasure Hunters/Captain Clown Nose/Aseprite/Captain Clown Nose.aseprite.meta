@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 119901a8cda2e0046905d59e83aba3f1
+guid: 57e6e0f1bcaf2864faf0765c8759e7c3
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -132,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 96
       height: 96
-    spriteID: bbc99c186efbce24eba2a27b875d33f9
+    spriteID: 613726c413f251b428adc2eb3a392d3d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -152,7 +152,7 @@ ScriptedImporter:
       y: 108
       width: 96
       height: 96
-    spriteID: fa29bf80a5276ca42ba7626bb3510f5f
+    spriteID: c2ba3295e121a0447aa0ef49dc89ed8f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -172,7 +172,7 @@ ScriptedImporter:
       y: 212
       width: 96
       height: 96
-    spriteID: 314d1ba2e4bb3fc46844f46df8b7a82c
+    spriteID: 25ccf9fe9db9df04eb316e6a5227996d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -192,7 +192,7 @@ ScriptedImporter:
       y: 316
       width: 96
       height: 96
-    spriteID: f7860367a5e4fd646907eb0df6194c48
+    spriteID: 65f013a7b2df20e41b0cef48830869d7
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -212,7 +212,7 @@ ScriptedImporter:
       y: 420
       width: 96
       height: 96
-    spriteID: 0e5908c82efc8a24fb097d657ad569df
+    spriteID: 6adccbb89c1c8cc409011e4024fa5044
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -232,7 +232,7 @@ ScriptedImporter:
       y: 524
       width: 96
       height: 96
-    spriteID: 23f52ff4ae1629f48ab27f58d7002c4f
+    spriteID: efee03e3bb055924aa2c98f6b4b107dc
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -252,7 +252,7 @@ ScriptedImporter:
       y: 628
       width: 96
       height: 96
-    spriteID: 76cf2eb0699b2f9458624044e6639ef5
+    spriteID: 150152f7a23a3b74e95b12ed7bef722e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -272,7 +272,7 @@ ScriptedImporter:
       y: 732
       width: 96
       height: 96
-    spriteID: e0e765a8fc46b674cab2d251f637a09c
+    spriteID: c6d324a561aceeb4bab85b0389b9d00d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -292,7 +292,7 @@ ScriptedImporter:
       y: 836
       width: 96
       height: 96
-    spriteID: f1921f9b700530046bb1ba3508783fd8
+    spriteID: ea8c518333348aa4e9acecc742ccb4fb
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -312,7 +312,7 @@ ScriptedImporter:
       y: 940
       width: 96
       height: 96
-    spriteID: e7b7064d5f2f35d4796d286c8b0a2219
+    spriteID: d79b3f38db691ab49af2f9f40d001d01
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -332,7 +332,7 @@ ScriptedImporter:
       y: 1044
       width: 96
       height: 96
-    spriteID: 924313eec6ae7b0499a0fbbcf7475708
+    spriteID: e6f80b4f0bfae0a43800bdd88f977da2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -352,7 +352,7 @@ ScriptedImporter:
       y: 1148
       width: 96
       height: 96
-    spriteID: fa45a33dc21718d43b60e7d4b90c412a
+    spriteID: 5fc134193bcf4ec47b734b749c1b687c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -372,7 +372,7 @@ ScriptedImporter:
       y: 1252
       width: 96
       height: 96
-    spriteID: ab204852e16ed04469861233604800da
+    spriteID: ecda21d43320d3e4db4b27fa1a09dc5b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -392,7 +392,7 @@ ScriptedImporter:
       y: 1356
       width: 96
       height: 96
-    spriteID: 7d6cff8be63455a409a4b0d881b1468b
+    spriteID: ff054907ea93d894aaf23c92c678d8fd
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -412,7 +412,7 @@ ScriptedImporter:
       y: 1460
       width: 96
       height: 96
-    spriteID: 13a6bdadd5b862d4fbd1424adf4ff248
+    spriteID: ccd1caa3d84e6f94da5c454bd15fb48d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -432,7 +432,7 @@ ScriptedImporter:
       y: 1564
       width: 96
       height: 96
-    spriteID: e010e85690015a44fbe9e2fa065ba916
+    spriteID: cd2787e3475127d43a733d98d1cf19f0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -452,7 +452,7 @@ ScriptedImporter:
       y: 1668
       width: 96
       height: 96
-    spriteID: fefb63ecaa5edd440b8fe5c70ed01ea0
+    spriteID: 77878141044396740be793eb264af265
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -472,7 +472,7 @@ ScriptedImporter:
       y: 1772
       width: 96
       height: 96
-    spriteID: 17e90fd990c50364798c5c89694d4a15
+    spriteID: 7cfe082c687ea7f46963874bad189b0e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -492,7 +492,7 @@ ScriptedImporter:
       y: 1876
       width: 96
       height: 96
-    spriteID: 9965ecf051f2b41408a68a5ca0216b30
+    spriteID: 7fd791a64ec16174caf40fb1ff08c5c6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -512,7 +512,7 @@ ScriptedImporter:
       y: 4
       width: 96
       height: 96
-    spriteID: 63e2bb7137e505143ae8e2fee20bfd41
+    spriteID: b339adadfb3fcc64cb9ccdba5deef328
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -532,7 +532,7 @@ ScriptedImporter:
       y: 108
       width: 96
       height: 96
-    spriteID: 95f328668128f494c9c231424cb9724f
+    spriteID: d9096606234c3be4692767db8f101f6e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -552,7 +552,7 @@ ScriptedImporter:
       y: 212
       width: 96
       height: 96
-    spriteID: 7a8ac22961abcf242abae19f92cc5fb6
+    spriteID: 8ea2ef4969da0194386d3536101d80f4
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -572,7 +572,7 @@ ScriptedImporter:
       y: 316
       width: 96
       height: 96
-    spriteID: df992f4ad783c6947b7c500cb91cbc3a
+    spriteID: 099db7b0d66cd104aaf64c80a269cd26
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -592,7 +592,7 @@ ScriptedImporter:
       y: 420
       width: 96
       height: 96
-    spriteID: 23b004291984177438c665aafca92d2a
+    spriteID: fa2abffd42af83948a223f6e3abc0c35
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -612,7 +612,7 @@ ScriptedImporter:
       y: 524
       width: 96
       height: 96
-    spriteID: 318dcd7c895c5dd48975831aeef52785
+    spriteID: 6778e111ec734504abdf96b181b9136e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -632,7 +632,7 @@ ScriptedImporter:
       y: 628
       width: 96
       height: 96
-    spriteID: fe840cb9c6cf4e94f958d87492f57f20
+    spriteID: 01c02dd0f7866e548936dfb27e85f618
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -652,7 +652,7 @@ ScriptedImporter:
       y: 732
       width: 96
       height: 96
-    spriteID: 2e0d69ef7911dd84ab5541db23c9f4e2
+    spriteID: 50cab80491273914e803495204284b22
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -672,7 +672,7 @@ ScriptedImporter:
       y: 836
       width: 96
       height: 96
-    spriteID: 7152553106aa2274386e0c84760dcbd9
+    spriteID: 948b8281bb802da41968100d8858a71c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -692,7 +692,7 @@ ScriptedImporter:
       y: 940
       width: 96
       height: 96
-    spriteID: 5720826e18f64ad4d869bc416d6662ab
+    spriteID: 0ca31e6bd13ff6049b9ea825ef5ace12
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -712,7 +712,7 @@ ScriptedImporter:
       y: 1044
       width: 96
       height: 96
-    spriteID: ab1f412118347b64a9556e1fa4be9f87
+    spriteID: 536684595bab2374dabb44f1a07b4fc4
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -732,7 +732,7 @@ ScriptedImporter:
       y: 1148
       width: 96
       height: 96
-    spriteID: 11e9247b85010ad4ea1d2742ce4f38a7
+    spriteID: 1d95b5def275b3245926450a50bb0213
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -752,7 +752,7 @@ ScriptedImporter:
       y: 1252
       width: 96
       height: 96
-    spriteID: a349e13367444934bb7ab02a095dd736
+    spriteID: 46096bf69679aed47ab50cf424626122
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -772,7 +772,7 @@ ScriptedImporter:
       y: 1356
       width: 96
       height: 96
-    spriteID: 64cbc2f30b8124c44868f90671b4c7c0
+    spriteID: e4ae0fd0f66941b4e95724535f223ccf
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -792,7 +792,7 @@ ScriptedImporter:
       y: 1460
       width: 96
       height: 96
-    spriteID: 04cf8100c4a6e5a4aa2754e3e9074f4b
+    spriteID: 495b551bfc249fd49ad72178f9e5bd4d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -812,7 +812,7 @@ ScriptedImporter:
       y: 1564
       width: 96
       height: 96
-    spriteID: fddd183d719cb8d4c92fd03ecc973c0a
+    spriteID: b0bc287df175884408e85ab4a0edf31b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -832,7 +832,7 @@ ScriptedImporter:
       y: 1668
       width: 96
       height: 96
-    spriteID: 7e9952858acfc8745ac8fecc159cfe39
+    spriteID: 72750bca4958eae4b937c18a102a4aa6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -852,7 +852,7 @@ ScriptedImporter:
       y: 1772
       width: 96
       height: 96
-    spriteID: 668c6226b3b2ffd4ba89419e62797bdb
+    spriteID: 5b7afe4fd9fd4e146be7b4f0c4765aa6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -872,7 +872,7 @@ ScriptedImporter:
       y: 1876
       width: 96
       height: 96
-    spriteID: f3a0adef563bc7b4c88d0e42ab2aa9a9
+    spriteID: 77c3779c676c29f49b7309cb47346588
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -892,7 +892,7 @@ ScriptedImporter:
       y: 4
       width: 96
       height: 96
-    spriteID: ad869e4b7f880a24db7bd9ac357fbc22
+    spriteID: 0fd0a6d73ebe2a341b0b2e184a859dad
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -912,7 +912,7 @@ ScriptedImporter:
       y: 108
       width: 96
       height: 96
-    spriteID: 47428116016777f4487cb5cb98148446
+    spriteID: 08c259951daa408468d0ca4b5b55158d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -932,7 +932,7 @@ ScriptedImporter:
       y: 212
       width: 96
       height: 96
-    spriteID: 286e7f77c1d76384b83bd9dd18a042c0
+    spriteID: d26405185af4af5468d0bafecea98ef1
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -952,7 +952,7 @@ ScriptedImporter:
       y: 316
       width: 96
       height: 96
-    spriteID: 360dd7cf8f67b30448342e0d0dd6a743
+    spriteID: ff26c1f192122d845833decad85bd02e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -972,7 +972,7 @@ ScriptedImporter:
       y: 420
       width: 96
       height: 96
-    spriteID: 30b89a2dd4bfa6e42831c1e9060ac59e
+    spriteID: aebbb6cc88390d94ebdf65096d18d055
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -992,7 +992,7 @@ ScriptedImporter:
       y: 524
       width: 96
       height: 96
-    spriteID: b8fbe57acec26984a9d5948fbc0962db
+    spriteID: 749ceb22242340f47992bbfac99630fc
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1012,7 +1012,7 @@ ScriptedImporter:
       y: 628
       width: 96
       height: 96
-    spriteID: f43b04441db4ac140bde919ef58818fc
+    spriteID: 8827237accc422e498b998fbbfb9414d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1032,7 +1032,7 @@ ScriptedImporter:
       y: 732
       width: 96
       height: 96
-    spriteID: 1cebdbb22f237ac44906a108fc511281
+    spriteID: e437438a17ea5d042a7e6733eb3f9bd5
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1052,7 +1052,7 @@ ScriptedImporter:
       y: 836
       width: 96
       height: 96
-    spriteID: 19c5841be8795174f9d41f4aa17d7841
+    spriteID: 687a9d843e1038749a150be4e76f02c6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1072,7 +1072,7 @@ ScriptedImporter:
       y: 940
       width: 96
       height: 96
-    spriteID: 4b6bcb2a7d21d854bbbcf7cbef8cacae
+    spriteID: 45e377ccc5248004196be8c2e4aadf90
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1092,7 +1092,7 @@ ScriptedImporter:
       y: 1044
       width: 96
       height: 96
-    spriteID: 78353183843aeb44e8c2b0e2dca61f3b
+    spriteID: 1640b1cf350b7f44997ae519638d0119
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1112,7 +1112,7 @@ ScriptedImporter:
       y: 1148
       width: 96
       height: 96
-    spriteID: e2b03fb4214213c4097f862a217e6478
+    spriteID: 9035e27e5f1e6b841a001ab2e4fa0f5f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1132,7 +1132,7 @@ ScriptedImporter:
       y: 1252
       width: 96
       height: 96
-    spriteID: 529f33db58a31ea429d8ef09dada93c0
+    spriteID: 6cd6a0f41d2e1294380b37513833c9e5
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1152,7 +1152,7 @@ ScriptedImporter:
       y: 1356
       width: 96
       height: 96
-    spriteID: 609968c21031eaf458bf645d780cd390
+    spriteID: 8247b4ab960ab7c40a5f21ce4f588a20
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1172,7 +1172,7 @@ ScriptedImporter:
       y: 1460
       width: 96
       height: 96
-    spriteID: b4d7394a5a7273540b560374e40d33f3
+    spriteID: 383e3a522b5cea141bbe33cebc62e8c1
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1192,7 +1192,7 @@ ScriptedImporter:
       y: 1564
       width: 96
       height: 96
-    spriteID: fac7b9390731ba04d84bb9eba40a3e30
+    spriteID: b70d5200772e8024796de97793d742d9
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1212,7 +1212,7 @@ ScriptedImporter:
       y: 1668
       width: 96
       height: 96
-    spriteID: e0975756e0b40994c82b63417e726dc3
+    spriteID: ba6cdda2496adee40a20be8070d5b79c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1232,7 +1232,7 @@ ScriptedImporter:
       y: 1772
       width: 96
       height: 96
-    spriteID: a50ed1324a8a09748bde3611848a50ab
+    spriteID: d3e6000f8c9bb274e86f71b85a2cff23
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1252,7 +1252,7 @@ ScriptedImporter:
       y: 1876
       width: 96
       height: 96
-    spriteID: 2b00c5e732a535343b8415437307ae48
+    spriteID: 1e241f16082f9594981a155a572bb7f4
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1272,7 +1272,7 @@ ScriptedImporter:
       y: 4
       width: 96
       height: 96
-    spriteID: 425dbc8693390c441817f0559389fcc9
+    spriteID: 7b3416128b6b0fc4180db94e938f4507
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1292,7 +1292,7 @@ ScriptedImporter:
       y: 108
       width: 96
       height: 96
-    spriteID: cb51198504f479d4f810ffa306e17a8c
+    spriteID: a604e53e55830d24985ca06fcad36255
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1312,7 +1312,7 @@ ScriptedImporter:
       y: 212
       width: 96
       height: 96
-    spriteID: 52c6fa2a41ab40c40bfb6ee93bbdb626
+    spriteID: f7232786b83cdb84b846ee2eec377df0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1332,7 +1332,7 @@ ScriptedImporter:
       y: 316
       width: 96
       height: 96
-    spriteID: 507ac503b52dc224baef4b7fea10707d
+    spriteID: 5bc1e61ab83bd9b479e6c9126e07c456
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1352,7 +1352,7 @@ ScriptedImporter:
       y: 420
       width: 96
       height: 96
-    spriteID: cc913387d6176a344844bdb7d5e85128
+    spriteID: b042f02e518f2184eba01adaa4935260
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1372,7 +1372,7 @@ ScriptedImporter:
       y: 524
       width: 96
       height: 96
-    spriteID: 2cdcedd3a077b59459070726334b5980
+    spriteID: 9d10579fe23a36746b1e2954398802c3
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1392,7 +1392,7 @@ ScriptedImporter:
       y: 628
       width: 96
       height: 96
-    spriteID: 256df721d48169d4698c34cb1d4152f2
+    spriteID: 100c8f3103f05ef409bde3e8b167c197
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1412,7 +1412,7 @@ ScriptedImporter:
       y: 732
       width: 96
       height: 96
-    spriteID: 356bc77654f39874bb1e4766a881f418
+    spriteID: 62bd5739dafa4c64c81df68e320b5fe3
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1432,7 +1432,7 @@ ScriptedImporter:
       y: 836
       width: 96
       height: 96
-    spriteID: 21ea998addf0f7a4c9d710eef78574d3
+    spriteID: 4167260fffb67b4448769928d2f14059
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1452,7 +1452,7 @@ ScriptedImporter:
       y: 940
       width: 96
       height: 96
-    spriteID: 5beab1033da7f0b4db5d82cf6270766e
+    spriteID: a01cb1248576bb34bbf7531f226a0ed7
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1472,7 +1472,7 @@ ScriptedImporter:
       y: 1044
       width: 96
       height: 96
-    spriteID: 97df6e28be0ad4e4e815f70b8e173d35
+    spriteID: 58dfa47a22e84374099fccd7a88088fb
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1492,7 +1492,7 @@ ScriptedImporter:
       y: 1148
       width: 96
       height: 96
-    spriteID: a88c243bde2f6f5409bc481a0af8d50d
+    spriteID: 2bde49b109ca1ba4faefc32bb127ea81
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1512,7 +1512,7 @@ ScriptedImporter:
       y: 1252
       width: 96
       height: 96
-    spriteID: dcff176cdea449b4d8af396acc46fbb9
+    spriteID: 4d289db089014444fbd259414d1dad6d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1532,7 +1532,7 @@ ScriptedImporter:
       y: 1356
       width: 96
       height: 96
-    spriteID: cdccea4bf9990cc4aa5057eec0beab70
+    spriteID: 708b730187dfad04c913381921bf8603
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1552,7 +1552,7 @@ ScriptedImporter:
       y: 1460
       width: 96
       height: 96
-    spriteID: 497f9a5e4d94b5545a24f4f1809b81c3
+    spriteID: bbef5ac088f1c2c46b1e9a92461cead6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1572,7 +1572,7 @@ ScriptedImporter:
       y: 1564
       width: 96
       height: 96
-    spriteID: 90ff3aa662c9a124c9de07d9f031b16c
+    spriteID: 9508bbe046e48604aab2b5532e3eea85
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1592,7 +1592,7 @@ ScriptedImporter:
       y: 1668
       width: 96
       height: 96
-    spriteID: d886730c031657f4bb65fe074fbe4299
+    spriteID: 94a31fe4506a0b242bf835ecf3df4fe2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1612,7 +1612,7 @@ ScriptedImporter:
       y: 1772
       width: 96
       height: 96
-    spriteID: 830cbc970f81f0d44a9bc28898752d40
+    spriteID: 611c732ad1150eb4c9104a84bbfce357
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1632,7 +1632,7 @@ ScriptedImporter:
       y: 1876
       width: 96
       height: 96
-    spriteID: 0fdd7da8dce4b1e44890272987082694
+    spriteID: 9c9ce490b7fbd89448f43f8117877f32
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1652,7 +1652,7 @@ ScriptedImporter:
       y: 4
       width: 96
       height: 96
-    spriteID: b9d2a3bc2ac61e245bb7eac815fe7d45
+    spriteID: 52c268c78e3ab0248919346411fdee7b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1672,7 +1672,7 @@ ScriptedImporter:
       y: 108
       width: 96
       height: 96
-    spriteID: 00e634f585e8aae41b132c92ea911c1f
+    spriteID: c92121ab428dbed4e9add4e78c8dab95
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1692,7 +1692,7 @@ ScriptedImporter:
       y: 212
       width: 96
       height: 96
-    spriteID: 11d02ba7ffa30d040bcd0af2eb401c97
+    spriteID: 6e20b069a9221004f85513e9ecf7b5dd
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1712,7 +1712,7 @@ ScriptedImporter:
       y: 316
       width: 96
       height: 96
-    spriteID: cf1cae01e67e22c458d81c5447db110a
+    spriteID: 7b18d5f8aedab4a48a210ee0c248827b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1732,7 +1732,7 @@ ScriptedImporter:
       y: 420
       width: 96
       height: 96
-    spriteID: 7f21eaac17b284f409cdb33f368737a9
+    spriteID: b7638b030d8c2464aab1e344962e624d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1752,7 +1752,7 @@ ScriptedImporter:
       y: 524
       width: 96
       height: 96
-    spriteID: 49e6c2f970875814fbb9a6ad2f983dcb
+    spriteID: ccd88cbbd7518d142af7ba5e29e19dbb
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1772,7 +1772,7 @@ ScriptedImporter:
       y: 628
       width: 96
       height: 96
-    spriteID: 0f9f92147a4b2d14aa70e257fb1d6783
+    spriteID: a9c9807826ddffb45a54789d9e116d20
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1792,7 +1792,7 @@ ScriptedImporter:
       y: 732
       width: 96
       height: 96
-    spriteID: 8f406c5e54f88074184642769d0b170b
+    spriteID: 19d624b86d225664fa00bc3acd1065fd
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1817,7 +1817,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: bbc99c186efbce24eba2a27b875d33f9
+      spriteId: 613726c413f251b428adc2eb3a392d3d
     - name: Captain Clown Nose_Frame_1
       frameIndex: 1
       cellRect:
@@ -1825,7 +1825,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: fa29bf80a5276ca42ba7626bb3510f5f
+      spriteId: c2ba3295e121a0447aa0ef49dc89ed8f
     - name: Captain Clown Nose_Frame_2
       frameIndex: 2
       cellRect:
@@ -1833,7 +1833,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 314d1ba2e4bb3fc46844f46df8b7a82c
+      spriteId: 25ccf9fe9db9df04eb316e6a5227996d
     - name: Captain Clown Nose_Frame_3
       frameIndex: 3
       cellRect:
@@ -1841,7 +1841,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: f7860367a5e4fd646907eb0df6194c48
+      spriteId: 65f013a7b2df20e41b0cef48830869d7
     - name: Captain Clown Nose_Frame_4
       frameIndex: 4
       cellRect:
@@ -1849,7 +1849,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 0e5908c82efc8a24fb097d657ad569df
+      spriteId: 6adccbb89c1c8cc409011e4024fa5044
     - name: Captain Clown Nose_Frame_5
       frameIndex: 5
       cellRect:
@@ -1857,7 +1857,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 23f52ff4ae1629f48ab27f58d7002c4f
+      spriteId: efee03e3bb055924aa2c98f6b4b107dc
     - name: Captain Clown Nose_Frame_6
       frameIndex: 6
       cellRect:
@@ -1865,7 +1865,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 76cf2eb0699b2f9458624044e6639ef5
+      spriteId: 150152f7a23a3b74e95b12ed7bef722e
     - name: Captain Clown Nose_Frame_7
       frameIndex: 7
       cellRect:
@@ -1873,7 +1873,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: e0e765a8fc46b674cab2d251f637a09c
+      spriteId: c6d324a561aceeb4bab85b0389b9d00d
     - name: Captain Clown Nose_Frame_8
       frameIndex: 8
       cellRect:
@@ -1881,7 +1881,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: f1921f9b700530046bb1ba3508783fd8
+      spriteId: ea8c518333348aa4e9acecc742ccb4fb
     - name: Captain Clown Nose_Frame_9
       frameIndex: 9
       cellRect:
@@ -1889,7 +1889,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: e7b7064d5f2f35d4796d286c8b0a2219
+      spriteId: d79b3f38db691ab49af2f9f40d001d01
     - name: Captain Clown Nose_Frame_10
       frameIndex: 10
       cellRect:
@@ -1897,7 +1897,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 924313eec6ae7b0499a0fbbcf7475708
+      spriteId: e6f80b4f0bfae0a43800bdd88f977da2
     - name: Captain Clown Nose_Frame_11
       frameIndex: 11
       cellRect:
@@ -1905,7 +1905,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: fa45a33dc21718d43b60e7d4b90c412a
+      spriteId: 5fc134193bcf4ec47b734b749c1b687c
     - name: Captain Clown Nose_Frame_12
       frameIndex: 12
       cellRect:
@@ -1913,7 +1913,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: ab204852e16ed04469861233604800da
+      spriteId: ecda21d43320d3e4db4b27fa1a09dc5b
     - name: Captain Clown Nose_Frame_13
       frameIndex: 13
       cellRect:
@@ -1921,7 +1921,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 7d6cff8be63455a409a4b0d881b1468b
+      spriteId: ff054907ea93d894aaf23c92c678d8fd
     - name: Captain Clown Nose_Frame_14
       frameIndex: 14
       cellRect:
@@ -1929,7 +1929,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 13a6bdadd5b862d4fbd1424adf4ff248
+      spriteId: ccd1caa3d84e6f94da5c454bd15fb48d
     - name: Captain Clown Nose_Frame_15
       frameIndex: 15
       cellRect:
@@ -1937,7 +1937,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: e010e85690015a44fbe9e2fa065ba916
+      spriteId: cd2787e3475127d43a733d98d1cf19f0
     - name: Captain Clown Nose_Frame_16
       frameIndex: 16
       cellRect:
@@ -1945,7 +1945,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: fefb63ecaa5edd440b8fe5c70ed01ea0
+      spriteId: 77878141044396740be793eb264af265
     - name: Captain Clown Nose_Frame_17
       frameIndex: 17
       cellRect:
@@ -1953,7 +1953,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 17e90fd990c50364798c5c89694d4a15
+      spriteId: 7cfe082c687ea7f46963874bad189b0e
     - name: Captain Clown Nose_Frame_18
       frameIndex: 18
       cellRect:
@@ -1961,7 +1961,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 9965ecf051f2b41408a68a5ca0216b30
+      spriteId: 7fd791a64ec16174caf40fb1ff08c5c6
     - name: Captain Clown Nose_Frame_19
       frameIndex: 19
       cellRect:
@@ -1969,7 +1969,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 63e2bb7137e505143ae8e2fee20bfd41
+      spriteId: b339adadfb3fcc64cb9ccdba5deef328
     - name: Captain Clown Nose_Frame_20
       frameIndex: 20
       cellRect:
@@ -1977,7 +1977,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 95f328668128f494c9c231424cb9724f
+      spriteId: d9096606234c3be4692767db8f101f6e
     - name: Captain Clown Nose_Frame_21
       frameIndex: 21
       cellRect:
@@ -1985,7 +1985,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 7a8ac22961abcf242abae19f92cc5fb6
+      spriteId: 8ea2ef4969da0194386d3536101d80f4
     - name: Captain Clown Nose_Frame_22
       frameIndex: 22
       cellRect:
@@ -1993,7 +1993,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: df992f4ad783c6947b7c500cb91cbc3a
+      spriteId: 099db7b0d66cd104aaf64c80a269cd26
     - name: Captain Clown Nose_Frame_23
       frameIndex: 23
       cellRect:
@@ -2001,7 +2001,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 23b004291984177438c665aafca92d2a
+      spriteId: fa2abffd42af83948a223f6e3abc0c35
     - name: Captain Clown Nose_Frame_24
       frameIndex: 24
       cellRect:
@@ -2009,7 +2009,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 318dcd7c895c5dd48975831aeef52785
+      spriteId: 6778e111ec734504abdf96b181b9136e
     - name: Captain Clown Nose_Frame_25
       frameIndex: 25
       cellRect:
@@ -2017,7 +2017,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: fe840cb9c6cf4e94f958d87492f57f20
+      spriteId: 01c02dd0f7866e548936dfb27e85f618
     - name: Captain Clown Nose_Frame_26
       frameIndex: 26
       cellRect:
@@ -2025,7 +2025,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 2e0d69ef7911dd84ab5541db23c9f4e2
+      spriteId: 50cab80491273914e803495204284b22
     - name: Captain Clown Nose_Frame_27
       frameIndex: 27
       cellRect:
@@ -2033,7 +2033,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 7152553106aa2274386e0c84760dcbd9
+      spriteId: 948b8281bb802da41968100d8858a71c
     - name: Captain Clown Nose_Frame_28
       frameIndex: 28
       cellRect:
@@ -2041,7 +2041,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 5720826e18f64ad4d869bc416d6662ab
+      spriteId: 0ca31e6bd13ff6049b9ea825ef5ace12
     - name: Captain Clown Nose_Frame_29
       frameIndex: 29
       cellRect:
@@ -2049,7 +2049,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: ab1f412118347b64a9556e1fa4be9f87
+      spriteId: 536684595bab2374dabb44f1a07b4fc4
     - name: Captain Clown Nose_Frame_30
       frameIndex: 30
       cellRect:
@@ -2057,7 +2057,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 11e9247b85010ad4ea1d2742ce4f38a7
+      spriteId: 1d95b5def275b3245926450a50bb0213
     - name: Captain Clown Nose_Frame_31
       frameIndex: 31
       cellRect:
@@ -2065,7 +2065,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: a349e13367444934bb7ab02a095dd736
+      spriteId: 46096bf69679aed47ab50cf424626122
     - name: Captain Clown Nose_Frame_32
       frameIndex: 32
       cellRect:
@@ -2073,7 +2073,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 64cbc2f30b8124c44868f90671b4c7c0
+      spriteId: e4ae0fd0f66941b4e95724535f223ccf
     - name: Captain Clown Nose_Frame_33
       frameIndex: 33
       cellRect:
@@ -2081,7 +2081,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 04cf8100c4a6e5a4aa2754e3e9074f4b
+      spriteId: 495b551bfc249fd49ad72178f9e5bd4d
     - name: Captain Clown Nose_Frame_34
       frameIndex: 34
       cellRect:
@@ -2089,7 +2089,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: fddd183d719cb8d4c92fd03ecc973c0a
+      spriteId: b0bc287df175884408e85ab4a0edf31b
     - name: Captain Clown Nose_Frame_35
       frameIndex: 35
       cellRect:
@@ -2097,7 +2097,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 7e9952858acfc8745ac8fecc159cfe39
+      spriteId: 72750bca4958eae4b937c18a102a4aa6
     - name: Captain Clown Nose_Frame_36
       frameIndex: 36
       cellRect:
@@ -2105,7 +2105,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 668c6226b3b2ffd4ba89419e62797bdb
+      spriteId: 5b7afe4fd9fd4e146be7b4f0c4765aa6
     - name: Captain Clown Nose_Frame_37
       frameIndex: 37
       cellRect:
@@ -2113,7 +2113,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: f3a0adef563bc7b4c88d0e42ab2aa9a9
+      spriteId: 77c3779c676c29f49b7309cb47346588
     - name: Captain Clown Nose_Frame_38
       frameIndex: 38
       cellRect:
@@ -2121,7 +2121,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: ad869e4b7f880a24db7bd9ac357fbc22
+      spriteId: 0fd0a6d73ebe2a341b0b2e184a859dad
     - name: Captain Clown Nose_Frame_39
       frameIndex: 39
       cellRect:
@@ -2129,7 +2129,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 47428116016777f4487cb5cb98148446
+      spriteId: 08c259951daa408468d0ca4b5b55158d
     - name: Captain Clown Nose_Frame_40
       frameIndex: 40
       cellRect:
@@ -2137,7 +2137,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 286e7f77c1d76384b83bd9dd18a042c0
+      spriteId: d26405185af4af5468d0bafecea98ef1
     - name: Captain Clown Nose_Frame_41
       frameIndex: 41
       cellRect:
@@ -2145,7 +2145,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 360dd7cf8f67b30448342e0d0dd6a743
+      spriteId: ff26c1f192122d845833decad85bd02e
     - name: Captain Clown Nose_Frame_42
       frameIndex: 42
       cellRect:
@@ -2153,7 +2153,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 30b89a2dd4bfa6e42831c1e9060ac59e
+      spriteId: aebbb6cc88390d94ebdf65096d18d055
     - name: Captain Clown Nose_Frame_43
       frameIndex: 43
       cellRect:
@@ -2161,7 +2161,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: b8fbe57acec26984a9d5948fbc0962db
+      spriteId: 749ceb22242340f47992bbfac99630fc
     - name: Captain Clown Nose_Frame_44
       frameIndex: 44
       cellRect:
@@ -2169,7 +2169,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: f43b04441db4ac140bde919ef58818fc
+      spriteId: 8827237accc422e498b998fbbfb9414d
     - name: Captain Clown Nose_Frame_45
       frameIndex: 45
       cellRect:
@@ -2177,7 +2177,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 1cebdbb22f237ac44906a108fc511281
+      spriteId: e437438a17ea5d042a7e6733eb3f9bd5
     - name: Captain Clown Nose_Frame_46
       frameIndex: 46
       cellRect:
@@ -2185,7 +2185,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 19c5841be8795174f9d41f4aa17d7841
+      spriteId: 687a9d843e1038749a150be4e76f02c6
     - name: Captain Clown Nose_Frame_47
       frameIndex: 47
       cellRect:
@@ -2193,7 +2193,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 4b6bcb2a7d21d854bbbcf7cbef8cacae
+      spriteId: 45e377ccc5248004196be8c2e4aadf90
     - name: Captain Clown Nose_Frame_48
       frameIndex: 48
       cellRect:
@@ -2201,7 +2201,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 78353183843aeb44e8c2b0e2dca61f3b
+      spriteId: 1640b1cf350b7f44997ae519638d0119
     - name: Captain Clown Nose_Frame_49
       frameIndex: 49
       cellRect:
@@ -2209,7 +2209,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: e2b03fb4214213c4097f862a217e6478
+      spriteId: 9035e27e5f1e6b841a001ab2e4fa0f5f
     - name: Captain Clown Nose_Frame_50
       frameIndex: 50
       cellRect:
@@ -2217,7 +2217,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 529f33db58a31ea429d8ef09dada93c0
+      spriteId: 6cd6a0f41d2e1294380b37513833c9e5
     - name: Captain Clown Nose_Frame_51
       frameIndex: 51
       cellRect:
@@ -2225,7 +2225,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 609968c21031eaf458bf645d780cd390
+      spriteId: 8247b4ab960ab7c40a5f21ce4f588a20
     - name: Captain Clown Nose_Frame_52
       frameIndex: 52
       cellRect:
@@ -2233,7 +2233,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: b4d7394a5a7273540b560374e40d33f3
+      spriteId: 383e3a522b5cea141bbe33cebc62e8c1
     - name: Captain Clown Nose_Frame_53
       frameIndex: 53
       cellRect:
@@ -2241,7 +2241,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: fac7b9390731ba04d84bb9eba40a3e30
+      spriteId: b70d5200772e8024796de97793d742d9
     - name: Captain Clown Nose_Frame_54
       frameIndex: 54
       cellRect:
@@ -2249,7 +2249,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: e0975756e0b40994c82b63417e726dc3
+      spriteId: ba6cdda2496adee40a20be8070d5b79c
     - name: Captain Clown Nose_Frame_55
       frameIndex: 55
       cellRect:
@@ -2257,7 +2257,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: a50ed1324a8a09748bde3611848a50ab
+      spriteId: d3e6000f8c9bb274e86f71b85a2cff23
     - name: Captain Clown Nose_Frame_56
       frameIndex: 56
       cellRect:
@@ -2265,7 +2265,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 2b00c5e732a535343b8415437307ae48
+      spriteId: 1e241f16082f9594981a155a572bb7f4
     - name: Captain Clown Nose_Frame_57
       frameIndex: 57
       cellRect:
@@ -2273,7 +2273,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 425dbc8693390c441817f0559389fcc9
+      spriteId: 7b3416128b6b0fc4180db94e938f4507
     - name: Captain Clown Nose_Frame_58
       frameIndex: 58
       cellRect:
@@ -2281,7 +2281,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: cb51198504f479d4f810ffa306e17a8c
+      spriteId: a604e53e55830d24985ca06fcad36255
     - name: Captain Clown Nose_Frame_59
       frameIndex: 59
       cellRect:
@@ -2289,7 +2289,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 52c6fa2a41ab40c40bfb6ee93bbdb626
+      spriteId: f7232786b83cdb84b846ee2eec377df0
     - name: Captain Clown Nose_Frame_60
       frameIndex: 60
       cellRect:
@@ -2297,7 +2297,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 507ac503b52dc224baef4b7fea10707d
+      spriteId: 5bc1e61ab83bd9b479e6c9126e07c456
     - name: Captain Clown Nose_Frame_61
       frameIndex: 61
       cellRect:
@@ -2305,7 +2305,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: cc913387d6176a344844bdb7d5e85128
+      spriteId: b042f02e518f2184eba01adaa4935260
     - name: Captain Clown Nose_Frame_62
       frameIndex: 62
       cellRect:
@@ -2313,7 +2313,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 2cdcedd3a077b59459070726334b5980
+      spriteId: 9d10579fe23a36746b1e2954398802c3
     - name: Captain Clown Nose_Frame_63
       frameIndex: 63
       cellRect:
@@ -2321,7 +2321,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 256df721d48169d4698c34cb1d4152f2
+      spriteId: 100c8f3103f05ef409bde3e8b167c197
     - name: Captain Clown Nose_Frame_64
       frameIndex: 64
       cellRect:
@@ -2329,7 +2329,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 356bc77654f39874bb1e4766a881f418
+      spriteId: 62bd5739dafa4c64c81df68e320b5fe3
     - name: Captain Clown Nose_Frame_65
       frameIndex: 65
       cellRect:
@@ -2337,7 +2337,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 21ea998addf0f7a4c9d710eef78574d3
+      spriteId: 4167260fffb67b4448769928d2f14059
     - name: Captain Clown Nose_Frame_66
       frameIndex: 66
       cellRect:
@@ -2345,7 +2345,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 5beab1033da7f0b4db5d82cf6270766e
+      spriteId: a01cb1248576bb34bbf7531f226a0ed7
     - name: Captain Clown Nose_Frame_67
       frameIndex: 67
       cellRect:
@@ -2353,7 +2353,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 97df6e28be0ad4e4e815f70b8e173d35
+      spriteId: 58dfa47a22e84374099fccd7a88088fb
     - name: Captain Clown Nose_Frame_68
       frameIndex: 68
       cellRect:
@@ -2361,7 +2361,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: a88c243bde2f6f5409bc481a0af8d50d
+      spriteId: 2bde49b109ca1ba4faefc32bb127ea81
     - name: Captain Clown Nose_Frame_69
       frameIndex: 69
       cellRect:
@@ -2369,7 +2369,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: dcff176cdea449b4d8af396acc46fbb9
+      spriteId: 4d289db089014444fbd259414d1dad6d
     - name: Captain Clown Nose_Frame_70
       frameIndex: 70
       cellRect:
@@ -2377,7 +2377,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: cdccea4bf9990cc4aa5057eec0beab70
+      spriteId: 708b730187dfad04c913381921bf8603
     - name: Captain Clown Nose_Frame_71
       frameIndex: 71
       cellRect:
@@ -2385,7 +2385,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 497f9a5e4d94b5545a24f4f1809b81c3
+      spriteId: bbef5ac088f1c2c46b1e9a92461cead6
     - name: Captain Clown Nose_Frame_72
       frameIndex: 72
       cellRect:
@@ -2393,7 +2393,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 90ff3aa662c9a124c9de07d9f031b16c
+      spriteId: 9508bbe046e48604aab2b5532e3eea85
     - name: Captain Clown Nose_Frame_73
       frameIndex: 73
       cellRect:
@@ -2401,7 +2401,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: d886730c031657f4bb65fe074fbe4299
+      spriteId: 94a31fe4506a0b242bf835ecf3df4fe2
     - name: Captain Clown Nose_Frame_74
       frameIndex: 74
       cellRect:
@@ -2409,7 +2409,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 830cbc970f81f0d44a9bc28898752d40
+      spriteId: 611c732ad1150eb4c9104a84bbfce357
     - name: Captain Clown Nose_Frame_75
       frameIndex: 75
       cellRect:
@@ -2417,7 +2417,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 0fdd7da8dce4b1e44890272987082694
+      spriteId: 9c9ce490b7fbd89448f43f8117877f32
     - name: Captain Clown Nose_Frame_76
       frameIndex: 76
       cellRect:
@@ -2425,7 +2425,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: b9d2a3bc2ac61e245bb7eac815fe7d45
+      spriteId: 52c268c78e3ab0248919346411fdee7b
     - name: Captain Clown Nose_Frame_77
       frameIndex: 77
       cellRect:
@@ -2433,7 +2433,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 00e634f585e8aae41b132c92ea911c1f
+      spriteId: c92121ab428dbed4e9add4e78c8dab95
     - name: Captain Clown Nose_Frame_78
       frameIndex: 78
       cellRect:
@@ -2441,7 +2441,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 11d02ba7ffa30d040bcd0af2eb401c97
+      spriteId: 6e20b069a9221004f85513e9ecf7b5dd
     - name: Captain Clown Nose_Frame_79
       frameIndex: 79
       cellRect:
@@ -2449,7 +2449,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: cf1cae01e67e22c458d81c5447db110a
+      spriteId: 7b18d5f8aedab4a48a210ee0c248827b
     - name: Captain Clown Nose_Frame_80
       frameIndex: 80
       cellRect:
@@ -2457,7 +2457,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 7f21eaac17b284f409cdb33f368737a9
+      spriteId: b7638b030d8c2464aab1e344962e624d
     - name: Captain Clown Nose_Frame_81
       frameIndex: 81
       cellRect:
@@ -2465,7 +2465,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 49e6c2f970875814fbb9a6ad2f983dcb
+      spriteId: ccd88cbbd7518d142af7ba5e29e19dbb
     - name: Captain Clown Nose_Frame_82
       frameIndex: 82
       cellRect:
@@ -2473,7 +2473,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 0f9f92147a4b2d14aa70e257fb1d6783
+      spriteId: a9c9807826ddffb45a54789d9e116d20
     - name: Captain Clown Nose_Frame_83
       frameIndex: 83
       cellRect:
@@ -2481,7 +2481,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 8f406c5e54f88074184642769d0b170b
+      spriteId: 19d624b86d225664fa00bc3acd1065fd
     linkedCells: []
     parentIndex: -1
   platformSettings: []

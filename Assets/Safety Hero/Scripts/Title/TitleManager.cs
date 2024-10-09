@@ -1,3 +1,4 @@
+using DarkTonic.MasterAudio;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,12 +12,17 @@ public class TitleManager : MonoBehaviour
 {
     [SerializeField] private GameObject characterSelect; // 캐릭터 선택 창
     [SerializeField] private GameObject stageImage;
+    [SerializeField] private GameObject optionScreen;
+    [SerializeField] private Image fadeImage; // 페이드 인 아웃 이미지
+
     [SerializeField] private RectTransform[] stageImageRects;
     [SerializeField] private Image[] images;
     [SerializeField] private int idx = 0;
     [SerializeField] private Vector2[] stageImageScale;
     [SerializeField] private Vector2[] stageImagePos;
     [SerializeField] private Color noneSelectColor;
+
+    public static PlaylistController playlistController;
     private void Awake()
     {
         // 부모 rect는 필터링
@@ -25,15 +31,30 @@ public class TitleManager : MonoBehaviour
                                  .ToArray();
 
         images = stageImage.GetComponentsInChildren<Image>();
+        
     }
-    private void Update()
+
+    private void Start()
     {
-        Debug.Log(stageImageRects.Length);
+        playlistController = MasterAudio.OnlyPlaylistController;
+        if (playlistController.CurrentPlaylist.playlistName != "Title Bgm")
+            MasterAudio.ChangePlaylistByName("Title Bgm");
+        else
+            MasterAudio.StartPlaylist("Title Bgm");
+
+        fadeImage.gameObject.SetActive(true);
+        fadeImage.DOFade(0, 0.5f).OnComplete(() => 
+        {
+            fadeImage.gameObject.SetActive(false);            
+        });
+
+      
     }
-  
+
+    // 다음 버튼
     public void PressNextButton()
     {
-        if (idx >= stageImageRects.Length - 1)
+        if (idx >= stageImageRects.Length - 1 || DataManager.instance.IsUnlockStages[idx+1] == false)
             return;
 
         // 맨 앞에 이미지 왼편으로 치워 버리기
@@ -53,6 +74,7 @@ public class TitleManager : MonoBehaviour
         idx++;
     }
 
+    // 이전 버튼
     public void PressPrevButton()
     {
         if (idx <= 0)
@@ -70,7 +92,7 @@ public class TitleManager : MonoBehaviour
         // 인덱스 감소
         idx--;
     }
-
+    
 
     private void MoveStageImage(int index, Vector3 pos, Vector3 scale, Color color)
     {
@@ -81,9 +103,11 @@ public class TitleManager : MonoBehaviour
     }
 
     // 씬 전환 설정
-    public void LoadScene(string SceneName)
+    public void LoadScene()
     {
-        SceneManager.LoadScene(SceneName);
+        //LoadingSceneController.LoadScene(SceneManager.GetSceneByBuildIndex(idx).name);
+        LoadingSceneController.LoadScene("Game Scene");
+
     }
 
     // 게임 종료
@@ -94,12 +118,12 @@ public class TitleManager : MonoBehaviour
 #endif
         Application.Quit();
     }
-    #region 캐릭터 버튼 관리
-    public void SelectCharacter(PlayerData playerData)
+
+    
+   /* public void SelectCharacter(PlayerData playerData)
     {
         DataManager.instance.currentPlayerData = playerData;
-        LoadScene("Game Scene");
-    }
-    #endregion
+        SceneManager.LoadScene(idx + 1);
+    }*/
 
 }

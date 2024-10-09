@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 88bf1fac8a4db044caf797f9f42821a2
+guid: 8de22fff0f3501148a8b0ef23a7626a5
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -132,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 96
       height: 96
-    spriteID: fbb7395d75ca84e469d1d53cffb9ed84
+    spriteID: cd936c891bd52b74f9b11477ee3470d7
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -152,7 +152,7 @@ ScriptedImporter:
       y: 108
       width: 96
       height: 96
-    spriteID: 4d2f82b121e2ec04bb0648d0668449b3
+    spriteID: c2cec3ff20c25aa428a5b6499ca9fbfc
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -172,7 +172,7 @@ ScriptedImporter:
       y: 212
       width: 96
       height: 96
-    spriteID: 7554a6433d04b004bb479227211cecf8
+    spriteID: 8a4c8e79dc7497d4ea24798d0f7797f4
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -192,7 +192,7 @@ ScriptedImporter:
       y: 316
       width: 96
       height: 96
-    spriteID: 8e95673b40d9ed04ea3086696a353a2d
+    spriteID: 50bf896bdbe794448a5dc0a30177ac66
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -212,7 +212,7 @@ ScriptedImporter:
       y: 420
       width: 96
       height: 96
-    spriteID: a4313653df17f9f49822b3087d3d9d1c
+    spriteID: 17377c86a27d5024a9c53196d991c908
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -232,7 +232,7 @@ ScriptedImporter:
       y: 524
       width: 96
       height: 96
-    spriteID: 49a348f70676e0d45be8ae9574269747
+    spriteID: d78bbfcdd0d7aac4fbb7586b48f823a6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -252,7 +252,7 @@ ScriptedImporter:
       y: 628
       width: 96
       height: 96
-    spriteID: 6e233ffc976c402469d5097900c0fbf9
+    spriteID: 6c65e5a947d28b74abe59e4a386176b5
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -272,7 +272,7 @@ ScriptedImporter:
       y: 732
       width: 96
       height: 96
-    spriteID: 65ae39f3ac7d79041ac1f8e5ce06e3d7
+    spriteID: 2c6eebfbe89693e498da0a235f5ce32d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -292,7 +292,7 @@ ScriptedImporter:
       y: 836
       width: 96
       height: 96
-    spriteID: 478bc7f734361704f9a76a90d5013335
+    spriteID: 19bbf4df93bf98f49883e55bfd55d845
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -312,7 +312,7 @@ ScriptedImporter:
       y: 4
       width: 96
       height: 96
-    spriteID: df113c028efd3f74194f58b135a896da
+    spriteID: 5596402e901f3a444a356fbfa31e65a7
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -332,7 +332,7 @@ ScriptedImporter:
       y: 108
       width: 96
       height: 96
-    spriteID: efcee5c2c58e1d44b9c8cb384f72e6f0
+    spriteID: 6e6894b30c0f6b042854fc806eaa6393
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -352,7 +352,7 @@ ScriptedImporter:
       y: 212
       width: 96
       height: 96
-    spriteID: 60602e3ac7ee26a4289e63da3412c589
+    spriteID: c40ff78e48081074686f3f1407a52e01
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -372,7 +372,7 @@ ScriptedImporter:
       y: 316
       width: 96
       height: 96
-    spriteID: feaa243bfd224fd4f88af03daa3d54ac
+    spriteID: 067c1b7081e630348897bb5531e491d5
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -392,7 +392,7 @@ ScriptedImporter:
       y: 420
       width: 96
       height: 96
-    spriteID: 348f307eb2e4bb848af21944cea5acb4
+    spriteID: f7fe857587654b7499df0b0924307ba5
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -412,7 +412,7 @@ ScriptedImporter:
       y: 524
       width: 96
       height: 96
-    spriteID: affdcd2de8ea4e34fa2616234eda1df4
+    spriteID: b776a330cbf049545ab9f911ed4b8968
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -432,7 +432,7 @@ ScriptedImporter:
       y: 628
       width: 96
       height: 96
-    spriteID: a7569d7d581a184489f7b32e9866b2a4
+    spriteID: 076cd5eac44e6394f8e093136148d759
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -452,7 +452,7 @@ ScriptedImporter:
       y: 732
       width: 96
       height: 96
-    spriteID: 073ce83f92af03c41b10fcc645f00abb
+    spriteID: a3d27c566aa509f449728aaa42a227ae
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -472,7 +472,7 @@ ScriptedImporter:
       y: 836
       width: 96
       height: 96
-    spriteID: a55052487d98ce54fb78837f6e68831b
+    spriteID: fe89c9e33491df84bb7723710e4483b1
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -492,7 +492,7 @@ ScriptedImporter:
       y: 4
       width: 96
       height: 96
-    spriteID: 64391f18307bd77418fa38080b134d97
+    spriteID: 9daa37d1f3049c940a11f69d6921e1b5
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -512,7 +512,7 @@ ScriptedImporter:
       y: 108
       width: 96
       height: 96
-    spriteID: 8258aa6f9d2284f4d9ba272bf755790b
+    spriteID: da74492d731c0e244a7fe242f7194163
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -532,7 +532,7 @@ ScriptedImporter:
       y: 212
       width: 96
       height: 96
-    spriteID: d2eaf4b9ee2af1049b6a0ae36068fdcd
+    spriteID: 870d35d2fd948964fa1005cb0d22777c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -552,7 +552,7 @@ ScriptedImporter:
       y: 316
       width: 96
       height: 96
-    spriteID: 7a3e7a627b10de84cadfb98ece814f6a
+    spriteID: 3ee1799b62008ab4ea7daf7a818a8d4e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -572,7 +572,7 @@ ScriptedImporter:
       y: 420
       width: 96
       height: 96
-    spriteID: 021512ca05a0aff4aac6a69aabd3b78e
+    spriteID: a10ef8a5cc686f4449a3c45936934970
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -592,7 +592,7 @@ ScriptedImporter:
       y: 524
       width: 96
       height: 96
-    spriteID: 6c3608e570b6bd744ab704d238fdf984
+    spriteID: f7ee7062dec47014ebd56fc8f72d9968
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -612,7 +612,7 @@ ScriptedImporter:
       y: 628
       width: 96
       height: 96
-    spriteID: 4fa68470d4844754eb39276dc10b865f
+    spriteID: 1a20574760f9b9745a6bbc0c8d52c140
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -632,7 +632,7 @@ ScriptedImporter:
       y: 732
       width: 96
       height: 96
-    spriteID: 79b07f573772cc34fa28ed31c3fda331
+    spriteID: 76edee421ac4e9e43aea7ad70c455748
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -652,7 +652,7 @@ ScriptedImporter:
       y: 836
       width: 96
       height: 96
-    spriteID: a78b32c17fef31441951c640e17b027f
+    spriteID: bee87a5923b056449a3cc00298b22187
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -672,7 +672,7 @@ ScriptedImporter:
       y: 4
       width: 96
       height: 96
-    spriteID: 39b0ec3c47c47b44db773dbd471c867d
+    spriteID: 0ee14745182d6874dacd177dc3ba9735
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -692,7 +692,7 @@ ScriptedImporter:
       y: 108
       width: 96
       height: 96
-    spriteID: 2bb1e9f5dfa3ac14d804ff3d507fb9cb
+    spriteID: ca88780d405f8374e9e1c9d7efb15998
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -712,7 +712,7 @@ ScriptedImporter:
       y: 212
       width: 96
       height: 96
-    spriteID: 606cb8323a5f4794d9ff83bf4ea7f9ab
+    spriteID: 1440b569e663d904eb11b22d8ecb5961
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -732,7 +732,7 @@ ScriptedImporter:
       y: 316
       width: 96
       height: 96
-    spriteID: 900c9cbbd7857eb469b9149c6bfdb4ae
+    spriteID: 7b70705feb72c4f458f0a7080e05aff3
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -752,7 +752,7 @@ ScriptedImporter:
       y: 420
       width: 96
       height: 96
-    spriteID: 7076f3ad225ff6b4088b64dfa87dfefc
+    spriteID: ab284fdfbaf5b4245a7e83c389cdb184
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -772,7 +772,7 @@ ScriptedImporter:
       y: 524
       width: 96
       height: 96
-    spriteID: 43d2631c95b2ac249917bece59c82c8a
+    spriteID: 52ddca73fd6cf2f4e8d98157f3385f5b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -792,7 +792,7 @@ ScriptedImporter:
       y: 628
       width: 96
       height: 96
-    spriteID: 69999abe2e908f9429cec8a82942fdca
+    spriteID: 9ba2737ef02926b44b9d8ebcdf8affca
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -812,7 +812,7 @@ ScriptedImporter:
       y: 732
       width: 96
       height: 96
-    spriteID: 18f160dea52adf54fb8d65c9ec4588bc
+    spriteID: 6acb06216c9b34f4cbe8cd24db4e216a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -832,7 +832,7 @@ ScriptedImporter:
       y: 836
       width: 96
       height: 96
-    spriteID: 8ca40e4ae36d15f4da550580dfca4fda
+    spriteID: e0ec662493df29040bdd1bb11ff70444
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -852,7 +852,7 @@ ScriptedImporter:
       y: 4
       width: 96
       height: 96
-    spriteID: 08c9fe9e46b76254f80838dc6461e9a8
+    spriteID: 9c5169362a8e8434194f2304036e1d96
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -872,7 +872,7 @@ ScriptedImporter:
       y: 108
       width: 96
       height: 96
-    spriteID: 7966e4f988ec6b24fae98df88894d657
+    spriteID: 43cc04787d485844ea235aaa7a3b97f7
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -892,7 +892,7 @@ ScriptedImporter:
       y: 212
       width: 96
       height: 96
-    spriteID: 3e9c661df0798dd4fa1efad894cfe78c
+    spriteID: 9df262169f995834a86e707816e0a2d3
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -912,7 +912,7 @@ ScriptedImporter:
       y: 316
       width: 96
       height: 96
-    spriteID: 13594ff3a0b6b5145b2c4c3bd20716f4
+    spriteID: 0634125a7f7cf80488f81487611cee99
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -937,7 +937,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: fbb7395d75ca84e469d1d53cffb9ed84
+      spriteId: cd936c891bd52b74f9b11477ee3470d7
     - name: Fierce Tooth_Frame_1
       frameIndex: 1
       cellRect:
@@ -945,7 +945,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 4d2f82b121e2ec04bb0648d0668449b3
+      spriteId: c2cec3ff20c25aa428a5b6499ca9fbfc
     - name: Fierce Tooth_Frame_2
       frameIndex: 2
       cellRect:
@@ -953,7 +953,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 7554a6433d04b004bb479227211cecf8
+      spriteId: 8a4c8e79dc7497d4ea24798d0f7797f4
     - name: Fierce Tooth_Frame_3
       frameIndex: 3
       cellRect:
@@ -961,7 +961,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 8e95673b40d9ed04ea3086696a353a2d
+      spriteId: 50bf896bdbe794448a5dc0a30177ac66
     - name: Fierce Tooth_Frame_4
       frameIndex: 4
       cellRect:
@@ -969,7 +969,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: a4313653df17f9f49822b3087d3d9d1c
+      spriteId: 17377c86a27d5024a9c53196d991c908
     - name: Fierce Tooth_Frame_5
       frameIndex: 5
       cellRect:
@@ -977,7 +977,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 49a348f70676e0d45be8ae9574269747
+      spriteId: d78bbfcdd0d7aac4fbb7586b48f823a6
     - name: Fierce Tooth_Frame_6
       frameIndex: 6
       cellRect:
@@ -985,7 +985,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 6e233ffc976c402469d5097900c0fbf9
+      spriteId: 6c65e5a947d28b74abe59e4a386176b5
     - name: Fierce Tooth_Frame_7
       frameIndex: 7
       cellRect:
@@ -993,7 +993,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 65ae39f3ac7d79041ac1f8e5ce06e3d7
+      spriteId: 2c6eebfbe89693e498da0a235f5ce32d
     - name: Fierce Tooth_Frame_8
       frameIndex: 8
       cellRect:
@@ -1001,7 +1001,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 478bc7f734361704f9a76a90d5013335
+      spriteId: 19bbf4df93bf98f49883e55bfd55d845
     - name: Fierce Tooth_Frame_9
       frameIndex: 9
       cellRect:
@@ -1009,7 +1009,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: df113c028efd3f74194f58b135a896da
+      spriteId: 5596402e901f3a444a356fbfa31e65a7
     - name: Fierce Tooth_Frame_10
       frameIndex: 10
       cellRect:
@@ -1017,7 +1017,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: efcee5c2c58e1d44b9c8cb384f72e6f0
+      spriteId: 6e6894b30c0f6b042854fc806eaa6393
     - name: Fierce Tooth_Frame_11
       frameIndex: 11
       cellRect:
@@ -1025,7 +1025,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 60602e3ac7ee26a4289e63da3412c589
+      spriteId: c40ff78e48081074686f3f1407a52e01
     - name: Fierce Tooth_Frame_12
       frameIndex: 12
       cellRect:
@@ -1033,7 +1033,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: feaa243bfd224fd4f88af03daa3d54ac
+      spriteId: 067c1b7081e630348897bb5531e491d5
     - name: Fierce Tooth_Frame_13
       frameIndex: 13
       cellRect:
@@ -1041,7 +1041,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 348f307eb2e4bb848af21944cea5acb4
+      spriteId: f7fe857587654b7499df0b0924307ba5
     - name: Fierce Tooth_Frame_14
       frameIndex: 14
       cellRect:
@@ -1049,7 +1049,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: affdcd2de8ea4e34fa2616234eda1df4
+      spriteId: b776a330cbf049545ab9f911ed4b8968
     - name: Fierce Tooth_Frame_15
       frameIndex: 15
       cellRect:
@@ -1057,7 +1057,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: a7569d7d581a184489f7b32e9866b2a4
+      spriteId: 076cd5eac44e6394f8e093136148d759
     - name: Fierce Tooth_Frame_16
       frameIndex: 16
       cellRect:
@@ -1065,7 +1065,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 073ce83f92af03c41b10fcc645f00abb
+      spriteId: a3d27c566aa509f449728aaa42a227ae
     - name: Fierce Tooth_Frame_17
       frameIndex: 17
       cellRect:
@@ -1073,7 +1073,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: a55052487d98ce54fb78837f6e68831b
+      spriteId: fe89c9e33491df84bb7723710e4483b1
     - name: Fierce Tooth_Frame_18
       frameIndex: 18
       cellRect:
@@ -1081,7 +1081,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 64391f18307bd77418fa38080b134d97
+      spriteId: 9daa37d1f3049c940a11f69d6921e1b5
     - name: Fierce Tooth_Frame_19
       frameIndex: 19
       cellRect:
@@ -1089,7 +1089,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 8258aa6f9d2284f4d9ba272bf755790b
+      spriteId: da74492d731c0e244a7fe242f7194163
     - name: Fierce Tooth_Frame_20
       frameIndex: 20
       cellRect:
@@ -1097,7 +1097,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: d2eaf4b9ee2af1049b6a0ae36068fdcd
+      spriteId: 870d35d2fd948964fa1005cb0d22777c
     - name: Fierce Tooth_Frame_21
       frameIndex: 21
       cellRect:
@@ -1105,7 +1105,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 7a3e7a627b10de84cadfb98ece814f6a
+      spriteId: 3ee1799b62008ab4ea7daf7a818a8d4e
     - name: Fierce Tooth_Frame_22
       frameIndex: 22
       cellRect:
@@ -1113,7 +1113,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 021512ca05a0aff4aac6a69aabd3b78e
+      spriteId: a10ef8a5cc686f4449a3c45936934970
     - name: Fierce Tooth_Frame_23
       frameIndex: 23
       cellRect:
@@ -1121,7 +1121,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 6c3608e570b6bd744ab704d238fdf984
+      spriteId: f7ee7062dec47014ebd56fc8f72d9968
     - name: Fierce Tooth_Frame_24
       frameIndex: 24
       cellRect:
@@ -1129,7 +1129,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 4fa68470d4844754eb39276dc10b865f
+      spriteId: 1a20574760f9b9745a6bbc0c8d52c140
     - name: Fierce Tooth_Frame_25
       frameIndex: 25
       cellRect:
@@ -1137,7 +1137,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 79b07f573772cc34fa28ed31c3fda331
+      spriteId: 76edee421ac4e9e43aea7ad70c455748
     - name: Fierce Tooth_Frame_26
       frameIndex: 26
       cellRect:
@@ -1145,7 +1145,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: a78b32c17fef31441951c640e17b027f
+      spriteId: bee87a5923b056449a3cc00298b22187
     - name: Fierce Tooth_Frame_27
       frameIndex: 27
       cellRect:
@@ -1153,7 +1153,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 39b0ec3c47c47b44db773dbd471c867d
+      spriteId: 0ee14745182d6874dacd177dc3ba9735
     - name: Fierce Tooth_Frame_28
       frameIndex: 28
       cellRect:
@@ -1161,7 +1161,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 2bb1e9f5dfa3ac14d804ff3d507fb9cb
+      spriteId: ca88780d405f8374e9e1c9d7efb15998
     - name: Fierce Tooth_Frame_29
       frameIndex: 29
       cellRect:
@@ -1169,7 +1169,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 606cb8323a5f4794d9ff83bf4ea7f9ab
+      spriteId: 1440b569e663d904eb11b22d8ecb5961
     - name: Fierce Tooth_Frame_30
       frameIndex: 30
       cellRect:
@@ -1177,7 +1177,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 900c9cbbd7857eb469b9149c6bfdb4ae
+      spriteId: 7b70705feb72c4f458f0a7080e05aff3
     - name: Fierce Tooth_Frame_31
       frameIndex: 31
       cellRect:
@@ -1185,7 +1185,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 7076f3ad225ff6b4088b64dfa87dfefc
+      spriteId: ab284fdfbaf5b4245a7e83c389cdb184
     - name: Fierce Tooth_Frame_32
       frameIndex: 32
       cellRect:
@@ -1193,7 +1193,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 43d2631c95b2ac249917bece59c82c8a
+      spriteId: 52ddca73fd6cf2f4e8d98157f3385f5b
     - name: Fierce Tooth_Frame_33
       frameIndex: 33
       cellRect:
@@ -1201,7 +1201,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 69999abe2e908f9429cec8a82942fdca
+      spriteId: 9ba2737ef02926b44b9d8ebcdf8affca
     - name: Fierce Tooth_Frame_34
       frameIndex: 34
       cellRect:
@@ -1209,7 +1209,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 18f160dea52adf54fb8d65c9ec4588bc
+      spriteId: 6acb06216c9b34f4cbe8cd24db4e216a
     - name: Fierce Tooth_Frame_35
       frameIndex: 35
       cellRect:
@@ -1217,7 +1217,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 8ca40e4ae36d15f4da550580dfca4fda
+      spriteId: e0ec662493df29040bdd1bb11ff70444
     - name: Fierce Tooth_Frame_36
       frameIndex: 36
       cellRect:
@@ -1225,7 +1225,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 08c9fe9e46b76254f80838dc6461e9a8
+      spriteId: 9c5169362a8e8434194f2304036e1d96
     - name: Fierce Tooth_Frame_37
       frameIndex: 37
       cellRect:
@@ -1233,7 +1233,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 7966e4f988ec6b24fae98df88894d657
+      spriteId: 43cc04787d485844ea235aaa7a3b97f7
     - name: Fierce Tooth_Frame_38
       frameIndex: 38
       cellRect:
@@ -1241,7 +1241,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 3e9c661df0798dd4fa1efad894cfe78c
+      spriteId: 9df262169f995834a86e707816e0a2d3
     - name: Fierce Tooth_Frame_39
       frameIndex: 39
       cellRect:
@@ -1249,7 +1249,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 13594ff3a0b6b5145b2c4c3bd20716f4
+      spriteId: 0634125a7f7cf80488f81487611cee99
     linkedCells: []
     parentIndex: -1
   platformSettings: []

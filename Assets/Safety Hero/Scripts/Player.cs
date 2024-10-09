@@ -106,7 +106,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            gameManager.health -= Time.deltaTime * 10;
+            gameManager.health -= Time.deltaTime * collision.gameObject.GetComponent<Enemy>().damage;
 
             // 플레이어 피격색상 변경
             if (!isHiting)
