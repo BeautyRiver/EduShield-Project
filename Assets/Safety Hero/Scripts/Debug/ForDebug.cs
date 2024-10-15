@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static Cinemachine.DocumentationSortingAttribute;
 
 #if UNITY_EDITOR
 [ExecuteInEditMode]
@@ -18,35 +19,9 @@ public class ForDebug : MonoBehaviour
     private bool isInvinsible;
     private bool is2xSpeed;
 
-    private void Start()
-    {
-        items = itemParent.GetComponentsInChildren<ItemSetting>();
-        int idx = 0;
-        foreach (ItemSetting item in items)
-        {
-            item.data = itemData[idx];
-            item.gameObject.name = itemData[idx].name;
-
-            switch (item.data.itemCategory)
-            {
-                case ItemData.ItemCategory.Weapon:
-                    item.GetComponent<Image>().sprite = uiImages[0];
-                    break;
-                case ItemData.ItemCategory.Gear:
-                    item.GetComponent<Image>().sprite = uiImages[1];
-                    break;
-                case ItemData.ItemCategory.Etc:
-                    item.GetComponent<Image>().sprite = uiImages[2];
-                    break;
-                default:
-                    break;
-            }
-            idx++;
-        }
-    }
-
     private void Update()
     {
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.F1))
         {
             if (!isInvinsible)
@@ -74,18 +49,51 @@ public class ForDebug : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F4))
         {
-            if (!is2xSpeed)
+            //is2xSpeed = true;
+            GameManager.instance.nowTimeScale += 0.5f;
+            Time.timeScale = GameManager.instance.nowTimeScale;
+            debugText.text = $"+0.5배속 / 현재 TimeScale: {GameManager.instance.nowTimeScale}";
+        }
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            GameManager.instance.nowTimeScale -= 0.5f;
+            Time.timeScale = GameManager.instance.nowTimeScale;
+            debugText.text = $"-0.5배속 / 현재 TimeScale: {GameManager.instance.nowTimeScale}";
+        }
+
+
+        // 디버깅용 레벨업
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameManager.instance.GetExp(GameManager.instance.nextExp[Mathf.Min(GameManager.instance.level, GameManager.instance.nextExp.Length - 1)]); // 최대 인덱스를 초과하지 않게
+        }
+#endif
+    }
+
+    public void InitializeItems()
+    {
+        items = itemParent.GetComponentsInChildren<ItemSetting>();
+        int idx = 0;
+        foreach (ItemSetting item in items)
+        {
+            item.data = itemData[idx];
+            item.gameObject.name = itemData[idx].name;
+
+            switch (item.data.itemCategory)
             {
-                is2xSpeed = true;
-                Time.timeScale = 5f;
-                debugText.text = "5배속";
+                case ItemData.ItemCategory.Weapon:
+                    item.GetComponent<Image>().sprite = uiImages[0];
+                    break;
+                case ItemData.ItemCategory.Gear:
+                    item.GetComponent<Image>().sprite = uiImages[1];
+                    break;
+                case ItemData.ItemCategory.Etc:
+                    item.GetComponent<Image>().sprite = uiImages[2];
+                    break;
+                default:
+                    break;
             }
-            else
-            {
-                is2xSpeed = false;
-                Time.timeScale = 1f;
-                debugText.text = "5배속 해제";
-            }
+            idx++;
         }
     }
 }

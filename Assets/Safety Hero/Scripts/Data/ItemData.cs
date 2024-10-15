@@ -9,12 +9,12 @@ public class ItemData : ScriptableObject
     public enum ItemType 
     {    
         // 무기 류
-        MWeapon_0, MWeapon_1, // 근접
-        RWeapon_0 = 50, RWeapon_1, RWeapon_2, // 원거리
+        M0_Default, M1_Rotating, M2_MagneticField, // 근접
+        R0_TargetGun = 50, R1_Cannon, R2_Throw, // 원거리
 
-        Glove = 100, Shoe, PowerUp, RangeUp,// 기어 류
+        G0_WeaponSpeed = 100, G1_Speed, G2_Power, G3_Range,// 기어 류
 
-        Heal = 200, Gold // 기타템 류
+        E0_Heal = 200, E1_Gold // 기타템 류
     }
 
     [Header("# 아이템 속성")]
@@ -38,10 +38,13 @@ public class ItemData : ScriptableObject
 
     [Header("# 기본 스탯")]
     public float baseDamage;
+    public float baseDamageInterval = 2f;
     public int baseCount;
     public int basePer;
     public float baseDelay;
     public float baseSpeed;
+    public float baseRange;
+    [Header("# Scale은 Prefab에서 변경!")]
     public Vector3 baseScale;
 
     [Header("# 레벨별 스탯")]
@@ -53,10 +56,13 @@ public class ItemData : ScriptableObject
     [Header("관통력")]
     public int[] pers; // 관통력    
 
+    [Header("크기 [10 = 10%]")]
+    public int[] sizes;
+    
+
     [Header("기어 능력치")]
-    [Header("배율방식 / 0.5 = 1.5배 (50%)증가")]
-    [Header("\b*현재 상태에서 곱해지는 방식이므로\n 큰 수를 곱할시 값이 매우 커짐 주의*")]
-    public float[] gearRates;
+    [Header("배율방식 / 50 = 50%증가")]
+    public int[] gearRates;
 
     [Header("무기 관련")]
     public GameObject prefab;
@@ -66,10 +72,18 @@ public class ItemData : ScriptableObject
     private void OnValidate()
     {
         // 각 배열의 최대 길이를 구해 maxLevel로 설정
-        maxLevel = damages.Length + counts.Length + pers.Length + gearRates.Length + 1;
+        switch (itemCategory)
+        {
+            case ItemCategory.Weapon:
+                maxLevel = damages.Length + counts.Length + pers.Length + sizes.Length + gearRates.Length + 1;
+                break;
+            case ItemCategory.Gear:
+                maxLevel = damages.Length + counts.Length + pers.Length + sizes.Length + gearRates.Length;
+                break;
+        }
 
         if (prefab != null ) 
-        baseScale = prefab.transform.localScale;
+            baseScale = prefab.transform.localScale;
     }
 }
 

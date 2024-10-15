@@ -22,7 +22,7 @@ public class LevelUp : MonoBehaviour
 
     public void Show()
     {
-        CurrentData.OnItemCurrentState?.Invoke(); // 이벤트 호출
+        //EquipmentManager.onItemCurrentState?.Invoke(); // 이벤트 호출
 
         blackWindow.DOFade(0.75f, 0.5f).SetUpdate(true); // 검은 배경 On
         Next(); // 섞기
@@ -62,9 +62,9 @@ public class LevelUp : MonoBehaviour
         //MasterAudio.PlaylistMasterVolume = PlayerPrefs.GetFloat("BGM");
     }
 
-    public void Select(int index)
+    public void FirstGiveWeapon(int index)
     {
-        items[index].OnClick();
+        items[index].OnClick();        
     }
 
     private void Next()
@@ -100,7 +100,7 @@ public class LevelUp : MonoBehaviour
                     // 이미 획득한 기어이거나, 새로운 기어를 획득할 수 있는 경우
                     if (item.level > 0 || GameManager.instance.gearCount < GameManager.instance.maxItemCount)
                     {
-                        if (item.level < item.data.maxLevel - 1)
+                        if (item.level < item.data.maxLevel)
                         {
                             availableItems.Add(item);
                             allMaxLevel = false;
