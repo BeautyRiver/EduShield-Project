@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     public int id;
     public float knockBackDistance;
     public float damageInterval;
+    public Weapon weaponType;
     private Rigidbody2D rigid;
     private void Awake()
     {

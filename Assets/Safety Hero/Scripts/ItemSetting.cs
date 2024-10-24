@@ -55,7 +55,7 @@ public class ItemSetting : MonoBehaviour
         textDesc = texts[1];
         textLevel = texts[2];
 
-        if (data.itemCategory == ItemCategory.Weapon)
+        if (data.itemCategory == ItemCategory.Bullet)
         {
             // 무기와 기어의 데이터 세팅 (길이가 0 이상인 경우만 추가)
             if (data.damages.Length > 0)
@@ -98,7 +98,7 @@ public class ItemSetting : MonoBehaviour
         switch (data.itemCategory)
         {
             // Weapons
-            case ItemCategory.Weapon:
+            case ItemCategory.Bullet:
                 if (level == 0)
                 {
                     newIcon.gameObject.SetActive(true);
@@ -170,7 +170,7 @@ public class ItemSetting : MonoBehaviour
         switch (data.itemCategory) // 지니고 있는 데이터 타입에 따라
         {
             // 무기 Setting
-            case ItemCategory.Weapon:
+            case ItemCategory.Bullet:
                 LevelUpWeapon();
                 break;
 
@@ -224,15 +224,14 @@ public class ItemSetting : MonoBehaviour
         if (level == 0) // 무기 레벨이 0일 때: 무기가 없으므로 무기를 새로 생성한다.
         {
             // 새로운 무기 객체를 생성
-            GameObject newWeapon = new GameObject();
-            weapon = newWeapon.AddComponent<Weapon>();
+            GameObject newWeapon = new GameObject();            
             weapon.Init(data); // 무기 초기화
 
             GameManager.instance.weaponCount++; // 게임 매니저에서 관리하는 전체 무기 개수 증가 (최대 5개)
         }
         else // 무기가 이미 있을 때 (레벨이 0이 아님)
         {
-            weapon.WeaonLevelUp(increaseRate, rateIdx[outsideRateIdx], level); // 기존 무기의 레벨을 올림            
+            weapon.WeaponLevelUp(increaseRate, rateIdx[outsideRateIdx], level); // 기존 무기의 레벨을 올림            
             outsideRateIdx++; // 다음 적용할 인덱스를 증가시킴 (ex: Damage -> Count)
 
             // 인덱스 값이 설정 범위를 넘어가는 경우 계속 조정해주는 로직

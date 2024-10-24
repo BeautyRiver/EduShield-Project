@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PoolManager : MonoBehaviour
 {
-    public enum PoolType { Weapon, Enemy, Item, Effect }  // 풀 타입을 구분하는 enum
-    public GameObject[] weaponPrefabs;
+    public enum PoolType { Weapon, Enemy, Item, Effect }  // 풀 타입을 구분하는 enum    
+    public GameObject[] bulletPrefabs;
     public GameObject[] enemyPrefabs;
     public GameObject[] itemPrefabs;
     public GameObject[] effectPrefabs;
 
-    private List<GameObject>[] weaponPools;
+    private List<GameObject>[] bulletPools;
     private List<GameObject>[] enemyPools;
     private List<GameObject>[] itemPools;
     private List<GameObject>[] effectPools;
@@ -18,10 +18,10 @@ public class PoolManager : MonoBehaviour
     private void Awake()
     {
         // WeaponPool 초기화
-        weaponPools = new List<GameObject>[weaponPrefabs.Length];
-        for (int index = 0; index < weaponPools.Length; index++)
+        bulletPools = new List<GameObject>[bulletPrefabs.Length];
+        for (int index = 0; index < bulletPools.Length; index++)
         {
-            weaponPools[index] = new List<GameObject>();
+            bulletPools[index] = new List<GameObject>();
         }
 
         // EnemyPool 초기화
@@ -56,8 +56,8 @@ public class PoolManager : MonoBehaviour
         switch (poolType)
         {
             case PoolType.Weapon:
-                selectedPool = weaponPools;
-                selectedPrefabs = weaponPrefabs;
+                selectedPool = bulletPools;
+                selectedPrefabs = bulletPrefabs;
                 break;
 
             case PoolType.Enemy:

@@ -9,22 +9,22 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
-{
+{    
     public GameObject[] titles;
     public GameObject uiOption;
 
-    public Image fadeImage;
+    public Image startFadeImage; // 처음 페이드인 아웃 이미지
+    public Image blackWindow; // 레벨업, esc 뒤의 배경 검게
     public Image[] swapCoolDownImages;
     [SerializeField]
     private float fadeTime;
-
     private GameManager gm;
 
     private void Start()
     {
-        fadeImage.gameObject.SetActive(true);
+        startFadeImage.gameObject.SetActive(true);
         gm = GameManager.instance;
-        fadeImage.DOFade(0, fadeTime).OnComplete(() => fadeImage.gameObject.SetActive(false));
+        startFadeImage.DOFade(0, fadeTime).OnComplete(() => startFadeImage.gameObject.SetActive(false));
     }
     private void Update()
     {
@@ -35,12 +35,14 @@ public class UIManager : MonoBehaviour
         {
             if (!uiOption.activeSelf)
             {
+                BlackWindowFadeIn();
                 MasterAudio.PlaySound("BtnClick");
                 uiOption.SetActive(true);
                 Time.timeScale = 0f;
             }
             else
             {
+                BlackWindowFadeaOut();
                 MasterAudio.PlaySound("BtnClick");
                 uiOption.SetActive(false);
                 Time.timeScale = gm.nowTimeScale;
@@ -78,5 +80,16 @@ public class UIManager : MonoBehaviour
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
         Application.Quit();
+    }
+
+    // 검은 배경 On
+    public void BlackWindowFadeIn()
+    {
+        blackWindow.DOFade(0.8f, 0.25f).SetUpdate(true); 
+    }
+    // 검은 배경 Off
+    public void BlackWindowFadeaOut()
+    {
+        blackWindow.DOFade(0f, 0.25f).SetUpdate(true); 
     }
 }

@@ -78,7 +78,7 @@ public class EquipmentManager : MonoBehaviour
         // 현재 아이템 그룹에서 무기와 기어 데이터를 분류하여 추가
         foreach (ItemSetting item in items)
         {
-            if (item.data.itemCategory == ItemData.ItemCategory.Weapon && category == Category.Weapon)
+            if (item.data.itemCategory == ItemData.ItemCategory.Bullet && category == Category.Weapon)
                 _data.Add(item);
 
             else if (item.data.itemCategory == ItemData.ItemCategory.Gear && category == Category.Gear)

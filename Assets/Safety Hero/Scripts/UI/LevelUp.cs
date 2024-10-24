@@ -8,12 +8,14 @@ using UnityEngine.UI;
 
 public class LevelUp : MonoBehaviour
 {
+    [Header("# UI manager")]
+    public UIManager uiManager;
+    [Header("# ---------------------")]
     private RectTransform rect;
     public Image blackWindow;
     public float showLeveUpDuration;
     [SerializeField] private List<ItemSetting> items;
     public List<ItemSetting> availableItems;
-
     private void Awake()
     {
         rect = GetComponent<RectTransform>();
@@ -22,9 +24,9 @@ public class LevelUp : MonoBehaviour
 
     public void Show()
     {
-        //EquipmentManager.onItemCurrentState?.Invoke(); // 이벤트 호출
+        //SelectorController.SelectorEvent?.Invoke(); // Selector 이밴트 호출(배치)
 
-        blackWindow.DOFade(0.75f, 0.5f).SetUpdate(true); // 검은 배경 On
+        uiManager.BlackWindowFadeIn(); // 검은 배경 On
         Next(); // 섞기
         Button[] buttons = transform.GetComponentsInChildren<Button>();
         foreach (var btn in buttons)
@@ -49,7 +51,7 @@ public class LevelUp : MonoBehaviour
             btn.interactable = false;
         }
 
-        blackWindow.DOFade(0f, 0.5f).SetUpdate(true); // 검은 배경 Off
+        uiManager.BlackWindowFadeaOut(); // 검은 배경 Off
 
         rect.DOAnchorPos(new Vector3(0, -1500f, 0), showLeveUpDuration).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() =>
         {
@@ -84,7 +86,7 @@ public class LevelUp : MonoBehaviour
         {
             switch (item.data.itemCategory)
             {
-                case ItemData.ItemCategory.Weapon:
+                case ItemData.ItemCategory.Bullet:
                     // 이미 획득한 무기이거나, 새로운 무기를 획득할 수 있는 경우
                     if (item.level > 0 || GameManager.instance.weaponCount < GameManager.instance.maxItemCount)
                     {
