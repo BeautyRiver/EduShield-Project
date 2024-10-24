@@ -16,7 +16,7 @@ public class TypeControlManager : MonoBehaviour
     [SerializeField] private List<Image> equipImages;
     [SerializeField] private List<Image> coolDownImages;
 
-    [SerializeField] private bool[] equipWeaponState; // 현재 장착한 무기
+    [SerializeField] private bool[] currentTypeState; // 현재 장착한 무기
     [SerializeField] private float swapDelay = 3f; // 타입 스왑 딜레이
     [SerializeField] private float swapTimer; // 타입 스왑 딜레이 타이머
     [field: SerializeField] public int TypeIndex { get; private set; } // 현재 선택된 타입 인덱스
@@ -24,7 +24,7 @@ public class TypeControlManager : MonoBehaviour
 
     private void Awake()
     {
-        equipWeaponState = new bool[] { true, false, false, false, false };
+        currentTypeState = new bool[] { true, false, false, false, false };
         swapTimer = swapDelay;
         TypeIndex = -1; // 기본 무기 = 0번무기
 
@@ -33,6 +33,9 @@ public class TypeControlManager : MonoBehaviour
     }
     private void Update()
     {
+        if (!GameManager.instance.isLive)
+            return;
+
         swapTimer = Mathf.Max(swapTimer - Time.deltaTime, 0f);
 
         if ((Input.GetKeyDown(KeyCode.Alpha1) ||

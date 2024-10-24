@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d1bd397b1903a34ba35468b05a5746b, type: 3}
-  m_Name: Weapon 0
+  m_Name: Bullet 0
   m_EditorClassIdentifier: 
   itemCategory: 0
   itemType: 0
@@ -35,4 +35,4 @@ MonoBehaviour:
   sizes: 
   gearRates: 
   prefab: {fileID: 6866283732698310354, guid: 3423fc5066175b94d80fdba216bac3a2, type: 3}
-  hand: {fileID: 1727593965, guid: 889af1860a89f6948ba42cddfa904553, type: 3}
+  weaponType: {fileID: 0}

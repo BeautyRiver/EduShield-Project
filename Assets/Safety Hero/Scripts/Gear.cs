@@ -74,8 +74,8 @@ public class Gear : MonoBehaviour
     /// </summary>
     private void ApplyToAllWeapons()
     {
-        Weapon[] weapons = transform.parent.GetComponentsInChildren<Weapon>();
-        foreach (Weapon weapon in weapons)
+        tempWeapon[] weapons = transform.parent.GetComponentsInChildren<tempWeapon>();
+        foreach (tempWeapon weapon in weapons)
         {
             ApplyGearToWeapon(weapon);
         }        
@@ -84,7 +84,7 @@ public class Gear : MonoBehaviour
     /// <summary>
     /// 무기에 영향이 가는 기어들 적용
     /// </summary>
-    public void ApplyGearToWeapon(Weapon weapon)
+    public void ApplyGearToWeapon(tempWeapon weapon)
     {
         switch (type)
         {
@@ -112,7 +112,7 @@ public class Gear : MonoBehaviour
     /// <summary>
     /// 데미지 증가 기어
     /// </summary>
-    private void ApplyPowerUp(Weapon weapon)
+    private void ApplyPowerUp(tempWeapon weapon)
     {
         weapon.damage = weapon.data.baseDamage * gm.playerData.damageMult;
         if (weapon.data.itemType == ItemData.ItemType.M1_Rotating)
@@ -127,7 +127,7 @@ public class Gear : MonoBehaviour
     /// <summary>
     /// 공격속도 증가 기어
     /// </summary>    
-    private void ApplyAttackSpeedUp(Weapon weapon)
+    private void ApplyAttackSpeedUp(tempWeapon weapon)
     {
         switch (weapon.data.itemType)
         {            
@@ -153,7 +153,7 @@ public class Gear : MonoBehaviour
     /// <summary>
     /// 공격 범위 증가 기어
     /// </summary>   
-    private void ApplyRangeUp(Weapon weapon)
+    private void ApplyRangeUp(tempWeapon weapon)
     {
         switch (weapon.data.itemType)
         {

@@ -5,8 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using static Cinemachine.DocumentationSortingAttribute;
 
-#if UNITY_EDITOR
-[ExecuteInEditMode]
 
 public class ForDebug : MonoBehaviour
 {
@@ -22,6 +20,9 @@ public class ForDebug : MonoBehaviour
     private void Update()
     {
 #if UNITY_EDITOR
+        if (!GameManager.instance.isLive)
+            return;
+
         if (Input.GetKeyDown(KeyCode.F1))
         {
             if (!isInvinsible)
@@ -81,7 +82,7 @@ public class ForDebug : MonoBehaviour
 
             switch (item.data.itemCategory)
             {
-                case ItemData.ItemCategory.Weapon:
+                case ItemData.ItemCategory.Bullet:
                     item.GetComponent<Image>().sprite = uiImages[0];
                     break;
                 case ItemData.ItemCategory.Gear:
@@ -97,4 +98,3 @@ public class ForDebug : MonoBehaviour
         }
     }
 }
-#endif

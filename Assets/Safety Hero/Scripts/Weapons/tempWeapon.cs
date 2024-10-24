@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
-public class Weapon : MonoBehaviour
+public class tempWeapon : MonoBehaviour
 {
     [Header("# 무기 세팅")]
     public ItemData data;
@@ -19,8 +19,9 @@ public class Weapon : MonoBehaviour
     public float damageInterval; // 데미지 간격
     public float durationTime = 3f; // 지속 시간(회전 무기만 일단)
     public float attackRange = 1.3f; // 공격 범위
+    public float knockBackAmout = 1.5f; // 몬스터 넉백량
     public Vector3 bulletSize;// 총알(무기) 크기
-    private bool check; // 체크전용 변수
+
     [SerializeField] private bool isAttacking; // 공격중인지 체크
     [SerializeField] private float speedTimer; // 원거리 무기 타이머
     [SerializeField] private GameManager gm;
@@ -80,9 +81,9 @@ public class Weapon : MonoBehaviour
         damageInterval = data.baseDamageInterval;
 
         per = data.basePer; // 기본 관통력 설정
-        for (int index = 0; index < GameManager.instance.pool.weaponPrefabs.Length; index++)
+        for (int index = 0; index < GameManager.instance.pool.bulletPrefabs.Length; index++)
         {
-            if (data.prefab == gm.pool.weaponPrefabs[index])
+            if (data.prefab == gm.pool.bulletPrefabs[index])
             {
                 prefabId = index;
                 Debug.Log($"PrefabID : [{prefabId}]");
@@ -118,9 +119,8 @@ public class Weapon : MonoBehaviour
         }        
 
         level++;
-    }
-
-
+    }    
+    
     public void WeaonLevelUp(float rate, int rateIndex, int currentLevel)
     {
         // RaTE 업데이트
@@ -441,7 +441,7 @@ public class Weapon : MonoBehaviour
         switch (data.itemType)
         {
             case ItemData.ItemType.M0_Default:
-                bullet.Init(damage, per, direction, data.itemId, 1.5f, weaponSpeed);
+                bullet.Init(damage, per, direction, data.itemId, 1.5f, 0.5f);
                 break;
 
             case ItemData.ItemType.M1_Rotating:

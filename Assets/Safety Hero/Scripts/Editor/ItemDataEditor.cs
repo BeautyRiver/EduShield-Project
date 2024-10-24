@@ -1,4 +1,4 @@
-using UnityEditor;
+/*using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(ItemData))]
@@ -80,7 +80,7 @@ public class ItemDataEditor : Editor
         // itemCategory에 따른 필드 구분
         ItemData.ItemCategory category = (ItemData.ItemCategory)itemCategory.enumValueIndex;
 
-        if (category == ItemData.ItemCategory.Weapon)
+        if (category == ItemData.ItemCategory.Bullet)
         {
             GUILayout.BeginVertical("HelpBox");
             EditorGUILayout.LabelField("무기 속성", EditorStyles.boldLabel);
@@ -121,3 +121,4 @@ public class ItemDataEditor : Editor
         serializedObject.ApplyModifiedProperties();
     }
 }
+*/

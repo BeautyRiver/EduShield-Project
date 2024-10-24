@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Item", menuName = "Scriptble Object/ItemData")]
 public class ItemData : ScriptableObject
 {
-    public enum ItemCategory { Weapon, Gear, Etc }
+    public enum ItemCategory { Bullet, Gear, Etc }
     public enum ItemType 
     {    
         // 무기 류
@@ -66,7 +66,7 @@ public class ItemData : ScriptableObject
 
     [Header("무기 관련")]
     public GameObject prefab;
-    public Sprite hand;
+    public GameObject weaponType;
 
     // 에디터에서 값이 변경될 때 자동으로 호출
     private void OnValidate()
@@ -74,7 +74,7 @@ public class ItemData : ScriptableObject
         // 각 배열의 최대 길이를 구해 maxLevel로 설정
         switch (itemCategory)
         {
-            case ItemCategory.Weapon:
+            case ItemCategory.Bullet:
                 maxLevel = damages.Length + counts.Length + pers.Length + sizes.Length + gearRates.Length + 1;
                 break;
             case ItemCategory.Gear:

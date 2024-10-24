@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static TMPro.TMP_InputField;
 
 public class GameManager : MonoBehaviour
 {
@@ -39,8 +40,9 @@ public class GameManager : MonoBehaviour
     public LevelUp uiLevelUp;
     public Player player;
     public Result result;
-    public PlayerData orignalPlayerData;
-    public PlayerData playerData;
+
+    [SerializeField] private PlayerData orignalPlayerData; // 원본
+    public PlayerData playerData; // 복사본
     public GameObject enemyCleaner;
 
     [SerializeField] private float[] aiMsgShowTime = { 1.5f, 3f, 4f };
@@ -54,7 +56,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        // 원본 훼손 안시키기 위함
+        // 원본 훼손 안시키기 위함 (데이터 복사)
         if (playerData == null)
             playerData = Instantiate(orignalPlayerData);
 
@@ -132,9 +134,9 @@ public class GameManager : MonoBehaviour
         /*if (TitleManager.playlistController.CurrentPlaylist.playlistName != "Game Bgm")
             MasterAudio.ChangePlaylistByName("Game Bgm");
         else
-            MasterAudio.StartPlaylist("Game Bgm");*/
-
+            MasterAudio.StartPlaylist("Game Bgm");
         MasterAudio.PlaylistsMuted = false;
+        */
         this.playerId = playerId; // 플레이어 아이디 세팅
         health = maxHealth * playerData.maxHpMult; // 플레이어 체력 세팅 
 
@@ -197,6 +199,7 @@ public class GameManager : MonoBehaviour
                 level++;
                 exp = 0;
                 uiLevelUp.Show();
+                SelectorController.SelectorEvent?.Invoke();
             }
         }
     }
