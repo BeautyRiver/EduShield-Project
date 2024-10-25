@@ -16,8 +16,7 @@ public class Player : MonoBehaviour
 
 
     [Header("게임 오브젝트 참조")]
-    public Scanner scanner; // 적 탐색기
-    public Hand[] hands; // 플레이어 무기 (손) 배열    
+    public Scanner scanner; // 적 탐색기        
     [HideInInspector] public Spawner spawner;
 
     [Header("애니메이션")]
@@ -43,8 +42,7 @@ public class Player : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        scanner = GetComponent<Scanner>();
-        hands = GetComponentsInChildren<Hand>(true);
+        scanner = GetComponent<Scanner>();        
         spawner = GetComponentInChildren<Spawner>(true);
         col = GetComponent<CapsuleCollider2D>(); 
         hitColor = new Color(0.86f, 0.2f, 0.2f);

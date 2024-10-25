@@ -22,17 +22,16 @@ public class DefaultWeapon_0 : Weapon
     {
         StartCoroutine(M0_Bullet());
     }
-
-    protected override void WeaponLevelUpSetting(int rateIndex)
+    protected override void InitSpeedException()
     {
         // Nothing...
     }
 
-    protected override void WeaponSpeedSetting()
+    protected override void LevelUpException(int rateIndex)
     {
-        // 캐릭터별 무기 연사속도 설정
-        weaponSpeed = (float)System.Math.Round(weaponSpeed / gm.playerData.atkSpeedMult, 2);
+        // Nothing...
     }
+
 
     protected IEnumerator M0_Bullet()
     {

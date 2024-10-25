@@ -72,9 +72,10 @@ public class ForDebug : MonoBehaviour
     }
 
     public void InitializeItems()
-    {
+    {        
         items = itemParent.GetComponentsInChildren<ItemSetting>();
         int idx = 0;
+        
         foreach (ItemSetting item in items)
         {
             item.data = itemData[idx];

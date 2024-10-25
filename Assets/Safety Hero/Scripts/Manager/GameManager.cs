@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     public LevelUp uiLevelUp;
     public Player player;
     public Result result;
-
+    
     [SerializeField] private PlayerData orignalPlayerData; // 원본
     public PlayerData playerData; // 복사본
     public GameObject enemyCleaner;
