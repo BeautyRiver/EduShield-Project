@@ -1,3 +1,5 @@
+using System;
+using UnityEditor;
 using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
@@ -22,6 +24,7 @@ public abstract class Weapon : MonoBehaviour
     protected GameManager gm;
     protected Player player;
 
+    public Action weaponBatch;
     protected virtual void Awake()
     {
         gm = GameManager.instance;
@@ -49,7 +52,6 @@ public abstract class Weapon : MonoBehaviour
         // 공통 초기화 로직        
         // 기본 속성 세팅
         this.data = Instantiate(data);            // 값 복사                                                
-        gameObject.name = "Equip Weapon: " + data.itemType.ToString();
         transform.parent = player.transform;
         transform.localPosition = Vector3.zero;   // 플레이어 안에서 위치 초기화
 
@@ -70,24 +72,14 @@ public abstract class Weapon : MonoBehaviour
         damage = data.baseDamage * gm.playerData.damageMult;
         attackRange = data.baseRange * gm.playerData.atkRangeMult;
         bulletSize = data.baseScale * gm.playerData.atkRangeMult;
-        damageInterval = data.baseDamageInterval * gm.playerData.atkSpeedMult;
-
         speedTimer = weaponSpeed;
         level++;
 
-        // 무기별 공격속도 설정
-        WeaponSpeedSetting();
+        // 공격속도 설정
+        damageInterval = data.baseDamageInterval * gm.playerData.atkSpeedMult;
+        weaponSpeed = (float)System.Math.Round(weaponSpeed / gm.playerData.atkSpeedMult, 2);              
+        InitSpeedException(); // 예외처리
     }
-
-    /// <summary>
-    ///  Init Logic: 공격속도 설정할 때 무기들의 처리과정 다름
-    /// </summary>
-    protected abstract void WeaponSpeedSetting();
-
-    /// <summary>
-    ///  LevelUp Logic: 레벨업 할때 무기들의 처리과정 다름
-    /// </summary>
-    protected abstract void WeaponLevelUpSetting(int rateIndex);
 
     public virtual void WeaponLevelUp(float rate, int rateIndex, int currentLevel)
     {
@@ -112,12 +104,13 @@ public abstract class Weapon : MonoBehaviour
                 break;
 
             case 3: // 크기[범위] 증가
-                data.baseScale += data.baseScale * rate * 0.01f;                
+                data.baseScale += (data.baseScale * rate * 0.01f);
+                attackRange = data.baseRange * gm.playerData.atkRangeMult;
                 Debug.Log($"{this.name}: Range {rate}만큼 증가했습니다.");
                 break;
         }
        
-        WeaponLevelUpSetting(rateIndex);
+        LevelUpException(rateIndex);
         level = currentLevel;
     }
 
@@ -148,6 +141,8 @@ public abstract class Weapon : MonoBehaviour
         bulletComponent.Init(damage, per, direction, data.itemId, knockBackAmout, damageInterval);
     }
 
+   
+
     // 프리펩 아이디 찾기
     protected int SetPrefabID(ItemData data)
     {
@@ -163,4 +158,14 @@ public abstract class Weapon : MonoBehaviour
         return -1;
     }
 
+
+    /// <summary>
+    ///  Init Logic: 공격속도 설정 예외처리
+    /// </summary>
+    protected abstract void InitSpeedException();
+
+    /// <summary>
+    ///  LevelUp Logic: 레벨업 예외처리
+    /// </summary>
+    protected abstract void LevelUpException(int rateIndex);
 }

@@ -37,4 +37,4 @@ MonoBehaviour:
   sizes: 
   gearRates: 
   prefab: {fileID: 8191457858479555690, guid: 321abbc004976c84d993cf8d03f989a7, type: 3}
-  hand: {fileID: 1772703093, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
+  weaponType: {fileID: 2884803771570671738, guid: 7d3b956266d9d164ab00de900c762df7, type: 3}

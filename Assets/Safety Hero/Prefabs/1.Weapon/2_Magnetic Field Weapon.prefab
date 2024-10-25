@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3992715265440546661
+--- !u!1 &7357913818047742727
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3887095070800517713}
-  - component: {fileID: 4030651465205954153}
+  - component: {fileID: 2670353986315381385}
+  - component: {fileID: 7531032224551377732}
   m_Layer: 0
-  m_Name: Default Weapon 0
+  m_Name: 2_Magnetic Field Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3887095070800517713
+--- !u!4 &2670353986315381385
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3992715265440546661}
+  m_GameObject: {fileID: 7357913818047742727}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4030651465205954153
+--- !u!114 &7531032224551377732
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3992715265440546661}
+  m_GameObject: {fileID: 7357913818047742727}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53e307f049981c64ab113c960f27f96e, type: 3}
+  m_Script: {fileID: 11500000, guid: 0d8ec5532a79b47409f926138a4cff46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 0}

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using static ItemData;
@@ -221,15 +222,19 @@ public class ItemSetting : MonoBehaviour
 
     private void LevelUpWeapon()
     {
-        if (level == 0) // 무기 레벨이 0일 때: 무기가 없으므로 무기를 새로 생성한다.
+        // 무기 레벨이 0일 때: 무기가 없으므로 무기를 새로 생성한다.
+        if (level == 0) 
         {
             // 새로운 무기 객체를 생성
-            GameObject newWeapon = new GameObject();            
+            GameObject newWeapon = Instantiate(data.weaponType);
+            weapon = newWeapon.GetComponent<Weapon>();
+            
             weapon.Init(data); // 무기 초기화
-
             GameManager.instance.weaponCount++; // 게임 매니저에서 관리하는 전체 무기 개수 증가 (최대 5개)
         }
-        else // 무기가 이미 있을 때 (레벨이 0이 아님)
+
+        // 무기가 이미 있을 때 (레벨이 0이 아님)
+        else
         {
             weapon.WeaponLevelUp(increaseRate, rateIdx[outsideRateIdx], level); // 기존 무기의 레벨을 올림            
             outsideRateIdx++; // 다음 적용할 인덱스를 증가시킴 (ex: Damage -> Count)

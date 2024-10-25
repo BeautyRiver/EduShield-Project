@@ -4003,7 +4003,7 @@ GameObject:
   - component: {fileID: 275539624}
   - component: {fileID: 275539625}
   m_Layer: 0
-  m_Name: R0_TargetGun
+  m_Name: R50_TargetGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4663,7 +4663,7 @@ GameObject:
   - component: {fileID: 299274070}
   - component: {fileID: 299274071}
   m_Layer: 0
-  m_Name: R2_Throw
+  m_Name: R52_Throw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37302,7 +37302,7 @@ GameObject:
   - component: {fileID: 846493024}
   - component: {fileID: 846493025}
   m_Layer: 0
-  m_Name: R1_Cannon
+  m_Name: R51_Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
