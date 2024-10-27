@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DefaultWeapon_0 : Weapon
+public class W0_DefaultWeapon : Weapon
 {
     protected override void Awake()
     {
@@ -21,10 +21,6 @@ public class DefaultWeapon_0 : Weapon
     protected override void Attack()
     {
         StartCoroutine(M0_Bullet());
-    }
-    protected override void InitSpeedException()
-    {
-        // Nothing...
     }
 
     protected override void LevelUpException(int rateIndex)
