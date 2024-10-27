@@ -21,19 +21,13 @@ public class GearData : ItemData
         maxLevel = gearRates.Length;        
     }
 
-    public override string GetDescription(int level, int increaseRate)
+    public override void OnEnableSetting(ItemSetting itemSetting)
     {
         throw new System.NotImplementedException();
     }
 
-    public override string GetLevelText(int level)
+    public override void OnClickSetting(ItemSetting itemSetting)
     {
         throw new System.NotImplementedException();
     }
-
-    public override bool IsNewIconActive(int level)
-    {
-        throw new System.NotImplementedException();
-    }
-   
 }

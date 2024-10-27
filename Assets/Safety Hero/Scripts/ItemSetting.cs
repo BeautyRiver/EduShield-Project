@@ -4,7 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static BulletData;
+using static ItemData;
 
 [System.Serializable]
 public class S_int
@@ -15,8 +15,7 @@ public class S_int
 public class ItemSetting : MonoBehaviour
 {
     [Header("# 아이템 데이터")]
-    public BulletData bulletData;
-    public GearData gearData;
+    public ItemData itemData;
     public Weapon weapon;
     public Gear gear;
     public int level;
@@ -25,36 +24,37 @@ public class ItemSetting : MonoBehaviour
     public int outsideRateIdx = 0;
     public int insideRateIdx = 0;
     public int maxmumInsideIdx = 0;
-    private float increaseRate = 0;
+    public float increaseRate = 0;
 
     public int _currentLevel;
     public int _maxLevel;
 
-    [SerializeField] private List<S_int> statusRateList = new List<S_int>();
-    [SerializeField] private List<int> rateIdx = new List<int>();
+    public List<S_int> statusRateList = new List<S_int>();
+    public List<int> rateIdx = new List<int>();
 
-    private Image icon;
-    private Image newIcon;
-    private TextMeshProUGUI textName;
-    private TextMeshProUGUI textDesc;
-    private TextMeshProUGUI textLevel;
+    public Image icon;
+    public Image newIcon;
+    public TextMeshProUGUI textName;
+    public TextMeshProUGUI textDesc;
+    public TextMeshProUGUI textLevel;
 
     private void Awake()
     {
-        _maxLevel = bulletData.maxLevel;
+        _maxLevel = itemData.maxLevel;
         // 아이콘 설정
         icon = GetComponentsInChildren<Image>()[1];
         newIcon = GetComponentsInChildren<Image>()[2];
 
-        icon.sprite = bulletData.itemIcon;
+        icon.sprite = itemData.itemIcon;
 
         // 공통 텍스트 필드 설정
         TextMeshProUGUI[] texts = GetComponentsInChildren<TextMeshProUGUI>();
         textName = texts[0];
         textDesc = texts[1];
         textLevel = texts[2];
+        textName.text = itemData.itemName;
 
-        if (bulletData.itemCategory == ItemCategory.Bullet)
+        if (itemData is BulletData bulletData)
         {
             // 무기와 기어의 데이터 세팅 (길이가 0 이상인 경우만 추가)
             if (bulletData.damages.Length > 0)
@@ -81,27 +81,25 @@ public class ItemSetting : MonoBehaviour
             // 최대 인덱스 구하기
             foreach (var item in statusRateList)
                 maxmumInsideIdx = Mathf.Max(maxmumInsideIdx, item.values.Length);
-        }
-
-        textName.text = bulletData.itemName;
+        }       
     }
 
     private void OnEnable()
     {
         // 설명글 세팅
-        if (bulletData.itemCategory != ItemCategory.Etc && textLevel != null)
+        if (itemData.Category != ItemCategory.Etc && textLevel != null)
         {
             textLevel.text = "Lv." + (level + 1); // 레벨 표기
         }
 
-        switch (bulletData.itemCategory)
+        switch (itemData.Category)
         {
             // Weapons
             case ItemCategory.Bullet:
                 if (level == 0)
                 {
                     newIcon.gameObject.SetActive(true);
-                    switch (bulletData.itemType)
+                    switch (itemData.Type)
                     {
                         case ItemType.M0_Default:
                             textDesc.text = "<color=#99FF8A>새로운 무기!</color>\r\n\r\n<size=90%>좌우로 적을 관통 공격</size>";
@@ -134,23 +132,31 @@ public class ItemSetting : MonoBehaviour
                     if (outsideRateIdx < statusRateList.Count)
                     {
                         increaseRate = statusRateList[outsideRateIdx].values[insideRateIdx];
-                        textDesc.text = string.Format(bulletData.itemDesc[outsideRateIdx], increaseRate); // 무기 설명글
+                        textDesc.text = string.Format(itemData.itemDesc[outsideRateIdx], increaseRate); // 무기 설명글
                     }
                 }
                 break;
 
             // Gears
             case ItemCategory.Gear:
-                newIcon.gameObject.SetActive(false);
-                textDesc.text = string.Format(bulletData.itemDesc[0], gearData.gearRates[level]); // 기어 설명글    
+                if (level == 0)
+                {
+                    newIcon.gameObject.SetActive(true);
+                    textDesc.text = "<color=#99FF8A>새로운 강화!</color>\r\n\r\n<size=90%>" + string.Format(itemData.itemDesc[0], gearData.gearRates[level]) + "</size>";
+                }
+                else
+                {
+                    newIcon.gameObject.SetActive(false);
+                    textDesc.text = string.Format(itemData.itemDesc[0], gearData.gearRates[level]); // 기어 설명글    
+                }
                 break;
 
             // Etc
             case ItemCategory.Etc:
                 newIcon.gameObject.SetActive(false);
-                textDesc.text = string.Format(bulletData.itemDesc[0]); // 아이템 설명글
+                textDesc.text = string.Format(itemData.itemDesc[0]); // 아이템 설명글
                 textLevel.fontSize = 40;
-                switch (bulletData.itemType)
+                switch (itemData.Type)
                 {
                     case ItemType.E0_Heal:
                         textLevel.text = "특별한 맛";
@@ -166,7 +172,7 @@ public class ItemSetting : MonoBehaviour
     // 아이템 클릭 시
     public void OnClick()
     {
-        switch (bulletData.itemCategory) // 지니고 있는 데이터 타입에 따라
+        switch (itemData.Category) // 지니고 있는 데이터 타입에 따라
         {
             // 무기 Setting
             case ItemCategory.Bullet:
@@ -179,7 +185,7 @@ public class ItemSetting : MonoBehaviour
                 break;
 
             case ItemCategory.Etc:
-                switch (bulletData.itemType)
+                switch (itemData.Type)
                 {
                     case ItemType.E0_Heal:
                         GameManager.instance.health = Mathf.Min(GameManager.instance.maxHealth, GameManager.instance.health + 15f);
@@ -193,7 +199,7 @@ public class ItemSetting : MonoBehaviour
         }
 
         EquipmentManager.onItemCurrentState?.Invoke(); // 이벤트 호출
-        if (level == bulletData.maxLevel)
+        if (level == itemData.maxLevel)
         {
             GetComponent<Button>().interactable = false;
         }
@@ -224,10 +230,10 @@ public class ItemSetting : MonoBehaviour
         if (level == 0) 
         {
             // 새로운 무기 객체를 생성
-            GameObject newWeapon = Instantiate(bulletData.weaponType);
+            GameObject newWeapon = Instantiate(itemData.weaponType);
             weapon = newWeapon.GetComponent<Weapon>();
             
-            weapon.Init(bulletData); // 무기 초기화
+            weapon.Init(itemData); // 무기 초기화
             GameManager.instance.weaponCount++; // 게임 매니저에서 관리하는 전체 무기 개수 증가 (최대 5개)
         }
 
@@ -238,10 +244,10 @@ public class ItemSetting : MonoBehaviour
             outsideRateIdx++; // 다음 적용할 인덱스를 증가시킴 (ex: Damage -> Count)
 
             // 인덱스 값이 설정 범위를 넘어가는 경우 계속 조정해주는 로직
-            while (outsideRateIdx >= bulletData.itemDesc.Length || insideRateIdx >= statusRateList[outsideRateIdx].values.Length)
+            while (outsideRateIdx >= itemData.itemDesc.Length || insideRateIdx >= statusRateList[outsideRateIdx].values.Length)
             {
                 // 만약 외부 인덱스가 gearData.itemDesc의 범위를 넘을 경우, 인덱스를 0으로 초기화하고 내부 인덱스를 증가
-                if (outsideRateIdx >= bulletData.itemDesc.Length)
+                if (outsideRateIdx >= itemData.itemDesc.Length)
                 {
                     outsideRateIdx = 0;
                     insideRateIdx++;

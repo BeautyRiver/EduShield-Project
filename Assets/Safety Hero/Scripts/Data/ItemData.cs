@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 // ItemData.cs
@@ -21,8 +22,9 @@ public abstract class ItemData : ScriptableObject
     [TextArea]
     public string[] itemDesc;
 
-    protected abstract void OnValidate();    
-    public abstract string GetDescription(int level, int increaseRate);
-    public abstract string GetLevelText(int level);
-    public abstract bool IsNewIconActive(int level);
+    // 추상 메서드 선언
+    protected abstract void OnValidate();
+    public abstract void OnEnableSetting(ItemSetting itemSetting);
+    public abstract void OnClickSetting(ItemSetting itemSetting);
+
 }

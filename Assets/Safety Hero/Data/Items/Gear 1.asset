@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae001b4007b47ab44a5e81884820e017, type: 3}
   m_Name: Gear 1
   m_EditorClassIdentifier: 
-  maxLevel: 5
+  Category: 0
+  Type: 0
   itemId: 101
   itemName: "\uC774\uB3D9\uC18D\uB3C4 \uC99D\uAC00 \uAE30\uC5B4"
+  itemIcon: {fileID: 21300000, guid: 17344ea8e8bf4e746bb63127828a43a7, type: 3}
+  maxLevel: 5
   itemDesc:
   - "<size=90%>\uBE60\uB974\uAC8C \uBE44\uC0C1\uAD6C\uB85C \uB300\uD53C!</size>\n\n<b><color=yellow>\uC774\uB3D9\uC18D\uB3C4
     {0}%</color> \uC99D\uAC00</b>"
-  itemIcon: {fileID: 21300000, guid: 17344ea8e8bf4e746bb63127828a43a7, type: 3}
   gearRates: 140000001400000014000000140000001e000000

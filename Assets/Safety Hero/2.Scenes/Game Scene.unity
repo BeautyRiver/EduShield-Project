@@ -638,7 +638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35128f14ed3c7f948891cbf1a6f91a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletData: {fileID: 0}
+  itemData: {fileID: 0}
   gearData: {fileID: 0}
   weapon: {fileID: 0}
   gear: {fileID: 0}
@@ -28792,7 +28792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35128f14ed3c7f948891cbf1a6f91a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletData: {fileID: 0}
+  itemData: {fileID: 0}
   gearData: {fileID: 0}
   weapon: {fileID: 0}
   gear: {fileID: 0}
@@ -38040,7 +38040,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35128f14ed3c7f948891cbf1a6f91a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletData: {fileID: 0}
+  itemData: {fileID: 0}
   gearData: {fileID: 0}
   weapon: {fileID: 0}
   gear: {fileID: 0}
@@ -38512,13 +38512,19 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 762004760}
+  - component: {fileID: 762004766}
+  - component: {fileID: 762004765}
+  - component: {fileID: 762004764}
+  - component: {fileID: 762004763}
+  - component: {fileID: 762004762}
+  - component: {fileID: 762004761}
   m_Layer: 0
   m_Name: Weapons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &762004760
 Transform:
   m_ObjectHideFlags: 0
@@ -38534,6 +38540,168 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &762004761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762004759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a94001707f3aea42b2d9ccf462eb581, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 0}
+  prefabId: 0
+  level: 0
+  damage: 0
+  count: 0
+  per: 0
+  weaponSpeed: 0
+  bulletDelay: 0
+  damageInterval: 0
+  durationTime: 0
+  attackRange: 0
+  knockBackAmout: 0
+  bulletSize: {x: 0, y: 0, z: 0}
+  isAttacking: 0
+  speedTimer: 0
+--- !u!114 &762004762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762004759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d976444c6233864faf77f1b31c0943a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 0}
+  prefabId: 0
+  level: 0
+  damage: 0
+  count: 0
+  per: 0
+  weaponSpeed: 0
+  bulletDelay: 0
+  damageInterval: 0
+  durationTime: 0
+  attackRange: 0
+  knockBackAmout: 0
+  bulletSize: {x: 0, y: 0, z: 0}
+  isAttacking: 0
+  speedTimer: 0
+--- !u!114 &762004763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762004759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 597cadfd4604c32459ae5a3b0f0520c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 0}
+  prefabId: 0
+  level: 0
+  damage: 0
+  count: 0
+  per: 0
+  weaponSpeed: 0
+  bulletDelay: 0
+  damageInterval: 0
+  durationTime: 0
+  attackRange: 0
+  knockBackAmout: 0
+  bulletSize: {x: 0, y: 0, z: 0}
+  isAttacking: 0
+  speedTimer: 0
+--- !u!114 &762004764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762004759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d8ec5532a79b47409f926138a4cff46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 0}
+  prefabId: 0
+  level: 0
+  damage: 0
+  count: 0
+  per: 0
+  weaponSpeed: 0
+  bulletDelay: 0
+  damageInterval: 0
+  durationTime: 0
+  attackRange: 0
+  knockBackAmout: 0
+  bulletSize: {x: 0, y: 0, z: 0}
+  isAttacking: 0
+  speedTimer: 0
+--- !u!114 &762004765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762004759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a5beb7e060c884c849904f2e476dd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 0}
+  prefabId: 0
+  level: 0
+  damage: 0
+  count: 0
+  per: 0
+  weaponSpeed: 0
+  bulletDelay: 0
+  damageInterval: 0
+  durationTime: 0
+  attackRange: 0
+  knockBackAmout: 0
+  bulletSize: {x: 0, y: 0, z: 0}
+  isAttacking: 0
+  speedTimer: 0
+--- !u!114 &762004766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762004759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53e307f049981c64ab113c960f27f96e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 0}
+  prefabId: 0
+  level: 0
+  damage: 0
+  count: 0
+  per: 0
+  weaponSpeed: 0
+  bulletDelay: 0
+  damageInterval: 0
+  durationTime: 0
+  attackRange: 0
+  knockBackAmout: 0
+  bulletSize: {x: 0, y: 0, z: 0}
+  isAttacking: 0
+  speedTimer: 0
 --- !u!1 &769012679
 GameObject:
   m_ObjectHideFlags: 0
@@ -40609,7 +40777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35128f14ed3c7f948891cbf1a6f91a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletData: {fileID: 0}
+  itemData: {fileID: 0}
   gearData: {fileID: 0}
   weapon: {fileID: 0}
   gear: {fileID: 0}
@@ -43555,7 +43723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35128f14ed3c7f948891cbf1a6f91a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletData: {fileID: 0}
+  itemData: {fileID: 0}
   gearData: {fileID: 0}
   weapon: {fileID: 0}
   gear: {fileID: 0}
@@ -45306,7 +45474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35128f14ed3c7f948891cbf1a6f91a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletData: {fileID: 0}
+  itemData: {fileID: 0}
   gearData: {fileID: 0}
   weapon: {fileID: 0}
   gear: {fileID: 0}
@@ -45480,7 +45648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35128f14ed3c7f948891cbf1a6f91a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletData: {fileID: 0}
+  itemData: {fileID: 0}
   gearData: {fileID: 0}
   weapon: {fileID: 0}
   gear: {fileID: 0}
@@ -51754,7 +51922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35128f14ed3c7f948891cbf1a6f91a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletData: {fileID: 0}
+  itemData: {fileID: 0}
   gearData: {fileID: 0}
   weapon: {fileID: 0}
   gear: {fileID: 0}
@@ -55510,7 +55678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35128f14ed3c7f948891cbf1a6f91a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletData: {fileID: 0}
+  itemData: {fileID: 0}
   gearData: {fileID: 0}
   weapon: {fileID: 0}
   gear: {fileID: 0}
@@ -56700,7 +56868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35128f14ed3c7f948891cbf1a6f91a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletData: {fileID: 0}
+  itemData: {fileID: 0}
   gearData: {fileID: 0}
   weapon: {fileID: 0}
   gear: {fileID: 0}
@@ -83532,7 +83700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35128f14ed3c7f948891cbf1a6f91a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletData: {fileID: 0}
+  itemData: {fileID: 0}
   gearData: {fileID: 0}
   weapon: {fileID: 0}
   gear: {fileID: 0}
@@ -86629,7 +86797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35128f14ed3c7f948891cbf1a6f91a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletData: {fileID: 0}
+  itemData: {fileID: 0}
   gearData: {fileID: 0}
   weapon: {fileID: 0}
   gear: {fileID: 0}

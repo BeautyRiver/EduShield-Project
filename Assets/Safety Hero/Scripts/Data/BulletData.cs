@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Cinemachine.DocumentationSortingAttribute;
 
 [CreateAssetMenu(fileName = "Bullet", menuName = "Scriptble Object/BulletData")]
 public class BulletData : ItemData
 {
-    public new enum ItemType 
-    {    
+    public new enum ItemType
+    {
         // 무기 류
         M0_Default, M1_Rotating, M2_MagneticField, // 근접
         R0_TargetGun = 50, R1_Cannon, R2_Throw, // 원거리
     }
+    public new ItemType Type;
 
     [Header("# 기본 스탯")]
     public float baseDamage;
@@ -34,7 +36,7 @@ public class BulletData : ItemData
     public int[] pers; // 관통력    
 
     [Header("크기 [10 = 10%]")]
-    public int[] sizes;   
+    public int[] sizes;
 
     [Header("무기 관련")]
     public GameObject prefab;
@@ -49,19 +51,53 @@ public class BulletData : ItemData
             baseScale = prefab.transform.localScale;
     }
 
-    public override string GetDescription(int level, int increaseRate)
+    public override void OnEnableSetting(ItemSetting itemSetting)
+    {
+        itemSetting.textLevel.text = "Lv." + (itemSetting.level + 1); // 레벨 표기
+        if (itemSetting.level == 0)
+        {
+            itemSetting.newIcon.gameObject.SetActive(true);
+            itemSetting.textDesc.text = "<color=#99FF8A>새로운 무기!</color>\n\n<size=90%>" + GetWeaponDescription() + "</size>";
+        }
+        else
+        {
+            itemSetting.newIcon.gameObject.SetActive(false);
+            // 레벨에 따른 설명 업데이트
+            itemSetting.textDesc.text = string.Format(itemDesc[itemSetting.outsideRateIdx], itemSetting.increaseRate);
+        }
+
+    }
+
+    public override void OnClickSetting(ItemSetting itemSetting)
     {
         throw new System.NotImplementedException();
     }
 
-    public override string GetLevelText(int level)
+    private string GetWeaponDescription()
     {
-        throw new System.NotImplementedException();
-    }
+        // 아이템 타입에 따른 설명 반환
+        switch (Type)
+        {
+            case ItemType.M0_Default:
+                return "좌우로 적을 관통 공격";
 
-    public override bool IsNewIconActive(int level)
-    {
-        throw new System.NotImplementedException();
+            case ItemType.M1_Rotating:
+                return "주변을 회전하며 공격";
+
+            case ItemType.M2_MagneticField:
+                return "범위 내 적 지속 공격";
+
+            case ItemType.R0_TargetGun:
+                return "가장 가까운 적 공격";
+
+            case ItemType.R1_Cannon:
+                return "반대 방향으로 강력한 관통 공격";
+
+            case ItemType.R2_Throw:
+                return "바라보는 방향으로 공격";
+            default:
+                return "무기 설명 없음";
+        }
     }
 }
 
