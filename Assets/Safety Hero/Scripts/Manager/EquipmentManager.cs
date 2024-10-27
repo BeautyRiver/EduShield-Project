@@ -54,7 +54,7 @@ public class EquipmentManager : MonoBehaviour
         for (int i = 0; i < _sortData.Count && i < rowCount; i++)
         {
             // 아이템 아이콘 & 텍스트 설정
-            equipImages[i].sprite = _sortData[i].bulletData.itemIcon;
+            equipImages[i].sprite = _sortData[i].itemData.itemIcon;
             equipLevelTexts[i].text = $"Lv{_sortData[i].level}";
             // 만렙일때            
             if (_sortData[i].level == _sortData[i]._maxLevel)
@@ -78,10 +78,10 @@ public class EquipmentManager : MonoBehaviour
         // 현재 아이템 그룹에서 무기와 기어 데이터를 분류하여 추가
         foreach (ItemSetting item in items)
         {
-            if (item.bulletData.itemCategory == BulletData.ItemCategory.Bullet && category == Category.Weapon)
+            if (item.itemData.Category == ItemData.ItemCategory.Bullet && category == Category.Weapon)
                 _data.Add(item);
 
-            else if (item.bulletData.itemCategory == BulletData.ItemCategory.Gear && category == Category.Gear)
+            else if (item.itemData.Category == ItemData.ItemCategory.Gear && category == Category.Gear)
                 _data.Add(item);
         }
 

@@ -84,13 +84,13 @@ public class LevelUp : MonoBehaviour
 
         foreach (ItemSetting item in items)
         {
-            switch (item.bulletData.itemCategory)
+            switch (item.itemData.Category)
             {
                 case BulletData.ItemCategory.Bullet:
                     // 이미 획득한 무기이거나, 새로운 무기를 획득할 수 있는 경우
                     if (item.level > 0 || GameManager.instance.weaponCount < GameManager.instance.maxItemCount)
                     {
-                        if (item.level < item.bulletData.maxLevel)
+                        if (item.level < item.itemData.maxLevel)
                         {
                             availableItems.Add(item);
                             allMaxLevel = false;
@@ -102,7 +102,7 @@ public class LevelUp : MonoBehaviour
                     // 이미 획득한 기어이거나, 새로운 기어를 획득할 수 있는 경우
                     if (item.level > 0 || GameManager.instance.gearCount < GameManager.instance.maxItemCount)
                     {
-                        if (item.level < item.bulletData.maxLevel)
+                        if (item.level < item.itemData.maxLevel)
                         {
                             availableItems.Add(item);
                             allMaxLevel = false;
@@ -117,7 +117,7 @@ public class LevelUp : MonoBehaviour
         {
             foreach (ItemSetting item in items)
             {
-                if (item.bulletData.itemCategory == BulletData.ItemCategory.Etc)
+                if (item.itemData.Category == BulletData.ItemCategory.Etc)
                 {
                     availableItems.Add(item);
                 }
