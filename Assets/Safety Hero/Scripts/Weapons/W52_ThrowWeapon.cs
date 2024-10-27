@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThrowWeapon_52 : Weapon
+public class W52_ThrowWeapon : Weapon
 {
     protected override void Awake()
     {
@@ -25,10 +25,6 @@ public class ThrowWeapon_52 : Weapon
 
     }
 
-    protected override void InitSpeedException()
-    {
-
-    }
 
     protected override void LevelUpException(int rateIndex)
     {

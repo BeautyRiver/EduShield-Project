@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TargetGunWeapon_50 : Weapon
+public class W50_TargetGunWeapon : Weapon
 {
     protected override void Awake()
     {
@@ -22,11 +22,6 @@ public class TargetGunWeapon_50 : Weapon
     protected override void Attack()
     {
         StartCoroutine(R50_Bullet());
-
-    }
-
-    protected override void InitSpeedException()
-    {
 
     }
 

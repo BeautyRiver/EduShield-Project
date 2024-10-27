@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotateWeapon_1 : Weapon, IBatchable, IRotatingable
+public class W1_RotateWeapon : Weapon, IBatchable, IRotatingable
 {
     protected override void Awake()
     {
@@ -23,10 +23,6 @@ public class RotateWeapon_1 : Weapon, IBatchable, IRotatingable
     protected override void Attack()
     {
         StartCoroutine(M1_Bullet());
-    }
-    protected override void InitSpeedException()
-    {
-
     }
 
     protected override void LevelUpException(int rateIndex)

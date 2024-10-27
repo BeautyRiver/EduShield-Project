@@ -1,7 +1,7 @@
 /*using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(ItemData))]
+[CustomEditor(typeof(BulletData))]
 public class ItemDataEditor : Editor
 {
     // Serialized Properties 선언
@@ -78,9 +78,9 @@ public class ItemDataEditor : Editor
         EditorGUILayout.PropertyField(itemIcon);
 
         // itemCategory에 따른 필드 구분
-        ItemData.ItemCategory category = (ItemData.ItemCategory)itemCategory.enumValueIndex;
+        BulletData.ItemCategory category = (BulletData.ItemCategory)itemCategory.enumValueIndex;
 
-        if (category == ItemData.ItemCategory.Bullet)
+        if (category == BulletData.ItemCategory.Bullet)
         {
             GUILayout.BeginVertical("HelpBox");
             EditorGUILayout.LabelField("무기 속성", EditorStyles.boldLabel);
@@ -102,7 +102,7 @@ public class ItemDataEditor : Editor
             EditorGUILayout.PropertyField(hand);
             GUILayout.EndVertical();
         }
-        else if (category == ItemData.ItemCategory.Gear)
+        else if (category == BulletData.ItemCategory.Gear)
         {
             GUILayout.BeginVertical("HelpBox");
             EditorGUILayout.LabelField("기어 속성", EditorStyles.boldLabel);
@@ -110,7 +110,7 @@ public class ItemDataEditor : Editor
             EditorGUILayout.PropertyField(gearRates);
             GUILayout.EndVertical();
         }
-        else if (category == ItemData.ItemCategory.Etc)
+        else if (category == BulletData.ItemCategory.Etc)
         {
             GUILayout.BeginVertical("HelpBox");
             EditorGUILayout.LabelField("기타 아이템", EditorStyles.boldLabel);

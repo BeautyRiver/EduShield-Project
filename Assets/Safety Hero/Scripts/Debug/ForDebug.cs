@@ -11,7 +11,7 @@ public class ForDebug : MonoBehaviour
     public GameObject itemParent;
     public Sprite[] uiImages;
     public ItemSetting[] items;
-    public ItemData[] itemData;
+    public BulletData[] itemData;
 
     public TextMeshProUGUI debugText;
     private bool isInvinsible;
@@ -78,18 +78,18 @@ public class ForDebug : MonoBehaviour
         
         foreach (ItemSetting item in items)
         {
-            item.data = itemData[idx];
+            item.bulletData = itemData[idx];
             item.gameObject.name = itemData[idx].name;
 
-            switch (item.data.itemCategory)
+            switch (item.bulletData.itemCategory)
             {
-                case ItemData.ItemCategory.Bullet:
+                case BulletData.ItemCategory.Bullet:
                     item.GetComponent<Image>().sprite = uiImages[0];
                     break;
-                case ItemData.ItemCategory.Gear:
+                case BulletData.ItemCategory.Gear:
                     item.GetComponent<Image>().sprite = uiImages[1];
                     break;
-                case ItemData.ItemCategory.Etc:
+                case BulletData.ItemCategory.Etc:
                     item.GetComponent<Image>().sprite = uiImages[2];
                     break;
                 default:

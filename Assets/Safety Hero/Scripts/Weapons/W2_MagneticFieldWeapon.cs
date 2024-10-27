@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagneticFieldWeapon_2 : Weapon, IBatchable
+public class W2_MagneticFieldWeapon : Weapon, IBatchable
 {
     protected override void Awake()
     {
@@ -21,10 +21,6 @@ public class MagneticFieldWeapon_2 : Weapon, IBatchable
     protected override void Attack()
     {
         StartCoroutine(M2_Bullet());
-    }
-    protected override void InitSpeedException()
-    {
-        // Nothing...
     }
 
     protected override void LevelUpException(int rateIndex)
