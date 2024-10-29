@@ -1,161 +1,45 @@
+using DarkTonic.MasterAudio;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using static ItemData;
+
 public class Item : MonoBehaviour
 {
-    [Header("# 아이템 데이터")]
-    public ItemData data;
-    public Weapon weapon;
-    public Gear gear;
-    public int level;
-
-    private static int weaponCount = 0; // 획득한 무기 개수
-    private static int gearCount = 0;   // 획득한 기어 개수
-    private static int maxItemCount = 5; // 무기와 기어의 최대 개수
-
-    private Image icon;
-    private TextMeshProUGUI textLevel;
-    private TextMeshProUGUI textName;
-    private TextMeshProUGUI textDesc;
-
+    public enum ItemType { Heal, Magnet }
+    public ItemType itemType;
+    public GameManager gm;
     private void Awake()
     {
-
-        // 아이콘 설정 및 세팅
-        icon = GetComponentsInChildren<Image>()[1];
-        icon.sprite = data.itemIcon;
-
-        // 레벨, 이름, 설명 텍스트 설정
-        TextMeshProUGUI[] texts = GetComponentsInChildren<TextMeshProUGUI>();
-        switch (data.itemCategory)
-        {
-            case ItemCategory.Weapon:
-            case ItemCategory.Gear:
-                textLevel = texts[0];
-                textName = texts[1];
-                textDesc = texts[2];
-                break;
-
-            case ItemCategory.Etc:
-                textLevel = null;
-                textName = texts[0];
-                textDesc = texts[1];
-                break;
-        }
-        textName.text = data.itemName;
+        gm = GameManager.instance;
     }
-
-    private void OnEnable()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        // 설명글 세팅
-        if (data.itemCategory != ItemCategory.Etc && textLevel != null)
+        if (collision.CompareTag("Player"))
         {
-            textLevel.text = "Lv." + (level + 1); // 레벨 표기
-        }
-        switch (data.itemCategory)
-        {
-            // Weapons
-            case ItemCategory.Weapon:
-                if (level == 0)
-                {
-                    switch (data.itemType)
-                    {
-                        case ItemType.Shovel:
-                            textDesc.text = "회전하며 적을 공격합니다.";
-                            break;
-                        case ItemType.Gun:
-                            textDesc.text = "적을 자동 조준하는 무기를 장착합니다.";
-                            break;
-                        case ItemType.Cannon:
-                            textDesc.text = "관통할 수 있는 무기를 장착합니다.";
-                            break;
-                        case ItemType.Spear:
-                            textDesc.text = "바라보는 방향으로 무기를 투척합니다.";
-                            break;
-                    }
-                }
-                else
-                {
-                    textDesc.text = string.Format(data.itemDesc, data.damages[level], data.counts[level]); // 무기 설명글
-                }
-                break;
+            Debug.Log("Compare");
+            switch (itemType)
+            {
+                case ItemType.Heal:
+                    gm.health = Mathf.Min(gm.maxHealth, gm.health + 15f);
+                    MasterAudio.PlaySound("Heal");
 
-            // Gears
-            case ItemCategory.Gear:
-                textDesc.text = string.Format(data.itemDesc, data.gearRates[level] * 100); // 기어 설명글
-                break;
-
-            // Etc
-            case ItemCategory.Etc:
-                textDesc.text = string.Format(data.itemDesc); // 아이템 설명글
-                break;
+                    gameObject.SetActive(false);
+                    break;
+                case ItemType.Magnet:
+                    MasterAudio.PlaySound("Magnet");
+                    StartCoroutine(GetMagnet());
+                    break;
+            }
+            gm.GenerateEffect(1, gm.player.transform);
         }
     }
 
-    // 아이템 클릭 시
-    public void OnClick()
+    IEnumerator GetMagnet()
     {
-        switch (data.itemCategory) // 지니고 있는 데이터 타입에 따라
-        {
-            // 무기 Setting
-            case ItemCategory.Weapon:
-                if (level == 0) // 무기가 없을때 초기화 시키기 (생성)
-                {
-                    GameObject newWeapon = new GameObject();
-                    weapon = newWeapon.AddComponent<Weapon>();
-                    weapon.Init(data);
-                    GameManager.instance.weaponCount++; // 무기 개수 추가(최대 5개)
-                }
-                else // 무기가 존재할때
-                {
-                    float nextDamage = data.damages[level];
-                    int nextCount = data.counts[level];
-                    int nextPer = data.pers[level];
-
-                    weapon.WeaonLevelUp(nextDamage, nextCount, nextPer, level);
-                }
-                level++;
-                break;
-
-            // 기어 Setting
-            case ItemCategory.Gear:
-                if (level == 0)
-                {
-                    GameObject newGear = new GameObject();
-                    gear = newGear.AddComponent<Gear>();
-                    gear.Init(data);
-                    GameManager.instance.gearCount++; // 기어 개수 추가(최대 5개)
-                }
-                else
-                {
-                    float newRate = data.gearRates[level]; // 공속
-                    gear.GearLevelUp(newRate);
-                    gear.level = level;
-                }
-                level++;
-                break;
-
-            case ItemCategory.Etc:
-                switch (data.itemType)
-                {
-                    case ItemType.Heal:
-                        GameManager.instance.health += 15f;
-                        break;
-
-                    case ItemType.Gold:
-                        Debug.Log("15골드 획득");
-                        break;
-                }
-                break;
-        }
-
-        if (level == data.maxLevel)
-        {
-            GetComponent<Button>().interactable = false;
-        }
-
+        float orignal = gm.player.scanner.expCollectionRange;
+        gm.player.scanner.expCollectionRange = 999f;
+        yield return new WaitForSeconds(0.1f);
+        gm.player.scanner.expCollectionRange = orignal;
+        gameObject.SetActive(false);
     }
 }

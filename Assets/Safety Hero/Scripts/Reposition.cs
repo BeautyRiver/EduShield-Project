@@ -30,8 +30,11 @@ public class Reposition : MonoBehaviour
             case "Enemy":
                 if (coll.enabled == true)
                 {
+                    if (coll.gameObject.GetComponent<Enemy>().enemyType == Enemy.EnemyType.Uniqe)
+                        coll.gameObject.SetActive(false);
+
                     Vector3 dist = playerPos - myPos;
-                    Vector3 ran = new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), 0);
+                    Vector3 ran = new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0);
                     transform.Translate(ran + dist * 2);
                 }
                 break;

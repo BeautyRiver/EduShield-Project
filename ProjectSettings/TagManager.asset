@@ -8,6 +8,9 @@ TagManager:
   - Area
   - Enemy
   - Bullet
+  - Exp
+  - Cleaner
+  - MiniBossEnemy
   layers:
   - Default
   - TransparentFX
@@ -17,10 +20,10 @@ TagManager:
   - UI
   - Enemy
   - Player
-  - 
-  - 
-  - 
-  - 
+  - Exp
+  - MiniBossEnemy
+  - Ground
+  - GroundPhyscis
   - 
   - 
   - 
@@ -42,9 +45,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackGround
+    uniqueID: 1724057183
+    locked: 0
+  - name: Enemy
+    uniqueID: 2838857949
+    locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Enemy1
-    uniqueID: 409021669
     locked: 0

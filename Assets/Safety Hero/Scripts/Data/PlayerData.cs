@@ -18,6 +18,9 @@ public class PlayerData : ScriptableObject
     [Header("공격속도 배율")]
     public float atkSpeedMult = 1f; // 공격속도 배율
 
+    [Header("공격범위 배율")]
+    public float atkRangeMult= 1f; // 공격범위 배율
+
     [Header("이동속도 배율")]
     public float speedMult = 1f; // 이동속도 배율
     //public int gold = 0; // 골드량

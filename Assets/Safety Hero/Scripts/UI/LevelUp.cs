@@ -1,29 +1,32 @@
+using DarkTonic.MasterAudio;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using static Cinemachine.DocumentationSortingAttribute;
 
 public class LevelUp : MonoBehaviour
 {
+    [Header("# UI manager")]
+    public UIManager uiManager;
+    [Header("# ---------------------")]
     private RectTransform rect;
     public Image blackWindow;
-    [SerializeField] private List<Item> items;
-    public List<Item> availableItems;
-
+    public float showLeveUpDuration;
+    [SerializeField] private List<ItemSetting> items;
+    public List<ItemSetting> availableItems;
     private void Awake()
     {
         rect = GetComponent<RectTransform>();
-        items = GetComponentsInChildren<Item>(true).ToList();
+        items = GetComponentsInChildren<ItemSetting>(true).ToList();
     }
 
     public void Show()
     {
-        CurrentData.OnItemCurrentState?.Invoke(); // 이벤트 호출
+        //SelectorController.SelectorEvent?.Invoke(); // Selector 이밴트 호출(배치)
 
-        blackWindow.DOFade(0.7f, 0.5f).SetUpdate(true); // 검은 배경 On
+        uiManager.BlackWindowFadeIn(); // 검은 배경 On
         Next(); // 섞기
         Button[] buttons = transform.GetComponentsInChildren<Button>();
         foreach (var btn in buttons)
@@ -32,10 +35,13 @@ public class LevelUp : MonoBehaviour
         }
 
         GameManager.instance.Stop();
-        rect.DOAnchorPos(Vector3.zero, 0.5f).SetEase(Ease.OutBack, 1f).SetUpdate(true);
+        rect.DOAnchorPos(Vector3.zero, showLeveUpDuration).SetEase(Ease.Linear).SetUpdate(true);
 
-        AudioManager.instance.PlaySfx(AudioManager.Sfx.LevelUp); // 음향재생
-        AudioManager.instance.EffectBgm(true); // 배경음 필터 끄기
+        MasterAudio.PlaySound("LevelUp");
+
+        // 비율 기반으로 BGM 볼륨 감소
+        /*float currentBGMVolume = PlayerPrefs.GetFloat("BGM");
+        MasterAudio.PlaylistMasterVolume = currentBGMVolume * 0.25f;*/
     }
     public void Hide()
     {
@@ -45,72 +51,71 @@ public class LevelUp : MonoBehaviour
             btn.interactable = false;
         }
 
-        blackWindow.DOFade(0f, 0.5f).SetUpdate(true); // 검은 배경 Off
+        uiManager.BlackWindowFadeaOut(); // 검은 배경 Off
 
-        rect.DOAnchorPos(new Vector3(0, -1300f, 0), 0.5f).SetEase(Ease.InBack, 1f).SetUpdate(true).OnComplete(() =>
+        rect.DOAnchorPos(new Vector3(0, -1500f, 0), showLeveUpDuration).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() =>
         {
             GameManager.instance.Resume();
         });
 
-        AudioManager.instance.PlaySfx(AudioManager.Sfx.Select); // 음향재생
-        AudioManager.instance.EffectBgm(false); // 배경음 필터 끄기
+        MasterAudio.PlaySound("Select");
 
+        // 원래 BGM 볼륨으로 복구
+        //MasterAudio.PlaylistMasterVolume = PlayerPrefs.GetFloat("BGM");
     }
 
-    public void Select(int index)
+    public void FirstGiveWeapon(int index)
     {
-        items[index].OnClick();
+        items[index].OnClick();        
     }
 
     private void Next()
     {
         // 모든 아이템 비활성화
-        foreach (Item item in items)
+        foreach (ItemSetting item in items)
         {
             item.gameObject.SetActive(false);
         }
 
         // 활성화 가능한 아이템을 담는 리스트
-        availableItems = new List<Item>();
+        availableItems = new List<ItemSetting>();
 
         bool allMaxLevel = true;
 
-        foreach (Item item in items)
+        foreach (ItemSetting item in items)
         {
-            switch (item.data.itemCategory)
+            if (item.itemData is BulletData)
             {
-                case ItemData.ItemCategory.Weapon:
-                    // 이미 획득한 무기이거나, 새로운 무기를 획득할 수 있는 경우
-                    if (item.level > 0 || GameManager.instance.weaponCount < GameManager.instance.maxItemCount)
+                // 이미 획득한 무기이거나, 새로운 무기를 획득할 수 있는 경우
+                if (item.level > 0 || GameManager.instance.weaponCount < GameManager.instance.maxItemCount)
+                {
+                    if (item.level < item.itemData.maxLevel)
                     {
-                        if (item.level < item.data.maxLevel)
-                        {
-                            availableItems.Add(item);
-                            allMaxLevel = false;
-                        }
+                        availableItems.Add(item);
+                        allMaxLevel = false;
                     }
-                    break;
-
-                case ItemData.ItemCategory.Gear:
-                    // 이미 획득한 기어이거나, 새로운 기어를 획득할 수 있는 경우
-                    if (item.level > 0 || GameManager.instance.gearCount < GameManager.instance.maxItemCount)
-                    {
-                        if (item.level < item.data.maxLevel)
-                        {
-                            availableItems.Add(item);
-                            allMaxLevel = false;
-                        }
-                    }
-                    break;
+                }
             }
+            else if (item.itemData is GearData)
+            {
+                // 이미 획득한 기어이거나, 새로운 기어를 획득할 수 있는 경우
+                if (item.level > 0 || GameManager.instance.gearCount < GameManager.instance.maxItemCount)
+                {
+                    if (item.level < item.itemData.maxLevel)
+                    {
+                        availableItems.Add(item);
+                        allMaxLevel = false;
+                    }
+                }
+            }        
         }
 
         // 모든 무기와 기어가 최대 레벨에 도달했다면 Etc 아이템만 활성화
         if (allMaxLevel)
         {
-            foreach (Item item in items)
+            foreach (ItemSetting item in items)
             {
-                if (item.data.itemCategory == ItemData.ItemCategory.Etc)
+                if (item.itemData is EtcData)
                 {
                     availableItems.Add(item);
                 }
