@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6670291896573575422
+--- !u!1 &6833137080016569779
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3963652051184526313}
-  - component: {fileID: 2108557578869068308}
+  - component: {fileID: 8908291865765227340}
+  - component: {fileID: 699293344662696591}
   m_Layer: 7
-  m_Name: 50_TargetGun Weapon
+  m_Name: W52_Throw Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3963652051184526313
+--- !u!4 &8908291865765227340
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6670291896573575422}
+  m_GameObject: {fileID: 6833137080016569779}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,16 +32,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2108557578869068308
+--- !u!114 &699293344662696591
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6670291896573575422}
+  m_GameObject: {fileID: 6833137080016569779}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 597cadfd4604c32459ae5a3b0f0520c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a94001707f3aea42b2d9ccf462eb581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 0}

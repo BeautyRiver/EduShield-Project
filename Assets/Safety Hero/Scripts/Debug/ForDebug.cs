@@ -8,7 +8,8 @@ using static Cinemachine.DocumentationSortingAttribute;
 
 public class ForDebug : MonoBehaviour
 {
-    public GameObject itemParent;
+    public Transform itemParent;
+    public GameObject sampleItem;
     public Sprite[] uiImages;
     public ItemSetting[] items;
     public ItemData[] itemData;
@@ -72,30 +73,43 @@ public class ForDebug : MonoBehaviour
     }
 
     public void InitializeItems()
-    {        
+    {
+        int childCount = itemParent.childCount - 1;
+
+        Debug.Log($"{itemParent.childCount - 1} / {itemData.Length}");
+
+        if (childCount <= itemData.Length)
+        {
+            for (int i = childCount; i < itemData.Length; i++)
+            {
+                GameObject newItem = Instantiate(sampleItem, itemParent);                         
+            }
+        }
         items = itemParent.GetComponentsInChildren<ItemSetting>();
         int idx = 0;
-        
+
         foreach (ItemSetting item in items)
         {
             item.itemData = itemData[idx];
             item.gameObject.name = itemData[idx].name;
 
-            switch (item.itemData.Category)
+            if (item.itemData is BulletData)
             {
-                case BulletData.ItemCategory.Bullet:
-                    item.GetComponent<Image>().sprite = uiImages[0];
-                    break;
-                case BulletData.ItemCategory.Gear:
-                    item.GetComponent<Image>().sprite = uiImages[1];
-                    break;
-                case BulletData.ItemCategory.Etc:
-                    item.GetComponent<Image>().sprite = uiImages[2];
-                    break;
-                default:
-                    break;
+                item.GetComponent<Image>().sprite = uiImages[0];
+
             }
+            else if (item.itemData is GearData)
+            {
+                item.GetComponent<Image>().sprite = uiImages[1];
+
+            }
+            else if (item.itemData is EtcData)
+            {
+                item.GetComponent<Image>().sprite = uiImages[2];
+
+            }         
             idx++;
         }
+
     }
 }

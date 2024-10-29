@@ -106,8 +106,12 @@ public abstract class Weapon : MonoBehaviour
                 break;
 
             case 3: // 크기[범위] 증가
-                data.baseScale += (data.baseScale * rate * 0.01f);
+                data.baseScale += (data.baseScale * rate * 0.01f);                
+                bulletSize = data.baseScale * gm.playerData.atkRangeMult;
+
+
                 attackRange = data.baseRange * gm.playerData.atkRangeMult;
+
                 Debug.Log($"{this.name}: Range {rate}만큼 증가했습니다.");
                 break;
         }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2670353986315381385}
   - component: {fileID: 7531032224551377732}
   m_Layer: 0
-  m_Name: 2_Magnetic Field Weapon
+  m_Name: W2_Magnetic Field Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
