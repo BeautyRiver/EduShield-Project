@@ -84,32 +84,30 @@ public class LevelUp : MonoBehaviour
 
         foreach (ItemSetting item in items)
         {
-            switch (item.itemData.Category)
+            if (item.itemData is BulletData)
             {
-                case BulletData.ItemCategory.Bullet:
-                    // 이미 획득한 무기이거나, 새로운 무기를 획득할 수 있는 경우
-                    if (item.level > 0 || GameManager.instance.weaponCount < GameManager.instance.maxItemCount)
+                // 이미 획득한 무기이거나, 새로운 무기를 획득할 수 있는 경우
+                if (item.level > 0 || GameManager.instance.weaponCount < GameManager.instance.maxItemCount)
+                {
+                    if (item.level < item.itemData.maxLevel)
                     {
-                        if (item.level < item.itemData.maxLevel)
-                        {
-                            availableItems.Add(item);
-                            allMaxLevel = false;
-                        }
+                        availableItems.Add(item);
+                        allMaxLevel = false;
                     }
-                    break;
-
-                case BulletData.ItemCategory.Gear:
-                    // 이미 획득한 기어이거나, 새로운 기어를 획득할 수 있는 경우
-                    if (item.level > 0 || GameManager.instance.gearCount < GameManager.instance.maxItemCount)
-                    {
-                        if (item.level < item.itemData.maxLevel)
-                        {
-                            availableItems.Add(item);
-                            allMaxLevel = false;
-                        }
-                    }
-                    break;
+                }
             }
+            else if (item.itemData is GearData)
+            {
+                // 이미 획득한 기어이거나, 새로운 기어를 획득할 수 있는 경우
+                if (item.level > 0 || GameManager.instance.gearCount < GameManager.instance.maxItemCount)
+                {
+                    if (item.level < item.itemData.maxLevel)
+                    {
+                        availableItems.Add(item);
+                        allMaxLevel = false;
+                    }
+                }
+            }        
         }
 
         // 모든 무기와 기어가 최대 레벨에 도달했다면 Etc 아이템만 활성화
@@ -117,7 +115,7 @@ public class LevelUp : MonoBehaviour
         {
             foreach (ItemSetting item in items)
             {
-                if (item.itemData.Category == BulletData.ItemCategory.Etc)
+                if (item.itemData is EtcData)
                 {
                     availableItems.Add(item);
                 }

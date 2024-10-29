@@ -5,14 +5,9 @@ using static Cinemachine.DocumentationSortingAttribute;
 
 [CreateAssetMenu(fileName = "Bullet", menuName = "Scriptble Object/BulletData")]
 public class BulletData : ItemData
-{
-    public new enum ItemType
-    {
-        // 무기 류
-        M0_Default, M1_Rotating, M2_MagneticField, // 근접
-        R0_TargetGun = 50, R1_Cannon, R2_Throw, // 원거리
-    }
-    public new ItemType Type;
+{  
+    [TextArea]
+    public string firstDesc;
 
     [Header("# 기본 스탯")]
     public float baseDamage;
@@ -51,53 +46,104 @@ public class BulletData : ItemData
             baseScale = prefab.transform.localScale;
     }
 
+    public override void InitializeItemSetting(ItemSetting itemSetting)
+    {
+        // 무기와 기어의 데이터 세팅 (길이가 0 이상인 경우만 추가)
+        if (damages.Length > 0)
+        {
+            itemSetting.statusRateList.Add(new S_int { values = damages });
+            itemSetting.rateIdx.Add(0);
+        }
+        if (counts.Length > 0)
+        {
+            itemSetting.statusRateList.Add(new S_int { values = counts });
+            itemSetting.rateIdx.Add(1);
+        }
+        if (pers.Length > 0)
+        {
+            itemSetting.statusRateList.Add(new S_int { values = pers });
+            itemSetting.rateIdx.Add(2);
+        }
+        if (sizes.Length > 0)
+        {
+            itemSetting.statusRateList.Add(new S_int { values = sizes });
+            itemSetting.rateIdx.Add(3);
+        }
+
+        // 최대 인덱스 구하기
+        foreach (var item in itemSetting.statusRateList)
+            itemSetting.maxmumInsideIdx = Mathf.Max(itemSetting.maxmumInsideIdx, item.values.Length);
+    }
+
     public override void OnEnableSetting(ItemSetting itemSetting)
     {
-        itemSetting.textLevel.text = "Lv." + (itemSetting.level + 1); // 레벨 표기
+        if (itemSetting.TextLevel != null)
+        {
+            itemSetting.TextLevel.text = "Lv." + (itemSetting.level + 1); // 레벨 표기
+        }
+
         if (itemSetting.level == 0)
         {
-            itemSetting.newIcon.gameObject.SetActive(true);
-            itemSetting.textDesc.text = "<color=#99FF8A>새로운 무기!</color>\n\n<size=90%>" + GetWeaponDescription() + "</size>";
+            itemSetting.NewIcon.gameObject.SetActive(true);
+            itemSetting.TextDesc.text = "<color=#99FF8A>새로운 무기!</color>\n\n<size=90%>" + firstDesc + "</size>";
         }
         else
         {
-            itemSetting.newIcon.gameObject.SetActive(false);
-            // 레벨에 따른 설명 업데이트
-            itemSetting.textDesc.text = string.Format(itemDesc[itemSetting.outsideRateIdx], itemSetting.increaseRate);
-        }
+            itemSetting.NewIcon.gameObject.SetActive(false);
 
+            // 비어있는 배열을 건너뛰기 위해 증가
+            while (itemSetting.outsideRateIdx < itemSetting.statusRateList.Count &&
+                   itemSetting.statusRateList[itemSetting.outsideRateIdx].values.Length == 0)
+            {
+                itemSetting.outsideRateIdx++;
+            }
+
+            if (itemSetting.outsideRateIdx < itemSetting.statusRateList.Count)
+            {
+                itemSetting.increaseRate = itemSetting.statusRateList[itemSetting.outsideRateIdx].values[itemSetting.insideRateIdx];
+                itemSetting.TextDesc.text = string.Format(itemDesc[itemSetting.outsideRateIdx], itemSetting.increaseRate); // 무기 설명글
+            }
+        }
     }
 
     public override void OnClickSetting(ItemSetting itemSetting)
     {
-        throw new System.NotImplementedException();
-    }
-
-    private string GetWeaponDescription()
-    {
-        // 아이템 타입에 따른 설명 반환
-        switch (Type)
+        if (itemSetting.level == 0)
         {
-            case ItemType.M0_Default:
-                return "좌우로 적을 관통 공격";
-
-            case ItemType.M1_Rotating:
-                return "주변을 회전하며 공격";
-
-            case ItemType.M2_MagneticField:
-                return "범위 내 적 지속 공격";
-
-            case ItemType.R0_TargetGun:
-                return "가장 가까운 적 공격";
-
-            case ItemType.R1_Cannon:
-                return "반대 방향으로 강력한 관통 공격";
-
-            case ItemType.R2_Throw:
-                return "바라보는 방향으로 공격";
-            default:
-                return "무기 설명 없음";
+            // 새로운 무기 객체를 생성
+            GameObject newWeapon = Instantiate(weaponType);
+            itemSetting.weapon = newWeapon.GetComponent<Weapon>();
+            itemSetting.weapon.Init(this);
+            GameManager.instance.weaponCount++;
         }
+        else
+        {
+            // 기존 무기의 레벨을 올림
+            itemSetting.weapon.WeaponLevelUp(itemSetting.increaseRate, itemSetting.rateIdx[itemSetting.outsideRateIdx], itemSetting.level);
+
+            itemSetting.outsideRateIdx++; // 다음 적용할 인덱스를 증가시킴
+
+            // 인덱스 값이 설정 범위를 넘어가는 경우 계속 조정해주는 로직
+            while (itemSetting.outsideRateIdx >= itemDesc.Length ||
+                   itemSetting.insideRateIdx >= itemSetting.statusRateList[itemSetting.outsideRateIdx].values.Length)
+            {
+                if (itemSetting.outsideRateIdx >= itemDesc.Length)
+                {
+                    itemSetting.outsideRateIdx = 0;
+                    itemSetting.insideRateIdx++;
+                }
+
+                if (itemSetting.insideRateIdx >= itemSetting.maxmumInsideIdx)
+                    break;
+
+                if (itemSetting.insideRateIdx >= itemSetting.statusRateList[itemSetting.outsideRateIdx].values.Length)
+                    itemSetting.outsideRateIdx++;
+            }
+        }
+
+        itemSetting.level++;
+        itemSetting._currentLevel = itemSetting.level;
     }
+
 }
 

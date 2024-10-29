@@ -22,7 +22,6 @@ public abstract class Gear : MonoBehaviour
     {
         // 기본 세팅
         gearData = newData;
-        gameObject.name = "Apply Gear" + gearData.Type.ToString();
         transform.parent = player.transform;
         transform.localPosition = Vector3.zero; // 플레이어 안에서 위치 초기화
 

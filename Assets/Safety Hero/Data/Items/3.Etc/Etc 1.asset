@@ -9,31 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d1bd397b1903a34ba35468b05a5746b, type: 3}
+  m_Script: {fileID: 11500000, guid: 575102b147a67f345b8df31527099ccb, type: 3}
   m_Name: Etc 1
   m_EditorClassIdentifier: 
-  itemCategory: 2
-  weaponType: 0
-  itemType: 201
-  maxLevel: 5
+  Category: 2
   itemId: 201
-  itemName: "\uACE8\uB4DC"
+  itemName: 
+  itemIcon: {fileID: 934571490, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
+  maxLevel: 0
   itemDesc:
-  - "15\uACE8\uB4DC\uB97C \uD68D\uB4DD\uD569\uB2C8\uB2E4."
-  itemIcon: {fileID: -1002307068, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-  baseDamage: 0
-  baseCount: 0
-  basePer: 0
-  baseDelay: 0
-  baseSpeed: 0
-  damages:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  counts: 
-  pers: 
-  gearRates: []
-  prefab: {fileID: 0}
-  hand: {fileID: 0}
+  - "15\uCCB4\uB825 \uD68C\uBCF5"
+  eType: 201
