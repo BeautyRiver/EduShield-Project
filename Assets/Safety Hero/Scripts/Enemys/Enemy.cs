@@ -23,8 +23,8 @@ public class Enemy : MonoBehaviour
     public int id;
     public bool isLive;
 
-    [SerializeField]
-    public SerializableDictionary<Collider2D, float> damageCooldowns;
+    /*[SerializeField]
+    public SerializableDictionary<Collider2D, float> damageCooldowns;*/
 
     [Header("# 참조")]
     public TypeControlManager typeControlManager;
@@ -91,7 +91,6 @@ public class Enemy : MonoBehaviour
 
     private void OnEnable()
     {
-        damageCooldowns = new SerializableDictionary<Collider2D, float>();
         target = gm.player.GetComponent<Rigidbody2D>();
         // 초기화
         sortingGroup.sortingOrder = 1;
@@ -106,29 +105,10 @@ public class Enemy : MonoBehaviour
             StartCoroutine(UniqueEnemyMove());
         }
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!isLive)
-            return;
-
-        if (collision.CompareTag("Bullet"))
-        {
-            Bullet bulletInfo = collision.GetComponent<Bullet>();
-            if (!damageCooldowns.ContainsKey(collision))
-            {
-                damageCooldowns.Add(collision, Time.time);
-                DamgedLogic(collision, bulletInfo.damage); // 처음 들어왔을 때 데미지
-            }
-            else
-            {
-                // 쿨타임 체크
-                if (Time.time >= damageCooldowns[collision] + bulletInfo.damageInterval)
-                {
-                    damageCooldowns[collision] = Time.time;
-                    DamgedLogic(collision, bulletInfo.damage);
-                }
-            }
-        }
+            return;        
 
         if (collision.CompareTag("Cleaner"))
         {
@@ -137,8 +117,8 @@ public class Enemy : MonoBehaviour
             rigid.simulated = false;
             anim.SetBool("Dead", true);
         }
-
     }
+
     private IEnumerator UniqueEnemyMove()
     {
         yield return null;
@@ -198,7 +178,7 @@ public class Enemy : MonoBehaviour
 
         // 보스는 넉벡 X
         if (enemyType != EnemyType.MiniBoss)
-            StartCoroutine(KnockBack(bulletInfo.knockBackDistance)); // 넉백
+            StartCoroutine(KnockBack(bulletInfo.KnockBackDistance)); // 넉백
 
         // 체력 0 이하 사망
         if (health <= 0)
@@ -225,8 +205,6 @@ public class Enemy : MonoBehaviour
             if (gm.isLive)
                 MasterAudio.PlaySound("Dead");
         }
-        // 관통력 --시키기
-        bulletInfo.PerDown();
     }
 
     private void Damaged(string text, float damage, Vector2 hitPos, Color color)
@@ -241,6 +219,8 @@ public class Enemy : MonoBehaviour
         damageText.DOScale(1f, 0.1f);
         StartCoroutine(OffDamageText(damageText));
     }
+
+    
 
     private IEnumerator OffDamageText(TextMeshPro damageText)
     {

@@ -12,15 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d1bd397b1903a34ba35468b05a5746b, type: 3}
   m_Name: Bullet 0
   m_EditorClassIdentifier: 
-  Category: 0
   itemId: 0
-  itemName: "ABC \uC18C\uD654\uAE30"
-  itemIcon: {fileID: 21300000, guid: 5fc3d85edd78fa642bb8ed32e702c2d4, type: 3}
+  itemName: "\uAE30\uBCF8 \uC18C\uD654\uAE30"
+  itemIcon: {fileID: 21300000, guid: 33297e1e7b5bd7d4fa7eafd38879a30c, type: 3}
   maxLevel: 5
   itemDesc:
   - "<b><color=yellow>\uAE30\uBCF8 \uB370\uBBF8\uC9C0 {0}</color> \uC99D\uAC00</b>"
   - "<b><color=yellow>\uAC1C\uC218 {0}\uAC1C</color> \uC99D\uAC00</b>"
-  bulletType: 0
   firstDesc: "\uC88C\uC6B0\uB85C \uC801\uC744 \uAD00\uD1B5 \uACF5\uACA9"
   baseDamage: 5
   baseDamageInterval: 2

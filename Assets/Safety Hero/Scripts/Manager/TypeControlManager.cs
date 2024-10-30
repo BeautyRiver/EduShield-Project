@@ -12,7 +12,6 @@ public class TypeControlManager : MonoBehaviour
     [SerializeField] private List<StageTypeImages> stageTypes = new List<StageTypeImages>();
 
     [Header("# UI이미지 설정")]
-    [SerializeField] private Transform typeControllUI;
     [SerializeField] private List<Image> equipImages;
     [SerializeField] private List<Image> coolDownImages;
 
@@ -105,12 +104,12 @@ public class TypeControlManager : MonoBehaviour
     }
     private void Initialize()
     {
-        int childCount = typeControllUI.transform.childCount;
+        int childCount = transform.childCount;
 
         // 자식 오브젝트들을 미리 비활성화
         for (int i = 0; i < childCount; i++)
         {
-            typeControllUI.transform.GetChild(i).gameObject.SetActive(false);
+            transform.GetChild(i).gameObject.SetActive(false);
         }
 
         // 필요한 리스트의 크기를 미리 설정하여 성능 최적화
@@ -121,7 +120,7 @@ public class TypeControlManager : MonoBehaviour
         spriteCount = stageTypes[0].sprite.Length;
         for (int i = 0; i < spriteCount; i++)
         {
-            Transform child = typeControllUI.transform.GetChild(i);
+            Transform child = transform.GetChild(i);
             child.gameObject.SetActive(true);
 
             // GetComponentsInChildren을 한 번만 호출하여 필요한 이미지를 모두 가져옴

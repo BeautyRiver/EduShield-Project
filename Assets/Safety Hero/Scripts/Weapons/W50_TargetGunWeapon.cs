@@ -36,7 +36,10 @@ public class W50_TargetGunWeapon : Weapon
         for (int i = 0; i < count; i++)
         {
             if (player.scanner.nearestTarget == null)
+            {
+                isAttacking = false;
                 yield break;
+            }
 
             Vector3 targetPos = player.scanner.nearestTarget.position;
             Vector3 dir = (targetPos - transform.position).normalized;

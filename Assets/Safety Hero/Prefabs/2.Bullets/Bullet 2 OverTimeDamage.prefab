@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2334090505691134472}
   - component: {fileID: 5836739199373839614}
   - component: {fileID: 2591788526334757666}
-  - component: {fileID: 2221834421904987386}
+  - component: {fileID: 7367847015302958838}
   m_Layer: 0
-  m_Name: Bullet 2
+  m_Name: Bullet 2 OverTimeDamage
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,7 +121,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &2221834421904987386
+--- !u!114 &7367847015302958838
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,11 +130,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6100579441663806301}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfc1a41fa8881904abe5d628051035c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 32cbeeb0d1843044e8f889547abc9e29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  per: 0
-  id: 0
-  knockBackDistance: 0
-  damageInterval: 0

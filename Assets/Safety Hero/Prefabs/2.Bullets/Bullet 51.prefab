@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5917072930588857991}
   - component: {fileID: 7351512041537244576}
   - component: {fileID: 555696547666289999}
-  - component: {fileID: 7197744149654079512}
   - component: {fileID: 8848119066057951297}
+  - component: {fileID: 6567638758602411028}
   m_Layer: 0
   m_Name: Bullet 51
   m_TagString: Bullet
@@ -150,21 +150,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.375, y: 1.9375}
   m_Direction: 0
---- !u!114 &7197744149654079512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8191457858479555690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfc1a41fa8881904abe5d628051035c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0
-  per: 0
-  id: 0
 --- !u!95 &8848119066057951297
 Animator:
   serializedVersion: 5
@@ -186,3 +171,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6567638758602411028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8191457858479555690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c14ae643ecadd4a9f7fc86fec19bbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
