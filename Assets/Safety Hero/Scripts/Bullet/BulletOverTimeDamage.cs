@@ -22,13 +22,13 @@ public class BulletOverTimeDamage : Bullet
             if (!damageTimers.ContainsKey(enemyId))
             {
                 damageTimers[enemyId] = Time.time;
-                collision.GetComponent<Enemy>().DamgedLogic(bulletCol, Damage);
+                collision.GetComponent<Enemy>().DamagedLogic(bulletCol, Damage);
                 PerDown();
             }
             else if (Time.time - damageTimers[enemyId] >= DamageInterval)
             {
                 damageTimers[enemyId] = Time.time;
-                collision.GetComponent<Enemy>().DamgedLogic(bulletCol, Damage);
+                collision.GetComponent<Enemy>().DamagedLogic(bulletCol, Damage);
                 PerDown();
             }
         }

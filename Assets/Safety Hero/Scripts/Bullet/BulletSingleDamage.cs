@@ -8,7 +8,7 @@ public class BulletSingleDamage : Bullet
     {
         if (collision.CompareTag("Enemy"))
         {
-            collision.GetComponent<Enemy>().DamgedLogic(bulletCol, Damage);
+            collision.GetComponent<Enemy>().DamagedLogic(bulletCol, Damage);
             PerDown();
         }
     }

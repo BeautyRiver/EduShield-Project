@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface IDropExpable
 {
-    public float Exp {  get; set; }
+    public int Exp { get; set; }
+    public void DropExp();
 }
 

@@ -5,4 +5,8 @@ using UnityEngine;
 public interface IMovable
 {
     public float Speed { get; set; }
+
+    void Move();
+    void FlipSprite();
+
 }
