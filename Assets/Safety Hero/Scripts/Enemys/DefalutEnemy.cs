@@ -1,34 +1,28 @@
+using DarkTonic.MasterAudio;
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class DefalutEnemy : Enemy, IAttackable, IDamageable, IDropExpable, IMovable, IUnitStatus
+public class DefalutEnemy : Enemy, IAttackable
 {   
-    [field: SerializeField] public float Damage {  get; }
-    [field: SerializeField] public float MaxHealth { get; }
-    [field: SerializeField] public float Health { get; }
-    [field: SerializeField] public float Exp { get; }
-    [field: SerializeField] public float Speed { get; }
-    [field: SerializeField] public bool IsLive { get; }
-    public int Id { get; }
-
-
     private void FixedUpdate()
     {
-        if (gm.isLive && IsLive)
+        if (gm.isLive && isLive)
         {
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
                 return;
 
             // 기본 이동
             Vector2 dirVec = target.position - rigid.position; // 타겟 방향
-            nextVec = dirVec.normalized * Speed * Time.fixedDeltaTime;
+            nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
             rigid.MovePosition(rigid.position + nextVec);
 
             // 유니크 몬스터
-            else
+            if (enemyType == EnemyType.Uniqe)
             {
                 rigid.MovePosition(rigid.position + (nextVec * speed * Time.fixedDeltaTime));
             }
@@ -43,8 +37,8 @@ public class DefalutEnemy : Enemy, IAttackable, IDamageable, IDropExpable, IMova
     {
         if (gm.isLive && isLive)
         {
-            if (enemyType != EnemyType.Uniqe)
-                spriter.flipX = target.position.x < rigid.position.x;
+            /*if (enemyType != EnemyType.Uniqe)
+                spriter.flipX = target.position.x < rigid.position.x;*/
         }
         else
             return;
@@ -61,10 +55,10 @@ public class DefalutEnemy : Enemy, IAttackable, IDamageable, IDropExpable, IMova
         anim.SetBool("Dead", false);
         health = maxHealth;
 
-        if (enemyType == EnemyType.Uniqe)
+        /*if (enemyType == EnemyType.Uniqe)
         {
             StartCoroutine(UniqueEnemyMove());
-        }
+        }*/
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -79,42 +73,6 @@ public class DefalutEnemy : Enemy, IAttackable, IDamageable, IDropExpable, IMova
             anim.SetBool("Dead", true);
         }
     }
-
-    public void Attack()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Damaged()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Dead()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void DropExp()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void FlipSprite()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Init(SpawnData data)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Move()
-    {
-        
-    }
-
    
     private IEnumerator UniqueEnemyMove()
     {
@@ -172,15 +130,15 @@ public class DefalutEnemy : Enemy, IAttackable, IDamageable, IDropExpable, IMova
 
         anim.SetTrigger("Hit"); // 맞는 애니메이션 재생                                    
         MasterAudio.PlaySound("Hit"); // 사운드 재생
-
+                                      // 
         // 보스는 넉벡 X
-        if (enemyType != EnemyType.MiniBoss)
-            StartCoroutine(KnockBack(bulletInfo.KnockBackDistance)); // 넉백
+        /*if (enemyType != EnemyType.MiniBoss)
+            StartCoroutine(KnockBack(bulletInfo.KnockBackDistance)); // 넉백*/
 
         // 체력 0 이하 사망
         if (health <= 0)
         {
-            // 미니 보스가 아닐때
+            /*// 미니 보스가 아닐때
             if (enemyType != EnemyType.MiniBoss)
             {
                 GameObject expObj = gm.pool.Get(PoolManager.PoolType.Enemy, 1); // Exp 드랍시키기
@@ -192,7 +150,7 @@ public class DefalutEnemy : Enemy, IAttackable, IDamageable, IDropExpable, IMova
                 GameObject reward = gm.pool.Get(PoolManager.PoolType.Item, 3);
                 reward.transform.position = transform.position;
             }
-
+*/
             isLive = false;
             coll.enabled = false; // 콜라이더 끄기
             rigid.simulated = false;
@@ -207,8 +165,7 @@ public class DefalutEnemy : Enemy, IAttackable, IDamageable, IDropExpable, IMova
     private void Damaged(string text, float damage, Vector2 hitPos, Color color)
     {
         GameObject damageTextobj = gm.pool.Get(PoolManager.PoolType.Enemy, 0);
-        TextMeshPro damageText = damageTextobj.GetComponent<TextMeshPro>();
-
+        TextMeshPro damageText = damageTextobj.GetComponent<TextMeshPro>();                    
         health -= damage; // 체력 감소            
         damageText.color = color;
         damageTextobj.transform.localPosition = hitPos;
@@ -240,5 +197,11 @@ public class DefalutEnemy : Enemy, IAttackable, IDamageable, IDropExpable, IMova
     private void Dead()
     {
         gameObject.SetActive(false);
+    }
+
+
+    public void Attack()
+    {
+        throw new System.NotImplementedException();
     }
 }

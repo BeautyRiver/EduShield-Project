@@ -6,7 +6,7 @@ using System.ComponentModel;
 using TMPro;
 using UnityEngine;
 
-public class GroupEnemy : Enemy, IAttackable, IDamageable, IDropExpable, IMovable, IUnitStatus
+/*public class GroupEnemy : Enemy, IAttackable
 {
     [field: SerializeField] public float Damage { get; set; }
     [field: SerializeField] public float MaxHealth { get; set; }
@@ -30,9 +30,7 @@ public class GroupEnemy : Enemy, IAttackable, IDamageable, IDropExpable, IMovabl
 
     private void OnEnable()
     {
-        target = gm.player.GetComponent<Rigidbody2D>();
-        // √ ±‚»≠
-        sortingGroup.sortingOrder = 1;
+        SetOrderLayer(1);
         IsLive = true;
         coll.enabled = true;
         rigid.simulated = true;
@@ -80,7 +78,7 @@ public class GroupEnemy : Enemy, IAttackable, IDamageable, IDropExpable, IMovabl
         throw new System.NotImplementedException();
     }
 
-    public void Init(SpawnData data)
+    protected override void Init(SpawnData data)
     {
         Id = data.spriteType;
         anim.runtimeAnimatorController = animCon[Id];
@@ -195,8 +193,13 @@ public class GroupEnemy : Enemy, IAttackable, IDamageable, IDropExpable, IMovabl
         rigid.AddForce(dirVec.normalized * knockBackDistance, ForceMode2D.Impulse);
     }
 
-    public void SetOrderLayer()
+    public void SetOrderLayer(int layer)
     {
-        sortingGroup.sortingOrder = 0;
+        sortingGroup.sortingOrder = layer;
     }
-}
+
+    public void Damaged(Collider2D collision, float damage)
+    {
+        throw new System.NotImplementedException();
+    }
+}*/
