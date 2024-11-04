@@ -4,7 +4,7 @@ using UnityEngine;
 using static Cinemachine.DocumentationSortingAttribute;
 
 [CreateAssetMenu(fileName = "Bullet", menuName = "Scriptble Object/BulletData")]
-public class BulletData : ItemData
+public class BulletData : DataGuide
 {  
     [TextArea]
     public string firstDesc;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Gear", menuName = "Scriptble Object/GearData")]
-public class GearData : ItemData
+public class GearData : DataGuide
 {    
     [Header("기어 능력치")]
     [Header("배율방식 / 50 = 50%증가")]

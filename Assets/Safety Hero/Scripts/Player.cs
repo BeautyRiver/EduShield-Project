@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
 
     // 기타 컴포넌트
     private SpriteRenderer spriter;
-    private Rigidbody2D rigid; 
+    public Rigidbody2D rigid { get; private set; } 
     private Animator anim;
     private GameManager gm; // 게임 매니저 참조
     private CapsuleCollider2D col;
@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (gm.isLive)
+        if (gm.isGameActive)
         {
             // 입력 벡터 설정
             inputVec.x = Input.GetAxisRaw("Horizontal");
@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (gm.isLive)
+        if (gm.isGameActive)
         {
             Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
             rigid.MovePosition(rigid.position + nextVec);
@@ -87,7 +87,7 @@ public class Player : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (gm.isLive)
+        if (gm.isGameActive)
         {
             // Animator 세팅
             anim.SetFloat("Speed", inputVec.magnitude);
@@ -103,7 +103,7 @@ public class Player : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
         // 플레이어가 생존중이 아니라면 실행 X
-        if (gm.isLive == false)
+        if (gm.isGameActive == false)
             return;
 
         if (collision.gameObject.CompareTag("Enemy"))
@@ -129,7 +129,7 @@ public class Player : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         // 플레이어가 생존중이 아니라면 실행 X
-        if (gm.isLive == false)
+        if (gm.isGameActive == false)
             return;
 
         if (collision.gameObject.CompareTag("Enemy"))
@@ -153,7 +153,7 @@ public class Player : MonoBehaviour
     {
         typeIdx += 1; // typeindex보다 1 크게 (타입이 -1<기본타입> 부터 시작해서)
         isTransforming = true;
-        gm.GenerateEffect(1, transform, transformingColor[typeIdx]); // 이팩트 생성 시키기
+        gm.GenerateEffect(0, transform, transformingColor[typeIdx]); // 플레이어 이팩트 생성 시키기
         Vector3 originalScale = transform.localScale;
 
         transform.DOScale(originalScale * 1.2f, 0.05f).OnComplete(() =>

@@ -4,31 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class W0_DefaultWeapon : Weapon
-{
-    protected override void Awake()
-    {
-        base.Awake();
-    }
-
-    protected override void Update()
-    {
-        base.Update();
-    }
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-    }
+{    
     protected override void Attack()
     {
         StartCoroutine(M0_Bullet());
     }
-
-    protected override void LevelUpException(int rateIndex)
-    {
-        // Nothing...
-    }
-
-
     protected IEnumerator M0_Bullet()
     {
         // 첫 번째 공격은 플레이어가 바라보는 방향, 두 번째는 반대 방향으로 발사
@@ -38,7 +18,7 @@ public class W0_DefaultWeapon : Weapon
             Vector3 dir = (i % 2 == 0) ? new Vector3(player.lastXInputVec, 0, 0).normalized : new Vector3(-player.lastXInputVec, 0, 0).normalized;
 
             // 새로운 발사체 생성
-            Transform bullet = GameManager.instance.pool.Get(PoolManager.PoolType.Weapon, prefabId).transform;
+            Transform bullet = GameManager.instance.poolManager.Get(PoolObjectType.Bullet0).transform;
             bullet.parent = transform;
 
             // 발사체 위치 설정 (약간의 높이 차이 추가)

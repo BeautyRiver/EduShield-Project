@@ -33,7 +33,7 @@ public abstract class Weapon : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (!gm.isLive)
+        if (!gm.isGameActive)
             return;
 
         UpdateTimer();
@@ -87,6 +87,7 @@ public abstract class Weapon : MonoBehaviour
     {
         // 공통 레벨업 로직
         // 무기 업그레이드
+        IBatchable batchable = this as IBatchable;
         switch (rateIndex)
         {
             case 0: // 데미지 증가
@@ -97,6 +98,7 @@ public abstract class Weapon : MonoBehaviour
 
             case 1: // 카운트 증가
                 count += (int)rate;
+                batchable?.Batch();
                 Debug.Log($"{this.name}: Count {rate}만큼 증가했습니다.");
                 break;
 
@@ -108,15 +110,12 @@ public abstract class Weapon : MonoBehaviour
             case 3: // 크기[범위] 증가
                 data.baseScale += (data.baseScale * rate * 0.01f);                
                 bulletSize = data.baseScale * gm.playerData.atkRangeMult;
-
-
                 attackRange = data.baseRange * gm.playerData.atkRangeMult;
+                batchable?.Batch();
 
                 Debug.Log($"{this.name}: Range {rate}만큼 증가했습니다.");
                 break;
         }
-       
-        LevelUpException(rateIndex);
         level = currentLevel;
     }
 
@@ -152,20 +151,26 @@ public abstract class Weapon : MonoBehaviour
     // 프리펩 아이디 찾기
     protected int SetPrefabID(BulletData data)
     {
-        for (int index = 0; index < GameManager.instance.pool.bulletPrefabs.Length; index++)
+        Pool[] tempPools = GameManager.instance.poolManager.pools;
+        GameObject[] weaponPrefabs = null;
+        foreach (Pool pool in tempPools)
         {
-            if (data.prefab == gm.pool.bulletPrefabs[index])
+            if (pool.poolType == PoolType.Bullet)
+                weaponPrefabs = pool.prefabs;            
+        }
+                
+        for (int index = 0; index < weaponPrefabs.Length; index++)
+        {
+            if (data.prefab == weaponPrefabs[index])
             {
-                prefabId = index;
-                Debug.Log($"PrefabID : [{prefabId}]");
+                prefabId = index;                
                 return index;
-            }            
-        }            
+            }
+        }
         return -1;
     }
 
     /// <summary>
     ///  LevelUp Logic: 레벨업 예외처리
     /// </summary>
-    protected abstract void LevelUpException(int rateIndex);
 }

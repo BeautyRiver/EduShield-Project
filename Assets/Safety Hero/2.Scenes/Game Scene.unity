@@ -41958,10 +41958,7 @@ MonoBehaviour:
   scanRange: 7
   targetLayer:
     serializedVersion: 2
-    m_Bits: 64
-  miniBossEnemyLayer:
-    serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 576
   expLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -51650,7 +51647,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameTime: 0
   maxGameTime: 600
-  isLive: 0
+  isGameActive: 1
   isGameRealEnd: 0
   weaponCount: 0
   gearCount: 0
@@ -51668,12 +51665,12 @@ MonoBehaviour:
   ai: {fileID: 370664442}
   equipment: {fileID: 0}
   typeControll: {fileID: 351259404}
-  pool: {fileID: 1381120192}
+  poolManager: {fileID: 1381120192}
   uiLevelUp: {fileID: 259957426}
   player: {fileID: 905882072}
   result: {fileID: 927738641}
+  <playerData>k__BackingField: {fileID: 0}
   orignalPlayerData: {fileID: 11400000, guid: e46da10fa0948124ab17ebcceb64080c, type: 2}
-  playerData: {fileID: 0}
   enemyCleaner: {fileID: 1689566429}
   aiMsgShowTime:
   - 1
@@ -51723,27 +51720,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca8e95becc0beb148a3a931d3338b471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefabs:
-  - {fileID: 6866283732698310354, guid: 3423fc5066175b94d80fdba216bac3a2, type: 3}
-  - {fileID: 8887909641685150018, guid: a44e82b83c01bc9459417e36e0ff8e08, type: 3}
-  - {fileID: 6100579441663806301, guid: 8bb52263d8d12da45b8cff1fbbe1db0e, type: 3}
-  - {fileID: 8191457858479555690, guid: fb9b18fe80588aa42851c78eab484920, type: 3}
-  - {fileID: 8191457858479555690, guid: 321abbc004976c84d993cf8d03f989a7, type: 3}
-  - {fileID: 8191457858479555690, guid: 054894a582249144fa8669ad0e7893e6, type: 3}
-  enemyPrefabs:
-  - {fileID: 8898011092013875072, guid: 701704af8681d4c4fb1ef2cdd529249a, type: 3}
-  - {fileID: 1855123590967745078, guid: 9b3a2208bd9f2e443942c176635e4c97, type: 3}
-  - {fileID: 6506317341284564746, guid: 1cda2a9794b8f9747871322b3030b36e, type: 3}
-  - {fileID: 6506317341284564746, guid: cb6c709d5f2c1ce4d8b0210cabaabb6b, type: 3}
-  - {fileID: 7011930374294972877, guid: 1aa89a94f2d87204d82c87da3313c69c, type: 3}
-  itemPrefabs:
-  - {fileID: 6653457522029867014, guid: 81e9e0da67c9a614f8efcc65fba6a71e, type: 3}
-  - {fileID: 9094221827545101442, guid: c1901bc84e72dfb4691b5c0e2f94d868, type: 3}
-  - {fileID: 599847903385195777, guid: 4a688779609d690449c5be20ee21e7f9, type: 3}
-  - {fileID: 2628636115404487258, guid: c6fb7b6de5e9a11469f3b207846aed22, type: 3}
-  effectPrefabs:
-  - {fileID: 6872993322809228717, guid: 42456b88dbef5a64d924d0dc1386db96, type: 3}
-  - {fileID: 3011094938955140163, guid: b8715c9706bd9e141972a23e424ed4e4, type: 3}
+  pools:
+  - poolType: 0
+    prefabs:
+    - {fileID: 6866283732698310354, guid: 3423fc5066175b94d80fdba216bac3a2, type: 3}
+    - {fileID: 8887909641685150018, guid: a44e82b83c01bc9459417e36e0ff8e08, type: 3}
+    - {fileID: 6100579441663806301, guid: 8bb52263d8d12da45b8cff1fbbe1db0e, type: 3}
+    - {fileID: 8191457858479555690, guid: fb9b18fe80588aa42851c78eab484920, type: 3}
+    - {fileID: 8191457858479555690, guid: 321abbc004976c84d993cf8d03f989a7, type: 3}
+    - {fileID: 8191457858479555690, guid: 054894a582249144fa8669ad0e7893e6, type: 3}
+  - poolType: 1
+    prefabs:
+    - {fileID: 6506317341284564746, guid: 1cda2a9794b8f9747871322b3030b36e, type: 3}
+    - {fileID: 6506317341284564746, guid: cb6c709d5f2c1ce4d8b0210cabaabb6b, type: 3}
+    - {fileID: 7011930374294972877, guid: 1aa89a94f2d87204d82c87da3313c69c, type: 3}
+  - poolType: 2
+    prefabs:
+    - {fileID: 1855123590967745078, guid: 9b3a2208bd9f2e443942c176635e4c97, type: 3}
+    - {fileID: 6653457522029867014, guid: 81e9e0da67c9a614f8efcc65fba6a71e, type: 3}
+    - {fileID: 2628636115404487258, guid: c6fb7b6de5e9a11469f3b207846aed22, type: 3}
+    - {fileID: 9094221827545101442, guid: c1901bc84e72dfb4691b5c0e2f94d868, type: 3}
+    - {fileID: 599847903385195777, guid: 4a688779609d690449c5be20ee21e7f9, type: 3}
+  - poolType: 3
+    prefabs:
+    - {fileID: 3011094938955140163, guid: b8715c9706bd9e141972a23e424ed4e4, type: 3}
+    - {fileID: 6872993322809228717, guid: 42456b88dbef5a64d924d0dc1386db96, type: 3}
+  - poolType: 4
+    prefabs:
+    - {fileID: 8898011092013875072, guid: 701704af8681d4c4fb1ef2cdd529249a, type: 3}
 --- !u!4 &1381120193
 Transform:
   m_ObjectHideFlags: 0
@@ -60114,7 +60118,7 @@ MonoBehaviour:
     speed: 2.5
     damage: 55
     exp: 0
-  boxSpawnTime: 23
+  boxSpawnTime: {x: 20, y: 30}
 --- !u!1 &1800423200
 GameObject:
   m_ObjectHideFlags: 0
@@ -87396,6 +87400,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2057685684}
   m_CullTransparentMesh: 1
+--- !u!1 &2063408835
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2063408836}
+  m_Layer: 0
+  m_Name: SpawnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2063408836
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063408835}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2064115268
 GameObject:
   m_ObjectHideFlags: 0
@@ -212195,6 +212230,7 @@ SceneRoots:
   - {fileID: 1358241787}
   - {fileID: 1381120193}
   - {fileID: 1997503530}
+  - {fileID: 2063408836}
   - {fileID: 762004760}
   - {fileID: 290236892}
   - {fileID: 3313542816876685246}

@@ -7,13 +7,13 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using Unity.VisualScripting;
 
-public abstract class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour, IDamageable
 {
     public enum EnemyType
     {
         Default,
         Uniqe,
-        MiniBoss
+        MiniBoss,
     }
     [Header("# 공통 속성")]   
     public EnemyType enemyType;
@@ -27,10 +27,9 @@ public abstract class Enemy : MonoBehaviour
     protected Vector2 nextVec;
 
     [Header("# 참조")]
-    [SerializeField] protected TypeControlManager typeControlManager;
     [SerializeField] protected RuntimeAnimatorController[] animCon;    
 
-    protected Rigidbody2D target;
+    protected Rigidbody2D targetRb;
     protected Collider2D coll;
     protected Rigidbody2D rigid;
     protected SpriteRenderer spriter;
@@ -41,23 +40,144 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void Awake()
     {
         // 초기 할당        
-        coll = GetComponent<Collider2D>();
+        gm = GameManager.instance;        
         rigid = GetComponent<Rigidbody2D>();
+        coll = GetComponent<Collider2D>();
         spriter = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         sortingGroup = GetComponent<SortingGroup>();
-
-        target = gm.player.GetComponent<Rigidbody2D>();
-        gm = GameManager.instance;
     }
-    public void Init(SpawnData data)
+    
+    protected virtual void FixedUpdate()
+    {        
+        if (!gm.isGameActive || !isLive)
+            return;                
+
+        rigid.velocity = Vector2.zero;
+        Move();
+        FlipX();
+    }
+
+    protected abstract void Move();    
+    protected abstract void FlipX();    
+
+    protected virtual void OnEnable()
     {
-
+        // 초기화
+        targetRb = gm.player.GetComponent<Rigidbody2D>();
+        sortingGroup.sortingOrder = 1;
+        isLive = true;
+        coll.enabled = true;
+        rigid.simulated = true;
+        anim.SetBool("Dead", false);
+        health = maxHealth;
     }
-
-    public void DamagedLogic(Collider2D a, float b)
+    public virtual void Init(SpawnData data)
     {
-
+        id = data.spriteType;
+        anim.runtimeAnimatorController = animCon[id];
+        speed = data.speed;
+        maxHealth = data.health;
+        health = maxHealth;
+        exp = data.exp;
+        damage = data.damage;
     }
 
+
+    public void DamagedLogic(Collider2D collision, float damage)
+    {
+        Bullet bulletInfo = collision.GetComponent<Bullet>();
+        Vector2 hitPos;
+            
+        // 충돌한 지점의 정확한 위치를 구하기
+        hitPos = collision.ClosestPoint(transform.position);         
+        GameObject effect = gm.poolManager.Get(PoolObjectType.EffectEnemy); // Enemy 이팩트 생성
+        effect.transform.position = hitPos;
+
+        // 기본 타입일 때
+        if (gm.typeControll.TypeIndex == -1)
+        {
+            // 기본 데미지 표시 
+            Damaged(damage.ToString("F1"), damage, hitPos, Color.white); 
+        }
+        // 기본 타입이 아닐 때
+        else
+        {
+            if (gm.typeControll.TypeIndex == id)
+            {
+                // 기본 데미지 표시 
+                Damaged(damage.ToString("F1"), damage, hitPos, Color.white); 
+
+                // 추가 데미지
+                float plusDamage = damage;
+                Damaged($"+{(plusDamage).ToString("F1")}", plusDamage, new Vector2(hitPos.x, hitPos.y + 0.5f), Color.red);
+            }
+            else
+            {
+                // 데미지 반감
+                damage = damage * 0.5f;
+                // 기본 데미지 표시 
+                Damaged(damage.ToString("F1"), damage, hitPos, Color.gray); 
+            }
+        }
+
+        MasterAudio.PlaySound("Hit"); // 사운드 재생
+        anim.SetTrigger("Hit"); // 맞는 애니메이션 재생
+
+        // 보스는 넉백 X
+        if (this is IKnockBackable)
+            StartCoroutine(KnockBack(bulletInfo.KnockBackDistance)); // 넉백
+
+        // 체력 0 이하 사망
+        if (health <= 0)
+        {
+            DropReward(); // 보상
+            isLive = false;
+            coll.enabled = false;
+            rigid.simulated = false;
+            anim.SetBool("Dead", true);
+            gm.kill++;            
+            MasterAudio.PlaySound("Dead");
+        }
+    }
+
+    protected abstract void DropReward();
+
+    private void Damaged(string text, float damage, Vector2 hitPos, Color color)
+    {        
+        GameObject damageTextobj = gm.poolManager.Get(PoolObjectType.TextEnemyDamaged); // 데미지 텍스트 생성
+        TextMeshPro damageText = damageTextobj.GetComponent<TextMeshPro>();
+
+        health -= damage; // 체력 감소            
+        damageText.color = color;
+        damageTextobj.transform.localPosition = hitPos;
+        damageText.text = text;
+        Vector2 dir = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+        damageText.transform.DOMove(dir, 0.35f).SetEase(Ease.OutQuad);
+        damageText.DOScale(1f, 0.1f);
+        StartCoroutine(OffDamageText(damageText));
+    }
+
+    private IEnumerator OffDamageText(TextMeshPro damageText)
+    {
+        yield return new WaitForSeconds(0.35f);
+        damageText.DOScale(0, 0.35f).OnComplete(() => damageText.gameObject.SetActive(false));
+    }
+
+    private IEnumerator KnockBack(float knockBackDistance)
+    {
+        yield return null; // 다음 하나의 물리 프레임 딜레이
+        Vector3 playerPos = targetRb.transform.position;
+        Vector3 dirVec = transform.position - playerPos;
+        rigid.AddForce(dirVec.normalized * knockBackDistance, ForceMode2D.Impulse);
+    }
+
+    private void SetOrderLayerDownAtDead()
+    {
+        sortingGroup.sortingOrder = 0;
+    }
+    private void SetActiveFalse()
+    {
+        gameObject.SetActive(false);
+    }
 }

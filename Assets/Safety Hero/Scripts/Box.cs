@@ -32,15 +32,14 @@ public class Box : MonoBehaviour
 
             if (health <= 0) // 체력 0 이하 사망
             {
-                int select = (Random.Range(0, 10) >= 8) ? 2 : 1;
-
-                GameObject itemObj = GameManager.instance.pool.Get(PoolManager.PoolType.Item, select); // 아이템 드랍시키기
+                PoolObjectType ptype = (Random.Range(0, 10) >= 9) ? PoolObjectType.Magnet : PoolObjectType.Heal;                
+                GameObject itemObj = GameManager.instance.poolManager.Get(ptype); // 아이템 드랍시키기
                 itemObj.transform.position = transform.position;
                 coll.enabled = false; // 콜라이더 끄기
 
                 anim.SetBool("Dead", true);
 
-                if (GameManager.instance.isLive)
+                if (GameManager.instance.isGameActive)
                     MasterAudio.PlaySound("Dead");
             }
         }

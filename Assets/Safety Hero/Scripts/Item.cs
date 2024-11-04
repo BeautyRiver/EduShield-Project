@@ -30,7 +30,7 @@ public class Item : MonoBehaviour
                     StartCoroutine(GetMagnet());
                     break;
             }
-            gm.GenerateEffect(1, gm.player.transform);
+            gm.GenerateEffect(0, gm.player.transform);
         }
     }
 

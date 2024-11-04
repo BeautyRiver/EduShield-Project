@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-// ItemData.cs
-public abstract class ItemData : ScriptableObject
+// DataGuide.cs
+public abstract class DataGuide : ScriptableObject
 {
     [Header("# 근접: 0 ~ 49 / 원거리: 50 ~ 99\n" +
         "# 기어: 100 ~ 199 / 기타: 200 ~ 299")]

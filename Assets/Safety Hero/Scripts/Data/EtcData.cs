@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "Etc", menuName = "Scriptble Object/EtcData")]
 // EtcData.cs
-public class EtcData : ItemData
+public class EtcData : DataGuide
 {
     public enum EtcType
     {

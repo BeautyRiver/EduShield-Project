@@ -40,8 +40,8 @@ public class BoxReward : MonoBehaviour
     {
         int count = Random.Range(20, 60);
         for (int i = 0; i < count; i++)
-        {
-            GameObject exp = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 1);
+        {            
+            GameObject exp = GameManager.instance.poolManager.Get(PoolObjectType.Exp); // exp ¼ÒÈ¯
             CircleCollider2D coll = exp.GetComponent<CircleCollider2D>();
             coll.enabled = false;
             exp.GetComponent<Exp>().exp = Random.Range(1, GameManager.instance.player.spawner.level+1);

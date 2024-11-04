@@ -12,7 +12,7 @@ public class ForDebug : MonoBehaviour
     public GameObject sampleItem;
     public Sprite[] uiImages;
     public ItemSetting[] items;
-    public ItemData[] itemData;
+    public DataGuide[] itemData;
 
     public TextMeshProUGUI debugText;
     private bool isInvinsible;
@@ -21,7 +21,7 @@ public class ForDebug : MonoBehaviour
     private void Update()
     {
 #if UNITY_EDITOR
-        if (!GameManager.instance.isLive)
+        if (!GameManager.instance.isGameActive)
             return;
 
         if (Input.GetKeyDown(KeyCode.F1))

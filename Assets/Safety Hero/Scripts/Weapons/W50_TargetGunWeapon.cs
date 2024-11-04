@@ -4,30 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class W50_TargetGunWeapon : Weapon
-{
-    protected override void Awake()
-    {
-        base.Awake();
-    }
-
-    protected override void Update()
-    {
-        base.Update();
-    }
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-    }
- 
+{    
     protected override void Attack()
     {
         StartCoroutine(R50_Bullet());
-
-    }
-
-    protected override void LevelUpException(int rateIndex)
-    {
-        
     }
 
     // ÃÑ
@@ -45,7 +25,7 @@ public class W50_TargetGunWeapon : Weapon
             Vector3 dir = (targetPos - transform.position).normalized;
 
             // ÃÑ¾Ë ¹ß»ç
-            Transform bullet = GameManager.instance.pool.Get(PoolManager.PoolType.Weapon, prefabId).transform;
+            Transform bullet = GameManager.instance.poolManager.Get(PoolObjectType.Bullet50).transform;
             bullet.parent = transform;
 
             bullet.localScale = bulletSize;

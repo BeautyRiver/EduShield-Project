@@ -25,7 +25,7 @@ public class Exp : MonoBehaviour
         else if (exp >= 1)
             SpriteRenderer.sprite = expImages[0];
 
-        if (!GameManager.instance.isLive)
+        if (!GameManager.instance.isGameActive)
             return;
 
         if (collision.CompareTag("Player"))

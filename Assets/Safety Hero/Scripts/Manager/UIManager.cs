@@ -28,7 +28,7 @@ public class UIManager : MonoBehaviour
     }
     private void Update()
     {
-        if (!gm.isLive)
+        if (!gm.isGameActive)
             return;
 
         if (Input.GetKeyDown(KeyCode.Escape))

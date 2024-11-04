@@ -5,40 +5,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class W1_RotateWeapon : Weapon, IBatchable, IRotatingable
-{
-    protected override void Awake()
-    {
-        base.Awake();
-    }
-
-    protected override void Update()
-    {
-        base.Update();
-        Rotate();
-    }
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-    }
+{  
     protected override void Attack()
     {
         StartCoroutine(M1_Bullet());
     }
-
-    protected override void LevelUpException(int rateIndex)
-    {
-        switch (rateIndex)
-        {
-            case 1: // 카운트 증가                
-                Batch();
-                break;
-
-            case 3: // 크기[범위] 증가                
-                Batch();
-                break;
-        }
-    }
-
 
     protected IEnumerator M1_Bullet()
     {
@@ -65,7 +36,7 @@ public class W1_RotateWeapon : Weapon, IBatchable, IRotatingable
             }
             else
             {
-                bullet = gm.pool.Get(PoolManager.PoolType.Weapon, prefabId).transform;
+                bullet = gm.poolManager.Get(PoolObjectType.Bullet1).transform;
                 bullet.parent = transform; // 부모 설정
             }
 

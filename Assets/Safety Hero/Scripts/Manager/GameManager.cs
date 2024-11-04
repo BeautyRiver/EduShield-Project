@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     [Header("# 게임 컨트롤")]
     public float gameTime; // 현재 게임 시간
     public float maxGameTime = 2 * 10f; // 최대 게임 시간
-    public bool isLive; // 게임 진행 여부
+    public bool isGameActive; // 게임 진행 여부
     public bool isGameRealEnd; // 게임 진짜 끝났는지 여부
     public int weaponCount = 0;  // 획득한 무기 개수
     public int gearCount = 0;    // 획득한 기어 개수
@@ -35,21 +35,20 @@ public class GameManager : MonoBehaviour
     public AiManager ai;
     public EquipmentManager equipment;
     public TypeControlManager typeControll;
-    public PoolManager pool;
+    public PoolManager poolManager;
 
     public LevelUp uiLevelUp;
     public Player player;
     public Result result;
     
+    [field: SerializeField] public PlayerData playerData { get; private set; } // 복사본
     [SerializeField] private PlayerData orignalPlayerData; // 원본
-    public PlayerData playerData; // 복사본
-    public GameObject enemyCleaner;
+    [SerializeField] private GameObject enemyCleaner;
 
     [SerializeField] private float[] aiMsgShowTime = { 1.5f, 3f, 4f };
     private void Awake()
     {
         instance = this;
-
         selectStageIdx = -1;
         StartCoroutine(RandomStageIndex());
     }
@@ -67,7 +66,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (!isLive || !isGamestart)
+        if (!isGameActive || !isGamestart)
             return;        
 
         // 게임 시간 계산
@@ -82,7 +81,7 @@ public class GameManager : MonoBehaviour
     // 이펙트 생성시키기
     public void GenerateEffect(int index, Transform parentTransform, Color? setColor = null)
     {            
-        GameObject effect = pool.Get(PoolManager.PoolType.Effect, index); // 힐 이펙트
+        GameObject effect = poolManager.Get(PoolObjectType.EffectPlayer); // 플레이어 힐 이펙트
         effect.transform.parent = parentTransform;
         effect.transform.localPosition = Vector3.zero;
         if (setColor != null)
@@ -154,7 +153,7 @@ public class GameManager : MonoBehaviour
     // 게임 오버 (코루틴)
     private IEnumerator GameOverRoutine()
     {
-        isLive = false;
+        isGameActive = false;
         yield return new WaitForSeconds(dieMsgDelay);
 
         result.gameObject.SetActive(true);
@@ -175,12 +174,12 @@ public class GameManager : MonoBehaviour
     private IEnumerator GameVictoryRoutine()
     {
         player.GetComponent<Animator>().SetFloat("Speed", 0f);
-        isLive = false;
+        isGameActive = false;
         enemyCleaner.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         result.gameObject.SetActive(true);
         result.Win();
-        isLive = false;
+        isGameActive = false;
 
         MasterAudio.PlaylistsMuted = true; // 배경음악 종료        
         MasterAudio.PlaySound("Win");
@@ -190,7 +189,7 @@ public class GameManager : MonoBehaviour
     // 경험치 획득 및 레벨업 처리
     public void GetExp(int getExp)
     {
-        if (isLive)
+        if (isGameActive)
         {
             exp += getExp;
 
@@ -207,14 +206,14 @@ public class GameManager : MonoBehaviour
     // 게임 정지
     public void Stop()
     {
-        isLive = false;
+        isGameActive = false;
         Time.timeScale = 0;
     }
 
     // 게임 재개
     public void Resume()
     {
-        isLive = true;
+        isGameActive = true;
         Time.timeScale = nowTimeScale;
     }
 }

@@ -11,6 +11,22 @@ public interface IAttackable
 {
     void Attack();
 }
+
+public interface IDamageable 
+{
+    void DamagedLogic(Collider2D collision, float damage);
+}
+
+public interface IRepositionable { }
+public interface IKnockBackable { }
+
+
+//-------------------------------------------
+
+// 备盒 包访
+public interface IMiniBoss : IRepositionable, IKnockBackable { }
+public interface IBoss : IRepositionable, IKnockBackable { }
+
 //-------------------------------------------
 
 // 公扁 包访

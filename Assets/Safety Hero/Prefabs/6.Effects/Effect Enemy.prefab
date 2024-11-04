@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1485514760607128934}
   - component: {fileID: 1923295398058085393}
   m_Layer: 0
-  m_Name: Effect Yellow
+  m_Name: Effect Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

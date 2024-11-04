@@ -4,31 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class W52_ThrowWeapon : Weapon
-{
-    protected override void Awake()
-    {
-        base.Awake();
-    }
-
-    protected override void Update()
-    {
-        base.Update();
-    }
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-    }
-
+{   
     protected override void Attack()
     {
         StartCoroutine(R52_Bullet());
-
-    }
-
-
-    protected override void LevelUpException(int rateIndex)
-    {
-
     }
 
     // â
@@ -37,7 +16,7 @@ public class W52_ThrowWeapon : Weapon
         for (int i = 0; i < count; i++)
         {
             Vector3 dir = new Vector3(player.lastInputVec.x, player.lastInputVec.y, 0).normalized;
-            Transform bullet = GameManager.instance.pool.Get(PoolManager.PoolType.Weapon, prefabId).transform;
+            Transform bullet = GameManager.instance.poolManager.Get(PoolObjectType.Bullet52).transform;
             bullet.parent = transform;
             Vector3 spreadOffset = Vector3.zero;
 

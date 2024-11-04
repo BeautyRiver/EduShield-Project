@@ -24,21 +24,18 @@ public class Reposition : MonoBehaviour
 
         dirX = Mathf.Sign(dirX);
         dirY = Mathf.Sign(dirY);
-        switch (transform.tag)
-        {
-            // Enemy
-            case "Enemy":
-                if (coll.enabled == true)
-                {
-                    if (coll.gameObject.GetComponent<Enemy>().enemyType == Enemy.EnemyType.Uniqe)
-                        coll.gameObject.SetActive(false);
 
-                    Vector3 dist = playerPos - myPos;
-                    Vector3 ran = new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0);
-                    transform.Translate(ran + dist * 2);
-                }
-                break;
-        }
+        if (coll.enabled == true)
+        {
+            if (collision is IRepositionable repositionable)
+            {
+                Vector3 dist = playerPos - myPos;
+                Vector3 ran = new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0);
+                transform.Translate(ran + dist * 2);
+            }
+            else
+                collision.gameObject.SetActive(false);
+        }   
 
     }
 }

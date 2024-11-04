@@ -4,7 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static ItemData;
+using static DataGuide;
 
 [System.Serializable]
 public class S_int
@@ -15,7 +15,7 @@ public class S_int
 public class ItemSetting : MonoBehaviour
 {
     [Header("# 아이템 데이터")]
-    public ItemData itemData;
+    public DataGuide itemData;
     public Weapon weapon;
     public Gear gear;
     public int level;

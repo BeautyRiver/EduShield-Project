@@ -39,7 +39,7 @@ public class SelectorController : MonoBehaviour
 
     private void Update()
     {
-        if (!GameManager.instance.isLive)
+        if (!GameManager.instance.isGameActive)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {

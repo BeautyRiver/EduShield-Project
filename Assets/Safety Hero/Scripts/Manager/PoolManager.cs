@@ -4,85 +4,97 @@ using UnityEngine;
 
 public class PoolManager : MonoBehaviour
 {
-    public enum PoolType { Weapon, Enemy, Item, Effect }  // 풀 타입을 구분하는 enum    
-    public GameObject[] bulletPrefabs;
-    public GameObject[] enemyPrefabs;
-    public GameObject[] itemPrefabs;
-    public GameObject[] effectPrefabs;
+    public Pool[] pools;
 
-    private List<GameObject>[] bulletPools;
-    private List<GameObject>[] enemyPools;
-    private List<GameObject>[] itemPools;
-    private List<GameObject>[] effectPools;
+    private Dictionary<(PoolType, int), List<GameObject>> poolDictionary;
+    private Dictionary<PoolObjectType, (PoolType, int)> poolMappings;
 
     private void Awake()
     {
-        // WeaponPool 초기화
-        bulletPools = new List<GameObject>[bulletPrefabs.Length];
-        for (int index = 0; index < bulletPools.Length; index++)
+        poolDictionary = new Dictionary<(PoolType, int), List<GameObject>>();
+        poolMappings = new Dictionary<PoolObjectType, (PoolType, int)>();
+        InitializePoolMappings();
+
+        // 각 풀 초기화
+        foreach (Pool pool in pools)
         {
-            bulletPools[index] = new List<GameObject>();
+            for (int i = 0; i < pool.prefabs.Length; i++)
+            {
+                var poolKey = (pool.poolType, i);
+
+                if (!poolDictionary.ContainsKey(poolKey))
+                {
+                    poolDictionary[poolKey] = new List<GameObject>();
+                }
+            }
+        }
+        // 초기화 후 Debug.Log로 확인
+        Debug.Log("Pool Dictionary initialized successfully.");
+        if (poolDictionary.Count == 0)
+        {
+            Debug.LogWarning("Pool Dictionary is empty. Initialization might have failed.");
         }
 
-        // EnemyPool 초기화
-        enemyPools = new List<GameObject>[enemyPrefabs.Length];
-        for (int index = 0; index < enemyPools.Length; index++)
+        Debug.Log("Pool Mappings initialized successfully.");
+        if (poolMappings.Count == 0)
         {
-            enemyPools[index] = new List<GameObject>();
+            Debug.LogWarning("Pool Mappings is empty. Initialization might have failed.");
         }
-
-        // ItemPool 초기화
-        itemPools = new List<GameObject>[itemPrefabs.Length];
-        for (int index = 0;index < itemPools.Length; index++)
+        else
         {
-            itemPools[index] = new List<GameObject>();
-        }
-
-        // EfectPool 초기화
-        effectPools = new List<GameObject>[effectPrefabs.Length];
-        for (int index = 0; index < effectPools.Length; index++)
-        {
-            effectPools[index] = new List<GameObject>();
+            foreach (var mapping in poolMappings)
+            {
+                Debug.Log($"PoolObjectType: {mapping.Key}, PoolType: {mapping.Value.Item1}, Index: {mapping.Value.Item2}");
+            }
         }
     }
 
-    public GameObject Get(PoolType poolType, int index)
+    private void InitializePoolMappings()
     {
-        List<GameObject>[] selectedPool = null;
-        GameObject[] selectedPrefabs = null;
-
-        // 풀 타입에 따라 풀과 프리팹 배열 선택
-
-        switch (poolType)
+        foreach (var pool in pools)
         {
-            case PoolType.Weapon:
-                selectedPool = bulletPools;
-                selectedPrefabs = bulletPrefabs;
-                break;
+            for (int i = 0; i < pool.prefabs.Length; i++)
+            {
+                GameObject prefab = pool.prefabs[i];
+                string formattedName = prefab.name.Replace(" ", ""); // 공백 제거
+                if (Enum.TryParse(formattedName, out PoolObjectType poolObjectType))
+                {
+                    poolMappings[poolObjectType] = (pool.poolType, i);
+                }
+                else
+                {
+                    Debug.LogWarning($"Prefab name '{prefab.name}' does not match any PoolObjectType enum.");
+                }                
+            }
+        }
+    }
 
-            case PoolType.Enemy:
-                selectedPool = enemyPools;
-                selectedPrefabs = enemyPrefabs;
-                break;
-
-            case PoolType.Item:
-                selectedPool = itemPools;
-                selectedPrefabs = itemPrefabs;
-                break;
-
-            case PoolType.Effect:
-                selectedPool = effectPools;
-                selectedPrefabs = effectPrefabs;
-                break;
+    public GameObject Get(PoolObjectType poolObjectType)
+    {
+        if (!poolMappings.ContainsKey(poolObjectType))
+        {
+            Debug.LogWarning($"PoolObjectType {poolObjectType} not found!");
+            return null;
         }
 
+        var (poolType, index) = poolMappings[poolObjectType];
+        var poolKey = (poolType, index);
 
-        if (selectedPool == null || selectedPrefabs == null) return null;
+        if (!poolDictionary.ContainsKey(poolKey))
+        {
+            Debug.LogWarning($"Pool {poolType} with index {index} not found!");
+            return null;
+        }
+
+        List<GameObject> selectedPool = poolDictionary[poolKey];
+        GameObject[] selectedPrefabs = Array.Find(pools, p => p.poolType == poolType)?.prefabs;
+
+        if (selectedPrefabs == null || index >= selectedPrefabs.Length) return null;
 
         GameObject select = null;
 
-        // 선택한 풀의 비활성화 된 게임 오브젝트 접근
-        foreach (GameObject item in selectedPool[index])
+        // 비활성화된 게임 오브젝트 탐색
+        foreach (GameObject item in selectedPool)
         {
             if (!item.activeSelf)
             {
@@ -92,13 +104,38 @@ public class PoolManager : MonoBehaviour
             }
         }
 
-        // 풀에서 비활성화된 오브젝트를 찾지 못한 경우, 새로 생성
+        // 새로 생성하여 풀에 추가
         if (select == null)
         {
+            Debug.Log(selectedPrefabs[index].name);
             select = Instantiate(selectedPrefabs[index], transform);
-            selectedPool[index].Add(select);
+            selectedPool.Add(select);
+            select.SetActive(false);
         }
 
         return select;
     }
+}
+
+public enum PoolType { Bullet, Enemy, Item, Effect, Text }  // 풀 타입 enum
+
+public enum PoolObjectType
+{
+    // Bullet
+    Bullet0, Bullet1, Bullet2, Bullet50, Bullet51, Bullet52,
+    // Item
+    BoxField, BoxReward, Exp, Heal, Magnet,
+    // Enemy
+    Enemy0, EnemyU0, EnemyMiniBoss,
+    // Effect
+    EffectPlayer, EffectEnemy,
+    // Text
+    TextEnemyDamaged,
+}
+
+[System.Serializable]
+public class Pool
+{
+    public PoolType poolType;
+    public GameObject[] prefabs;
 }

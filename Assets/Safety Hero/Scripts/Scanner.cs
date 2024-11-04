@@ -10,7 +10,6 @@ public class Scanner : MonoBehaviour
     [Header("# 스캔 (범위 : 사거리)")]
     public float scanRange; 
     public LayerMask targetLayer;
-    public LayerMask miniBossEnemyLayer;
     public LayerMask expLayer;
     public RaycastHit2D[] targets;
     public Transform nearestTarget;
@@ -24,7 +23,7 @@ public class Scanner : MonoBehaviour
 
     private void Awake()
     {
-        combinedLayerMask = targetLayer | miniBossEnemyLayer; // 두 레이어를 함께 검사
+        combinedLayerMask = targetLayer; // 두 레이어를 함께 검사
 
     }
     private void FixedUpdate()

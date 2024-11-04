@@ -25,11 +25,6 @@ public class W51_CannonWeapon : Weapon
 
     }
 
-    protected override void LevelUpException(int rateIndex)
-    {
-
-    }
-
     // รั
     private IEnumerator R51_Bullet()
     {
@@ -40,7 +35,7 @@ public class W51_CannonWeapon : Weapon
             Vector3 dir = isReverse ? new Vector3(player.lastInputVec.x, player.lastInputVec.y, 0).normalized : new Vector3(-player.lastInputVec.x, -player.lastInputVec.y, 0).normalized;
 
 
-            Transform bullet = GameManager.instance.pool.Get(PoolManager.PoolType.Weapon, prefabId).transform;
+            Transform bullet = GameManager.instance.poolManager.Get(PoolObjectType.Bullet51).transform;
             bullet.parent = transform;
             Vector3 spreadOffset = Vector3.zero;
 

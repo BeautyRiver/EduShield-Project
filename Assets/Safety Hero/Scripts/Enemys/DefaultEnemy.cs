@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MiniBossEnemy : Enemy
+public class DefaultEnemy : Enemy, IRepositionable
 {
     protected override void DropReward()
-    {        
-        GameObject reward = gm.poolManager.Get(PoolObjectType.BoxReward); // 보상 상자 생성
-        reward.transform.position = transform.position;
+    {
+        GameObject exp = GameManager.instance.poolManager.Get(PoolObjectType.Exp); // exp 소환
+        exp.transform.position = transform.position;
+        exp.GetComponent<Exp>().exp = this.exp;
     }
 
     protected override void FlipX()

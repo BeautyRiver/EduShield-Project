@@ -27,7 +27,7 @@ public class Spawner : MonoBehaviour
     public SpawnData[] miniBossSpawnData; // 레벨별 소환 데이터 배열
 
     [Header("# 박스 소환 시간")]
-    public float boxSpawnTime; // 레벨별 소환 데이터 배열
+    public Vector2 boxSpawnTime; // 레벨별 소환 데이터 배열
 
     private void Awake()
     {
@@ -45,7 +45,7 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.instance.isLive)
+        if (GameManager.instance.isGameActive)
         {
             // 소환 로직
             timer[0] += Time.deltaTime; // Normal timer
@@ -78,7 +78,7 @@ public class Spawner : MonoBehaviour
 
 
             // 박스 소환
-            if (timer[3] > boxSpawnTime)
+            if (timer[3] > Random.Range(boxSpawnTime.x, boxSpawnTime.y))
             {
                 timer[3] = 0f;
                 SpawnBox();
@@ -93,6 +93,8 @@ public class Spawner : MonoBehaviour
 
         StartCoroutine(GameManager.instance.AIMsgShowAndHide());
 
+        StartCoroutine(SpawnMiniBoss());
+
         // uniqe몬스터 스폰률 증가
         foreach (var uniqeData in uniqeSpawnData)
         {
@@ -100,7 +102,6 @@ public class Spawner : MonoBehaviour
             uniqeData.maxTime -= 5f;
         }
 
-        StartCoroutine(SpawnMiniBoss());
     }
 
     private IEnumerator SpawnMiniBoss()
@@ -112,7 +113,7 @@ public class Spawner : MonoBehaviour
         // 적 소환
         for (int i = 0; i < miniBossSpawnData[level - 1].spawnCount; i++)
         {
-            GameObject enemy = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 4);
+            GameObject enemy = GameManager.instance.poolManager.Get(PoolObjectType.EnemyMiniBoss); // 미니 보스 소환
             enemy.transform.position = spawnPoint[Random.Range(0, spawnPoint.Length)].position;
             enemy.GetComponent<Enemy>().Init(miniBossSpawnData[level - 1]);
         }
@@ -126,7 +127,7 @@ public class Spawner : MonoBehaviour
         int ran = Random.Range(0, uniqeSpawnPoint.Length);
         for (int i = 0; i < uniqeSpawnData[0].spawnCount; i++)
         {
-            GameObject enemy = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 3);
+            GameObject enemy = GameManager.instance.poolManager.Get(PoolObjectType.EnemyU0); // 유니크 몬스터 소환
             Vector3 ranPos = new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), 0);
             enemy.transform.position = uniqeSpawnPoint[ran].position + ranPos;
             enemy.GetComponent<Enemy>().Init(uniqeSpawnData[0]);
@@ -143,8 +144,8 @@ public class Spawner : MonoBehaviour
         // 적 소환
         for (int i = 0; i < normalSpawnData[level].spawnCount; i++)
         {
-            GameObject enemy = GameManager.instance.pool.Get(PoolManager.PoolType.Enemy, 2);
-            enemy.transform.position = spawnPoint[Random.Range(0, spawnPoint.Length)].position;
+            GameObject enemy = GameManager.instance.poolManager.Get(PoolObjectType.Enemy0); // 기본 Enemy 소환
+            enemy.transform.position = spawnPoint[Random.Range(0, spawnPoint.Length)].position;            
             enemy.GetComponent<Enemy>().Init(normalSpawnData[level]);
         }
     }
@@ -163,7 +164,7 @@ public class Spawner : MonoBehaviour
         {
             if (loopNo >= 1000)
             {
-                Debug.LogError("무한루프");
+                Debug.LogError("무한루프 방지 탈출");
                 return;
             }
             spawnPosition = spawnPoint[Random.Range(0, spawnPoint.Length)].position;
@@ -184,7 +185,7 @@ public class Spawner : MonoBehaviour
 
         // 안전한 위치가 확인되면 박스 생성
         //Debug.Log("생성 완료");
-        GameObject box = GameManager.instance.pool.Get(PoolManager.PoolType.Item, 0);
+        GameObject box = GameManager.instance.poolManager.Get(PoolObjectType.BoxField); // Box 생성
         box.transform.parent = parentTransform;
         box.transform.position = spawnPosition;
     }   

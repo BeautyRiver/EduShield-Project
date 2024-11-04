@@ -32,7 +32,7 @@ public class TypeControlManager : MonoBehaviour
     }
     private void Update()
     {
-        if (!GameManager.instance.isLive)
+        if (!GameManager.instance.isGameActive)
             return;
 
         swapTimer = Mathf.Max(swapTimer - Time.deltaTime, 0f);
