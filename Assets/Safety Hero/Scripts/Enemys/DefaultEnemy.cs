@@ -6,7 +6,7 @@ public class DefaultEnemy : Enemy, IRepositionable
 {
     protected override void DropReward()
     {
-        GameObject exp = GameManager.instance.poolManager.Get(PoolObjectType.Exp); // exp º“»Ø
+        GameObject exp = GameManager.instance.poolManager.Get(PoolObjectType.Exp); // exp ÏÉùÏÑ±
         exp.transform.position = transform.position;
         exp.GetComponent<Exp>().exp = this.exp;
     }
@@ -18,7 +18,7 @@ public class DefaultEnemy : Enemy, IRepositionable
 
     protected override void Move()
     {
-        Vector2 dirVec = targetRb.position - rigid.position; // ≈∏∞Ÿ πÊ«‚
+        Vector2 dirVec = targetRb.position - rigid.position; 
         nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position + nextVec);
     }

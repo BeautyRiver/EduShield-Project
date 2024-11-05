@@ -24,7 +24,7 @@ public class AiManager : MonoBehaviour
 
         scriptText = GetComponentInChildren<TextMeshProUGUI>();
 
-        // ¿ø·¡ À§Ä¡ ÀúÀå
+        // ì›ë˜ ìœ„ì¹˜ ì €ì¥
         originalAiImagePos = aiImageRect.anchoredPosition;
         originalAiTextAreaPos = aiTextAreaRect.anchoredPosition;
     }
@@ -35,7 +35,7 @@ public class AiManager : MonoBehaviour
         MoveRectToPosition(aiTextAreaRect, originalAiTextAreaPos, Ease.InExpo);
     }
 
-    // Ai ÀÌ¹ÌÁö µîÀå
+    // Ai ì´ë¯¸ì§€ ë“±ì¥
     public void AppearAiImage(int selectStage)
     {
         scriptText.text = string.Empty;
@@ -43,13 +43,13 @@ public class AiManager : MonoBehaviour
         MoveRectToPosition(aiImageRect, new Vector3(-3.25f, 225, 0), Ease.OutBack, () => AppearAiMessage());
     }
 
-    // ¸Ş½ÃÁöÃ¢ µîÀå
+    // ë©”ì‹œì§€ì°½ ë“±ì¥
     private void AppearAiMessage()
     {        
         MoveRectToPosition(aiTextAreaRect, new Vector3(420f, 40f, 0), Ease.OutExpo, () => ShowAlertMessage());
     }
 
-    // ¸Ş½ÃÁöÃ¢ ¼Ó ¸Ş½ÃÁö µîÀå
+    // ë©”ì‹œì§€ì°½ ì† ë©”ì‹œì§€ ë“±ì¥
     private void ShowAlertMessage()
     {
         scriptText.DOText(alertMessages[selectStageIdx], textDuration, true).SetEase(Ease.Linear);
@@ -57,7 +57,7 @@ public class AiManager : MonoBehaviour
         //aiTextAreaRect.transform.DOShakePosition(textDuration,2f,fadeOut:false).SetEase(Ease.Linear);
     }
 
-    // °øÅëµÈ ¾Ö´Ï¸ŞÀÌ¼Ç µ¿ÀÛ
+    // ê³µí†µëœ ì• ë‹ˆë©”ì´ì…˜ ë™ì‘
     private void MoveRectToPosition(RectTransform rect, Vector3 targetPos, Ease easeType, TweenCallback onComplete = null)
     {
         rect.DOAnchorPos(targetPos, appearAiDuration).SetEase(easeType).OnComplete(onComplete);

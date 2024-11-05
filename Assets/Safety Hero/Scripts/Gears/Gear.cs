@@ -7,9 +7,9 @@ using static Cinemachine.DocumentationSortingAttribute;
 public abstract class Gear : MonoBehaviour
 {
     public GearData gearData;
-    public float rate; // °ø°İ ¼Óµµ Áõ°¡À²
+    public float rate; // ê³µê²© ì†ë„ ì¦ê°€ìœ¨
     public int level;
-    [SerializeField] protected float accumulatedRate = 1f; // ´©Àû Áõ°¡À²
+    [SerializeField] protected float accumulatedRate = 1f; // ëˆ„ì  ì¦ê°€ìœ¨
     protected GameManager gm;
     protected Player player;
     protected virtual void Awake()
@@ -20,10 +20,10 @@ public abstract class Gear : MonoBehaviour
 
     public virtual void Init(GearData newData)
     {
-        // ±âº» ¼¼ÆÃ
+        // ê¸°ë³¸ ì„¸íŒ…
         gearData = newData;
         transform.parent = player.transform;
-        transform.localPosition = Vector3.zero; // ÇÃ·¹ÀÌ¾î ¾È¿¡¼­ À§Ä¡ ÃÊ±âÈ­
+        transform.localPosition = Vector3.zero; // í”Œë ˆì´ì–´ ì•ˆì—ì„œ ìœ„ì¹˜ ì´ˆê¸°í™”
 
         rate = newData.gearRates[0];
         GearLevelUp(newData.gearRates[0]);
@@ -31,13 +31,13 @@ public abstract class Gear : MonoBehaviour
 
     public virtual void GearLevelUp(float newRate)
     {
-        rate = newRate * 0.01f; // ±â¾î ´ÜÀ§  ¼öÁ¤
+        rate = newRate * 0.01f; // ê¸°ì–´ ë‹¨ìœ„  ìˆ˜ì •
         accumulatedRate +=  rate;
         ApplyPlayerData();
     }
 
     /// <summary>
-    /// ¸ğµç ¹«±â¿¡ ¹«±â¿¡ ¿µÇâÀ» ³¢Ä¡´Â ±â¾î Àû¿ë
+    /// ëª¨ë“  ë¬´ê¸°ì— ë¬´ê¸°ì— ì˜í–¥ì„ ë¼ì¹˜ëŠ” ê¸°ì–´ ì ìš©
     /// </summary>
     protected virtual void ApplyToAllWeapons()
     {
@@ -50,11 +50,11 @@ public abstract class Gear : MonoBehaviour
 
 
     /// <summary>
-    /// ÇÃ·¹ÀÌ¾î µ¥ÀÌÅÍ¿¡ ±â¾î ¼öÄ¡ Àû¿ëÇÏ±â
+    /// í”Œë ˆì´ì–´ ë°ì´í„°ì— ê¸°ì–´ ìˆ˜ì¹˜ ì ìš©í•˜ê¸°
     /// </summary>
     protected abstract void ApplyPlayerData();    
     /// <summary>
-    /// ¹«±â¿¡ ¿µÇâÀÌ °¡´Â ±â¾îµé Àû¿ë
+    /// ë¬´ê¸°ì— ì˜í–¥ì´ ê°€ëŠ” ê¸°ì–´ë“¤ ì ìš©
     /// </summary>
     protected abstract void ApplyGearToWeapon(Weapon weapon);    
   

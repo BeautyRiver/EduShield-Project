@@ -6,10 +6,10 @@ using UnityEngine;
 // DataGuide.cs
 public abstract class DataGuide : ScriptableObject
 {
-    [Header("# ±ÙÁ¢: 0 ~ 49 / ¿ø°Å¸®: 50 ~ 99\n" +
-        "# ±â¾î: 100 ~ 199 / ±âÅ¸: 200 ~ 299")]
+    [Header("# ê·¼ì ‘: 0 ~ 49 / ì›ê±°ë¦¬: 50 ~ 99\n" +
+        "# ê¸°ì–´: 100 ~ 199 / ê¸°íƒ€: 200 ~ 299")]
 
-    [Header("# ¼Ó¼º")]
+    [Header("# ì†ì„±")]
     public int itemId;
     public string itemName;
     public Sprite itemIcon;
@@ -18,7 +18,7 @@ public abstract class DataGuide : ScriptableObject
     [TextArea]
     public string[] itemDesc;
 
-    // Ãß»ó ¸Ş¼­µå ¼±¾ğ
+    // ì¶”ìƒ ë©”ì„œë“œ ì„ ì–¸
     protected abstract void OnValidate();
     public abstract void InitializeItemSetting(ItemSetting itemSetting);
     public abstract void OnEnableSetting(ItemSetting itemSetting);

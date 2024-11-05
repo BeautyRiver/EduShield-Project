@@ -7,23 +7,23 @@ using UnityEngine;
 
 public class Scanner : MonoBehaviour
 {
-    [Header("# ½ºÄµ (¹üÀ§ : »ç°Å¸®)")]
+    [Header("# ìŠ¤ìº” (ë²”ìœ„ : ì‚¬ê±°ë¦¬)")]
     public float scanRange; 
     public LayerMask targetLayer;
     public LayerMask expLayer;
     public RaycastHit2D[] targets;
     public Transform nearestTarget;
 
-    [Header("# °æÇèÄ¡ È¹µæ")]
-    public float expCollectionRange = 1f; // °æÇèÄ¡ È¹µæ ¹üÀ§
-    public int expValue = 1; // È¹µæÇÒ °æÇèÄ¡ ¾ç
+    [Header("# ê²½í—˜ì¹˜ íšë“")]
+    public float expCollectionRange = 1f; // ê²½í—˜ì¹˜ íšë“ ë²”ìœ„
+    public int expValue = 1; // íšë“í•  ê²½í—˜ì¹˜ ì–‘
 
-    private List<Collider2D> collectedExpItems = new List<Collider2D>(); // ÀÌ¹Ì ¼öÁıµÈ °æÇèÄ¡ ¾ÆÀÌÅÛ ¸®½ºÆ®
+    private List<Collider2D> collectedExpItems = new List<Collider2D>(); // ì´ë¯¸ ìˆ˜ì§‘ëœ ê²½í—˜ì¹˜ ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸
     private int combinedLayerMask;
 
     private void Awake()
     {
-        combinedLayerMask = targetLayer; // µÎ ·¹ÀÌ¾î¸¦ ÇÔ²² °Ë»ç
+        combinedLayerMask = targetLayer; // ë‘ ë ˆì´ì–´ë¥¼ í•¨ê»˜ ê²€ì‚¬
 
     }
     private void FixedUpdate()
@@ -31,11 +31,11 @@ public class Scanner : MonoBehaviour
         targets = Physics2D.CircleCastAll(transform.position, scanRange, Vector2.zero, 0, combinedLayerMask);        
         nearestTarget = GetNearest();
 
-        // °æÇèÄ¡ ¾ÆÀÌÅÛ °¨Áö ¹× È¹µæ
+        // ê²½í—˜ì¹˜ ì•„ì´í…œ ê°ì§€ ë° íšë“
         CollectExp();
     }
 
-    // °¡Àå °¡±î¿î ´ë»ó ¹İÈ¯ ÇÔ¼ö
+    // ê°€ì¥ ê°€ê¹Œìš´ ëŒ€ìƒ ë°˜í™˜ í•¨ìˆ˜
     private Transform GetNearest()
     {
         Transform result = null;
@@ -66,7 +66,7 @@ public class Scanner : MonoBehaviour
             if (!exp.isMoving)
             {
                 exp.isMoving = true;
-                // ¾ÆÀÌÅÛ ¾Ö´Ï¸ŞÀÌ¼Ç
+                // ì•„ì´í…œ ì• ë‹ˆë©”ì´ì…˜
                 ItemMoveLogic(item.transform);
             }
         }
@@ -74,26 +74,26 @@ public class Scanner : MonoBehaviour
 
     private void ItemMoveLogic(Transform itemTrans)
     {
-        // ÇÃ·¹ÀÌ¾î¿Í ¹İ´ë ¹æÇâ °è»ê
+        // í”Œë ˆì´ì–´ì™€ ë°˜ëŒ€ ë°©í–¥ ê³„ì‚°
         Vector2 directionAwayFromPlayer = (itemTrans.position - base.transform.position).normalized;
-        Vector2 targetPosition = itemTrans.position + (Vector3)directionAwayFromPlayer * 0.5f;  // ¹İ´ë ¹æÇâÀ¸·Î ¾à°£ ÀÌµ¿
+        Vector2 targetPosition = itemTrans.position + (Vector3)directionAwayFromPlayer * 0.5f;  // ë°˜ëŒ€ ë°©í–¥ìœ¼ë¡œ ì•½ê°„ ì´ë™
 
-        // DOTweenÀ» »ç¿ëÇØ ÇÃ·¹ÀÌ¾î ¹İ´ë ¹æÇâÀ¸·Î »ìÂ¦ ÀÌµ¿
+        // DOTweenì„ ì‚¬ìš©í•´ í”Œë ˆì´ì–´ ë°˜ëŒ€ ë°©í–¥ìœ¼ë¡œ ì‚´ì§ ì´ë™
         itemTrans.DOMove(targetPosition, 0.3f).SetEase(Ease.OutBack).OnComplete(() =>
         {
-            // ¹İ´ë ¹æÇâÀ¸·Î ÀÌµ¿ÀÌ ³¡³ª¸é ÇÃ·¹ÀÌ¾î¿¡°Ô µû¶ó°¡´Â ÄÚ·çÆ¾ ½ÃÀÛ
+            // ë°˜ëŒ€ ë°©í–¥ìœ¼ë¡œ ì´ë™ì´ ëë‚˜ë©´ í”Œë ˆì´ì–´ì—ê²Œ ë”°ë¼ê°€ëŠ” ì½”ë£¨í‹´ ì‹œì‘
             StartCoroutine(FollowPlayer(itemTrans));
         });
     }
     IEnumerator FollowPlayer(Transform itemTrans)
     {
-        float closeDistance = 0.1f;  // ÇÃ·¹ÀÌ¾î¿¡°Ô ÃæºĞÈ÷ °¡±î¿öÁ³´ÂÁö ÆÇ´ÜÇÒ °Å¸®
+        float closeDistance = 0.1f;  // í”Œë ˆì´ì–´ì—ê²Œ ì¶©ë¶„íˆ ê°€ê¹Œì›Œì¡ŒëŠ”ì§€ íŒë‹¨í•  ê±°ë¦¬
         while (Vector2.Distance(base.transform.position, itemTrans.position) > closeDistance)
         {
-            // ÇÃ·¹ÀÌ¾îÀÇ ÇöÀç À§Ä¡¸¦ ÇâÇØ °æÇèÄ¡ ¾ÆÀÌÅÛÀÌ ÀÌµ¿
+            // í”Œë ˆì´ì–´ì˜ í˜„ì¬ ìœ„ì¹˜ë¥¼ í–¥í•´ ê²½í—˜ì¹˜ ì•„ì´í…œì´ ì´ë™
             Vector2 direction = (base.transform.position - itemTrans.position).normalized;
-            itemTrans.Translate(direction * 10f * Time.deltaTime);  // °æÇèÄ¡ ÀÌµ¿ ¼Óµµ Á¶Àı
-            yield return null;  // ´ÙÀ½ ÇÁ·¹ÀÓ±îÁö ´ë±â
+            itemTrans.Translate(direction * 10f * Time.deltaTime);  // ê²½í—˜ì¹˜ ì´ë™ ì†ë„ ì¡°ì ˆ
+            yield return null;  // ë‹¤ìŒ í”„ë ˆì„ê¹Œì§€ ëŒ€ê¸°
         }
     }
     private void OnDrawGizmos()

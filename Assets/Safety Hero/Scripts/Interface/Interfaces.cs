@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// ±â´É °ü·Ã
+// ê¸°ëŠ¥ ê´€ë ¨
 public interface IMovable
 {
     void Move();
@@ -23,13 +23,13 @@ public interface IKnockBackable { }
 
 //-------------------------------------------
 
-// ±¸ºÐ °ü·Ã
+// êµ¬ë¶„ ê´€ë ¨
 public interface IMiniBoss : IRepositionable, IKnockBackable { }
 public interface IBoss : IRepositionable, IKnockBackable { }
 
 //-------------------------------------------
 
-// ¹«±â °ü·Ã
+// ë¬´ê¸° ê´€ë ¨
 public interface IBatchable
 {
     void Batch();

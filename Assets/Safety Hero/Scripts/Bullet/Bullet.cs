@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
-{
+{    
     [field: SerializeField]
-    public float Damage { get; private set; }     // ÀÐ±â Àü¿ë
+    public float Damage { get; private set; }    
 
     [field: SerializeField]
-    public int Per { get; private set; }  // ÀÐ±â Àü¿ë
+    public int Per { get; private set; }  
 
     [field: SerializeField]
-    public int Id { get; private set; }           // ÀÐ±â Àü¿ë
+    public int Id { get; private set; }   
 
     [field: SerializeField]
     public float KnockBackDistance { get; private set; }
@@ -21,20 +21,23 @@ public class Bullet : MonoBehaviour
 
     protected Rigidbody2D rigid;
     protected Collider2D bulletCol;
-    private void Awake()
+    protected virtual void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         bulletCol = GetComponent<Collider2D>();
     }
+
+    protected virtual void OnTriggerExit2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Area") || Per == -100)
+            return;
+
+        gameObject.SetActive(false);
+    }
+
     /// <summary>
-    /// ÃÊ±âÈ­ ÇÔ¼ö
-    /// </summary>
-    /// <param name="damage">ÃÑ¾Ë µ¥¹ÌÁö</param>
-    /// <param name="per">ÃÑ¾Ë °üÅë·Â</param>
-    /// <param name="dir">ÃÑ¾Ë ¹æÇâ</param>
-    /// <param name="id">¾ÆÀÌµð</param>
-    /// <param name="knockBack">³Ë¹é·®</param>
-    /// <param name="interval">°¡ÇØÁö´Â °ø°Ý °£°Ý</param>
+    /// Bullet Init Method
+    /// </summary>    
     public virtual void Init(float damage, int per, Vector3 dir, int id, float knockBack, float interval)
     {
         Damage = damage;
@@ -43,8 +46,7 @@ public class Bullet : MonoBehaviour
         KnockBackDistance = knockBack;
         DamageInterval = interval;
 
-        // ±ÙÁ¢ ¹«±â ¾Æ´Ò¶§ (°üÅë Á¦ÇÑ ÀÖÀ»¶§) 
-        // ¼Óµµ ¼¼ÆÃ
+        // ê´€í†µë ¥ì´ ìžˆëŠ” ë¬´ê¸°ì¼ ë•Œ Bullet Move
         if (per >= 0)
         {
             rigid.velocity = dir * 15f;

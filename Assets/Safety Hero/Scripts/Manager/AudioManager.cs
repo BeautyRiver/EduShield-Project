@@ -29,7 +29,7 @@ public class AudioManager : MonoBehaviour
 
     private void Init()
     {
-        // ¹è°æÀ½ ÇÃ·¹ÀÌ¾î ÃÊ±âÈ­
+        // ë°°ê²½ìŒ í”Œë ˆì´ì–´ ì´ˆê¸°í™”
         GameObject bgmObject = new GameObject("BgmPlayer");
         bgmObject.transform.parent = this.transform;
         bgmPlayer = bgmObject.AddComponent<AudioSource>();
@@ -39,7 +39,7 @@ public class AudioManager : MonoBehaviour
         bgmPlayer.clip = bgmClip;
         bgmEffect = Camera.main.GetComponent<AudioHighPassFilter>();
 
-        // È¿°úÀ½ ÇÃ·¹ÀÌ¾î ÃÊ±âÈ­
+        // íš¨ê³¼ìŒ í”Œë ˆì´ì–´ ì´ˆê¸°í™”
         GameObject sfxObject = new GameObject("SfxPlayer");
         sfxObject.transform.parent = this.transform;
         sfxPlayers = new AudioSource[channels];

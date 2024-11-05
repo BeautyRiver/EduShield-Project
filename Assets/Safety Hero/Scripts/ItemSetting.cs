@@ -14,13 +14,13 @@ public class S_int
 
 public class ItemSetting : MonoBehaviour
 {
-    [Header("# ¾ÆÀÌÅÛ µ¥ÀÌÅÍ")]
+    [Header("# ì•„ì´í…œ ë°ì´í„°")]
     public DataGuide itemData;
     public Weapon weapon;
     public Gear gear;
     public int level;
 
-    [Header("# ÇöÀç °­È­Index")]
+    [Header("# í˜„ì¬ ê°•í™”Index")]
     public int outsideRateIdx = 0;
     public int insideRateIdx = 0;
     public int maxmumInsideIdx = 0;
@@ -32,14 +32,14 @@ public class ItemSetting : MonoBehaviour
     public List<S_int> statusRateList = new List<S_int>();
     public List<int> rateIdx = new List<int>();
 
-    // UI ¿ä¼Òµé
+    // UI ìš”ì†Œë“¤
     private Image icon;
     private Image newIcon;
     private TextMeshProUGUI textName;
     private TextMeshProUGUI textDesc;
     private TextMeshProUGUI textLevel;
 
-    // ÇÁ·ÎÆÛÆ¼¸¦ ÅëÇØ ¿ÜºÎ¿¡¼­ Á¢±Ù °¡´ÉÇÏµµ·Ï ¼³Á¤
+    // í”„ë¡œí¼í‹°ë¥¼ í†µí•´ ì™¸ë¶€ì—ì„œ ì ‘ê·¼ ê°€ëŠ¥í•˜ë„ë¡ ì„¤ì •
     public Image Icon => icon;
     public Image NewIcon => newIcon;
     public TextMeshProUGUI TextName => textName;
@@ -49,36 +49,36 @@ public class ItemSetting : MonoBehaviour
     private void Awake()
     {
         _maxLevel = itemData.maxLevel;
-        // ¾ÆÀÌÄÜ ¼³Á¤
+        // ì•„ì´ì½˜ ì„¤ì •
         icon = GetComponentsInChildren<Image>()[1];
         newIcon = GetComponentsInChildren<Image>()[2];
 
         icon.sprite = itemData.itemIcon;
 
-        // °øÅë ÅØ½ºÆ® ÇÊµå ¼³Á¤
+        // ê³µí†µ í…ìŠ¤íŠ¸ í•„ë“œ ì„¤ì •
         TextMeshProUGUI[] texts = GetComponentsInChildren<TextMeshProUGUI>();
         textName = texts[0];
         textDesc = texts[1];
         textLevel = texts[2];
         textName.text = itemData.itemName;
 
-        // ¾ÆÀÌÅÛ µ¥ÀÌÅÍ Å¬·¡½ºÀÇ ÃÊ±âÈ­ ¸Ş¼­µå È£Ãâ
+        // ì•„ì´í…œ ë°ì´í„° í´ë˜ìŠ¤ì˜ ì´ˆê¸°í™” ë©”ì„œë“œ í˜¸ì¶œ
         itemData.InitializeItemSetting(this);
     }
 
     private void OnEnable()
     {
-        // ¾ÆÀÌÅÛ µ¥ÀÌÅÍ Å¬·¡½ºÀÇ OnEnableSetting ¸Ş¼­µå È£Ãâ
+        // ì•„ì´í…œ ë°ì´í„° í´ë˜ìŠ¤ì˜ OnEnableSetting ë©”ì„œë“œ í˜¸ì¶œ
         itemData.OnEnableSetting(this);
     }
 
-    // ¾ÆÀÌÅÛ Å¬¸¯ ½Ã
+    // ì•„ì´í…œ í´ë¦­ ì‹œ
     public void OnClick()
     {
-        // ¾ÆÀÌÅÛ µ¥ÀÌÅÍ Å¬·¡½ºÀÇ OnClickSetting ¸Ş¼­µå È£Ãâ
+        // ì•„ì´í…œ ë°ì´í„° í´ë˜ìŠ¤ì˜ OnClickSetting ë©”ì„œë“œ í˜¸ì¶œ
         itemData.OnClickSetting(this);
 
-        EquipmentManager.onItemCurrentState?.Invoke(); // ÀÌº¥Æ® È£Ãâ
+        EquipmentManager.onItemCurrentState?.Invoke(); // ì´ë²¤íŠ¸ í˜¸ì¶œ
 
         if (level == itemData.maxLevel)
         {

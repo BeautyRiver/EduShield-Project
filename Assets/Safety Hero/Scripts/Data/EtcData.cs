@@ -13,16 +13,16 @@ public class EtcData : DataGuide
 
     public EtcType eType;    
 
-    // ±âÅ¸ ÇÊ¿äÇÑ ÇÊµå...
+    // ê¸°íƒ€ í•„ìš”í•œ í•„ë“œ...
 
     protected override void OnValidate()
     {
-        // ±âÅ¸ ¾ÆÀÌÅÛÀÇ °æ¿ì Æ¯º°ÇÑ °ËÁõÀÌ ÇÊ¿äÇÏÁö ¾ÊÀ½
+        // ê¸°íƒ€ ì•„ì´í…œì˜ ê²½ìš° íŠ¹ë³„í•œ ê²€ì¦ì´ í•„ìš”í•˜ì§€ ì•ŠìŒ
     }
 
     public override void InitializeItemSetting(ItemSetting itemSetting)
     {
-        // ±âÅ¸ ¾ÆÀÌÅÛÀÇ °æ¿ì Æ¯º°ÇÑ ÃÊ±âÈ­°¡ ÇÊ¿äÇÏÁö ¾ÊÀ½
+        // ê¸°íƒ€ ì•„ì´í…œì˜ ê²½ìš° íŠ¹ë³„í•œ ì´ˆê¸°í™”ê°€ í•„ìš”í•˜ì§€ ì•ŠìŒ
     }
 
     public override void OnEnableSetting(ItemSetting itemSetting)
@@ -34,13 +34,13 @@ public class EtcData : DataGuide
         switch (eType)
         {
             case EtcType.E0_Heal:
-                itemSetting.TextLevel.text = "Æ¯º°ÇÑ ¸À";
+                itemSetting.TextLevel.text = "íŠ¹ë³„í•œ ë§›";
                 break;
             case EtcType.E1_Gold:
-                itemSetting.TextLevel.text = "ºÎÀÚ°¡ µÇº¸ÀÚ";
+                itemSetting.TextLevel.text = "ë¶€ìê°€ ë˜ë³´ì";
                 break;
             default:
-                itemSetting.TextLevel.text = "¾ÆÀÌÅÛ";
+                itemSetting.TextLevel.text = "ì•„ì´í…œ";
                 break;
         }
     }
@@ -53,9 +53,9 @@ public class EtcData : DataGuide
                 GameManager.instance.health = Mathf.Min(GameManager.instance.maxHealth, GameManager.instance.health + 15f);
                 break;
             case EtcType.E1_Gold:
-                Debug.Log("15°ñµå È¹µæ");
+                Debug.Log("15ê³¨ë“œ íšë“");
                 break;
-                // ±âÅ¸ Å¸ÀÔ¿¡ ´ëÇÑ Ã³¸®
+                // ê¸°íƒ€ íƒ€ì…ì— ëŒ€í•œ ì²˜ë¦¬
         }
     }
 }

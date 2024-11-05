@@ -15,7 +15,7 @@ public class PoolManager : MonoBehaviour
         poolMappings = new Dictionary<PoolObjectType, (PoolType, int)>();
         InitializePoolMappings();
 
-        // °¢ Ç® ÃÊ±âÈ­
+        // ê° í’€ ì´ˆê¸°í™”
         foreach (Pool pool in pools)
         {
             for (int i = 0; i < pool.prefabs.Length; i++)
@@ -28,7 +28,7 @@ public class PoolManager : MonoBehaviour
                 }
             }
         }
-        // ÃÊ±âÈ­ ÈÄ Debug.Log·Î È®ÀÎ
+        // ì´ˆê¸°í™” í›„ Debug.Logë¡œ í™•ì¸
         Debug.Log("Pool Dictionary initialized successfully.");
         if (poolDictionary.Count == 0)
         {
@@ -56,7 +56,7 @@ public class PoolManager : MonoBehaviour
             for (int i = 0; i < pool.prefabs.Length; i++)
             {
                 GameObject prefab = pool.prefabs[i];
-                string formattedName = prefab.name.Replace(" ", ""); // °ø¹é Á¦°Å
+                string formattedName = prefab.name.Replace(" ", ""); // ê³µë°± ì œê±°
                 if (Enum.TryParse(formattedName, out PoolObjectType poolObjectType))
                 {
                     poolMappings[poolObjectType] = (pool.poolType, i);
@@ -93,7 +93,7 @@ public class PoolManager : MonoBehaviour
 
         GameObject select = null;
 
-        // ºñÈ°¼ºÈ­µÈ °ÔÀÓ ¿ÀºêÁ§Æ® Å½»ö
+        // ë¹„í™œì„±í™”ëœ ê²Œì„ ì˜¤ë¸Œì íŠ¸ íƒìƒ‰
         foreach (GameObject item in selectedPool)
         {
             if (!item.activeSelf)
@@ -104,7 +104,7 @@ public class PoolManager : MonoBehaviour
             }
         }
 
-        // »õ·Î »ı¼ºÇÏ¿© Ç®¿¡ Ãß°¡
+        // ìƒˆë¡œ ìƒì„±í•˜ì—¬ í’€ì— ì¶”ê°€
         if (select == null)
         {
             Debug.Log(selectedPrefabs[index].name);
@@ -117,7 +117,7 @@ public class PoolManager : MonoBehaviour
     }
 }
 
-public enum PoolType { Bullet, Enemy, Item, Effect, Text }  // Ç® Å¸ÀÔ enum
+public enum PoolType { Bullet, Enemy, Item, Effect, Text }  // í’€ íƒ€ì… enum
 
 public enum PoolObjectType
 {

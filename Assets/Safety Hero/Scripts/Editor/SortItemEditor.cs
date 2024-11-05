@@ -11,7 +11,7 @@ public class SortItemEditor : Editor
         DrawDefaultInspector();
         ForDebug debug = (ForDebug)target;
 
-        if (GUILayout.Button("¾ÆÀÌÅÛ ÃÊ±âÈ­"))
+        if (GUILayout.Button("ì•„ì´í…œ ì´ˆê¸°í™”"))
         {
             debug.InitializeItems();
         }

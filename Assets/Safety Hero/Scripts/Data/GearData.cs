@@ -5,15 +5,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Gear", menuName = "Scriptble Object/GearData")]
 public class GearData : DataGuide
 {    
-    [Header("±â¾î ´É·ÂÄ¡")]
-    [Header("¹èÀ²¹æ½Ä / 50 = 50%Áõ°¡")]
+    [Header("ê¸°ì–´ ëŠ¥ë ¥ì¹˜")]
+    [Header("ë°°ìœ¨ë°©ì‹ / 50 = 50%ì¦ê°€")]
     public int[] gearRates;
 
 
-    [Header("±â¾î °ü·Ã")]
+    [Header("ê¸°ì–´ ê´€ë ¨")]
     public GameObject gearType;
 
-    // ¿¡µğÅÍ¿¡¼­ °ªÀÌ º¯°æµÉ ¶§ ÀÚµ¿À¸·Î È£Ãâ
+    // ì—ë””í„°ì—ì„œ ê°’ì´ ë³€ê²½ë  ë•Œ ìë™ìœ¼ë¡œ í˜¸ì¶œ
     protected override void OnValidate()
     {
         maxLevel = gearRates.Length;        
@@ -21,26 +21,26 @@ public class GearData : DataGuide
 
     public override void InitializeItemSetting(ItemSetting itemSetting)
     {
-        // ±â¾îÀÇ °æ¿ì Æ¯º°ÇÑ ÃÊ±âÈ­°¡ ÇÊ¿äÇÏÁö ¾ÊÀ½
+        // ê¸°ì–´ì˜ ê²½ìš° íŠ¹ë³„í•œ ì´ˆê¸°í™”ê°€ í•„ìš”í•˜ì§€ ì•ŠìŒ
     }
 
     public override void OnEnableSetting(ItemSetting itemSetting)
     {
         if (itemSetting.TextLevel != null)
         {
-            itemSetting.TextLevel.text = "Lv." + (itemSetting.level + 1); // ·¹º§ Ç¥±â
+            itemSetting.TextLevel.text = "Lv." + (itemSetting.level + 1); // ë ˆë²¨ í‘œê¸°
         }
 
         if (itemSetting.level == 0)
         {
             itemSetting.NewIcon.gameObject.SetActive(true);
-            itemSetting.TextDesc.text = "<color=#99FF8A>»õ·Î¿î °­È­!</color>\n\n<size=90%>" +
+            itemSetting.TextDesc.text = "<color=#99FF8A>ìƒˆë¡œìš´ ê°•í™”!</color>\n\n<size=90%>" +
                 string.Format(itemDesc[0], gearRates[itemSetting.level]) + "</size>";
         }
         else
         {
             itemSetting.NewIcon.gameObject.SetActive(false);
-            itemSetting.TextDesc.text = string.Format(itemDesc[0], gearRates[itemSetting.level]); // ±â¾î ¼³¸í±Û
+            itemSetting.TextDesc.text = string.Format(itemDesc[0], gearRates[itemSetting.level]); // ê¸°ì–´ ì„¤ëª…ê¸€
         }
     }
 

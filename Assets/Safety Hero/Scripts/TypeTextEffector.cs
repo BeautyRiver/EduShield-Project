@@ -13,19 +13,19 @@ public class TypeTextEffector : MonoBehaviour
         scriptText.text = string.Empty;
         StringBuilder stringBuilder = new StringBuilder();
 
-        bool insideTag = false; // ÅÂ±× ¾È¿¡ ÀÖ´ÂÁö ¿©ºÎ¸¦ ÃßÀû
+        bool insideTag = false; // íƒœê·¸ ì•ˆì— ìˆëŠ”ì§€ ì—¬ë¶€ë¥¼ ì¶”ì 
         for (int i = 0; i < text.Length; i++)
         {
-            // ÅÂ±×ÀÇ ½ÃÀÛ°ú ³¡À» Ã¼Å©
+            // íƒœê·¸ì˜ ì‹œì‘ê³¼ ëì„ ì²´í¬
             if (text[i] == '<')
-                insideTag = true; // ÅÂ±×ÀÇ ½ÃÀÛ
+                insideTag = true; // íƒœê·¸ì˜ ì‹œì‘
             else if (text[i] == '>')
-                insideTag = false; // ÅÂ±×ÀÇ ³¡
+                insideTag = false; // íƒœê·¸ì˜ ë
 
-            // ÅÂ±× ¾È¿¡ ÀÖ´Â °æ¿ì¿¡´Â ÇÑ ¹ø¿¡ Ãß°¡
+            // íƒœê·¸ ì•ˆì— ìˆëŠ” ê²½ìš°ì—ëŠ” í•œ ë²ˆì— ì¶”ê°€
             stringBuilder.Append(text[i]);
 
-            // ÅÂ±×°¡ ¾Æ´Ñ °æ¿ì¿¡¸¸ Å¸ÀÌÇÎ µô·¹ÀÌ Àû¿ë
+            // íƒœê·¸ê°€ ì•„ë‹Œ ê²½ìš°ì—ë§Œ íƒ€ì´í•‘ ë”œë ˆì´ ì ìš©
             if (!insideTag)
             {
                 scriptText.text = stringBuilder.ToString();
@@ -33,7 +33,7 @@ public class TypeTextEffector : MonoBehaviour
             }
         }
 
-        // ÃÖÁ¾ÀûÀ¸·Î ´Ù Ãâ·ÂÇÑ ÈÄ¿¡µµ ÀüÃ¼ ÅØ½ºÆ®¸¦ ´Ù½Ã ÇÑ ¹ø Àû¿ë (¿¹: ÅÂ±×°¡ ¿ÏÀüÈ÷ Ãâ·ÂµÇÁö ¾Ê¾ÒÀ» °æ¿ì¸¦ ´ëºñ)
+        // ìµœì¢…ì ìœ¼ë¡œ ë‹¤ ì¶œë ¥í•œ í›„ì—ë„ ì „ì²´ í…ìŠ¤íŠ¸ë¥¼ ë‹¤ì‹œ í•œ ë²ˆ ì ìš© (ì˜ˆ: íƒœê·¸ê°€ ì™„ì „íˆ ì¶œë ¥ë˜ì§€ ì•Šì•˜ì„ ê²½ìš°ë¥¼ ëŒ€ë¹„)
         scriptText.text = stringBuilder.ToString();
     }
 }

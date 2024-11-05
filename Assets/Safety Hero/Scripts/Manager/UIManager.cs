@@ -13,8 +13,8 @@ public class UIManager : MonoBehaviour
     public GameObject[] titles;
     public GameObject uiOption;
 
-    public Image startFadeImage; // Ã³À½ ÆäÀÌµåÀÎ ¾Æ¿ô ÀÌ¹ÌÁö
-    public Image blackWindow; // ·¹º§¾÷, esc µÚÀÇ ¹è°æ °Ë°Ô
+    public Image startFadeImage; // ì²˜ìŒ í˜ì´ë“œì¸ ì•„ì›ƒ ì´ë¯¸ì§€
+    public Image blackWindow; // ë ˆë²¨ì—…, esc ë’¤ì˜ ë°°ê²½ ê²€ê²Œ
     public Image[] swapCoolDownImages;
     [SerializeField]
     private float fadeTime;
@@ -60,20 +60,20 @@ public class UIManager : MonoBehaviour
         titles[1].SetActive(true);
     }
 
-    // °ÔÀÓ Àç½ÃÀÛ
+    // ê²Œì„ ì¬ì‹œì‘
     public void GameRetry()
     {
-        MasterAudio.PlaylistsMuted = false; // ¹è°æÀ½¾Ç On        
+        MasterAudio.PlaylistsMuted = false; // ë°°ê²½ìŒì•… On        
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void GoTitle()
     {
-        MasterAudio.PlaylistsMuted = false; // ¹è°æÀ½¾Ç On         
+        MasterAudio.PlaylistsMuted = false; // ë°°ê²½ìŒì•… On         
         gm.Resume();
         LoadingSceneController.LoadScene("Title Scene");
     }
-    // °ÔÀÓ Á¾·á
+    // ê²Œì„ ì¢…ë£Œ
     public void GameQuit()
     {
 #if UNITY_EDITOR
@@ -82,12 +82,12 @@ public class UIManager : MonoBehaviour
         Application.Quit();
     }
 
-    // °ËÀº ¹è°æ On
+    // ê²€ì€ ë°°ê²½ On
     public void BlackWindowFadeIn()
     {
         blackWindow.DOFade(0.8f, 0.25f).SetUpdate(true); 
     }
-    // °ËÀº ¹è°æ Off
+    // ê²€ì€ ë°°ê²½ Off
     public void BlackWindowFadeaOut()
     {
         blackWindow.DOFade(0f, 0.25f).SetUpdate(true); 

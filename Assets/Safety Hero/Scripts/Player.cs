@@ -7,33 +7,33 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [Header("ÀÔ·Â ¹× ÀÌµ¿")]
-    public Vector2 inputVec; // ÀÔ·Â º¤ÅÍ (¹æÇâ)
+    [Header("ì…ë ¥ ë° ì´ë™")]
+    public Vector2 inputVec; // ì…ë ¥ ë²¡í„° (ë°©í–¥)
     public Vector2 lastInputVec = new Vector2(1f,0f);
-    public float lastXInputVec = 1f;  // ¸¶Áö¸· xÃà ¹æÇâ¸¸ ±â¾ï
+    public float lastXInputVec = 1f;  // ë§ˆì§€ë§‰ xì¶• ë°©í–¥ë§Œ ê¸°ì–µ
     public float baseSpeed = 3f;
-    public float speed = 3f; // ÀÌµ¿ ¼Óµµ
+    public float speed = 3f; // ì´ë™ ì†ë„
 
 
-    [Header("°ÔÀÓ ¿ÀºêÁ§Æ® ÂüÁ¶")]
-    public Scanner scanner; // Àû Å½»ö±â        
+    [Header("ê²Œì„ ì˜¤ë¸Œì íŠ¸ ì°¸ì¡°")]
+    public Scanner scanner; // ì  íƒìƒ‰ê¸°        
     [HideInInspector] public Spawner spawner;
 
-    [Header("¾Ö´Ï¸ŞÀÌ¼Ç")]
-    [SerializeField] private List<PlayerAnimatorControll> animCon; // ÇÃ·¹ÀÌ¾î ¾Ö´Ï¸ŞÀÌÅÍ ÄÁÆ®·Ñ·¯
+    [Header("ì• ë‹ˆë©”ì´ì…˜")]
+    [SerializeField] private List<PlayerAnimatorControll> animCon; // í”Œë ˆì´ì–´ ì• ë‹ˆë©”ì´í„° ì»¨íŠ¸ë¡¤ëŸ¬
 
-    [Header("ÇÇ°İ °ü¸®")]
-    private Color hitColor; // ÇÇ°İ ½Ã »ö»ó
-    private Color normalColor; // ±âº» »ö»ó
-    [SerializeField] private Color[] transformingColor; // º¯½Å »ö»óµé
-    private WaitForSeconds hitingTime; // ÇÇ°İ Áö¼Ó ½Ã°£
-    private bool isHiting; // ÇÇ°İ Áß ¿©ºÎ
+    [Header("í”¼ê²© ê´€ë¦¬")]
+    private Color hitColor; // í”¼ê²© ì‹œ ìƒ‰ìƒ
+    private Color normalColor; // ê¸°ë³¸ ìƒ‰ìƒ
+    [SerializeField] private Color[] transformingColor; // ë³€ì‹  ìƒ‰ìƒë“¤
+    private WaitForSeconds hitingTime; // í”¼ê²© ì§€ì† ì‹œê°„
+    private bool isHiting; // í”¼ê²© ì¤‘ ì—¬ë¶€
 
-    // ±âÅ¸ ÄÄÆ÷³ÍÆ®
+    // ê¸°íƒ€ ì»´í¬ë„ŒíŠ¸
     private SpriteRenderer spriter;
     public Rigidbody2D rigid { get; private set; } 
     private Animator anim;
-    private GameManager gm; // °ÔÀÓ ¸Å´ÏÀú ÂüÁ¶
+    private GameManager gm; // ê²Œì„ ë§¤ë‹ˆì € ì°¸ì¡°
     private CapsuleCollider2D col;
     private bool isTransforming;
 
@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
     {
         if (gm.isGameActive)
         {
-            // ÀÔ·Â º¤ÅÍ ¼³Á¤
+            // ì…ë ¥ ë²¡í„° ì„¤ì •
             inputVec.x = Input.GetAxisRaw("Horizontal");
             inputVec.y = Input.GetAxisRaw("Vertical");
 
@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
             {
                 lastInputVec = inputVec;
 
-                // xÃàÀÌ 0ÀÌ ¾Æ´Ò ¶§¸¸ ¸¶Áö¸· xÃà ¹æÇâÀ» ÀúÀå
+                // xì¶•ì´ 0ì´ ì•„ë‹ ë•Œë§Œ ë§ˆì§€ë§‰ xì¶• ë°©í–¥ì„ ì €ì¥
                 if (inputVec.x != 0)
                 {
                     lastXInputVec = inputVec.x;
@@ -89,9 +89,9 @@ public class Player : MonoBehaviour
     {
         if (gm.isGameActive)
         {
-            // Animator ¼¼ÆÃ
+            // Animator ì„¸íŒ…
             anim.SetFloat("Speed", inputVec.magnitude);
-            // flipX °ü¸®
+            // flipX ê´€ë¦¬
             if (inputVec.x != 0)
             {
                 spriter.flipX = inputVec.x < 0;
@@ -99,10 +99,10 @@ public class Player : MonoBehaviour
         }
     }
 
-    // ¹°¸® Ãæµ¹ ÀÏ¾î³¯ ¶§
+    // ë¬¼ë¦¬ ì¶©ëŒ ì¼ì–´ë‚  ë•Œ
     private void OnCollisionStay2D(Collision2D collision)
     {
-        // ÇÃ·¹ÀÌ¾î°¡ »ıÁ¸ÁßÀÌ ¾Æ´Ï¶ó¸é ½ÇÇà X
+        // í”Œë ˆì´ì–´ê°€ ìƒì¡´ì¤‘ì´ ì•„ë‹ˆë¼ë©´ ì‹¤í–‰ X
         if (gm.isGameActive == false)
             return;
 
@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
         {
             gm.health -= Time.deltaTime * collision.gameObject.GetComponent<Enemy>().damage;
 
-            // ÇÃ·¹ÀÌ¾î ÇÇ°İ»ö»ó º¯°æ
+            // í”Œë ˆì´ì–´ í”¼ê²©ìƒ‰ìƒ ë³€ê²½
             if (!isHiting && !isTransforming)
                 StartCoroutine(HitColor());
 
@@ -125,10 +125,10 @@ public class Player : MonoBehaviour
         }        
     }
 
-    // ¹°¸® Ãæµ¹ ¹ş¾î³¯ ¶§
+    // ë¬¼ë¦¬ ì¶©ëŒ ë²—ì–´ë‚  ë•Œ
     private void OnCollisionExit2D(Collision2D collision)
     {
-        // ÇÃ·¹ÀÌ¾î°¡ »ıÁ¸ÁßÀÌ ¾Æ´Ï¶ó¸é ½ÇÇà X
+        // í”Œë ˆì´ì–´ê°€ ìƒì¡´ì¤‘ì´ ì•„ë‹ˆë¼ë©´ ì‹¤í–‰ X
         if (gm.isGameActive == false)
             return;
 
@@ -138,7 +138,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    // ÇÇ°İ »ö»ó º¯°æ ÄÚ·çÆ¾
+    // í”¼ê²© ìƒ‰ìƒ ë³€ê²½ ì½”ë£¨í‹´
     private IEnumerator HitColor()
     {
         isHiting = true;
@@ -148,12 +148,12 @@ public class Player : MonoBehaviour
         isHiting = false;
     }
 
-    // º¯½ÅÁß »ö»ó º¯°æ ÄÚ·çÆ¾
+    // ë³€ì‹ ì¤‘ ìƒ‰ìƒ ë³€ê²½ ì½”ë£¨í‹´
     public IEnumerator TransformationColor(int typeIdx)
     {
-        typeIdx += 1; // typeindexº¸´Ù 1 Å©°Ô (Å¸ÀÔÀÌ -1<±âº»Å¸ÀÔ> ºÎÅÍ ½ÃÀÛÇØ¼­)
+        typeIdx += 1; // typeindexë³´ë‹¤ 1 í¬ê²Œ (íƒ€ì…ì´ -1<ê¸°ë³¸íƒ€ì…> ë¶€í„° ì‹œì‘í•´ì„œ)
         isTransforming = true;
-        gm.GenerateEffect(0, transform, transformingColor[typeIdx]); // ÇÃ·¹ÀÌ¾î ÀÌÆÑÆ® »ı¼º ½ÃÅ°±â
+        gm.GenerateEffect(0, transform, transformingColor[typeIdx]); // í”Œë ˆì´ì–´ ì´íŒ©íŠ¸ ìƒì„± ì‹œí‚¤ê¸°
         Vector3 originalScale = transform.localScale;
 
         transform.DOScale(originalScale * 1.2f, 0.05f).OnComplete(() =>
@@ -169,13 +169,13 @@ public class Player : MonoBehaviour
         isTransforming = false;
     }
 
-    // ÇÃ·¹ÀÌ¾î ÃÊ±âÈ­
+    // í”Œë ˆì´ì–´ ì´ˆê¸°í™”
     public void PlayerInit()
     {
-        baseSpeed = baseSpeed * gm.playerData.speedMult; // ÇÃ·¹ÀÌ¾î ±âº» ÀÌµ¿¼Óµµ Àû¿ë
+        baseSpeed = baseSpeed * gm.playerData.speedMult; // í”Œë ˆì´ì–´ ê¸°ë³¸ ì´ë™ì†ë„ ì ìš©
         speed = baseSpeed;
         anim.runtimeAnimatorController = animCon[gm.playerId].runAniCon[0];
-        Debug.Log($"¾Ö´Ï¸ŞÀÌ¼Ç ÄÁÆ®·Ñ·¯ º¯°æ {gm.playerId}");
+        Debug.Log($"ì• ë‹ˆë©”ì´ì…˜ ì»¨íŠ¸ë¡¤ëŸ¬ ë³€ê²½ {gm.playerId}");
     }
 
     public void PlayerDead()

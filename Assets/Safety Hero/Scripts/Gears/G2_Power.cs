@@ -10,10 +10,10 @@ public class G2_Power : Gear
         ApplyToAllWeapons();
     }
 
-    // µ¥¹ÌÁö Áõ°¡ ±â¾î
+    // ë°ë¯¸ì§€ ì¦ê°€ ê¸°ì–´
     protected override void ApplyGearToWeapon(Weapon weapon)
     {
         weapon.damage = weapon.data.baseDamage * gm.playerData.damageMult;
-        Debug.Log($"{name}ÇöÀç ¹èÀ²: {gm.playerData.damageMult}¹è");
+        Debug.Log($"{name}í˜„ì¬ ë°°ìœ¨: {gm.playerData.damageMult}ë°°");
     }
 }

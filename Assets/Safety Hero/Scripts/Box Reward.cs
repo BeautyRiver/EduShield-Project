@@ -31,7 +31,7 @@ public class BoxReward : MonoBehaviour
             }
             arrowAni.gameObject.SetActive(false);
             anim.SetBool("Open", true);
-            Debug.Log("»óÀÚ ¿ÀÇÂ~");
+            Debug.Log("ìƒì ì˜¤í”ˆ~");
             StartCoroutine(ShowReward());
         }
     }
@@ -41,19 +41,19 @@ public class BoxReward : MonoBehaviour
         int count = Random.Range(20, 60);
         for (int i = 0; i < count; i++)
         {            
-            GameObject exp = GameManager.instance.poolManager.Get(PoolObjectType.Exp); // exp ¼ÒÈ¯
+            GameObject exp = GameManager.instance.poolManager.Get(PoolObjectType.Exp); // exp ì†Œí™˜
             CircleCollider2D coll = exp.GetComponent<CircleCollider2D>();
             coll.enabled = false;
             exp.GetComponent<Exp>().exp = Random.Range(1, GameManager.instance.player.spawner.level+1);
             exp.transform.position = transform.position;
 
-            Vector2 randomDir = new Vector2(Random.Range(-0.7f, 0.7f), Random.Range(-0.2f, 0.2f)); // ÁÂ¿ì·Î¸¸ Æ¢¾î³ª°¡°Ô ¼³Á¤
+            Vector2 randomDir = new Vector2(Random.Range(-0.7f, 0.7f), Random.Range(-0.2f, 0.2f)); // ì¢Œìš°ë¡œë§Œ íŠ€ì–´ë‚˜ê°€ê²Œ ì„¤ì •
 
-            // ¹«ÀÛÀ§ ³ôÀÌ¿Í °Å¸® ¼³Á¤
-            float jumpPower = Random.Range(2f, 3f); // À§·Î Æ¢¾î¿À¸¦ Èû (Á¡ÇÁ ³ôÀÌ)
-            float randomDistance = Random.Range(2f, 4f);  // ÀÌµ¿ÇÒ °Å¸®
+            // ë¬´ì‘ìœ„ ë†’ì´ì™€ ê±°ë¦¬ ì„¤ì •
+            float jumpPower = Random.Range(2f, 3f); // ìœ„ë¡œ íŠ€ì–´ì˜¤ë¥¼ í˜ (ì í”„ ë†’ì´)
+            float randomDistance = Random.Range(2f, 4f);  // ì´ë™í•  ê±°ë¦¬
 
-            // DOTweenÀ¸·Î Á¡ÇÁ ¾Ö´Ï¸ŞÀÌ¼Ç: ÁÂ¿ì ¹æÇâÀ¸·Î randomDistance¸¸Å­ Á¡ÇÁ
+            // DOTweenìœ¼ë¡œ ì í”„ ì• ë‹ˆë©”ì´ì…˜: ì¢Œìš° ë°©í–¥ìœ¼ë¡œ randomDistanceë§Œí¼ ì í”„
             exp.transform.DOJump((Vector2)transform.position + randomDir * randomDistance, jumpPower, 1, 1f)
                 .SetEase(Ease.OutQuad).OnComplete(() => { coll.enabled = true; });
             yield return new WaitForSeconds(0.1f);

@@ -8,7 +8,7 @@ using DG.Tweening;
 
 public class EquipmentManager : MonoBehaviour
 {
-    public static Action onItemCurrentState; // Action ÀÌº¥Æ®
+    public static Action onItemCurrentState; // Action ì´ë²¤íŠ¸
 
     public enum Category { Weapon, Gear }
 
@@ -25,14 +25,14 @@ public class EquipmentManager : MonoBehaviour
     private List<ItemSetting> _sortData;
     private void Awake()
     {
-        // ÃÊ±âÈ­        
+        // ì´ˆê¸°í™”        
         InitialSettings();
     }
 
     private void OnEnable()
     {
         UpdateCurrentData();
-        onItemCurrentState += UpdateCurrentData; // ÀÌº¥Æ® µî·Ï
+        onItemCurrentState += UpdateCurrentData; // ì´ë²¤íŠ¸ ë“±ë¡
     }
     private void OnDestroy()
     {
@@ -41,7 +41,7 @@ public class EquipmentManager : MonoBehaviour
 
     public void UpdateCurrentData()
     {
-        // ¸ğµç ¾ÆÀÌÅÛÀ» ¼øÈ¸ÇÏ¸ç ·¹º§ÀÌ 0º¸´Ù Å©°í ¾ÆÁ÷ Á¤·Ä ¸®½ºÆ®¿¡ ¾ø´Â ¾ÆÀÌÅÛÀ» Ãß°¡
+        // ëª¨ë“  ì•„ì´í…œì„ ìˆœíšŒí•˜ë©° ë ˆë²¨ì´ 0ë³´ë‹¤ í¬ê³  ì•„ì§ ì •ë ¬ ë¦¬ìŠ¤íŠ¸ì— ì—†ëŠ” ì•„ì´í…œì„ ì¶”ê°€
         foreach (ItemSetting item in _data)
         {
             if (item.level > 0 && !_sortData.Contains(item))
@@ -50,32 +50,32 @@ public class EquipmentManager : MonoBehaviour
             }
         }
 
-        // Á¤·ÄµÈ µ¥ÀÌÅÍ¸¦ ±â¹İÀ¸·Î UI ¿ä¼Ò ¾÷µ¥ÀÌÆ®
+        // ì •ë ¬ëœ ë°ì´í„°ë¥¼ ê¸°ë°˜ìœ¼ë¡œ UI ìš”ì†Œ ì—…ë°ì´íŠ¸
         for (int i = 0; i < _sortData.Count && i < rowCount; i++)
         {
-            // ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ & ÅØ½ºÆ® ¼³Á¤
+            // ì•„ì´í…œ ì•„ì´ì½˜ & í…ìŠ¤íŠ¸ ì„¤ì •
             equipImages[i].sprite = _sortData[i].itemData.itemIcon;
             equipLevelTexts[i].text = $"Lv{_sortData[i].level}";
-            // ¸¸·¾ÀÏ¶§            
+            // ë§Œë ™ì¼ë•Œ            
             if (_sortData[i].level == _sortData[i]._maxLevel)
                 equipLevelTexts[i].text = $"<color=yellow>Max</color>";
-            // UI ¿ä¼Ò È°¼ºÈ­
+            // UI ìš”ì†Œ í™œì„±í™”
             equipImages[i].gameObject.SetActive(true);
             equipLevelTexts[i].gameObject.SetActive(true);
         }
     }
     private void InitialSettings()
     {
-        // µ¥ÀÌÅÍ ±¸Á¶ ÃÊ±âÈ­
+        // ë°ì´í„° êµ¬ì¡° ì´ˆê¸°í™”
         _data = new List<ItemSetting>();
         _sortData = new List<ItemSetting>();
         equipImages = new List<Image>();
         equipLevelTexts = new List<TextMeshProUGUI>();
 
-        // ¾ÆÀÌÅÛ ±×·ì¿¡¼­ ¸ğµç ItemSetting ÄÄÆ÷³ÍÆ® °¡Á®¿À±â
+        // ì•„ì´í…œ ê·¸ë£¹ì—ì„œ ëª¨ë“  ItemSetting ì»´í¬ë„ŒíŠ¸ ê°€ì ¸ì˜¤ê¸°
         ItemSetting[] items = itemGroup.GetComponentsInChildren<ItemSetting>(true);
 
-        // ÇöÀç ¾ÆÀÌÅÛ ±×·ì¿¡¼­ ¹«±â¿Í ±â¾î µ¥ÀÌÅÍ¸¦ ºĞ·ùÇÏ¿© Ãß°¡
+        // í˜„ì¬ ì•„ì´í…œ ê·¸ë£¹ì—ì„œ ë¬´ê¸°ì™€ ê¸°ì–´ ë°ì´í„°ë¥¼ ë¶„ë¥˜í•˜ì—¬ ì¶”ê°€
         foreach (ItemSetting item in items)
         {
             if (item.itemData is BulletData && category == Category.Weapon)
@@ -85,7 +85,7 @@ public class EquipmentManager : MonoBehaviour
                 _data.Add(item);
         }
 
-        // ÇöÀç ÀåÂø(¸ÔÀº ¾ÆÀÌÅÛ)ÀÇ ÀÌ¹ÌÁö¿Í ·¹º§ ÅØ½ºÆ® ÄÄÆ÷³ÍÆ® ¼³Á¤
+        // í˜„ì¬ ì¥ì°©(ë¨¹ì€ ì•„ì´í…œ)ì˜ ì´ë¯¸ì§€ì™€ ë ˆë²¨ í…ìŠ¤íŠ¸ ì»´í¬ë„ŒíŠ¸ ì„¤ì •
         for (int i = 0; i < transform.childCount; i++)
         {
             Image[] images = transform.GetChild(i).GetComponentsInChildren<Image>();
@@ -93,10 +93,10 @@ public class EquipmentManager : MonoBehaviour
             equipImages.Add(images[1]);
         }
 
-        // ÃÑ Çà(row) ¼ö ÀúÀå
+        // ì´ í–‰(row) ìˆ˜ ì €ì¥
         rowCount = equipImages.Count;
 
-        // ¸ğµç Àåºñ ÀÌ¹ÌÁö¿Í ·¹º§ ÅØ½ºÆ® ¿ÀºêÁ§Æ® ºñÈ°¼ºÈ­
+        // ëª¨ë“  ì¥ë¹„ ì´ë¯¸ì§€ì™€ ë ˆë²¨ í…ìŠ¤íŠ¸ ì˜¤ë¸Œì íŠ¸ ë¹„í™œì„±í™”
         for (int i = 0; i < rowCount; i++)
         {
             equipImages[i].gameObject.SetActive(false);

@@ -9,7 +9,7 @@ public class BulletData : DataGuide
     [TextArea]
     public string firstDesc;
 
-    [Header("# ±âº» ½ºÅÈ")]
+    [Header("# ê¸°ë³¸ ìŠ¤íƒ¯")]
     public float baseDamage;
     public float baseDamageInterval = 2f;
     public int baseCount;
@@ -18,26 +18,26 @@ public class BulletData : DataGuide
     public float baseSpeed;
     public float baseRange;
     public float baseRotationSpeed;
-    [Header("# ScaleÀº Prefab¿¡¼­ º¯°æ!")]
+    [Header("# Scaleì€ Prefabì—ì„œ ë³€ê²½!")]
     public Vector3 baseScale;
 
-    [Header("# ·¹º§º° ½ºÅÈ")]
+    [Header("# ë ˆë²¨ë³„ ìŠ¤íƒ¯")]
 
-    [Header("µ¥¹ÌÁö")]
-    public int[] damages; // µ¥¹ÌÁö
-    [Header("°³¼ö")]
-    public int[] counts; // °³¼ö
-    [Header("°üÅë·Â")]
-    public int[] pers; // °üÅë·Â    
+    [Header("ë°ë¯¸ì§€")]
+    public int[] damages; // ë°ë¯¸ì§€
+    [Header("ê°œìˆ˜")]
+    public int[] counts; // ê°œìˆ˜
+    [Header("ê´€í†µë ¥")]
+    public int[] pers; // ê´€í†µë ¥    
 
-    [Header("Å©±â [10 = 10%]")]
+    [Header("í¬ê¸° [10 = 10%]")]
     public int[] sizes;
 
-    [Header("¹«±â °ü·Ã")]
+    [Header("ë¬´ê¸° ê´€ë ¨")]
     public GameObject prefab;
     public GameObject weaponType;
 
-    // ¿¡µğÅÍ¿¡¼­ °ªÀÌ º¯°æµÉ ¶§ ÀÚµ¿À¸·Î È£Ãâ
+    // ì—ë””í„°ì—ì„œ ê°’ì´ ë³€ê²½ë  ë•Œ ìë™ìœ¼ë¡œ í˜¸ì¶œ
     protected override void OnValidate()
     {
         maxLevel = damages.Length + counts.Length + pers.Length + sizes.Length + 1;
@@ -48,7 +48,7 @@ public class BulletData : DataGuide
 
     public override void InitializeItemSetting(ItemSetting itemSetting)
     {
-        // ¹«±â¿Í ±â¾îÀÇ µ¥ÀÌÅÍ ¼¼ÆÃ (±æÀÌ°¡ 0 ÀÌ»óÀÎ °æ¿ì¸¸ Ãß°¡)
+        // ë¬´ê¸°ì™€ ê¸°ì–´ì˜ ë°ì´í„° ì„¸íŒ… (ê¸¸ì´ê°€ 0 ì´ìƒì¸ ê²½ìš°ë§Œ ì¶”ê°€)
         if (damages.Length > 0)
         {
             itemSetting.statusRateList.Add(new S_int { values = damages });
@@ -70,7 +70,7 @@ public class BulletData : DataGuide
             itemSetting.rateIdx.Add(3);
         }
 
-        // ÃÖ´ë ÀÎµ¦½º ±¸ÇÏ±â
+        // ìµœëŒ€ ì¸ë±ìŠ¤ êµ¬í•˜ê¸°
         foreach (var item in itemSetting.statusRateList)
             itemSetting.maxmumInsideIdx = Mathf.Max(itemSetting.maxmumInsideIdx, item.values.Length);
     }
@@ -79,19 +79,19 @@ public class BulletData : DataGuide
     {
         if (itemSetting.TextLevel != null)
         {
-            itemSetting.TextLevel.text = "Lv." + (itemSetting.level + 1); // ·¹º§ Ç¥±â
+            itemSetting.TextLevel.text = "Lv." + (itemSetting.level + 1); // ë ˆë²¨ í‘œê¸°
         }
 
         if (itemSetting.level == 0)
         {
             itemSetting.NewIcon.gameObject.SetActive(true);
-            itemSetting.TextDesc.text = "<color=#99FF8A>»õ·Î¿î ¹«±â!</color>\n\n<size=90%>" + firstDesc + "</size>";
+            itemSetting.TextDesc.text = "<color=#99FF8A>ìƒˆë¡œìš´ ë¬´ê¸°!</color>\n\n<size=90%>" + firstDesc + "</size>";
         }
         else
         {
             itemSetting.NewIcon.gameObject.SetActive(false);
 
-            // ºñ¾îÀÖ´Â ¹è¿­À» °Ç³Ê¶Ù±â À§ÇØ Áõ°¡
+            // ë¹„ì–´ìˆëŠ” ë°°ì—´ì„ ê±´ë„ˆë›°ê¸° ìœ„í•´ ì¦ê°€
             while (itemSetting.outsideRateIdx < itemSetting.statusRateList.Count &&
                    itemSetting.statusRateList[itemSetting.outsideRateIdx].values.Length == 0)
             {
@@ -101,7 +101,7 @@ public class BulletData : DataGuide
             if (itemSetting.outsideRateIdx < itemSetting.statusRateList.Count)
             {
                 itemSetting.increaseRate = itemSetting.statusRateList[itemSetting.outsideRateIdx].values[itemSetting.insideRateIdx];
-                itemSetting.TextDesc.text = string.Format(itemDesc[itemSetting.outsideRateIdx], itemSetting.increaseRate); // ¹«±â ¼³¸í±Û
+                itemSetting.TextDesc.text = string.Format(itemDesc[itemSetting.outsideRateIdx], itemSetting.increaseRate); // ë¬´ê¸° ì„¤ëª…ê¸€
             }
         }
     }
@@ -110,7 +110,7 @@ public class BulletData : DataGuide
     {
         if (itemSetting.level == 0)
         {
-            // »õ·Î¿î ¹«±â °´Ã¼¸¦ »ı¼º
+            // ìƒˆë¡œìš´ ë¬´ê¸° ê°ì²´ë¥¼ ìƒì„±
             GameObject newWeapon = Instantiate(weaponType);
             itemSetting.weapon = newWeapon.GetComponent<Weapon>();
             itemSetting.weapon.Init(this);
@@ -118,12 +118,12 @@ public class BulletData : DataGuide
         }
         else
         {
-            // ±âÁ¸ ¹«±âÀÇ ·¹º§À» ¿Ã¸²
+            // ê¸°ì¡´ ë¬´ê¸°ì˜ ë ˆë²¨ì„ ì˜¬ë¦¼
             itemSetting.weapon.WeaponLevelUp(itemSetting.increaseRate, itemSetting.rateIdx[itemSetting.outsideRateIdx], itemSetting.level);
 
-            itemSetting.outsideRateIdx++; // ´ÙÀ½ Àû¿ëÇÒ ÀÎµ¦½º¸¦ Áõ°¡½ÃÅ´
+            itemSetting.outsideRateIdx++; // ë‹¤ìŒ ì ìš©í•  ì¸ë±ìŠ¤ë¥¼ ì¦ê°€ì‹œí‚´
 
-            // ÀÎµ¦½º °ªÀÌ ¼³Á¤ ¹üÀ§¸¦ ³Ñ¾î°¡´Â °æ¿ì °è¼Ó Á¶Á¤ÇØÁÖ´Â ·ÎÁ÷
+            // ì¸ë±ìŠ¤ ê°’ì´ ì„¤ì • ë²”ìœ„ë¥¼ ë„˜ì–´ê°€ëŠ” ê²½ìš° ê³„ì† ì¡°ì •í•´ì£¼ëŠ” ë¡œì§
             while (itemSetting.outsideRateIdx >= itemDesc.Length ||
                    itemSetting.insideRateIdx >= itemSetting.statusRateList[itemSetting.outsideRateIdx].values.Length)
             {

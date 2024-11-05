@@ -10,17 +10,17 @@ public class G0_WeaponSpeed : Gear
         ApplyToAllWeapons(); 
     }
 
-    // ÀÌµ¿¼Óµµ Áõ°¡ ±â¾î
+    // ì´ë™ì†ë„ ì¦ê°€ ê¸°ì–´
     protected override void ApplyGearToWeapon(Weapon weapon)
     {
         weapon.weaponSpeed = weapon.data.baseSpeed / gm.playerData.atkSpeedMult;
         weapon.damageInterval = weapon.data.baseDamageInterval / gm.playerData.atkSpeedMult;
 
-        // È¸Àü ¹«±â´Â dealy(È¸Àü¼Óµµ) Áõ°¡½ÃÅ°±â
+        // íšŒì „ ë¬´ê¸°ëŠ” dealy(íšŒì „ì†ë„) ì¦ê°€ì‹œí‚¤ê¸°
         if (weapon is IRotatingable rotatingableWeapon)
         {
             weapon.bulletDelay = weapon.data.baseDelay * gm.playerData.atkSpeedMult;
         }
-        Debug.Log($"{name}ÇöÀç ¹èÀ²: {gm.playerData.atkSpeedMult}¹è");
+        Debug.Log($"{name}í˜„ì¬ ë°°ìœ¨: {gm.playerData.atkSpeedMult}ë°°");
     }
 }

@@ -27,15 +27,15 @@ public class Box : MonoBehaviour
         if (collision.CompareTag("Bullet"))
         {
             health -= 1;
-            anim.SetTrigger("Hit"); // ¸Â´Â ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı                                    
-            MasterAudio.PlaySound("Hit"); // »ç¿îµå Àç»ı
+            anim.SetTrigger("Hit"); // ë§ëŠ” ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒ                                    
+            MasterAudio.PlaySound("Hit"); // ì‚¬ìš´ë“œ ì¬ìƒ
 
-            if (health <= 0) // Ã¼·Â 0 ÀÌÇÏ »ç¸Á
+            if (health <= 0) // ì²´ë ¥ 0 ì´í•˜ ì‚¬ë§
             {
                 PoolObjectType ptype = (Random.Range(0, 10) >= 9) ? PoolObjectType.Magnet : PoolObjectType.Heal;                
-                GameObject itemObj = GameManager.instance.poolManager.Get(ptype); // ¾ÆÀÌÅÛ µå¶ø½ÃÅ°±â
+                GameObject itemObj = GameManager.instance.poolManager.Get(ptype); // ì•„ì´í…œ ë“œëì‹œí‚¤ê¸°
                 itemObj.transform.position = transform.position;
-                coll.enabled = false; // Äİ¶óÀÌ´õ ²ô±â
+                coll.enabled = false; // ì½œë¼ì´ë” ë„ê¸°
 
                 anim.SetBool("Dead", true);
 

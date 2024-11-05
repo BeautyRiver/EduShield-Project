@@ -7,17 +7,17 @@ public class AchiveManager : MonoBehaviour
 {
     public GameObject[] lockCharacter;
     public GameObject[] unlockCharacter;
-    public GameObject uiNotice; // ¾È³» ¸Ş½ÃÁö
+    public GameObject uiNotice; // ì•ˆë‚´ ë©”ì‹œì§€
     
-    private enum Achive { UnlockChar1, UnlockChar2 } // ¾÷Àû
+    private enum Achive { UnlockChar1, UnlockChar2 } // ì—…ì 
     private Achive[] achives;
 
-    private WaitForSecondsRealtime wait; // time.scale¿¡ ¿µÇâ ¾È¹Ş°Ô
+    private WaitForSecondsRealtime wait; // time.scaleì— ì˜í–¥ ì•ˆë°›ê²Œ
     private void Awake()
     {
         achives = (Achive[])Enum.GetValues(typeof(Achive));
         wait = new WaitForSecondsRealtime(5);
-        // MyData µ¥ÀÌÅÍ°¡ ¾ø´Ù¸é ÃÊ±âÈ­ ½ÃÀÛ
+        // MyData ë°ì´í„°ê°€ ì—†ë‹¤ë©´ ì´ˆê¸°í™” ì‹œì‘
         if (!PlayerPrefs.HasKey("MyData"))
         {
             Init();
@@ -85,7 +85,7 @@ public class AchiveManager : MonoBehaviour
     IEnumerator NoticeRoutine()
     {
         uiNotice.SetActive(true);
-        //AudioManager.instance.PlaySfx(AudioManager.Sfx.LevelUp); // À½ÇâÀç»ı
+        //AudioManager.instance.PlaySfx(AudioManager.Sfx.LevelUp); // ìŒí–¥ì¬ìƒ
 
         yield return wait;
 

@@ -31,7 +31,7 @@ public class SelectorController : MonoBehaviour
             itemRects[i] = itemFilter[i].GetComponentInChildren<RectTransform>();
         }
 
-        // À§Ä¡ Ã³À½ ¾ÆÀÌÅÛÀ¸·Î ÃÊ±âÈ­
+        // ìœ„ì¹˜ ì²˜ìŒ ì•„ì´í…œìœ¼ë¡œ ì´ˆê¸°í™”
         index = 0;
         myRect.anchoredPosition = initPos;        
         Debug.Log("Set Pos " + itemRects[0].name);
@@ -43,9 +43,9 @@ public class SelectorController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log($"{index}¹øÂ° ¹öÆ° ½ÇÇà");
+                Debug.Log($"{index}ë²ˆì§¸ ë²„íŠ¼ ì‹¤í–‰");
                 var button = itemRects[index].gameObject.GetComponent<Button>();
-                // ¹öÆ°À» ¼±ÅÃ »óÅÂ·Î ¸¸µé¾î¼­ Highlighted Color Àû¿ë
+                // ë²„íŠ¼ì„ ì„ íƒ ìƒíƒœë¡œ ë§Œë“¤ì–´ì„œ Highlighted Color ì ìš©
                 button.Select();
                 button.onClick.Invoke();
             }

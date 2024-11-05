@@ -66,14 +66,14 @@ public class LoadingSceneController : MonoBehaviour
 
     /*private void MoveImageAlongProgressBar()
     {
-        // ÀÌµ¿ÇÒ À§Ä¡ÀÇ ¹üÀ§: -825¿¡¼­ 825±îÁö
+        // ì´ë™í•  ìœ„ì¹˜ì˜ ë²”ìœ„: -825ì—ì„œ 825ê¹Œì§€
         float minPosition = -825f;
         float maxPosition = 825f;
 
-        // fillAmount(0¿¡¼­ 1 »çÀÌÀÇ °ª)¸¦ ¹üÀ§¿¡ ¸ÂÃç º¯È¯
+        // fillAmount(0ì—ì„œ 1 ì‚¬ì´ì˜ ê°’)ë¥¼ ë²”ìœ„ì— ë§ì¶° ë³€í™˜
         float newX = Mathf.Lerp(minPosition, maxPosition, progressBar.fillAmount);
 
-        // ÀÌ¹ÌÁöÀÇ À§Ä¡¸¦ °»½Å (x°ª¸¸ º¯°æ)
+        // ì´ë¯¸ì§€ì˜ ìœ„ì¹˜ë¥¼ ê°±ì‹  (xê°’ë§Œ ë³€ê²½)
         Vector2 newPos = movingImage.rectTransform.anchoredPosition;
         newPos.x = newX;
 

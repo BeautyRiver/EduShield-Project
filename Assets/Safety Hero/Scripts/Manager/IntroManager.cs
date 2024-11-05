@@ -4,37 +4,37 @@ using TMPro;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
-using DarkTonic.MasterAudio;  // DOTween ³×ÀÓ½ºÆäÀÌ½º Ãß°¡
+using DarkTonic.MasterAudio;  // DOTween ë„¤ì„ìŠ¤í˜ì´ìŠ¤ ì¶”ê°€
 
 public class IntroManager : MonoBehaviour
 {
-    // ÅØ½ºÆ® °ü·Ã º¯¼öµé
-    [Header("ÅØ½ºÆ® ¼³Á¤")]
-    [SerializeField] private TextMeshProUGUI scriptText;  // TextMeshProUGUI ÄÄÆ÷³ÍÆ®
+    // í…ìŠ¤íŠ¸ ê´€ë ¨ ë³€ìˆ˜ë“¤
+    [Header("í…ìŠ¤íŠ¸ ì„¤ì •")]
+    [SerializeField] private TextMeshProUGUI scriptText;  // TextMeshProUGUI ì»´í¬ë„ŒíŠ¸
     [SerializeField] private RectTransform sciprtBar; // ScriptBar Transform
     [SerializeField] private Animator announcerAnim;
     [TextArea]
-    [SerializeField] private string[] scripts;  // Ãâ·ÂÇÒ ÅØ½ºÆ® ¹è¿­
-    [SerializeField] private float typingSpeed = 0.05f;  // ÅØ½ºÆ® Å¸ÀÌÇÎ ¼Óµµ
-    [SerializeField] private int currentScriptIndex = 0;  // ÇöÀç Ãâ·Â ÁßÀÎ ÅØ½ºÆ®ÀÇ ÀÎµ¦½º
-    private bool isTextComplete = false;  // ÇöÀç ÅØ½ºÆ®°¡ ¸ğµÎ Ãâ·ÂµÇ¾ú´ÂÁö ¿©ºÎ
-    private bool isScriptEnd = false; // Á¦°øµÈ ½ºÅ©¸³Æ® Á¾·á ¿©ºÎ
-    private Tweener typingTween;  // DOTween ¾Ö´Ï¸ŞÀÌ¼Ç ÀúÀå º¯¼ö
+    [SerializeField] private string[] scripts;  // ì¶œë ¥í•  í…ìŠ¤íŠ¸ ë°°ì—´
+    [SerializeField] private float typingSpeed = 0.05f;  // í…ìŠ¤íŠ¸ íƒ€ì´í•‘ ì†ë„
+    [SerializeField] private int currentScriptIndex = 0;  // í˜„ì¬ ì¶œë ¥ ì¤‘ì¸ í…ìŠ¤íŠ¸ì˜ ì¸ë±ìŠ¤
+    private bool isTextComplete = false;  // í˜„ì¬ í…ìŠ¤íŠ¸ê°€ ëª¨ë‘ ì¶œë ¥ë˜ì—ˆëŠ”ì§€ ì—¬ë¶€
+    private bool isScriptEnd = false; // ì œê³µëœ ìŠ¤í¬ë¦½íŠ¸ ì¢…ë£Œ ì—¬ë¶€
+    private Tweener typingTween;  // DOTween ì• ë‹ˆë©”ì´ì…˜ ì €ì¥ ë³€ìˆ˜
     private bool isTextSkipOk;
 
-    // Å¸ÀÚ ¼Ò¸® °ü·Ã º¯¼öµé
-    [Header("Å¸ÀÚ ¼Ò¸® ¼³Á¤")]
-    private float typeSoundInterval = 0.1f;  // Å¸ÀÚ±â ¼Ò¸® °£°İ
-    private float timeSinceLastTypeSound = 0f;  // ¸¶Áö¸· Å¸ÀÚ±â ¼Ò¸®°¡ ³­ ÈÄ °æ°ú ½Ã°£
+    // íƒ€ì ì†Œë¦¬ ê´€ë ¨ ë³€ìˆ˜ë“¤
+    [Header("íƒ€ì ì†Œë¦¬ ì„¤ì •")]
+    private float typeSoundInterval = 0.1f;  // íƒ€ìê¸° ì†Œë¦¬ ê°„ê²©
+    private float timeSinceLastTypeSound = 0f;  // ë§ˆì§€ë§‰ íƒ€ìê¸° ì†Œë¦¬ê°€ ë‚œ í›„ ê²½ê³¼ ì‹œê°„
 
-    // UI °ü·Ã º¯¼öµé
-    [Header("UI ¼³Á¤")]
-    [SerializeField] private Image fadeImage; // ÆäÀÌµå¿ë ÀÌ¹ÌÁö
-    [SerializeField] private GameObject skipOption; // ½ºÅµ ¿É¼Ç UI
-    [SerializeField] private GameObject scriptArrow; // ScriptBar¿¡ À§Ä¡ÇÑ È­»ìÇ¥ 
-    [SerializeField] private Image newsImage; // ´º½º ÀÌ¹ÌÁö
-    [SerializeField] private Sprite heroImage; // È÷¾î·Î ÀÌ¹ÌÁö
-    [SerializeField] private Sprite[] newsImages; // ´º½º ÀÌ¹ÌÁö¿¡ »ç¿ëÇÒ ÀÌ¹ÌÁöµé
+    // UI ê´€ë ¨ ë³€ìˆ˜ë“¤
+    [Header("UI ì„¤ì •")]
+    [SerializeField] private Image fadeImage; // í˜ì´ë“œìš© ì´ë¯¸ì§€
+    [SerializeField] private GameObject skipOption; // ìŠ¤í‚µ ì˜µì…˜ UI
+    [SerializeField] private GameObject scriptArrow; // ScriptBarì— ìœ„ì¹˜í•œ í™”ì‚´í‘œ 
+    [SerializeField] private Image newsImage; // ë‰´ìŠ¤ ì´ë¯¸ì§€
+    [SerializeField] private Sprite heroImage; // íˆì–´ë¡œ ì´ë¯¸ì§€
+    [SerializeField] private Sprite[] newsImages; // ë‰´ìŠ¤ ì´ë¯¸ì§€ì— ì‚¬ìš©í•  ì´ë¯¸ì§€ë“¤
 
     private void Awake()
     {
@@ -53,15 +53,15 @@ public class IntroManager : MonoBehaviour
 
     private void Update()
     {
-        // ½ºÆäÀÌ½º¹Ù¸¦ ´­·¶À» ¶§
+        // ìŠ¤í˜ì´ìŠ¤ë°”ë¥¼ ëˆŒë €ì„ ë•Œ
         if (Input.GetKeyDown(KeyCode.Space) && !isScriptEnd && isTextSkipOk)
         {
-            // Å¸ÀÌÇÎ ÁßÀÎ ÅØ½ºÆ®°¡ ÀÖÀ¸¸é Áï½Ã ¿Ï·á
+            // íƒ€ì´í•‘ ì¤‘ì¸ í…ìŠ¤íŠ¸ê°€ ìˆìœ¼ë©´ ì¦‰ì‹œ ì™„ë£Œ
             if (typingTween != null && typingTween.IsPlaying())
             {
-                typingTween.Complete();  // ÅØ½ºÆ® Å¸ÀÌÇÎ Áï½Ã ¿Ï·á
+                typingTween.Complete();  // í…ìŠ¤íŠ¸ íƒ€ì´í•‘ ì¦‰ì‹œ ì™„ë£Œ
             }
-            // ÅØ½ºÆ®°¡ ÀÌ¹Ì ´Ù Ãâ·ÂµÇ¾úÀ¸¸é ´ÙÀ½ ÅØ½ºÆ® Ãâ·Â
+            // í…ìŠ¤íŠ¸ê°€ ì´ë¯¸ ë‹¤ ì¶œë ¥ë˜ì—ˆìœ¼ë©´ ë‹¤ìŒ í…ìŠ¤íŠ¸ ì¶œë ¥
             else if (isTextComplete)
             {
                 MasterAudio.PlaySound("NextChat");
@@ -76,7 +76,7 @@ public class IntroManager : MonoBehaviour
             skipOption.SetActive(true);
         }
     }
-    // ´ÙÀ½ ½ºÅ©¸³Æ®¸¦ Ãâ·ÂÇÏ´Â ÇÔ¼ö
+    // ë‹¤ìŒ ìŠ¤í¬ë¦½íŠ¸ë¥¼ ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜
     private void DisplayNextScript()
     {
         if (currentScriptIndex >= scripts.Length)
@@ -93,10 +93,10 @@ public class IntroManager : MonoBehaviour
         {
             announcerAnim.SetBool("isTalk", true);
 
-            isTextComplete = false;  // »õ·Î¿î ÅØ½ºÆ® Ãâ·ÂÀÌ ½ÃÀÛµÇ¾úÀ¸¹Ç·Î ¿Ï·á »óÅÂ¸¦ false·Î ¼³Á¤
-            scriptText.text = "";  // ÅØ½ºÆ® ÃÊ±âÈ­
+            isTextComplete = false;  // ìƒˆë¡œìš´ í…ìŠ¤íŠ¸ ì¶œë ¥ì´ ì‹œì‘ë˜ì—ˆìœ¼ë¯€ë¡œ ì™„ë£Œ ìƒíƒœë¥¼ falseë¡œ ì„¤ì •
+            scriptText.text = "";  // í…ìŠ¤íŠ¸ ì´ˆê¸°í™”
 
-            // DOText¸¦ ÀÌ¿ëÇÏ¿© ÅØ½ºÆ® Å¸ÀÌÇÎ È¿°ú ½ÃÀÛ
+            // DOTextë¥¼ ì´ìš©í•˜ì—¬ í…ìŠ¤íŠ¸ íƒ€ì´í•‘ íš¨ê³¼ ì‹œì‘
             typingTween = scriptText.DOText(scripts[currentScriptIndex], typingSpeed * scripts[currentScriptIndex].Length)
                 .SetEase(Ease.Linear)
                 .OnUpdate(() => PlayTypingSound())
@@ -104,9 +104,9 @@ public class IntroManager : MonoBehaviour
                 {
                     isTextComplete = true;
                     announcerAnim.SetBool("isTalk", false);
-                });  // ÅØ½ºÆ®°¡ ´Ù Ãâ·ÂµÇ¸é isTextComplete¸¦ true·Î ¼³Á¤
+                });  // í…ìŠ¤íŠ¸ê°€ ë‹¤ ì¶œë ¥ë˜ë©´ isTextCompleteë¥¼ trueë¡œ ì„¤ì •
 
-            currentScriptIndex++;  // ´ÙÀ½ ÅØ½ºÆ®·Î ÀÌµ¿
+            currentScriptIndex++;  // ë‹¤ìŒ í…ìŠ¤íŠ¸ë¡œ ì´ë™
 
             if (currentScriptIndex == 2)
             {
@@ -116,7 +116,7 @@ public class IntroManager : MonoBehaviour
             }
             if (currentScriptIndex == 5)
             {
-                // ¼¼ÀÌÇÁÆ¼ È÷¾î·Î µîÀå
+                // ì„¸ì´í”„í‹° íˆì–´ë¡œ ë“±ì¥
                 isTextSkipOk = false;
                 scriptArrow.SetActive(false);
                 StartCoroutine(ChangeHeroImage());
@@ -154,14 +154,14 @@ public class IntroManager : MonoBehaviour
         isTextSkipOk = true;
     }
 
-    // Å¸ÀÌÇÎ Áß ÀÏÁ¤ °£°İ¸¶´Ù Å¸ÀÚ±â ¼Ò¸®¸¦ Àç»ıÇÏ´Â ÇÔ¼ö
+    // íƒ€ì´í•‘ ì¤‘ ì¼ì • ê°„ê²©ë§ˆë‹¤ íƒ€ìê¸° ì†Œë¦¬ë¥¼ ì¬ìƒí•˜ëŠ” í•¨ìˆ˜
     private void PlayTypingSound()
     {
-        // ÀÏÁ¤ ½Ã°£ÀÌ Áö³­ ÈÄ¿¡¸¸ Å¸ÀÚ±â ¼Ò¸® Àç»ı
+        // ì¼ì • ì‹œê°„ì´ ì§€ë‚œ í›„ì—ë§Œ íƒ€ìê¸° ì†Œë¦¬ ì¬ìƒ
         if (Time.time - timeSinceLastTypeSound >= typeSoundInterval)
         {
-            MasterAudio.PlaySound("ChatSound");  // Å¸ÀÚ±â ¼Ò¸® Àç»ı
-            timeSinceLastTypeSound = Time.time;  // ¸¶Áö¸· ¼Ò¸® Àç»ı ½Ã°£ ¾÷µ¥ÀÌÆ®
+            MasterAudio.PlaySound("ChatSound");  // íƒ€ìê¸° ì†Œë¦¬ ì¬ìƒ
+            timeSinceLastTypeSound = Time.time;  // ë§ˆì§€ë§‰ ì†Œë¦¬ ì¬ìƒ ì‹œê°„ ì—…ë°ì´íŠ¸
         }
     }
     public void Skip()

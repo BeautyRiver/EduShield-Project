@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
-using DarkTonic.MasterAudio;  // Master Audio ³×ÀÓ½ºÆäÀÌ½º
+using DarkTonic.MasterAudio;  // Master Audio ë„¤ì„ìŠ¤í˜ì´ìŠ¤
 
 public class VolumeController : MonoBehaviour
 {
-    public Slider bgmSlider;  // BGM Á¶Àı¿ë ½½¶óÀÌ´õ
-    public Slider sfxSlider;  // SFX Á¶Àı¿ë ½½¶óÀÌ´õ
+    public Slider bgmSlider;  // BGM ì¡°ì ˆìš© ìŠ¬ë¼ì´ë”
+    public Slider sfxSlider;  // SFX ì¡°ì ˆìš© ìŠ¬ë¼ì´ë”
 
     private void Awake()
     {
@@ -15,40 +15,40 @@ public class VolumeController : MonoBehaviour
     }
     void Start()
     {
-        // ÀúÀåµÈ º¼·ı °ª ºÒ·¯¿À±â, ¾øÀ¸¸é ±âº»°ª 0.5 »ç¿ë
+        // ì €ì¥ëœ ë³¼ë¥¨ ê°’ ë¶ˆëŸ¬ì˜¤ê¸°, ì—†ìœ¼ë©´ ê¸°ë³¸ê°’ 0.5 ì‚¬ìš©
         float savedBGMVolume = PlayerPrefs.GetFloat("BGM", 0.5f);
         float savedSFXVolume = PlayerPrefs.GetFloat("SFX", 0.5f);
-        // ½½¶óÀÌ´õ ÃÊ±âÈ­
-        bgmSlider.value = savedBGMVolume;  // BGM ÇöÀç º¼·ı¿¡ ¸Â°Ô ¼³Á¤
-        sfxSlider.value = savedSFXVolume;    // SFX ÇöÀç º¼·ı¿¡ ¸Â°Ô ¼³Á¤
+        // ìŠ¬ë¼ì´ë” ì´ˆê¸°í™”
+        bgmSlider.value = savedBGMVolume;  // BGM í˜„ì¬ ë³¼ë¥¨ì— ë§ê²Œ ì„¤ì •
+        sfxSlider.value = savedSFXVolume;    // SFX í˜„ì¬ ë³¼ë¥¨ì— ë§ê²Œ ì„¤ì •
 
-        // Master AudioÀÇ ÃÊ±â º¼·ı ¼³Á¤
+        // Master Audioì˜ ì´ˆê¸° ë³¼ë¥¨ ì„¤ì •
         MasterAudio.PlaylistMasterVolume = savedBGMVolume;
         MasterAudio.MasterVolumeLevel = savedSFXVolume;
 
-        // ½½¶óÀÌ´õ °ª º¯°æ ½Ã ÀÌº¥Æ® µî·Ï
+        // ìŠ¬ë¼ì´ë” ê°’ ë³€ê²½ ì‹œ ì´ë²¤íŠ¸ ë“±ë¡
         bgmSlider.onValueChanged.AddListener(OnBgmVolumeChanged);
         sfxSlider.onValueChanged.AddListener(OnSfxVolumeChanged);
     }
 
     void OnBgmVolumeChanged(float value)
     {
-        // ½½¶óÀÌ´õ °ª¿¡ µû¶ó BGM º¼·ı Á¶Àı
+        // ìŠ¬ë¼ì´ë” ê°’ì— ë”°ë¼ BGM ë³¼ë¥¨ ì¡°ì ˆ
         MasterAudio.PlaylistMasterVolume = value;
         PlayerPrefs.SetFloat("BGM", value);
     }
 
     void OnSfxVolumeChanged(float value)
     {
-        // ½½¶óÀÌ´õ °ª¿¡ µû¶ó SFX º¼·ı Á¶Àı
+        // ìŠ¬ë¼ì´ë” ê°’ì— ë”°ë¼ SFX ë³¼ë¥¨ ì¡°ì ˆ
         MasterAudio.MasterVolumeLevel = value;
         PlayerPrefs.SetFloat("SFX", value);
     }
 
-    // °ÔÀÓÀÌ Á¾·áµÇ°Å³ª ¾ÀÀÌ º¯°æµÇ´õ¶óµµ ÀúÀå
+    // ê²Œì„ì´ ì¢…ë£Œë˜ê±°ë‚˜ ì”¬ì´ ë³€ê²½ë˜ë”ë¼ë„ ì €ì¥
     private void OnApplicationQuit()
     {
-        PlayerPrefs.Save();  // ÀúÀåµÈ °ªÀ» µğ½ºÅ©¿¡ ±â·Ï
+        PlayerPrefs.Save();  // ì €ì¥ëœ ê°’ì„ ë””ìŠ¤í¬ì— ê¸°ë¡
     }
 
     public void OptionEnable(bool enable)

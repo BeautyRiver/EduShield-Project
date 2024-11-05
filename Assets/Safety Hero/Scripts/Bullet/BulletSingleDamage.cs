@@ -6,19 +6,12 @@ public class BulletSingleDamage : Bullet
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("trigger에 들어는 왔음");
-        if (collision is IDamageable damageable)
+        var damageAble = collision.GetComponent<IDamageable>();
+        if (damageAble != null)
         {
             Debug.Log($"Damaged to {collision.name}, Damage: {Damage}");
-            damageable.DamagedLogic(bulletCol, Damage);
+            damageAble.DamagedLogic(bulletCol, Damage);
             PerDown();
         }
-    }
-    /*private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (!collision.CompareTag("Area") || Per == -100)
-            return;
-
-        gameObject.SetActive(false);
-    }*/
+    }    
 }

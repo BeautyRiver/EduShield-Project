@@ -13,10 +13,10 @@ public class G1_Speed : Gear
     protected void PlayerSpeedUp()
     {
         gm.player.speed = gm.player.baseSpeed * gm.playerData.speedMult;
-        Debug.Log($"{name}ÇöÀç ¹èÀ²: {gm.playerData.speedMult}¹è");
+        Debug.Log($"{name}í˜„ì¬ ë°°ìœ¨: {gm.playerData.speedMult}ë°°");
     }
 
-    // Player Speed ±â¾î´Â Weapon¿¡ Àû¿ë ¾ÈÇÏ¹Ç·Î »ç¿ë X 
+    // Player Speed ê¸°ì–´ëŠ” Weaponì— ì ìš© ì•ˆí•˜ë¯€ë¡œ ì‚¬ìš© X 
     protected override void ApplyGearToWeapon(Weapon weapon)
     {
         

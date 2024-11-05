@@ -30,7 +30,7 @@ public class Exp : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-            MasterAudio.PlaySound("Coin"); // »ç¿îµå
+            MasterAudio.PlaySound("Coin"); // Coin ì‚¬ìš´ë“œ ì¬ìƒ
             GameManager.instance.GetExp(exp);
             isMoving = false;
             gameObject.SetActive(false);

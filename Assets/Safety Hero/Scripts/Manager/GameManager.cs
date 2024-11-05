@@ -9,29 +9,29 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [Header("# °ÔÀÓ ÄÁÆ®·Ñ")]
-    public float gameTime; // ÇöÀç °ÔÀÓ ½Ã°£
-    public float maxGameTime = 2 * 10f; // ÃÖ´ë °ÔÀÓ ½Ã°£
-    public bool isGameActive; // °ÔÀÓ ÁøÇà ¿©ºÎ
-    public bool isGameRealEnd; // °ÔÀÓ ÁøÂ¥ ³¡³µ´ÂÁö ¿©ºÎ
-    public int weaponCount = 0;  // È¹µæÇÑ ¹«±â °³¼ö
-    public int gearCount = 0;    // È¹µæÇÑ ±â¾î °³¼ö
-    public int maxItemCount = 1; // ÃÖ´ë ÀåÂø °¡´ÉÇÑ ¹«±â/±â¾î °³¼ö
-    public float nowTimeScale = 1f; // ÇöÀç Å¸ÀÓ ½ºÄÉÀÏ
-    public float dieMsgDelay; // Á×´Â ¸Ş½ÃÁö ³ª¿Ã ÅÒ
-    public int selectStageIdx; // ÇöÀç ¼±ÅÃµÈ ½ºÅ×ÀÌÁö
-    private bool isGamestart; // °ÔÀÓ ½ÃÀÛµÈ »óÅÂÀÎÁö(Ai ¸Ş½ÃÁö ÀçÈ°¿ë ¶§¹®)
-    public int[] nextExp = { 3, 5, 10, 100, 150, 210, 280, 360, 450, 600 }; // ´ÙÀ½ ·¹º§¾÷¿¡ ÇÊ¿äÇÑ °æÇèÄ¡
+    [Header("# ê²Œì„ ì»¨íŠ¸ë¡¤")]
+    public float gameTime; // í˜„ì¬ ê²Œì„ ì‹œê°„
+    public float maxGameTime = 2 * 10f; // ìµœëŒ€ ê²Œì„ ì‹œê°„
+    public bool isGameActive; // ê²Œì„ ì§„í–‰ ì—¬ë¶€
+    public bool isGameRealEnd; // ê²Œì„ ì§„ì§œ ëë‚¬ëŠ”ì§€ ì—¬ë¶€
+    public int weaponCount = 0;  // íšë“í•œ ë¬´ê¸° ê°œìˆ˜
+    public int gearCount = 0;    // íšë“í•œ ê¸°ì–´ ê°œìˆ˜
+    public int maxItemCount = 1; // ìµœëŒ€ ì¥ì°© ê°€ëŠ¥í•œ ë¬´ê¸°/ê¸°ì–´ ê°œìˆ˜
+    public float nowTimeScale = 1f; // í˜„ì¬ íƒ€ì„ ìŠ¤ì¼€ì¼
+    public float dieMsgDelay; // ì£½ëŠ” ë©”ì‹œì§€ ë‚˜ì˜¬ í…€
+    public int selectStageIdx; // í˜„ì¬ ì„ íƒëœ ìŠ¤í…Œì´ì§€
+    private bool isGamestart; // ê²Œì„ ì‹œì‘ëœ ìƒíƒœì¸ì§€(Ai ë©”ì‹œì§€ ì¬í™œìš© ë•Œë¬¸)
+    public int[] nextExp = { 3, 5, 10, 100, 150, 210, 280, 360, 450, 600 }; // ë‹¤ìŒ ë ˆë²¨ì—…ì— í•„ìš”í•œ ê²½í—˜ì¹˜
 
-    [Header("# ÇÃ·¹ÀÌ¾î Á¤º¸")]
-    public int playerId; // ÇÃ·¹ÀÌ¾î ID
-    public float health; // ÇöÀç Ã¼·Â
-    public float maxHealth = 100; // ÃÖ´ë Ã¼·Â
-    public int level; // ÇöÀç ·¹º§
-    public int kill; // Ã³Ä¡ÇÑ Àû ¼ö
-    public int exp; // ÇöÀç °æÇèÄ¡
+    [Header("# í”Œë ˆì´ì–´ ì •ë³´")]
+    public int playerId; // í”Œë ˆì´ì–´ ID
+    public float health; // í˜„ì¬ ì²´ë ¥
+    public float maxHealth = 100; // ìµœëŒ€ ì²´ë ¥
+    public int level; // í˜„ì¬ ë ˆë²¨
+    public int kill; // ì²˜ì¹˜í•œ ì  ìˆ˜
+    public int exp; // í˜„ì¬ ê²½í—˜ì¹˜
  
-    [Header("# ÂüÁ¶")]
+    [Header("# ì°¸ì¡°")]
     public AiManager ai;
     public EquipmentManager equipment;
     public TypeControlManager typeControll;
@@ -41,8 +41,8 @@ public class GameManager : MonoBehaviour
     public Player player;
     public Result result;
     
-    [field: SerializeField] public PlayerData playerData { get; private set; } // º¹»çº»
-    [SerializeField] private PlayerData orignalPlayerData; // ¿øº»
+    [field: SerializeField] public PlayerData playerData { get; private set; } // ë³µì‚¬ë³¸
+    [SerializeField] private PlayerData orignalPlayerData; // ì›ë³¸
     [SerializeField] private GameObject enemyCleaner;
 
     [SerializeField] private float[] aiMsgShowTime = { 1.5f, 3f, 4f };
@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        // ¿øº» ÈÑ¼Õ ¾È½ÃÅ°±â À§ÇÔ (µ¥ÀÌÅÍ º¹»ç)
+        // ì›ë³¸ í›¼ì† ì•ˆì‹œí‚¤ê¸° ìœ„í•¨ (ë°ì´í„° ë³µì‚¬)
         if (playerData == null)
             playerData = Instantiate(orignalPlayerData);
 
@@ -69,26 +69,26 @@ public class GameManager : MonoBehaviour
         if (!isGameActive || !isGamestart)
             return;        
 
-        // °ÔÀÓ ½Ã°£ °è»ê
+        // ê²Œì„ ì‹œê°„ ê³„ì‚°
         gameTime += Time.deltaTime;
         if (gameTime > maxGameTime)
         {
             gameTime = maxGameTime;
-            GameVictory(); // ÃÖ´ë ½Ã°£ µµ´Ş ½Ã ½Â¸® Ã³¸®
+            GameVictory(); // ìµœëŒ€ ì‹œê°„ ë„ë‹¬ ì‹œ ìŠ¹ë¦¬ ì²˜ë¦¬
         }
 
     }
-    // ÀÌÆåÆ® »ı¼º½ÃÅ°±â
+    // ì´í™íŠ¸ ìƒì„±ì‹œí‚¤ê¸°
     public void GenerateEffect(int index, Transform parentTransform, Color? setColor = null)
     {            
-        GameObject effect = poolManager.Get(PoolObjectType.EffectPlayer); // ÇÃ·¹ÀÌ¾î Èú ÀÌÆåÆ®
+        GameObject effect = poolManager.Get(PoolObjectType.EffectPlayer); // í”Œë ˆì´ì–´ í ì´í™íŠ¸
         effect.transform.parent = parentTransform;
         effect.transform.localPosition = Vector3.zero;
         if (setColor != null)
             effect.gameObject.GetComponent<SpriteRenderer>().color = setColor ?? Color.white;
     }
 
-    // Ai ¸Ş¼¼Áö ¶ç¾îÁÖ±â
+    // Ai ë©”ì„¸ì§€ ë„ì–´ì£¼ê¸°
     public IEnumerator AIMsgShowAndHide()
     {
         yield return new WaitForSeconds(aiMsgShowTime[0]);
@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
         if (!isGamestart)
         {
             isGamestart = true;
-            uiLevelUp.FirstGiveWeapon(playerData.characterId); // ÇÃ·¹ÀÌ¾î ±âº» ¹«±â ºÎ¿©
+            uiLevelUp.FirstGiveWeapon(playerData.characterId); // í”Œë ˆì´ì–´ ê¸°ë³¸ ë¬´ê¸° ë¶€ì—¬
             player.spawner.gameObject.SetActive(true);
         }
         yield return new WaitForSeconds(aiMsgShowTime[2]);
@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour
     {
         List<int> availableIndices = new List<int>();
 
-        // ÇöÀç ¼±ÅÃµÈ ½ºÅ×ÀÌÁö ÀÎµ¦½º¸¦ Á¦¿ÜÇÏ°í °¡´ÉÇÑ ÀÎµ¦½º¸¦ Ãß°¡
+        // í˜„ì¬ ì„ íƒëœ ìŠ¤í…Œì´ì§€ ì¸ë±ìŠ¤ë¥¼ ì œì™¸í•˜ê³  ê°€ëŠ¥í•œ ì¸ë±ìŠ¤ë¥¼ ì¶”ê°€
         for (int i = 0; i < ai.alertMessages.Length; i++)
         {
             if (i != selectStageIdx)
@@ -119,38 +119,38 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        // °¡´ÉÇÑ ÀÎµ¦½ºµé Áß ÇÏ³ª¸¦ ·£´ıÀ¸·Î ¼±ÅÃ
+        // ê°€ëŠ¥í•œ ì¸ë±ìŠ¤ë“¤ ì¤‘ í•˜ë‚˜ë¥¼ ëœë¤ìœ¼ë¡œ ì„ íƒ
         selectStageIdx = availableIndices[Random.Range(0, availableIndices.Count)];
 
-        yield break; // ÄÚ·çÆ¾À» ¹Ù·Î Á¾·á
+        yield break; // ì½”ë£¨í‹´ì„ ë°”ë¡œ ì¢…ë£Œ
     }
-    // °ÔÀÓ ½ÃÀÛ ¼³Á¤
+    // ê²Œì„ ì‹œì‘ ì„¤ì •
     public void GameStart(int playerId)
     {
         Resume();
 
-        // BGM,SFX ¼³Á¤
+        // BGM,SFX ì„¤ì •
         /*if (TitleManager.playlistController.CurrentPlaylist.playlistName != "Game Bgm")
             MasterAudio.ChangePlaylistByName("Game Bgm");
         else
             MasterAudio.StartPlaylist("Game Bgm");
         MasterAudio.PlaylistsMuted = false;
         */
-        this.playerId = playerId; // ÇÃ·¹ÀÌ¾î ¾ÆÀÌµğ ¼¼ÆÃ
-        health = maxHealth * playerData.maxHpMult; // ÇÃ·¹ÀÌ¾î Ã¼·Â ¼¼ÆÃ 
+        this.playerId = playerId; // í”Œë ˆì´ì–´ ì•„ì´ë”” ì„¸íŒ…
+        health = maxHealth * playerData.maxHpMult; // í”Œë ˆì´ì–´ ì²´ë ¥ ì„¸íŒ… 
 
-        player.PlayerInit(); // ÇÃ·¹ÀÌ¾î ÃÊ±âÈ­
+        player.PlayerInit(); // í”Œë ˆì´ì–´ ì´ˆê¸°í™”
         player.gameObject.SetActive(true);
 
     }
 
-    // °ÔÀÓ ¿À¹ö Ã³¸®
+    // ê²Œì„ ì˜¤ë²„ ì²˜ë¦¬
     public void GameOver()
     {
         StartCoroutine(GameOverRoutine());
     }
 
-    // °ÔÀÓ ¿À¹ö (ÄÚ·çÆ¾)
+    // ê²Œì„ ì˜¤ë²„ (ì½”ë£¨í‹´)
     private IEnumerator GameOverRoutine()
     {
         isGameActive = false;
@@ -160,17 +160,17 @@ public class GameManager : MonoBehaviour
         result.Lose();
         Stop();
 
-        MasterAudio.PlaylistsMuted = true; // ¹è°æÀ½¾Ç Á¾·á        
+        MasterAudio.PlaylistsMuted = true; // ë°°ê²½ìŒì•… ì¢…ë£Œ        
         MasterAudio.PlaySound("Lose");
     }
 
-    // °ÔÀÓ ½Â¸® Ã³¸®
+    // ê²Œì„ ìŠ¹ë¦¬ ì²˜ë¦¬
     public void GameVictory()
     {
         StartCoroutine(GameVictoryRoutine());
     }
 
-    // °ÔÀÓ ½Â¸® ·ÎÁ÷ (ÄÚ·çÆ¾)
+    // ê²Œì„ ìŠ¹ë¦¬ ë¡œì§ (ì½”ë£¨í‹´)
     private IEnumerator GameVictoryRoutine()
     {
         player.GetComponent<Animator>().SetFloat("Speed", 0f);
@@ -181,12 +181,12 @@ public class GameManager : MonoBehaviour
         result.Win();
         isGameActive = false;
 
-        MasterAudio.PlaylistsMuted = true; // ¹è°æÀ½¾Ç Á¾·á        
+        MasterAudio.PlaylistsMuted = true; // ë°°ê²½ìŒì•… ì¢…ë£Œ        
         MasterAudio.PlaySound("Win");
     }
 
 
-    // °æÇèÄ¡ È¹µæ ¹× ·¹º§¾÷ Ã³¸®
+    // ê²½í—˜ì¹˜ íšë“ ë° ë ˆë²¨ì—… ì²˜ë¦¬
     public void GetExp(int getExp)
     {
         if (isGameActive)
@@ -203,14 +203,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // °ÔÀÓ Á¤Áö
+    // ê²Œì„ ì •ì§€
     public void Stop()
     {
         isGameActive = false;
         Time.timeScale = 0;
     }
 
-    // °ÔÀÓ Àç°³
+    // ê²Œì„ ì¬ê°œ
     public void Resume()
     {
         isGameActive = true;

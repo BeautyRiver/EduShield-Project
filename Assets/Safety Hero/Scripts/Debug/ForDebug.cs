@@ -30,44 +30,42 @@ public class ForDebug : MonoBehaviour
             {
                 isInvinsible = true;
                 GameManager.instance.health = 99999999999;
-                debugText.text = "¹«Àû";
+                debugText.text = "ë¬´ì ëª¨ë“œ";
             }
             else
             {
                 isInvinsible = false;
                 GameManager.instance.health = 100;
-                debugText.text = "¹«Àû ÇØÁ¦";
+                debugText.text = "ë¬´ì  í•´ì œ";
             }
         }
         if (Input.GetKeyDown(KeyCode.F2))
         {
             GameManager.instance.player.speed += 1f;
-            debugText.text = "¼Óµµ Áõ°¡";
+            debugText.text = "ìŠ¤í”¼ë“œ ì¦ê°€ => " + GameManager.instance.player.speed;
         }
         if (Input.GetKeyDown(KeyCode.F3))
         {
             GameManager.instance.player.speed -= 1f;
-            debugText.text = "¼Óµµ °¨¼Ò";
+            debugText.text = "ìŠ¤í”¼ë“œ ê°ì†Œ => " + GameManager.instance.player.speed;
         }
         if (Input.GetKeyDown(KeyCode.F4))
         {
             //is2xSpeed = true;
             GameManager.instance.nowTimeScale += 0.5f;
             Time.timeScale = GameManager.instance.nowTimeScale;
-            debugText.text = $"+0.5¹è¼Ó / ÇöÀç TimeScale: {GameManager.instance.nowTimeScale}";
+            debugText.text = $"+0.5 ë°°ì† / Not TimeScale: {GameManager.instance.nowTimeScale}";
         }
         if (Input.GetKeyDown(KeyCode.F5))
         {
             GameManager.instance.nowTimeScale -= 0.5f;
             Time.timeScale = GameManager.instance.nowTimeScale;
-            debugText.text = $"-0.5¹è¼Ó / ÇöÀç TimeScale: {GameManager.instance.nowTimeScale}";
+            debugText.text = $"-0.5 ë°°ì† / Not TimeScale: {GameManager.instance.nowTimeScale}";
         }
-
-
-        // µğ¹ö±ë¿ë ·¹º§¾÷
+        // ë ˆë²¨ì—…
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameManager.instance.GetExp(GameManager.instance.nextExp[Mathf.Min(GameManager.instance.level, GameManager.instance.nextExp.Length - 1)]); // ÃÖ´ë ÀÎµ¦½º¸¦ ÃÊ°úÇÏÁö ¾Ê°Ô
+            GameManager.instance.GetExp(GameManager.instance.nextExp[Mathf.Min(GameManager.instance.level, GameManager.instance.nextExp.Length - 1)]); // ??? ?ï¿½ï¿½????? ??????? ???
         }
 #endif
     }

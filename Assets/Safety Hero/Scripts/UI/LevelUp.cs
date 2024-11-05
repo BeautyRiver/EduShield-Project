@@ -24,10 +24,10 @@ public class LevelUp : MonoBehaviour
 
     public void Show()
     {
-        //SelectorController.SelectorEvent?.Invoke(); // Selector ÀÌ¹êÆ® È£Ãâ(¹èÄ¡)
+        //SelectorController.SelectorEvent?.Invoke(); // Selector ì´ë°´íŠ¸ í˜¸ì¶œ(ë°°ì¹˜)
 
-        uiManager.BlackWindowFadeIn(); // °ËÀº ¹è°æ On
-        Next(); // ¼¯±â
+        uiManager.BlackWindowFadeIn(); // ê²€ì€ ë°°ê²½ On
+        Next(); // ì„ê¸°
         Button[] buttons = transform.GetComponentsInChildren<Button>();
         foreach (var btn in buttons)
         {
@@ -39,7 +39,7 @@ public class LevelUp : MonoBehaviour
 
         MasterAudio.PlaySound("LevelUp");
 
-        // ºñÀ² ±â¹İÀ¸·Î BGM º¼·ı °¨¼Ò
+        // ë¹„ìœ¨ ê¸°ë°˜ìœ¼ë¡œ BGM ë³¼ë¥¨ ê°ì†Œ
         /*float currentBGMVolume = PlayerPrefs.GetFloat("BGM");
         MasterAudio.PlaylistMasterVolume = currentBGMVolume * 0.25f;*/
     }
@@ -51,7 +51,7 @@ public class LevelUp : MonoBehaviour
             btn.interactable = false;
         }
 
-        uiManager.BlackWindowFadeaOut(); // °ËÀº ¹è°æ Off
+        uiManager.BlackWindowFadeaOut(); // ê²€ì€ ë°°ê²½ Off
 
         rect.DOAnchorPos(new Vector3(0, -1500f, 0), showLeveUpDuration).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() =>
         {
@@ -60,7 +60,7 @@ public class LevelUp : MonoBehaviour
 
         MasterAudio.PlaySound("Select");
 
-        // ¿ø·¡ BGM º¼·ıÀ¸·Î º¹±¸
+        // ì›ë˜ BGM ë³¼ë¥¨ìœ¼ë¡œ ë³µêµ¬
         //MasterAudio.PlaylistMasterVolume = PlayerPrefs.GetFloat("BGM");
     }
 
@@ -71,13 +71,13 @@ public class LevelUp : MonoBehaviour
 
     private void Next()
     {
-        // ¸ğµç ¾ÆÀÌÅÛ ºñÈ°¼ºÈ­
+        // ëª¨ë“  ì•„ì´í…œ ë¹„í™œì„±í™”
         foreach (ItemSetting item in items)
         {
             item.gameObject.SetActive(false);
         }
 
-        // È°¼ºÈ­ °¡´ÉÇÑ ¾ÆÀÌÅÛÀ» ´ã´Â ¸®½ºÆ®
+        // í™œì„±í™” ê°€ëŠ¥í•œ ì•„ì´í…œì„ ë‹´ëŠ” ë¦¬ìŠ¤íŠ¸
         availableItems = new List<ItemSetting>();
 
         bool allMaxLevel = true;
@@ -86,7 +86,7 @@ public class LevelUp : MonoBehaviour
         {
             if (item.itemData is BulletData)
             {
-                // ÀÌ¹Ì È¹µæÇÑ ¹«±âÀÌ°Å³ª, »õ·Î¿î ¹«±â¸¦ È¹µæÇÒ ¼ö ÀÖ´Â °æ¿ì
+                // ì´ë¯¸ íšë“í•œ ë¬´ê¸°ì´ê±°ë‚˜, ìƒˆë¡œìš´ ë¬´ê¸°ë¥¼ íšë“í•  ìˆ˜ ìˆëŠ” ê²½ìš°
                 if (item.level > 0 || GameManager.instance.weaponCount < GameManager.instance.maxItemCount)
                 {
                     if (item.level < item.itemData.maxLevel)
@@ -98,7 +98,7 @@ public class LevelUp : MonoBehaviour
             }
             else if (item.itemData is GearData)
             {
-                // ÀÌ¹Ì È¹µæÇÑ ±â¾îÀÌ°Å³ª, »õ·Î¿î ±â¾î¸¦ È¹µæÇÒ ¼ö ÀÖ´Â °æ¿ì
+                // ì´ë¯¸ íšë“í•œ ê¸°ì–´ì´ê±°ë‚˜, ìƒˆë¡œìš´ ê¸°ì–´ë¥¼ íšë“í•  ìˆ˜ ìˆëŠ” ê²½ìš°
                 if (item.level > 0 || GameManager.instance.gearCount < GameManager.instance.maxItemCount)
                 {
                     if (item.level < item.itemData.maxLevel)
@@ -110,7 +110,7 @@ public class LevelUp : MonoBehaviour
             }        
         }
 
-        // ¸ğµç ¹«±â¿Í ±â¾î°¡ ÃÖ´ë ·¹º§¿¡ µµ´ŞÇß´Ù¸é Etc ¾ÆÀÌÅÛ¸¸ È°¼ºÈ­
+        // ëª¨ë“  ë¬´ê¸°ì™€ ê¸°ì–´ê°€ ìµœëŒ€ ë ˆë²¨ì— ë„ë‹¬í–ˆë‹¤ë©´ Etc ì•„ì´í…œë§Œ í™œì„±í™”
         if (allMaxLevel)
         {
             foreach (ItemSetting item in items)
@@ -122,10 +122,10 @@ public class LevelUp : MonoBehaviour
             }            
         }
 
-        // È°¼ºÈ­ÇÒ ¾ÆÀÌÅÛ ¼ö¸¦ °áÁ¤ (ÃÖ´ë 3°³)
+        // í™œì„±í™”í•  ì•„ì´í…œ ìˆ˜ë¥¼ ê²°ì • (ìµœëŒ€ 3ê°œ)
         int itemsToActivate = Mathf.Min(3, availableItems.Count);
 
-        // ·£´ıÀ¸·Î ¾ÆÀÌÅÛ ¼±ÅÃ
+        // ëœë¤ìœ¼ë¡œ ì•„ì´í…œ ì„ íƒ
         List<int> selectedItems = new List<int>();
         while (selectedItems.Count < itemsToActivate)
         {
@@ -136,7 +136,7 @@ public class LevelUp : MonoBehaviour
             }
         }
 
-        // ¼±ÅÃµÈ ¾ÆÀÌÅÛ È°¼ºÈ­
+        // ì„ íƒëœ ì•„ì´í…œ í™œì„±í™”
         foreach (int index in selectedItems)
         {
             availableItems[index].gameObject.SetActive(true);

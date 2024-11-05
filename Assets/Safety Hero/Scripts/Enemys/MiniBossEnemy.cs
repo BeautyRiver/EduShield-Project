@@ -6,7 +6,7 @@ public class MiniBossEnemy : Enemy
 {
     protected override void DropReward()
     {        
-        GameObject reward = gm.poolManager.Get(PoolObjectType.BoxReward); // º¸»ó »óÀÚ »ı¼º
+        GameObject reward = gm.poolManager.Get(PoolObjectType.BoxReward); // ë³´ìƒ ìƒì ìƒì„±
         reward.transform.position = transform.position;
     }
 
@@ -17,7 +17,7 @@ public class MiniBossEnemy : Enemy
 
     protected override void Move()
     {
-        Vector2 dirVec = targetRb.position - rigid.position; // Å¸°Ù ¹æÇâ
+        Vector2 dirVec = targetRb.position - rigid.position; // íƒ€ê²Ÿ ë°©í–¥
         nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position + nextVec);
     }

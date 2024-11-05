@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Undead-Surivor_MK.sln"
+    "dotnet.defaultSolution": "EduShield-Project.sln"
 }

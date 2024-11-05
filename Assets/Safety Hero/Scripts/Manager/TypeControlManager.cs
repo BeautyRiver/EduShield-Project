@@ -8,24 +8,24 @@ using UnityEngine.UI;
 
 public class TypeControlManager : MonoBehaviour
 {
-    [Header("# ½ºÅ×ÀÌÁöº° Å¸ÀÔ ÀÌ¹ÌÁöµé")]
+    [Header("# ìŠ¤í…Œì´ì§€ë³„ íƒ€ì… ì´ë¯¸ì§€ë“¤")]
     [SerializeField] private List<StageTypeImages> stageTypes = new List<StageTypeImages>();
 
-    [Header("# UIÀÌ¹ÌÁö ¼³Á¤")]
+    [Header("# UIì´ë¯¸ì§€ ì„¤ì •")]
     [SerializeField] private List<Image> equipImages;
     [SerializeField] private List<Image> coolDownImages;
 
-    [SerializeField] private bool[] currentTypeState; // ÇöÀç ÀåÂøÇÑ ¹«±â
-    [SerializeField] private float swapDelay = 3f; // Å¸ÀÔ ½º¿Ò µô·¹ÀÌ
-    [SerializeField] private float swapTimer; // Å¸ÀÔ ½º¿Ò µô·¹ÀÌ Å¸ÀÌ¸Ó
-    [field: SerializeField] public int TypeIndex { get; private set; } // ÇöÀç ¼±ÅÃµÈ Å¸ÀÔ ÀÎµ¦½º
+    [SerializeField] private bool[] currentTypeState; // í˜„ì¬ ì¥ì°©í•œ ë¬´ê¸°
+    [SerializeField] private float swapDelay = 3f; // íƒ€ì… ìŠ¤ì™‘ ë”œë ˆì´
+    [SerializeField] private float swapTimer; // íƒ€ì… ìŠ¤ì™‘ ë”œë ˆì´ íƒ€ì´ë¨¸
+    [field: SerializeField] public int TypeIndex { get; private set; } // í˜„ì¬ ì„ íƒëœ íƒ€ì… ì¸ë±ìŠ¤
     private int spriteCount; 
 
     private void Awake()
     {
         currentTypeState = new bool[] { true, false, false, false, false };
         swapTimer = swapDelay;
-        TypeIndex = -1; // ±âº» ¹«±â = 0¹ø¹«±â
+        TypeIndex = -1; // ê¸°ë³¸ ë¬´ê¸° = 0ë²ˆë¬´ê¸°
 
         Initialize();
         CoolDownImageChangeFillAmount();
@@ -43,7 +43,7 @@ public class TypeControlManager : MonoBehaviour
             Input.GetKeyDown(KeyCode.Alpha4) ||
             Input.GetKeyDown(KeyCode.Alpha5)) && swapTimer <= 0)
         {
-            // ÀÌÀü ¹«±â ÀÎµ¦½º¸¦ ÀúÀå
+            // ì´ì „ ë¬´ê¸° ì¸ë±ìŠ¤ë¥¼ ì €ì¥
             int previousTypeIndex = TypeIndex;
 
             if (Input.GetKeyDown(KeyCode.Alpha1)) TypeIndex = 0;
@@ -52,7 +52,7 @@ public class TypeControlManager : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.Alpha4)) TypeIndex = 3;
             else if (Input.GetKeyDown(KeyCode.Alpha5)) TypeIndex = 4;
 
-            // ÇöÀç ¼±ÅÃÇÑ Å¸ÀÔÀÌ ÀÌÀü°ú µ¿ÀÏÇÏ¸é º¯½Å ÇØÁ¦
+            // í˜„ì¬ ì„ íƒí•œ íƒ€ì…ì´ ì´ì „ê³¼ ë™ì¼í•˜ë©´ ë³€ì‹  í•´ì œ
             if (TypeIndex == previousTypeIndex)
             {
                 TypeIndex = -1;
@@ -63,18 +63,18 @@ public class TypeControlManager : MonoBehaviour
                 return;
             }
 
-            // Å¸ÀÔ ½º¿ÒÀÌ ¹ß»ıÇßÀ» ¶§ UI ¾÷µ¥ÀÌÆ® ÀÌº¥Æ® È£Ãâ
+            // íƒ€ì… ìŠ¤ì™‘ì´ ë°œìƒí–ˆì„ ë•Œ UI ì—…ë°ì´íŠ¸ ì´ë²¤íŠ¸ í˜¸ì¶œ
             CoolDownImageChangeFillAmount();
             StartCoroutine(GameManager.instance.player.TransformationColor(TypeIndex));
 
-            // ½º¿Ò Å¸ÀÌ¸Ó ¸®¼Â
+            // ìŠ¤ì™‘ íƒ€ì´ë¨¸ ë¦¬ì…‹
             swapTimer = swapDelay;
         }
     }
   
     private void CoolDownImageChangeFillAmount()
     {
-        // ¸ğµç Äğ´Ù¿î ÀÌ¹ÌÁö¸¦ ÃÊ±âÈ­
+        // ëª¨ë“  ì¿¨ë‹¤ìš´ ì´ë¯¸ì§€ë¥¼ ì´ˆê¸°í™”
         foreach (var item in coolDownImages)
         {
             item.fillAmount = 1f;
@@ -85,11 +85,11 @@ public class TypeControlManager : MonoBehaviour
         {
             if (i != TypeIndex)
             {
-                // Áö¿ª º¯¼ö·Î i °ªÀ» °íÁ¤
+                // ì§€ì—­ ë³€ìˆ˜ë¡œ i ê°’ì„ ê³ ì •
                 int index = i;
 
                 coolDownImages[index].DOKill();
-                // ¾ÈÀüÇÑ ¹üÀ§ ³»¿¡¼­¸¸ Tween ½ÇÇà
+                // ì•ˆì „í•œ ë²”ìœ„ ë‚´ì—ì„œë§Œ Tween ì‹¤í–‰
                 coolDownImages[index].DOFillAmount(0f, swapDelay).OnComplete(() =>
                 {
                     Vector3 originalScale = equipImages[index].transform.localScale;
@@ -106,31 +106,31 @@ public class TypeControlManager : MonoBehaviour
     {
         int childCount = transform.childCount;
 
-        // ÀÚ½Ä ¿ÀºêÁ§Æ®µéÀ» ¹Ì¸® ºñÈ°¼ºÈ­
+        // ìì‹ ì˜¤ë¸Œì íŠ¸ë“¤ì„ ë¯¸ë¦¬ ë¹„í™œì„±í™”
         for (int i = 0; i < childCount; i++)
         {
             transform.GetChild(i).gameObject.SetActive(false);
         }
 
-        // ÇÊ¿äÇÑ ¸®½ºÆ®ÀÇ Å©±â¸¦ ¹Ì¸® ¼³Á¤ÇÏ¿© ¼º´É ÃÖÀûÈ­
+        // í•„ìš”í•œ ë¦¬ìŠ¤íŠ¸ì˜ í¬ê¸°ë¥¼ ë¯¸ë¦¬ ì„¤ì •í•˜ì—¬ ì„±ëŠ¥ ìµœì í™”
         equipImages.Capacity = childCount;
         coolDownImages.Capacity = childCount;
 
-        // stageTypes[0]ÀÇ sprite ¹è¿­ Å©±â¸¸Å­ ¹İº¹
+        // stageTypes[0]ì˜ sprite ë°°ì—´ í¬ê¸°ë§Œí¼ ë°˜ë³µ
         spriteCount = stageTypes[0].sprite.Length;
         for (int i = 0; i < spriteCount; i++)
         {
             Transform child = transform.GetChild(i);
             child.gameObject.SetActive(true);
 
-            // GetComponentsInChildrenÀ» ÇÑ ¹ø¸¸ È£ÃâÇÏ¿© ÇÊ¿äÇÑ ÀÌ¹ÌÁö¸¦ ¸ğµÎ °¡Á®¿È
+            // GetComponentsInChildrenì„ í•œ ë²ˆë§Œ í˜¸ì¶œí•˜ì—¬ í•„ìš”í•œ ì´ë¯¸ì§€ë¥¼ ëª¨ë‘ ê°€ì ¸ì˜´
             Image[] images = child.GetComponentsInChildren<Image>(true);
-            if (images.Length > 2) // ÇÊ¿äÇÑ ÀÌ¹ÌÁö°¡ 2°³ ÀÌ»óÀÏ ¶§¸¸ Ãß°¡
+            if (images.Length > 2) // í•„ìš”í•œ ì´ë¯¸ì§€ê°€ 2ê°œ ì´ìƒì¼ ë•Œë§Œ ì¶”ê°€
             {
                 equipImages.Add(images[1]);
                 coolDownImages.Add(images[2]);
 
-                // ½ºÇÁ¶óÀÌÆ® ¼³Á¤
+                // ìŠ¤í”„ë¼ì´íŠ¸ ì„¤ì •
                 equipImages[i].sprite = stageTypes[0].sprite[i];
                 coolDownImages[i].sprite = stageTypes[0].sprite[i];
             }

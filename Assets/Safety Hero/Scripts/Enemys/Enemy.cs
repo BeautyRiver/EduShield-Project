@@ -15,7 +15,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         Uniqe,
         MiniBoss,
     }
-    [Header("# °øÅë ¼Ó¼º")]   
+    [Header("# ê³µí†µ ì†ì„±")]   
     public EnemyType enemyType;
     public int id;
     public float damage;
@@ -26,7 +26,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     public bool isLive;
     protected Vector2 nextVec;
 
-    [Header("# ÂüÁ¶")]
+    [Header("# ì°¸ì¡°")]
     [SerializeField] protected RuntimeAnimatorController[] animCon;    
 
     protected Rigidbody2D targetRb;
@@ -39,7 +39,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     protected virtual void Awake()
     {
-        // ÃÊ±â ÇÒ´ç        
+        // ì´ˆê¸° í• ë‹¹        
         gm = GameManager.instance;        
         rigid = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
@@ -63,7 +63,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     protected virtual void OnEnable()
     {
-        // ÃÊ±âÈ­
+        // ì´ˆê¸°í™”
         targetRb = gm.player.GetComponent<Rigidbody2D>();
         sortingGroup.sortingOrder = 1;
         isLive = true;
@@ -89,49 +89,49 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         Bullet bulletInfo = collision.GetComponent<Bullet>();
         Vector2 hitPos;
             
-        // Ãæµ¹ÇÑ ÁöÁ¡ÀÇ Á¤È®ÇÑ À§Ä¡¸¦ ±¸ÇÏ±â
+        // ì¶©ëŒí•œ ì§€ì ì˜ ì •í™•í•œ ìœ„ì¹˜ë¥¼ êµ¬í•˜ê¸°
         hitPos = collision.ClosestPoint(transform.position);         
-        GameObject effect = gm.poolManager.Get(PoolObjectType.EffectEnemy); // Enemy ÀÌÆÑÆ® »ı¼º
+        GameObject effect = gm.poolManager.Get(PoolObjectType.EffectEnemy); // Enemy ì´íŒ©íŠ¸ ìƒì„±
         effect.transform.position = hitPos;
 
-        // ±âº» Å¸ÀÔÀÏ ¶§
+        // ê¸°ë³¸ íƒ€ì…ì¼ ë•Œ
         if (gm.typeControll.TypeIndex == -1)
         {
-            // ±âº» µ¥¹ÌÁö Ç¥½Ã 
+            // ê¸°ë³¸ ë°ë¯¸ì§€ í‘œì‹œ 
             Damaged(damage.ToString("F1"), damage, hitPos, Color.white); 
         }
-        // ±âº» Å¸ÀÔÀÌ ¾Æ´Ò ¶§
+        // ê¸°ë³¸ íƒ€ì…ì´ ì•„ë‹ ë•Œ
         else
         {
             if (gm.typeControll.TypeIndex == id)
             {
-                // ±âº» µ¥¹ÌÁö Ç¥½Ã 
+                // ê¸°ë³¸ ë°ë¯¸ì§€ í‘œì‹œ 
                 Damaged(damage.ToString("F1"), damage, hitPos, Color.white); 
 
-                // Ãß°¡ µ¥¹ÌÁö
+                // ì¶”ê°€ ë°ë¯¸ì§€
                 float plusDamage = damage;
                 Damaged($"+{(plusDamage).ToString("F1")}", plusDamage, new Vector2(hitPos.x, hitPos.y + 0.5f), Color.red);
             }
             else
             {
-                // µ¥¹ÌÁö ¹İ°¨
+                // ë°ë¯¸ì§€ ë°˜ê°
                 damage = damage * 0.5f;
-                // ±âº» µ¥¹ÌÁö Ç¥½Ã 
+                // ê¸°ë³¸ ë°ë¯¸ì§€ í‘œì‹œ 
                 Damaged(damage.ToString("F1"), damage, hitPos, Color.gray); 
             }
         }
 
-        MasterAudio.PlaySound("Hit"); // »ç¿îµå Àç»ı
-        anim.SetTrigger("Hit"); // ¸Â´Â ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı
+        MasterAudio.PlaySound("Hit"); // ì‚¬ìš´ë“œ ì¬ìƒ
+        anim.SetTrigger("Hit"); // ë§ëŠ” ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒ
 
-        // º¸½º´Â ³Ë¹é X
+        // ë³´ìŠ¤ëŠ” ë„‰ë°± X
         if (this is IKnockBackable)
-            StartCoroutine(KnockBack(bulletInfo.KnockBackDistance)); // ³Ë¹é
+            StartCoroutine(KnockBack(bulletInfo.KnockBackDistance)); // ë„‰ë°±
 
-        // Ã¼·Â 0 ÀÌÇÏ »ç¸Á
+        // ì²´ë ¥ 0 ì´í•˜ ì‚¬ë§
         if (health <= 0)
         {
-            DropReward(); // º¸»ó
+            DropReward(); // ë³´ìƒ
             isLive = false;
             coll.enabled = false;
             rigid.simulated = false;
@@ -145,10 +145,10 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     private void Damaged(string text, float damage, Vector2 hitPos, Color color)
     {        
-        GameObject damageTextobj = gm.poolManager.Get(PoolObjectType.TextEnemyDamaged); // µ¥¹ÌÁö ÅØ½ºÆ® »ı¼º
+        GameObject damageTextobj = gm.poolManager.Get(PoolObjectType.TextEnemyDamaged); // ë°ë¯¸ì§€ í…ìŠ¤íŠ¸ ìƒì„±
         TextMeshPro damageText = damageTextobj.GetComponent<TextMeshPro>();
 
-        health -= damage; // Ã¼·Â °¨¼Ò            
+        health -= damage; // ì²´ë ¥ ê°ì†Œ            
         damageText.color = color;
         damageTextobj.transform.localPosition = hitPos;
         damageText.text = text;
@@ -166,7 +166,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     private IEnumerator KnockBack(float knockBackDistance)
     {
-        yield return null; // ´ÙÀ½ ÇÏ³ªÀÇ ¹°¸® ÇÁ·¹ÀÓ µô·¹ÀÌ
+        yield return null; // ë‹¤ìŒ í•˜ë‚˜ì˜ ë¬¼ë¦¬ í”„ë ˆì„ ë”œë ˆì´
         Vector3 playerPos = targetRb.transform.position;
         Vector3 dirVec = transform.position - playerPos;
         rigid.AddForce(dirVec.normalized * knockBackDistance, ForceMode2D.Impulse);

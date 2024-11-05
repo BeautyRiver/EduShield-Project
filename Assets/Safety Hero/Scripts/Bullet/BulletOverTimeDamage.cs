@@ -9,27 +9,28 @@ public class BulletOverTimeDamage : Bullet
     public override void Init(float damage, int per, Vector3 dir, int id, float knockBack, float interval)
     {
         base.Init(damage, per, dir, id, knockBack, interval);
-        // 이동하지 않는 경우 속도를 0으로 설정
+        
         if (rigid != null)
             rigid.velocity = Vector2.zero;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision is IDamageable damageable)
+        var damageAble = collision.GetComponent<IDamageable>();
+        if (damageAble != null)
         {
             int enemyId = collision.GetInstanceID();
 
             if (!damageTimers.ContainsKey(enemyId))
             {
                 damageTimers[enemyId] = Time.time;
-                damageable.DamagedLogic(bulletCol, Damage);
+                damageAble.DamagedLogic(bulletCol, Damage);
                 PerDown();
             }
             else if (Time.time - damageTimers[enemyId] >= DamageInterval)
             {
                 damageTimers[enemyId] = Time.time;
-                damageable.DamagedLogic(bulletCol, Damage);
+                damageAble.DamagedLogic(bulletCol, Damage);
                 PerDown();
             }
         }

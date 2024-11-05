@@ -6,7 +6,7 @@ public class UniqeEnemy : Enemy
 {
     protected override void DropReward()
     {
-        GameObject expObj = gm.poolManager.Get(PoolObjectType.Exp); // Exp ╣Е╤Ь╫це╟╠Б
+        GameObject expObj = gm.poolManager.Get(PoolObjectType.Exp); // Exp К⌠°К·█Л▀°М┌╓Й╦╟
         expObj.transform.position = transform.position;
         expObj.GetComponent<Exp>().exp = this.exp;
     }

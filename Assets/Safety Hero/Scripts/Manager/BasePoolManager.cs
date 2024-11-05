@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BasePoolManager : MonoBehaviour
 {
-    public enum PoolType { Weapon, Enemy, Item, Effect }  // Ç® Å¸ÀÔ enum
+    public enum PoolType { Weapon, Enemy, Item, Effect }  // í’€ íƒ€ì… enum
 
     [Serializable]
     public class Pool
@@ -21,7 +21,7 @@ public class BasePoolManager : MonoBehaviour
     {
         poolDictionary = new Dictionary<(PoolType, int), List<GameObject>>();
 
-        // °¢ Ç® ÃÊ±âÈ­
+        // ê° í’€ ì´ˆê¸°í™”
         foreach (Pool pool in pools)
         {
             for (int i = 0; i < pool.prefabs.Length; i++)
@@ -53,7 +53,7 @@ public class BasePoolManager : MonoBehaviour
 
         GameObject select = null;
 
-        // ºñÈ°¼ºÈ­µÈ °ÔÀÓ ¿ÀºêÁ§Æ® Å½»ö
+        // ë¹„í™œì„±í™”ëœ ê²Œì„ ì˜¤ë¸Œì íŠ¸ íƒìƒ‰
         foreach (GameObject item in selectedPool)
         {
             if (!item.activeSelf)
@@ -64,7 +64,7 @@ public class BasePoolManager : MonoBehaviour
             }
         }
 
-        // »õ·Î »ı¼ºÇÏ¿© Ç®¿¡ Ãß°¡
+        // ìƒˆë¡œ ìƒì„±í•˜ì—¬ í’€ì— ì¶”ê°€
         if (select == null)
         {
             select = Instantiate(selectedPrefabs[index], transform);

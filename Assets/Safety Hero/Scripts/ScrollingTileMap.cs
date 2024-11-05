@@ -9,11 +9,11 @@ public class ScrollingTileMap : MonoBehaviour
 
     private Collider2D coll;
     private Player player;
-    public float tileMapSize = 40f; // Å¸ÀÏ¸Ê ÀÌµ¿ °Å¸®
-    public float checkInterval = 0.5f; // °Ë»ç °£°İ (ÃÊ)
+    public float tileMapSize = 40f; // íƒ€ì¼ë§µ ì´ë™ ê±°ë¦¬
+    public float checkInterval = 0.5f; // ê²€ì‚¬ ê°„ê²© (ì´ˆ)
 
-    private float nextCheckTime = 0f; // ´ÙÀ½ °Ë»ç ½Ã°£
-    private Vector3 previousPlayerPos; // ÀÌÀü ÇÃ·¹ÀÌ¾î À§Ä¡
+    private float nextCheckTime = 0f; // ë‹¤ìŒ ê²€ì‚¬ ì‹œê°„
+    private Vector3 previousPlayerPos; // ì´ì „ í”Œë ˆì´ì–´ ìœ„ì¹˜
 
     private void Start()
     {
@@ -24,12 +24,12 @@ public class ScrollingTileMap : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // ÇöÀç ½Ã°£ÀÌ ´ÙÀ½ °Ë»ç ½Ã°£À» ³Ñ¾ú´ÂÁö È®ÀÎ
+        // í˜„ì¬ ì‹œê°„ì´ ë‹¤ìŒ ê²€ì‚¬ ì‹œê°„ì„ ë„˜ì—ˆëŠ”ì§€ í™•ì¸
         if (Time.time >= nextCheckTime)
         {
-            //Debug.Log("°Ë»çÁß");
-            Vector3 playerPos = player.transform.position; // ÇÃ·¹ÀÌ¾î À§Ä¡
-            Vector3 myPos = transform.position; // ÇöÀç ¿ÀºêÁ§Æ® À§Ä¡
+            //Debug.Log("ê²€ì‚¬ì¤‘");
+            Vector3 playerPos = player.transform.position; // í”Œë ˆì´ì–´ ìœ„ì¹˜
+            Vector3 myPos = transform.position; // í˜„ì¬ ì˜¤ë¸Œì íŠ¸ ìœ„ì¹˜
 
             float dirX = playerPos.x - myPos.x;
             float dirY = playerPos.y - myPos.y;
@@ -56,8 +56,8 @@ public class ScrollingTileMap : MonoBehaviour
                 }
             }
 
-            previousPlayerPos = playerPos; // ÇÃ·¹ÀÌ¾î À§Ä¡ ¾÷µ¥ÀÌÆ®
-            nextCheckTime = Time.time + checkInterval; // ´ÙÀ½ °Ë»ç ½Ã°£ ¼³Á¤
+            previousPlayerPos = playerPos; // í”Œë ˆì´ì–´ ìœ„ì¹˜ ì—…ë°ì´íŠ¸
+            nextCheckTime = Time.time + checkInterval; // ë‹¤ìŒ ê²€ì‚¬ ì‹œê°„ ì„¤ì •
         }
     }
 

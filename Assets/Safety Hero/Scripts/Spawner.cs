@@ -7,31 +7,31 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [Header("# ·¹º§ °ü·Ã")]
-    public float levelTime; // ·¹º§º° ½Ã°£ °£°İ
-    public int level; // ÇöÀç ·¹º§
-    [SerializeField] private int prevLevel; // ÀÌÀü ·¹º§ (ºñ±³¿ë)
-    [SerializeField] private float[] timer; // ¼ÒÈ¯ Å¸ÀÌ¸Ó
+    [Header("# ë ˆë²¨ ê´€ë ¨")]
+    public float levelTime; // ë ˆë²¨ë³„ ì‹œê°„ ê°„ê²©
+    public int level; // í˜„ì¬ ë ˆë²¨
+    [SerializeField] private int prevLevel; // ì´ì „ ë ˆë²¨ (ë¹„êµìš©)
+    [SerializeField] private float[] timer; // ì†Œí™˜ íƒ€ì´ë¨¸
 
-    [Header("# Àû ¼ÒÈ¯ À§Ä¡")]
-    public Transform[] spawnPoint; // Àû ¼ÒÈ¯ À§Ä¡ ¹è¿­
-    public Transform[] uniqeSpawnPoint; // Æ¯º°ÇÑ Àû ¼ÒÈ¯À§Ä¡ ¹è¿­
+    [Header("# ì  ì†Œí™˜ ìœ„ì¹˜")]
+    public Transform[] spawnPoint; // ì  ì†Œí™˜ ìœ„ì¹˜ ë°°ì—´
+    public Transform[] uniqeSpawnPoint; // íŠ¹ë³„í•œ ì  ì†Œí™˜ìœ„ì¹˜ ë°°ì—´
 
-    [Header("# ³ë¸» Àû ¼ÒÈ¯ µ¥ÀÌÅÍ")]
-    public SpawnData[] normalSpawnData; // ·¹º§º° ¼ÒÈ¯ µ¥ÀÌÅÍ ¹è¿­
+    [Header("# ë…¸ë§ ì  ì†Œí™˜ ë°ì´í„°")]
+    public SpawnData[] normalSpawnData; // ë ˆë²¨ë³„ ì†Œí™˜ ë°ì´í„° ë°°ì—´
 
-    [Header("# Æ¯¼ö Àû ¼ÒÈ¯ µ¥ÀÌÅÍ")]
-    public SpawnData[] uniqeSpawnData; // ·¹º§º° ¼ÒÈ¯ µ¥ÀÌÅÍ ¹è¿­
+    [Header("# íŠ¹ìˆ˜ ì  ì†Œí™˜ ë°ì´í„°")]
+    public SpawnData[] uniqeSpawnData; // ë ˆë²¨ë³„ ì†Œí™˜ ë°ì´í„° ë°°ì—´
 
-    [Header("# ¹Ì´Ï º¸½º ¼ÒÈ¯ µ¥ÀÌÅÍ")]
-    public SpawnData[] miniBossSpawnData; // ·¹º§º° ¼ÒÈ¯ µ¥ÀÌÅÍ ¹è¿­
+    [Header("# ë¯¸ë‹ˆ ë³´ìŠ¤ ì†Œí™˜ ë°ì´í„°")]
+    public SpawnData[] miniBossSpawnData; // ë ˆë²¨ë³„ ì†Œí™˜ ë°ì´í„° ë°°ì—´
 
-    [Header("# ¹Ú½º ¼ÒÈ¯ ½Ã°£")]
-    public Vector2 boxSpawnTime; // ·¹º§º° ¼ÒÈ¯ µ¥ÀÌÅÍ ¹è¿­
+    [Header("# ë°•ìŠ¤ ì†Œí™˜ ì‹œê°„")]
+    public Vector2 boxSpawnTime; // ë ˆë²¨ë³„ ì†Œí™˜ ë°ì´í„° ë°°ì—´
 
     private void Awake()
     {
-        // ÃÊ±â ¼³Á¤
+        // ì´ˆê¸° ì„¤ì •
         levelTime = GameManager.instance.maxGameTime / normalSpawnData.Length;                              
         timer = new float[4];        
         level = 0;
@@ -47,29 +47,29 @@ public class Spawner : MonoBehaviour
     {
         if (GameManager.instance.isGameActive)
         {
-            // ¼ÒÈ¯ ·ÎÁ÷
+            // ì†Œí™˜ ë¡œì§
             timer[0] += Time.deltaTime; // Normal timer
             timer[1] += Time.deltaTime; // Unique timer
             timer[3] += Time.deltaTime; // Box timer
 
             level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / levelTime), normalSpawnData.Length - 1);   
             
-            // ·¹º§ º¯È­ Ã¼Å©
+            // ë ˆë²¨ ë³€í™” ì²´í¬
             if (prevLevel != level)
             {
-                // ·¹º§ º¯È¯½Ã ½ÇÇàµÇ´Â ·ÎÁ÷
+                // ë ˆë²¨ ë³€í™˜ì‹œ ì‹¤í–‰ë˜ëŠ” ë¡œì§
                 StartCoroutine(LevelChangeRoutine());
-                prevLevel = level; // ÀÌÀü ·¹º§À» ÇöÀç ·¹º§·Î ¾÷µ¥ÀÌÆ®
+                prevLevel = level; // ì´ì „ ë ˆë²¨ì„ í˜„ì¬ ë ˆë²¨ë¡œ ì—…ë°ì´íŠ¸
             }
 
-            // ±âº» ¸ó½ºÅÍ ¼ÒÈ¯
+            // ê¸°ë³¸ ëª¬ìŠ¤í„° ì†Œí™˜
             if (timer[0] > normalSpawnData[level].spawnTime)
             {
                 timer[0] = 0f;
                 SpawnNormal();
             }
 
-            // À¯´ÏÅ© ¸ó½ºÅÍ ¼ÒÈ¯
+            // ìœ ë‹ˆí¬ ëª¬ìŠ¤í„° ì†Œí™˜
             if (timer[1] > uniqeSpawnData[0].spawnTime)
             {
                 timer[1] = 0f;
@@ -77,7 +77,7 @@ public class Spawner : MonoBehaviour
             }
 
 
-            // ¹Ú½º ¼ÒÈ¯
+            // ë°•ìŠ¤ ì†Œí™˜
             if (timer[3] > Random.Range(boxSpawnTime.x, boxSpawnTime.y))
             {
                 timer[3] = 0f;
@@ -88,14 +88,14 @@ public class Spawner : MonoBehaviour
     }
     private IEnumerator LevelChangeRoutine()
     {
-        yield return StartCoroutine(GameManager.instance.RandomStageIndex()); // StageIndex º¯°æÀÌ ¿Ï·áµÉ ¶§±îÁö ´ë±â
+        yield return StartCoroutine(GameManager.instance.RandomStageIndex()); // StageIndex ë³€ê²½ì´ ì™„ë£Œë  ë•Œê¹Œì§€ ëŒ€ê¸°
         normalSpawnData[level].spriteType = GameManager.instance.selectStageIdx;
 
         StartCoroutine(GameManager.instance.AIMsgShowAndHide());
 
         StartCoroutine(SpawnMiniBoss());
 
-        // uniqe¸ó½ºÅÍ ½ºÆù·ü Áõ°¡
+        // uniqeëª¬ìŠ¤í„° ìŠ¤í°ë¥  ì¦ê°€
         foreach (var uniqeData in uniqeSpawnData)
         {
             uniqeData.minTime -= 5f;
@@ -107,13 +107,13 @@ public class Spawner : MonoBehaviour
     private IEnumerator SpawnMiniBoss()
     {
         yield return new WaitForSeconds(2f);
-        // ¿şÀÌºê º¯È¯½Ã ¹Ì´Ï º¸½º ÇÑ¸¶¸®¾¿ µîÀå
+        // ì›¨ì´ë¸Œ ë³€í™˜ì‹œ ë¯¸ë‹ˆ ë³´ìŠ¤ í•œë§ˆë¦¬ì”© ë“±ì¥
         miniBossSpawnData[level - 1].spriteType = GameManager.instance.selectStageIdx;
 
-        // Àû ¼ÒÈ¯
+        // ì  ì†Œí™˜
         for (int i = 0; i < miniBossSpawnData[level - 1].spawnCount; i++)
         {
-            GameObject enemy = GameManager.instance.poolManager.Get(PoolObjectType.EnemyMiniBoss); // ¹Ì´Ï º¸½º ¼ÒÈ¯
+            GameObject enemy = GameManager.instance.poolManager.Get(PoolObjectType.EnemyMiniBoss); // ë¯¸ë‹ˆ ë³´ìŠ¤ ì†Œí™˜
             enemy.transform.position = spawnPoint[Random.Range(0, spawnPoint.Length)].position;
             enemy.GetComponent<Enemy>().Init(miniBossSpawnData[level - 1]);
         }
@@ -123,11 +123,11 @@ public class Spawner : MonoBehaviour
 
     private void SpawnUnique()
     {
-        // Àû ¼ÒÈ¯
+        // ì  ì†Œí™˜
         int ran = Random.Range(0, uniqeSpawnPoint.Length);
         for (int i = 0; i < uniqeSpawnData[0].spawnCount; i++)
         {
-            GameObject enemy = GameManager.instance.poolManager.Get(PoolObjectType.EnemyU0); // À¯´ÏÅ© ¸ó½ºÅÍ ¼ÒÈ¯
+            GameObject enemy = GameManager.instance.poolManager.Get(PoolObjectType.EnemyU0); // ìœ ë‹ˆí¬ ëª¬ìŠ¤í„° ì†Œí™˜
             Vector3 ranPos = new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), 0);
             enemy.transform.position = uniqeSpawnPoint[ran].position + ranPos;
             enemy.GetComponent<Enemy>().Init(uniqeSpawnData[0]);
@@ -141,10 +141,10 @@ public class Spawner : MonoBehaviour
 
     private void SpawnNormal()
     {
-        // Àû ¼ÒÈ¯
+        // ì  ì†Œí™˜
         for (int i = 0; i < normalSpawnData[level].spawnCount; i++)
         {
-            GameObject enemy = GameManager.instance.poolManager.Get(PoolObjectType.Enemy0); // ±âº» Enemy ¼ÒÈ¯
+            GameObject enemy = GameManager.instance.poolManager.Get(PoolObjectType.Enemy0); // ê¸°ë³¸ Enemy ì†Œí™˜
             enemy.transform.position = spawnPoint[Random.Range(0, spawnPoint.Length)].position;            
             enemy.GetComponent<Enemy>().Init(normalSpawnData[level]);
         }
@@ -152,40 +152,40 @@ public class Spawner : MonoBehaviour
     private void SpawnBox()
     {
         Vector3 spawnPosition = Vector3.zero;
-        bool isSafePosition = false; // Ãæµ¹ ¾ø´Â ¾ÈÀüÇÑ À§Ä¡ÀÎÁö È®ÀÎÇÏ´Â º¯¼ö
-        float boxRadius = 0.5f; // ¹Ú½ºÀÇ Å©±â¿¡ ¸Â´Â ¹İÁö¸§À¸·Î ¼³Á¤
-        LayerMask collisionMask = LayerMask.GetMask("GroundPhyscis"); // Ãæµ¹À» °¨ÁöÇÒ ·¹ÀÌ¾î (ÇÊ¿ä¿¡ ¸Â°Ô ¼³Á¤)
+        bool isSafePosition = false; // ì¶©ëŒ ì—†ëŠ” ì•ˆì „í•œ ìœ„ì¹˜ì¸ì§€ í™•ì¸í•˜ëŠ” ë³€ìˆ˜
+        float boxRadius = 0.5f; // ë°•ìŠ¤ì˜ í¬ê¸°ì— ë§ëŠ” ë°˜ì§€ë¦„ìœ¼ë¡œ ì„¤ì •
+        LayerMask collisionMask = LayerMask.GetMask("GroundPhyscis"); // ì¶©ëŒì„ ê°ì§€í•  ë ˆì´ì–´ (í•„ìš”ì— ë§ê²Œ ì„¤ì •)
         LayerMask groundMask = LayerMask.GetMask("Ground");
         Transform parentTransform = transform;
 
         int loopNo = 0;
-        // Ãæµ¹ ¾ø´Â À§Ä¡¸¦ Ã£À» ¶§±îÁö ¹İº¹
+        // ì¶©ëŒ ì—†ëŠ” ìœ„ì¹˜ë¥¼ ì°¾ì„ ë•Œê¹Œì§€ ë°˜ë³µ
         while (!isSafePosition)
         {
             if (loopNo >= 1000)
             {
-                Debug.LogError("¹«ÇÑ·çÇÁ ¹æÁö Å»Ãâ");
+                Debug.LogError("ë¬´í•œë£¨í”„ ë°©ì§€ íƒˆì¶œ");
                 return;
             }
             spawnPosition = spawnPoint[Random.Range(0, spawnPoint.Length)].position;
 
-            // Ãæµ¹ °Ë»ç: ¹Ú½º°¡ ½ºÆùµÉ À§Ä¡¿¡ ´Ù¸¥ Äİ¶óÀÌ´õ°¡ ÀÖ´ÂÁö È®ÀÎ (OverlapCircle »ç¿ë)
+            // ì¶©ëŒ ê²€ì‚¬: ë°•ìŠ¤ê°€ ìŠ¤í°ë  ìœ„ì¹˜ì— ë‹¤ë¥¸ ì½œë¼ì´ë”ê°€ ìˆëŠ”ì§€ í™•ì¸ (OverlapCircle ì‚¬ìš©)
             if (Physics2D.OverlapCircle(spawnPosition, boxRadius, collisionMask) == null)
             {
-                isSafePosition = true; // Ãæµ¹ÀÌ ¾øÀ¸¸é ¾ÈÀüÇÑ À§Ä¡·Î ¼³Á¤
+                isSafePosition = true; // ì¶©ëŒì´ ì—†ìœ¼ë©´ ì•ˆì „í•œ ìœ„ì¹˜ë¡œ ì„¤ì •
             }            
 
             if (isSafePosition)
             {
                 parentTransform = Physics2D.OverlapCircle(spawnPosition, boxRadius, groundMask).transform;
-                //Debug.Log("ºÎ¸ğ ¼³Á¤ ¿Ï·á : " + parentTransform.name);
+                //Debug.Log("ë¶€ëª¨ ì„¤ì • ì™„ë£Œ : " + parentTransform.name);
             }
             loopNo++;
         }
 
-        // ¾ÈÀüÇÑ À§Ä¡°¡ È®ÀÎµÇ¸é ¹Ú½º »ı¼º
-        //Debug.Log("»ı¼º ¿Ï·á");
-        GameObject box = GameManager.instance.poolManager.Get(PoolObjectType.BoxField); // Box »ı¼º
+        // ì•ˆì „í•œ ìœ„ì¹˜ê°€ í™•ì¸ë˜ë©´ ë°•ìŠ¤ ìƒì„±
+        //Debug.Log("ìƒì„± ì™„ë£Œ");
+        GameObject box = GameManager.instance.poolManager.Get(PoolObjectType.BoxField); // Box ìƒì„±
         box.transform.parent = parentTransform;
         box.transform.position = spawnPosition;
     }   
@@ -194,18 +194,18 @@ public class Spawner : MonoBehaviour
 [System.Serializable]
 public class SpawnData
 {
-    [Header("# ½ºÆù ½Ã°£ Á¶Àı")]
-    public float minTime; // ¼ÒÈ¯ °£°İ ½Ã°£ ÃÖ¼Ò
-    public float maxTime; // ¼ÒÈ¯ °£°İ ½Ã°£ ÃÖ´ë
+    [Header("# ìŠ¤í° ì‹œê°„ ì¡°ì ˆ")]
+    public float minTime; // ì†Œí™˜ ê°„ê²© ì‹œê°„ ìµœì†Œ
+    public float maxTime; // ì†Œí™˜ ê°„ê²© ì‹œê°„ ìµœëŒ€
     public float spawnTime;
-    [Header("# ¼ÒÈ¯ °³¼ö")]
-    public int spawnCount; // ¸î ¸¶¸® ¼ÒÈ¯
-    [Header("# ½ºÇÁ¶óÀÌÆ® Å¸ÀÔ")]
-    public int spriteType; // ½ºÇÁ¶óÀÌÆ® Á¾·ù
-    [Header("# ¸ó½ºÅÍ ±âº» ½ºÅÈ")]
-    public int health; // ÀûÀÇ Ã¼·Â
-    public float speed; // ÀûÀÇ ¼Óµµ
-    public float damage; // ÀûÀÇ µ¥¹ÌÁö
-    public int exp; // ÀûÀÇ È¹µæ °æÇèÄ¡·®
+    [Header("# ì†Œí™˜ ê°œìˆ˜")]
+    public int spawnCount; // ëª‡ ë§ˆë¦¬ ì†Œí™˜
+    [Header("# ìŠ¤í”„ë¼ì´íŠ¸ íƒ€ì…")]
+    public int spriteType; // ìŠ¤í”„ë¼ì´íŠ¸ ì¢…ë¥˜
+    [Header("# ëª¬ìŠ¤í„° ê¸°ë³¸ ìŠ¤íƒ¯")]
+    public int health; // ì ì˜ ì²´ë ¥
+    public float speed; // ì ì˜ ì†ë„
+    public float damage; // ì ì˜ ë°ë¯¸ì§€
+    public int exp; // ì ì˜ íšë“ ê²½í—˜ì¹˜ëŸ‰
 }
 

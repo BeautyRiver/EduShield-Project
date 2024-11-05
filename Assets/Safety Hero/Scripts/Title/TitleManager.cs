@@ -10,10 +10,10 @@ using UnityEngine.UI;
 
 public class TitleManager : MonoBehaviour
 {
-    [SerializeField] private GameObject characterSelect; // Ä³¸¯ÅÍ ¼±ÅÃ Ã¢
+    [SerializeField] private GameObject characterSelect; // ìºë¦­í„° ì„ íƒ ì°½
     [SerializeField] private GameObject stageImage;
     [SerializeField] private GameObject optionScreen;
-    [SerializeField] private Image fadeImage; // ÆäÀÌµå ÀÎ ¾Æ¿ô ÀÌ¹ÌÁö
+    [SerializeField] private Image fadeImage; // í˜ì´ë“œ ì¸ ì•„ì›ƒ ì´ë¯¸ì§€
 
     [SerializeField] private RectTransform[] stageImageRects;
     [SerializeField] private Image[] images;
@@ -25,7 +25,7 @@ public class TitleManager : MonoBehaviour
     public static PlaylistController playlistController;
     private void Awake()
     {
-        // ºÎ¸ğ rect´Â ÇÊÅÍ¸µ
+        // ë¶€ëª¨ rectëŠ” í•„í„°ë§
         stageImageRects = stageImage.GetComponentsInChildren<RectTransform>(true)
                                  .Where(rt => rt != stageImage.GetComponent<RectTransform>())
                                  .ToArray();
@@ -51,30 +51,30 @@ public class TitleManager : MonoBehaviour
       
     }
 
-    // ´ÙÀ½ ¹öÆ°
+    // ë‹¤ìŒ ë²„íŠ¼
     public void PressNextButton()
     {
         if (idx >= stageImageRects.Length - 1 || DataManager.instance.IsUnlockStages[idx+1] == false)
             return;
 
-        // ¸Ç ¾Õ¿¡ ÀÌ¹ÌÁö ¿ŞÆíÀ¸·Î Ä¡¿ö ¹ö¸®±â
+        // ë§¨ ì•ì— ì´ë¯¸ì§€ ì™¼í¸ìœ¼ë¡œ ì¹˜ì›Œ ë²„ë¦¬ê¸°
         if (idx > 0)
             MoveStageImage(idx - 1, stageImagePos[0], stageImageScale[0], noneSelectColor);
 
-        // ÇöÀç °¡¿îµ¥ ÀÌ¹ÌÁö ¿ŞÂÊÀ¸·Î ÇÑÄ­ ÀÌµ¿
+        // í˜„ì¬ ê°€ìš´ë° ì´ë¯¸ì§€ ì™¼ìª½ìœ¼ë¡œ í•œì¹¸ ì´ë™
         MoveStageImage(idx, stageImagePos[1], stageImageScale[1], noneSelectColor);
 
-        // ´ÙÀ½ ÀÌ¹ÌÁö °¡¿îµ¥·Î ÀÌµ¿
+        // ë‹¤ìŒ ì´ë¯¸ì§€ ê°€ìš´ë°ë¡œ ì´ë™
         MoveStageImage(idx + 1, stageImagePos[2], stageImageScale[2], Color.white);
         
         if (idx + 2 <= stageImageRects.Length - 1)
             MoveStageImage(idx + 2, stageImagePos[3], stageImageScale[1], noneSelectColor);
 
-        // ÀÎµ¦½º Áõ°¡
+        // ì¸ë±ìŠ¤ ì¦ê°€
         idx++;
     }
 
-    // ÀÌÀü ¹öÆ°
+    // ì´ì „ ë²„íŠ¼
     public void PressPrevButton()
     {
         if (idx <= 0)
@@ -89,20 +89,20 @@ public class TitleManager : MonoBehaviour
         if (idx < stageImageRects.Length - 1)
             MoveStageImage(idx + 1, stageImagePos[4], stageImageScale[0], noneSelectColor);
 
-        // ÀÎµ¦½º °¨¼Ò
+        // ì¸ë±ìŠ¤ ê°ì†Œ
         idx--;
     }
     
 
     private void MoveStageImage(int index, Vector3 pos, Vector3 scale, Color color)
     {
-        if (index < 0 || index >= stageImageRects.Length) return; // ¹üÀ§ Ã¼Å©
+        if (index < 0 || index >= stageImageRects.Length) return; // ë²”ìœ„ ì²´í¬
         stageImageRects[index].DOAnchorPos(pos, 0.5f);
         stageImageRects[index].DOScale(scale, 0.5f);
         images[index].DOColor(color, 0.5f);
     }
 
-    // ¾À ÀüÈ¯ ¼³Á¤
+    // ì”¬ ì „í™˜ ì„¤ì •
     public void LoadScene()
     {
         //LoadingSceneController.LoadScene(SceneManager.GetSceneByBuildIndex(idx).name);
@@ -110,7 +110,7 @@ public class TitleManager : MonoBehaviour
 
     }
 
-    // °ÔÀÓ Á¾·á
+    // ê²Œì„ ì¢…ë£Œ
     public void GameQuit()
     {
 #if UNITY_EDITOR

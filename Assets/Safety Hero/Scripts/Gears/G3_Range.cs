@@ -10,7 +10,7 @@ public class G3_Range : Gear
         ApplyToAllWeapons();
     }
 
-    // °ø°İ ¹üÀ§ Áõ°¡ ±â¾î
+    // ë²”ìœ„ ì¦ê°€ ê¸°ì–´
     protected override void ApplyGearToWeapon(Weapon weapon)
     {
         weapon.bulletSize = weapon.data.baseScale * gm.playerData.atkRangeMult;
@@ -20,6 +20,6 @@ public class G3_Range : Gear
         {
             batchableWeapon.Batch();
         }
-        Debug.Log($"{name}ÇöÀç ¹èÀ²: {gm.playerData.atkRangeMult}¹è");
+        Debug.Log($"{name}í˜„ì¬ ë°°ìœ¨: {gm.playerData.atkRangeMult}ë°°");
     }
 }

@@ -6,22 +6,22 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerData : ScriptableObject
 {
-    [Header("Ä³¸¯ÅÍ ¾ÆÀÌµğ")]
-    public int characterId = 0; // ¼±ÅÃµÈ Ä³¸¯ÅÍ
+    [Header("ìºë¦­í„° ì•„ì´ë””")]
+    public int characterId = 0; // ì„ íƒëœ ìºë¦­í„°
 
-    [Header("ÃÖ´ë Ã¼·Â ºñÀ²")]
-    public float maxHpMult = 1f; // ÃÖ´ë Ã¼·Â ¹èÀ²
+    [Header("ìµœëŒ€ ì²´ë ¥ ë¹„ìœ¨")]
+    public float maxHpMult = 1f; // ìµœëŒ€ ì²´ë ¥ ë°°ìœ¨
 
-    [Header("µ¥¹ÌÁö ¹èÀ²")]
-    public float damageMult = 1f; // µ¥¹ÌÁö ¹èÀ²
+    [Header("ë°ë¯¸ì§€ ë°°ìœ¨")]
+    public float damageMult = 1f; // ë°ë¯¸ì§€ ë°°ìœ¨
 
-    [Header("°ø°İ¼Óµµ ¹èÀ²")]
-    public float atkSpeedMult = 1f; // °ø°İ¼Óµµ ¹èÀ²
+    [Header("ê³µê²©ì†ë„ ë°°ìœ¨")]
+    public float atkSpeedMult = 1f; // ê³µê²©ì†ë„ ë°°ìœ¨
 
-    [Header("°ø°İ¹üÀ§ ¹èÀ²")]
-    public float atkRangeMult= 1f; // °ø°İ¹üÀ§ ¹èÀ²
+    [Header("ê³µê²©ë²”ìœ„ ë°°ìœ¨")]
+    public float atkRangeMult= 1f; // ê³µê²©ë²”ìœ„ ë°°ìœ¨
 
-    [Header("ÀÌµ¿¼Óµµ ¹èÀ²")]
-    public float speedMult = 1f; // ÀÌµ¿¼Óµµ ¹èÀ²
-    //public int gold = 0; // °ñµå·®
+    [Header("ì´ë™ì†ë„ ë°°ìœ¨")]
+    public float speedMult = 1f; // ì´ë™ì†ë„ ë°°ìœ¨
+    //public int gold = 0; // ê³¨ë“œëŸ‰
 }
