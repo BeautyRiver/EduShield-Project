@@ -91,7 +91,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
             
         // 충돌한 지점의 정확한 위치를 구하기
         hitPos = collision.ClosestPoint(transform.position);         
-        GameObject effect = gm.poolManager.Get(PoolObjectType.EffectEnemy); // Enemy 이팩트 생성
+        GameObject effect = gm.poolManager.Get(PoolType.Effect, 1); // Enemy 이팩트 생성
         effect.transform.position = hitPos;
 
         // 기본 타입일 때
@@ -145,7 +145,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     private void Damaged(string text, float damage, Vector2 hitPos, Color color)
     {        
-        GameObject damageTextobj = gm.poolManager.Get(PoolObjectType.TextEnemyDamaged); // 데미지 텍스트 생성
+        GameObject damageTextobj = gm.poolManager.Get(PoolType.Text, 0); // 데미지 텍스트 생성
         TextMeshPro damageText = damageTextobj.GetComponent<TextMeshPro>();
 
         health -= damage; // 체력 감소            
@@ -153,15 +153,15 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         damageTextobj.transform.localPosition = hitPos;
         damageText.text = text;
         Vector2 dir = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-        damageText.transform.DOMove(dir, 0.35f).SetEase(Ease.OutQuad);
+        damageText.transform.DOMove(rigid.position + (dir * 0.25f), 0.5f).SetEase(Ease.OutQuad);
         damageText.DOScale(1f, 0.1f);
         StartCoroutine(OffDamageText(damageText));
     }
 
     private IEnumerator OffDamageText(TextMeshPro damageText)
     {
-        yield return new WaitForSeconds(0.35f);
-        damageText.DOScale(0, 0.35f).OnComplete(() => damageText.gameObject.SetActive(false));
+        yield return new WaitForSeconds(0.5f);
+        damageText.DOScale(0, 0.5f).OnComplete(() => damageText.gameObject.SetActive(false));
     }
 
     private IEnumerator KnockBack(float knockBackDistance)
@@ -172,6 +172,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         rigid.AddForce(dirVec.normalized * knockBackDistance, ForceMode2D.Impulse);
     }
 
+    // For Event
     private void SetOrderLayerDownAtDead()
     {
         sortingGroup.sortingOrder = 0;

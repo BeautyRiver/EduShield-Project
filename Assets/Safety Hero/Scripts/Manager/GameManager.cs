@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
     // 이펙트 생성시키기
     public void GenerateEffect(int index, Transform parentTransform, Color? setColor = null)
     {            
-        GameObject effect = poolManager.Get(PoolObjectType.EffectPlayer); // 플레이어 힐 이펙트
+        GameObject effect = poolManager.Get(PoolType.Effect, 0); // 플레이어 힐 이펙트
         effect.transform.parent = parentTransform;
         effect.transform.localPosition = Vector3.zero;
         if (setColor != null)

@@ -6,7 +6,7 @@ public class MiniBossEnemy : Enemy
 {
     protected override void DropReward()
     {        
-        GameObject reward = gm.poolManager.Get(PoolObjectType.BoxReward); // 보상 상자 생성
+        GameObject reward = gm.poolManager.Get(PoolType.Item, 2); // 보상 상자 생성
         reward.transform.position = transform.position;
     }
 

@@ -4,21 +4,21 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
-    [Header("# ¹«±â ¼¼ÆÃ")]
+    [Header("# ë¬´ê¸° ì„¸íŒ…")]
     public BulletData data;
-    public int prefabId;         // »ı¼ºÇÒ ºÒ¸´ÀÇ ÇÁ¸®ÆÕ ID    
-    public int level = 0;        // ÇöÀç ·¹º§
-    public float damage;         // ¹«±â µ¥¹ÌÁö    
-    public int count;            // ¹«±â °³¼ö
-    public int per;              // °üÅë·Â
-    public float weaponSpeed;    // ¹«±â ¼Óµµ    
-    private float rotationSpeed;
-    public float bulletDelay;    // ÃÑ¾Ë »çÀÌ µô·¹ÀÌ (Range)   
-    public float damageInterval; // µ¥¹ÌÁö ÁÙ ¼ö ÀÖ´Â ÅÒ
-    public float durationTime;   // Áö¼Ó ½Ã°£(È¸Àü ¹«±â¸¸ ÀÏ´Ü)
-    public float attackRange;    // °ø°İ ¹üÀ§
-    public float knockBackAmout; // ¸ó½ºÅÍ ³Ë¹é·®
-    public Vector3 bulletSize;   // ÃÑ¾Ë(¹«±â) Å©±â
+    public int prefabId;         // ìƒì„±í•  ë¶ˆë¦¿ì˜ í”„ë¦¬íŒ¹ ID    
+    public int level = 0;        // í˜„ì¬ ë ˆë²¨
+    public float damage;         // ë¬´ê¸° ë°ë¯¸ì§€    
+    public int count;            // ë¬´ê¸° ê°œìˆ˜
+    public int per;              // ê´€í†µë ¥
+    public float weaponSpeed;    // ë¬´ê¸° ì†ë„    
+    public float rotationSpeed;
+    public float bulletDelay;    // ì´ì•Œ ì‚¬ì´ ë”œë ˆì´ (Range)   
+    public float damageInterval; // ë°ë¯¸ì§€ ì¤„ ìˆ˜ ìˆëŠ” í…€
+    public float durationTime;   // ì§€ì† ì‹œê°„(íšŒì „ ë¬´ê¸°ë§Œ ì¼ë‹¨)
+    public float attackRange;    // ê³µê²© ë²”ìœ„
+    public float knockBackAmout; // ëª¬ìŠ¤í„° ë„‰ë°±ëŸ‰
+    public Vector3 bulletSize;   // ì´ì•Œ(ë¬´ê¸°) í¬ê¸°
 
     [SerializeField] protected bool isAttacking;
     [SerializeField] protected float speedTimer;
@@ -46,74 +46,75 @@ public abstract class Weapon : MonoBehaviour
         speedTimer = weaponSpeed;
     }
 
-    // ÃÊ±â ¼³Á¤ ÇÔ¼ö
+    // ì´ˆê¸° ì„¤ì • í•¨ìˆ˜
     public virtual void Init(BulletData data)
     {
-        // °øÅë ÃÊ±âÈ­ ·ÎÁ÷        
-        // ±âº» ¼Ó¼º ¼¼ÆÃ
-        this.data = Instantiate(data);            // °ª º¹»ç                                                
+        // ê³µí†µ ì´ˆê¸°í™” ë¡œì§        
+        // ê¸°ë³¸ ì†ì„± ì„¸íŒ…
+        this.data = Instantiate(data);            // ê°’ ë³µì‚¬                                                
         transform.parent = player.transform;
-        transform.localPosition = Vector3.zero;   // ÇÃ·¹ÀÌ¾î ¾È¿¡¼­ À§Ä¡ ÃÊ±âÈ­
+        transform.localPosition = Vector3.zero;   // í”Œë ˆì´ì–´ ì•ˆì—ì„œ ìœ„ì¹˜ ì´ˆê¸°í™”
 
-        prefabId = SetPrefabID(data);             // prefabID ¼³Á¤
-        durationTime = 3f;                        // ¹«±â Áö¼Ó½Ã°£ ¼³Á¤ (*ÇöÀç ONLY È¸Àü¹«±â)
-        damage = data.baseDamage;                 // ±âº» °ø°İ·Â
-        bulletDelay = data.baseDelay;             // ±âº» µô·¹ÀÌ
-        count = data.baseCount;                   // ±âº» °³¼ö
-        weaponSpeed = data.baseSpeed;             // ±âº» °ø°İ¼Óµµ
-        rotationSpeed = data.baseRotationSpeed;   // ±âº» È¸Àü¼Óµµ (*ÇöÀç ONLY È¸Àü¹«±â)
-        attackRange = data.baseRange;             // ±âº» ¹üÀ§ 
-        bulletSize = data.baseScale;              // ±âº» »çÀÌÁî 
-        damageInterval = data.baseDamageInterval; // ±âº» °ø°İ ÅÒ  (*ÀÚ±âÀå ¹«±â ¶§¹®)
-        per = data.basePer;                       // ±âº» °üÅë·Â 
-        knockBackAmout = 1.5f;                    // ±âº» ³Ëº¤·®        
+        prefabId = SetPrefabID(data);             // prefabID ì„¤ì •
+        durationTime = 3f;                        // ë¬´ê¸° ì§€ì†ì‹œê°„ ì„¤ì • (*í˜„ì¬ ONLY íšŒì „ë¬´ê¸°)
+        damage = data.baseDamage;                 // ê¸°ë³¸ ê³µê²©ë ¥
+        bulletDelay = data.baseDelay;             // ê¸°ë³¸ ë”œë ˆì´
+        count = data.baseCount;                   // ê¸°ë³¸ ê°œìˆ˜
+        weaponSpeed = data.baseSpeed;             // ê¸°ë³¸ ê³µê²©ì†ë„
+        rotationSpeed = data.baseRotationSpeed;   // ê¸°ë³¸ íšŒì „ì†ë„ (*í˜„ì¬ ONLY íšŒì „ë¬´ê¸°)
+        attackRange = data.baseRange;             // ê¸°ë³¸ ë²”ìœ„ 
+        bulletSize = data.baseScale;              // ê¸°ë³¸ ì‚¬ì´ì¦ˆ 
+        damageInterval = data.baseDamageInterval; // ê¸°ë³¸ ê³µê²© í…€  (*ìê¸°ì¥ ë¬´ê¸° ë•Œë¬¸)
+        per = data.basePer;                       // ê¸°ë³¸ ê´€í†µë ¥ 
+        knockBackAmout = 1.5f;                    // ê¸°ë³¸ ë„‰ë²¡ëŸ‰        
 
 
-        // ÇÃ·¹ÀÌ¾îÀÇ ±âº» ´É·ÂÄ¡¿¡ µû¸¥ ¼³Á¤
+        // í”Œë ˆì´ì–´ì˜ ê¸°ë³¸ ëŠ¥ë ¥ì¹˜ì— ë”°ë¥¸ ì„¤ì •
         damage = data.baseDamage * gm.playerData.damageMult;
         attackRange = data.baseRange * gm.playerData.atkRangeMult;
         bulletSize = data.baseScale * gm.playerData.atkRangeMult;        
 
-        // °ø°İ¼Óµµ ¼³Á¤
+        // ê³µê²©ì†ë„ ì„¤ì •
         damageInterval = data.baseDamageInterval * gm.playerData.atkSpeedMult;
         weaponSpeed = (float)System.Math.Round(weaponSpeed / gm.playerData.atkSpeedMult, 2);
         rotationSpeed = (float)System.Math.Round(rotationSpeed / gm.playerData.atkSpeedMult, 2);
 
+        // ë¬´ê¸° ë°”ë¡œ ì“¸ ìˆ˜ ìˆê²Œ
         speedTimer = weaponSpeed;
-        level++;
+        level++;        
     }
 
     public virtual void WeaponLevelUp(float rate, int rateIndex, int currentLevel)
     {
-        // °øÅë ·¹º§¾÷ ·ÎÁ÷
-        // ¹«±â ¾÷±×·¹ÀÌµå
+        // ê³µí†µ ë ˆë²¨ì—… ë¡œì§
+        // ë¬´ê¸° ì—…ê·¸ë ˆì´ë“œ
         IBatchable batchable = this as IBatchable;
         switch (rateIndex)
         {
-            case 0: // µ¥¹ÌÁö Áõ°¡
+            case 0: // ë°ë¯¸ì§€ ì¦ê°€
                 data.baseDamage += rate;
                 damage = data.baseDamage * gm.playerData.damageMult;
-                Debug.Log($"{this.name}: Damage {rate}¸¸Å­ Áõ°¡Çß½À´Ï´Ù.");
+                Debug.Log($"{this.name}: Damage {rate}ë§Œí¼ ì¦ê°€í–ˆìŠµë‹ˆë‹¤.");
                 break;
 
-            case 1: // Ä«¿îÆ® Áõ°¡
+            case 1: // ì¹´ìš´íŠ¸ ì¦ê°€
                 count += (int)rate;
                 batchable?.Batch();
-                Debug.Log($"{this.name}: Count {rate}¸¸Å­ Áõ°¡Çß½À´Ï´Ù.");
+                Debug.Log($"{this.name}: Count {rate}ë§Œí¼ ì¦ê°€í–ˆìŠµë‹ˆë‹¤.");
                 break;
 
-            case 2: // °üÅë·Â Áõ°¡
+            case 2: // ê´€í†µë ¥ ì¦ê°€
                 per += (int)rate;
-                Debug.Log($"{this.name}: Per {rate}¸¸Å­ Áõ°¡Çß½À´Ï´Ù.");
+                Debug.Log($"{this.name}: Per {rate}ë§Œí¼ ì¦ê°€í–ˆìŠµë‹ˆë‹¤.");
                 break;
 
-            case 3: // Å©±â[¹üÀ§] Áõ°¡
+            case 3: // í¬ê¸°[ë²”ìœ„] ì¦ê°€
                 data.baseScale += (data.baseScale * rate * 0.01f);                
                 bulletSize = data.baseScale * gm.playerData.atkRangeMult;
                 attackRange = data.baseRange * gm.playerData.atkRangeMult;
                 batchable?.Batch();
 
-                Debug.Log($"{this.name}: Range {rate}¸¸Å­ Áõ°¡Çß½À´Ï´Ù.");
+                Debug.Log($"{this.name}: Range {rate}ë§Œí¼ ì¦ê°€í–ˆìŠµë‹ˆë‹¤.");
                 break;
         }
         level = currentLevel;
@@ -134,7 +135,7 @@ public abstract class Weapon : MonoBehaviour
         }
     }
 
-    // °ø°İ±â´É
+    // ê³µê²©ê¸°ëŠ¥
     protected abstract void Attack();
 
     protected virtual void BulletInit(Transform bullet, Vector3? dir = null)
@@ -142,13 +143,11 @@ public abstract class Weapon : MonoBehaviour
         Vector3 direction = dir ?? Vector3.zero;
         Bullet bulletComponent = bullet.GetComponent<Bullet>();
 
-        // °øÅëµÈ ºÒ¸´ ÃÊ±âÈ­ ·ÎÁ÷
+        // ê³µí†µëœ ë¶ˆë¦¿ ì´ˆê¸°í™” ë¡œì§
         bulletComponent.Init(damage, per, direction, data.itemId, knockBackAmout, damageInterval);
     }
-
-   
-
-    // ÇÁ¸®Æé ¾ÆÀÌµğ Ã£±â
+  
+    // í”„ë¦¬í© ì•„ì´ë”” ì°¾ê¸°
     protected int SetPrefabID(BulletData data)
     {
         Pool[] tempPools = GameManager.instance.poolManager.pools;
@@ -171,6 +170,6 @@ public abstract class Weapon : MonoBehaviour
     }
 
     /// <summary>
-    ///  LevelUp Logic: ·¹º§¾÷ ¿¹¿ÜÃ³¸®
+    ///  LevelUp Logic: ë ˆë²¨ì—… ì˜ˆì™¸ì²˜ë¦¬
     /// </summary>
 }

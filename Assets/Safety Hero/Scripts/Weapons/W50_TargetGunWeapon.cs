@@ -10,7 +10,7 @@ public class W50_TargetGunWeapon : Weapon
         StartCoroutine(R50_Bullet());
     }
 
-    // √—
+    // Ï¥ù
     private IEnumerator R50_Bullet()
     {
         for (int i = 0; i < count; i++)
@@ -24,22 +24,22 @@ public class W50_TargetGunWeapon : Weapon
             Vector3 targetPos = player.scanner.nearestTarget.position;
             Vector3 dir = (targetPos - transform.position).normalized;
 
-            // √—æÀ πﬂªÁ
-            Transform bullet = GameManager.instance.poolManager.Get(PoolObjectType.Bullet50).transform;
+            // Ï¥ùÏïå Î∞úÏÇ¨
+            Transform bullet = GameManager.instance.poolManager.Get(PoolType.Bullet, 3).transform;
             bullet.parent = transform;
 
             bullet.localScale = bulletSize;
             bullet.position = transform.position;
             bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
 
-            // ∫“∑ø √ ±‚»≠
+            // Î∂àÎ†õ Ï¥àÍ∏∞Ìôî
             BulletInit(bullet, dir);
 
-            // πﬂªÁ ªÁøÓµÂ
+            // Î∞úÏÇ¨ ÏÇ¨Ïö¥Îìú
             MasterAudio.PlaySound("R50_TargetGun");
 
-            // πﬂªÁ »ƒ æ‡∞£¿« µÙ∑π¿Ã √ﬂ∞°
-            yield return new WaitForSeconds(bulletDelay); // √—æÀ ªÁ¿Ã¿« µÙ∑π¿Ã º≥¡§ (0.1√ , « ø‰ø° µ˚∂Û ¡∂¡§ ∞°¥…)
+            // Î∞úÏÇ¨ ÌõÑ ÏïΩÍ∞ÑÏùò ÎîúÎ†àÏù¥ Ï∂îÍ∞Ä
+            yield return new WaitForSeconds(bulletDelay); // Ï¥ùÏïå ÏÇ¨Ïù¥Ïùò ÎîúÎ†àÏù¥ ÏÑ§Ï†ï (0.1Ï¥à, ÌïÑÏöîÏóê Îî∞Îùº Ï°∞Ï†ï Í∞ÄÎä•)
         }
         isAttacking = false;
     }

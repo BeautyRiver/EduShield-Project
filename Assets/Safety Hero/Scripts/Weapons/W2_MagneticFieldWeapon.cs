@@ -10,20 +10,20 @@ public class W2_MagneticFieldWeapon : Weapon, IBatchable
         StartCoroutine(M2_Bullet());
     }
 
-    // ÀÚ±âÀå
+    // ìê¸°ì¥
     protected IEnumerator M2_Bullet()
     {
-        while (!gm.isGameRealEnd)
+        while (gm.isGameActive)
         {
             yield return null;
             Transform bullet;
             if (transform.childCount <= 0)
             {
-                bullet = gm.poolManager.Get(PoolObjectType.Bullet2).transform;
-                bullet.parent = transform; // ºÎ¸ğ ¼³Á¤
-                bullet.localPosition = Vector3.zero; // ·ÎÄÃ À§Ä¡ ÃÊ±âÈ­
-                bullet.localRotation = Quaternion.identity; // ·ÎÄÃ È¸Àü ÃÊ±âÈ­
-                bullet.localScale = Vector3.zero; // ·ÎÄÃ Å©±â 0À¸·Î ÃÊ±âÈ­
+                bullet = gm.poolManager.Get(PoolType.Bullet, 2).transform; // Bullet2 ê°€ì ¸ì˜¤ê¸°
+                bullet.parent = transform; // ë¶€ëª¨ ì„¤ì •
+                bullet.localPosition = Vector3.zero; // ë¡œì»¬ ìœ„ì¹˜ ì´ˆê¸°í™”
+                bullet.localRotation = Quaternion.identity; // ë¡œì»¬ íšŒì „ ì´ˆê¸°í™”
+                bullet.localScale = Vector3.zero; // ë¡œì»¬ í¬ê¸° 0ìœ¼ë¡œ ì´ˆê¸°í™”
                 Batch();
             }
             else

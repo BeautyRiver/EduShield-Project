@@ -6,7 +6,7 @@ public class DefaultEnemy : Enemy, IRepositionable
 {
     protected override void DropReward()
     {
-        GameObject exp = GameManager.instance.poolManager.Get(PoolObjectType.Exp); // exp 생성
+        GameObject exp = GameManager.instance.poolManager.Get(PoolType.Item, 0); // exp 생성
         exp.transform.position = transform.position;
         exp.GetComponent<Exp>().exp = this.exp;
     }

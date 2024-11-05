@@ -9,7 +9,6 @@ public class BulletSingleDamage : Bullet
         var damageAble = collision.GetComponent<IDamageable>();
         if (damageAble != null)
         {
-            Debug.Log($"Damaged to {collision.name}, Damage: {Damage}");
             damageAble.DamagedLogic(bulletCol, Damage);
             PerDown();
         }

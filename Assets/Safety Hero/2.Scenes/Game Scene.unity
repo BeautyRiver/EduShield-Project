@@ -38950,6 +38950,7 @@ MonoBehaviour:
   count: 0
   per: 0
   weaponSpeed: 0
+  rotationSpeed: 0
   bulletDelay: 0
   damageInterval: 0
   durationTime: 0
@@ -38977,6 +38978,7 @@ MonoBehaviour:
   count: 0
   per: 0
   weaponSpeed: 0
+  rotationSpeed: 0
   bulletDelay: 0
   damageInterval: 0
   durationTime: 0
@@ -39004,6 +39006,7 @@ MonoBehaviour:
   count: 0
   per: 0
   weaponSpeed: 0
+  rotationSpeed: 0
   bulletDelay: 0
   damageInterval: 0
   durationTime: 0
@@ -39031,6 +39034,7 @@ MonoBehaviour:
   count: 0
   per: 0
   weaponSpeed: 0
+  rotationSpeed: 0
   bulletDelay: 0
   damageInterval: 0
   durationTime: 0
@@ -39058,6 +39062,7 @@ MonoBehaviour:
   count: 0
   per: 0
   weaponSpeed: 0
+  rotationSpeed: 0
   bulletDelay: 0
   damageInterval: 0
   durationTime: 0
@@ -39085,6 +39090,7 @@ MonoBehaviour:
   count: 0
   per: 0
   weaponSpeed: 0
+  rotationSpeed: 0
   bulletDelay: 0
   damageInterval: 0
   durationTime: 0
@@ -90669,8 +90675,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 39912417}
-  - {fileID: 1080046728}
   - {fileID: 1481185931}
+  - {fileID: 1080046728}
   - {fileID: 6656728}
   - {fileID: 537941111}
   - {fileID: 1318524829}

@@ -278,7 +278,6 @@ MonoBehaviour:
   speed: 0
   exp: 0
   isLive: 0
-  typeControlManager: {fileID: 0}
   animCon:
   - {fileID: 9100000, guid: f2855d618fc8d9c499189d3f39b9cbbc, type: 2}
   - {fileID: 22100000, guid: 0bdb36c3ffc0c1d4f9d6655c5ed4190d, type: 2}

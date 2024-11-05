@@ -25,41 +25,41 @@ public class W51_CannonWeapon : Weapon
 
     }
 
-    // √—
+    // Ï¥ù
     private IEnumerator R51_Bullet()
     {
         bool isReverse = false;
         for (int i = 0; i < count; i++)
         {
-            // isReverse «√∑°±◊ø° µ˚∂Û πﬂªÁ πÊ«‚ ∞·¡§ (true∏È ¡§πÊ«‚, false∏È π›¥Î πÊ«‚)
+            // isReverse ÌîåÎûòÍ∑∏Ïóê Îî∞Îùº Î∞úÏÇ¨ Î∞©Ìñ• Í≤∞Ï†ï (trueÎ©¥ Ï†ïÎ∞©Ìñ•, falseÎ©¥ Î∞òÎåÄ Î∞©Ìñ•)
             Vector3 dir = isReverse ? new Vector3(player.lastInputVec.x, player.lastInputVec.y, 0).normalized : new Vector3(-player.lastInputVec.x, -player.lastInputVec.y, 0).normalized;
 
 
-            Transform bullet = GameManager.instance.poolManager.Get(PoolObjectType.Bullet51).transform;
+            Transform bullet = GameManager.instance.poolManager.Get(PoolType.Bullet, 4).transform;
             bullet.parent = transform;
             Vector3 spreadOffset = Vector3.zero;
 
             float random = Random.Range(-4, 5) * 0.2f;
-            // πﬂªÁ πÊ«‚ø° µ˚∂Û πﬂªÁ√º ∞£∞›¿ª ¡∂¿˝ (ø¿∏•¬ /øﬁ¬ , ¿ß¬ /æ∆∑°¬  ∏µŒ ¡ˆø¯)
+            // Î∞úÏÇ¨ Î∞©Ìñ•Ïóê Îî∞Îùº Î∞úÏÇ¨Ï≤¥ Í∞ÑÍ≤©ÏùÑ Ï°∞Ï†à (Ïò§Î•∏Ï™Ω/ÏôºÏ™Ω, ÏúÑÏ™Ω/ÏïÑÎûòÏ™Ω Î™®Îëê ÏßÄÏõê)
             spreadOffset = Vector3.Cross(dir, Vector3.forward) * ((i - (count / 2)) * random);
 
-            // πﬂªÁ√º¿« Ω√¿€ ¿ßƒ°∏¶ ¡∂¡§
+            // Î∞úÏÇ¨Ï≤¥Ïùò ÏãúÏûë ÏúÑÏπòÎ•º Ï°∞Ï†ï
             Vector3 startPosition = transform.position + spreadOffset;
 
             bullet.localScale = bulletSize;
             bullet.position = startPosition;
-            bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);  // πﬂªÁ πÊ«‚ø° ∏¬∞‘ »∏¿¸ º≥¡§
+            bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);  // Î∞úÏÇ¨ Î∞©Ìñ•Ïóê ÎßûÍ≤å ÌöåÏ†Ñ ÏÑ§Ï†ï
 
-            // ∫“∑ø √ ±‚»≠
+            // Î∂àÎ†õ Ï¥àÍ∏∞Ìôî
             BulletInit(bullet, dir);
 
-            // πﬂªÁ ªÁøÓµÂ
+            // Î∞úÏÇ¨ ÏÇ¨Ïö¥Îìú
             MasterAudio.PlaySound("R51_Cannon");
 
-            // πﬂªÁ »ƒ æ‡∞£¿« µÙ∑π¿Ã √ﬂ∞°
-            yield return new WaitForSeconds(bulletDelay);  // √—æÀ ªÁ¿Ã¿« µÙ∑π¿Ã º≥¡§ (0.1√ )        
+            // Î∞úÏÇ¨ ÌõÑ ÏïΩÍ∞ÑÏùò ÎîúÎ†àÏù¥ Ï∂îÍ∞Ä
+            yield return new WaitForSeconds(bulletDelay);  // Ï¥ùÏïå ÏÇ¨Ïù¥Ïùò ÎîúÎ†àÏù¥ ÏÑ§Ï†ï (0.1Ï¥à)        
 
-            isReverse = !isReverse; // ∏≈π¯ πÊ«‚¿ª π›¥Î∑Œ ∫Ø∞Ê
+            isReverse = !isReverse; // Îß§Î≤à Î∞©Ìñ•ÏùÑ Î∞òÎåÄÎ°ú Î≥ÄÍ≤Ω
         }
 
         isAttacking = false;

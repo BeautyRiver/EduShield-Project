@@ -5,7 +5,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class W1_RotateWeapon : Weapon, IBatchable, IRotatingable
-{  
+{
+    protected override void Update()
+    {
+        base.Update();
+
+        // íšŒì „ ë¡œì§ ì¶”ê°€
+        transform.Rotate(Vector3.back * rotationSpeed * Time.deltaTime);
+    }
+
     protected override void Attack()
     {
         StartCoroutine(M1_Bullet());
@@ -16,39 +24,40 @@ public class W1_RotateWeapon : Weapon, IBatchable, IRotatingable
         Batch();
         yield return new WaitForSeconds(durationTime);
         Transform bullet;
-        for (int index = 0; index < count; index++) // ºÒ¸´ ¼ö¸¸Å­ ¹İº¹
+        for (int index = 0; index < count; index++) // ë¶ˆë¦¿ ìˆ˜ë§Œí¼ ë°˜ë³µ
         {
-            bullet = transform.GetChild(index); // ±âÁ¸ ÀÚ½Ä »ç¿ë
-            bullet.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBounce); // Å©±â¸¦ 0.5ÃÊ µ¿¾È ÀÚ¿¬½º·´°Ô Ãà¼Ò
+            bullet = transform.GetChild(index); // ê¸°ì¡´ ìì‹ ì‚¬ìš©
+            bullet.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBounce); // í¬ê¸°ë¥¼ 0.5ì´ˆ ë™ì•ˆ ìì—°ìŠ¤ëŸ½ê²Œ ì¶•ì†Œ
         }
         isAttacking = false;
-    }
+    } 
 
-    // ºÒ¸´ ¹èÄ¡ ÇÔ¼ö (È¸Àü ¹«±â)
+    // ë¶ˆë¦¿ ë°°ì¹˜ í•¨ìˆ˜ (íšŒì „ ë¬´ê¸°)
     public void Batch()
     {
-        for (int index = 0; index < count; index++) // ºÒ¸´ ¼ö¸¸Å­ ¹İº¹
+        for (int index = 0; index < count; index++) // ë¶ˆë¦¿ ìˆ˜ë§Œí¼ ë°˜ë³µ
         {
             Transform bullet;
-            if (index < transform.childCount) // ÀÚ½Ä Á¸Àç ½Ã
+            if (index < transform.childCount) // ìì‹ ì¡´ì¬ ì‹œ
             {
-                bullet = transform.GetChild(index); // ±âÁ¸ ÀÚ½Ä »ç¿ë
+                bullet = transform.GetChild(index); // ê¸°ì¡´ ìì‹ ì‚¬ìš©
             }
             else
             {
-                bullet = gm.poolManager.Get(PoolObjectType.Bullet1).transform;
-                bullet.parent = transform; // ºÎ¸ğ ¼³Á¤
+                Debug.Log("Bullet1 Pooled! => " + index);
+                bullet = gm.poolManager.Get(PoolType.Bullet, 1).transform; // Bullet1 ê°€ì ¸ì˜¤ê¸°
+                bullet.parent = transform; // ë¶€ëª¨ ì„¤ì •
             }
 
-            bullet.localPosition = Vector3.zero; // ·ÎÄÃ À§Ä¡ ÃÊ±âÈ­
-            bullet.localRotation = Quaternion.identity; // ·ÎÄÃ È¸Àü ÃÊ±âÈ­
+            bullet.localPosition = Vector3.zero; // ë¡œì»¬ ìœ„ì¹˜ ì´ˆê¸°í™”
+            bullet.localRotation = Quaternion.identity; // ë¡œì»¬ íšŒì „ ì´ˆê¸°í™”
 
-            // ÃÊ±â È¸Àü ¼³Á¤
-            Vector3 rotVec = Vector3.forward * 360 * index / count; // ºÒ¸´ È¸Àü º¤ÅÍ °è»ê
-            bullet.Rotate(rotVec); // ºÒ¸´ È¸Àü                        
+            // ì´ˆê¸° íšŒì „ ì„¤ì •
+            Vector3 rotVec = Vector3.forward * 360 * index / count; // ë¶ˆë¦¿ íšŒì „ ë²¡í„° ê³„ì‚°
+            bullet.Rotate(rotVec); // ë¶ˆë¦¿ íšŒì „                        
             bullet.localScale = Vector3.zero;
-            bullet.Translate(bullet.up * attackRange, Space.World); // ÁöÁ¤µÈ °Å¸®¸¸Å­ ÀÌµ¿               
-            bullet.DOScale(bulletSize, 0.5f).SetEase(Ease.OutBounce); // Å©±â¸¦ 0.5ÃÊ µ¿¾È ÀÚ¿¬½º·´°Ô È®Àå
+            bullet.Translate(bullet.up * attackRange, Space.World); // ì§€ì •ëœ ê±°ë¦¬ë§Œí¼ ì´ë™               
+            bullet.DOScale(bulletSize, 0.5f).SetEase(Ease.OutBounce); // í¬ê¸°ë¥¼ 0.5ì´ˆ ë™ì•ˆ ìì—°ìŠ¤ëŸ½ê²Œ í™•ì¥
 
             BulletInit(bullet);
         }
@@ -56,6 +65,6 @@ public class W1_RotateWeapon : Weapon, IBatchable, IRotatingable
 
     public void Rotate()
     {
-        transform.Rotate(Vector3.back * bulletDelay * Time.deltaTime); // ¹«±â È¸Àü
+        transform.Rotate(Vector3.back * bulletDelay * Time.deltaTime); // ë¬´ê¸° íšŒì „
     }
 }

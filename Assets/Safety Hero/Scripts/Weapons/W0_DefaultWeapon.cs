@@ -4,45 +4,44 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class W0_DefaultWeapon : Weapon
-{    
+{
     protected override void Attack()
     {
         StartCoroutine(M0_Bullet());
     }
     protected IEnumerator M0_Bullet()
     {
-        // Ã¹ ¹øÂ° °ø°İÀº ÇÃ·¹ÀÌ¾î°¡ ¹Ù¶óº¸´Â ¹æÇâ, µÎ ¹øÂ°´Â ¹İ´ë ¹æÇâÀ¸·Î ¹ß»ç
+        // ì²« ë²ˆì§¸ ê³µê²©ì€ í”Œë ˆì´ì–´ê°€ ë°”ë¼ë³´ëŠ” ë°©í–¥, ë‘ ë²ˆì§¸ëŠ” ë°˜ëŒ€ ë°©í–¥ìœ¼ë¡œ ë°œì‚¬
         for (int i = 0; i < count; i++)
         {
-            // Ã¹ ¹øÂ° ¹ß»ç ¹æÇâ: ÇÃ·¹ÀÌ¾î°¡ ¹Ù¶óº¸´Â ¹æÇâ
+            // ì²« ë²ˆì§¸ ë°œì‚¬ ë°©í–¥: í”Œë ˆì´ì–´ê°€ ë°”ë¼ë³´ëŠ” ë°©í–¥
             Vector3 dir = (i % 2 == 0) ? new Vector3(player.lastXInputVec, 0, 0).normalized : new Vector3(-player.lastXInputVec, 0, 0).normalized;
 
-            // »õ·Î¿î ¹ß»çÃ¼ »ı¼º
-            Transform bullet = GameManager.instance.poolManager.Get(PoolObjectType.Bullet0).transform;
+            // ìƒˆë¡œìš´ ë°œì‚¬ì²´ ìƒì„±
+            Transform bullet = GameManager.instance.poolManager.Get(PoolType.Bullet, 0).transform; //Bullet0 ê°€ì ¸ì˜¤ê¸°
             bullet.parent = transform;
 
-            // ¹ß»çÃ¼ À§Ä¡ ¼³Á¤ (¾à°£ÀÇ ³ôÀÌ Â÷ÀÌ Ãß°¡)
+            // ë°œì‚¬ì²´ ìœ„ì¹˜ ì„¤ì • (ì•½ê°„ì˜ ë†’ì´ ì°¨ì´ ì¶”ê°€)
             bullet.localScale = bulletSize;
-            bullet.position = transform.position + new Vector3(0, i * 1f, 0); // ¹«±â °³¼ö¿¡ µû¶ó ³ôÀÌ Áõ°¡
-            bullet.Translate(bullet.right * dir.x * 0.2f); // ÁöÁ¤µÈ °Å¸®¸¸Å­ ÀÌµ¿
+            bullet.position = transform.position + new Vector3(0, i * 1f, 0); // ë¬´ê¸° ê°œìˆ˜ì— ë”°ë¼ ë†’ì´ ì¦ê°€
+            bullet.Translate(bullet.right * dir.x * 0.2f); // ì§€ì •ëœ ê±°ë¦¬ë§Œí¼ ì´ë™
 
-
-            // ¹ß»ç ¹æÇâ¿¡ µû¶ó ¹ß»çÃ¼ È¸Àü ¼³Á¤ (¿ŞÂÊÀ¸·Î ¹ß»çµÉ ¶§´Â 180µµ È¸Àü)
+            // ë°œì‚¬ ë°©í–¥ì— ë”°ë¼ ë°œì‚¬ì²´ íšŒì „ ì„¤ì • (ì™¼ìª½ìœ¼ë¡œ ë°œì‚¬ë  ë•ŒëŠ” 180ë„ íšŒì „)
             if (dir.x < 0)
                 bullet.localRotation = Quaternion.Euler(0, 180, 0); 
 
             else
                 bullet.localRotation = Quaternion.identity; 
 
-            // ¹ß»çÃ¼ ÃÊ±âÈ­
+            // ë°œì‚¬ì²´ ì´ˆê¸°í™”
             BulletInit(bullet);
             MasterAudio.PlaySound("M0_Default");
 
-            // µô·¹ÀÌ
+            // ë”œë ˆì´
             yield return new WaitForSeconds(bulletDelay); 
         }
 
-        // °ø°İÀÌ ³¡³ª¸é »óÅÂ ÃÊ±âÈ­
+        // ê³µê²©ì´ ëë‚˜ë©´ ìƒíƒœ ì´ˆê¸°í™”
         isAttacking = false;
     }
 }

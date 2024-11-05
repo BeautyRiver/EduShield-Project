@@ -113,7 +113,7 @@ public class Spawner : MonoBehaviour
         // 적 소환
         for (int i = 0; i < miniBossSpawnData[level - 1].spawnCount; i++)
         {
-            GameObject enemy = GameManager.instance.poolManager.Get(PoolObjectType.EnemyMiniBoss); // 미니 보스 소환
+            GameObject enemy = GameManager.instance.poolManager.Get(PoolType.Enemy, 2); // 미니 보스 소환
             enemy.transform.position = spawnPoint[Random.Range(0, spawnPoint.Length)].position;
             enemy.GetComponent<Enemy>().Init(miniBossSpawnData[level - 1]);
         }
@@ -127,7 +127,7 @@ public class Spawner : MonoBehaviour
         int ran = Random.Range(0, uniqeSpawnPoint.Length);
         for (int i = 0; i < uniqeSpawnData[0].spawnCount; i++)
         {
-            GameObject enemy = GameManager.instance.poolManager.Get(PoolObjectType.EnemyU0); // 유니크 몬스터 소환
+            GameObject enemy = GameManager.instance.poolManager.Get(PoolType.Enemy, 1); // 유니크 몬스터 소환
             Vector3 ranPos = new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), 0);
             enemy.transform.position = uniqeSpawnPoint[ran].position + ranPos;
             enemy.GetComponent<Enemy>().Init(uniqeSpawnData[0]);
@@ -144,7 +144,7 @@ public class Spawner : MonoBehaviour
         // 적 소환
         for (int i = 0; i < normalSpawnData[level].spawnCount; i++)
         {
-            GameObject enemy = GameManager.instance.poolManager.Get(PoolObjectType.Enemy0); // 기본 Enemy 소환
+            GameObject enemy = GameManager.instance.poolManager.Get(PoolType.Enemy, 0); // 기본 Enemy 소환
             enemy.transform.position = spawnPoint[Random.Range(0, spawnPoint.Length)].position;            
             enemy.GetComponent<Enemy>().Init(normalSpawnData[level]);
         }
@@ -185,7 +185,7 @@ public class Spawner : MonoBehaviour
 
         // 안전한 위치가 확인되면 박스 생성
         //Debug.Log("생성 완료");
-        GameObject box = GameManager.instance.poolManager.Get(PoolObjectType.BoxField); // Box 생성
+        GameObject box = GameManager.instance.poolManager.Get(PoolType.Bullet, 1); // Box 생성
         box.transform.parent = parentTransform;
         box.transform.position = spawnPosition;
     }   

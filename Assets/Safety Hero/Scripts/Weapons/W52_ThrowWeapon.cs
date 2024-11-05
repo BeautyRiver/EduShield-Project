@@ -10,37 +10,37 @@ public class W52_ThrowWeapon : Weapon
         StartCoroutine(R52_Bullet());
     }
 
-    // Ã¢
+    // ì°½
     private IEnumerator R52_Bullet()
     {
         for (int i = 0; i < count; i++)
         {
             Vector3 dir = new Vector3(player.lastInputVec.x, player.lastInputVec.y, 0).normalized;
-            Transform bullet = GameManager.instance.poolManager.Get(PoolObjectType.Bullet52).transform;
+            Transform bullet = GameManager.instance.poolManager.Get(PoolType.Bullet, 5).transform; // Bullet52 ê°€ì ¸ì˜¤ê¸°
             bullet.parent = transform;
             Vector3 spreadOffset = Vector3.zero;
 
             float random = Random.Range(-4, 5) * 0.05f;
-            // ¹ß»ç ¹æÇâ¿¡ µû¶ó ¹ß»çÃ¼ °£°ÝÀ» Á¶Àý (¿À¸¥ÂÊ/¿ÞÂÊ, À§ÂÊ/¾Æ·¡ÂÊ ¸ðµÎ Áö¿ø)
+            // ë°œì‚¬ ë°©í–¥ì— ë”°ë¼ ë°œì‚¬ì²´ ê°„ê²©ì„ ì¡°ì ˆ (ì˜¤ë¥¸ìª½/ì™¼ìª½, ìœ„ìª½/ì•„ëž˜ìª½ ëª¨ë‘ ì§€ì›)
             spreadOffset = Vector3.Cross(dir, Vector3.forward) * ((i - (count / 2)) * random);
 
 
-            // ¹ß»çÃ¼ÀÇ ½ÃÀÛ À§Ä¡¸¦ Á¶Á¤
+            // ë°œì‚¬ì²´ì˜ ì‹œìž‘ ìœ„ì¹˜ë¥¼ ì¡°ì •
             Vector3 startPosition = transform.position + spreadOffset;
 
             bullet.localScale = bulletSize;
             bullet.position = startPosition;
-            //bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);  // ¹ß»ç ¹æÇâ¿¡ ¸Â°Ô È¸Àü ¼³Á¤
+            //bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);  // ë°œì‚¬ ë°©í–¥ì— ë§žê²Œ íšŒì „ ì„¤ì •
             bullet.rotation = Quaternion.Euler(new Vector3(bullet.transform.eulerAngles.x, bullet.transform.eulerAngles.y, Random.Range(0, 360f)));
 
-            //ºÒ·¿ ÃÊ±âÈ­
+            //ë¶ˆë › ì´ˆê¸°í™”
             BulletInit(bullet, dir);
 
-            // ¹ß»ç »ç¿îµå
+            // ë°œì‚¬ ì‚¬ìš´ë“œ
             MasterAudio.PlaySound("R52_Throw");
 
-            // ¹ß»ç ÈÄ ¾à°£ÀÇ µô·¹ÀÌ Ãß°¡
-            yield return new WaitForSeconds(bulletDelay);  // ÃÑ¾Ë »çÀÌÀÇ µô·¹ÀÌ ¼³Á¤ (0.1ÃÊ)
+            // ë°œì‚¬ í›„ ì•½ê°„ì˜ ë”œë ˆì´ ì¶”ê°€
+            yield return new WaitForSeconds(bulletDelay);  // ì´ì•Œ ì‚¬ì´ì˜ ë”œë ˆì´ ì„¤ì • (0.1ì´ˆ)
         }
         isAttacking = false;
     }
