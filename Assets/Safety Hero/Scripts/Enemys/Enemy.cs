@@ -15,7 +15,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         Uniqe,
         MiniBoss,
     }
-    [Header("# 공통 속성")]   
+    [Header("# 공통 속성")]
     public EnemyType enemyType;
     public int id;
     public float damage;
@@ -27,7 +27,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     protected Vector2 nextVec;
 
     [Header("# 참조")]
-    [SerializeField] protected RuntimeAnimatorController[] animCon;    
+    [SerializeField] protected RuntimeAnimatorController[] animCon;
 
     protected Rigidbody2D targetRb;
     protected Collider2D coll;
@@ -40,26 +40,26 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     protected virtual void Awake()
     {
         // 초기 할당        
-        gm = GameManager.instance;        
+        gm = GameManager.instance;
         rigid = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
         spriter = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         sortingGroup = GetComponent<SortingGroup>();
     }
-    
+
     protected virtual void FixedUpdate()
-    {        
+    {
         if (!gm.isGameActive || !isLive)
-            return;                
+            return;
 
         rigid.velocity = Vector2.zero;
         Move();
         FlipX();
     }
 
-    protected abstract void Move();    
-    protected abstract void FlipX();    
+    protected abstract void Move();
+    protected abstract void FlipX();
 
     protected virtual void OnEnable()
     {
@@ -88,9 +88,9 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     {
         Bullet bulletInfo = collision.GetComponent<Bullet>();
         Vector2 hitPos;
-            
+
         // 충돌한 지점의 정확한 위치를 구하기
-        hitPos = collision.ClosestPoint(transform.position);         
+        hitPos = collision.ClosestPoint(transform.position);
         GameObject effect = gm.poolManager.Get(PoolType.Effect, 1); // Enemy 이팩트 생성
         effect.transform.position = hitPos;
 
@@ -98,26 +98,22 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         if (gm.typeControll.TypeIndex == -1)
         {
             // 기본 데미지 표시 
-            Damaged(damage.ToString("F1"), damage, hitPos, Color.white); 
+            Damaged(damage, hitPos, Color.white, false);
         }
         // 기본 타입이 아닐 때
         else
         {
             if (gm.typeControll.TypeIndex == id)
             {
-                // 기본 데미지 표시 
-                Damaged(damage.ToString("F1"), damage, hitPos, Color.white); 
-
-                // 추가 데미지
-                float plusDamage = damage;
-                Damaged($"+{(plusDamage).ToString("F1")}", plusDamage, new Vector2(hitPos.x, hitPos.y + 0.5f), Color.red);
+                // 기본 데미지 표시 + 추가 데미지
+                Damaged(damage, hitPos, Color.white, true);
             }
             else
             {
                 // 데미지 반감
                 damage = damage * 0.5f;
                 // 기본 데미지 표시 
-                Damaged(damage.ToString("F1"), damage, hitPos, Color.gray); 
+                Damaged(damage, hitPos, Color.gray, false);
             }
         }
 
@@ -136,29 +132,38 @@ public abstract class Enemy : MonoBehaviour, IDamageable
             coll.enabled = false;
             rigid.simulated = false;
             anim.SetBool("Dead", true);
-            gm.kill++;            
+            gm.kill++;
             MasterAudio.PlaySound("Dead");
         }
     }
 
     protected abstract void DropReward();
 
-    private void Damaged(string text, float damage, Vector2 hitPos, Color color)
-    {        
+    private void Damaged(float damage, Vector2 hitPos, Color color, bool isPlusDamage)
+    {
         GameObject damageTextobj = gm.poolManager.Get(PoolType.Text, 0); // 데미지 텍스트 생성
         TextMeshPro damageText = damageTextobj.GetComponent<TextMeshPro>();
 
         health -= damage; // 체력 감소            
         damageText.color = color;
         damageTextobj.transform.localPosition = hitPos;
-        damageText.text = text;
-        Vector2 dir = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-        damageText.transform.DOMove(rigid.position + (dir * 0.25f), 0.5f).SetEase(Ease.OutQuad);
-        damageText.DOScale(1f, 0.1f);
-        StartCoroutine(OffDamageText(damageText));
+        damageText.text = damage.ToString("F1");        
+        // 코루틴으로 데미지 텍스트 이펙트 위로 이동하면서 투명해지면서 사라지게        
+        StartCoroutine(TextAnimationCor(damageText));
+        if (isPlusDamage)
+        {
+            // hitPos.y를 증가시켜 위로 조금 더 올라가게 함
+            Damaged(damage, hitPos + Vector2.up * 0.25f, Color.red, false);
+        }
+    }
+    private IEnumerator TextAnimationCor(TextMeshPro text)
+    {
+        text.transform.DOMove(text.transform.position + Vector3.up * 1f, 1f);
+        yield return new WaitForSeconds(0.5f);
+        text.DOFade(0, 0.5f).OnComplete(() => text.gameObject.SetActive(false));
     }
 
-    private IEnumerator OffDamageText(TextMeshPro damageText)
+    private IEnumerator OffDamageTextCor(TextMeshPro damageText)
     {
         yield return new WaitForSeconds(0.5f);
         damageText.DOScale(0, 0.5f).OnComplete(() => damageText.gameObject.SetActive(false));
