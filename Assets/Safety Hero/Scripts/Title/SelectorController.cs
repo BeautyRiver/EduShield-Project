@@ -1,15 +1,29 @@
 using DG.Tweening;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+public enum EUIType
+{
+    TitleButtons,
+    ESCButtons,
+    LevelUpButtons,
+}
+[System.Serializable]
+public class Buttons
+{    
+    public EUIType uiType;
+    public Button[] buttons;
+}
 public class SelectorController : MonoBehaviour
 {
     public static Action SelectorEvent;
 
     private Vector2 initPos;
     private RectTransform myRect;
+    
     [SerializeField] private Transform itemGroup;
     [SerializeField] private ItemSetting[] itemFilter;
     [SerializeField] private RectTransform[] itemRects;
