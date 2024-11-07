@@ -94,11 +94,12 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         GameObject effect = gm.poolManager.Get(PoolType.Effect, 1); // Enemy 이팩트 생성
         effect.transform.position = hitPos;
 
+        float fontSize = 7f;
         // 기본 타입일 때
         if (gm.typeControll.TypeIndex == -1)
         {
             // 기본 데미지 표시 
-            Damaged(damage, hitPos, Color.white, false);
+            Damaged(damage, hitPos, Color.white, false, fontSize);
         }
         // 기본 타입이 아닐 때
         else
@@ -106,14 +107,14 @@ public abstract class Enemy : MonoBehaviour, IDamageable
             if (gm.typeControll.TypeIndex == id)
             {
                 // 기본 데미지 표시 + 추가 데미지
-                Damaged(damage, hitPos, Color.white, true);
+                Damaged(damage, hitPos, Color.white, true, fontSize);
             }
             else
             {
                 // 데미지 반감
                 damage = damage * 0.5f;
                 // 기본 데미지 표시 
-                Damaged(damage, hitPos, Color.gray, false);
+                Damaged(damage, hitPos, Color.gray, false, fontSize);
             }
         }
 
@@ -139,21 +140,22 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     protected abstract void DropReward();
 
-    private void Damaged(float damage, Vector2 hitPos, Color color, bool isPlusDamage)
+    private void Damaged(float damage, Vector2 hitPos, Color color, bool isPlusDamage, float fontSize)
     {
         GameObject damageTextobj = gm.poolManager.Get(PoolType.Text, 0); // 데미지 텍스트 생성
         TextMeshPro damageText = damageTextobj.GetComponent<TextMeshPro>();
 
         health -= damage; // 체력 감소            
+        damageText.fontSize = fontSize; // 폰트 사이즈 설정
+        damageText.text = damage.ToString("F1");
         damageText.color = color;
         damageTextobj.transform.localPosition = hitPos;
-        damageText.text = damage.ToString("F1");        
         // 코루틴으로 데미지 텍스트 이펙트 위로 이동하면서 투명해지면서 사라지게        
         StartCoroutine(TextAnimationCor(damageText));
         if (isPlusDamage)
         {
             // hitPos.y를 증가시켜 위로 조금 더 올라가게 함
-            Damaged(damage, hitPos + Vector2.up * 0.25f, Color.red, false);
+            Damaged(damage, hitPos + Vector2.up * 0.5f, Color.red, false, fontSize * 0.9f);
         }
     }
     private IEnumerator TextAnimationCor(TextMeshPro text)
