@@ -19,12 +19,14 @@ public class IntroManager : MonoBehaviour
     [SerializeField] private int currentScriptIndex = 0;  // 현재 출력 중인 텍스트의 인덱스
     private bool isTextComplete = false;  // 현재 텍스트가 모두 출력되었는지 여부
     private bool isScriptEnd = false; // 제공된 스크립트 종료 여부
+    private bool isTextSkipOk = false; // 텍스트 스킵 가능 여부
+    private bool isResume = false; // 게임 재개 여부
     private Tweener typingTween;  // DOTween 애니메이션 저장 변수
-    private bool isTextSkipOk;
+    [SerializeField] private Vector3 cameraZoomInPos;
 
     // 타자 소리 관련 변수들
     [Header("타자 소리 설정")]
-    private float typeSoundInterval = 0.1f;  // 타자기 소리 간격
+    [SerializeField] private float typeSoundInterval = 0.1f;  // 타자기 소리 간격
     private float timeSinceLastTypeSound = 0f;  // 마지막 타자기 소리가 난 후 경과 시간
 
     // UI 관련 변수들
@@ -42,7 +44,7 @@ public class IntroManager : MonoBehaviour
     }
     private void Start()
     {
-        isTextSkipOk = true;
+        scriptText.text = "";  // 텍스트 초기화
         fadeImage.gameObject.SetActive(true);
         fadeImage.DOFade(0, 1f).OnComplete(() =>
         {
@@ -53,8 +55,17 @@ public class IntroManager : MonoBehaviour
 
     private void Update()
     {
+        if (isScriptEnd || !isTextSkipOk)
+            return;
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OptionScreen(!isResume);
+        }
+
         // 스페이스바를 눌렀을 때
-        if (Input.GetKeyDown(KeyCode.Space) && !isScriptEnd && isTextSkipOk)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0)) 
+            && !isResume)
         {
             // 타이핑 중인 텍스트가 있으면 즉시 완료
             if (typingTween != null && typingTween.IsPlaying())
@@ -67,76 +78,68 @@ public class IntroManager : MonoBehaviour
                 MasterAudio.PlaySound("NextChat");
                 DisplayNextScript();
             }
-        }
+        }        
+    } 
 
-        if (Input.GetKeyDown(KeyCode.Escape) && Time.timeScale != 0)
-        {
-            MasterAudio.PlaySound("BtnClick");
-            Time.timeScale = 0;
-            skipOption.SetActive(true);
-        }
-    }
     // 다음 스크립트를 출력하는 함수
     private void DisplayNextScript()
     {
-        if (currentScriptIndex >= scripts.Length)
+        if (currentScriptIndex > scripts.Length)
+            return;
+
+        announcerAnim.SetBool("isTalk", true);
+
+        isTextComplete = false;  // 새로운 텍스트 출력이 시작되었으므로 완료 상태를 false로 설정
+        scriptText.text = "";  // 텍스트 초기화
+
+        // DOText를 이용하여 텍스트 타이핑 효과 시작
+        typingTween = scriptText.DOText(scripts[currentScriptIndex], typingSpeed * scripts[currentScriptIndex].Length)
+            .SetEase(Ease.Linear)
+            .OnUpdate(() => PlayTypingSound())
+            .OnComplete(() =>
+            {
+                isTextComplete = true;
+                announcerAnim.SetBool("isTalk", false);
+            });  // 텍스트가 다 출력되면 isTextComplete를 true로 설정        
+
+
+        if (currentScriptIndex == 1)
         {
-            scriptArrow.SetActive(false);
             isTextSkipOk = false;
-            fadeImage.gameObject.SetActive(true);
-            fadeImage.DOFade(1, 1f).OnComplete(() =>
-            {
-                LoadingSceneController.LoadScene("Title Scene");
-            });
+            scriptArrow.SetActive(false);
+            StartCoroutine(ChangeNewsImageCorutin());
         }
-        else
+        if (currentScriptIndex == 4)
         {
-            announcerAnim.SetBool("isTalk", true);
-
-            isTextComplete = false;  // 새로운 텍스트 출력이 시작되었으므로 완료 상태를 false로 설정
-            scriptText.text = "";  // 텍스트 초기화
-
-            // DOText를 이용하여 텍스트 타이핑 효과 시작
-            typingTween = scriptText.DOText(scripts[currentScriptIndex], typingSpeed * scripts[currentScriptIndex].Length)
-                .SetEase(Ease.Linear)
-                .OnUpdate(() => PlayTypingSound())
-                .OnComplete(() =>
-                {
-                    isTextComplete = true;
-                    announcerAnim.SetBool("isTalk", false);
-                });  // 텍스트가 다 출력되면 isTextComplete를 true로 설정
-
-            currentScriptIndex++;  // 다음 텍스트로 이동
-
-            if (currentScriptIndex == 2)
-            {
-                isTextSkipOk = false;
-                scriptArrow.SetActive(false);
-                StartCoroutine(ChangeNewsImageCorutin());
-            }
-            if (currentScriptIndex == 5)
-            {
-                // 세이프티 히어로 등장
-                isTextSkipOk = false;
-                scriptArrow.SetActive(false);
-                StartCoroutine(ChangeHeroImage());
-            }
+            // 세이프티 히어로 등장
+            isTextSkipOk = false;
+            scriptArrow.SetActive(false);
+            StartCoroutine(ChangeHeroImage());
         }
+        if (currentScriptIndex == 8)
+        {
+            // 카메라가 뉴스 화면으로 점점 줌인이 되는 애니메이션
+            isTextSkipOk = false;
+            StartCoroutine(ZoomInNewsImage());            
+        }
+        currentScriptIndex++;  // 다음 텍스트로 이동
     }
+    // 스크립트 바가 화면에 나타나는 코루틴
     IEnumerator ScriptBarOnCorutin()
     {
         yield return new WaitForSeconds(0.5f);
         sciprtBar.DOAnchorPos(Vector3.zero, 0.5f).OnComplete(() =>
         {
             DisplayNextScript();
+            isTextSkipOk = true;
         });
     }
 
+    // 히어로 이미지로 변경하는 코루틴
     IEnumerator ChangeHeroImage()
     {
         yield return new WaitForSeconds(1f);
         newsImage.sprite = heroImage;
-        Camera.main.transform.DOShakePosition(1f);
         yield return new WaitForSeconds(2f);
         scriptArrow.SetActive(true);
         isTextSkipOk = true;
@@ -164,17 +167,37 @@ public class IntroManager : MonoBehaviour
             timeSinceLastTypeSound = Time.time;  // 마지막 소리 재생 시간 업데이트
         }
     }
+    private IEnumerator ZoomInNewsImage()
+    {
+        yield return null;
+        Transform camerTransform = Camera.main.transform;
+        camerTransform.DOLocalMove(cameraZoomInPos, 14f).SetEase(Ease.OutQuart);
+
+        yield return new WaitForSeconds(2f);
+        scriptArrow.SetActive(false);
+        isTextSkipOk = false;
+        fadeImage.gameObject.SetActive(true);
+        fadeImage.DOFade(1, 1f).OnComplete(() =>
+        {
+            LoadingSceneController.LoadScene("Title Scene");
+        });
+    }
+
+
+
     public void Skip()
     {
-        CloseOption();
+        OptionScreen(false);
         fadeImage.DOFade(1, 0.5f).OnComplete(() =>
         {
             LoadingSceneController.LoadScene("Title Scene");
         });
     }
-    public void CloseOption()
+    public void OptionScreen(bool isOpen)
     {
-        skipOption.SetActive(false);
-        Time.timeScale = 1;
+        Time.timeScale = isOpen ? 0 : 1;        
+        isResume = isOpen;
+        skipOption.SetActive(isOpen);
+        MasterAudio.PlaySound("BtnClick");
     }
 }

@@ -1,3 +1,5 @@
+using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,10 +9,16 @@ using static TMPro.TMP_InputField;
 
 public class ButtonKeyBoardSelector : MonoBehaviour
 {
+    public static Action SelectorEvent;
+
+    private RectTransform myRect;
     [SerializeField] private List<Button> selectables = new List<Button>();
     [SerializeField] private int currentIndex = 0;
 
-
+    private void Awake()
+    {
+        myRect = GetComponent<RectTransform>();
+    }
     private void Update()
     {
         // 게임이 일시정지되거나 UI 메뉴가 활성화된 경우에만 네비게이션을 처리합니다.
@@ -22,16 +30,23 @@ public class ButtonKeyBoardSelector : MonoBehaviour
 
     public void InitializeNavigation()
     {
+        StartCoroutine(InitCor());
+    }
+    
+    private IEnumerator InitCor()
+    {
         selectables.Clear();
+        selectables.AddRange(FindObjectsOfType<Button>());
+        yield return null;
 
-            selectables.AddRange(FindObjectsOfType<Button>());
-     
         // 네비게이션 순서 정렬 (옵션)
         selectables.Sort((x, y) => x.transform.GetSiblingIndex().CompareTo(y.transform.GetSiblingIndex()));
+        yield return null;
 
         // 첫 번째 버튼을 선택합니다.
         if (selectables.Count > 0)
         {
+            gameObject.GetComponent<Image>().enabled = true;
             currentIndex = 0;
             SelectCurrent();
         }
@@ -74,6 +89,8 @@ public class ButtonKeyBoardSelector : MonoBehaviour
 
         // 현재 선택된 게임 오브젝트를 설정하여 시각적으로 강조되도록 합니다.
         EventSystem.current.SetSelectedGameObject(currentSelectable.gameObject);
+        transform.position = currentSelectable.transform.position;        
+
     }
 
     private void ActivateCurrent()
@@ -89,10 +106,10 @@ public class ButtonKeyBoardSelector : MonoBehaviour
 
     private void OnEnable()
     {
-        SelectorController.SelectorEvent += InitializeNavigation;
+        SelectorEvent += InitializeNavigation;
     }
     private void OnDisable()
     {
-        SelectorController.SelectorEvent -= InitializeNavigation;
+        SelectorEvent -= InitializeNavigation;
     }
 }

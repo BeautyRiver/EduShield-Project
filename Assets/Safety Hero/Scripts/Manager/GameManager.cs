@@ -195,10 +195,11 @@ public class GameManager : MonoBehaviour
 
             if (exp >= nextExp[Mathf.Min(level, nextExp.Length - 1)])
             {
+                // 게임 일시정지 후 레벨업 UI 띄우기
+                Stop(); 
                 level++;
                 exp = 0;
                 uiLevelUp.Show();
-                SelectorController.SelectorEvent?.Invoke();
             }
         }
     }

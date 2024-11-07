@@ -54,16 +54,16 @@ public class ForDebug : MonoBehaviour
             //is2xSpeed = true;
             GameManager.instance.nowTimeScale += 0.5f;
             Time.timeScale = GameManager.instance.nowTimeScale;
-            debugText.text = $"+0.5 배속 / Not TimeScale: {GameManager.instance.nowTimeScale}";
+            debugText.text = $"+0.5 배속 / Now TimeScale: {GameManager.instance.nowTimeScale.ToString()}";
         }
         if (Input.GetKeyDown(KeyCode.F5))
         {
             GameManager.instance.nowTimeScale -= 0.5f;
             Time.timeScale = GameManager.instance.nowTimeScale;
-            debugText.text = $"-0.5 배속 / Not TimeScale: {GameManager.instance.nowTimeScale}";
+            debugText.text = $"-0.5 배속 / Now TimeScale: {GameManager.instance.nowTimeScale.ToString()}";
         }
         // 레벨업
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             GameManager.instance.GetExp(GameManager.instance.nextExp[Mathf.Min(GameManager.instance.level, GameManager.instance.nextExp.Length - 1)]); // ??? ?��????? ??????? ???
         }

@@ -19,8 +19,6 @@ public class Buttons
 }
 public class SelectorController : MonoBehaviour
 {
-    public static Action SelectorEvent;
-
     private Vector2 initPos;
     private RectTransform myRect;
     
@@ -95,14 +93,5 @@ public class SelectorController : MonoBehaviour
         Debug.Log("Set Pos");
         myRect.DOAnchorPos(itemRects[index].anchoredPosition, 0.05f).SetEase(Ease.OutQuart).SetUpdate(true);
         //gameObject.transform.DOMove(new Vector3(0,-15.5f,0), 0.15f).SetEase(Ease.OutQuart);
-    }
-
-    private void OnEnable()
-    {
-        SelectorEvent += Initialize;
-    }
-    private void OnDisable()
-    {
-        SelectorEvent -= Initialize;
-    }
+    } 
 }

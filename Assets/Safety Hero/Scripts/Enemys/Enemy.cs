@@ -150,7 +150,8 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         damageText.text = damage.ToString("F1");
         damageText.color = color;
         damageTextobj.transform.localPosition = hitPos;
-        // 코루틴으로 데미지 텍스트 이펙트 위로 이동하면서 투명해지면서 사라지게        
+
+        // 데미지 텍스트 이펙트 위로 이동하면서 투명해지면서 사라지게        
         StartCoroutine(TextAnimationCor(damageText));
         if (isPlusDamage)
         {

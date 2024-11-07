@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using static TMPro.TMP_InputField;
 
 public class LevelUp : MonoBehaviour
 {
@@ -24,8 +25,7 @@ public class LevelUp : MonoBehaviour
 
     public void Show()
     {
-        //SelectorController.SelectorEvent?.Invoke(); // Selector 이밴트 호출(배치)
-
+        gameObject.SetActive(true);
         uiManager.BlackWindowFadeIn(); // 검은 배경 On
         Next(); // 섞기
         Button[] buttons = transform.GetComponentsInChildren<Button>();
@@ -34,10 +34,11 @@ public class LevelUp : MonoBehaviour
             btn.interactable = true;
         }
 
-        GameManager.instance.Stop();
-        rect.DOAnchorPos(Vector3.zero, showLeveUpDuration).SetEase(Ease.Linear).SetUpdate(true);
+        MasterAudio.PlaySound("LevelUp"); 
+        ButtonKeyBoardSelector.SelectorEvent?.Invoke(); 
 
-        MasterAudio.PlaySound("LevelUp");
+        // 화면 중앙으로 이동
+        //rect.DOAnchorPos(Vector3.zero, showLeveUpDuration).SetEase(Ease.Linear).SetUpdate(true);            
 
         // 비율 기반으로 BGM 볼륨 감소
         /*float currentBGMVolume = PlayerPrefs.GetFloat("BGM");
@@ -45,20 +46,22 @@ public class LevelUp : MonoBehaviour
     }
     public void Hide()
     {
+        GameManager.instance.Resume();
+        MasterAudio.PlaySound("Select");
+        uiManager.BlackWindowFadeaOut(); // 검은 배경 Off
         Button[] buttons = transform.GetComponentsInChildren<Button>();
         foreach (var btn in buttons)
         {
             btn.interactable = false;
-        }
+        }        
+        gameObject.SetActive(false);
 
-        uiManager.BlackWindowFadeaOut(); // 검은 배경 Off
 
-        rect.DOAnchorPos(new Vector3(0, -1500f, 0), showLeveUpDuration).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() =>
+        /*rect.DOAnchorPos(new Vector3(0, -1500f, 0), showLeveUpDuration).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() =>
         {
             GameManager.instance.Resume();
-        });
+        });*/
 
-        MasterAudio.PlaySound("Select");
 
         // 원래 BGM 볼륨으로 복구
         //MasterAudio.PlaylistMasterVolume = PlayerPrefs.GetFloat("BGM");
