@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [Header("입력 및 이동")]
+    [Header("# 입력 및 이동")]
     public Vector2 inputVec; // 입력 벡터 (방향)
     public Vector2 lastInputVec = new Vector2(1f,0f);
     public float lastXInputVec = 1f;  // 마지막 x축 방향만 기억
@@ -15,17 +15,22 @@ public class Player : MonoBehaviour
     public float speed = 3f; // 이동 속도
 
 
-    [Header("게임 오브젝트 참조")]
+    [Header("# 게임 오브젝트 참조")]
     public Scanner scanner; // 적 탐색기        
     [HideInInspector] public Spawner spawner;
 
-    [Header("애니메이션")]
+    [Header("# 애니메이션")]
     [SerializeField] private List<PlayerAnimatorControll> animCon; // 플레이어 애니메이터 컨트롤러
 
-    [Header("피격 관리")]
-    private Color hitColor; // 피격 시 색상
+    [Header("# 피격 관리")]
+    [ColorUsage(true, true)]
+    [SerializeField] private Color hitColor; // 피격 시 색상
+
     private Color normalColor; // 기본 색상
+
+    [ColorUsage(true, true)]
     [SerializeField] private Color[] transformingColor; // 변신 색상들
+
     private WaitForSeconds hitingTime; // 피격 지속 시간
     private bool isHiting; // 피격 중 여부
 
@@ -44,8 +49,7 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         scanner = GetComponent<Scanner>();        
         spawner = GetComponentInChildren<Spawner>(true);
-        col = GetComponent<CapsuleCollider2D>(); 
-        hitColor = new Color(0.86f, 0.2f, 0.2f);
+        col = GetComponent<CapsuleCollider2D>();         
         normalColor = spriter.color;
         hitingTime = new WaitForSeconds(0.2f);
     }

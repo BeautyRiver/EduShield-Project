@@ -11,14 +11,10 @@ public class ButtonKeyBoardSelector : MonoBehaviour
 {
     public static Action SelectorEvent;
 
-    private RectTransform myRect;
     [SerializeField] private List<Button> selectables = new List<Button>();
     [SerializeField] private int currentIndex = 0;
+    private Vector3 prevOriginalScale;
 
-    private void Awake()
-    {
-        myRect = GetComponent<RectTransform>();
-    }
     private void Update()
     {
         // 게임이 일시정지되거나 UI 메뉴가 활성화된 경우에만 네비게이션을 처리합니다.
@@ -70,6 +66,7 @@ public class ButtonKeyBoardSelector : MonoBehaviour
 
     private void MoveNext()
     {
+        selectables[currentIndex].transform.DOScale(prevOriginalScale, 0.1f).SetEase(Ease.OutBack).SetUpdate(true);
         currentIndex++;
         currentIndex = Mathf.Min(selectables.Count - 1, currentIndex);
         SelectCurrent();
@@ -77,6 +74,7 @@ public class ButtonKeyBoardSelector : MonoBehaviour
 
     private void MovePrevious()
     {
+        selectables[currentIndex].transform.DOScale(prevOriginalScale, 0.1f).SetEase(Ease.OutBack).SetUpdate(true);
         currentIndex--;
         currentIndex = Mathf.Max(0, currentIndex);
         SelectCurrent();
@@ -85,11 +83,12 @@ public class ButtonKeyBoardSelector : MonoBehaviour
 
     private void SelectCurrent()
     {
-        var currentSelectable = selectables[currentIndex];
+        prevOriginalScale = selectables[currentIndex].transform.localScale; // 이전 크기 저장
+        selectables[currentIndex].transform.DOScale(Vector3.one * 1.1f, 0.1f).SetEase(Ease.OutBack).SetUpdate(true); // 선택된 버튼 크기 증가
 
-        // 현재 선택된 게임 오브젝트를 설정하여 시각적으로 강조되도록 합니다.
-        EventSystem.current.SetSelectedGameObject(currentSelectable.gameObject);
-        transform.position = currentSelectable.transform.position;        
+        var currentSelectable = selectables[currentIndex]; // 현재 선택된 버튼
+        EventSystem.current.SetSelectedGameObject(currentSelectable.gameObject); // 버튼 Select 상태
+        transform.position = currentSelectable.transform.position;         
 
     }
 
@@ -99,7 +98,7 @@ public class ButtonKeyBoardSelector : MonoBehaviour
 
         if (currentSelectable != null)
         {
-            currentSelectable.onClick.Invoke();
+            currentSelectable.onClick.Invoke();            
         }
         // Toggle, Slider 등 다른 UI 요소에 대한 처리도 추가할 수 있습니다.
     }

@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     public EquipmentManager equipment;
     public TypeControlManager typeControll;
     public PoolManager poolManager;
-
+    public UIManager UIManager;
     public LevelUp uiLevelUp;
     public Player player;
     public Result result;
@@ -76,6 +76,25 @@ public class GameManager : MonoBehaviour
             gameTime = maxGameTime;
             GameVictory(); // 최대 시간 도달 시 승리 처리
         }
+
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    if (!uiOption.activeSelf)
+        //    {
+        //        ButtonKeyBoardSelector.SelectorEvent?.Invoke();
+        //        BlackWindowFadeIn();
+        //        MasterAudio.PlaySound("BtnClick");
+        //        uiOption.SetActive(true);
+        //        Time.timeScale = 0f;
+        //    }
+        //    else
+        //    {
+        //        BlackWindowFadeaOut();
+        //        MasterAudio.PlaySound("BtnClick");
+        //        uiOption.SetActive(false);
+        //        Time.timeScale = gm.nowTimeScale;
+        //    }
+        //}
 
     }
     // 이펙트 생성시키기

@@ -270,7 +270,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ffa062198f61540a2747f37e8dc1f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 0
   id: 0
   damage: 0
   maxHealth: 0
@@ -283,7 +282,6 @@ MonoBehaviour:
   - {fileID: 22100000, guid: 0bdb36c3ffc0c1d4f9d6655c5ed4190d, type: 2}
   - {fileID: 22100000, guid: e11aa1893c5c5864a86aee56d03b1ea5, type: 2}
   - {fileID: 22100000, guid: 8d1d920724ffb8a409ce0e458dc4b7a9, type: 2}
-  - {fileID: 22100000, guid: f75c886d835bdce40a24857f01d3a36f, type: 2}
 --- !u!114 &8909060666931256850
 MonoBehaviour:
   m_ObjectHideFlags: 0

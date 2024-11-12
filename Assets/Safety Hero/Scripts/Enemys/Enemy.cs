@@ -9,14 +9,6 @@ using Unity.VisualScripting;
 
 public abstract class Enemy : MonoBehaviour, IDamageable
 {
-    public enum EnemyType
-    {
-        Default,
-        Uniqe,
-        MiniBoss,
-    }
-    [Header("# 공통 속성")]
-    public EnemyType enemyType;
     public int id;
     public float damage;
     public float maxHealth;

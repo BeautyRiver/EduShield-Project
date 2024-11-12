@@ -26,29 +26,6 @@ public class UIManager : MonoBehaviour
         gm = GameManager.instance;
         startFadeImage.DOFade(0, fadeTime).OnComplete(() => startFadeImage.gameObject.SetActive(false));
     }
-    private void Update()
-    {
-        if (!gm.isGameActive)
-            return;
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (!uiOption.activeSelf)
-            {
-                BlackWindowFadeIn();
-                MasterAudio.PlaySound("BtnClick");
-                uiOption.SetActive(true);
-                Time.timeScale = 0f;
-            }
-            else
-            {
-                BlackWindowFadeaOut();
-                MasterAudio.PlaySound("BtnClick");
-                uiOption.SetActive(false);
-                Time.timeScale = gm.nowTimeScale;
-            }
-        }
-    }
 
     public void Lose()
     {

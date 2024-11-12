@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DefaultEnemy : Enemy, IRepositionable
+public class DefaultEnemy : Enemy, IRepositionable, IKnockBackable
 {
     protected override void DropReward()
     {

@@ -185,7 +185,7 @@ public class Spawner : MonoBehaviour
 
         // 안전한 위치가 확인되면 박스 생성
         //Debug.Log("생성 완료");
-        GameObject box = GameManager.instance.poolManager.Get(PoolType.Bullet, 1); // Box 생성
+        GameObject box = GameManager.instance.poolManager.Get(PoolType.Item, 1); // Box 생성
         box.transform.parent = parentTransform;
         box.transform.position = spawnPosition;
     }   

@@ -25,8 +25,9 @@ public class SelectorController : MonoBehaviour
     [SerializeField] private Transform itemGroup;
     [SerializeField] private ItemSetting[] itemFilter;
     [SerializeField] private RectTransform[] itemRects;
-    [SerializeField] private int index; 
-    
+    [SerializeField] private int index;
+    private Vector3 prevOrignalScale;
+
     private void Start()
     {        
         myRect = GetComponent<RectTransform>();
@@ -78,12 +79,14 @@ public class SelectorController : MonoBehaviour
     }
     private void IndexDown()
     {
+        itemRects[index].transform.localScale = prevOrignalScale;
         index--;
         index = Mathf.Max(index, 0);
     }
 
     private void IndexUp()
     {
+        itemRects[index].transform.localScale = prevOrignalScale;
         index++;
         index = Mathf.Min(index, itemRects.Length - 1);
     }
@@ -91,7 +94,8 @@ public class SelectorController : MonoBehaviour
     private void SetPosition()
     {
         Debug.Log("Set Pos");
-        myRect.DOAnchorPos(itemRects[index].anchoredPosition, 0.05f).SetEase(Ease.OutQuart).SetUpdate(true);
+        prevOrignalScale = itemRects[index].transform.localScale;
+        itemRects[index].transform.localScale = new Vector3(1f, 1f, 1f);
         //gameObject.transform.DOMove(new Vector3(0,-15.5f,0), 0.15f).SetEase(Ease.OutQuart);
     } 
 }
