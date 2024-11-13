@@ -50,7 +50,7 @@ public class EtcData : DataGuide
         switch (eType)
         {
             case EtcType.E0_Heal:
-                GameManager.instance.health = Mathf.Min(GameManager.instance.maxHealth, GameManager.instance.health + 15f);
+                GameManager.instance.player.health = Mathf.Min(GameManager.instance.player.maxHealth, GameManager.instance.player.health + 15f);
                 break;
             case EtcType.E1_Gold:
                 Debug.Log("15골드 획득");

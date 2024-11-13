@@ -20,6 +20,33 @@ public class UIManager : MonoBehaviour
     private float fadeTime;
     private GameManager gm;
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ToggleUIOption();
+        }
+    }
+
+    public void ToggleUIOption()
+    {
+        if (!uiOption.activeSelf)
+        {
+            ButtonKeyBoardSelector.SelectorEvent?.Invoke(uiOption);
+            BlackWindowFadeIn();
+            MasterAudio.PlaySound("BtnClick");
+            uiOption.SetActive(true);
+            gm.Stop();
+        }
+        else
+        {
+            MasterAudio.PlaySound("BtnClick");
+            BlackWindowFadeOut();
+            uiOption.SetActive(false);
+            gm.Resume();
+        }
+    }
+
     private void Start()
     {
         startFadeImage.gameObject.SetActive(true);
@@ -65,7 +92,7 @@ public class UIManager : MonoBehaviour
         blackWindow.DOFade(0.8f, 0.25f).SetUpdate(true); 
     }
     // 검은 배경 Off
-    public void BlackWindowFadeaOut()
+    public void BlackWindowFadeOut()
     {
         blackWindow.DOFade(0f, 0.25f).SetUpdate(true); 
     }

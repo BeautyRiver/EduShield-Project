@@ -20,7 +20,7 @@ public class Item : MonoBehaviour
             switch (itemType)
             {
                 case ItemType.Heal:
-                    gm.health = Mathf.Min(gm.maxHealth, gm.health + 15f);
+                    gm.player.health = Mathf.Min(gm.player.maxHealth, gm.player.health + 15f);
                     MasterAudio.PlaySound("Heal");
 
                     gameObject.SetActive(false);

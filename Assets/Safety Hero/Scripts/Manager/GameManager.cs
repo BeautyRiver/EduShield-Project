@@ -23,10 +23,7 @@ public class GameManager : MonoBehaviour
     private bool isGamestart; // 게임 시작된 상태인지(Ai 메시지 재활용 때문)
     public int[] nextExp = { 3, 5, 10, 100, 150, 210, 280, 360, 450, 600 }; // 다음 레벨업에 필요한 경험치
 
-    [Header("# 플레이어 정보")]
-    public int playerId; // 플레이어 ID
-    public float health; // 현재 체력
-    public float maxHealth = 100; // 최대 체력
+    [Header("# 플레이 정보")]
     public int level; // 현재 레벨
     public int kill; // 처치한 적 수
     public int exp; // 현재 경험치
@@ -58,7 +55,6 @@ public class GameManager : MonoBehaviour
         // 원본 훼손 안시키기 위함 (데이터 복사)
         if (playerData == null)
             playerData = Instantiate(orignalPlayerData);
-
         
         GameStart(playerData.characterId);
         StartCoroutine(AIMsgShowAndHide());
@@ -75,27 +71,7 @@ public class GameManager : MonoBehaviour
         {
             gameTime = maxGameTime;
             GameVictory(); // 최대 시간 도달 시 승리 처리
-        }
-
-        //if (Input.GetKeyDown(KeyCode.Escape))
-        //{
-        //    if (!uiOption.activeSelf)
-        //    {
-        //        ButtonKeyBoardSelector.SelectorEvent?.Invoke();
-        //        BlackWindowFadeIn();
-        //        MasterAudio.PlaySound("BtnClick");
-        //        uiOption.SetActive(true);
-        //        Time.timeScale = 0f;
-        //    }
-        //    else
-        //    {
-        //        BlackWindowFadeaOut();
-        //        MasterAudio.PlaySound("BtnClick");
-        //        uiOption.SetActive(false);
-        //        Time.timeScale = gm.nowTimeScale;
-        //    }
-        //}
-
+        }      
     }
     // 이펙트 생성시키기
     public void GenerateEffect(int index, Transform parentTransform, Color? setColor = null)
@@ -118,7 +94,8 @@ public class GameManager : MonoBehaviour
         if (!isGamestart)
         {
             isGamestart = true;
-            uiLevelUp.FirstGiveWeapon(playerData.characterId); // 플레이어 기본 무기 부여
+            // 플레이어 기본 무기 부여
+            uiLevelUp.FirstGiveWeapon(playerData.characterId);
             player.spawner.gameObject.SetActive(true);
         }
         yield return new WaitForSeconds(aiMsgShowTime[2]);
@@ -155,10 +132,8 @@ public class GameManager : MonoBehaviour
             MasterAudio.StartPlaylist("Game Bgm");
         MasterAudio.PlaylistsMuted = false;
         */
-        this.playerId = playerId; // 플레이어 아이디 세팅
-        health = maxHealth * playerData.maxHpMult; // 플레이어 체력 세팅 
 
-        player.PlayerInit(); // 플레이어 초기화
+        player.PlayerInit(playerId); // 플레이어 초기화
         player.gameObject.SetActive(true);
 
     }
@@ -173,6 +148,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator GameOverRoutine()
     {
         isGameActive = false;
+        isGameRealEnd = true;
         yield return new WaitForSeconds(dieMsgDelay);
 
         result.gameObject.SetActive(true);
@@ -194,11 +170,11 @@ public class GameManager : MonoBehaviour
     {
         player.GetComponent<Animator>().SetFloat("Speed", 0f);
         isGameActive = false;
+        isGameRealEnd = true;
         enemyCleaner.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         result.gameObject.SetActive(true);
         result.Win();
-        isGameActive = false;
 
         MasterAudio.PlaylistsMuted = true; // 배경음악 종료        
         MasterAudio.PlaySound("Win");
@@ -226,14 +202,18 @@ public class GameManager : MonoBehaviour
     // 게임 정지
     public void Stop()
     {
-        isGameActive = false;
+        if (!isGameRealEnd)
+            isGameActive = false;
+
         Time.timeScale = 0;
     }
 
     // 게임 재개
     public void Resume()
     {
-        isGameActive = true;
+        if (!isGameRealEnd)            
+            isGameActive = true;
+
         Time.timeScale = nowTimeScale;
     }
 }

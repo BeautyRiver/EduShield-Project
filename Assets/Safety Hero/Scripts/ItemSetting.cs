@@ -50,8 +50,8 @@ public class ItemSetting : MonoBehaviour
     {
         _maxLevel = itemData.maxLevel;
         // 아이콘 설정
-        icon = GetComponentsInChildren<Image>()[1];
-        newIcon = GetComponentsInChildren<Image>()[2];
+        icon = GetComponentsInChildren<Image>(true)[2]; // icon 
+        newIcon = GetComponentsInChildren<Image>(true)[3]; // newIcon
 
         icon.sprite = itemData.itemIcon;
 

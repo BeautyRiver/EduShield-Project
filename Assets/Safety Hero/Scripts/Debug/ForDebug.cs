@@ -29,25 +29,25 @@ public class ForDebug : MonoBehaviour
             if (!isInvinsible)
             {
                 isInvinsible = true;
-                GameManager.instance.health = 99999999999;
+                GameManager.instance.player.health = 99999999999;
                 debugText.text = "무적모드";
             }
             else
             {
                 isInvinsible = false;
-                GameManager.instance.health = 100;
+                GameManager.instance.player.health = 100;
                 debugText.text = "무적 해제";
             }
         }
         if (Input.GetKeyDown(KeyCode.F2))
         {
-            GameManager.instance.player.speed += 1f;
-            debugText.text = "스피드 증가 => " + GameManager.instance.player.speed;
+            GameManager.instance.player.currentSpeed += 1f;
+            debugText.text = "스피드 증가 => " + GameManager.instance.player.currentSpeed;
         }
         if (Input.GetKeyDown(KeyCode.F3))
         {
-            GameManager.instance.player.speed -= 1f;
-            debugText.text = "스피드 감소 => " + GameManager.instance.player.speed;
+            GameManager.instance.player.currentSpeed -= 1f;
+            debugText.text = "스피드 감소 => " + GameManager.instance.player.currentSpeed;
         }
         if (Input.GetKeyDown(KeyCode.F4))
         {
@@ -106,7 +106,7 @@ public class ForDebug : MonoBehaviour
                 item.GetComponent<Image>().sprite = uiImages[2];
 
             }         
-            idx++;
+            idx++;            
         }
 
     }

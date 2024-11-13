@@ -7,12 +7,17 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("# 플레이어 정보")]
+    public int playerId; // 플레이어 ID
+    public float health; // 현재 체력
+    public float maxHealth = 100; // 최대 체력
+    public float baseSpeed = 3f;
+    public float currentSpeed = 3f; // 이동 속도
+
     [Header("# 입력 및 이동")]
     public Vector2 inputVec; // 입력 벡터 (방향)
     public Vector2 lastInputVec = new Vector2(1f,0f);
     public float lastXInputVec = 1f;  // 마지막 x축 방향만 기억
-    public float baseSpeed = 3f;
-    public float speed = 3f; // 이동 속도
 
 
     [Header("# 게임 오브젝트 참조")]
@@ -84,7 +89,7 @@ public class Player : MonoBehaviour
     {
         if (gm.isGameActive)
         {
-            Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
+            Vector2 nextVec = inputVec.normalized * currentSpeed * Time.fixedDeltaTime;
             rigid.MovePosition(rigid.position + nextVec);
         }
     }
@@ -112,13 +117,13 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            gm.health -= Time.deltaTime * collision.gameObject.GetComponent<Enemy>().damage;
+            health -= Time.deltaTime * collision.gameObject.GetComponent<Enemy>().damage;
 
             // 플레이어 피격색상 변경
             if (!isHiting && !isTransforming)
                 StartCoroutine(HitColor());
 
-            if (gm.health < 0)
+            if (health < 0)
             {
                 for (int index = 2; index < transform.childCount; index++)
                 {
@@ -164,7 +169,7 @@ public class Player : MonoBehaviour
         {
             spriter.DOFade(0.2f, 0.1f).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
             {
-                anim.runtimeAnimatorController = animCon[gm.playerId].runAniCon[typeIdx]; 
+                anim.runtimeAnimatorController = animCon[playerId].runAniCon[typeIdx]; 
             });
             transform.DOScale(originalScale, 0.1f);
         });
@@ -174,12 +179,15 @@ public class Player : MonoBehaviour
     }
 
     // 플레이어 초기화
-    public void PlayerInit()
+    public void PlayerInit(int playerId)
     {
+        this.playerId = playerId; // 플레이어 ID 설정
+        health = maxHealth * gm.playerData.maxHpMult; // 플레이어 체력 세팅 
+
         baseSpeed = baseSpeed * gm.playerData.speedMult; // 플레이어 기본 이동속도 적용
-        speed = baseSpeed;
-        anim.runtimeAnimatorController = animCon[gm.playerId].runAniCon[0];
-        Debug.Log($"애니메이션 컨트롤러 변경 {gm.playerId}");
+        currentSpeed = baseSpeed;
+        anim.runtimeAnimatorController = animCon[playerId].runAniCon[0];
+        Debug.Log($"애니메이션 컨트롤러 변경 {playerId}");
     }
 
     public void PlayerDead()

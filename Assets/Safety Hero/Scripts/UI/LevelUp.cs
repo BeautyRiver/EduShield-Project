@@ -25,7 +25,7 @@ public class LevelUp : MonoBehaviour
 
     public void Show()
     {
-        gameObject.SetActive(true);
+        transform.localScale = Vector3.one;
         uiManager.BlackWindowFadeIn(); // 검은 배경 On
         Next(); // 섞기
         Button[] buttons = transform.GetComponentsInChildren<Button>();
@@ -35,7 +35,7 @@ public class LevelUp : MonoBehaviour
         }
 
         MasterAudio.PlaySound("LevelUp"); 
-        ButtonKeyBoardSelector.SelectorEvent?.Invoke(); 
+        ButtonKeyBoardSelector.SelectorEvent?.Invoke(this.gameObject); 
 
         // 화면 중앙으로 이동
         //rect.DOAnchorPos(Vector3.zero, showLeveUpDuration).SetEase(Ease.Linear).SetUpdate(true);            
@@ -46,21 +46,16 @@ public class LevelUp : MonoBehaviour
     }
     public void Hide()
     {
+
         GameManager.instance.Resume();
         MasterAudio.PlaySound("Select");
-        uiManager.BlackWindowFadeaOut(); // 검은 배경 Off
+        uiManager.BlackWindowFadeOut(); // 검은 배경 Off
         Button[] buttons = transform.GetComponentsInChildren<Button>();
         foreach (var btn in buttons)
         {
             btn.interactable = false;
         }        
-        gameObject.SetActive(false);
-
-
-        /*rect.DOAnchorPos(new Vector3(0, -1500f, 0), showLeveUpDuration).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() =>
-        {
-            GameManager.instance.Resume();
-        });*/
+        transform.localScale = Vector3.zero;
 
 
         // 원래 BGM 볼륨으로 복구

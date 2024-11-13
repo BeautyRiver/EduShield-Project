@@ -45,8 +45,8 @@ public class HUD : MonoBehaviour
                 break;
 
             case InfoType.Helath:
-                float curHealth = GameManager.instance.health;
-                float maxHealth = GameManager.instance.maxHealth;
+                float curHealth = GameManager.instance.player.health;
+                float maxHealth = GameManager.instance.player.maxHealth;
                 mySlider.value = curHealth / maxHealth;
                 break;
         }
