@@ -51,6 +51,9 @@ TagManager:
   - name: Enemy
     uniqueID: 2838857949
     locked: 0
+  - name: Bullet
+    uniqueID: 2476126465
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

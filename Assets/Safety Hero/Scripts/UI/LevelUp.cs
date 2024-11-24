@@ -57,7 +57,7 @@ public class LevelUp : MonoBehaviour
         }        
         transform.localScale = Vector3.zero;
 
-
+        GameManager.instance.isLevelUp = false; // 레벨업 중이 아님
         // 원래 BGM 볼륨으로 복구
         //MasterAudio.PlaylistMasterVolume = PlayerPrefs.GetFloat("BGM");
     }
