@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
  
     [Header("# 참조")]
     public AiManager ai;
-    public EquipmentManager equipment;
     public TypeControlManager typeControll;
     public PoolManager poolManager;
     public UIManager UIManager;
@@ -129,16 +128,24 @@ public class GameManager : MonoBehaviour
         Resume();
 
         // BGM,SFX 설정
-        /*if (TitleManager.playlistController.CurrentPlaylist.playlistName != "Game Bgm")
-            MasterAudio.ChangePlaylistByName("Game Bgm");
-        else
-            MasterAudio.StartPlaylist("Game Bgm");
-        MasterAudio.PlaylistsMuted = false;
-        */
+        SetupAudio();
 
         player.PlayerInit(playerId); // 플레이어 초기화
         player.gameObject.SetActive(true);
 
+    }
+
+    private static void SetupAudio()
+    {
+        if (TitleManager.playlistController == null)
+            return;
+
+        // BGM 설정
+        if (TitleManager.playlistController.CurrentPlaylist.playlistName != "Game Bgm")
+            MasterAudio.ChangePlaylistByName("Game Bgm");
+        else
+            MasterAudio.StartPlaylist("Game Bgm");
+        MasterAudio.PlaylistsMuted = false;
     }
 
     // 게임 오버 처리

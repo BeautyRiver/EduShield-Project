@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bullet 51
   m_EditorClassIdentifier: 
   itemId: 51
-  itemName: "\uBB3C\uB300\uD3EC"
+  itemName: "\uC5D0\uB108\uC9C0 \uD30C"
   itemIcon: {fileID: 21300000, guid: e1499d4f23664e346a5f6de100e4a80e, type: 3}
   maxLevel: 6
   itemDesc:

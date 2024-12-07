@@ -10,7 +10,7 @@ public class ForDebug : MonoBehaviour
 {
     public Transform itemParent;
     public GameObject sampleItem;
-    public Sprite[] uiImages;
+    public Sprite[] uiPanelImages;
     public ItemSetting[] items;
     public DataGuide[] itemData;
 
@@ -65,18 +65,17 @@ public class ForDebug : MonoBehaviour
         // 레벨업
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            GameManager.instance.GetExp(GameManager.instance.nextExp[Mathf.Min(GameManager.instance.level, GameManager.instance.nextExp.Length - 1)]); // ??? ?��????? ??????? ???
+            GameManager.instance.GetExp(GameManager.instance.nextExp[Mathf.Min(GameManager.instance.level, GameManager.instance.nextExp.Length - 1)]); // 레벨업 
         }
 #endif
     }
 
     public void InitializeItems()
     {
-        int childCount = itemParent.childCount - 1;
+        int childCount = itemParent.childCount;
+        Debug.Log($"childCount : {childCount}, itemDataLength : {itemData.Length}");
 
-        Debug.Log($"{itemParent.childCount - 1} / {itemData.Length}");
-
-        if (childCount <= itemData.Length)
+        if (childCount < itemData.Length)
         {
             for (int i = childCount; i < itemData.Length; i++)
             {
@@ -90,20 +89,20 @@ public class ForDebug : MonoBehaviour
         {
             item.itemData = itemData[idx];
             item.gameObject.name = itemData[idx].name;
-
+            item.transform.GetChild(1).GetComponent<Image>().sprite = itemData[idx].itemIcon;
             if (item.itemData is BulletData)
             {
-                item.GetComponent<Image>().sprite = uiImages[0];
+                item.GetComponent<Image>().sprite = uiPanelImages[0];
 
             }
             else if (item.itemData is GearData)
             {
-                item.GetComponent<Image>().sprite = uiImages[1];
+                item.GetComponent<Image>().sprite = uiPanelImages[1];
 
             }
             else if (item.itemData is EtcData)
             {
-                item.GetComponent<Image>().sprite = uiImages[2];
+                item.GetComponent<Image>().sprite = uiPanelImages[2];
 
             }         
             idx++;            
