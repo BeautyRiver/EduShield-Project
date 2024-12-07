@@ -45,7 +45,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         if (!gm.isGameActive || !isLive)
             return;
 
-        rigid.velocity = Vector2.zero;
+        rigid.linearVelocity = Vector2.zero;
         Move();
         FlipX();
     }

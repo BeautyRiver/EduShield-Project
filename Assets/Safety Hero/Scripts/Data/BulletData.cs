@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Cinemachine.DocumentationSortingAttribute;
 
 [CreateAssetMenu(fileName = "Bullet", menuName = "Scriptble Object/BulletData")]
 public class BulletData : DataGuide

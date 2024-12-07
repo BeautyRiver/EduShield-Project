@@ -105,6 +105,7 @@ ScriptedImporter:
     pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 0
@@ -126,6 +127,7 @@ ScriptedImporter:
     pivot: {x: 0.5555556, y: -2.8}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 25
@@ -146,6 +148,7 @@ ScriptedImporter:
     pivot: {x: 0.54545456, y: -0.8333334}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 4
@@ -166,6 +169,7 @@ ScriptedImporter:
     pivot: {x: 0.5555556, y: -1.1}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 25
@@ -186,6 +190,7 @@ ScriptedImporter:
     pivot: {x: 0.54545456, y: -0.8333334}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 4
@@ -206,6 +211,7 @@ ScriptedImporter:
     pivot: {x: 0.5555556, y: -2.8}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 25
@@ -226,6 +232,7 @@ ScriptedImporter:
     pivot: {x: 0.5555556, y: -2.8}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 25
@@ -246,6 +253,7 @@ ScriptedImporter:
     pivot: {x: 0.54545456, y: -0.8333334}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 4
@@ -266,6 +274,7 @@ ScriptedImporter:
     pivot: {x: 0.5555556, y: -1.1}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 25
@@ -286,6 +295,7 @@ ScriptedImporter:
     pivot: {x: 0.54545456, y: -0.8333334}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 4
@@ -306,6 +316,7 @@ ScriptedImporter:
     pivot: {x: 0.5555556, y: -2.8}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 44
@@ -326,6 +337,7 @@ ScriptedImporter:
     pivot: {x: 0.54545456, y: -2.8}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 25
@@ -346,6 +358,7 @@ ScriptedImporter:
     pivot: {x: 0.53846157, y: -0.8333334}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 4
@@ -366,6 +379,7 @@ ScriptedImporter:
     pivot: {x: 0.54545456, y: -1.1}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 25
@@ -386,6 +400,7 @@ ScriptedImporter:
     pivot: {x: 0.53846157, y: -0.8333334}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 4
@@ -406,6 +421,7 @@ ScriptedImporter:
     pivot: {x: 0.54545456, y: -2.8}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 25
@@ -430,120 +446,135 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: Dialogue_Frame_1
+    - name: Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 11
         y: 14
         width: 9
         height: 5
       spriteId: 315090e0a27be6f408ce3fb6d1b17ef0
-    - name: Dialogue_Frame_2
+    - name: Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 10
         y: 10
         width: 11
         height: 12
       spriteId: e173a02df7e582243aa2ec292132b9c9
-    - name: Dialogue_Frame_3
+    - name: Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: 11
         y: 11
         width: 9
         height: 10
       spriteId: 512800d4da407d4448c1ed0ce2cff9ca
-    - name: Dialogue_Frame_4
+    - name: Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: 10
         y: 10
         width: 11
         height: 12
       spriteId: 951e5bf65d2a4b14fb842ee46cfd657a
-    - name: Dialogue_Frame_5
+    - name: Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: 11
         y: 14
         width: 9
         height: 5
       spriteId: 37fbee5e05fa875468fc39bc7551797e
-    - name: Dialogue_Frame_8
+    - name: Frame_8
       frameIndex: 8
+      additiveSortOrder: 0
       cellRect:
         x: 11
         y: 14
         width: 9
         height: 5
       spriteId: f6dc4e7e661a0e64c8b4bcbea6fafa97
-    - name: Dialogue_Frame_9
+    - name: Frame_9
       frameIndex: 9
+      additiveSortOrder: 0
       cellRect:
         x: 10
         y: 10
         width: 11
         height: 12
       spriteId: c96f0b487cabbcf4486fab5c1192da57
-    - name: Dialogue_Frame_10
+    - name: Frame_10
       frameIndex: 10
+      additiveSortOrder: 0
       cellRect:
         x: 11
         y: 11
         width: 9
         height: 10
       spriteId: 9d40eb941cd026f44b82f340bab620d9
-    - name: Dialogue_Frame_11
+    - name: Frame_11
       frameIndex: 11
+      additiveSortOrder: 0
       cellRect:
         x: 10
         y: 10
         width: 11
         height: 12
       spriteId: 4fb61ad856764da43aa5bdbd3e4ea949
-    - name: Dialogue_Frame_12
+    - name: Frame_12
       frameIndex: 12
+      additiveSortOrder: 0
       cellRect:
         x: 11
         y: 14
         width: 9
         height: 5
       spriteId: 389eaabf7179df8458e05c56e06eed53
-    - name: Dialogue_Frame_15
+    - name: Frame_15
       frameIndex: 15
+      additiveSortOrder: 0
       cellRect:
         x: 10
         y: 14
         width: 11
         height: 5
       spriteId: 96971d1fbcb673c41b14ada1dc452e6e
-    - name: Dialogue_Frame_16
+    - name: Frame_16
       frameIndex: 16
+      additiveSortOrder: 0
       cellRect:
         x: 9
         y: 10
         width: 13
         height: 12
       spriteId: 21ed187ef26ee054fb9ca3a2a5fc7c0b
-    - name: Dialogue_Frame_17
+    - name: Frame_17
       frameIndex: 17
+      additiveSortOrder: 0
       cellRect:
         x: 10
         y: 11
         width: 11
         height: 10
       spriteId: 47113078af122384ab9766b65ce66a82
-    - name: Dialogue_Frame_18
+    - name: Frame_18
       frameIndex: 18
+      additiveSortOrder: 0
       cellRect:
         x: 9
         y: 10
         width: 13
         height: 12
       spriteId: ca2e9cb8ebed3834f9e3e1fa40f338f5
-    - name: Dialogue_Frame_19
+    - name: Frame_19
       frameIndex: 19
+      additiveSortOrder: 0
       cellRect:
         x: 10
         y: 14
