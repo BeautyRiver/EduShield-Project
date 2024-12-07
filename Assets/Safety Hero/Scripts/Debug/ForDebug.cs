@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using VInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -69,6 +68,7 @@ public class ForDebug : MonoBehaviour
 #endif
     }
 
+    [Button]
     public void InitializeItems()
     {
         int childCount = itemParent.childCount;

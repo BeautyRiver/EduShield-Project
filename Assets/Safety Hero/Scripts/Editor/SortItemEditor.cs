@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(ForDebug))]
+/*[CustomEditor(typeof(ForDebug))]
 public class SortItemEditor : Editor
 {
     public override void OnInspectorGUI()
@@ -17,3 +17,4 @@ public class SortItemEditor : Editor
         }
     }
 }
+*/
