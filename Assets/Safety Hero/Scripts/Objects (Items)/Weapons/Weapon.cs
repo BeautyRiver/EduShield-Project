@@ -23,12 +23,13 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] protected bool isAttacking;
     [SerializeField] protected float speedTimer;
     protected GameManager gm;
+    protected PlayerMove playerMove;
     protected Player player;
-
     protected virtual void Awake()
     {
         gm = GameManager.instance;
         player = gm.player;
+        playerMove = player.playerMove;
     }
 
     protected virtual void Update()
@@ -52,7 +53,7 @@ public abstract class Weapon : MonoBehaviour
         // 공통 초기화 로직        
         // 기본 속성 세팅
         this.data = Instantiate(data);            // 값 복사                                                
-        transform.parent = player.transform;
+        transform.parent = playerMove.transform;
         transform.localPosition = Vector3.zero;   // 플레이어 안에서 위치 초기화
 
         prefabId = SetPrefabID(data);             // prefabID 설정

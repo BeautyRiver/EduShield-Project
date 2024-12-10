@@ -12,7 +12,7 @@ public class G1_Speed : Gear
 
     protected void PlayerSpeedUp()
     {
-        gm.player.currentSpeed = gm.player.baseSpeed * gm.playerData.speedMult;
+        playerMove.currentSpeed = playerMove.baseSpeed * gm.playerData.speedMult;
         Debug.Log($"{name}현재 배율: {gm.playerData.speedMult}배");
     }
 

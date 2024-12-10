@@ -4,21 +4,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
     [Header("# 플레이어 정보")]
     public int playerId; // 플레이어 ID
     public float health; // 현재 체력
-    public float maxHealth = 100; // 최대 체력
-    public float baseSpeed = 3f;
-    public float currentSpeed = 3f; // 이동 속도
-
-    [Header("# 입력 및 이동")]
-    public Vector2 inputVec; // 입력 벡터 (방향)
-    public Vector2 lastInputVec = new Vector2(1f,0f);
-    public float lastXInputVec = 1f;  // 마지막 x축 방향만 기억
-
+    public float maxHealth = 100; // 최대 체력  
 
     [Header("# 게임 오브젝트 참조")]
     public Scanner scanner; // 적 탐색기        
@@ -38,23 +31,32 @@ public class Player : MonoBehaviour
 
     private WaitForSeconds hitingTime; // 피격 지속 시간
     private bool isHiting; // 피격 중 여부
+    private bool isTransforming; // 변신 중 여부
 
     // 기타 컴포넌트
+    [HideInInspector]
+    public PlayerMove playerMove;
+
     private SpriteRenderer spriter;
     public Rigidbody2D rigid { get; private set; } 
     private Animator anim;
     private GameManager gm; // 게임 매니저 참조
     private CapsuleCollider2D col;
-    private bool isTransforming;
 
     private void Awake()
-    {        
+    {
+        InitializeComponents();
+    }
+
+    private void InitializeComponents()
+    {
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        scanner = GetComponent<Scanner>();        
+        scanner = GetComponent<Scanner>();
         spawner = GetComponentInChildren<Spawner>(true);
-        col = GetComponent<CapsuleCollider2D>();         
+        col = GetComponent<CapsuleCollider2D>();
+        playerMove = GetComponent<PlayerMove>();
         normalColor = spriter.color;
         hitingTime = new WaitForSeconds(0.2f);
     }
@@ -63,50 +65,7 @@ public class Player : MonoBehaviour
     {
         gm = GameManager.instance;              
     }
-
-    private void Update()
-    {
-        if (gm.isGameActive)
-        {
-            // 입력 벡터 설정
-            inputVec.x = Input.GetAxisRaw("Horizontal");
-            inputVec.y = Input.GetAxisRaw("Vertical");
-
-            if (inputVec != Vector2.zero)
-            {
-                lastInputVec = inputVec;
-
-                // x축이 0이 아닐 때만 마지막 x축 방향을 저장
-                if (inputVec.x != 0)
-                {
-                    lastXInputVec = inputVec.x;
-                }
-            }
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        if (gm.isGameActive)
-        {
-            Vector2 nextVec = inputVec.normalized * currentSpeed * Time.fixedDeltaTime;
-            rigid.MovePosition(rigid.position + nextVec);
-        }
-    }
-
-    private void LateUpdate()
-    {
-        if (gm.isGameActive)
-        {
-            // Animator 세팅
-            anim.SetFloat("Speed", inputVec.magnitude);
-            // flipX 관리
-            if (inputVec.x != 0)
-            {
-                spriter.flipX = inputVec.x < 0;
-            }
-        }
-    }
+   
 
     // 물리 충돌 일어날 때
     private void OnCollisionStay2D(Collision2D collision)
@@ -183,9 +142,7 @@ public class Player : MonoBehaviour
     {
         this.playerId = playerId; // 플레이어 ID 설정
         health = maxHealth * gm.playerData.maxHpMult; // 플레이어 체력 세팅 
-
-        baseSpeed = baseSpeed * gm.playerData.speedMult; // 플레이어 기본 이동속도 적용
-        currentSpeed = baseSpeed;
+        playerMove.InitPlayerMoveOption(); // 플레이어 이동 옵션 초기화
         anim.runtimeAnimatorController = animCon[playerId].runAniCon[0];
         Debug.Log($"애니메이션 컨트롤러 변경 {playerId}");
     }
@@ -202,6 +159,8 @@ public class Player : MonoBehaviour
     {
         public RuntimeAnimatorController[] runAniCon;
     }
+
+
 }
 
 

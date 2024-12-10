@@ -30,7 +30,7 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-1797792830-0
         values:
         - colorIndex: 3
-          iconNameOrGuid: 
+          iconNameOrGuid: Canvas Icon
         - colorIndex: 0
           iconNameOrGuid: Settings Icon
         - colorIndex: 0

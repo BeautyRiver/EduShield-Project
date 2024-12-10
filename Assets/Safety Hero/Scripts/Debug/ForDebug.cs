@@ -39,13 +39,13 @@ public class ForDebug : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F2))
         {
-            GameManager.instance.player.currentSpeed += 1f;
-            debugText.text = "스피드 증가 => " + GameManager.instance.player.currentSpeed;
+            GameManager.instance.player.playerMove.currentSpeed += 1f;
+            debugText.text = "스피드 증가 => " + GameManager.instance.player.playerMove.currentSpeed;
         }
         if (Input.GetKeyDown(KeyCode.F3))
         {
-            GameManager.instance.player.currentSpeed -= 1f;
-            debugText.text = "스피드 감소 => " + GameManager.instance.player.currentSpeed;
+            GameManager.instance.player.playerMove.currentSpeed -= 1f;
+            debugText.text = "스피드 감소 => " + GameManager.instance.player.playerMove.currentSpeed;
         }
         if (Input.GetKeyDown(KeyCode.F4))
         {

@@ -1,27 +1,19 @@
 using DG.Tweening;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
+using System;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine;
+using System.Collections;
 
 public class ButtonKeyBoardSelector : MonoBehaviour
 {
     public static Action<GameObject> SelectorEvent;
 
-    [SerializeField] private List<Button> selectables = new List<Button>();
+    [SerializeField] private List<Selectable> selectables = new List<Selectable>();
     [SerializeField] private int currentIndex = 0;
 
-    private Dictionary<Button, Image> buttonHighlightMap = new Dictionary<Button, Image>(); // 버튼과 하이라이트 이미지 매핑
-    private void Update()
-    {
-        /*// 게임이 일시정지되거나 UI 메뉴가 활성화된 경우에만 네비게이션을 처리합니다.
-        if (!GameManager.instance.isGameActive)
-        {
-            HandleNavigation();
-        }*/
-    }
+    private Dictionary<Selectable, Vector3> originalScales = new Dictionary<Selectable, Vector3>();
 
     public void InitializeNavigation(GameObject buttonsParents)
     {
@@ -32,17 +24,13 @@ public class ButtonKeyBoardSelector : MonoBehaviour
     {
         yield return null;
         selectables.Clear();
-        selectables.AddRange(buttonsParents.GetComponentsInChildren<Button>());
+        selectables.AddRange(buttonsParents.GetComponentsInChildren<Selectable>());
         selectables.Sort((x, y) => x.transform.GetSiblingIndex().CompareTo(y.transform.GetSiblingIndex()));
 
-        buttonHighlightMap.Clear();
-        foreach (var button in selectables)
+        originalScales.Clear(); // 기존 데이터 초기화
+        foreach (var selectable in selectables)
         {
-            // 버튼의 특정 자식 이미지를 미리 캐싱
-            var highlightImage = button.GetComponentsInChildren<Image>(true)[1];
-            if (highlightImage == null)
-                break;
-            buttonHighlightMap[button] = highlightImage;
+            originalScales[selectable] = selectable.transform.localScale; // 초기 스케일 저장
         }
 
         if (selectables.Count > 0)
@@ -51,63 +39,56 @@ public class ButtonKeyBoardSelector : MonoBehaviour
             SelectCurrent();
         }
     }
-
-    private void HandleNavigation()
+   
+    private void OnNavigate(InputValue inputValue)
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            MoveNext();
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.UpArrow))
+        if (GameManager.instance.isGameActive)
+            return;
+
+        Vector2 input = inputValue.Get<Vector2>();
+        if (input.y > 0 || input.x < 0)
         {
             MovePrevious();
         }
-      
+        else if (input.y < 0 || input.x > 0)
+        {
+            MoveNext();
+        }
     }
 
     private void MoveNext()
     {
-        currentIndex = (currentIndex + 1) % selectables.Count; // 3
+        currentIndex = (currentIndex + 1) % selectables.Count;
         SelectCurrent();
     }
 
     private void MovePrevious()
     {
-        currentIndex = (currentIndex - 1 + selectables.Count) % selectables.Count; // 음수 방지
+        currentIndex = (currentIndex - 1 + selectables.Count) % selectables.Count;
         SelectCurrent();
     }
 
     private void SelectCurrent()
     {
         ResetAllButtonScales(); // 모든 버튼 크기 초기화
-        if (buttonHighlightMap.TryGetValue(selectables[currentIndex], out var highlightImage))
-        {
-            highlightImage.gameObject.SetActive(true);
-        }
-        selectables[currentIndex].transform.DOScale(Vector3.one * 1.1f, 0.1f).SetEase(Ease.OutBack).SetUpdate(true); // 선택된 버튼 크기 증가
 
-        var currentSelectable = selectables[currentIndex]; // 현재 선택된 버튼
-        currentSelectable.Select(); // 버튼을 선택 상태로 설정
-    }
-
-    private void ActivateCurrent()
-    {
         var currentSelectable = selectables[currentIndex];
-        if (currentSelectable != null)
-        {
-            currentSelectable.onClick.Invoke();
-        }
-        // Toggle, Slider 등 다른 UI 요소에 대한 처리도 추가할 수 있습니다.
+        currentSelectable.transform.DOScale(originalScales[currentSelectable] * 1.1f, 0.1f) // 기존 스케일 기준 크기 증가
+            .SetEase(Ease.OutBack)
+            .SetUpdate(true);
+
+        currentSelectable.Select();
     }
 
     private void ResetAllButtonScales()
     {
-        foreach (var button in selectables)
+        foreach (var selectable in selectables)
         {
-            button.transform.localScale = Vector3.one; // DOTween 대신 직접 스케일 설정
-            if (buttonHighlightMap.TryGetValue(button, out var highlightImage))
+            if (originalScales.TryGetValue(selectable, out Vector3 originalScale))
             {
-                highlightImage.gameObject.SetActive(false);
+                selectable.transform.DOScale(originalScale, 0.1f) // 초기 스케일로 복원
+                    .SetEase(Ease.OutBack)
+                    .SetUpdate(true);
             }
         }
     }
@@ -116,6 +97,7 @@ public class ButtonKeyBoardSelector : MonoBehaviour
     {
         SelectorEvent += InitializeNavigation;
     }
+
     private void OnDisable()
     {
         SelectorEvent -= InitializeNavigation;

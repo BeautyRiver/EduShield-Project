@@ -10,18 +10,18 @@ public abstract class Gear : MonoBehaviour
     public int level;
     [SerializeField] protected float accumulatedRate = 1f; // 누적 증가율
     protected GameManager gm;
-    protected Player player;
+    protected PlayerMove playerMove;
     protected virtual void Awake()
     {
         gm = GameManager.instance;
-        player = gm.player;
+        playerMove = gm.player.playerMove;
     }
 
     public virtual void Init(GearData newData)
     {
         // 기본 세팅
         gearData = newData;
-        transform.parent = player.transform;
+        transform.parent = playerMove.transform;
         transform.localPosition = Vector3.zero; // 플레이어 안에서 위치 초기화
 
         rate = newData.gearRates[0];
