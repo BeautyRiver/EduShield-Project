@@ -8,13 +8,27 @@ using System.Collections;
 
 public class ButtonKeyBoardSelector : MonoBehaviour
 {
-    public static Action<GameObject> SelectorEvent;
+    public static ButtonKeyBoardSelector instance;
+
 
     [SerializeField] private List<Selectable> selectables = new List<Selectable>();
     [SerializeField] private int currentIndex = 0;
 
     private Dictionary<Selectable, Vector3> originalScales = new Dictionary<Selectable, Vector3>();
 
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+
+    }
     public void InitializeNavigation(GameObject buttonsParents)
     {
         StartCoroutine(InitCor(buttonsParents));
@@ -40,10 +54,14 @@ public class ButtonKeyBoardSelector : MonoBehaviour
         }
     }
    
+    // 방향키로 ui 선택
     private void OnNavigate(InputValue inputValue)
     {
-        if (GameManager.instance.isGameActive)
-            return;
+        if (GameManager.instance != null)
+        {
+            if (GameManager.instance.isGameActive)
+                return;
+        }
 
         Vector2 input = inputValue.Get<Vector2>();
         if (input.y > 0 || input.x < 0)
@@ -91,15 +109,5 @@ public class ButtonKeyBoardSelector : MonoBehaviour
                     .SetUpdate(true);
             }
         }
-    }
-
-    private void OnEnable()
-    {
-        SelectorEvent += InitializeNavigation;
-    }
-
-    private void OnDisable()
-    {
-        SelectorEvent -= InitializeNavigation;
     }
 }

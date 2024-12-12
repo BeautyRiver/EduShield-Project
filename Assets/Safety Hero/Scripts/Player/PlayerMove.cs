@@ -74,8 +74,6 @@ public class PlayerMove : MonoBehaviour
     }
 
    
-
-
     private void OnMove(InputValue value)
     {
         inputVec = value.Get<Vector2>();

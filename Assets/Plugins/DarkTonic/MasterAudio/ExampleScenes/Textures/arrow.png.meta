@@ -31,3 +31,10 @@ TextureImporter:
   compressionQuality: 50
   textureType: -1
   buildTargetSettings: []
+AssetOrigin:
+  serializedVersion: 1
+  productId: 212962
+  packageName: 'Master Audio 2022: AAA Sound'
+  packageVersion: 1.0.6
+  assetPath: Assets/Plugins/DarkTonic/MasterAudio/ExampleScenes/Textures/arrow.png
+  uploadId: 669499

@@ -15,6 +15,7 @@ MonoBehaviour:
   sceneDatas_byGuid:
     keys:
     - 8c9cfa26abfee488c85f1582747f6a02
+    - 27758ba6213884d4b8ee85cce072b6f5
     values:
     - goDatas_byGlobalId:
         keys:
@@ -28,6 +29,11 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-1275740142-0
         - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-905882067-0
         - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-1797792830-0
+        - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-121583203-0
+        - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-1063046025-0
+        - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-290236891-0
+        - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-169440164-0
+        - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-254447855-0
         values:
         - colorIndex: 3
           iconNameOrGuid: Canvas Icon
@@ -49,3 +55,34 @@ MonoBehaviour:
           iconNameOrGuid: AvatarMask On Icon
         - colorIndex: 0
           iconNameOrGuid: WheelCollider Icon
+        - colorIndex: 0
+          iconNameOrGuid: Settings Icon
+        - colorIndex: 0
+          iconNameOrGuid: Settings Icon
+        - colorIndex: 1
+          iconNameOrGuid: 
+        - colorIndex: 1
+          iconNameOrGuid: 
+        - colorIndex: 0
+          iconNameOrGuid: Settings Icon
+    - goDatas_byGlobalId:
+        keys:
+        - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-1070279105-0
+        - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-53104923-0
+        - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-489286684-0
+        - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-1450999671-0
+        - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-1264554547-0
+        - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-1045452047-0
+        values:
+        - colorIndex: 0
+          iconNameOrGuid: Settings Icon
+        - colorIndex: 0
+          iconNameOrGuid: Settings Icon
+        - colorIndex: 0
+          iconNameOrGuid: Settings Icon
+        - colorIndex: 0
+          iconNameOrGuid: Settings Icon
+        - colorIndex: 0
+          iconNameOrGuid: Camera Icon
+        - colorIndex: 9
+          iconNameOrGuid: Canvas Icon

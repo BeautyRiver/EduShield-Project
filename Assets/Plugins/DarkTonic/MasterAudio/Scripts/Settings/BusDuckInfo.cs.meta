@@ -9,3 +9,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 212962
+  packageName: 'Master Audio 2022: AAA Sound'
+  packageVersion: 1.0.6
+  assetPath: Assets/Plugins/DarkTonic/MasterAudio/Scripts/Settings/BusDuckInfo.cs
+  uploadId: 669499

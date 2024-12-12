@@ -34,8 +34,8 @@ public class LevelUp : MonoBehaviour
             btn.interactable = true;
         }
 
-        MasterAudio.PlaySound("LevelUp"); 
-        ButtonKeyBoardSelector.SelectorEvent?.Invoke(this.gameObject); 
+        MasterAudio.PlaySound("LevelUp");
+        //ButtonKeyBoardSelector.instance.InitializeNavigation(this.gameObject); // 키보드로 선택가능한 버튼들 할당
 
         // 화면 중앙으로 이동
         //rect.DOAnchorPos(Vector3.zero, showLeveUpDuration).SetEase(Ease.Linear).SetUpdate(true);            

@@ -1,7 +1,15 @@
 fileFormatVersion: 2
 guid: cd9da43799024a84ba7709f4d54259d6
+timeCreated: 1643183778
+licenseType: Store
 DefaultImporter:
-  externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 212962
+  packageName: 'Master Audio 2022: AAA Sound'
+  packageVersion: 1.0.6
+  assetPath: Assets/Plugins/DarkTonic/MasterAudioMultiplayer/Packages/MAM_Photon.unitypackage
+  uploadId: 669499

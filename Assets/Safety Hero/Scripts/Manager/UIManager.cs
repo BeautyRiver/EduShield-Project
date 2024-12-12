@@ -12,52 +12,39 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {    
     public GameObject[] titles;
-    public GameObject uiOption;
-
-    public Image startFadeImage; // 처음 페이드인 아웃 이미지
+    public GameObject pauseUi;
     public Image blackWindow; // 레벨업, esc 뒤의 배경 검게
     public Image[] swapCoolDownImages;
     [SerializeField]
     private float fadeTime;
     private GameManager gm;
 
-    private void Update()
-    {
-        if (gm.isLevelUp)
-            return;
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            ToggleUIOption();
-        }
+    private void Start()
+    {        
+        gm = GameManager.instance;
     }
 
-    public void ToggleUIOption()
+    // 일시정지 화면 On/Off
+    public void TogglePauseScreen()
     {
-        if (!uiOption.activeSelf)
+        if (!pauseUi.activeSelf)
         {
-            ButtonKeyBoardSelector.SelectorEvent?.Invoke(uiOption);
+            //ButtonKeyBoardSelector.instance.InitializeNavigation(pauseUi); // 키보드로 선택가능한 버튼들 할당
             BlackWindowFadeIn();
             MasterAudio.PlaySound("BtnClick");
-            uiOption.SetActive(true);
+            pauseUi.SetActive(true);
             gm.Stop();
         }
         else
         {
             MasterAudio.PlaySound("BtnClick");
             BlackWindowFadeOut();
-            uiOption.SetActive(false);
+            pauseUi.SetActive(false);
             gm.Resume();
         }
     }
-
-    private void Start()
-    {
-        startFadeImage.gameObject.SetActive(true);
-        gm = GameManager.instance;
-        startFadeImage.DOFade(0, fadeTime).OnComplete(() => startFadeImage.gameObject.SetActive(false));
-    }
-
+    
+  
     public void Lose()
     {
         titles[0].SetActive(true);
@@ -93,11 +80,11 @@ public class UIManager : MonoBehaviour
     // 검은 배경 On
     public void BlackWindowFadeIn()
     {
-        blackWindow.DOFade(0.8f, 0.25f).SetUpdate(true); 
+        blackWindow.gameObject.SetActive(true);
     }
     // 검은 배경 Off
     public void BlackWindowFadeOut()
     {
-        blackWindow.DOFade(0f, 0.25f).SetUpdate(true); 
+        blackWindow.gameObject.SetActive(false);
     }
 }

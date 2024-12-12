@@ -10,3 +10,11 @@ AudioImporter:
   useHardware: 0
   loopable: 0
   userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 212962
+  packageName: 'Master Audio 2022: AAA Sound'
+  packageVersion: 1.0.6
+  assetPath: Assets/Plugins/DarkTonic/MasterAudio/ExampleScenes/Audio/Music/The epic
+    trailer - Electronics.wav
+  uploadId: 669499

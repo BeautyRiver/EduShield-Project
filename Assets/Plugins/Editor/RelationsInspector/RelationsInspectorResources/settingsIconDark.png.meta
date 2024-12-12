@@ -45,3 +45,10 @@ TextureImporter:
     sprites: []
   spritePackingTag: 
   userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 212962
+  packageName: 'Master Audio 2022: AAA Sound'
+  packageVersion: 1.0.6
+  assetPath: Assets/Plugins/Editor/RelationsInspector/RelationsInspectorResources/settingsIconDark.png
+  uploadId: 669499

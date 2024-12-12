@@ -78,7 +78,7 @@ public class ItemSetting : MonoBehaviour
         // 아이템 데이터 클래스의 OnClickSetting 메서드 호출
         itemData.OnClickSetting(this);
 
-        EquipmentManager.onItemCurrentState?.Invoke(); // 이벤트 호출
+        //EquipmentManager.onItemCurrentState?.Invoke(); // 이벤트 호출
 
         if (level == itemData.maxLevel)
         {

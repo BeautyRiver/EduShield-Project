@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 1
   itemName: "\uC2A4\uD504\uB9C1\uD074\uB7EC"
-  itemIcon: {fileID: 21300000, guid: a304e82eace17744da346def1d9cb1a3, type: 3}
+  itemIcon: {fileID: -2675917159256711782, guid: 951040199a3c98945b82a7a745e13203, type: 3}
   maxLevel: 5
   itemDesc:
   - "<b><color=yellow>\uAE30\uBCF8 \uB370\uBBF8\uC9C0 {0}</color> \uC99D\uAC00</b>"

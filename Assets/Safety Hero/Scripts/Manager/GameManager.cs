@@ -144,8 +144,7 @@ public class GameManager : MonoBehaviour
         if (TitleManager.playlistController.CurrentPlaylist.playlistName != "Game Bgm")
             MasterAudio.ChangePlaylistByName("Game Bgm");
         else
-            MasterAudio.StartPlaylist("Game Bgm");
-        MasterAudio.PlaylistsMuted = false;
+            MasterAudio.StartPlaylist("Game Bgm");        
     }
 
     // 게임 오버 처리

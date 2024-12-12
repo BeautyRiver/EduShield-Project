@@ -13,8 +13,7 @@ public class TitleManager : MonoBehaviour
     [SerializeField] private GameObject characterSelect; // 캐릭터 선택 창
     [SerializeField] private GameObject stageImage;
     [SerializeField] private GameObject optionScreen;
-    [SerializeField] private Image fadeImage; // 페이드 인 아웃 이미지
-
+    [SerializeField] private GameObject titleButtons; // 타이틀 버튼들
     [SerializeField] private RectTransform[] stageImageRects;
     [SerializeField] private Image[] images;
     [SerializeField] private int idx = 0;
@@ -36,19 +35,14 @@ public class TitleManager : MonoBehaviour
 
     private void Start()
     {
+        // 플레이리스트 설정
         playlistController = MasterAudio.OnlyPlaylistController;
         if (playlistController.CurrentPlaylist.playlistName != "Title Bgm")
             MasterAudio.ChangePlaylistByName("Title Bgm");
         else
             MasterAudio.StartPlaylist("Title Bgm");
 
-        fadeImage.gameObject.SetActive(true);
-        fadeImage.DOFade(0, 0.5f).OnComplete(() => 
-        {
-            fadeImage.gameObject.SetActive(false);            
-        });
-
-      
+        //ButtonKeyBoardSelector.instance.InitializeNavigation(titleButtons); // 키보드로 선택가능한 버튼들 할당      
     }
 
     // 다음 버튼
