@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -85,6 +86,21 @@ public class StageSelectManager : MonoBehaviour
     {
         //LoadingSceneController.LoadScene(SceneManager.GetSceneByBuildIndex(idx).name);
         LoadingSceneController.LoadScene("Game Scene");
+    }
 
+    public void OnNavigate(PlayerInput playerInput)
+    {
+        if (playerInput.actions["Move"].triggered)
+        {
+            float x = playerInput.actions["Move"].ReadValue<Vector2>().x;
+            if (x > 0)
+                PressNextButton();
+            else if (x < 0)
+                PressPrevButton();
+        }
+        else if (playerInput.actions["Submit"].triggered)
+        {
+            LoadScene();
+        }
     }
 }
