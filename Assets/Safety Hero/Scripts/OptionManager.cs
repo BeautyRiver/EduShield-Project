@@ -2,17 +2,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using DarkTonic.MasterAudio;  // Master Audio 네임스페이스
 
-public class VolumeController : MonoBehaviour
+public class OptionManager : MonoBehaviour
 {
-    public Slider bgmSlider;  // BGM 조절용 슬라이더
-    public Slider sfxSlider;  // SFX 조절용 슬라이더
-
+    [SerializeField] private GameObject optionScreen;  // 옵션 화면
+    [SerializeField] private Slider bgmSlider;  // BGM 조절용 슬라이더
+    [SerializeField] private Slider sfxSlider;  // SFX 조절용 슬라이더
     private void Awake()
     {
-        Slider[] sliders = GetComponentsInChildren<Slider>();
-        bgmSlider = sliders[0];
-        sfxSlider = sliders[1];
-    }
+        InitializeSliders();
+    }     
     void Start()
     {
         // 저장된 볼륨 값 불러오기, 없으면 기본값 0.5 사용
@@ -30,15 +28,22 @@ public class VolumeController : MonoBehaviour
         bgmSlider.onValueChanged.AddListener(OnBgmVolumeChanged);
         sfxSlider.onValueChanged.AddListener(OnSfxVolumeChanged);
     }
-
-    void OnBgmVolumeChanged(float value)
+    private void InitializeSliders()
+    {
+        Slider[] sliders = optionScreen.GetComponentsInChildren<Slider>(true);
+        bgmSlider = sliders[0];
+        sfxSlider = sliders[1];
+    }
+    // BGM 볼륨 조절
+    public void OnBgmVolumeChanged(float value)
     {
         // 슬라이더 값에 따라 BGM 볼륨 조절
         MasterAudio.PlaylistMasterVolume = value;
         PlayerPrefs.SetFloat("BGM", value);
     }
 
-    void OnSfxVolumeChanged(float value)
+    // SFX 볼륨 조절
+    public void OnSfxVolumeChanged(float value)
     {
         // 슬라이더 값에 따라 SFX 볼륨 조절
         MasterAudio.MasterVolumeLevel = value;
@@ -49,16 +54,5 @@ public class VolumeController : MonoBehaviour
     private void OnApplicationQuit()
     {
         PlayerPrefs.Save();  // 저장된 값을 디스크에 기록
-    }
-
-    public void OptionEnable(bool enable)
-    {
-        if (enable)
-            gameObject.transform.localScale = Vector3.one;
-        else
-        {
-            gameObject.transform.localScale = Vector3.zero;
-        }
-
     }
 }

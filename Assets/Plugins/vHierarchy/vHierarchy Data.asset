@@ -73,6 +73,10 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-1450999671-0
         - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-1264554547-0
         - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-1045452047-0
+        - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-920171788-0
+        - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-714611614-0
+        - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-198078579-0
+        - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-1644771605-0
         values:
         - colorIndex: 0
           iconNameOrGuid: Settings Icon
@@ -80,9 +84,17 @@ MonoBehaviour:
           iconNameOrGuid: Settings Icon
         - colorIndex: 0
           iconNameOrGuid: Settings Icon
-        - colorIndex: 0
+        - colorIndex: 4
           iconNameOrGuid: Settings Icon
         - colorIndex: 0
           iconNameOrGuid: Camera Icon
         - colorIndex: 9
           iconNameOrGuid: Canvas Icon
+        - colorIndex: 0
+          iconNameOrGuid: Settings Icon
+        - colorIndex: 2
+          iconNameOrGuid: 
+        - colorIndex: 8
+          iconNameOrGuid: 
+        - colorIndex: 0
+          iconNameOrGuid: Settings Icon

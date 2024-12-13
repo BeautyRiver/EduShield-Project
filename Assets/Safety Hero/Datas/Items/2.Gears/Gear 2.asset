@@ -19,5 +19,5 @@ MonoBehaviour:
   itemDesc:
   - "<size=90%>\uC785\uACFC \uCF54\uB97C \uAF2D \uB9C9\uC790!</size>\n\n<b><color=yellow>\uB370\uBBF8\uC9C0
     {0}%</color> \uC99D\uAC00</b>"
-  gearRates: 140000001400000000000000
+  gearRates: 140000001400000014000000
   gearType: {fileID: 270403910868706326, guid: 95a0ee81e30577e40a3ccdade6fb80b9, type: 3}
