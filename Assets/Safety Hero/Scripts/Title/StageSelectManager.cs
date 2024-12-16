@@ -11,7 +11,7 @@ using UnityEngine.UI;
 
 public class StageSelectManager : MonoBehaviour
 {
-    [SerializeField] private GameObject characterSelect; // 캐릭터 선택 창
+    [SerializeField] private GameObject stageSelectUi; // 캐릭터 선택 창
     [SerializeField] private GameObject stageImageParent; // 스테이지 담고있는 오브젝트
     [SerializeField] private Image[] stageImages; // 스테이지 이미지들
     [SerializeField] private RectTransform[] stageImageRects;// 스테이지 이미지 rect
@@ -20,6 +20,8 @@ public class StageSelectManager : MonoBehaviour
     [SerializeField] private Vector2[] stageImagePos;
     [SerializeField] private Color noneSelectColor;
 
+    private bool isStageSelecting;
+    private Vector2 inputVec; // 입력 벡터 (방향)
     private void Awake()
     {
         // 부모 rect는 필터링
@@ -27,7 +29,7 @@ public class StageSelectManager : MonoBehaviour
                                  .Where(rt => rt != stageImageParent.GetComponent<RectTransform>())
                                  .ToArray();
 
-        stageImages = stageImageParent.GetComponentsInChildren<Image>();
+        stageImages = stageImageParent.GetComponentsInChildren<Image>();        
     }   
 
     // 다음 버튼
@@ -88,19 +90,46 @@ public class StageSelectManager : MonoBehaviour
         LoadingSceneController.LoadScene("Game Scene");
     }
 
-    public void OnNavigate(PlayerInput playerInput)
+    public void OnNavigate(InputValue playerInput)
     {
-        if (playerInput.actions["Move"].triggered)
+        if (!isStageSelecting)
+            return;
+
+        inputVec = playerInput.Get<Vector2>();
+        bool selectionChanged = false;
+
+        // 수평 입력 처리
+        if (inputVec.x < 0)
         {
-            float x = playerInput.actions["Move"].ReadValue<Vector2>().x;
-            if (x > 0)
-                PressNextButton();
-            else if (x < 0)
-                PressPrevButton();
+            PressPrevButton();
+            selectionChanged = true;
         }
-        else if (playerInput.actions["Submit"].triggered)
+        else if (inputVec.x > 0)
         {
-            LoadScene();
+            PressNextButton();
+            selectionChanged = true;
+        }
+
+        // 수직 입력 처리                
+        if (inputVec.y > 0)
+        {
+            selectionChanged = true;
+        }
+
+        // 어떤 방향으로든 입력이 있었다면 최종적으로 선택 상태 갱신
+        if (selectionChanged)
+        {
+            stageImages[idx].GetComponent<Button>().Select();
         }
     }
+
+    public void ShowStageSelect(bool isStageSelect)
+    {
+        isStageSelecting = isStageSelect;
+        stageSelectUi.SetActive(isStageSelect);
+        if (isStageSelect)
+        {
+            stageImages[idx].GetComponent<Button>().Select();
+        }
+    }    
 }

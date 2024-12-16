@@ -10,6 +10,7 @@ public class DataManager : MonoBehaviour
 
     [field: SerializeField] public PlayerData CurrentPlayerData { get; private set; }
     [field: SerializeField] public bool[] IsUnlockStages { get; private set; }
+
     private void Awake()
     {
         if (instance == null)

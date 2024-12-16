@@ -284,6 +284,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58e8ee4e81bbb0b4f86f75effd305c09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  titleFirstSelectedButton: {fileID: 1679674877}
+  optionFirstSelectedButton: {fileID: 122399908}
 --- !u!4 &53104925
 Transform:
   m_ObjectHideFlags: 0
@@ -2107,7 +2109,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 777345704}
+    m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 255790891}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
@@ -2308,10 +2310,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 0
+    m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnDown: {fileID: 317130058}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -4260,7 +4262,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 1, g: 0, b: 0, a: 1}
+    m_SelectedColor: {r: 0.43529412, g: 1, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -4280,10 +4282,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 714611614}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+      - m_Target: {fileID: 1644771608}
+        m_TargetAssemblyTypeName: StageSelectManager, Assembly-CSharp
+        m_MethodName: ShowStageSelect
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 53104924}
+        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+        m_MethodName: SetTitleFirstButton
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4571,8 +4585,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d55adc73b9d0d244a0d24a435335100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CurrentPlayerData>k__BackingField: {fileID: 11400000, guid: e46da10fa0948124ab17ebcceb64080c, type: 2}
-  <IsUnlockStages>k__BackingField: 01010101
+  <CurrentPlayerData>k__BackingField: {fileID: 0}
+  <IsUnlockStages>k__BackingField: 010101
 --- !u!4 &489286686
 Transform:
   m_ObjectHideFlags: 0
@@ -4752,10 +4766,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 0
+    m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnDown: {fileID: 317130058}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -5004,8 +5018,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 1967564834}
   - {fileID: 1473019602}
+  - {fileID: 1967564834}
   - {fileID: 317130056}
   m_Father: {fileID: 1045452051}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6698,7 +6712,7 @@ MonoBehaviour:
     m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 255790891}
-    m_SelectOnDown: {fileID: 122399908}
+    m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -6706,7 +6720,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.43614936, g: 1, b: 0, a: 1}
+    m_SelectedColor: {r: 0.43529412, g: 1, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -6726,18 +6740,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1044862958}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 2026815725}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -6750,9 +6752,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1450999673}
-        m_TargetAssemblyTypeName: ButtonKeyBoardSelector, Assembly-CSharp
-        m_MethodName: SelectTitleFirstButton
+      - m_Target: {fileID: 1044862958}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 53104924}
+        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+        m_MethodName: SetTitleFirstButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11619,10 +11633,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 0
+    m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnDown: {fileID: 317130058}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -11716,9 +11730,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e23ab7bc9209764ca6f208ceac0c288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleFirstSelectButton: {fileID: 1679674877}
-  optionFirstSelectButton: {fileID: 122399908}
-  stageSelectFirstSelectButton: {fileID: 166962455}
   currentSelectedButton: {fileID: 0}
 --- !u!222 &1450999675
 CanvasRenderer:
@@ -12516,7 +12527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19cf3b55a5e86a947bbf209d082b70ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterSelect: {fileID: 0}
+  stageSelectUi: {fileID: 714611614}
   stageImageParent: {fileID: 1967564833}
   stageImages: []
   stageImageRects: []
@@ -12682,22 +12693,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 714611614}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+      - m_Target: {fileID: 1644771608}
+        m_TargetAssemblyTypeName: StageSelectManager, Assembly-CSharp
+        m_MethodName: ShowStageSelect
         m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1450999673}
-        m_TargetAssemblyTypeName: ButtonKeyBoardSelector, Assembly-CSharp
-        m_MethodName: SelectStageSelectFirstButton
-        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -14368,9 +14367,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1450999673}
-        m_TargetAssemblyTypeName: ButtonKeyBoardSelector, Assembly-CSharp
-        m_MethodName: SelectOptionFirstButton
+      - m_Target: {fileID: 53104924}
+        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+        m_MethodName: SetOptionFirstButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18568,7 +18567,7 @@ GameObject:
   - component: {fileID: 2026815728}
   - component: {fileID: 2026815727}
   m_Layer: 5
-  m_Name: Option Screen
+  m_Name: Option UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20290,10 +20289,10 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1264554550}
-  - {fileID: 53104925}
-  - {fileID: 1644771606}
   - {fileID: 489286686}
   - {fileID: 920171789}
+  - {fileID: 1644771606}
+  - {fileID: 53104925}
   - {fileID: 1450999676}
   - {fileID: 102123556}
   - {fileID: 1045452051}

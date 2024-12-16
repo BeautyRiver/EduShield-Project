@@ -35,10 +35,6 @@ public class LevelUp : MonoBehaviour
         }
 
         MasterAudio.PlaySound("LevelUp");
-        //ButtonKeyBoardSelector.instance.InitializeNavigation(this.gameObject); // 키보드로 선택가능한 버튼들 할당
-
-        // 화면 중앙으로 이동
-        //rect.DOAnchorPos(Vector3.zero, showLeveUpDuration).SetEase(Ease.Linear).SetUpdate(true);            
 
         // 비율 기반으로 BGM 볼륨 감소
         /*float currentBGMVolume = PlayerPrefs.GetFloat("BGM");
@@ -46,7 +42,6 @@ public class LevelUp : MonoBehaviour
     }
     public void Hide()
     {
-
         GameManager.instance.Resume();
         MasterAudio.PlaySound("Select");
         uiManager.BlackWindowFadeOut(); // 검은 배경 Off

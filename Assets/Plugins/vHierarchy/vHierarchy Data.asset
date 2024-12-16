@@ -34,6 +34,9 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-290236891-0
         - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-169440164-0
         - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-254447855-0
+        - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-607511328-0
+        - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-960636969-0
+        - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-1595351458-0
         values:
         - colorIndex: 3
           iconNameOrGuid: Canvas Icon
@@ -57,14 +60,20 @@ MonoBehaviour:
           iconNameOrGuid: WheelCollider Icon
         - colorIndex: 0
           iconNameOrGuid: Settings Icon
-        - colorIndex: 0
-          iconNameOrGuid: Settings Icon
         - colorIndex: 1
           iconNameOrGuid: 
         - colorIndex: 1
           iconNameOrGuid: 
+        - colorIndex: 1
+          iconNameOrGuid: 
         - colorIndex: 0
           iconNameOrGuid: Settings Icon
+        - colorIndex: 0
+          iconNameOrGuid: Canvas Icon
+        - colorIndex: 0
+          iconNameOrGuid: Canvas Icon
+        - colorIndex: 0
+          iconNameOrGuid: Canvas Icon
     - goDatas_byGlobalId:
         keys:
         - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-1070279105-0
@@ -75,12 +84,11 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-1045452047-0
         - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-920171788-0
         - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-714611614-0
-        - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-198078579-0
         - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-1644771605-0
         values:
         - colorIndex: 0
           iconNameOrGuid: Settings Icon
-        - colorIndex: 0
+        - colorIndex: 4
           iconNameOrGuid: Settings Icon
         - colorIndex: 0
           iconNameOrGuid: Settings Icon
@@ -93,8 +101,6 @@ MonoBehaviour:
         - colorIndex: 0
           iconNameOrGuid: Settings Icon
         - colorIndex: 2
-          iconNameOrGuid: 
-        - colorIndex: 8
           iconNameOrGuid: 
         - colorIndex: 0
           iconNameOrGuid: Settings Icon

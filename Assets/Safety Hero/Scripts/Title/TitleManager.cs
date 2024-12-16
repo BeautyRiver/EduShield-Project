@@ -7,22 +7,44 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using VInspector;
 
 public class TitleManager : MonoBehaviour
-{    
+{
+    [Foldout("처음 선택되는 버튼들")]
+    [SerializeField] private Selectable titleFirstSelectedButton; // 타이틀 씬에서 처음 선택되는 버튼
+    [SerializeField] private Selectable optionFirstSelectedButton; // 옵션 씬에서 처음 선택되는 버튼
+
+
     public static PlaylistController playlistController;  
 
     private void Start()
+    {        
+        InitTitle();
+    }
+
+    private void InitTitle()
     {
-        // 플레이리스트 설정
         playlistController = MasterAudio.OnlyPlaylistController;
         if (playlistController.CurrentPlaylist.playlistName != "Title Bgm")
             MasterAudio.ChangePlaylistByName("Title Bgm");
         else
             MasterAudio.StartPlaylist("Title Bgm");
 
-        //ButtonKeyBoardSelector.instance.InitializeNavigation(titleFirstSelectButton); // 키보드로 선택가능한 버튼들 할당      
-    } 
+        SetTitleFirstButton();
+    }
+
+    public void SetTitleFirstButton()
+    {
+        titleFirstSelectedButton.Select();
+    }
+
+    public void SetOptionFirstButton()
+    {
+        optionFirstSelectedButton.Select();
+    }
+
+
 
     // 게임 종료
     public void GameQuit()

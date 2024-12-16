@@ -9,7 +9,9 @@ public class OptionManager : MonoBehaviour
     [SerializeField] private Slider sfxSlider;  // SFX 조절용 슬라이더
     private void Awake()
     {
-        InitializeSliders();
+        Slider[] sliders = optionScreen.GetComponentsInChildren<Slider>(true);
+        bgmSlider = sliders[0];
+        sfxSlider = sliders[1];
     }     
     void Start()
     {
@@ -28,12 +30,7 @@ public class OptionManager : MonoBehaviour
         bgmSlider.onValueChanged.AddListener(OnBgmVolumeChanged);
         sfxSlider.onValueChanged.AddListener(OnSfxVolumeChanged);
     }
-    private void InitializeSliders()
-    {
-        Slider[] sliders = optionScreen.GetComponentsInChildren<Slider>(true);
-        bgmSlider = sliders[0];
-        sfxSlider = sliders[1];
-    }
+
     // BGM 볼륨 조절
     public void OnBgmVolumeChanged(float value)
     {
