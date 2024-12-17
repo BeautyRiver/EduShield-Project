@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,32 +19,51 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject pauseUI;
     [SerializeField] private GameObject optionUI;
-    [EndFoldout]
-
     private bool isPause;
     private bool isOption;
+    [EndFoldout]
+
+    [Foldout("Status Text % 관리")]
+    [SerializeField] private TextMeshProUGUI hpText; // 체력
+    [SerializeField] private TextMeshProUGUI damageText; // 데미지
+    [SerializeField] private TextMeshProUGUI attackSpeedText; // 공격 속도    
+    [SerializeField] private TextMeshProUGUI attackRangeText;
+    [SerializeField] private TextMeshProUGUI speedText; // 이동 속도
+    [EndFoldout]
 
     [Foldout("처음 선택되는 버튼들")]
     [SerializeField] private Selectable pauseFirstSelectedButton; // 일시정지 씬에서 처음 선택되는 버튼    
     [SerializeField] private Selectable optionFirstSelectedButton; // 옵션 씬에서 처음 선택되는 버튼
     [EndFoldout]
-
+    
+    
     [SerializeField] private Image blackWindow; // 레벨업, esc 뒤의 배경 검게
     [SerializeField] private Image[] swapCoolDownImages;
 
     [SerializeField] private float fadeTime;
 
-    private GameManager gm;
-
-    
+    private GameManager gm;        
     private void Start()
-    {        
+    {
         gm = GameManager.instance;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePauseScreen();
+        }
+    }
     // 일시정지 화면 On/Off
     public void TogglePauseScreen()
     {
+        if (isOption)
+        {
+            ToggleOptionScreen();
+            return;
+        }
+
         if (!isPause)
         {
             MasterAudio.PlaySound("BtnClick");
@@ -51,6 +71,7 @@ public class UIManager : MonoBehaviour
             isPause = true;            
             gm.Stop();
             pauseFirstSelectedButton.Select();
+            UpdatePlayerStatusText();
         }
         else
         {
@@ -77,6 +98,15 @@ public class UIManager : MonoBehaviour
             pauseFirstSelectedButton.Select();
         }
         optionUI.SetActive(isOption);
+    }
+
+    private void UpdatePlayerStatusText()
+    {
+        hpText.text = (gm.playerData.maxHpMult * 100f).ToString() + "%";
+        damageText.text = (gm.playerData.damageMult * 100f).ToString() + "%";
+        attackSpeedText.text = (gm.playerData.attackSpeedMult * 100f).ToString() + "%";
+        attackRangeText.text = (gm.playerData.attackRangeMult * 100f).ToString() + "%";
+        speedText.text = (gm.playerData.speedMult * 100f).ToString() + "%";
     }
 
     public void Lose()
@@ -114,12 +144,4 @@ public class UIManager : MonoBehaviour
         blackWindow.gameObject.SetActive(false);
     }
 
-    // 게임 종료
-    public void GameQuit()
-    {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
-        Application.Quit();
-    }
 }

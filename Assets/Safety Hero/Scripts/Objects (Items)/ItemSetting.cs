@@ -12,6 +12,7 @@ public class S_int
     public int[] values;
 }
 
+[System.Serializable]
 public class ItemSetting : MonoBehaviour
 {
     [Header("# 아이템 데이터")]

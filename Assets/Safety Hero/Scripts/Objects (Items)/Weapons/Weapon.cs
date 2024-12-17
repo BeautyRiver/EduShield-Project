@@ -72,13 +72,13 @@ public abstract class Weapon : MonoBehaviour
 
         // 플레이어의 기본 능력치에 따른 설정
         damage = data.baseDamage * gm.playerData.damageMult;
-        attackRange = data.baseRange * gm.playerData.atkRangeMult;
-        bulletSize = data.baseScale * gm.playerData.atkRangeMult;        
+        attackRange = data.baseRange * gm.playerData.attackRangeMult;
+        bulletSize = data.baseScale * gm.playerData.attackRangeMult;        
 
         // 공격속도 설정
-        damageInterval = data.baseDamageInterval * gm.playerData.atkSpeedMult;
-        weaponSpeed = (float)System.Math.Round(weaponSpeed / gm.playerData.atkSpeedMult, 2);
-        rotationSpeed = (float)System.Math.Round(rotationSpeed / gm.playerData.atkSpeedMult, 2);
+        damageInterval = data.baseDamageInterval * gm.playerData.attackSpeedMult;
+        weaponSpeed = (float)System.Math.Round(weaponSpeed / gm.playerData.attackSpeedMult, 2);
+        rotationSpeed = (float)System.Math.Round(rotationSpeed / gm.playerData.attackSpeedMult, 2);
 
         // 무기 바로 쓸 수 있게
         speedTimer = weaponSpeed;
@@ -111,8 +111,8 @@ public abstract class Weapon : MonoBehaviour
 
             case 3: // 크기[범위] 증가
                 data.baseScale += (data.baseScale * rate * 0.01f);                
-                bulletSize = data.baseScale * gm.playerData.atkRangeMult;
-                attackRange = data.baseRange * gm.playerData.atkRangeMult;
+                bulletSize = data.baseScale * gm.playerData.attackRangeMult;
+                attackRange = data.baseRange * gm.playerData.attackRangeMult;
                 batchable?.Batch();
 
                 Debug.Log($"{this.name}: Range {rate}만큼 증가했습니다.");

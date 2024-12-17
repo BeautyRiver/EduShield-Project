@@ -53,6 +53,7 @@ public class StageSelectManager : MonoBehaviour
 
         // 인덱스 증가
         idx++;
+        stageImages[idx].GetComponent<Button>().Select();
     }
 
     // 이전 버튼
@@ -72,6 +73,7 @@ public class StageSelectManager : MonoBehaviour
 
         // 인덱스 감소
         idx--;
+        stageImages[idx].GetComponent<Button>().Select();
     }
 
 
@@ -95,32 +97,24 @@ public class StageSelectManager : MonoBehaviour
         if (!isStageSelecting)
             return;
 
-        inputVec = playerInput.Get<Vector2>();
-        bool selectionChanged = false;
+        inputVec = playerInput.Get<Vector2>();        
 
         // 수평 입력 처리
         if (inputVec.x < 0)
         {
-            PressPrevButton();
-            selectionChanged = true;
+            PressPrevButton();            
         }
         else if (inputVec.x > 0)
         {
-            PressNextButton();
-            selectionChanged = true;
+            PressNextButton();            
         }
 
         // 수직 입력 처리                
         if (inputVec.y > 0)
         {
-            selectionChanged = true;
-        }
-
-        // 어떤 방향으로든 입력이 있었다면 최종적으로 선택 상태 갱신
-        if (selectionChanged)
-        {
             stageImages[idx].GetComponent<Button>().Select();
         }
+        
     }
 
     public void ShowStageSelect(bool isStageSelect)

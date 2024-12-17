@@ -41,11 +41,11 @@ public class BoxReward : MonoBehaviour
         int count = Random.Range(20, 60);
         for (int i = 0; i < count; i++)
         {            
-            GameObject exp = GameManager.instance.poolManager.Get(PoolType.Item, 0); // exp 소환
-            CircleCollider2D coll = exp.GetComponent<CircleCollider2D>();
+            GameObject expObj = GameManager.instance.poolManager.Get(PoolType.Item, 0); // expCount 소환
+            CircleCollider2D coll = expObj.GetComponent<CircleCollider2D>();
             coll.enabled = false;
-            exp.GetComponent<Exp>().exp = Random.Range(1, GameManager.instance.player.spawner.level+1);
-            exp.transform.position = transform.position;
+            expObj.GetComponent<Exp>().exp = Random.Range(1, GameManager.instance.player.spawner.level+1);
+            expObj.transform.position = transform.position;
 
             Vector2 randomDir = new Vector2(Random.Range(-0.7f, 0.7f), Random.Range(-0.2f, 0.2f)); // 좌우로만 튀어나가게 설정
 
@@ -54,7 +54,7 @@ public class BoxReward : MonoBehaviour
             float randomDistance = Random.Range(2f, 4f);  // 이동할 거리
 
             // DOTween으로 점프 애니메이션: 좌우 방향으로 randomDistance만큼 점프
-            exp.transform.DOJump((Vector2)transform.position + randomDir * randomDistance, jumpPower, 1, 1f)
+            expObj.transform.DOJump((Vector2)transform.position + randomDir * randomDistance, jumpPower, 1, 1f)
                 .SetEase(Ease.OutQuad).OnComplete(() => { coll.enabled = true; });
             yield return new WaitForSeconds(0.1f);
         }

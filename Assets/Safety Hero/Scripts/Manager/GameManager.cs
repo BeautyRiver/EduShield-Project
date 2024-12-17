@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using VInspector;
 using static TMPro.TMP_InputField;
 
 public class GameManager : MonoBehaviour
@@ -31,7 +32,7 @@ public class GameManager : MonoBehaviour
     public int kill; // 처치한 적 수
     public int exp; // 현재 경험치
  
-    [Header("# 참조")]
+    [Foldout("# 참조")]
     public AiManager ai;
     public TypeControlManager typeControll;
     public PoolManager poolManager;
@@ -39,7 +40,8 @@ public class GameManager : MonoBehaviour
     public LevelUp uiLevelUp;
     public Player player;
     public Result result;
-    
+    public GameObject spawner;
+    [EndFoldout]
     [field: SerializeField] public PlayerData playerData { get; private set; } // 복사본
     [SerializeField] private PlayerData orignalPlayerData; // 원본
     [SerializeField] private GameObject enemyCleaner;
@@ -98,7 +100,7 @@ public class GameManager : MonoBehaviour
             isGamestart = true;
             // 플레이어 기본 무기 부여
             uiLevelUp.FirstGiveWeapon(playerData.characterId);
-            player.spawner.gameObject.SetActive(true);
+            spawner.gameObject.SetActive(true);
         }
         yield return new WaitForSeconds(aiMsgShowTime[2]);
 

@@ -29,20 +29,12 @@ public class Spawner : MonoBehaviour
     [Header("# 박스 소환 시간")]
     public Vector2 boxSpawnTime; // 레벨별 소환 데이터 배열
 
-    private void Awake()
+    private void Start()
     {
         // 초기 설정
-        levelTime = GameManager.instance.maxGameTime / normalSpawnData.Length;                              
-        timer = new float[4];        
-        level = 0;
-        prevLevel = level;
-
-        normalSpawnData[0].spriteType = GameManager.instance.selectStageIdx;
-        uniqeSpawnData[0].spawnTime = Random.Range(uniqeSpawnData[0].minTime, uniqeSpawnData[0].maxTime);
-        miniBossSpawnData[0].spawnTime = Random.Range(miniBossSpawnData[0].minTime, miniBossSpawnData[0].maxTime);
-        normalSpawnData[0].spriteType = GameManager.instance.selectStageIdx;        
+        InitializeSettings();
     }
-
+ 
     private void Update()
     {
         if (GameManager.instance.isGameActive)
@@ -86,6 +78,25 @@ public class Spawner : MonoBehaviour
             }
         }
     }
+
+    private void FixedUpdate()
+    {
+        transform.position = GameManager.instance.player.transform.position;
+    }
+
+    private void InitializeSettings()
+    {
+        levelTime = GameManager.instance.maxGameTime / normalSpawnData.Length;
+        timer = new float[4];
+        level = 0;
+        prevLevel = level;
+
+        normalSpawnData[0].spriteType = GameManager.instance.selectStageIdx;
+        uniqeSpawnData[0].spawnTime = Random.Range(uniqeSpawnData[0].minTime, uniqeSpawnData[0].maxTime);
+        miniBossSpawnData[0].spawnTime = Random.Range(miniBossSpawnData[0].minTime, miniBossSpawnData[0].maxTime);
+        normalSpawnData[0].spriteType = GameManager.instance.selectStageIdx;
+    }
+
     private IEnumerator LevelChangeRoutine()
     {
         yield return StartCoroutine(GameManager.instance.RandomStageIndex()); // StageIndex 변경이 완료될 때까지 대기

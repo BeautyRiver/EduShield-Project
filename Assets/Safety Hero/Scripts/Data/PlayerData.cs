@@ -16,10 +16,10 @@ public class PlayerData : ScriptableObject
     public float damageMult = 1f; // 데미지 배율
 
     [Header("공격속도 배율")]
-    public float atkSpeedMult = 1f; // 공격속도 배율
+    public float attackSpeedMult = 1f; // 공격속도 배율
 
     [Header("공격범위 배율")]
-    public float atkRangeMult= 1f; // 공격범위 배율
+    public float attackRangeMult= 1f; // 공격범위 배율
 
     [Header("이동속도 배율")]
     public float speedMult = 1f; // 이동속도 배율

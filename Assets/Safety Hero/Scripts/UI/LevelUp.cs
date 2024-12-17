@@ -1,5 +1,4 @@
 using DarkTonic.MasterAudio;
-using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +24,7 @@ public class LevelUp : MonoBehaviour
 
     public void Show()
     {
-        transform.localScale = Vector3.one;
+        gameObject.SetActive(true);
         uiManager.BlackWindowFadeIn(); // 검은 배경 On
         Next(); // 섞기
         Button[] buttons = transform.GetComponentsInChildren<Button>();
@@ -50,16 +49,15 @@ public class LevelUp : MonoBehaviour
         {
             btn.interactable = false;
         }        
-        transform.localScale = Vector3.zero;
+        gameObject.SetActive(false);
 
-        GameManager.instance.isLevelUp = false; // 레벨업 중이 아님
         // 원래 BGM 볼륨으로 복구
         //MasterAudio.PlaylistMasterVolume = PlayerPrefs.GetFloat("BGM");
     }
 
     public void FirstGiveWeapon(int index)
     {
-        items[index].OnClick();        
+        GetComponentsInChildren<ItemSetting>(true)[index].OnClick();
     }
 
     private void Next()

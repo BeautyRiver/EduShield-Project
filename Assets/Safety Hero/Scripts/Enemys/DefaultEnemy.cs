@@ -6,9 +6,9 @@ public class DefaultEnemy : Enemy, IRepositionable, IKnockBackable
 {
     protected override void DropReward()
     {
-        GameObject exp = GameManager.instance.poolManager.Get(PoolType.Item, 0); // exp 생성
-        exp.transform.position = transform.position;
-        exp.GetComponent<Exp>().exp = this.exp;
+        GameObject expObj = GameManager.instance.poolManager.Get(PoolType.Item, 0); // expCount 생성
+        expObj.transform.position = transform.position;
+        expObj.GetComponent<Exp>().exp = this.exp;
     }
 
     protected override void FlipX()

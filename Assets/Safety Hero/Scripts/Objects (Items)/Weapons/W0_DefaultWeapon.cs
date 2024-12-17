@@ -15,7 +15,7 @@ public class W0_DefaultWeapon : Weapon
         for (int i = 0; i < count; i++)
         {
             // 첫 번째 발사 방향: 플레이어가 바라보는 방향
-            Vector3 dir = (i % 2 == 0) ? (playerMove.lastInputVec).normalized : -(playerMove.lastInputVec).normalized;
+            Vector3 dir = (i % 2 == 0) ? (playerMove.lastInputVec) : -(playerMove.lastInputVec);
 
             // 새로운 발사체 생성
             Transform bullet = GameManager.instance.poolManager.Get(PoolType.Bullet, 0).transform; //Bullet0 가져오기

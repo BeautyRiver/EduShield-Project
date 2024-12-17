@@ -5,11 +5,8 @@ public class PlayerMove : MonoBehaviour
 {
     [Header("# 입력 및 이동")]
     private Vector2 inputVec; // 입력 벡터 (방향)
-    [SerializeField]
-    public Vector2 Vector2 { get => inputVec; }
 
-    public Vector2 lastInputVec = new Vector2(1f, 0f);
-    public float lastXInputVec = 1f;  // 마지막 x축 방향만 기억
+    public Vector2 lastInputVec; // 마지막 입력 벡터
     public float baseSpeed = 6f;
     public float currentSpeed = 3f; // 이동 속도
 
@@ -21,6 +18,7 @@ public class PlayerMove : MonoBehaviour
         anim = GetComponent<Animator>();
         spriter = GetComponent<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
+        lastInputVec = Vector2.right;
     }
 
     private void Update()
@@ -31,7 +29,6 @@ public class PlayerMove : MonoBehaviour
         SetAnimation();
     }
    
-
     private void FixedUpdate()
     {
         if (!GameManager.instance.isGameActive)
@@ -44,7 +41,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (inputVec != Vector2.zero)
         {
-            lastInputVec = inputVec;
+            lastInputVec = inputVec.normalized;
         }
     }
     // 플레이어 이동
@@ -72,8 +69,7 @@ public class PlayerMove : MonoBehaviour
         baseSpeed = baseSpeed * GameManager.instance.playerData.speedMult; // 플레이어 기본 이동속도 적용
         currentSpeed = baseSpeed;
     }
-
-   
+       
     private void OnMove(InputValue value)
     {
         inputVec = value.Get<Vector2>();

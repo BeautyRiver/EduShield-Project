@@ -1,3 +1,4 @@
+using DarkTonic.MasterAudio;
 using DG.Tweening;
 using System;
 using System.Collections;
@@ -64,8 +65,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         gm = GameManager.instance;              
-    }
-   
+    }   
 
     // 물리 충돌 일어날 때
     private void OnCollisionStay2D(Collision2D collision)

@@ -62,40 +62,12 @@ public class Scanner : MonoBehaviour
 
         foreach (Collider2D item in expItems)
         {
-            Exp exp = item.GetComponent<Exp>();
-            if (!exp.isMoving)
-            {
-                exp.isMoving = true;
-                // 아이템 애니메이션
-                ItemMoveLogic(item.transform);
-            }
+            Exp expObj = item.GetComponent<Exp>();
+            if (!expObj.IsMoving)
+                expObj.ItemMoveLogic(transform);            
         }
     }
-
-    private void ItemMoveLogic(Transform itemTrans)
-    {
-        // 플레이어와 반대 방향 계산
-        Vector2 directionAwayFromPlayer = (itemTrans.position - base.transform.position).normalized;
-        Vector2 targetPosition = itemTrans.position + (Vector3)directionAwayFromPlayer * 0.5f;  // 반대 방향으로 약간 이동
-
-        // DOTween을 사용해 플레이어 반대 방향으로 살짝 이동
-        itemTrans.DOMove(targetPosition, 0.3f).SetEase(Ease.OutBack).OnComplete(() =>
-        {
-            // 반대 방향으로 이동이 끝나면 플레이어에게 따라가는 코루틴 시작
-            StartCoroutine(FollowPlayer(itemTrans));
-        });
-    }
-    IEnumerator FollowPlayer(Transform itemTrans)
-    {
-        float closeDistance = 0.1f;  // 플레이어에게 충분히 가까워졌는지 판단할 거리
-        while (Vector2.Distance(base.transform.position, itemTrans.position) > closeDistance)
-        {
-            // 플레이어의 현재 위치를 향해 경험치 아이템이 이동
-            Vector2 direction = (base.transform.position - itemTrans.position).normalized;
-            itemTrans.Translate(direction * 10f * Time.deltaTime);  // 경험치 이동 속도 조절
-            yield return null;  // 다음 프레임까지 대기
-        }
-    }
+   
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;

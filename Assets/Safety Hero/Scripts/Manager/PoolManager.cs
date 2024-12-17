@@ -60,6 +60,7 @@ public class PoolManager : MonoBehaviour
         {
             select = Instantiate(selectedPrefabs[index], transform);
             selectedPool.Add(select);
+            select.SetActive(true);
         }
 
         return select;
