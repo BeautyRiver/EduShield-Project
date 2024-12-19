@@ -1,38 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VInspector;
 
 [CreateAssetMenu(fileName = "Bullet", menuName = "Scriptble Object/BulletData")]
 public class BulletData : DataGuide
 {  
-    [TextArea]
-    public string firstDesc;
-
-    [Header("# 기본 스탯")]
+    [Tab("# 기본 스탯")]
     public float baseDamage;
+    [Header("baseDamageInterval: 데미지 간격 x초당 때림")]
     public float baseDamageInterval = 2f;
     public int baseCount;
     public int basePer;
     public float baseDelay;
-    public float baseSpeed;
+    public float baseBulletSpeed;
+    public float baseAttackSpeed;
+    public float baseWeaponDuration; // 무기 지속시간 
     public float baseRange;
     public float baseRotationSpeed;
-    [Header("# Scale은 Prefab에서 변경!")]
     public Vector3 baseScale;
 
-    [Header("# 레벨별 스탯")]
-
+    [Tab("# 레벨별 스탯")]
     [Header("데미지")]
     public int[] damages; // 데미지
+
     [Header("개수")]
     public int[] counts; // 개수
+
     [Header("관통력")]
     public int[] pers; // 관통력    
 
     [Header("크기 [10 = 10%]")]
     public int[] sizes;
 
-    [Header("무기 관련")]
+    [Tab("# 무기 관련")]
     public GameObject prefab;
     public GameObject weaponType;
 
@@ -42,7 +43,7 @@ public class BulletData : DataGuide
         maxLevel = damages.Length + counts.Length + pers.Length + sizes.Length + 1;
 
         if (prefab != null)
-            baseScale = prefab.transform.localScale;
+            prefab.transform.localScale = baseScale;
     }
 
     public override void InitializeItemSetting(ItemSetting itemSetting)
@@ -78,13 +79,13 @@ public class BulletData : DataGuide
     {
         if (itemSetting.TextLevel != null)
         {
-            itemSetting.TextLevel.text = "Lv." + (itemSetting.level + 1); // 레벨 표기
+            itemSetting.TextLevel.text = "Now LV. " + (itemSetting.level); // 레벨 표기
         }
 
         if (itemSetting.level == 0)
         {
             itemSetting.NewIcon.gameObject.SetActive(true);
-            itemSetting.TextDesc.text = "<color=#99FF8A>새로운 무기!</color>\n\n<size=90%>" + firstDesc + "</size>";
+            itemSetting.TextDesc.text = "<color=#99FF8A>새로운 무기!</color>\n\n<size=90%>" + itemDesc[0] + "</size>";
         }
         else
         {
@@ -100,7 +101,7 @@ public class BulletData : DataGuide
             if (itemSetting.outsideRateIdx < itemSetting.statusRateList.Count)
             {
                 itemSetting.increaseRate = itemSetting.statusRateList[itemSetting.outsideRateIdx].values[itemSetting.insideRateIdx];
-                itemSetting.TextDesc.text = string.Format(itemDesc[itemSetting.outsideRateIdx], itemSetting.increaseRate); // 무기 설명글
+                itemSetting.TextDesc.text = string.Format(itemDesc[itemSetting.outsideRateIdx + 1], itemSetting.increaseRate); // 무기 설명글
             }
         }
     }

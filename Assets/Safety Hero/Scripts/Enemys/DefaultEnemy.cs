@@ -2,8 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DefaultEnemy : Enemy, IRepositionable, IKnockBackable
+public class DefaultEnemy : Enemy, IRepositionable, IKnockBackable, IMovable
 {
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        Move();
+        FlipX();
+    }
+
     protected override void DropReward()
     {
         GameObject expObj = GameManager.instance.poolManager.Get(PoolType.Item, 0); // expCount 생성
@@ -16,7 +23,7 @@ public class DefaultEnemy : Enemy, IRepositionable, IKnockBackable
         spriter.flipX = targetRb.position.x < rigid.position.x;
     }
 
-    protected override void Move()
+    public void Move()
     {
         Vector2 dirVec = targetRb.position - rigid.position; 
         nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;

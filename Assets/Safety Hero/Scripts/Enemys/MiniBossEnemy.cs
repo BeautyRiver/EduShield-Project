@@ -2,8 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MiniBossEnemy : Enemy
+public class MiniBossEnemy : Enemy, IMovable
 {
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        Move();
+        FlipX();
+    }
+
     protected override void DropReward()
     {        
         GameObject reward = gm.poolManager.Get(PoolType.Item, 2); // 보상 상자 생성
@@ -15,7 +22,7 @@ public class MiniBossEnemy : Enemy
         spriter.flipX = targetRb.position.x < rigid.position.x;
     }
 
-    protected override void Move()
+    public void Move()
     {
         Vector2 dirVec = targetRb.position - rigid.position; // 타겟 방향
         nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;

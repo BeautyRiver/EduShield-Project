@@ -15,13 +15,10 @@ public class W50_TargetGunWeapon : Weapon
     {
         for (int i = 0; i < count; i++)
         {
-            if (player.scanner.nearestTarget == null)
-            {
-                isAttacking = false;
-                yield break;
-            }
+            if (targetScanner.nearestTarget == null)
+                break;
 
-            Vector3 targetPos = player.scanner.nearestTarget.position;
+            Vector3 targetPos = targetScanner.nearestTarget.position;
             Vector3 dir = (targetPos - transform.position).normalized;
 
             // 총알 발사

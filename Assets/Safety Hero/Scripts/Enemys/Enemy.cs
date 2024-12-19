@@ -46,11 +46,8 @@ public abstract class Enemy : MonoBehaviour, IDamageable
             return;
 
         rigid.linearVelocity = Vector2.zero;
-        Move();
-        FlipX();
     }
 
-    protected abstract void Move();
     protected abstract void FlipX();
 
     protected virtual void OnEnable()
@@ -61,7 +58,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         isLive = true;
         coll.enabled = true;
         rigid.simulated = true;
-        anim.SetBool("Dead", false);
+        anim.SetBool("isDead", false);
         health = maxHealth;
     }
     public virtual void Init(SpawnData data)
@@ -78,6 +75,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     public void DamagedLogic(Collider2D collision, float damage)
     {
+        Debug.Log("DamagedLogic");
         Bullet bulletInfo = collision.GetComponent<Bullet>();
         Vector2 hitPos;
 
@@ -110,8 +108,8 @@ public abstract class Enemy : MonoBehaviour, IDamageable
             }
         }
 
-        MasterAudio.PlaySound("Hit"); // 사운드 재생
-        anim.SetTrigger("Hit"); // 맞는 애니메이션 재생
+        MasterAudio.PlaySound("doHit"); // 사운드 재생
+        anim.SetTrigger("doHit"); // 맞는 애니메이션 재생
 
         // 보스는 넉백 X
         if (this is IKnockBackable)
@@ -124,9 +122,9 @@ public abstract class Enemy : MonoBehaviour, IDamageable
             isLive = false;
             coll.enabled = false;
             rigid.simulated = false;
-            anim.SetBool("Dead", true);
+            anim.SetBool("isDead", true);
             gm.kill++;
-            MasterAudio.PlaySound("Dead");
+            MasterAudio.PlaySound("isDead");
         }
     }
 

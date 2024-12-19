@@ -67,7 +67,7 @@ public class PoolManager : MonoBehaviour
     }
 }
 
-public enum PoolType { Bullet, Enemy, Item, Effect, Text}  // 풀 타입 enum
+public enum PoolType { Bullet, Enemy, EnemyBullet, Item, Effect, Text}  // 풀 타입 enum
 
 [System.Serializable]
 public class Pool

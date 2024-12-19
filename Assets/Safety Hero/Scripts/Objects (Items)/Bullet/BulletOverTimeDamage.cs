@@ -6,19 +6,15 @@ public class BulletOverTimeDamage : Bullet
 {
     private Dictionary<int, float> damageTimers = new Dictionary<int, float>();
 
-    public override void Init(float damage, int per, Vector3 dir, int id, float knockBack, float interval)
-    {
-        base.Init(damage, per, dir, id, knockBack, interval);
-        
-        if (rigid != null)
-            rigid.linearVelocity = Vector2.zero;
-    }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        var damageAble = collision.GetComponent<IDamageable>();
-        if (damageAble != null)
+        if (collision.CompareTag(ownerTag))
+            return;
+
+        if (collision.TryGetComponent(out IDamageable damageAble))
         {
+            Debug.Log("BulletOverTimeDamage: OnTriggerStay2D: DamagedLogic");
             int enemyId = collision.GetInstanceID();
 
             if (!damageTimers.ContainsKey(enemyId))

@@ -22,14 +22,20 @@ public class W1_RotateWeapon : Weapon, IBatchable, IRotatingable
     protected IEnumerator M1_Bullet()
     {
         Batch();
-        yield return new WaitForSeconds(durationTime);
-        Transform bullet;
-        for (int index = 0; index < count; index++) // 불릿 수만큼 반복
+
+        // durationTime이 0일 경우 무한 지속, 0보다 클 경우 지정 시간 후 축소
+        if (weaponDuration > 0f)
         {
-            bullet = transform.GetChild(index); // 기존 자식 사용
-            bullet.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBounce); // 크기를 0.5초 동안 자연스럽게 축소
+            yield return new WaitForSeconds(weaponDuration);
+
+            Transform bullet;
+            for (int index = 0; index < count; index++)
+            {
+                bullet = transform.GetChild(index);
+                bullet.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBounce);
+            }
+            isAttacking = false;
         }
-        isAttacking = false;
     } 
 
     // 불릿 배치 함수 (회전 무기)

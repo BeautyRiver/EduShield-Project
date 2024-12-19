@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.EventSystems.EventTrigger;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
     [Header("# 플레이어 정보")]
     public int playerId; // 플레이어 ID
@@ -15,7 +16,7 @@ public class Player : MonoBehaviour
     public float maxHealth = 100; // 최대 체력  
 
     [Header("# 게임 오브젝트 참조")]
-    public Scanner scanner; // 적 탐색기        
+    public TargetScanner scanner; // 적 탐색기        
     [HideInInspector] public Spawner spawner;
 
     [Header("# 애니메이션")]
@@ -54,7 +55,7 @@ public class Player : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        scanner = GetComponent<Scanner>();
+        scanner = GetComponent<TargetScanner>();
         spawner = GetComponentInChildren<Spawner>(true);
         col = GetComponent<CapsuleCollider2D>();
         playerMove = GetComponent<PlayerMove>();
@@ -76,19 +77,10 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            health -= Time.deltaTime * collision.gameObject.GetComponent<Enemy>().damage;
-
-            // 플레이어 피격색상 변경
-            if (!isHiting && !isTransforming)
-                StartCoroutine(HitColor());
-
-            if (health < 0)
+            if (collision.gameObject.TryGetComponent(out Enemy enemy))
             {
-                for (int index = 2; index < transform.childCount; index++)
-                {
-                    transform.GetChild(index).gameObject.SetActive(false);
-                }
-                PlayerDead();
+                DamagedLogic(collision.collider, enemy.damage);
+                
             }
         }        
     }
@@ -152,6 +144,23 @@ public class Player : MonoBehaviour
         col.enabled = false;
         anim.SetTrigger("Dead");
         gm.GameOver();
+    }
+
+    public void DamagedLogic(Collider2D collision, float damage)
+    {
+        health -= Time.deltaTime * damage;
+        // 플레이어 피격색상 변경
+        if (!isHiting && !isTransforming)
+            StartCoroutine(HitColor());
+
+        if (health < 0)
+        {
+            for (int index = 2; index < transform.childCount; index++)
+            {
+                transform.GetChild(index).gameObject.SetActive(false);
+            }
+            PlayerDead();
+        }
     }
 
     [System.Serializable]

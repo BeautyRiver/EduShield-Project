@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using VInspector;
 
 // DataGuide.cs
 public abstract class DataGuide : ScriptableObject
@@ -9,7 +10,7 @@ public abstract class DataGuide : ScriptableObject
     [Header("# 근접: 0 ~ 49 / 원거리: 50 ~ 99\n" +
         "# 기어: 100 ~ 199 / 기타: 200 ~ 299")]
 
-    [Header("# 속성")]
+    [Tab("* 기본속성")]
     public int itemId;
     public string itemName;
     public Sprite itemIcon;

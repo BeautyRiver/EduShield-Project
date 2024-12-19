@@ -36,10 +36,6 @@ public class Item : MonoBehaviour
 
     IEnumerator GetMagnet()
     {
-        float orignal = gm.player.scanner.expCollectionRange;
-        gm.player.scanner.expCollectionRange = 999f;
-        yield return new WaitForSeconds(0.1f);
-        gm.player.scanner.expCollectionRange = orignal;
-        gameObject.SetActive(false);
+        yield return null;
     }
 }

@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VInspector;
 
 [CreateAssetMenu(fileName = "Gear", menuName = "Scriptble Object/GearData")]
 public class GearData : DataGuide
 {    
-    [Header("기어 능력치")]
+    [Tab("# 기어 능력치")]
     [Header("배율방식 / 50 = 50%증가")]
     public int[] gearRates;
-
-
-    [Header("기어 관련")]
+    
+    [Tab("# 기어 관련")]
     public GameObject gearType;
 
     // 에디터에서 값이 변경될 때 자동으로 호출
@@ -28,7 +28,7 @@ public class GearData : DataGuide
     {
         if (itemSetting.TextLevel != null)
         {
-            itemSetting.TextLevel.text = "Lv." + (itemSetting.level + 1); // 레벨 표기
+            itemSetting.TextLevel.text = "Now LV. " + (itemSetting.level); // 레벨 표기
         }
 
         if (itemSetting.level == 0)

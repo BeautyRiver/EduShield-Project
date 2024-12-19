@@ -19689,7 +19689,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6972855630882271981
 Transform:
   m_ObjectHideFlags: 0
@@ -19778,6 +19778,7 @@ MonoBehaviour:
   <Id>k__BackingField: 0
   <KnockBackDistance>k__BackingField: 0
   <DamageInterval>k__BackingField: 0
+  ownerTag: 
 --- !u!210 &-2759885002727325761
 SortingGroup:
   m_ObjectHideFlags: 0

@@ -17,6 +17,7 @@ MonoBehaviour:
   itemIcon: {fileID: -2675917159256711782, guid: 951040199a3c98945b82a7a745e13203, type: 3}
   maxLevel: 5
   itemDesc:
+  - "\uC8FC\uBCC0\uC744 \uD68C\uC804\uD558\uBA70 \uACF5\uACA9"
   - "<b><color=yellow>\uAE30\uBCF8 \uB370\uBBF8\uC9C0 {0}</color> \uC99D\uAC00</b>"
   - "<b><color=yellow>\uAC1C\uC218 {0}\uAC1C</color> \uC99D\uAC00</b>"
   firstDesc: "\uC8FC\uBCC0\uC744 \uD68C\uC804\uD558\uBA70 \uACF5\uACA9"
@@ -25,7 +26,9 @@ MonoBehaviour:
   baseCount: 3
   basePer: -100
   baseDelay: 100
-  baseSpeed: 2
+  baseBulletSpeed: 15
+  baseAttackSpeed: 2
+  baseWeaponDuration: 0
   baseRange: 2
   baseRotationSpeed: 100
   baseScale: {x: 1, y: 1, z: 1}

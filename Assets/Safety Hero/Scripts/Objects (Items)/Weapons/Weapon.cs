@@ -11,11 +11,12 @@ public abstract class Weapon : MonoBehaviour
     public float damage;         // 무기 데미지    
     public int count;            // 무기 개수
     public int per;              // 관통력
+    public float bulletSpeed;    // 총알 이동 속도
     public float weaponSpeed;    // 무기 속도    
     public float rotationSpeed;
     public float bulletDelay;    // 총알 사이 딜레이 (Range)   
     public float damageInterval; // 데미지 줄 수 있는 텀
-    public float durationTime;   // 지속 시간(회전 무기만 일단)
+    public float weaponDuration;   // 지속 시간(회전 무기만 일단)
     public float attackRange;    // 공격 범위
     public float knockBackAmout; // 몬스터 넉백량
     public Vector3 bulletSize;   // 총알(무기) 크기
@@ -24,12 +25,12 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] protected float speedTimer;
     protected GameManager gm;
     protected PlayerMove playerMove;
-    protected Player player;
+    protected TargetScanner targetScanner;
     protected virtual void Awake()
     {
         gm = GameManager.instance;
-        player = gm.player;
-        playerMove = player.playerMove;
+        playerMove = GameManager.instance.player.playerMove;
+        targetScanner = GameManager.instance.player.GetComponent<TargetScanner>();
     }
 
     protected virtual void Update()
@@ -56,12 +57,13 @@ public abstract class Weapon : MonoBehaviour
         transform.parent = playerMove.transform;
         transform.localPosition = Vector3.zero;   // 플레이어 안에서 위치 초기화
 
-        prefabId = SetPrefabID(data);             // prefabID 설정
-        durationTime = 3f;                        // 무기 지속시간 설정 (*현재 ONLY 회전무기)
+        prefabId = SetPrefabID(data);             // prefabID 설정        
         damage = data.baseDamage;                 // 기본 공격력
         bulletDelay = data.baseDelay;             // 기본 딜레이
         count = data.baseCount;                   // 기본 개수
-        weaponSpeed = data.baseSpeed;             // 기본 공격속도
+        bulletSpeed = data.baseBulletSpeed;       // 기본 총알 이동속도
+        weaponDuration = data.baseWeaponDuration; //  무기 지속시간 설정 (*현재 ONLY 회전무기)
+        weaponSpeed = data.baseAttackSpeed;       // 기본 공격속도
         rotationSpeed = data.baseRotationSpeed;   // 기본 회전속도 (*현재 ONLY 회전무기)
         attackRange = data.baseRange;             // 기본 범위 
         bulletSize = data.baseScale;              // 기본 사이즈 
@@ -76,9 +78,10 @@ public abstract class Weapon : MonoBehaviour
         bulletSize = data.baseScale * gm.playerData.attackRangeMult;        
 
         // 공격속도 설정
-        damageInterval = data.baseDamageInterval * gm.playerData.attackSpeedMult;
-        weaponSpeed = (float)System.Math.Round(weaponSpeed / gm.playerData.attackSpeedMult, 2);
-        rotationSpeed = (float)System.Math.Round(rotationSpeed / gm.playerData.attackSpeedMult, 2);
+        damageInterval = data.baseDamageInterval * gm.playerData.attackSpeedMult;               // 데미지 간격
+        weaponSpeed = (float)System.Math.Round(weaponSpeed / gm.playerData.attackSpeedMult, 2); // 무기 속도
+        bulletDelay = (float)System.Math.Round(bulletDelay / gm.playerData.attackSpeedMult, 2); // 총알 사이 딜레이
+        rotationSpeed = (float)System.Math.Round(rotationSpeed / gm.playerData.attackSpeedMult, 2); // 회전 속도
 
         // 무기 바로 쓸 수 있게
         speedTimer = weaponSpeed;
@@ -144,8 +147,8 @@ public abstract class Weapon : MonoBehaviour
         Vector3 direction = dir ?? Vector3.zero;
         Bullet bulletComponent = bullet.GetComponent<Bullet>();
 
-        // 공통된 불릿 초기화 로직
-        bulletComponent.Init(damage, per, direction, data.itemId, knockBackAmout, damageInterval);
+        // 공통된 불릿 초기화 로직        
+        bulletComponent.Init(direction, damage, per, bulletSpeed, knockBackAmout, damageInterval);
     }
   
     // 프리펩 아이디 찾기

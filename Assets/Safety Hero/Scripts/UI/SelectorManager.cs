@@ -28,8 +28,7 @@ public class SelectorManager : MonoBehaviour
     {
         // GameManager 확인 및 비활성 상태면 무시
         if (GameManager.instance != null && GameManager.instance.isGameActive)
-        {
-            Debug.Log("GameManager is not active");
+        {            
             return;
         }
 

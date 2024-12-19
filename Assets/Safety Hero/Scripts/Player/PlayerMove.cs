@@ -33,7 +33,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (!GameManager.instance.isGameActive)
             return;
-        MovePlayer();
+        Move();
     }
 
     // 입력 벡터 업데이트
@@ -45,7 +45,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
     // 플레이어 이동
-    private void MovePlayer()
+    private void Move()
     {
         Vector2 nextVec = inputVec.normalized * currentSpeed * Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position + nextVec);

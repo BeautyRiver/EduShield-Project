@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UniqeEnemy : Enemy
+public class UniqeEnemy : Enemy, IMovable
 {
     protected override void DropReward()
     {
@@ -16,7 +16,7 @@ public class UniqeEnemy : Enemy
         // No Flip
     }
 
-    protected override void Move()
+    public void Move()
     {
         rigid.MovePosition(rigid.position + (nextVec * speed * Time.fixedDeltaTime));
     }

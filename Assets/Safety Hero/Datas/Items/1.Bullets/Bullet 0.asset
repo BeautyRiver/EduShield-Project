@@ -13,20 +13,22 @@ MonoBehaviour:
   m_Name: Bullet 0
   m_EditorClassIdentifier: 
   itemId: 0
-  itemName: "\uAE30\uBCF8 \uC18C\uD654\uAE30"
-  itemIcon: {fileID: 21300000, guid: 33297e1e7b5bd7d4fa7eafd38879a30c, type: 3}
+  itemName: "\uC5D0\uB108\uC9C0 \uAC80"
+  itemIcon: {fileID: -768581938974866677, guid: b1e4e1f68446f33459daf87ccf5cee30, type: 3}
   maxLevel: 5
   itemDesc:
+  - "\uC88C\uC6B0\uB85C \uC801\uC744 \uAD00\uD1B5 \uACF5\uACA9"
   - "<b><color=yellow>\uAE30\uBCF8 \uB370\uBBF8\uC9C0 {0}</color> \uC99D\uAC00</b>"
   - "<b><color=yellow>\uAC1C\uC218 {0}\uAC1C</color> \uC99D\uAC00</b>"
-  firstDesc: "\uC88C\uC6B0\uB85C \uC801\uC744 \uAD00\uD1B5 \uACF5\uACA9"
-  baseDamage: 5
+  baseDamage: 60.62
   baseDamageInterval: 2
   baseCount: 1
   basePer: -100
   baseDelay: 0.15
-  baseSpeed: 1.1
-  baseRange: 0
+  baseBulletSpeed: 15
+  baseAttackSpeed: 2
+  baseWeaponDuration: 0
+  baseRange: 1
   baseRotationSpeed: 0
   baseScale: {x: 1.5, y: 1.5, z: 1.5}
   damages: 0200000003000000

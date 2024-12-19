@@ -6,9 +6,12 @@ public class BulletSingleDamage : Bullet
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var damageAble = collision.GetComponent<IDamageable>();
-        if (damageAble != null)
+        if (collision.CompareTag(ownerTag))
+            return;
+
+        if (collision.TryGetComponent(out IDamageable damageAble))
         {
+            Debug.Log("BulletSingleDamage: OnTriggerEnter2D: DamagedLogic");
             damageAble.DamagedLogic(bulletCol, Damage);
             PerDown();
         }

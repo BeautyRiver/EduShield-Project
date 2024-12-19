@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &323091470643331752
 Transform:
   m_ObjectHideFlags: 0
@@ -173,9 +173,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Damage>k__BackingField: 0
   <Per>k__BackingField: 0
+  <BulletSpeed>k__BackingField: 0
   <Id>k__BackingField: 0
   <KnockBackDistance>k__BackingField: 0
   <DamageInterval>k__BackingField: 0
+  ownerTag: 
 --- !u!210 &5093354646721878621
 SortingGroup:
   m_ObjectHideFlags: 0
