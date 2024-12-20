@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.5299226, g: 1, b: 0.4009434, a: 0.21960784}
+  m_Color: {r: 0.39999998, g: 0.5932077, b: 1, a: 0.21960784}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -140,6 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Damage>k__BackingField: 0
   <Per>k__BackingField: 0
+  <BulletSpeed>k__BackingField: 0
   <Id>k__BackingField: 0
   <KnockBackDistance>k__BackingField: 0
   <DamageInterval>k__BackingField: 0

@@ -75,7 +75,7 @@ public abstract class Weapon : MonoBehaviour
         // 플레이어의 기본 능력치에 따른 설정
         damage = data.baseDamage * gm.playerData.damageMult;
         attackRange = data.baseRange * gm.playerData.attackRangeMult;
-        bulletSize = data.baseScale * gm.playerData.attackRangeMult;        
+        bulletSize = data.baseScale * gm.playerData.attackRangeMult;
 
         // 공격속도 설정
         damageInterval = data.baseDamageInterval * gm.playerData.attackSpeedMult;               // 데미지 간격
@@ -85,7 +85,7 @@ public abstract class Weapon : MonoBehaviour
 
         // 무기 바로 쓸 수 있게
         speedTimer = weaponSpeed;
-        level++;        
+        level++;
     }
 
     public virtual void WeaponLevelUp(float rate, int rateIndex, int currentLevel)
@@ -113,7 +113,7 @@ public abstract class Weapon : MonoBehaviour
                 break;
 
             case 3: // 크기[범위] 증가
-                data.baseScale += (data.baseScale * rate * 0.01f);                
+                data.baseScale += (data.baseScale * rate * 0.01f);
                 bulletSize = data.baseScale * gm.playerData.attackRangeMult;
                 attackRange = data.baseRange * gm.playerData.attackRangeMult;
                 batchable?.Batch();
@@ -126,17 +126,18 @@ public abstract class Weapon : MonoBehaviour
 
     protected virtual void UpdateTimer()
     {
-        if (!isAttacking)
-        {
-            speedTimer += Time.deltaTime;
+        if (isAttacking)
+            return;
 
-            if (speedTimer >= weaponSpeed)
-            {
-                speedTimer = 0f;
-                isAttacking = true;
-                Attack();
-            }
+
+        speedTimer += Time.deltaTime;
+        if (speedTimer >= weaponSpeed)
+        {
+            speedTimer = 0f;
+            isAttacking = true;
+            Attack();
         }
+
     }
 
     // 공격기능
@@ -150,7 +151,7 @@ public abstract class Weapon : MonoBehaviour
         // 공통된 불릿 초기화 로직        
         bulletComponent.Init(direction, damage, per, bulletSpeed, knockBackAmout, damageInterval);
     }
-  
+
     // 프리펩 아이디 찾기
     protected int SetPrefabID(BulletData data)
     {
@@ -159,14 +160,14 @@ public abstract class Weapon : MonoBehaviour
         foreach (Pool pool in tempPools)
         {
             if (pool.poolType == PoolType.Bullet)
-                weaponPrefabs = pool.prefabs;            
+                weaponPrefabs = pool.prefabs;
         }
-                
+
         for (int index = 0; index < weaponPrefabs.Length; index++)
         {
             if (data.prefab == weaponPrefabs[index])
             {
-                prefabId = index;                
+                prefabId = index;
                 return index;
             }
         }
