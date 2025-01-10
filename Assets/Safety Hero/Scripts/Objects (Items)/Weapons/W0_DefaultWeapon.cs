@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class W0_DefaultWeapon : Weapon
 {
-    protected override void Attack()
+    public override void Attack()
     {
         StartCoroutine(M0_Bullet());
     }
@@ -18,7 +18,7 @@ public class W0_DefaultWeapon : Weapon
             Vector3 dir = (i % 2 == 0) ? (playerMove.lastInputVec) : -(playerMove.lastInputVec);
 
             // 새로운 발사체 생성
-            Transform bullet = GameManager.instance.poolManager.Get(PoolType.Bullet, 0).transform; //Bullet0 가져오기
+            Transform bullet = GameManager.instance.poolManager.Get(PoolType.Bullet, prefabId).transform; //Bullet0 가져오기
             bullet.parent = transform;
 
             // 발사체 위치 설정 (약간의 높이 차이 추가)

@@ -10,6 +10,7 @@ public class BulletData : DataGuide
     public float baseDamage;
     [Header("baseDamageInterval: 데미지 간격 x초당 때림")]
     public float baseDamageInterval = 2f;
+    public float baseKnockback = 1.5f; 
     public int baseCount;
     public int basePer;
     public float baseDelay;
@@ -113,6 +114,7 @@ public class BulletData : DataGuide
             // 새로운 무기 객체를 생성
             GameObject newWeapon = Instantiate(weaponType);
             itemSetting.weapon = newWeapon.GetComponent<Weapon>();
+            itemSetting.weapon.transform.parent = GameManager.instance.player.transform;
             itemSetting.weapon.Init(this);
             GameManager.instance.weaponCount++;
         }

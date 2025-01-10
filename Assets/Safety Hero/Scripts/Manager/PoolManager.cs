@@ -65,6 +65,36 @@ public class PoolManager : MonoBehaviour
 
         return select;
     }
+
+    public GameObject GetByPrefab(PoolType poolType, GameObject prefab)
+    {
+        if (prefab == null)
+        {
+            Debug.LogWarning("GetByPrefab - 전달된 prefab이 null입니다.");
+            return null;
+        }
+
+        // 풀 타입에 해당하는 Pool 찾기
+        Pool targetPool = Array.Find(pools, p => p.poolType == poolType);
+        if (targetPool == null)
+        {
+            Debug.LogWarning($"PoolManager - 해당 PoolType({poolType})을 찾을 수 없습니다.");
+            return null;
+        }
+
+        // targetPool.prefabs 배열에서 prefab의 인덱스 찾기
+        int prefabIndex = Array.IndexOf(targetPool.prefabs, prefab);
+        if (prefabIndex == -1)
+        {
+            Debug.LogWarning(
+                $"PoolManager - PoolType({poolType})에 등록되지 않은 prefab({prefab.name})입니다."
+            );
+            return null;
+        }
+
+        // 찾은 인덱스로 기존 Get() 메서드 호출
+        return Get(poolType, prefabIndex);
+    }
 }
 
 public enum PoolType { Bullet, Enemy, EnemyBullet, Item, Effect, Text}  // 풀 타입 enum

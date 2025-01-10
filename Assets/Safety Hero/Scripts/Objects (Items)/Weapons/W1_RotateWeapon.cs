@@ -14,7 +14,7 @@ public class W1_RotateWeapon : Weapon, IBatchable, IRotatingable
         transform.Rotate(Vector3.back * rotationSpeed * Time.deltaTime);
     }
 
-    protected override void Attack()
+    public override void Attack()
     {
         StartCoroutine(M1_Bullet());
     }
@@ -50,8 +50,7 @@ public class W1_RotateWeapon : Weapon, IBatchable, IRotatingable
             }
             else
             {
-                Debug.Log("Bullet1 Pooled! => " + index);
-                bullet = gm.poolManager.Get(PoolType.Bullet, 1).transform; // Bullet1 가져오기
+                bullet = gm.poolManager.Get(PoolType.Bullet, prefabId).transform; // Bullet1 가져오기
                 bullet.parent = transform; // 부모 설정
             }
 

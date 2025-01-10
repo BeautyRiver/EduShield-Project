@@ -25,7 +25,7 @@ public class DefaultEnemy : Enemy, IRepositionable, IKnockBackable, IMovable
 
     public void Move()
     {
-        Vector2 dirVec = targetRb.position - rigid.position; 
+        dirVec = targetRb.position - rigid.position; 
         nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position + nextVec);
     }

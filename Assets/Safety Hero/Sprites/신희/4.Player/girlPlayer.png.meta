@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ea1a32d45e0d7794681d29a232ed041a
+guid: 8348800c25de4034290c7ead0597fd9b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_0
+      name: girlPlayer_0
       rect:
         serializedVersion: 2
         x: 1
@@ -125,14 +125,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f230e58505b48c0419f6398c1fc97368
-      internalID: 356305855
+      spriteID: 5ab37c2da7b79d84cba0ef253e40cff0
+      internalID: -876651548
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_1
+      name: girlPlayer_1
       rect:
         serializedVersion: 2
         x: 23
@@ -147,14 +147,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 876e63edeffa2ca49b3846f2743d4ee9
-      internalID: 799718636
+      spriteID: e79251b2ff6f33f49856e1bf4340c080
+      internalID: -1246974360
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_2
+      name: girlPlayer_2
       rect:
         serializedVersion: 2
         x: 45
@@ -169,14 +169,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b48a693d242fb584382d95b387182b56
-      internalID: 857718490
+      spriteID: 71075f2e532491047a925963df449f35
+      internalID: -1503495088
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_3
+      name: girlPlayer_3
       rect:
         serializedVersion: 2
         x: 67
@@ -191,14 +191,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1fd4430fb1c7114cbccd288e8caeba7
-      internalID: 146265890
+      spriteID: 466264b07caeb34448331b4b6587fa99
+      internalID: 318052033
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_4
+      name: girlPlayer_4
       rect:
         serializedVersion: 2
         x: 89
@@ -213,14 +213,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e12a44d09102804fa39e2f8b07e5d54
-      internalID: -1001845406
+      spriteID: 6eb9974b56d838748bef87d7b609b668
+      internalID: -1493385504
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_5
+      name: girlPlayer_5
       rect:
         serializedVersion: 2
         x: 111
@@ -235,14 +235,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da437bb3f2ef10548a3b3477af493b03
-      internalID: -1333141964
+      spriteID: 309223a6b67ad8243b90ed45f2d51d54
+      internalID: 979844236
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_6
+      name: girlPlayer_6
       rect:
         serializedVersion: 2
         x: 133
@@ -257,14 +257,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fbc4cae96ce77ff4aac1ac91c4819923
-      internalID: 1823609427
+      spriteID: 70141f4f930f106479841b300a18eac5
+      internalID: 1928383785
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_7
+      name: girlPlayer_7
       rect:
         serializedVersion: 2
         x: 155
@@ -279,14 +279,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d237ac95b8208a84ea3a9b9d2846887f
-      internalID: -1645078042
+      spriteID: 27acd519f503a414bb40d2eeea26480f
+      internalID: 1623124492
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_8
+      name: girlPlayer_8
       rect:
         serializedVersion: 2
         x: 177
@@ -301,14 +301,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 501af49f4cc4aa64fa26baf6b728776c
-      internalID: -955416083
+      spriteID: ea9b39c08ceaa6743b5f772698e7d828
+      internalID: 1243564984
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_9
+      name: girlPlayer_9
       rect:
         serializedVersion: 2
         x: 199
@@ -323,14 +323,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26fe55cb7361bc94cac6ef5bf310199b
-      internalID: 1024458046
+      spriteID: 3a2353ddfd30593418f51ca9b6c43136
+      internalID: 1199951758
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_10
+      name: girlPlayer_10
       rect:
         serializedVersion: 2
         x: 221
@@ -345,14 +345,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c02c4f9ee0b033f419de2c60cc9488c7
-      internalID: -419824397
+      spriteID: 4068ee4223a0eb14e849898a1d86879c
+      internalID: 479174673
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_11
+      name: girlPlayer_11
       rect:
         serializedVersion: 2
         x: 243
@@ -367,14 +367,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: abcbb4f99af121b419f1d9768435aa54
-      internalID: -1331145218
+      spriteID: c3ff24c077c51964cb1a7b1f05db131b
+      internalID: 896630519
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_12
+      name: girlPlayer_12
       rect:
         serializedVersion: 2
         x: 265
@@ -389,14 +389,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b6649cfacf707a4e9f483db649d0158
-      internalID: 479518909
+      spriteID: 40ddafe956632774ea3487422a4887c3
+      internalID: -704624459
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_13
+      name: girlPlayer_13
       rect:
         serializedVersion: 2
         x: 287
@@ -411,14 +411,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: caec3ca491b837f48938b2dc65e39c73
-      internalID: -402826509
+      spriteID: 1d662196acc6e4146a7b217c2fe4f882
+      internalID: 2115706651
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_14
+      name: girlPlayer_14
       rect:
         serializedVersion: 2
         x: 309
@@ -433,8 +433,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca49785d6a0e67b489c7ed980deec498
-      internalID: -829293166
+      spriteID: 3156642fd3723b14fa9f70fa5343f1d3
+      internalID: -2068468932
       vertices: []
       indices: 
       edges: []
@@ -453,21 +453,21 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Player_0: 356305855
-      Player_1: 799718636
-      Player_10: -419824397
-      Player_11: -1331145218
-      Player_12: 479518909
-      Player_13: -402826509
-      Player_14: -829293166
-      Player_2: 857718490
-      Player_3: 146265890
-      Player_4: -1001845406
-      Player_5: -1333141964
-      Player_6: 1823609427
-      Player_7: -1645078042
-      Player_8: -955416083
-      Player_9: 1024458046
+      girlPlayer_0: -876651548
+      girlPlayer_1: -1246974360
+      girlPlayer_10: 479174673
+      girlPlayer_11: 896630519
+      girlPlayer_12: -704624459
+      girlPlayer_13: 2115706651
+      girlPlayer_14: -2068468932
+      girlPlayer_2: -1503495088
+      girlPlayer_3: 318052033
+      girlPlayer_4: -1493385504
+      girlPlayer_5: 979844236
+      girlPlayer_6: 1928383785
+      girlPlayer_7: 1623124492
+      girlPlayer_8: 1243564984
+      girlPlayer_9: 1199951758
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -24,7 +24,7 @@ public class MiniBossEnemy : Enemy, IMovable
 
     public void Move()
     {
-        Vector2 dirVec = targetRb.position - rigid.position; // 타겟 방향
+        dirVec = targetRb.position - rigid.position; // 타겟 방향
         nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position + nextVec);
     }

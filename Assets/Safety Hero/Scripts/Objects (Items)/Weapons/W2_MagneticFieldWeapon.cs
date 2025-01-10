@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class W2_MagneticFieldWeapon : Weapon, IBatchable
 {
-    protected override void Attack()
+    public override void Attack()
     {
         StartCoroutine(M2_Bullet());
     }
@@ -19,7 +19,7 @@ public class W2_MagneticFieldWeapon : Weapon, IBatchable
             Transform bullet;
             if (transform.childCount <= 0)
             {
-                bullet = gm.poolManager.Get(PoolType.Bullet, 2).transform; // Bullet2 가져오기
+                bullet = gm.poolManager.Get(PoolType.Bullet, prefabId).transform; // Bullet2 가져오기
                 bullet.parent = transform; // 부모 설정
                 bullet.localPosition = Vector3.zero; // 로컬 위치 초기화
                 bullet.localRotation = Quaternion.identity; // 로컬 회전 초기화

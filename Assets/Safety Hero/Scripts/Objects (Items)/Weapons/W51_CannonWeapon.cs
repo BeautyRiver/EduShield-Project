@@ -6,7 +6,7 @@ using UnityEngine;
 public class W51_CannonWeapon : Weapon
 {
 
-    protected override void Attack()
+    public override void Attack()
     {
         StartCoroutine(R51_Bullet());
     }
@@ -20,7 +20,7 @@ public class W51_CannonWeapon : Weapon
             // isReverse 플래그에 따라 발사 방향 결정 (true면 정방향, false면 반대 방향)
             Vector3 dir = isReverse ? new Vector3(playerMove.lastInputVec.x, playerMove.lastInputVec.y, 0).normalized : new Vector3(-playerMove.lastInputVec.x, -playerMove.lastInputVec.y, 0).normalized;
 
-            Transform bullet = GameManager.instance.poolManager.Get(PoolType.Bullet, 4).transform;
+            Transform bullet = GameManager.instance.poolManager.Get(PoolType.Bullet, prefabId).transform;
             bullet.parent = transform;
             Vector3 spreadOffset = Vector3.zero;
 

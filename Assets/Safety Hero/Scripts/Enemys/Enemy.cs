@@ -17,6 +17,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     public int exp;
     public bool isLive;
     protected Vector2 nextVec;
+    protected Vector2 dirVec;
 
     [Header("# 참조")]
     [SerializeField] protected RuntimeAnimatorController[] animCon;

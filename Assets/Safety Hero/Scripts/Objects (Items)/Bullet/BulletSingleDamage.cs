@@ -6,7 +6,7 @@ public class BulletSingleDamage : Bullet
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag(ownerTag))
+        if (collision.CompareTag(OwnerTag))
             return;
 
         if (collision.TryGetComponent(out IDamageable damageAble))

@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class W50_TargetGunWeapon : Weapon
-{    
-    protected override void Attack()
+{
+    public override void Attack()
     {
         StartCoroutine(R50_Bullet());
     }
@@ -22,7 +22,7 @@ public class W50_TargetGunWeapon : Weapon
             Vector3 dir = (targetPos - transform.position).normalized;
 
             // 총알 발사
-            Transform bullet = GameManager.instance.poolManager.Get(PoolType.Bullet, 3).transform;
+            Transform bullet = GameManager.instance.poolManager.Get(PoolType.Bullet, prefabId).transform;
             bullet.parent = transform;
 
             bullet.localScale = bulletSize;

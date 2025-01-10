@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 1626046670938429369}
   - component: {fileID: 255472839271136964}
   - component: {fileID: 793745181008215503}
-  - component: {fileID: 4251772348208267222}
   - component: {fileID: 1497182430954556015}
+  - component: {fileID: 4251772348208267222}
   - component: {fileID: 2347252918704710492}
   - component: {fileID: 8114481989535357400}
   m_Layer: 6
@@ -181,18 +181,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0045478344, y: -0.18100953}
   m_Size: {x: 0.85462415, y: 1.2620192}
   m_Direction: 0
---- !u!114 &4251772348208267222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3424549275142602007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06acfb54547d87d44a8bf3ec7f18fe27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!210 &1497182430954556015
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -205,6 +193,18 @@ SortingGroup:
   m_SortingLayer: -2
   m_SortingOrder: 1
   m_SortAtRoot: 1
+--- !u!114 &4251772348208267222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3424549275142602007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06acfb54547d87d44a8bf3ec7f18fe27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2347252918704710492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,6 +229,8 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 2a39bb5bd06593f4f9f3175ed88f267e, type: 2}
   - {fileID: 9100000, guid: 2a39bb5bd06593f4f9f3175ed88f267e, type: 2}
   - {fileID: 9100000, guid: 2a39bb5bd06593f4f9f3175ed88f267e, type: 2}
+  bulletData: {fileID: 11400000, guid: 322f1377024f96742b1781f562ceb431, type: 2}
+  isAttacking: 0
 --- !u!114 &8114481989535357400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e831ad12770eb5a40a49b0c42d0b8759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scanRange: 0
+  scanRange: 6.27
   targetLayer:
     serializedVersion: 2
     m_Bits: 128

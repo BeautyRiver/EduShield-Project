@@ -17,4 +17,4 @@ MonoBehaviour:
   damageMult: 1
   attackSpeedMult: 1
   attackRangeMult: 1
-  speedMult: 1.5
+  speedMult: 1

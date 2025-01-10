@@ -1,11 +1,13 @@
 using System;
 using UnityEditor;
 using UnityEngine;
+using VInspector;
 
 public abstract class Weapon : MonoBehaviour
 {
-    [Header("# 무기 세팅")]
+    [Tab("# 무기 세팅")]
     public BulletData data;
+    public string ownerTag;      // 무기 소유자 태그
     public int prefabId;         // 생성할 불릿의 프리팹 ID    
     public int level = 0;        // 현재 레벨
     public float damage;         // 무기 데미지    
@@ -20,9 +22,9 @@ public abstract class Weapon : MonoBehaviour
     public float attackRange;    // 공격 범위
     public float knockBackAmout; // 몬스터 넉백량
     public Vector3 bulletSize;   // 총알(무기) 크기
+    public bool isAttacking;
+    public float speedTimer;
 
-    [SerializeField] protected bool isAttacking;
-    [SerializeField] protected float speedTimer;
     protected GameManager gm;
     protected PlayerMove playerMove;
     protected TargetScanner targetScanner;
@@ -36,6 +38,9 @@ public abstract class Weapon : MonoBehaviour
     protected virtual void Update()
     {
         if (!gm.isGameActive)
+            return;
+
+        if (weaponSpeed < 0)
             return;
 
         UpdateTimer();
@@ -53,10 +58,11 @@ public abstract class Weapon : MonoBehaviour
     {
         // 공통 초기화 로직        
         // 기본 속성 세팅
-        this.data = Instantiate(data);            // 값 복사                                                
-        transform.parent = playerMove.transform;
+        this.data = Instantiate(data);            // 값 복사
+                                                          
         transform.localPosition = Vector3.zero;   // 플레이어 안에서 위치 초기화
 
+        ownerTag = transform.parent.tag;            // 무기 소유자 태그 설정
         prefabId = SetPrefabID(data);             // prefabID 설정        
         damage = data.baseDamage;                 // 기본 공격력
         bulletDelay = data.baseDelay;             // 기본 딜레이
@@ -69,7 +75,7 @@ public abstract class Weapon : MonoBehaviour
         bulletSize = data.baseScale;              // 기본 사이즈 
         damageInterval = data.baseDamageInterval; // 기본 공격 텀  (*자기장 무기 때문)
         per = data.basePer;                       // 기본 관통력 
-        knockBackAmout = 1.5f;                    // 기본 넉벡량        
+        knockBackAmout = data.baseKnockback;                    // 기본 넉벡량        
 
 
         // 플레이어의 기본 능력치에 따른 설정
@@ -129,8 +135,8 @@ public abstract class Weapon : MonoBehaviour
         if (isAttacking)
             return;
 
-
         speedTimer += Time.deltaTime;
+
         if (speedTimer >= weaponSpeed)
         {
             speedTimer = 0f;
@@ -141,7 +147,7 @@ public abstract class Weapon : MonoBehaviour
     }
 
     // 공격기능
-    protected abstract void Attack();
+    public abstract void Attack();
 
     protected virtual void BulletInit(Transform bullet, Vector3? dir = null)
     {
@@ -149,7 +155,7 @@ public abstract class Weapon : MonoBehaviour
         Bullet bulletComponent = bullet.GetComponent<Bullet>();
 
         // 공통된 불릿 초기화 로직        
-        bulletComponent.Init(direction, damage, per, bulletSpeed, knockBackAmout, damageInterval);
+        bulletComponent.Init(direction, ownerTag, per, damage, bulletSpeed, knockBackAmout, damageInterval);
     }
 
     // 프리펩 아이디 찾기

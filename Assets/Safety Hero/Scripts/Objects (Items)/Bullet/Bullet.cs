@@ -10,8 +10,7 @@ public class Bullet : MonoBehaviour
     [field: SerializeField] public int Id { get; private set; }
     [field: SerializeField] public float KnockBackDistance { get; private set; }
     [field: SerializeField] public float DamageInterval { get; private set; }
-
-    [SerializeField] protected string ownerTag; // 총알을 발사한 오브젝트
+    [field: SerializeField] public  string OwnerTag { get; set; } // 총알을 발사한 오브젝트
     protected Rigidbody2D rigid;
     protected Collider2D bulletCol;
     protected virtual void Awake()
@@ -31,10 +30,10 @@ public class Bullet : MonoBehaviour
     /// <summary>
     /// Bullet Init Method
     /// </summary>    
-    public virtual void Init(Vector3 dir, float damage, int per, float bulletSpeed, float knockBack, float interval)
+    public virtual void Init(Vector3 dir, string ownerTag, int per, float damage, float bulletSpeed, float knockBack, float interval)
     {
-        ownerTag = gameObject.transform.root.gameObject.tag; // 총알을 발사한 오브젝트의 태그를 저장
-        Debug.Log("Bullet: Init: ownerTag: " + ownerTag);
+        OwnerTag = ownerTag;
+        Debug.Log("Bullet: Init: ownerTag: " + OwnerTag);
         Damage = damage;
         Per = per;
         BulletSpeed = bulletSpeed;
