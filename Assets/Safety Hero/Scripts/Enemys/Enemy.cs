@@ -73,6 +73,16 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         damage = data.damage;
     }
 
+    public virtual void Init(UniqueSpawnData data)
+    {
+        id = data.spriteType;
+        anim.runtimeAnimatorController = animCon[id];
+        speed = data.speed;
+        maxHealth = data.health;
+        health = maxHealth;
+        exp = data.exp;
+        damage = data.damage;
+    }
 
     public void DamagedLogic(Collider2D collision, float damage)
     {

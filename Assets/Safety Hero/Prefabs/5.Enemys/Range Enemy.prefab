@@ -226,11 +226,11 @@ MonoBehaviour:
   isLive: 0
   animCon:
   - {fileID: 9100000, guid: 2a39bb5bd06593f4f9f3175ed88f267e, type: 2}
-  - {fileID: 9100000, guid: 2a39bb5bd06593f4f9f3175ed88f267e, type: 2}
-  - {fileID: 9100000, guid: 2a39bb5bd06593f4f9f3175ed88f267e, type: 2}
-  - {fileID: 9100000, guid: 2a39bb5bd06593f4f9f3175ed88f267e, type: 2}
   bulletData: {fileID: 11400000, guid: 322f1377024f96742b1781f562ceb431, type: 2}
   isAttacking: 0
+  isCoolTimeOn: 0
+  attackTimer: 0
+  variableSpeed: 0
 --- !u!114 &8114481989535357400
 MonoBehaviour:
   m_ObjectHideFlags: 0
