@@ -50,6 +50,9 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
+        if (gm.isLevelUp)
+            return;
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePauseScreen();
@@ -82,7 +85,8 @@ public class UIManager : MonoBehaviour
         }
         pauseUI.SetActive(isPause);
     }
-    
+
+    // 옵션 화면 On/Off
     public void ToggleOptionScreen()
     {
         if (!isOption && isPause)
@@ -100,6 +104,7 @@ public class UIManager : MonoBehaviour
         optionUI.SetActive(isOption);
     }
 
+    // 플레이어 스탯 텍스트 업데이트
     private void UpdatePlayerStatusText()
     {
         hpText.text = (gm.playerData.maxHpMult * 100f).ToString() + "%";

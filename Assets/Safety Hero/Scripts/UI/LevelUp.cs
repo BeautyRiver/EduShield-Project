@@ -24,6 +24,7 @@ public class LevelUp : MonoBehaviour
 
     public void Show()
     {
+        GameManager.instance.isLevelUp = true; // 레벨업 중
         gameObject.SetActive(true);
         uiManager.BlackWindowFadeIn(); // 검은 배경 On
         Next(); // 섞기
@@ -32,7 +33,7 @@ public class LevelUp : MonoBehaviour
         {
             btn.interactable = true;
         }
-
+        buttons[0].Select();
         MasterAudio.PlaySound("LevelUp");
 
         // 비율 기반으로 BGM 볼륨 감소
@@ -50,6 +51,8 @@ public class LevelUp : MonoBehaviour
             btn.interactable = false;
         }        
         gameObject.SetActive(false);
+
+        GameManager.instance.isLevelUp = false; // 레벨업 종료
 
         // 원래 BGM 볼륨으로 복구
         //MasterAudio.PlaylistMasterVolume = PlayerPrefs.GetFloat("BGM");

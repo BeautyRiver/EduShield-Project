@@ -206,7 +206,6 @@ public class GameManager : MonoBehaviour
                 level++;
                 exp = 0;
                 uiLevelUp.Show();
-                isLevelUp = true;
             }
         }
     }

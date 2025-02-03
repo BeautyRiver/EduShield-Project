@@ -60,7 +60,7 @@ public class IntroManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            OptionScreen(!isResume);
+            PauseScreen(!isResume);
         }
 
         // 스페이스바를 눌렀을 때
@@ -70,7 +70,7 @@ public class IntroManager : MonoBehaviour
             // 타이핑 중인 텍스트가 있으면 즉시 완료
             if (typingTween != null && typingTween.IsPlaying())
             {
-                typingTween.Complete();  // 텍스트 타이핑 즉시 완료
+                typingTween.Complete();  // 텍스트 타이핑 즉시 완료                
             }
             // 텍스트가 이미 다 출력되었으면 다음 텍스트 출력
             else if (isTextComplete)
@@ -187,13 +187,13 @@ public class IntroManager : MonoBehaviour
 
     public void Skip()
     {
-        OptionScreen(false);
+        PauseScreen(false);
         fadeImage.DOFade(1, 0.5f).OnComplete(() =>
         {
             LoadingSceneController.LoadScene("Title Scene");
         });
     }
-    public void OptionScreen(bool isOpen)
+    public void PauseScreen(bool isOpen)
     {
         Time.timeScale = isOpen ? 0 : 1;        
         isResume = isOpen;
