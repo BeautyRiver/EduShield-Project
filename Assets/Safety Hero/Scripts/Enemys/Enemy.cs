@@ -47,6 +47,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
             return;
 
         rigid.linearVelocity = Vector2.zero;
+
     }
 
     protected abstract void FlipX();
@@ -73,16 +74,6 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         damage = data.damage;
     }
 
-    public virtual void Init(UniqueSpawnData data)
-    {
-        id = data.spriteType;
-        anim.runtimeAnimatorController = animCon[id];
-        speed = data.speed;
-        maxHealth = data.health;
-        health = maxHealth;
-        exp = data.exp;
-        damage = data.damage;
-    }
 
     public void DamagedLogic(Collider2D collision, float damage)
     {
@@ -139,8 +130,12 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         }
     }
 
-    protected abstract void DropReward();
-
+    protected virtual void DropReward()
+    {
+        GameObject expObj = gm.poolManager.Get(PoolType.Item, 0); // expCount 생성
+        expObj.transform.position = transform.position;
+        expObj.GetComponent<Exp>().exp = this.exp;
+    }
     private void Damaged(float damage, Vector2 hitPos, Color color, bool isPlusDamage, float fontSize)
     {
         GameObject damageTextobj = gm.poolManager.Get(PoolType.Text, 0); // 데미지 텍스트 생성

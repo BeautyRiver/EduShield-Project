@@ -16,6 +16,7 @@ MonoBehaviour:
     keys:
     - 8c9cfa26abfee488c85f1582747f6a02
     - 27758ba6213884d4b8ee85cce072b6f5
+    - 9cb6d5a023c53e94d9459b6ea1a41779
     values:
     - goDatas_byGlobalId:
         keys:
@@ -94,6 +95,7 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-920171788-0
         - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-714611614-0
         - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-1644771605-0
+        - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-2239625936038384549-1888447008
         values:
         - colorIndex: 0
           iconNameOrGuid: Settings Icon
@@ -113,3 +115,20 @@ MonoBehaviour:
           iconNameOrGuid: 
         - colorIndex: 0
           iconNameOrGuid: Settings Icon
+        - colorIndex: 0
+          iconNameOrGuid: Settings Icon
+    - goDatas_byGlobalId:
+        keys:
+        - globalObjectIdString: GlobalObjectId_V1-2-9cb6d5a023c53e94d9459b6ea1a41779-1220471502-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9cb6d5a023c53e94d9459b6ea1a41779-578829411-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9cb6d5a023c53e94d9459b6ea1a41779-1207327907-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9cb6d5a023c53e94d9459b6ea1a41779-2239625936038384549-113715423
+        values:
+        - colorIndex: 9
+          iconNameOrGuid: 
+        - colorIndex: 9
+          iconNameOrGuid: 
+        - colorIndex: 1
+          iconNameOrGuid: AudioReverbZone Icon
+        - colorIndex: 9
+          iconNameOrGuid: 

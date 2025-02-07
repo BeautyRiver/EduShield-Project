@@ -18,6 +18,7 @@ public class FadeImage : MonoBehaviour
 
     private void FadeIn()
     {
+        this.gameObject.SetActive(true);
         fadeImage.enabled = true;
         fadeImage.color = new Color(0, 0, 0, 1);
         fadeImage.DOFade(0, fadeTime).OnComplete(() => fadeImage.enabled = false);

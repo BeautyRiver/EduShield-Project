@@ -101,7 +101,6 @@ GameObject:
   - component: {fileID: 2974989863920352764}
   - component: {fileID: 50164202601837256}
   - component: {fileID: 8716741459432895644}
-  - component: {fileID: 8909060666931256850}
   - component: {fileID: 6458711435148260716}
   m_Layer: 6
   m_Name: Enemy U0
@@ -288,18 +287,6 @@ MonoBehaviour:
   isLive: 0
   animCon:
   - {fileID: 22100000, guid: f75c886d835bdce40a24857f01d3a36f, type: 2}
---- !u!114 &8909060666931256850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6506317341284564746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06acfb54547d87d44a8bf3ec7f18fe27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!210 &6458711435148260716
 SortingGroup:
   m_ObjectHideFlags: 0

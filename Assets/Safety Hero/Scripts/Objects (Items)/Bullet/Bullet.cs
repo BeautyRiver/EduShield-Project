@@ -33,7 +33,6 @@ public class Bullet : MonoBehaviour
     public virtual void Init(Vector3 dir, string ownerTag, int per, float damage, float bulletSpeed, float knockBack, float interval)
     {
         OwnerTag = ownerTag;
-        Debug.Log("Bullet: Init: ownerTag: " + OwnerTag);
         Damage = damage;
         Per = per;
         BulletSpeed = bulletSpeed;

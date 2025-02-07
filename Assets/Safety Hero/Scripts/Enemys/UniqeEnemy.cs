@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class UniqeEnemy : Enemy, IMovable
 {
-    protected override void DropReward()
+    protected override void FixedUpdate()
     {
-        GameObject expObj = gm.poolManager.Get(PoolType.Item, 0); // Exp 드랍시키기
-        expObj.transform.position = transform.position;
-        expObj.GetComponent<Exp>().exp = this.exp;
+        base.FixedUpdate();
+        Move();
+        FlipX();
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Area") || !coll.CompareTag("Ground"))
+            return;
+
+        gameObject.SetActive(false);
     }
 
     protected override void FlipX()

@@ -4,12 +4,13 @@ using TMPro;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
-using DarkTonic.MasterAudio;  // DOTween 네임스페이스 추가
+using DarkTonic.MasterAudio;
+using VInspector;  // DOTween 네임스페이스 추가
 
 public class IntroManager : MonoBehaviour
 {
     // 텍스트 관련 변수들
-    [Header("텍스트 설정")]
+    [Tab("텍스트 설정")]
     [SerializeField] private TextMeshProUGUI scriptText;  // TextMeshProUGUI 컴포넌트
     [SerializeField] private RectTransform sciprtBar; // ScriptBar Transform
     [SerializeField] private Animator announcerAnim;
@@ -23,20 +24,28 @@ public class IntroManager : MonoBehaviour
     private bool isResume = false; // 게임 재개 여부
     private Tweener typingTween;  // DOTween 애니메이션 저장 변수
     [SerializeField] private Vector3 cameraZoomInPos;
+    [EndTab]
 
     // 타자 소리 관련 변수들
-    [Header("타자 소리 설정")]
+    [Tab("타자 소리 설정")]
     [SerializeField] private float typeSoundInterval = 0.1f;  // 타자기 소리 간격
     private float timeSinceLastTypeSound = 0f;  // 마지막 타자기 소리가 난 후 경과 시간
+    [EndTab]
 
     // UI 관련 변수들
-    [Header("UI 설정")]
+    [Tab("UI 설정")]
     [SerializeField] private Image fadeImage; // 페이드용 이미지
-    [SerializeField] private GameObject skipOption; // 스킵 옵션 UI
+    [SerializeField] private GameObject pauseScreen; // 일시정지 화면
+    [SerializeField] private GameObject skipScreen; // 스킵 화면
+    [SerializeField] private GameObject optionScreen; // 옵션 화면
+
     [SerializeField] private GameObject scriptArrow; // ScriptBar에 위치한 화살표 
     [SerializeField] private Image newsImage; // 뉴스 이미지
     [SerializeField] private Sprite heroImage; // 히어로 이미지
     [SerializeField] private Sprite[] newsImages; // 뉴스 이미지에 사용할 이미지들
+    private Selectable pauseScreenFirstSelectButton;
+
+    [EndTab]
 
     private void Awake()
     {
@@ -45,24 +54,27 @@ public class IntroManager : MonoBehaviour
     private void Start()
     {
         scriptText.text = "";  // 텍스트 초기화
-        fadeImage.gameObject.SetActive(true);
         fadeImage.DOFade(0, 1f).OnComplete(() =>
         {
             fadeImage.gameObject.SetActive(false);
             StartCoroutine(ScriptBarOnCorutin());
         });
+
+        // 일시정지 화면의 첫번째 선택 버튼을 가져옴
+        pauseScreenFirstSelectButton = pauseScreen.GetComponentInChildren<Selectable>(true);
+
     }
 
     private void Update()
     {
-        if (isScriptEnd || !isTextSkipOk)
-            return;
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             PauseScreen(!isResume);
         }
 
+        if (isScriptEnd || !isTextSkipOk)
+            return;
+        
         // 스페이스바를 눌렀을 때
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0)) 
             && !isResume)
@@ -103,6 +115,7 @@ public class IntroManager : MonoBehaviour
             });  // 텍스트가 다 출력되면 isTextComplete를 true로 설정        
 
 
+        // 뉴스 이미지 설명 하는 장면
         if (currentScriptIndex == 1)
         {
             isTextSkipOk = false;
@@ -183,21 +196,69 @@ public class IntroManager : MonoBehaviour
         });
     }
 
-
-
+    // 스킵 버튼 클릭 시
     public void Skip()
     {
         PauseScreen(false);
-        fadeImage.DOFade(1, 0.5f).OnComplete(() =>
+        fadeImage.gameObject.SetActive(true);
+        fadeImage.DOFade(1, 0.75f).OnComplete(() =>
         {
             LoadingSceneController.LoadScene("Title Scene");
         });
     }
     public void PauseScreen(bool isOpen)
-    {
+    {        
         Time.timeScale = isOpen ? 0 : 1;        
         isResume = isOpen;
-        skipOption.SetActive(isOpen);
+        pauseScreen.SetActive(isOpen);
+
+        if (isOpen)
+        {
+            pauseScreenFirstSelectButton.Select();
+        }
+            
         MasterAudio.PlaySound("BtnClick");
     }
+    // 스킵 화면 On/Off
+    public void SkipScreen(bool isOpen)
+    {
+        if (isOpen)
+        {
+            skipScreen.SetActive(true);
+            Selectable selectable = skipScreen.GetComponentInChildren<Selectable>();
+            selectable.Select();
+        }
+
+        else
+        {
+            skipScreen.SetActive(false);
+            pauseScreenFirstSelectButton.Select();
+        }
+    }
+    // 옵션 화면 On/Off
+    public void OptionScreen(bool isOpen)
+    {
+        if (isOpen)
+        {
+            optionScreen.SetActive(true);
+            Selectable selectable = optionScreen.GetComponentInChildren<Selectable>();
+            selectable.Select();
+        }
+
+        else
+        {
+            optionScreen.SetActive(false);
+            pauseScreenFirstSelectButton.Select();
+        }
+    }
+
+    // 게임 종료
+    public void GameQuit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        Application.Quit();
+    }
+
 }

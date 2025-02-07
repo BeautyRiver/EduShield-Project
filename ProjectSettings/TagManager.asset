@@ -12,6 +12,7 @@ TagManager:
   - Cleaner
   - MiniBossEnemy
   - StageImages
+  - Option
   layers:
   - Default
   - TransparentFX

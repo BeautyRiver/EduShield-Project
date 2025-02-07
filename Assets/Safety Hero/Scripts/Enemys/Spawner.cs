@@ -8,29 +8,32 @@ using VInspector;
 
 public class Spawner : MonoBehaviour
 {
-    [Tab("# 레벨 & 타이머 & 적 소환 위치 ")]
     public float levelTime; // 레벨별 시간 간격
     public int level; // 현재 레벨
     [SerializeField] private int prevLevel; // 이전 레벨 (비교용)
-    [SerializeField] private float[] timer; // 소환 타이머
 
+    [Tab("# 스폰 위치 ")]
     public Transform[] spawnPoint; // 적 소환 위치 배열
     public Transform[] uniqeSpawnPoint; // 특별한 적 소환위치 배열
     [EndTab]
 
     [Tab("# 노말 적 소환 데이터")]
+    [SerializeField] private float normalTimer; // 소환 타이머
     public SpawnData[] normalSpawnData; // 레벨별 소환 데이터 배열
     [EndTab]
 
     [Tab("# 특수 적 소환 데이터")]
+    [SerializeField] private float uniqeTimer; // 소환 타이머
     public UniqueSpawnData[] uniqeSpawnData; // 레벨별 소환 데이터 배열
     [EndTab]
 
     [Tab("# 미니 보스 소환 데이터")]
+    // [SerializeField] private float miniBossTimer; // 소환 타이머
     public SpawnData[] miniBossSpawnData; // 레벨별 소환 데이터 배열
     [EndTab]
 
     [Tab("# 박스 소환 시간")]
+    [SerializeField] private float boxTimer; // 소환 타이머
     public Vector2 boxSpawnTime; // 레벨별 소환 데이터 배열
     [EndTab]
 
@@ -45,9 +48,9 @@ public class Spawner : MonoBehaviour
         if (GameManager.instance.isGameActive)
         {
             // 소환 로직
-            timer[0] += Time.deltaTime; // Normal timer
-            timer[1] += Time.deltaTime; // Unique timer
-            timer[3] += Time.deltaTime; // Box timer
+            normalTimer += Time.deltaTime; // Normal timer
+            uniqeTimer += Time.deltaTime; // Unique timer
+            boxTimer += Time.deltaTime; // Box timer
 
             level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / levelTime), normalSpawnData.Length - 1);   
             
@@ -60,23 +63,23 @@ public class Spawner : MonoBehaviour
             }
 
             // 기본 몬스터 소환
-            if (timer[0] > normalSpawnData[level].spawnTime)
+            if (normalTimer > normalSpawnData[level].spawnTime)
             {
-                timer[0] = 0f;
+                normalTimer = 0f;
                 SpawnNormal();
             }
 
             // 유니크 몬스터 소환
-            if (timer[1] > uniqeSpawnData[0].spawnTime)
+            if (uniqeTimer > uniqeSpawnData[0].spawnTime)
             {
-                timer[1] = 0f;
+                uniqeTimer = 0f;
                 SpawnUnique();
             }
 
             // 박스 소환
-            if (timer[3] > Random.Range(boxSpawnTime.x, boxSpawnTime.y))
+            if (boxTimer > Random.Range(boxSpawnTime.x, boxSpawnTime.y))
             {
-                timer[3] = 0f;
+                boxTimer = 0f;
                 SpawnBox();
                 SpawnBox();
             }
@@ -92,7 +95,6 @@ public class Spawner : MonoBehaviour
     private void InitializeSettings()
     {
         levelTime = GameManager.instance.maxGameTime / normalSpawnData.Length;
-        timer = new float[4];
         level = 0;
         prevLevel = level;
 
@@ -141,19 +143,17 @@ public class Spawner : MonoBehaviour
     {
         // 적 소환
         int ran = Random.Range(0, uniqeSpawnPoint.Length);
-        for (int i = 0; i < uniqeSpawnData[0].spawnCount; i++)
+        int index = Mathf.Min(level, uniqeSpawnData.Length);
+        for (int i = 0; i < uniqeSpawnData[index].spawnCount; i++)
         {
-            GameObject enemy = GameManager.instance.poolManager.Get(PoolType.Enemy, 1); // 유니크 몬스터 소환
+            GameObject enemy = GameManager.instance.poolManager.Get(PoolType.Enemy, 2); // 유니크 몬스터 소환
             Vector3 ranPos = new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), 0);
             enemy.transform.position = uniqeSpawnPoint[ran].position + ranPos;
-            enemy.GetComponent<Enemy>().Init(uniqeSpawnData[0]);
+            enemy.GetComponent<Enemy>().Init(uniqeSpawnData[index]);
         }
-        foreach (var uniqeData in uniqeSpawnData)
-        {
-            uniqeData.spawnTime = Random.Range(uniqeData.ranSpawnTime.x, uniqeData.ranSpawnTime.y);
-            uniqeData.spawnCount = (int)Random.Range(uniqeData.ranSpawnCount.x, uniqeData.ranSpawnCount.y);
-        }
-
+        var uniqeData = uniqeSpawnData[index];
+        uniqeData.spawnTime = Random.Range(uniqeData.ranSpawnTime.x, uniqeData.ranSpawnTime.y);
+        uniqeData.spawnCount = (int)Random.Range(uniqeData.ranSpawnCount.x, uniqeData.ranSpawnCount.y);
     }
 
     // 미니 보스 소환 루틴
@@ -215,9 +215,18 @@ public class Spawner : MonoBehaviour
     }   
 
 }
+public enum Type
+{
+    Normal,
+    Range,
+    Unique,
+    MiniBoss,
+    Boss
+}
 [System.Serializable]
 public class SpawnData
 {
+    public  Type type;
     [Header("# 스폰 시간 조절")]
     public float spawnTime;
     [Header("# 소환 개수")]
@@ -232,25 +241,10 @@ public class SpawnData
 }
 
 [System.Serializable]
-public class UniqueSpawnData
+public class UniqueSpawnData : SpawnData
 {
-    [Foldout("# 스폰 시간 조절")]
-    public Vector2 ranSpawnTime;
-    public float spawnTime;
-    [EndFoldout]
+    public Vector2 ranSpawnTime;    
+    public Vector2 ranSpawnCount;    
 
-    [Foldout("# 소환 개수")]
-    public Vector2 ranSpawnCount;
-    public int spawnCount; // 몇 마리 소환
-    [EndFoldout]
-
-    [Header("# 스프라이트 타입")]
-    public int spriteType; // 스프라이트 종류
-
-    [Foldout("# 몬스터 기본 스탯")]
-    public int health; // 적의 체력
-    public float speed; // 적의 속도
-    public float damage; // 적의 데미지
-    public int exp; // 적의 획득 경험치량
 }
 

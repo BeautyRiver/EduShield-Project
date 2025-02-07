@@ -11,12 +11,7 @@ public class DefaultEnemy : Enemy, IRepositionable, IKnockBackable, IMovable
         FlipX();
     }
 
-    protected override void DropReward()
-    {
-        GameObject expObj = GameManager.instance.poolManager.Get(PoolType.Item, 0); // expCount 생성
-        expObj.transform.position = transform.position;
-        expObj.GetComponent<Exp>().exp = this.exp;
-    }
+
 
     protected override void FlipX()
     {
