@@ -22,10 +22,9 @@ MonoBehaviour:
   - "<b><color=yellow>\uAC1C\uC218 {0}\uAC1C</color> \uC99D\uAC00</b>\n\n\uC591 \uBC29\uD5A5
     \uBC1C\uC0AC"
   - "<b><color=yellow>\uAD00\uD1B5\uB825 {0}</color> \uC99D\uAC00</b>"
-  firstDesc: "\uBC18\uB300 \uBC29\uD5A5\uC73C\uB85C \uAC15\uB825\uD55C \uAD00\uD1B5
-    \uACF5\uACA9"
   baseDamage: 8
   baseDamageInterval: 2
+  baseKnockback: 1.5
   baseCount: 1
   basePer: 10
   baseDelay: 0.3

@@ -22,6 +22,7 @@ MonoBehaviour:
   - "<b><color=yellow>\uAC1C\uC218 {0}\uAC1C</color> \uC99D\uAC00</b>"
   baseDamage: 3
   baseDamageInterval: 2
+  baseKnockback: 1.5
   baseCount: 3
   basePer: -100
   baseDelay: 100

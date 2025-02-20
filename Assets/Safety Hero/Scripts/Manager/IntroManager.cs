@@ -54,11 +54,7 @@ public class IntroManager : MonoBehaviour
     private void Start()
     {
         scriptText.text = "";  // 텍스트 초기화
-        fadeImage.DOFade(0, 1f).OnComplete(() =>
-        {
-            fadeImage.gameObject.SetActive(false);
-            StartCoroutine(ScriptBarOnCorutin());
-        });
+        StartCoroutine(ScriptBarOnCorutin());
 
         // 일시정지 화면의 첫번째 선택 버튼을 가져옴
         pauseScreenFirstSelectButton = pauseScreen.GetComponentInChildren<Selectable>(true);
@@ -140,7 +136,7 @@ public class IntroManager : MonoBehaviour
     // 스크립트 바가 화면에 나타나는 코루틴
     IEnumerator ScriptBarOnCorutin()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         sciprtBar.DOAnchorPos(Vector3.zero, 0.5f).OnComplete(() =>
         {
             DisplayNextScript();
@@ -189,18 +185,14 @@ public class IntroManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         scriptArrow.SetActive(false);
         isTextSkipOk = false;
-        fadeImage.gameObject.SetActive(true);
-        fadeImage.DOFade(1, 1f).OnComplete(() =>
-        {
-            LoadingSceneController.LoadScene("Title Scene");
-        });
+        Skip();
     }
 
     // 스킵 버튼 클릭 시
     public void Skip()
     {
         PauseScreen(false);
-        fadeImage.gameObject.SetActive(true);
+        fadeImage.GetComponent<Image>().enabled = true;
         fadeImage.DOFade(1, 0.75f).OnComplete(() =>
         {
             LoadingSceneController.LoadScene("Title Scene");
@@ -215,6 +207,11 @@ public class IntroManager : MonoBehaviour
         if (isOpen)
         {
             pauseScreenFirstSelectButton.Select();
+        }
+        else
+        {
+            optionScreen.SetActive(false);
+            skipScreen.SetActive(false);
         }
             
         MasterAudio.PlaySound("BtnClick");

@@ -78,18 +78,18 @@ public class BulletData : DataGuide
 
     public override void OnEnableSetting(ItemSetting itemSetting)
     {
-        if (itemSetting.TextLevel != null)
-        {
-            itemSetting.TextLevel.text = "Now LV. " + (itemSetting.level); // 레벨 표기
-        }
 
         if (itemSetting.level == 0)
         {
             itemSetting.NewIcon.gameObject.SetActive(true);
             itemSetting.TextDesc.text = "<color=#99FF8A>새로운 무기!</color>\n\n<size=90%>" + itemDesc[0] + "</size>";
+            itemSetting.TextLevel.text = "New Weapon!";
         }
-        else
+
+        else if (itemSetting.level < maxLevel)
         {
+            itemSetting.TextLevel.text = string.Format($"Lv.{itemSetting.level} → Lv.{itemSetting.level + 1}");
+
             itemSetting.NewIcon.gameObject.SetActive(false);
 
             // 비어있는 배열을 건너뛰기 위해 증가
@@ -101,8 +101,16 @@ public class BulletData : DataGuide
 
             if (itemSetting.outsideRateIdx < itemSetting.statusRateList.Count)
             {
+                // 인덱스 범위 체크: insideRateIdx가 현재 배열 길이보다 크면 초기화
+                if (itemSetting.insideRateIdx >= itemSetting.statusRateList[itemSetting.outsideRateIdx].values.Length)
+                {
+                    itemSetting.insideRateIdx = 0;
+                }
+
                 itemSetting.increaseRate = itemSetting.statusRateList[itemSetting.outsideRateIdx].values[itemSetting.insideRateIdx];
-                itemSetting.TextDesc.text = string.Format(itemDesc[itemSetting.outsideRateIdx + 1], itemSetting.increaseRate); // 무기 설명글
+
+                itemSetting.TextDesc.text = string.Format(itemDesc[itemSetting.outsideRateIdx + 1], itemSetting.increaseRate);
+
             }
         }
     }
@@ -126,10 +134,10 @@ public class BulletData : DataGuide
             itemSetting.outsideRateIdx++; // 다음 적용할 인덱스를 증가시킴
 
             // 인덱스 값이 설정 범위를 넘어가는 경우 계속 조정해주는 로직
-            while (itemSetting.outsideRateIdx >= itemDesc.Length ||
+            while (itemSetting.outsideRateIdx >= itemSetting.statusRateList.Count ||
                    itemSetting.insideRateIdx >= itemSetting.statusRateList[itemSetting.outsideRateIdx].values.Length)
             {
-                if (itemSetting.outsideRateIdx >= itemDesc.Length)
+                if (itemSetting.outsideRateIdx >= itemSetting.statusRateList.Count)
                 {
                     itemSetting.outsideRateIdx = 0;
                     itemSetting.insideRateIdx++;
