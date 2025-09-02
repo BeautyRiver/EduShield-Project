@@ -17,7 +17,6 @@ public class Player : MonoBehaviour, IDamageable
 
     [Header("# 게임 오브젝트 참조")]
     public TargetScanner scanner; // 적 탐색기        
-    [HideInInspector] public Spawner spawner;
 
     [Header("# 애니메이션")]
     [SerializeField] private List<PlayerAnimatorControll> animCon; // 플레이어 애니메이터 컨트롤러
@@ -56,7 +55,6 @@ public class Player : MonoBehaviour, IDamageable
         spriter = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         scanner = GetComponent<TargetScanner>();
-        spawner = GetComponentInChildren<Spawner>(true);
         col = GetComponent<CapsuleCollider2D>();
         playerMove = GetComponent<PlayerMove>();
         normalColor = spriter.color;

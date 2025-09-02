@@ -2,6 +2,24 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PoolType
+{
+    Bullet,
+    Enemy, 
+    EnemyBullet, 
+    Drop,
+    Item, 
+    Effect, 
+    Text,
+}  // 풀 타입 enum
+
+[System.Serializable]
+public class Pool
+{
+    public PoolType poolType;
+    public GameObject[] prefabs;
+}
+
 public class PoolManager : MonoBehaviour
 {
     public Pool[] pools;
@@ -97,11 +115,3 @@ public class PoolManager : MonoBehaviour
     }
 }
 
-public enum PoolType { Bullet, Enemy, EnemyBullet, Item, Effect, Text}  // 풀 타입 enum
-
-[System.Serializable]
-public class Pool
-{
-    public PoolType poolType;
-    public GameObject[] prefabs;
-}

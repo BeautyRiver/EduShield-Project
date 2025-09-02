@@ -15,7 +15,7 @@ public class BulletData : DataGuide
     public int basePer;
     public float baseDelay;
     public float baseBulletSpeed;
-    public float baseAttackSpeed;
+    public float baseWeaponSpeed;
     public float baseWeaponDuration; // 무기 지속시간 
     public float baseRange;
     public float baseRotationSpeed;

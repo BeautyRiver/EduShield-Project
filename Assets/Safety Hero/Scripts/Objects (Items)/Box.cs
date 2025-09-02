@@ -32,7 +32,7 @@ public class Box : MonoBehaviour
 
             if (health <= 0) // 체력 0 이하 사망
             {
-                int selectIdx = (Random.Range(0, 10) >= 9) ? 3 : 4; // (3 = 힐 / 4 = 자석)                
+                int selectIdx = (Random.Range(0, 10) >= 9) ? 1 : 2; // (1 = 힐 / 2 = 자석)                
                 GameObject itemObj = GameManager.instance.poolManager.Get(PoolType.Item, selectIdx); // 아이템 드랍시키기
                 itemObj.transform.position = transform.position;
                 coll.enabled = false; // 콜라이더 끄기

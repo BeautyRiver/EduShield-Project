@@ -69,7 +69,7 @@ public abstract class Weapon : MonoBehaviour
         count = data.baseCount;                   // 기본 개수
         bulletSpeed = data.baseBulletSpeed;       // 기본 총알 이동속도
         weaponDuration = data.baseWeaponDuration; //  무기 지속시간 설정 (*현재 ONLY 회전무기)
-        weaponSpeed = data.baseAttackSpeed;       // 기본 공격속도
+        weaponSpeed = data.baseWeaponSpeed;       // 기본 공격속도
         rotationSpeed = data.baseRotationSpeed;   // 기본 회전속도 (*현재 ONLY 회전무기)
         attackRange = data.baseRange;             // 기본 범위 
         bulletSize = data.baseScale;              // 기본 사이즈 

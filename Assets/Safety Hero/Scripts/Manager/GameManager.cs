@@ -25,12 +25,12 @@ public class GameManager : MonoBehaviour
     public float dieMsgDelay; // 죽는 메시지 나올 텀
     public int selectStageIdx; // 현재 선택된 스테이지
     private bool isGamestart; // 게임 시작된 상태인지(Ai 메시지 재활용 때문)
-    public int[] nextExp = { 3, 5, 10, 100, 150, 210, 280, 360, 450, 600 }; // 다음 레벨업에 필요한 경험치
+    public int[] nextExp = { 3, 5, 10, 100, 150, 210, 280, 360, 450, 600 }; // 다음 레벨업에 필요한 경험치    
 
-    [Header("# 플레이 정보")]
-    public int level; // 현재 레벨
-    public int kill; // 처치한 적 수
-    public int exp; // 현재 경험치
+    [Header("# 플레이어 정보")]
+    public int playerLevel; // 현재 레벨
+    public int playerKill; // 처치한 적 수
+    public int playerExp; // 현재 경험치
  
     [Foldout("# 참조")]
     public AiManager ai;
@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     public LevelUp uiLevelUp;
     public Player player;
     public Result result;
-    public GameObject spawner;
+    public Spawner spawner;    
     [EndFoldout]
     [field: SerializeField] public PlayerData playerData { get; private set; } // 복사본
     [SerializeField] private PlayerData orignalPlayerData; // 원본
@@ -197,14 +197,14 @@ public class GameManager : MonoBehaviour
     {
         if (isGameActive)
         {
-            exp += getExp;
+            playerExp += getExp;
 
-            if (exp >= nextExp[Mathf.Min(level, nextExp.Length - 1)])
+            if (playerExp >= nextExp[Mathf.Min(playerLevel, nextExp.Length - 1)])
             {
                 // 게임 일시정지 후 레벨업 UI 띄우기
                 Stop(); 
-                level++;
-                exp = 0;
+                playerLevel++;
+                playerExp = 0;
                 uiLevelUp.Show();
             }
         }

@@ -22,11 +22,12 @@ MonoBehaviour:
   - "<b><color=yellow>\uD06C\uAE30 {0}%</color> \uC99D\uAC00</b>"
   baseDamage: 2
   baseDamageInterval: 1
+  baseKnockback: 1.5
   baseCount: 1
   basePer: -100
   baseDelay: 1
   baseBulletSpeed: 15
-  baseAttackSpeed: 2
+  baseWeaponSpeed: 0
   baseWeaponDuration: 0
   baseRange: 1
   baseRotationSpeed: 0

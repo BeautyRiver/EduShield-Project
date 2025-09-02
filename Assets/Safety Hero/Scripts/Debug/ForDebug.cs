@@ -63,7 +63,7 @@ public class ForDebug : MonoBehaviour
         // 레벨업
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            GameManager.instance.GetExp(GameManager.instance.nextExp[Mathf.Min(GameManager.instance.level, GameManager.instance.nextExp.Length - 1)]); // 레벨업 
+            GameManager.instance.GetExp(GameManager.instance.nextExp[Mathf.Min(GameManager.instance.playerLevel, GameManager.instance.nextExp.Length - 1)]); // 레벨업 
         }
 #endif
     }

@@ -16,7 +16,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     public float speed;
     public int exp;
     public bool isLive;
-    protected Vector2 nextVec;
+    [SerializeField] protected Vector2 nextVec;
     protected Vector2 dirVec;
 
     [Header("# 참조")]
@@ -75,6 +75,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     }
 
 
+    // 데미지 받는 로직
     public void DamagedLogic(Collider2D collision, float damage)
     {
         Debug.Log("DamagedLogic");
@@ -110,7 +111,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
             }
         }
 
-        MasterAudio.PlaySound("doHit"); // 사운드 재생
+        MasterAudio.PlaySound("Hit"); // 사운드 재생
         anim.SetTrigger("doHit"); // 맞는 애니메이션 재생
 
         // 보스는 넉백 X
@@ -125,14 +126,14 @@ public abstract class Enemy : MonoBehaviour, IDamageable
             coll.enabled = false;
             rigid.simulated = false;
             anim.SetBool("isDead", true);
-            gm.kill++;
-            MasterAudio.PlaySound("isDead");
+            gm.playerKill++;
+            MasterAudio.PlaySound("Dead");
         }
     }
 
     protected virtual void DropReward()
     {
-        GameObject expObj = gm.poolManager.Get(PoolType.Item, 0); // expCount 생성
+        GameObject expObj = gm.poolManager.Get(PoolType.Drop, 0); // exp 생성
         expObj.transform.position = transform.position;
         expObj.GetComponent<Exp>().exp = this.exp;
     }

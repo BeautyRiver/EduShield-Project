@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5258164722571019112}
   - component: {fileID: 6603970859570537321}
-  - component: {fileID: 4350850261988060532}
   - component: {fileID: 2134030811948641783}
+  - component: {fileID: 1230861352211841837}
   m_Layer: 0
   m_Name: Magnet
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 599847903385195777}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.1, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -89,20 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4350850261988060532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 599847903385195777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06b54250c248eb34d94a1d3b5f0812f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemType: 1
-  gm: {fileID: 0}
 --- !u!70 &2134030811948641783
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -140,3 +126,17 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.75, y: 0.6875}
   m_Direction: 0
+--- !u!114 &1230861352211841837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599847903385195777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a03ac439c80e9904fbd15cdc0a3cc860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magnetRange: 500
+  duration: 1

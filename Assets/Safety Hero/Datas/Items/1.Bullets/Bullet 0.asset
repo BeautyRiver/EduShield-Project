@@ -27,7 +27,7 @@ MonoBehaviour:
   basePer: -100
   baseDelay: 0.15
   baseBulletSpeed: 15
-  baseAttackSpeed: 2
+  baseWeaponSpeed: 1
   baseWeaponDuration: 0
   baseRange: 1
   baseRotationSpeed: 0

@@ -41,10 +41,10 @@ public class BoxReward : MonoBehaviour
         int count = Random.Range(20, 60);
         for (int i = 0; i < count; i++)
         {            
-            GameObject expObj = GameManager.instance.poolManager.Get(PoolType.Item, 0); // expCount 소환
+            GameObject expObj = GameManager.instance.poolManager.Get(PoolType.Drop, 0); // exp 소환
             CircleCollider2D coll = expObj.GetComponent<CircleCollider2D>();
             coll.enabled = false;
-            expObj.GetComponent<Exp>().exp = Random.Range(1, GameManager.instance.player.spawner.level+1);
+            expObj.GetComponent<Exp>().exp = Random.Range(1, GameManager.instance.spawner.level+1);
             expObj.transform.position = transform.position;
 
             Vector2 randomDir = new Vector2(Random.Range(-0.7f, 0.7f), Random.Range(-0.2f, 0.2f)); // 좌우로만 튀어나가게 설정

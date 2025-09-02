@@ -75,19 +75,19 @@ public class RangeEnemy : Enemy, IRepositionable, IKnockBackable, IMovable, IAtt
         rigid.MovePosition(rigid.position + nextVec);
     }
 
-    protected override void DropReward()
+/*    protected override void DropReward()
     {
-        GameObject expObj = GameManager.instance.poolManager.Get(PoolType.Item, 0); // expCount 생성
+        GameObject expObj = GameManager.instance.poolManager.Get(PoolType.Drop, 0); // expCount 생성
         expObj.transform.position = transform.position;
         expObj.GetComponent<Exp>().exp = this.exp;
     }  
-
+*/
     private void UpdateAttackCooldown()
     {
         if (isCoolTimeOn)
         {
             attackTimer += Time.deltaTime;
-            if (attackTimer >= bulletData.baseAttackSpeed)
+            if (attackTimer >= bulletData.baseWeaponSpeed)
             {
                 isCoolTimeOn = false;
                 attackTimer = 0;

@@ -5,6 +5,38 @@ using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using VInspector;
+public enum Type
+{
+    Normal,
+    Range,
+    Unique,
+    MiniBoss,
+    Boss
+}
+[System.Serializable]
+public class SpawnData
+{
+    public Type type;
+    [Header("# 스폰 시간 조절")]
+    public float spawnTime;
+    [Header("# 소환 개수")]
+    public int spawnCount; // 몇 마리 소환
+    [Header("# 스프라이트 타입")]
+    public int spriteType; // 스프라이트 종류
+    [Header("# 몬스터 기본 스탯")]
+    public int health; // 적의 체력
+    public float speed; // 적의 속도
+    public float damage; // 적의 데미지
+    public int exp; // 적의 획득 경험치량
+}
+
+[System.Serializable]
+public class UniqueSpawnData : SpawnData
+{
+    public Vector2 ranSpawnTime;
+    public Vector2 ranSpawnCount;
+
+}
 
 public class Spawner : MonoBehaviour
 {
@@ -166,7 +198,7 @@ public class Spawner : MonoBehaviour
         // 적 소환
         for (int i = 0; i < miniBossSpawnData[level - 1].spawnCount; i++)
         {
-            GameObject enemy = GameManager.instance.poolManager.Get(PoolType.Enemy, 2); // 미니 보스 소환
+            GameObject enemy = GameManager.instance.poolManager.Get(PoolType.Enemy, 3); // 미니 보스 소환
             enemy.transform.position = spawnPoint[Random.Range(0, spawnPoint.Length)].position;
             enemy.GetComponent<Enemy>().Init(miniBossSpawnData[level - 1]);
         }
@@ -209,42 +241,10 @@ public class Spawner : MonoBehaviour
 
         // 안전한 위치가 확인되면 박스 생성
         //Debug.Log("생성 완료");
-        GameObject box = GameManager.instance.poolManager.Get(PoolType.Item, 1); // Box 생성
+        GameObject box = GameManager.instance.poolManager.Get(PoolType.Item, 0); // Box 생성
         box.transform.parent = parentTransform;
         box.transform.position = spawnPosition;
     }   
-
-}
-public enum Type
-{
-    Normal,
-    Range,
-    Unique,
-    MiniBoss,
-    Boss
-}
-[System.Serializable]
-public class SpawnData
-{
-    public  Type type;
-    [Header("# 스폰 시간 조절")]
-    public float spawnTime;
-    [Header("# 소환 개수")]
-    public int spawnCount; // 몇 마리 소환
-    [Header("# 스프라이트 타입")]
-    public int spriteType; // 스프라이트 종류
-    [Header("# 몬스터 기본 스탯")]
-    public int health; // 적의 체력
-    public float speed; // 적의 속도
-    public float damage; // 적의 데미지
-    public int exp; // 적의 획득 경험치량
-}
-
-[System.Serializable]
-public class UniqueSpawnData : SpawnData
-{
-    public Vector2 ranSpawnTime;    
-    public Vector2 ranSpawnCount;    
 
 }
 

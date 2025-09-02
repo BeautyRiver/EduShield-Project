@@ -10,14 +10,16 @@ public class Exp : MonoBehaviour
     [SerializeField] private SpriteRenderer SpriteRenderer;
 
     [SerializeField] private bool isMoving = false;
-    [SerializeField] private int expCount;
+    [SerializeField] private int expValue;
+    [SerializeField] private float expMoveSpeed;
+
     public int exp
     {
-        get { return expCount; }
+        get { return expValue; }
         set
         {
             if (value >= 0)
-                expCount = value;
+                expValue = value;
         }
     }
     public bool IsMoving { get; set; }
@@ -48,25 +50,24 @@ public class Exp : MonoBehaviour
     private IEnumerator SetSpriteByExp()
     {
         yield return null;
-        if (expCount >= 5)
+        if (expValue >= 5)
             SpriteRenderer.sprite = expImages[2];
-        else if (expCount >= 3)
+        else if (expValue >= 3)
             SpriteRenderer.sprite = expImages[1];
-        else if (expCount >= 1)
+        else if (expValue >= 1)
             SpriteRenderer.sprite = expImages[0];
     }
 
 
     public void ItemMoveLogic(Transform playerPos)
     {
-        Debug.Log("Exp: MoveTo Player~");
         IsMoving = true;
         // 플레이어와 반대 방향 계산
         Vector2 directionAwayFromPlayer = (transform.position - playerPos.position).normalized;
         Vector2 targetPosition = transform.position + (Vector3)directionAwayFromPlayer * 0.5f;  // 반대 방향으로 약간 이동
 
         // DOTween을 사용해 플레이어 반대 방향으로 살짝 이동
-        transform.DOMove(targetPosition, 0.3f).SetEase(Ease.OutBack).OnComplete(() =>
+        transform.DOMove(targetPosition, 0.15f).SetEase(Ease.OutBack).OnComplete(() =>
         {
             // 반대 방향으로 이동이 끝나면 플레이어에게 따라가는 코루틴 시작
             if (gameObject.activeSelf == true)
@@ -81,7 +82,7 @@ public class Exp : MonoBehaviour
         {
             // 플레이어의 현재 위치를 향해 경험치 아이템이 이동
             Vector2 direction = (playerPos.position - transform.position).normalized;
-            transform.Translate(direction * 10f * Time.deltaTime);  // 경험치 이동 속도 조절
+            transform.Translate(direction * expMoveSpeed * Time.deltaTime);  // 경험치 이동 속도 조절
             yield return null;  // 다음 프레임까지 대기
         }
     }

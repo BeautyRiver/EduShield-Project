@@ -27,8 +27,8 @@ MonoBehaviour:
   basePer: -100
   baseDelay: 100
   baseBulletSpeed: 15
-  baseAttackSpeed: 2
-  baseWeaponDuration: 0
+  baseWeaponSpeed: 2
+  baseWeaponDuration: 3
   baseRange: 2
   baseRotationSpeed: 100
   baseScale: {x: 1, y: 1, z: 1}

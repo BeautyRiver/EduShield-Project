@@ -3,12 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public abstract class Item : MonoBehaviour
 {
-    public enum ItemType { Heal, Magnet }
-    public ItemType itemType;
-    public GameManager gm;
-    private void Awake()
+    protected GameManager gm;
+    private void Start()
     {
         gm = GameManager.instance;
     }
@@ -16,26 +14,12 @@ public class Item : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Compare");
-            switch (itemType)
-            {
-                case ItemType.Heal:
-                    gm.player.health = Mathf.Min(gm.player.maxHealth, gm.player.health + 15f);
-                    MasterAudio.PlaySound("Heal");
-
-                    gameObject.SetActive(false);
-                    break;
-                case ItemType.Magnet:
-                    MasterAudio.PlaySound("Magnet");
-                    StartCoroutine(GetMagnet());
-                    break;
-            }
-            gm.GenerateEffect(0, gm.player.transform);
+            Use(); // 아이템 고유의 효과를 실행
+            gm.GenerateEffect(0, gm.player.transform); // 공통 효과 실행
+            gameObject.SetActive(false); // 아이템 비활성화 (공통)
         }
     }
 
-    IEnumerator GetMagnet()
-    {
-        yield return null;
-    }
+    // 아이템의 고유 효과. 자식 클래스에서 반드시 이 메서드를 구현해야 함
+    protected abstract void Use();
 }

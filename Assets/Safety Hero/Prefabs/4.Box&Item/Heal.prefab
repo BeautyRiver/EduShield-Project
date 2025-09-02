@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6583632387137561717}
   - component: {fileID: 1162403301441175750}
-  - component: {fileID: 6232281711817143384}
   - component: {fileID: 5015158225199561465}
+  - component: {fileID: 6491748661228761734}
   m_Layer: 0
   m_Name: Heal
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 9094221827545101442}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.4, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -89,20 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6232281711817143384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9094221827545101442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06b54250c248eb34d94a1d3b5f0812f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemType: 0
-  gm: {fileID: 0}
 --- !u!70 &5015158225199561465
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -140,3 +126,16 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.625, y: 0.6875}
   m_Direction: 0
+--- !u!114 &6491748661228761734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9094221827545101442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65234156cbe30a46bd6fdcedd6c4fef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healAmount: 15

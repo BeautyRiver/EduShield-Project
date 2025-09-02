@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2032320185068817081}
   - component: {fileID: 5833461942754825028}
   m_Layer: 0
-  m_Name: Box Reward
+  m_Name: Miniboss RewardBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2628636115404487258}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.82, y: 2.11, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
