@@ -26,7 +26,7 @@ public class TrackingUniqueEnemy : Enemy, IMovable
 
     protected override void FlipX()
     {
-        // No Flip
+        spriter.flipX = targetRb.position.x < rigid.position.x;
     }
 
     protected override void OnEnable()

@@ -19,6 +19,7 @@ MonoBehaviour:
     - afb2d8f1d8812bd41955fc4d190d442a
     - 95b6cb65e29bc4f4f95079dd82e44e5f
     - 0cd219ee981404a41b72331a0081eba4
+    - 6ad13e64c7d8ba24e89c0c8cd9b11716
     values:
     - iconNameOrGuid: 
       colorIndex: 4
@@ -38,6 +39,10 @@ MonoBehaviour:
       isColorRecursive: 0
     - iconNameOrGuid: ScriptableObject Icon
       colorIndex: 0
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: RawImage Icon
+      colorIndex: 3
       isIconRecursive: 0
       isColorRecursive: 0
   bookmarks:

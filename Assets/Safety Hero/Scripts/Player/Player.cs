@@ -134,7 +134,6 @@ public class Player : MonoBehaviour, IDamageable
         health = maxHealth * gm.playerData.maxHpMult; // 플레이어 체력 세팅 
         playerMove.InitPlayerMoveOption(); // 플레이어 이동 옵션 초기화
         anim.runtimeAnimatorController = animCon[playerId].runAniCon[0];
-        Debug.Log($"애니메이션 컨트롤러 변경 {playerId}");
     }
 
     public void PlayerDead()

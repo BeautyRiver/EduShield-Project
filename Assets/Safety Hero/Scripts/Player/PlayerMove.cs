@@ -7,6 +7,8 @@ public class PlayerMove : MonoBehaviour
     private Vector2 inputVec; // 입력 벡터 (방향)
 
     public Vector2 lastInputVec; // 마지막 입력 벡터
+    
+    [HideInInspector]public float lastInputX = 1f; // 마지막 수평 입력 (0이 아닌 값), 기본값 1(오른쪽)
     public float baseSpeed = 6f;
     public float currentSpeed = 3f; // 이동 속도
 
@@ -25,7 +27,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (!GameManager.instance.isGameActive)
             return;
-        UpdateInputVector();
+        UpdateLastInputVector();
         SetAnimation();
     }
    
@@ -37,11 +39,16 @@ public class PlayerMove : MonoBehaviour
     }
 
     // 입력 벡터 업데이트
-    private void UpdateInputVector()
+    private void UpdateLastInputVector()
     {
         if (inputVec != Vector2.zero)
         {
             lastInputVec = inputVec.normalized;
+        }
+
+        if (inputVec.x != 0f)
+        {
+            lastInputX = inputVec.x;
         }
     }
     // 플레이어 이동

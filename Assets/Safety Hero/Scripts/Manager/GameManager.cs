@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     [Header("# 게임 컨트롤")]
     public float gameTime; // 현재 게임 시간
-    public float maxGameTime = 2 * 10f; // 최대 게임 시간
+    public float maxGameTime; // 최대 게임 시간
 
     public bool isGameActive; // 게임 진행 여부
     public bool isGameRealEnd; // 게임 진짜 끝났는지 여부
@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     public LevelUp uiLevelUp;
     public Player player;
     public Result result;
-    public Spawner spawner;    
+    public SpawnManager spawner;    
     [EndFoldout]
     [field: SerializeField] public PlayerData playerData { get; private set; } // 복사본
     [SerializeField] private PlayerData orignalPlayerData; // 원본
@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviour
             GameVictory(); // 최대 시간 도달 시 승리 처리
         }      
     }
+
     // 이펙트 생성시키기
     public void GenerateEffect(int index, Transform parentTransform, Color? setColor = null)
     {            

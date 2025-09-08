@@ -88,6 +88,10 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         effect.transform.position = hitPos;
 
         float fontSize = 7f;
+        // 기본 데미지 표시 
+        Damaged(damage, hitPos, Color.white, false, fontSize);
+
+        /*
         // 기본 타입일 때
         if (gm.typeControll.TypeIndex == -1)
         {
@@ -109,7 +113,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
                 // 기본 데미지 표시 
                 Damaged(damage, hitPos, Color.gray, false, fontSize);
             }
-        }
+        }*/
 
         MasterAudio.PlaySound("Hit"); // 사운드 재생
         anim.SetTrigger("doHit"); // 맞는 애니메이션 재생

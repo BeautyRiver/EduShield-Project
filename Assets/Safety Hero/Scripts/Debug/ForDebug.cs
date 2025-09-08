@@ -102,7 +102,6 @@ public class ForDebug : MonoBehaviour
             else if (item.itemData is EtcData)
             {
                 item.GetComponent<Image>().sprite = uiPanelImages[2];
-
             }         
             idx++;            
         }
