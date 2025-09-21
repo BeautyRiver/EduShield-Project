@@ -65,7 +65,7 @@ public class TypeControlManager : MonoBehaviour
 
             // 타입 스왑이 발생했을 때 UI 업데이트 이벤트 호출
             CoolDownImageChangeFillAmount();
-            StartCoroutine(GameManager.instance.player.TransformationColor(TypeIndex));
+            //StartCoroutine(GameManager.instance.player.TransformationColor(TypeIndex));
 
             // 스왑 타이머 리셋
             swapTimer = swapDelay;

@@ -13,8 +13,8 @@ public abstract class Weapon : MonoBehaviour
     public float damage;         // 무기 데미지    
     public int count;            // 무기 개수
     public int per;              // 관통력
-    public float bulletSpeed;    // 총알 이동 속도
-    public float weaponSpeed;    // 무기 속도    
+    public float bulletMoveSpeed;    // 총알 이동 속도
+    public float weaponAttackSpeed;    // 무기 속도    
     public float rotationSpeed;
     public float bulletDelay;    // 총알 사이 딜레이 (Range)   
     public float damageInterval; // 데미지 줄 수 있는 텀
@@ -22,25 +22,28 @@ public abstract class Weapon : MonoBehaviour
     public float attackRange;    // 공격 범위
     public float knockBackAmout; // 몬스터 넉백량
     public Vector3 bulletSize;   // 총알(무기) 크기
+    public GameObject bulletPrefab;
     public bool isAttacking;
     public float speedTimer;
 
-    protected GameManager gm;
+    protected GameManager gameManager;
+    protected PoolManager poolManager;
     protected PlayerMove playerMove;
     protected TargetScanner targetScanner;
     protected virtual void Awake()
     {
-        gm = GameManager.instance;
+        gameManager = GameManager.instance;
+        poolManager = PoolManager.instance;
         playerMove = GameManager.instance.player.playerMove;
         targetScanner = GameManager.instance.player.GetComponent<TargetScanner>();
     }
 
     protected virtual void Update()
     {
-        if (!gm.isGameActive)
+        if (!gameManager.isGameActive)
             return;
 
-        if (weaponSpeed < 0)
+        if (weaponAttackSpeed < 0)
             return;
 
         UpdateTimer();
@@ -50,7 +53,7 @@ public abstract class Weapon : MonoBehaviour
     {
         StopAllCoroutines();
         isAttacking = false;
-        speedTimer = weaponSpeed;
+        speedTimer = weaponAttackSpeed;
     }
 
     // 초기 설정 함수
@@ -62,35 +65,35 @@ public abstract class Weapon : MonoBehaviour
                                                           
         transform.localPosition = Vector3.zero;   // 플레이어 안에서 위치 초기화
 
-        ownerTag = transform.parent.tag;            // 무기 소유자 태그 설정
-        prefabId = SetPrefabID(data);             // prefabID 설정        
+        ownerTag = transform.parent.tag;          // 무기 소유자 태그 설정
+        //prefabId = SetPrefabID(data);             // prefabID 설정        
         damage = data.baseDamage;                 // 기본 공격력
         bulletDelay = data.baseDelay;             // 기본 딜레이
         count = data.baseCount;                   // 기본 개수
-        bulletSpeed = data.baseBulletSpeed;       // 기본 총알 이동속도
-        weaponDuration = data.baseWeaponDuration; //  무기 지속시간 설정 (*현재 ONLY 회전무기)
-        weaponSpeed = data.baseWeaponSpeed;       // 기본 공격속도
-        rotationSpeed = data.baseRotationSpeed;   // 기본 회전속도 (*현재 ONLY 회전무기)
+        bulletMoveSpeed = data.baseBulletMoveSpeed;       // 기본 총알 이동속도
+        weaponAttackSpeed = data.baseWeaponAttackSpeed;       // 기본 공격속도
+        weaponDuration = data.baseWeaponDuration; // 무기 지속시간 설정  (*현재 ONLY 회전무기)
+        rotationSpeed = data.baseRotationSpeed;   // 기본 회전속도       (*현재 ONLY 회전무기)
         attackRange = data.baseRange;             // 기본 범위 
         bulletSize = data.baseScale;              // 기본 사이즈 
         damageInterval = data.baseDamageInterval; // 기본 공격 텀  (*자기장 무기 때문)
         per = data.basePer;                       // 기본 관통력 
         knockBackAmout = data.baseKnockback;                    // 기본 넉벡량        
-
+        bulletPrefab = data.bulletPrefab;
 
         // 플레이어의 기본 능력치에 따른 설정
-        damage = data.baseDamage * gm.playerData.damageMult;
-        attackRange = data.baseRange * gm.playerData.attackRangeMult;
-        bulletSize = data.baseScale * gm.playerData.attackRangeMult;
+        damage = data.baseDamage * gameManager.playerData.damageMult;
+        attackRange = data.baseRange * gameManager.playerData.attackRangeMult;
+        bulletSize = data.baseScale * gameManager.playerData.attackRangeMult;
 
         // 공격속도 설정
-        damageInterval = data.baseDamageInterval * gm.playerData.attackSpeedMult;               // 데미지 간격
-        weaponSpeed = (float)System.Math.Round(weaponSpeed / gm.playerData.attackSpeedMult, 2); // 무기 속도
-        bulletDelay = (float)System.Math.Round(bulletDelay / gm.playerData.attackSpeedMult, 2); // 총알 사이 딜레이
-        rotationSpeed = (float)System.Math.Round(rotationSpeed / gm.playerData.attackSpeedMult, 2); // 회전 속도
+        damageInterval = data.baseDamageInterval * gameManager.playerData.attackSpeedMult;               // 데미지 간격
+        weaponAttackSpeed = (float)System.Math.Round(weaponAttackSpeed / gameManager.playerData.attackSpeedMult, 2); // 무기 속도
+        bulletDelay = (float)System.Math.Round(bulletDelay / gameManager.playerData.attackSpeedMult, 2); // 총알 사이 딜레이
+        rotationSpeed = (float)System.Math.Round(rotationSpeed / gameManager.playerData.attackSpeedMult, 2); // 회전 속도
 
         // 무기 바로 쓸 수 있게
-        speedTimer = weaponSpeed;
+        speedTimer = weaponAttackSpeed;
         level++;
     }
 
@@ -103,7 +106,7 @@ public abstract class Weapon : MonoBehaviour
         {
             case 0: // 데미지 증가
                 data.baseDamage += rate;
-                damage = data.baseDamage * gm.playerData.damageMult;
+                damage = data.baseDamage * gameManager.playerData.damageMult;
                 Debug.Log($"{this.name}: Damage {rate}만큼 증가했습니다.");
                 break;
 
@@ -120,8 +123,8 @@ public abstract class Weapon : MonoBehaviour
 
             case 3: // 크기[범위] 증가
                 data.baseScale += (data.baseScale * rate * 0.01f);
-                bulletSize = data.baseScale * gm.playerData.attackRangeMult;
-                attackRange = data.baseRange * gm.playerData.attackRangeMult;
+                bulletSize = data.baseScale * gameManager.playerData.attackRangeMult;
+                attackRange = data.baseRange * gameManager.playerData.attackRangeMult;
                 batchable?.Batch();
 
                 Debug.Log($"{this.name}: Range {rate}만큼 증가했습니다.");
@@ -137,7 +140,7 @@ public abstract class Weapon : MonoBehaviour
 
         speedTimer += Time.deltaTime;
 
-        if (speedTimer >= weaponSpeed)
+        if (speedTimer >= weaponAttackSpeed)
         {
             speedTimer = 0f;
             isAttacking = true;
@@ -155,30 +158,30 @@ public abstract class Weapon : MonoBehaviour
         Bullet bulletComponent = bullet.GetComponent<Bullet>();
 
         // 공통된 불릿 초기화 로직        
-        bulletComponent.Init(direction, ownerTag, per, damage, bulletSpeed, knockBackAmout, damageInterval);
+        bulletComponent.Init(direction, ownerTag, per, damage, bulletMoveSpeed, knockBackAmout, damageInterval);
     }
 
     // 프리펩 아이디 찾기
-    protected int SetPrefabID(BulletData data)
-    {
-        Pool[] tempPools = GameManager.instance.poolManager.pools;
-        GameObject[] weaponPrefabs = null;
-        foreach (Pool pool in tempPools)
-        {
-            if (pool.poolType == PoolType.Bullet)
-                weaponPrefabs = pool.prefabs;
-        }
+    //protected int SetPrefabID(BulletData data)
+    //{
+    //    Pool[] tempPools = GameManager.instance.poolManager.pools;
+    //    GameObject[] weaponPrefabs = null;
+    //    foreach (Pool pool in tempPools)
+    //    {
+    //        if (pool.poolType == PoolType.Bullet)
+    //            weaponPrefabs = pool.prefabs;
+    //    }
 
-        for (int index = 0; index < weaponPrefabs.Length; index++)
-        {
-            if (data.prefab == weaponPrefabs[index])
-            {
-                prefabId = index;
-                return index;
-            }
-        }
-        return -1;
-    }
+    //    for (int index = 0; index < weaponPrefabs.Length; index++)
+    //    {
+    //        if (data.prefab == weaponPrefabs[index])
+    //        {
+    //            prefabId = index;
+    //            return index;
+    //        }
+    //    }
+    //    return -1;
+    //}
 
     /// <summary>
     ///  LevelUp Logic: 레벨업 예외처리

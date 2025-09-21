@@ -260,3 +260,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 2
   maxHealth: 0
+  lootTable: {fileID: 11400000, guid: 2211271294cd47140ac0d43e0429d51f, type: 2}

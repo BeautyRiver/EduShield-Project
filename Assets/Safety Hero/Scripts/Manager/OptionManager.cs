@@ -47,6 +47,11 @@ public class OptionManager : MonoBehaviour
         PlayerPrefs.SetFloat("SFX", value);
     }
 
+    public void ClosedOptionUI()
+    {
+
+    }
+
     // 게임이 종료되거나 씬이 변경되더라도 저장
     private void OnApplicationQuit()
     {

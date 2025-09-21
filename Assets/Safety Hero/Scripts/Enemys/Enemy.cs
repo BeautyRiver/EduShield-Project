@@ -9,10 +9,11 @@ using Unity.VisualScripting;
 
 public abstract class Enemy : MonoBehaviour, IDamageable
 {
+    protected EnemyData myData;
     public int id;
     public float damage;
+    public float currentHealth;
     public float maxHealth;
-    public float health;
     public float speed;
     public int exp;
     public bool isLive;
@@ -20,8 +21,8 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     protected Vector2 dirVec;
 
     [Header("# 참조")]
-    [SerializeField] protected RuntimeAnimatorController[] animCon;
-
+    [SerializeField] protected RuntimeAnimatorController animCon;
+    protected GameObject effect;
     protected Rigidbody2D targetRb;
     protected Collider2D coll;
     protected Rigidbody2D rigid;
@@ -61,17 +62,20 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         coll.enabled = true;
         rigid.simulated = true;
         anim.SetBool("isDead", false);
-        health = maxHealth;
+        currentHealth = maxHealth;
     }
-    public virtual void Init(SpawnData data)
+    public virtual void Init(EnemyData data)
     {
-        id = data.spriteType;
-        anim.runtimeAnimatorController = animCon[id];
-        speed = data.speed;
-        maxHealth = data.health;
-        health = maxHealth;
-        exp = data.exp;
-        damage = data.damage;
+        myData = data;
+
+        id = myData.id;
+        speed = myData.speed;
+        currentHealth = myData.health;
+        exp = myData.exp;
+        damage = myData.damage;
+        animCon = myData.animCon;
+        maxHealth = myData.health;
+        anim.runtimeAnimatorController = animCon;
     }
 
 
@@ -84,7 +88,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
         // 충돌한 지점의 정확한 위치를 구하기
         hitPos = collision.ClosestPoint(transform.position);
-        GameObject effect = gm.poolManager.Get(PoolType.Effect, 1); // Enemy 이팩트 생성
+        GameObject effect = PoolManager.instance.Get(myData.hitEffectPrefab); // Enemy 이팩트 생성
         effect.transform.position = hitPos;
 
         float fontSize = 7f;
@@ -123,7 +127,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
             StartCoroutine(KnockBack(bulletInfo.KnockBackDistance)); // 넉백
 
         // 체력 0 이하 사망
-        if (health <= 0)
+        if (currentHealth <= 0)
         {
             DropReward(); // 보상
             isLive = false;
@@ -137,16 +141,16 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     protected virtual void DropReward()
     {
-        GameObject expObj = gm.poolManager.Get(PoolType.Drop, 0); // exp 생성
+        GameObject expObj = PoolManager.instance.Get(myData.dropExpPrefab); // exp 생성
         expObj.transform.position = transform.position;
         expObj.GetComponent<Exp>().exp = this.exp;
     }
     private void Damaged(float damage, Vector2 hitPos, Color color, bool isPlusDamage, float fontSize)
     {
-        GameObject damageTextobj = gm.poolManager.Get(PoolType.Text, 0); // 데미지 텍스트 생성
+        GameObject damageTextobj = PoolManager.instance.Get(myData.damageTextPrefab); // 데미지 텍스트 생성
         TextMeshPro damageText = damageTextobj.GetComponent<TextMeshPro>();
 
-        health -= damage; // 체력 감소            
+        currentHealth -= damage; // 체력 감소            
         damageText.fontSize = fontSize; // 폰트 사이즈 설정
         damageText.text = damage.ToString("F1");
         damageText.color = color;

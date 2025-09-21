@@ -35,7 +35,6 @@ public class GameManager : MonoBehaviour
     [Foldout("# 참조")]
     public AiManager ai;
     public TypeControlManager typeControll;
-    public PoolManager poolManager;
     public UIManager UIManager;
     public LevelUp uiLevelUp;
     public Player player;
@@ -61,7 +60,7 @@ public class GameManager : MonoBehaviour
             playerData = Instantiate(orignalPlayerData);
         
         GameStart(playerData.characterId);
-        StartCoroutine(AIMsgShowAndHide());
+        //StartCoroutine(AIMsgShowAndHide());
     }
 
     private void Update()
@@ -78,15 +77,6 @@ public class GameManager : MonoBehaviour
         }      
     }
 
-    // 이펙트 생성시키기
-    public void GenerateEffect(int index, Transform parentTransform, Color? setColor = null)
-    {            
-        GameObject effect = poolManager.Get(PoolType.Effect, 0); // 플레이어 힐 이펙트
-        effect.transform.parent = parentTransform;
-        effect.transform.localPosition = Vector3.zero;
-        if (setColor != null)
-            effect.gameObject.GetComponent<SpriteRenderer>().color = setColor ?? Color.white;
-    }
 
     // Ai 메세지 띄어주기
     public IEnumerator AIMsgShowAndHide()
@@ -135,7 +125,10 @@ public class GameManager : MonoBehaviour
 
         player.PlayerInit(playerId); // 플레이어 초기화
         player.gameObject.SetActive(true);
-
+        isGamestart = true;
+        // 플레이어 기본 무기 부여
+        uiLevelUp.FirstGiveWeapon(playerData.characterId);
+        spawner.gameObject.SetActive(true);
     }
 
     private static void SetupAudio()

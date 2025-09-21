@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerMove : MonoBehaviour
 {
     [Header("# 입력 및 이동")]
-    private Vector2 inputVec; // 입력 벡터 (방향)
+    public Vector2 inputVec; // 입력 벡터 (방향)
 
     public Vector2 lastInputVec; // 마지막 입력 벡터
     
@@ -48,7 +48,7 @@ public class PlayerMove : MonoBehaviour
 
         if (inputVec.x != 0f)
         {
-            lastInputX = inputVec.x;
+            lastInputX = lastInputVec.x;
         }
     }
     // 플레이어 이동

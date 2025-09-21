@@ -18,9 +18,9 @@ public class W51_CannonWeapon : Weapon
         for (int i = 0; i < count; i++)
         {
             // isReverse 플래그에 따라 발사 방향 결정 (true면 정방향, false면 반대 방향)
-            Vector3 dir = isReverse ? new Vector3(playerMove.lastInputVec.x, playerMove.lastInputVec.y, 0).normalized : new Vector3(-playerMove.lastInputVec.x, -playerMove.lastInputVec.y, 0).normalized;
+            Vector3 dir = isReverse ? playerMove.lastInputVec.normalized : -playerMove.lastInputVec.normalized;
 
-            Transform bullet = GameManager.instance.poolManager.Get(PoolType.Bullet, prefabId).transform;
+            Transform bullet = poolManager.Get(bulletPrefab).transform;
             bullet.parent = transform;
             Vector3 spreadOffset = Vector3.zero;
 

@@ -33,6 +33,7 @@ public class UIManager : MonoBehaviour
 
     [Foldout("처음 선택되는 버튼들")]
     [SerializeField] private Selectable pauseFirstSelectedButton; // 일시정지 씬에서 처음 선택되는 버튼    
+    [SerializeField] private Selectable pauseOptionButton; // option button in pause ui\
     [SerializeField] private Selectable optionFirstSelectedButton; // 옵션 씬에서 처음 선택되는 버튼
     [EndFoldout]
     
@@ -99,7 +100,7 @@ public class UIManager : MonoBehaviour
         {
             MasterAudio.PlaySound("BtnClick");
             isOption = false;
-            pauseFirstSelectedButton.Select();
+            pauseOptionButton.Select();
         }
         optionUI.SetActive(isOption);
     }

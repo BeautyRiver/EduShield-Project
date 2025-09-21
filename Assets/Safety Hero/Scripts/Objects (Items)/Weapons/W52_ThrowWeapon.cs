@@ -16,7 +16,7 @@ public class W52_ThrowWeapon : Weapon
         for (int i = 0; i < count; i++)
         {
             Vector3 dir = new Vector3(playerMove.lastInputVec.x, playerMove.lastInputVec.y, 0).normalized;
-            Transform bullet = GameManager.instance.poolManager.Get(PoolType.Bullet, prefabId).transform; // Bullet52 가져오기
+            Transform bullet = poolManager.Get(bulletPrefab).transform; // Bullet52 가져오기
             bullet.parent = transform;
             Vector3 spreadOffset = Vector3.zero;
 

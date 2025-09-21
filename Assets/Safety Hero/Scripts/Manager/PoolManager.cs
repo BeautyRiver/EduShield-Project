@@ -1,117 +1,88 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Pool, PoolType enum은 기존과 동일
 public enum PoolType
 {
-    Bullet,
-    Enemy, 
-    EnemyBullet, 
-    Drop,
-    Item, 
-    Effect, 
-    Text,
-}  // 풀 타입 enum
+    Bullet, Enemy, EnemyBullet, Drop, Item, Effect, Text,
+}
 
 [System.Serializable]
 public class Pool
 {
-    public PoolType poolType;
+    public PoolType poolType; // 정리용으로 남겨두지만, 실제 로직에선 사용 안 함
     public GameObject[] prefabs;
 }
 
 public class PoolManager : MonoBehaviour
 {
+    public static PoolManager instance;
+
     public Pool[] pools;
 
-    private Dictionary<(PoolType, int), List<GameObject>> poolDictionary;
+    public SerializableDictionary<GameObject, List<GameObject>> poolDictionary;
+    // Dictionary의 키를 GameObject(프리팹)으로 직접 사용
+    //private Dictionary<GameObject, List<GameObject>> poolDictionary;
 
     private void Awake()
     {
-        poolDictionary = new Dictionary<(PoolType, int), List<GameObject>>();
+        if (instance == null)        
+            instance = this;
+        
+        else
+            Destroy(this.gameObject);
 
-        // 각 풀 초기화
+        poolDictionary = new SerializableDictionary<GameObject, List<GameObject>>();
+
+        // 등록된 모든 프리팹을 Dictionary의 키로 초기화
         foreach (Pool pool in pools)
         {
-            for (int i = 0; i < pool.prefabs.Length; i++)
+            foreach (GameObject prefab in pool.prefabs)
             {
-                var poolKey = (pool.poolType, i);
-
-                if (!poolDictionary.ContainsKey(poolKey))
+                if (!poolDictionary.ContainsKey(prefab))
                 {
-                    poolDictionary[poolKey] = new List<GameObject>();
+                    poolDictionary[prefab] = new List<GameObject>();
+                }
+                else
+                {
+                    Debug.LogWarning($"{prefab.name} 프리팹이 중복으로 등록되었습니다.");
                 }
             }
         }
     }
 
-    public GameObject Get(PoolType poolType, int index)
+    public GameObject Get(GameObject prefab)
     {
-        var poolKey = (poolType, index);
-
-        if (!poolDictionary.ContainsKey(poolKey))
+        // 1. 요청된 프리팹이 풀에 등록되어 있는지 확인
+        if (!poolDictionary.ContainsKey(prefab))
         {
-            Debug.LogWarning($"Pool {poolType} with index {index} not found!");
+            Debug.LogWarning($"Pool for prefab '{prefab.name}' not found!");
             return null;
         }
 
-        List<GameObject> selectedPool = poolDictionary[poolKey];
-        GameObject[] selectedPrefabs = Array.Find(pools, p => p.poolType == poolType)?.prefabs;
-
-        if (selectedPrefabs == null || index >= selectedPrefabs.Length) return null;
-
+        // 2. 해당 프리팹의 인스턴스 리스트(풀)를 가져옴
+        List<GameObject> selectedPool = poolDictionary[prefab];
         GameObject select = null;
 
-        // 비활성화된 게임 오브젝트 탐색
+        // 3. 풀 안에서 비활성화된 오브젝트를 찾는다
         foreach (GameObject item in selectedPool)
         {
             if (!item.activeSelf)
             {
                 select = item;
-                select.SetActive(true);
                 break;
             }
         }
 
-        // 새로 생성하여 풀에 추가
+        // 4. 쓸 수 있는 오브젝트가 없으면 새로 생성
         if (select == null)
-        {
-            select = Instantiate(selectedPrefabs[index], transform);
+        {                        
+            select = Instantiate(prefab, transform);
             selectedPool.Add(select);
-            select.SetActive(true);
         }
 
+        Debug.Log("Pooled: " +  select.name);
+        select.SetActive(true);
         return select;
     }
-
-    public GameObject GetByPrefab(PoolType poolType, GameObject prefab)
-    {
-        if (prefab == null)
-        {
-            Debug.LogWarning("GetByPrefab - 전달된 prefab이 null입니다.");
-            return null;
-        }
-
-        // 풀 타입에 해당하는 Pool 찾기
-        Pool targetPool = Array.Find(pools, p => p.poolType == poolType);
-        if (targetPool == null)
-        {
-            Debug.LogWarning($"PoolManager - 해당 PoolType({poolType})을 찾을 수 없습니다.");
-            return null;
-        }
-
-        // targetPool.prefabs 배열에서 prefab의 인덱스 찾기
-        int prefabIndex = Array.IndexOf(targetPool.prefabs, prefab);
-        if (prefabIndex == -1)
-        {
-            Debug.LogWarning(
-                $"PoolManager - PoolType({poolType})에 등록되지 않은 prefab({prefab.name})입니다."
-            );
-            return null;
-        }
-
-        // 찾은 인덱스로 기존 Get() 메서드 호출
-        return Get(poolType, prefabIndex);
-    }
 }
-

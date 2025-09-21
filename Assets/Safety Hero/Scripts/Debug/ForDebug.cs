@@ -10,7 +10,7 @@ public class ForDebug : MonoBehaviour
     public GameObject sampleItem;
     public Sprite[] uiPanelImages;
     public ItemSetting[] items;
-    public DataGuide[] itemData;
+    public ItemDataGuide[] itemData;
 
     public TextMeshProUGUI debugText;
     private bool isInvinsible;

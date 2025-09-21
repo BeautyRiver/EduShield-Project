@@ -13,6 +13,7 @@ TagManager:
   - MiniBossEnemy
   - StageImages
   - Option
+  - Item
   layers:
   - Default
   - TransparentFX
