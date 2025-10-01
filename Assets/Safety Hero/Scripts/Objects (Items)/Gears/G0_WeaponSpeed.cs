@@ -13,13 +13,7 @@ public class G0_WeaponSpeed : Gear
     // 이동속도 증가 기어
     protected override void ApplyGearToWeapon(Weapon weapon)
     {
-        weapon.weaponAttackSpeed = weapon.data.baseWeaponAttackSpeed / gm.playerData.attackSpeedMult;
-        weapon.weaponDuration = weapon.data.baseWeaponDuration * gm.playerData.attackSpeedMult;
-        weapon.damageInterval = weapon.data.baseDamageInterval / gm.playerData.attackSpeedMult;
-        weapon.bulletDelay = weapon.data.baseDelay / gm.playerData.attackSpeedMult;
-        weapon.rotationSpeed = weapon.data.baseRotationSpeed * gm.playerData.attackSpeedMult;
-
-   
+        weapon.RecalculateStats();
         Debug.Log($"{name}현재 배율: {gm.playerData.attackSpeedMult}배");
     }
 }

@@ -13,8 +13,7 @@ public class G3_Range : Gear
     // 범위 증가 기어
     protected override void ApplyGearToWeapon(Weapon weapon)
     {
-        weapon.bulletSize = weapon.data.baseScale * gm.playerData.attackRangeMult;
-        weapon.attackRange = weapon.data.baseRange * gm.playerData.attackRangeMult;
+        weapon.RecalculateStats();
 
         if (weapon is IBatchable batchableWeapon)
         {

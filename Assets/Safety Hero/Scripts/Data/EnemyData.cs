@@ -10,7 +10,6 @@ public class EnemyData : ScriptableObject
     public float damage;
     public int exp;
     public RuntimeAnimatorController animCon; // 애니메이터도 데이터에 포함
-    public AnimatorOverrideController overrideCon; // Test
     // --- 여기부터 추가 ---
     [Header("# 사용할 프리팹")]
     public GameObject enemyPrefab; 

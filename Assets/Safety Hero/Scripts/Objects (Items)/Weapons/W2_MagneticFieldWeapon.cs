@@ -19,7 +19,7 @@ public class W2_MagneticFieldWeapon : Weapon, IBatchable
             Transform bullet;
             if (transform.childCount <= 0)
             {
-                bullet = poolManager.Get(bulletPrefab).transform; // Bullet2 가져오기
+                bullet = poolManager.Get(currentData.bulletPrefab).transform; // Bullet2 가져오기
                 bullet.parent = transform; // 부모 설정
                 bullet.localPosition = Vector3.zero; // 로컬 위치 초기화
                 bullet.localRotation = Quaternion.identity; // 로컬 회전 초기화
@@ -37,7 +37,7 @@ public class W2_MagneticFieldWeapon : Weapon, IBatchable
     public void Batch()
     {
         Transform bullet = transform.GetChild(0);
-        bullet.DOScale(bulletSize, 0.5f).SetEase(Ease.OutBack);
+        bullet.DOScale(finalStats.bulletSize, 0.5f).SetEase(Ease.OutBack);
     }
 
 }

@@ -13,22 +13,22 @@ public class W52_ThrowWeapon : Weapon
     // 창
     private IEnumerator R52_Bullet()
     {
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < finalStats.count; i++)
         {
             Vector3 dir = new Vector3(playerMove.lastInputVec.x, playerMove.lastInputVec.y, 0).normalized;
-            Transform bullet = poolManager.Get(bulletPrefab).transform; // Bullet52 가져오기
+            Transform bullet = poolManager.Get(currentData.bulletPrefab).transform; // Bullet52 가져오기
             bullet.parent = transform;
             Vector3 spreadOffset = Vector3.zero;
 
             float random = Random.Range(-4, 5) * 0.05f;
             // 발사 방향에 따라 발사체 간격을 조절 (오른쪽/왼쪽, 위쪽/아래쪽 모두 지원)
-            spreadOffset = Vector3.Cross(dir, Vector3.forward) * ((i - (count / 2)) * random);
+            spreadOffset = Vector3.Cross(dir, Vector3.forward) * ((i - (finalStats.count / 2)) * random);
 
 
             // 발사체의 시작 위치를 조정
             Vector3 startPosition = transform.position + spreadOffset;
 
-            bullet.localScale = bulletSize;
+            bullet.localScale = finalStats.bulletSize;
             bullet.position = startPosition;
             //bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);  // 발사 방향에 맞게 회전 설정
             bullet.rotation = Quaternion.Euler(new Vector3(bullet.transform.eulerAngles.x, bullet.transform.eulerAngles.y, Random.Range(0, 360f)));
@@ -40,7 +40,7 @@ public class W52_ThrowWeapon : Weapon
             MasterAudio.PlaySound("R52_Throw");
 
             // 발사 후 약간의 딜레이 추가
-            yield return new WaitForSeconds(bulletDelay);  // 총알 사이의 딜레이 설정 (0.1초)
+            yield return new WaitForSeconds(finalStats.bulletDelay);  // 총알 사이의 딜레이 설정 (0.1초)
         }
         isAttacking = false;
     }

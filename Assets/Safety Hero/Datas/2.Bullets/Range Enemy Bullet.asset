@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d1bd397b1903a34ba35468b05a5746b, type: 3}
-  m_Name: Enemy Bullet Gun
+  m_Name: Range Enemy Bullet
   m_EditorClassIdentifier: 
   itemId: 50
   itemName: "\uC218\uD638\uC758 \uCD1D"
@@ -27,8 +27,8 @@ MonoBehaviour:
   baseCount: 5
   basePer: 0
   baseDelay: 0.15
-  baseBulletSpeed: 5
-  baseAttackSpeed: 3
+  baseBulletMoveSpeed: 15
+  baseWeaponAttackSpeed: 0
   baseWeaponDuration: 0
   baseRange: 1
   baseRotationSpeed: 0
@@ -37,5 +37,5 @@ MonoBehaviour:
   counts: 
   pers: 
   sizes: 
-  prefab: {fileID: 8887909641685150018, guid: 9220c9ef59eb40a4d944c0446be23f90, type: 3}
+  bulletPrefab: {fileID: 8887909641685150018, guid: 9220c9ef59eb40a4d944c0446be23f90, type: 3}
   weaponType: {fileID: 6670291896573575422, guid: 855a93598336db44aaf4ccd032078f62, type: 3}

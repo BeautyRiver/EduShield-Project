@@ -10,15 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 555965a55e2134e459e68c7467b811c9, type: 3}
-  m_Name: DefalutEnemySpawnData
+  m_Name: Stage1_1
   m_EditorClassIdentifier: 
   id: 1000
   health: 1
   speed: 2
   damage: 1
   exp: 1
-  animCon: {fileID: 22100000, guid: 8d1d920724ffb8a409ce0e458dc4b7a9, type: 2}
-  overrideCon: {fileID: 0}
+  animCon: {fileID: 9100000, guid: f2855d618fc8d9c499189d3f39b9cbbc, type: 2}
   enemyPrefab: {fileID: 6506317341284564746, guid: 1cda2a9794b8f9747871322b3030b36e, type: 3}
   hitEffectPrefab: {fileID: 6872993322809228717, guid: 42456b88dbef5a64d924d0dc1386db96, type: 3}
   damageTextPrefab: {fileID: 8898011092013875072, guid: 701704af8681d4c4fb1ef2cdd529249a, type: 3}

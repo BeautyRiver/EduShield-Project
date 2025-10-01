@@ -99,29 +99,29 @@ public class RangeEnemy : Enemy, IRepositionable, IKnockBackable, IMovable, IAtt
 
     // 공격
     public void Attack()
-    {        
-        //Transform bullet = GameManager.instance.poolManager.Get(PoolType.EnemyBullet,0).transform;
-        //bullet.parent = transform;
+    {
+        Transform bullet = PoolManager.instance.Get(bulletData.bulletPrefab).transform;
+        bullet.parent = transform;
 
-        //targetPos = targetRb.position;
-        //dir = (targetPos - transform.position).normalized;
+        targetPos = targetRb.position;
+        dir = (targetPos - transform.position).normalized;
 
-        //bullet.position = transform.position;
-        //bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
+        bullet.position = transform.position;
+        bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
 
-        //// 불렛 초기화
-        //bullet.GetComponent<Bullet>().Init(
-        //              dir,
-        //              this.tag,
-        //              bulletData.basePer,
-        //              bulletData.baseDamage,
-        //              bulletData.baseBulletMoveSpeed,
-        //              bulletData.baseKnockback,
-        //              bulletData.baseDamageInterval
-        //          );
+        // 불렛 초기화
+        bullet.GetComponent<Bullet>().Init(
+                      dir,
+                      this.tag,
+                      bulletData.basePer,
+                      bulletData.baseDamage,
+                      bulletData.baseBulletMoveSpeed,
+                      bulletData.baseKnockback,
+                      bulletData.baseDamageInterval
+                  );
 
-        //// 발사 사운드
-        //MasterAudio.PlaySound("R50_TargetGun");
+        // 발사 사운드
+        MasterAudio.PlaySound("R50_TargetGun");
     }
 
     public IEnumerator AttackRoutine()
