@@ -20,7 +20,7 @@ public class W51_CannonWeapon : Weapon
             // isReverse 플래그에 따라 발사 방향 결정 (true면 정방향, false면 반대 방향)
             Vector3 dir = isReverse ? playerMove.lastInputVec.normalized : -playerMove.lastInputVec.normalized;
 
-            Transform bullet = poolManager.Get(currentData.bulletPrefab).transform;
+            Transform bullet = poolManager.Get(currentBulletData.bulletPrefab).transform;
             bullet.parent = transform;
             Vector3 spreadOffset = Vector3.zero;
 

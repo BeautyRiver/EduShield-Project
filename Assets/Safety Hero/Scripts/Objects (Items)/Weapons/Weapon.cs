@@ -10,7 +10,7 @@ public abstract class Weapon : MonoBehaviour
     public int level = 0;        // 현재 레벨
 
     [Header("# Live Stats (Read Only)")]
-    [SerializeField] protected BulletData currentData;
+    [SerializeField] protected BulletData currentBulletData;
     public WeaponStats finalStats;
 
     [Header("공격 쿨타임/타이머")]
@@ -56,7 +56,7 @@ public abstract class Weapon : MonoBehaviour
         // # 공통 초기화 로직        
         // # 기본 속성 세팅
 
-        currentData = Instantiate(originalData);   // 값 복사
+        currentBulletData = Instantiate(originalData);   // 값 복사
         finalStats = new WeaponStats();
         RecalculateStats();                        // 최종 스탯 계산
         level = 1;
@@ -93,27 +93,27 @@ public abstract class Weapon : MonoBehaviour
 
     public void RecalculateStats()
     {
-        if (currentData == null || playerStatMultipliers == null) return;
+        if (currentBulletData == null || playerStatMultipliers == null) return;
 
         // '현재 기본 스탯(currentData)'과 '플레이어 배율'을 곱해서 '최종 스탯(finalStats)'을 계산
-        finalStats.damage = currentData.baseDamage * playerStatMultipliers.damageMult;
-        finalStats.attackRange = currentData.baseRange * playerStatMultipliers.attackRangeMult;
-        finalStats.bulletSize = currentData.baseScale * playerStatMultipliers.attackRangeMult;
+        finalStats.damage = currentBulletData.baseDamage * playerStatMultipliers.damageMult;
+        finalStats.attackRange = currentBulletData.baseRange * playerStatMultipliers.attackRangeMult;
+        finalStats.bulletSize = currentBulletData.baseScale * playerStatMultipliers.attackRangeMult;
 
         // 공격속도 관련 (배율이 높을수록 수치가 작아져야 함 -> 나누기)
-        finalStats.weaponAttackSpeed = currentData.baseWeaponAttackSpeed / playerStatMultipliers.attackSpeedMult;
-        finalStats.damageInterval = currentData.baseDamageInterval / playerStatMultipliers.attackSpeedMult;
-        finalStats.bulletDelay = currentData.baseDelay / playerStatMultipliers.attackSpeedMult;
+        finalStats.weaponAttackSpeed = currentBulletData.baseWeaponAttackSpeed / playerStatMultipliers.attackSpeedMult;
+        finalStats.damageInterval = currentBulletData.baseDamageInterval / playerStatMultipliers.attackSpeedMult;
+        finalStats.bulletDelay = currentBulletData.baseDelay / playerStatMultipliers.attackSpeedMult;
 
         // 공격속도와 정비례하는 값들 (배율이 높을수록 수치가 커져야 함 -> 곱하기)
-        finalStats.rotationSpeed = currentData.baseRotationSpeed * playerStatMultipliers.attackSpeedMult;
-        finalStats.weaponDuration = currentData.baseWeaponDuration * playerStatMultipliers.attackSpeedMult;
+        finalStats.rotationSpeed = currentBulletData.baseRotationSpeed * playerStatMultipliers.attackSpeedMult;
+        finalStats.weaponDuration = currentBulletData.baseWeaponDuration * playerStatMultipliers.attackSpeedMult;
 
         // 배율의 영향을 받지 않는 값들은 그냥 복사
-        finalStats.count = currentData.baseCount;
-        finalStats.per = currentData.basePer;
-        finalStats.bulletMoveSpeed = currentData.baseBulletMoveSpeed;
-        finalStats.knockBackAmout = currentData.baseKnockback;
+        finalStats.count = currentBulletData.baseCount;
+        finalStats.per = currentBulletData.basePer;
+        finalStats.bulletMoveSpeed = currentBulletData.baseBulletMoveSpeed;
+        finalStats.knockBackAmout = currentBulletData.baseKnockback;
     }
 
     public virtual void WeaponLevelUp(float rate, int rateIndex, int currentLevel)
@@ -123,18 +123,18 @@ public abstract class Weapon : MonoBehaviour
         switch (rateIndex)
         {
             case 0: // 데미지 증가
-                currentData.baseDamage += rate;
+                currentBulletData.baseDamage += rate;
                 break;
             case 1: // 개수 증가
-                currentData.baseCount += (int)rate;
+                currentBulletData.baseCount += (int)rate;
                 batchable?.Batch(); // 개수가 바뀌었으니 재배치
                 break;
             case 2: // 관통력 증가
-                currentData.basePer += (int)rate;
+                currentBulletData.basePer += (int)rate;
                 break;
             case 3: // 크기/범위 증가
-                currentData.baseScale += (currentData.baseScale * rate * 0.01f);
-                currentData.baseRange += (currentData.baseRange * rate * 0.01f);
+                currentBulletData.baseScale += (currentBulletData.baseScale * rate * 0.01f);
+                currentBulletData.baseRange += (currentBulletData.baseRange * rate * 0.01f);
                 batchable?.Batch(); // 크기가 바뀌었으니 재배치
                 break;
         }

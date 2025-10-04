@@ -22,7 +22,7 @@ public class W50_TargetGunWeapon : Weapon
             Vector3 dir = (targetPos - transform.position).normalized;
 
             // 총알 발사
-            Transform bullet = poolManager.Get(currentData.bulletPrefab).transform;
+            Transform bullet = poolManager.Get(currentBulletData.bulletPrefab).transform;
             bullet.parent = transform;
 
             bullet.localScale = finalStats.bulletSize;

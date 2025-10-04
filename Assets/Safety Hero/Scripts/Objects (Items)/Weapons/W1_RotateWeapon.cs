@@ -50,7 +50,7 @@ public class W1_RotateWeapon : Weapon, IBatchable, IRotatingable
             }
             else
             {
-                bullet = poolManager.Get(currentData.bulletPrefab).transform; // Bullet1 가져오기
+                bullet = poolManager.Get(currentBulletData.bulletPrefab).transform; // Bullet1 가져오기
                 bullet.parent = transform; // 부모 설정
             }
 

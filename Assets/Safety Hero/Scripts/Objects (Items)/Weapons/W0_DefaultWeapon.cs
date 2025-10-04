@@ -21,7 +21,7 @@ public class W0_DefaultWeapon : Weapon
             Vector3 dir = new Vector3(currentFireDirX, 0, 0);
 
             // 새로운 발사체 생성
-            Transform bullet = poolManager.Get(currentData.bulletPrefab).transform; //Bullet0 가져오기
+            Transform bullet = poolManager.Get(currentBulletData.bulletPrefab).transform; //Bullet0 가져오기
             bullet.parent = transform;
 
             // 무기 위치 + 플레이어가 바라보는 방향으로 xRange만큼 오프셋 + 여러 발일 경우 수직 오프셋

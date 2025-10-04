@@ -18,3 +18,4 @@ MonoBehaviour:
   attackSpeedMult: 1
   attackRangeMult: 1
   speedMult: 1
+  animCon: {fileID: 9100000, guid: ac75cee4ef94f034eabc7261945a4b55, type: 2}

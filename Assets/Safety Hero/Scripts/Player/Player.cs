@@ -20,7 +20,7 @@ public class Player : MonoBehaviour, IDamageable
     public TargetScanner scanner; // 적 탐색기        
 
     [Header("# 애니메이션")]
-    [SerializeField] private List<PlayerAnimatorControll> animCon; // 플레이어 애니메이터 컨트롤러
+    [SerializeField] private RuntimeAnimatorController animCon; // 플레이어 애니메이터 컨트롤러
     [SerializeField] private GameObject playerEffect;
 
     [Header("# 피격 관리")]
@@ -44,6 +44,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Awake()
     {
+        gm = GameManager.instance;
         InitializeComponents();
     }
 
@@ -58,11 +59,6 @@ public class Player : MonoBehaviour, IDamageable
         normalColor = spriter.color;
         hitingTime = new WaitForSeconds(0.2f);
     }
-
-    private void Start()
-    {
-        gm = GameManager.instance;              
-    }   
 
     // 물리 충돌 일어날 때
     private void OnCollisionStay2D(Collision2D collision)
@@ -118,12 +114,26 @@ public class Player : MonoBehaviour, IDamageable
 
 
     // 플레이어 초기화
-    public void PlayerInit(int playerId)
+    public void PlayerInit(PlayerData playerData)
     {
-        this.playerId = playerId; // 플레이어 ID 설정
-        health = maxHealth * gm.playerData.maxHpMult; // 플레이어 체력 세팅 
-        playerMove.InitPlayerMoveOption(); // 플레이어 이동 옵션 초기화
-        anim.runtimeAnimatorController = animCon[playerId].runAniCon[0];
+        this.playerId = playerData.characterId; // 플레이어 ID 설정
+        RecalculateStats();
+        anim.runtimeAnimatorController = playerData.animCon;
+    }
+
+    public void RecalculateStats()
+    {
+        // 체력
+        float oldMaxHealth = maxHealth;
+        maxHealth = 100 * gm.playerData.maxHpMult; // 100은 기본체력
+        if (maxHealth > oldMaxHealth) // 최대 체력이 증가했다면
+        {
+            health += maxHealth - oldMaxHealth; // 그만큼 체력 회복도 시켜주고..
+        }
+        health = Mathf.Min(health, maxHealth);
+
+        // 이동 속도
+        playerMove.RecalculateSpeed();
     }
 
     public void PlayerDead()

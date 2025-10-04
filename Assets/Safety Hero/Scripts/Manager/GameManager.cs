@@ -51,15 +51,16 @@ public class GameManager : MonoBehaviour
         instance = this;
         selectStageIdx = -1;
         StartCoroutine(RandomStageIndex());
+
+        // 원본 훼손 안시키기 위함 (데이터 복사)
+        if (playerData == null)
+            playerData = Instantiate(orignalPlayerData);
+
     }
 
     private void Start()
     {
-        // 원본 훼손 안시키기 위함 (데이터 복사)
-        if (playerData == null)
-            playerData = Instantiate(orignalPlayerData);
-        
-        GameStart(playerData.characterId);
+        GameStart();
         //StartCoroutine(AIMsgShowAndHide());
     }
 
@@ -116,14 +117,14 @@ public class GameManager : MonoBehaviour
         yield break; // 코루틴을 바로 종료
     }
     // 게임 시작 설정
-    public void GameStart(int playerId)
+    public void GameStart()
     {
         Resume();
 
         // BGM,SFX 설정
         SetupAudio();
 
-        player.PlayerInit(playerId); // 플레이어 초기화
+        player.PlayerInit(playerData); // 플레이어 초기화
         player.gameObject.SetActive(true);
         isGamestart = true;
         // 플레이어 기본 무기 부여

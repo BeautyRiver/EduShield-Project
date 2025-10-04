@@ -4189,7 +4189,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 12.299988, y: -52.100006}
+  m_AnchoredPosition: {x: 12.300049, y: -52.099976}
   m_SizeDelta: {x: 325.2, y: 42.2}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &267527886
@@ -34234,7 +34234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ownerTag: 
   level: 0
-  currentData: {fileID: 0}
+  currentBulletData: {fileID: 0}
   finalStats:
     damage: 0
     count: 0
@@ -34264,7 +34264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ownerTag: 
   level: 0
-  currentData: {fileID: 0}
+  currentBulletData: {fileID: 0}
   finalStats:
     damage: 0
     count: 0
@@ -34294,7 +34294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ownerTag: 
   level: 0
-  currentData: {fileID: 0}
+  currentBulletData: {fileID: 0}
   finalStats:
     damage: 0
     count: 0
@@ -34324,7 +34324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ownerTag: 
   level: 0
-  currentData: {fileID: 0}
+  currentBulletData: {fileID: 0}
   finalStats:
     damage: 0
     count: 0
@@ -34354,7 +34354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ownerTag: 
   level: 0
-  currentData: {fileID: 0}
+  currentBulletData: {fileID: 0}
   finalStats:
     damage: 0
     count: 0
@@ -34384,7 +34384,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ownerTag: 
   level: 0
-  currentData: {fileID: 0}
+  currentBulletData: {fileID: 0}
   finalStats:
     damage: 0
     count: 0
@@ -157868,7 +157868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ownerTag: 
   level: 0
-  currentData: {fileID: 0}
+  currentBulletData: {fileID: 0}
   finalStats:
     damage: 0
     count: 0

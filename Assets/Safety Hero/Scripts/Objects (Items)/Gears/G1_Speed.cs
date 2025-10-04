@@ -7,12 +7,7 @@ public class G1_Speed : Gear
     protected override void ApplyPlayerData()
     {
         gm.playerData.speedMult += rate;
-        PlayerSpeedUp();
-    }
-
-    protected void PlayerSpeedUp()
-    {
-        playerMove.currentSpeed = playerMove.baseSpeed * gm.playerData.speedMult;
+        gm.player.RecalculateStats();
         Debug.Log($"{name}현재 배율: {gm.playerData.speedMult}배");
     }
 

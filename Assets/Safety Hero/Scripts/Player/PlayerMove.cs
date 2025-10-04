@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -58,6 +59,12 @@ public class PlayerMove : MonoBehaviour
         rigid.MovePosition(rigid.position + nextVec);
     }
 
+    // 속도 재계산
+    public void RecalculateSpeed()
+    {
+        currentSpeed = baseSpeed * GameManager.instance.playerData.speedMult;
+    }
+
     // 애니메이션 세팅
     private void SetAnimation()
     {
@@ -69,16 +76,12 @@ public class PlayerMove : MonoBehaviour
             spriter.flipX = inputVec.x < 0;
         }
     }
-
-    // 플레이어 이동 옵션 초기화
-    public void InitPlayerMoveOption()
-    {
-        baseSpeed = baseSpeed * GameManager.instance.playerData.speedMult; // 플레이어 기본 이동속도 적용
-        currentSpeed = baseSpeed;
-    }
+ 
        
     private void OnMove(InputValue value)
     {
         inputVec = value.Get<Vector2>();
     }
+
+
 }
