@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 
-public class Box : MonoBehaviour
+public class Box : MonoBehaviour, IDamageable
 {
     public float health;
     public float maxHealth;
@@ -28,34 +28,33 @@ public class Box : MonoBehaviour
         anim.SetBool("Dead", false);
         coll.enabled = true;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    public void DamagedLogic(Collider2D collision, float damage)
     {
-        if (collision.CompareTag("Bullet"))
-        {
-            health -= 1;
-            anim.SetTrigger("Hit"); // 맞는 애니메이션 재생                                    
-            MasterAudio.PlaySound("Hit"); // 사운드 재생
-
-            if (health <= 0) // 체력 0 이하 사망
-            {                 
-                GameObject itemPrefabToDrop = lootTable.GetRandomItem();
-
-                // 만약 뽑힌 아이템이 있다면, 생성한다.
-                if (itemPrefabToDrop != null)
-                {
-                    GameObject itemObj = poolManager.Get(itemPrefabToDrop);
-                    itemObj.transform.position = transform.position;
-                }
-
-                coll.enabled = false;
-                anim.SetBool("Dead", true);
-
-                if (GameManager.instance.isGameActive)
-                    MasterAudio.PlaySound("Dead");
-            }
-        }
-        else
+        if (collision.CompareTag("Enemy"))
             return;
+
+        health -= damage;
+        anim.SetTrigger("Hit"); // 맞는 애니메이션 재생                                    
+        MasterAudio.PlaySound("Hit"); // 사운드 재생
+
+        if (health <= 0) // 체력 0 이하 사망
+        {
+            GameObject itemPrefabToDrop = lootTable.GetRandomItem();
+
+            // 만약 뽑힌 아이템이 있다면, 생성한다.
+            if (itemPrefabToDrop != null)
+            {
+                GameObject itemObj = poolManager.Get(itemPrefabToDrop);
+                itemObj.transform.position = transform.position;
+            }
+
+            coll.enabled = false;
+            anim.SetBool("Dead", true);
+
+            if (GameManager.instance.isGameActive)
+                MasterAudio.PlaySound("Dead");
+        }
     }
 
     private void Dead()
@@ -63,8 +62,7 @@ public class Box : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-  
-
+    
 }
 
 

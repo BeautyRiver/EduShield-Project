@@ -17,6 +17,7 @@ MonoBehaviour:
     - 8c9cfa26abfee488c85f1582747f6a02
     - 27758ba6213884d4b8ee85cce072b6f5
     - 9cb6d5a023c53e94d9459b6ea1a41779
+    - 33f63c941e57e1a469cedbf8a5631e24
     values:
     - goDatas_byGlobalId:
         keys:
@@ -132,3 +133,6 @@ MonoBehaviour:
           iconNameOrGuid: AudioReverbZone Icon
         - colorIndex: 9
           iconNameOrGuid: 
+    - goDatas_byGlobalId:
+        keys: []
+        values: []

@@ -14,6 +14,8 @@ public class SpawnManager : MonoBehaviour
     public Transform[] spawnPoint; // 공용 스폰 위치 배열
 
     [Header("# 박스 소환")]
+    [SerializeField] private LayerMask collisionMask; // 충돌을 감지할 레이어 (필요에 맞게 설정)
+    [SerializeField] private LayerMask groundMask;
     [SerializeField] private GameObject boxPrefab;
     [SerializeField] private float boxTimer;
     [SerializeField] private Vector2 boxSpawnTime;
@@ -114,8 +116,7 @@ public class SpawnManager : MonoBehaviour
         Vector3 spawnPosition = Vector3.zero;
         bool isSafePosition = false; // 충돌 없는 안전한 위치인지 확인하는 변수
         float boxRadius = 0.5f; // 박스의 크기에 맞는 반지름으로 설정
-        LayerMask collisionMask = LayerMask.GetMask("GroundPhyscis"); // 충돌을 감지할 레이어 (필요에 맞게 설정)
-        LayerMask groundMask = LayerMask.GetMask("Ground");
+
         Transform parentTransform = transform;
 
         int loopNo = 0;
@@ -124,22 +125,22 @@ public class SpawnManager : MonoBehaviour
         {
             if (loopNo >= 1000)
             {
-                Debug.LogError("무한루프 방지 탈출");
+                Debug.LogError("안전한 박스 스폰 위치를 찾지 못했습니다. (무한루프 방지)");
                 return;
             }
             spawnPosition = spawnPoint[Random.Range(0, spawnPoint.Length)].position;
 
-            // 충돌 검사: 박스가 스폰될 위치에 다른 콜라이더가 있는지 확인 (OverlapCircle 사용)
-            if (Physics2D.OverlapCircle(spawnPosition, boxRadius, collisionMask) == null)
+            // 1. 해당 위치에 장애물이 있는가?
+            bool isObstacleFree = Physics2D.OverlapCircle(spawnPosition, boxRadius, collisionMask) == null;
+
+            // 2. 해당 위치에 땅이 있는가?
+            Collider2D groundCollider = Physics2D.OverlapCircle(spawnPosition, boxRadius, groundMask);
+
+            if (isObstacleFree && groundCollider != null)
             {
                 isSafePosition = true; // 충돌이 없으면 안전한 위치로 설정
-            }
-
-            if (isSafePosition)
-            {
                 parentTransform = Physics2D.OverlapCircle(spawnPosition, boxRadius, groundMask).transform;
-                //Debug.Log("부모 설정 완료 : " + parentTransform.name);
-            }
+            }            
             loopNo++;
         }
 

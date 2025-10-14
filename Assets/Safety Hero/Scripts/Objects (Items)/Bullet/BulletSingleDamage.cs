@@ -6,12 +6,13 @@ public class BulletSingleDamage : Bullet
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag(OwnerTag))
+        // 자기 총알에 안맞게
+        if (collision.CompareTag(this.OwnerTag))
             return;
 
         if (collision.TryGetComponent(out IDamageable damageAble))
         {
-            Debug.Log("BulletSingleDamage: OnTriggerEnter2D: DamagedLogic");
+            //Debug.Log("BulletSingleDamage: OnTriggerEnter2D: DamagedLogic");
             damageAble.DamagedLogic(bulletCol, Damage);
             PerDown();
         }

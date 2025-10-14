@@ -100,9 +100,9 @@ GameObject:
   - component: {fileID: 6003350366175678848}
   - component: {fileID: 1116250678127623608}
   - component: {fileID: 931448819760851720}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: Box Field
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -258,6 +258,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd7c7ca411b47404fb2cf56481e91f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2
-  maxHealth: 0
+  health: 0
+  maxHealth: 1
   lootTable: {fileID: 11400000, guid: 2211271294cd47140ac0d43e0429d51f, type: 2}

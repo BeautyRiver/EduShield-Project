@@ -33,8 +33,6 @@ public class GameManager : MonoBehaviour
     public int playerExp; // 현재 경험치
  
     [Foldout("# 참조")]
-    public AiManager ai;
-    public TypeControlManager typeControll;
     public UIManager UIManager;
     public LevelUp uiLevelUp;
     public Player player;
@@ -50,7 +48,6 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         selectStageIdx = -1;
-        StartCoroutine(RandomStageIndex());
 
         // 원본 훼손 안시키기 위함 (데이터 복사)
         if (playerData == null)
@@ -61,7 +58,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         GameStart();
-        //StartCoroutine(AIMsgShowAndHide());
     }
 
     private void Update()
@@ -78,15 +74,9 @@ public class GameManager : MonoBehaviour
         }      
     }
 
-
-    // Ai 메세지 띄어주기
-    public IEnumerator AIMsgShowAndHide()
+    // 게임 시작 설정
+    public void GameStart()
     {
-        yield return new WaitForSeconds(aiMsgShowTime[0]);
-
-        ai.AppearAiImage(selectStageIdx);
-
-        yield return new WaitForSeconds(aiMsgShowTime[1]);
         if (!isGamestart)
         {
             isGamestart = true;
@@ -94,31 +84,7 @@ public class GameManager : MonoBehaviour
             uiLevelUp.FirstGiveWeapon(playerData.characterId);
             spawner.gameObject.SetActive(true);
         }
-        yield return new WaitForSeconds(aiMsgShowTime[2]);
 
-        ai.HideAi();
-    }
-    public IEnumerator RandomStageIndex()
-    {
-        List<int> availableIndices = new List<int>();
-
-        // 현재 선택된 스테이지 인덱스를 제외하고 가능한 인덱스를 추가
-        for (int i = 0; i < ai.alertMessages.Length; i++)
-        {
-            if (i != selectStageIdx)
-            {
-                availableIndices.Add(i);
-            }
-        }
-
-        // 가능한 인덱스들 중 하나를 랜덤으로 선택
-        selectStageIdx = availableIndices[Random.Range(0, availableIndices.Count)];
-
-        yield break; // 코루틴을 바로 종료
-    }
-    // 게임 시작 설정
-    public void GameStart()
-    {
         Resume();
 
         // BGM,SFX 설정

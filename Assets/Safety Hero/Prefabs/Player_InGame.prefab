@@ -200,8 +200,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8836559340682755713}
   - {fileID: 2533733892080226095}
@@ -365,17 +365,8 @@ MonoBehaviour:
   health: 0
   maxHealth: 100
   scanner: {fileID: 0}
-  animCon:
-  - runAniCon:
-    - {fileID: 9100000, guid: ac75cee4ef94f034eabc7261945a4b55, type: 2}
-    - {fileID: 22100000, guid: 404433f6fd0ec0b4c83315a7f7b77c6a, type: 2}
-    - {fileID: 22100000, guid: 0263d443671267a47b91212e368fda59, type: 2}
-    - {fileID: 22100000, guid: 3ca8aa41599d24b48a43ccba712e456d, type: 2}
-    - {fileID: 22100000, guid: a8d899dfeb54bfb46b84c3ddbc63c299, type: 2}
-  - runAniCon:
-    - {fileID: 22100000, guid: 5be7e0452f6c54a40a7f8a9ff3b07198, type: 2}
-  playerEffect: {fileID: 0}
   hitColor: {r: 1, g: 0, b: 0, a: 1}
+  playerEffect: {fileID: 3011094938955140163, guid: b8715c9706bd9e141972a23e424ed4e4, type: 3}
   playerMove: {fileID: 0}
 --- !u!114 &8547723389918092373
 MonoBehaviour:
@@ -409,7 +400,7 @@ MonoBehaviour:
   scanRange: 5
   targetLayer:
     serializedVersion: 2
-    m_Bits: 4672
+    m_Bits: 12864
   nearestTarget: {fileID: 0}
 --- !u!114 &9036986273358432238
 MonoBehaviour:

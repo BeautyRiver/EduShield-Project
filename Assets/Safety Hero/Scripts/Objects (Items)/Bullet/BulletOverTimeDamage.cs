@@ -14,7 +14,7 @@ public class BulletOverTimeDamage : Bullet
 
         if (collision.TryGetComponent(out IDamageable damageAble))
         {
-            Debug.Log("BulletOverTimeDamage: OnTriggerStay2D: DamagedLogic");
+            //Debug.Log("BulletOverTimeDamage: OnTriggerStay2D: DamagedLogic");
             int enemyId = collision.GetInstanceID();
 
             if (!damageTimers.ContainsKey(enemyId))

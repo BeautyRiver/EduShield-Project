@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "616479359633",
+    "project_id": "safetyherodb",
+    "storage_bucket": "safetyherodb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:616479359633:android:0d9cf7cacd76042ed1b530",
+        "android_client_info": {
+          "package_name": "com.EduShield.SafetyHero"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "616479359633-pr3jrqleopgnj723fm9idtjkkb90hiet.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDW8_cV-_Qr6VUzGYvwARL6STjjNao7Y1k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "616479359633-pr3jrqleopgnj723fm9idtjkkb90hiet.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:616479359633:android:7726f841323b5564d1b530",
+        "android_client_info": {
+          "package_name": "com.company.EduShield"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "616479359633-pr3jrqleopgnj723fm9idtjkkb90hiet.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDW8_cV-_Qr6VUzGYvwARL6STjjNao7Y1k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "616479359633-pr3jrqleopgnj723fm9idtjkkb90hiet.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

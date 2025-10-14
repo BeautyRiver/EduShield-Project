@@ -81,7 +81,7 @@ public class PoolManager : MonoBehaviour
             selectedPool.Add(select);
         }
 
-        Debug.Log("Pooled: " +  select.name);
+        //Debug.Log("Pooled: " +  select.name);
         select.SetActive(true);
         return select;
     }

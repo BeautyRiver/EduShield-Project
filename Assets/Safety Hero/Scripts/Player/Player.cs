@@ -19,13 +19,11 @@ public class Player : MonoBehaviour, IDamageable
     [Header("# 게임 오브젝트 참조")]
     public TargetScanner scanner; // 적 탐색기        
 
-    [Header("# 애니메이션")]
-    [SerializeField] private RuntimeAnimatorController animCon; // 플레이어 애니메이터 컨트롤러
-    [SerializeField] private GameObject playerEffect;
 
-    [Header("# 피격 관리")]
+    [Header("# 이펙트 관리")]
     [ColorUsage(true, true)]
     [SerializeField] private Color hitColor; // 피격 시 색상
+    [SerializeField] private GameObject playerEffect;
 
     private Color normalColor; // 기본 색상
 
@@ -89,19 +87,7 @@ public class Player : MonoBehaviour, IDamageable
             spriter.color = normalColor;
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Item"))
-        {
-            var item = collision.GetComponent<Item>();
-            item.Use(); // 아이템 고유의 효과를 실행
-            PlayerGenerateEffect(gm.player.transform); // 공통 효과 실행
-            gameObject.SetActive(false); // 아이템 비활성화 (공통)
-        }
-    }
-
-
+   
     // 피격 색상 변경 코루틴
     private IEnumerator HitColor()
     {
@@ -117,6 +103,7 @@ public class Player : MonoBehaviour, IDamageable
     public void PlayerInit(PlayerData playerData)
     {
         this.playerId = playerData.characterId; // 플레이어 ID 설정
+        health = maxHealth;
         RecalculateStats();
         anim.runtimeAnimatorController = playerData.animCon;
     }
@@ -161,13 +148,11 @@ public class Player : MonoBehaviour, IDamageable
     }
 
     // 이펙트 생성시키기
-    public void PlayerGenerateEffect(Transform parentTransform, Color? setColor = null)
+    public void PlayerGenerateEffect()
     {
         GameObject effect = PoolManager.instance.Get(playerEffect); // 플레이어 힐 이펙트
-        effect.transform.parent = parentTransform;
-        effect.transform.localPosition = Vector3.zero;
-        if (setColor != null)
-            effect.gameObject.GetComponent<SpriteRenderer>().color = setColor ?? Color.white;
+        effect.transform.parent = transform;
+        effect.transform.localPosition = Vector3.zero;        
     }
 
     [System.Serializable]

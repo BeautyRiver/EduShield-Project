@@ -23,7 +23,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4079511969882003425
 Transform:
   m_ObjectHideFlags: 0
@@ -219,18 +219,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   damage: 0
+  currentHealth: 0
   maxHealth: 0
-  health: 0
   speed: 0
   exp: 0
   isLive: 0
-  animCon:
-  - {fileID: 9100000, guid: 2a39bb5bd06593f4f9f3175ed88f267e, type: 2}
+  nextVec: {x: 0, y: 0}
+  animCon: {fileID: 0}
+  retreatDistance: 4
+  attackCooldown: 2
   bulletData: {fileID: 11400000, guid: 322f1377024f96742b1781f562ceb431, type: 2}
-  isAttacking: 0
-  isCoolTimeOn: 0
-  attackTimer: 0
-  variableSpeed: 0
+  currentState: 0
 --- !u!114 &8114481989535357400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,7 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e831ad12770eb5a40a49b0c42d0b8759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scanRange: 6.27
+  scanRange: 7
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
