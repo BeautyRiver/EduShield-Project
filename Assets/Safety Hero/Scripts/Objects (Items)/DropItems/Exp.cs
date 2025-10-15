@@ -9,10 +9,10 @@ public class Exp : MonoBehaviour
     [SerializeField] private Sprite[] expImages;
     [SerializeField] private SpriteRenderer SpriteRenderer;
 
-    [SerializeField] private bool isMoving = false;
     [SerializeField] private int expValue;
     [SerializeField] private float expMoveSpeed;
 
+    public bool IsMoving { get; set; }
     public int exp
     {
         get { return expValue; }
@@ -22,7 +22,7 @@ public class Exp : MonoBehaviour
                 expValue = value;
         }
     }
-    public bool IsMoving { get; set; }
+
 
     private void Awake()
     {
@@ -36,7 +36,7 @@ public class Exp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!GameManager.instance.isGameActive)
+        if (GameManager.instance.currentState != GameState.Playing)
             return;
 
         if (collision.CompareTag("Player"))
@@ -61,6 +61,9 @@ public class Exp : MonoBehaviour
 
     public void ItemMoveLogic(Transform playerPos)
     {
+        if (IsMoving)
+            return;
+
         IsMoving = true;
         // 플레이어와 반대 방향 계산
         Vector2 directionAwayFromPlayer = (transform.position - playerPos.position).normalized;

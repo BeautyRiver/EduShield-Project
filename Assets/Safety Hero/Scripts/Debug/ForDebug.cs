@@ -19,7 +19,7 @@ public class ForDebug : MonoBehaviour
     private void Update()
     {
 #if UNITY_EDITOR
-        if (!GameManager.instance.isGameActive)
+        if (GameManager.instance.currentState != GameState.Playing)
             return;
 
         if (Input.GetKeyDown(KeyCode.F1))
@@ -39,12 +39,12 @@ public class ForDebug : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F2))
         {
-            GameManager.instance.player.playerMove.currentSpeed += 1f;
+            GameManager.instance.player.playerMove.SetCurretSpeed(GameManager.instance.player.playerMove.currentSpeed + 1f);
             debugText.text = "스피드 증가 => " + GameManager.instance.player.playerMove.currentSpeed;
         }
         if (Input.GetKeyDown(KeyCode.F3))
         {
-            GameManager.instance.player.playerMove.currentSpeed -= 1f;
+            GameManager.instance.player.playerMove.SetCurretSpeed(GameManager.instance.player.playerMove.currentSpeed - 1f);
             debugText.text = "스피드 감소 => " + GameManager.instance.player.playerMove.currentSpeed;
         }
         if (Input.GetKeyDown(KeyCode.F4))

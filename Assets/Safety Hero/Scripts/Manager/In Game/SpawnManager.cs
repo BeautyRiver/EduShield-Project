@@ -19,15 +19,17 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameObject boxPrefab;
     [SerializeField] private float boxTimer;
     [SerializeField] private Vector2 boxSpawnTime;
+    private GameManager gm;
 
     private void Start()
     {
         InitializeSettings();
+        gm = GameManager.instance;
     }
 
     private void Update()
     {
-        if (!GameManager.instance.isGameActive) return;
+        if (gm.currentState != GameState.Playing) return;
 
         transform.position = GameManager.instance.player.transform.position;
 

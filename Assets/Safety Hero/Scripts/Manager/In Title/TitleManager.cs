@@ -49,17 +49,9 @@ public class TitleManager : MonoBehaviour
     // 게임 종료
     public void GameQuit()
     {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
-        Application.Quit();
+        FirebaseManager.Instance.Logout();
+        SceneManager.LoadScene("Login");
     }
 
-
-    /* public void SelectCharacter(PlayerData playerData)
-     {
-         DataManager.instance.currentPlayerData = playerData;
-         SceneManager.LoadScene(idx + 1);
-     }*/
 
 }

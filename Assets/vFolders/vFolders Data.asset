@@ -21,7 +21,7 @@ MonoBehaviour:
     - 0cd219ee981404a41b72331a0081eba4
     - 6ad13e64c7d8ba24e89c0c8cd9b11716
     - fda608ae97288734290eac5b5c529369
-    - 81b3cd47a2a43a84ba2441603a255dfe
+    - 39c09705a4301cf49b8b7c86a4c7266f
     values:
     - iconNameOrGuid: 
       colorIndex: 4
@@ -51,8 +51,8 @@ MonoBehaviour:
       colorIndex: 0
       isIconRecursive: 0
       isColorRecursive: 0
-    - iconNameOrGuid: AnimationClip Icon
-      colorIndex: 0
+    - iconNameOrGuid: 
+      colorIndex: 6
       isIconRecursive: 0
       isColorRecursive: 0
   bookmarks:
@@ -63,4 +63,3 @@ MonoBehaviour:
   - guid: 3078798dfe7411b4a86e30c4743c14b0
   - guid: 0cd219ee981404a41b72331a0081eba4
   - guid: 81b3cd47a2a43a84ba2441603a255dfe
-  - guid: c4c11b354061740479ea65b077f4fc5f

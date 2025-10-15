@@ -10,7 +10,7 @@ public class SelectionProtector : MonoBehaviour
     void Update()
     {
         // GameManager 확인 및 비활성 상태면 무시
-        if (GameManager.instance != null && GameManager.instance.isGameActive)
+        if (GameManager.instance != null && GameManager.instance.currentState == GameState.Playing)
         {            
             return;
         }

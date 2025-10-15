@@ -83,35 +83,75 @@ public class FirebaseManager : MonoBehaviour
     }
 
     // 5. 회원가입 및 로그인 함수 (async/await로 가독성 UP)
-    public async Task<bool> CreateAccount(string email, string password)
+    public async Task<string> CreateAccount(string email, string password)
     {
         try
         {
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                return "이메일과 비밀번호를 모두 입력해주세요.";
+            }
             await auth.CreateUserWithEmailAndPasswordAsync(email, password);
             Debug.Log("회원가입 성공!");
-            return true;
+            return null;
         }
-        catch (System.Exception e)
+        catch (FirebaseException e)
         {
-            Debug.LogError($"회원가입 실패: {e.Message}");
-            return false;
+            AuthError errorCAode = (AuthError)e.ErrorCode;
+            string message = "회원가입에 실패했습니다."; // Default
+
+            switch (errorCAode)
+            {
+                case AuthError.EmailAlreadyInUse:
+                    message = "이미 사용 중인 이메일입니다.";
+                    break;
+                case AuthError.InvalidEmail:
+                    message = "유효하지 않은 이메일 형식입니다.";
+                    break;
+                case AuthError.WeakPassword:
+                    message = "비밀번호는 6자리 이상이어야 합니다.";
+                    break;
+            }
+            Debug.LogError($"회원가입 실패: {message} (코드: {errorCAode}");
+            return message;
         }
     }
 
-    public async Task<bool> Login(string email, string password)
+    public async Task<string> Login(string email, string password)
     {
         try
         {
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                return "이메일과 비밀번호를 모두 입력해주세요.";
+            }
+
             await auth.SignInWithEmailAndPasswordAsync(email, password);
             Debug.Log("로그인 성공!");
-            return true;
+            return null; // 성공 시 null 반환
         }
-        catch (System.Exception e)
+        catch (FirebaseException e)
         {
-            Debug.LogError($"로그인 실패: {e.Message}");
-            return false;
+            AuthError errorCode = (AuthError)e.ErrorCode;
+            string message = "로그인에 실패했습니다.";
+
+            switch (errorCode)
+            {
+                case AuthError.WrongPassword:
+                    message = "비밀번호가 일치하지 않습니다.";
+                    break;
+                case AuthError.UserNotFound:
+                    message = "존재하지 않는 계정입니다.";
+                    break;
+                case AuthError.InvalidEmail:
+                    message = "유효하지 않은 이메일 형식입니다.";
+                    break;
+            }
+            Debug.LogError($"로그인 실패: {message} (코드: {errorCode})");
+            return message; // 구체적인 에러 메시지 반환
         }
     }
+
 
     public void Logout()
     {

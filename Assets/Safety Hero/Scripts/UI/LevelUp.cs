@@ -16,15 +16,16 @@ public class LevelUp : MonoBehaviour
     public float showLeveUpDuration;
     [SerializeField] private List<ItemSetting> items;
     public List<ItemSetting> availableItems;
+    private GameManager gm;
     private void Awake()
-    {
+    {     
         rect = GetComponent<RectTransform>();
         items = GetComponentsInChildren<ItemSetting>(true).ToList();
     }
 
     public void Show()
     {
-        GameManager.instance.isLevelUp = true; // 레벨업 중
+        GameManager.instance.ChangeState(GameState.LevelUp); // 레벨업 중
         gameObject.SetActive(true);
         uiManager.BlackWindowFadeIn(); // 검은 배경 On
         Next(); // 섞기
@@ -42,7 +43,7 @@ public class LevelUp : MonoBehaviour
     }
     public void Hide()
     {
-        GameManager.instance.Resume();
+        GameManager.instance.ChangeState(GameState.Playing); // 레벨업 완료
         MasterAudio.PlaySound("Select");
         uiManager.BlackWindowFadeOut(); // 검은 배경 Off
         Button[] buttons = transform.GetComponentsInChildren<Button>();
@@ -51,8 +52,6 @@ public class LevelUp : MonoBehaviour
             btn.interactable = false;
         }        
         gameObject.SetActive(false);
-
-        GameManager.instance.isLevelUp = false; // 레벨업 종료
 
         // 원래 BGM 볼륨으로 복구
         //MasterAudio.PlaylistMasterVolume = PlayerPrefs.GetFloat("BGM");

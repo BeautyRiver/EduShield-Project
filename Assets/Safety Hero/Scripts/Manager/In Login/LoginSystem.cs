@@ -14,9 +14,9 @@ public class LoginSystem : MonoBehaviour
         string e = email.text;
         string p = password.text;
 
-        bool success = await FirebaseManager.Instance.CreateAccount(e, p);
+        string errorMessage = await FirebaseManager.Instance.CreateAccount(e, p);
 
-        if (success)
+        if (string.IsNullOrEmpty(errorMessage))
         {
             Debug.Log("회원가입 성공! 로그인도 자동으로 완료되었습니다.");
             alert.color = Color.black;
@@ -25,9 +25,8 @@ public class LoginSystem : MonoBehaviour
         }
         else
         {
-            Debug.Log("회원가입에 실패했습니다. 이메일 형식을 확인하거나 다른 이메일을 사용하세요.");
             alert.color = Color.red;
-            alert.text = "회원가입에 실패했습니다.";
+            alert.text = errorMessage;
         }
     }
 
@@ -36,9 +35,9 @@ public class LoginSystem : MonoBehaviour
         string e = email.text;
         string p = password.text;
 
-        bool success = await FirebaseManager.Instance.Login(e, p);
+        string errorMessage = await FirebaseManager.Instance.CreateAccount(e, p);
 
-        if (success)
+        if (string.IsNullOrEmpty(errorMessage))
         {
             Debug.Log("로그인 성공!");
             alert.color = Color.black;
@@ -47,9 +46,8 @@ public class LoginSystem : MonoBehaviour
         }
         else
         {
-            Debug.Log("로그인에 실패했습니다. 이메일 또는 비밀번호를 확인하세요.");
             alert.color = Color.red;
-            alert.text = "로그인에 실패했습니다.";
+            alert.text = errorMessage;
         }
     }
 

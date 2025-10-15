@@ -10,23 +10,25 @@ public class PlayerMove : MonoBehaviour
     public Vector2 lastInputVec; // 마지막 입력 벡터
     
     [HideInInspector]public float lastInputX = 1f; // 마지막 수평 입력 (0이 아닌 값), 기본값 1(오른쪽)
-    public float baseSpeed = 6f;
-    public float currentSpeed = 3f; // 이동 속도
+    [field: SerializeField] public float baseSpeed { get; private set; }
+    [field: SerializeField] public float currentSpeed { get; private set; } // 이동 속도
 
     private Animator anim; // 애니메이터
     private SpriteRenderer spriter; // 스프라이트 렌더러
     private Rigidbody2D rigid; // 리지드바디
+    public bool canMove;
+
     private void Awake()
     {
-        anim = GetComponent<Animator>();
-        spriter = GetComponent<SpriteRenderer>();
+        anim = GetComponentInChildren<Animator>();
+        spriter = GetComponentInChildren<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
         lastInputVec = Vector2.right;
     }
 
     private void Update()
     {
-        if (!GameManager.instance.isGameActive)
+        if (!canMove)
             return;
         UpdateLastInputVector();
         SetAnimation();
@@ -34,9 +36,20 @@ public class PlayerMove : MonoBehaviour
    
     private void FixedUpdate()
     {
-        if (!GameManager.instance.isGameActive)
+        if (!canMove)
             return;
         Move();
+    }
+
+    public void SetCanMoveState(bool state)
+    {
+        canMove = state;
+    }
+
+    public void SetCurretSpeed(float speed)
+    {
+        currentSpeed = speed;
+        Debug.Log($"currentSpeed: {speed}");
     }
 
     // 입력 벡터 업데이트
@@ -57,12 +70,6 @@ public class PlayerMove : MonoBehaviour
     {
         Vector2 nextVec = inputVec.normalized * currentSpeed * Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position + nextVec);
-    }
-
-    // 속도 재계산
-    public void RecalculateSpeed()
-    {
-        currentSpeed = baseSpeed * GameManager.instance.playerData.speedMult;
     }
 
     // 애니메이션 세팅

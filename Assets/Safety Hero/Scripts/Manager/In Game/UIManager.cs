@@ -51,7 +51,7 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if (gm.isLevelUp)
+        if (gm.currentState == GameState.LevelUp)
             return;
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -73,7 +73,7 @@ public class UIManager : MonoBehaviour
             MasterAudio.PlaySound("BtnClick");
             BlackWindowFadeIn();
             isPause = true;            
-            gm.Stop();
+            gm.ChangeState(GameState.Paused);
             pauseFirstSelectedButton.Select();
             UpdatePlayerStatusText();
         }
@@ -82,7 +82,7 @@ public class UIManager : MonoBehaviour
             MasterAudio.PlaySound("BtnClick");
             BlackWindowFadeOut();
             isPause = false;
-            gm.Resume();
+            gm.ChangeState(GameState.Playing);
         }
         pauseUI.SetActive(isPause);
     }
@@ -135,7 +135,7 @@ public class UIManager : MonoBehaviour
     public void GoTitle()
     {
         MasterAudio.PlaylistsMuted = false; // 배경음악 On         
-        gm.Resume();
+        gm.ChangeState(GameState.Playing);
         LoadingSceneController.LoadScene("Title Scene");
     }    
 

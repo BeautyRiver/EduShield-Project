@@ -44,7 +44,7 @@ public class TrackingUniqueEnemy : Enemy, IMovable
         while (timer < trackingTime)
         {
             // 플레이어가 살아있을 때만 목표 방향을 계산
-            if (gm.player != null && gm.isGameActive)
+            if (gm.player != null && gm.currentState != GameState.Playing)
             {
                 // 목표 방향 (플레이어 방향) 계산
                 Vector2 targetDirection = (targetRb.position - rigid.position).normalized;

@@ -19,7 +19,7 @@ public abstract class Item : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             Use();
-            collision.gameObject.GetComponent<Player>().PlayerGenerateEffect();
+            collision.gameObject.GetComponent<PlayerInGame>().PlayerGenerateEffect();
             gameObject.SetActive(false);
         }
     }

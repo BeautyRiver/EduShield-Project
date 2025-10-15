@@ -18,7 +18,7 @@ public abstract class Weapon : MonoBehaviour
     public float speedTimer;
 
     [Header("참조")]
-    protected GameManager gameManager;
+    protected GameManager gm;
     protected PoolManager poolManager;
     protected PlayerMove playerMove;
     protected TargetScanner targetScanner;
@@ -26,16 +26,16 @@ public abstract class Weapon : MonoBehaviour
 
     protected virtual void Awake()
     {
-        gameManager = GameManager.instance;
+        gm = GameManager.instance;
         poolManager = PoolManager.instance;
-        playerMove = gameManager.player.playerMove;
-        targetScanner = gameManager.player.GetComponent<TargetScanner>();
-        playerStatMultipliers = gameManager.playerData;
+        playerMove = gm.player.playerMove;
+        targetScanner = gm.player.GetComponent<TargetScanner>();
+        playerStatMultipliers = gm.playerData;
     }
 
     protected virtual void Update()
     {
-        if (!gameManager.isGameActive || finalStats.weaponAttackSpeed < 0)
+        if (gm.currentState != GameState.Playing || finalStats.weaponAttackSpeed < 0)
             return;
 
         UpdateTimer();

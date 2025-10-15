@@ -52,7 +52,7 @@ public class Box : MonoBehaviour, IDamageable
             coll.enabled = false;
             anim.SetBool("Dead", true);
 
-            if (GameManager.instance.isGameActive)
+            if (GameManager.instance.currentState != GameState.Playing)
                 MasterAudio.PlaySound("Dead");
         }
     }

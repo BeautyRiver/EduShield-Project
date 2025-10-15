@@ -44,7 +44,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     protected virtual void FixedUpdate()
     {
-        if (!gm.isGameActive || !isLive)
+        if (gm.currentState != GameState.Playing || !isLive)
             return;
 
         rigid.linearVelocity = Vector2.zero;

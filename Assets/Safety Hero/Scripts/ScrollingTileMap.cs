@@ -8,7 +8,7 @@ public class ScrollingTileMap : MonoBehaviour
     [ExecuteInEditMode]
 
     private Collider2D coll;
-    private Player player;
+    private PlayerInGame player;
     public float tileMapSize = 40f; // 타일맵 이동 거리
     public float checkInterval = 0.5f; // 검사 간격 (초)
 
