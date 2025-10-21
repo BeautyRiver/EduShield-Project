@@ -24,6 +24,7 @@ MonoBehaviour:
     - 39c09705a4301cf49b8b7c86a4c7266f
     - 81b3cd47a2a43a84ba2441603a255dfe
     - 053d0db73b54d50489762c1220383d69
+    - b4555c22a00e83340b64676e0099352b
     values:
     - iconNameOrGuid: 
       colorIndex: 4
@@ -63,6 +64,10 @@ MonoBehaviour:
       isColorRecursive: 0
     - iconNameOrGuid: Font Icon
       colorIndex: 0
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: Cubemap Icon
+      colorIndex: 3
       isIconRecursive: 0
       isColorRecursive: 0
   bookmarks:
