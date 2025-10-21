@@ -18,6 +18,7 @@ MonoBehaviour:
     - 27758ba6213884d4b8ee85cce072b6f5
     - 9cb6d5a023c53e94d9459b6ea1a41779
     - 33f63c941e57e1a469cedbf8a5631e24
+    - 9d6c2601b746e884fa1dcf4ce69c163a
     values:
     - goDatas_byGlobalId:
         keys:
@@ -136,3 +137,42 @@ MonoBehaviour:
     - goDatas_byGlobalId:
         keys: []
         values: []
+    - goDatas_byGlobalId:
+        keys:
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-519420028-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-1548688661-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-2071362355-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-2072628776-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-5458217-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-1926147587-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-607214822-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-619394800-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-1556886365-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-1500370351-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-976826186-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-1651666725-0
+        values:
+        - colorIndex: 0
+          iconNameOrGuid: Camera Icon
+        - colorIndex: 0
+          iconNameOrGuid: Camera Icon
+        - colorIndex: 9
+          iconNameOrGuid: AvatarMask On Icon
+        - colorIndex: 0
+          iconNameOrGuid: AudioClip Icon
+        - colorIndex: 0
+          iconNameOrGuid: Canvas Icon
+        - colorIndex: 0
+          iconNameOrGuid: Settings Icon
+        - colorIndex: 0
+          iconNameOrGuid: Settings Icon
+        - colorIndex: 0
+          iconNameOrGuid: LightProbes Icon
+        - colorIndex: 4
+          iconNameOrGuid: 
+        - colorIndex: 4
+          iconNameOrGuid: 
+        - colorIndex: 0
+          iconNameOrGuid: Settings Icon
+        - colorIndex: 0
+          iconNameOrGuid: Settings Icon

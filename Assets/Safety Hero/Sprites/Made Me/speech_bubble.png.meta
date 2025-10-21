@@ -1,7 +1,19 @@
 fileFormatVersion: 2
-guid: bf729952b997ffe4b8a5210642a9943c
+guid: b72d39c2decdb7c4f8c25bdfafd2b97b
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 3704988796269433362
+    second: speech_bubble_0
+  - first:
+      213: 5840383458878665319
+    second: speech_bubble_1
+  - first:
+      213: -3831004905448072262
+    second: speech_bubble_2
+  - first:
+      213: -9164567074463592448
+    second: speech_bubble_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,7 +84,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -106,84 +118,93 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: E_0
+      name: speech_bubble_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 19
-        height: 21
+        x: 10
+        y: 11
+        width: 27
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: ed0a9db99f6036e4e9f03d8853137786
-      internalID: 1646798972
+      spriteID: 212117a2ea3ca6330800000000000000
+      internalID: 3704988796269433362
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: E_1
+      name: speech_bubble_1
       rect:
         serializedVersion: 2
-        x: 19
-        y: 0
-        width: 19
-        height: 21
+        x: 58
+        y: 11
+        width: 27
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: e5648ddce8b70d54daadd4815e2a88ec
-      internalID: 715107876
+      spriteID: 762b78aefc53d0150800000000000000
+      internalID: 5840383458878665319
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: E_2
+      name: speech_bubble_2
       rect:
         serializedVersion: 2
-        x: 38
-        y: 0
-        width: 19
-        height: 21
+        x: 106
+        y: 11
+        width: 27
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 55556457609f9564b8fdacc70791dfb0
-      internalID: -1913812720
+      spriteID: abb1df5065985dac0800000000000000
+      internalID: -3831004905448072262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: speech_bubble_3
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 11
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0005b5e3dcae0d080800000000000000
+      internalID: -9164567074463592448
       vertices: []
       indices: 
       edges: []
@@ -192,7 +213,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -202,9 +223,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      E_0: 1646798972
-      E_1: 715107876
-      E_2: -1913812720
+      speech_bubble_0: 3704988796269433362
+      speech_bubble_1: 5840383458878665319
+      speech_bubble_2: -3831004905448072262
+      speech_bubble_3: -9164567074463592448
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
