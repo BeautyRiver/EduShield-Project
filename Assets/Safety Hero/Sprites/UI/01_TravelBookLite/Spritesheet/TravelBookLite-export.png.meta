@@ -1,0 +1,2444 @@
+fileFormatVersion: 2
+guid: bd80fb4000bca4449a65dfa1f24bd55c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1282828478787015563
+    second: TravelBookLite-export_0
+  - first:
+      213: -1656228333494003310
+    second: TravelBookLite-export_1
+  - first:
+      213: -698762007454472803
+    second: TravelBookLite-export_2
+  - first:
+      213: 6429763616301555541
+    second: TravelBookLite-export_3
+  - first:
+      213: -2515153354533248222
+    second: TravelBookLite-export_4
+  - first:
+      213: 600164533523201383
+    second: TravelBookLite-export_5
+  - first:
+      213: -4040712833598500888
+    second: TravelBookLite-export_6
+  - first:
+      213: -6899653233161030628
+    second: TravelBookLite-export_7
+  - first:
+      213: 5802759157687375612
+    second: TravelBookLite-export_8
+  - first:
+      213: 968423337643492552
+    second: TravelBookLite-export_9
+  - first:
+      213: -6411142086531302450
+    second: TravelBookLite-export_10
+  - first:
+      213: -3511752012816036008
+    second: TravelBookLite-export_11
+  - first:
+      213: -1487144366456853213
+    second: TravelBookLite-export_12
+  - first:
+      213: -3178465962824120357
+    second: TravelBookLite-export_13
+  - first:
+      213: -1954488360844698054
+    second: TravelBookLite-export_14
+  - first:
+      213: -217153856799277333
+    second: TravelBookLite-export_15
+  - first:
+      213: 8532522400810313876
+    second: TravelBookLite-export_16
+  - first:
+      213: -6725930679805599354
+    second: TravelBookLite-export_17
+  - first:
+      213: -1929012628985402516
+    second: TravelBookLite-export_18
+  - first:
+      213: 4828079001112158162
+    second: TravelBookLite-export_19
+  - first:
+      213: 5759246868702552764
+    second: TravelBookLite-export_20
+  - first:
+      213: 1549343008601258240
+    second: TravelBookLite-export_21
+  - first:
+      213: -2369832503925640985
+    second: TravelBookLite-export_22
+  - first:
+      213: 2597782194956256084
+    second: TravelBookLite-export_23
+  - first:
+      213: 6308623717414289221
+    second: TravelBookLite-export_24
+  - first:
+      213: -2198977437999667512
+    second: TravelBookLite-export_25
+  - first:
+      213: 6066291419190115133
+    second: TravelBookLite-export_26
+  - first:
+      213: 6314906665553342255
+    second: TravelBookLite-export_27
+  - first:
+      213: -3969398000367154836
+    second: TravelBookLite-export_28
+  - first:
+      213: 8851149761776970353
+    second: TravelBookLite-export_29
+  - first:
+      213: 5200193860425531081
+    second: TravelBookLite-export_30
+  - first:
+      213: -5617554922315266526
+    second: TravelBookLite-export_31
+  - first:
+      213: 4205238813384171592
+    second: TravelBookLite-export_32
+  - first:
+      213: 2261189973221759046
+    second: TravelBookLite-export_33
+  - first:
+      213: -3719897036492146724
+    second: TravelBookLite-export_34
+  - first:
+      213: -650345545709417002
+    second: TravelBookLite-export_35
+  - first:
+      213: -6614864768255362888
+    second: TravelBookLite-export_36
+  - first:
+      213: 1450137068278133136
+    second: TravelBookLite-export_37
+  - first:
+      213: 3001376446164636480
+    second: TravelBookLite-export_38
+  - first:
+      213: -6108287739010073080
+    second: TravelBookLite-export_39
+  - first:
+      213: -2150459478521504476
+    second: TravelBookLite-export_40
+  - first:
+      213: 1679092450407239070
+    second: TravelBookLite-export_41
+  - first:
+      213: -7797863762851816009
+    second: TravelBookLite-export_42
+  - first:
+      213: 2652764190675158031
+    second: TravelBookLite-export_43
+  - first:
+      213: -9027972730013041621
+    second: TravelBookLite-export_44
+  - first:
+      213: -4017399406496125070
+    second: TravelBookLite-export_45
+  - first:
+      213: -2029266208556981734
+    second: TravelBookLite-export_46
+  - first:
+      213: -8088870138470378025
+    second: TravelBookLite-export_47
+  - first:
+      213: -6467958793583538120
+    second: TravelBookLite-export_48
+  - first:
+      213: 6221479167202506729
+    second: TravelBookLite-export_49
+  - first:
+      213: 7724210689475772478
+    second: TravelBookLite-export_50
+  - first:
+      213: -3698074607727228991
+    second: TravelBookLite-export_51
+  - first:
+      213: 7982394843365741925
+    second: TravelBookLite-export_52
+  - first:
+      213: -3033692275282286521
+    second: TravelBookLite-export_53
+  - first:
+      213: -2253078771699769153
+    second: TravelBookLite-export_54
+  - first:
+      213: -2047594110876643534
+    second: TravelBookLite-export_55
+  - first:
+      213: 5657999527382952555
+    second: TravelBookLite-export_56
+  - first:
+      213: 954110439659731310
+    second: TravelBookLite-export_57
+  - first:
+      213: -9184866903297535172
+    second: TravelBookLite-export_58
+  - first:
+      213: -6135208115957187898
+    second: TravelBookLite-export_59
+  - first:
+      213: -3517940373519038313
+    second: TravelBookLite-export_60
+  - first:
+      213: 2061009882824765286
+    second: TravelBookLite-export_61
+  - first:
+      213: 4098733864147640351
+    second: TravelBookLite-export_62
+  - first:
+      213: 7165308680859640578
+    second: TravelBookLite-export_63
+  - first:
+      213: -4338327207016354375
+    second: TravelBookLite-export_64
+  - first:
+      213: -797724011669909302
+    second: TravelBookLite-export_65
+  - first:
+      213: -7556432430175843290
+    second: TravelBookLite-export_66
+  - first:
+      213: 1946609548708104598
+    second: TravelBookLite-export_67
+  - first:
+      213: 934518846058080675
+    second: TravelBookLite-export_68
+  - first:
+      213: 1420033176889059680
+    second: TravelBookLite-export_69
+  - first:
+      213: 8630499976522158471
+    second: TravelBookLite-export_70
+  - first:
+      213: -4959268931800629323
+    second: TravelBookLite-export_71
+  - first:
+      213: -7003766671372870956
+    second: TravelBookLite-export_72
+  - first:
+      213: 1507245558632787682
+    second: TravelBookLite-export_73
+  - first:
+      213: -1747105495328286543
+    second: TravelBookLite-export_74
+  - first:
+      213: -8065193114525847491
+    second: TravelBookLite-export_75
+  - first:
+      213: -8887676035902876426
+    second: TravelBookLite-export_76
+  - first:
+      213: -6504344058552409259
+    second: TravelBookLite-export_77
+  - first:
+      213: -97031359524954827
+    second: TravelBookLite-export_78
+  - first:
+      213: 4964423971309873113
+    second: TravelBookLite-export_79
+  - first:
+      213: -7685963308213988676
+    second: TravelBookLite-export_80
+  - first:
+      213: -4118486026760717065
+    second: TravelBookLite-export_81
+  - first:
+      213: 5214092872498947202
+    second: TravelBookLite-export_82
+  - first:
+      213: 605175596035715159
+    second: TravelBookLite-export_83
+  - first:
+      213: -7934825183612904226
+    second: TravelBookLite-export_84
+  - first:
+      213: -7658786049330749028
+    second: TravelBookLite-export_85
+  - first:
+      213: 7936093784940246549
+    second: TravelBookLite-export_86
+  - first:
+      213: -4559172180384001354
+    second: TravelBookLite-export_87
+  - first:
+      213: 201433770164795504
+    second: TravelBookLite-export_88
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TravelBookLite-export_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 831
+        width: 61
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b83dad964b58dc110800000000000000
+      internalID: 1282828478787015563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_1
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 687
+        width: 226
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29917231b15e309e0800000000000000
+      internalID: -1656228333494003310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_2
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 700
+        width: 106
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d95232b08af7d46f0800000000000000
+      internalID: -698762007454472803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_3
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 700
+        width: 106
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55f926351fb1b3950800000000000000
+      internalID: 6429763616301555541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 655
+        width: 61
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 223e9639951681dd0800000000000000
+      internalID: -2515153354533248222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_5
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 639
+        width: 226
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76d3073a676345800800000000000000
+      internalID: 600164533523201383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_6
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 514
+        width: 222
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8efcff126118ce7c0800000000000000
+      internalID: -4040712833598500888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 575
+        width: 61
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c14bf0cb0f18f30a0800000000000000
+      internalID: -6899653233161030628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 592
+        width: 32
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf6d917a5ba878050800000000000000
+      internalID: 5802759157687375612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 560
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c4407805e7807d00800000000000000
+      internalID: 968423337643492552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_10
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 560
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecbbebf6d3c0707a0800000000000000
+      internalID: -6411142086531302450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 543
+        width: 61
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85f46d08620c34fc0800000000000000
+      internalID: -3511752012816036008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_12
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 528
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32dad93f31a9c5be0800000000000000
+      internalID: -1487144366456853213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_13
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 528
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd7c23b0c02d3e3d0800000000000000
+      internalID: -3178465962824120357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 511
+        width: 61
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3e573ee03340e4e0800000000000000
+      internalID: -1954488360844698054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_15
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 496
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bee7fdfb7b38cfcf0800000000000000
+      internalID: -217153856799277333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 479
+        width: 61
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 498ac529aeb996670800000000000000
+      internalID: 8532522400810313876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_17
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 488
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6812946aea1b8a2a0800000000000000
+      internalID: -6725930679805599354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_18
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 488
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6b251afb35ca35e0800000000000000
+      internalID: -1929012628985402516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 399
+        width: 61
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2df10d07548c00340800000000000000
+      internalID: 4828079001112158162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_20
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 464
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb2ebc66384fcef40800000000000000
+      internalID: 5759246868702552764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_21
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 448
+        width: 64
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 009b9eee14f508510800000000000000
+      internalID: 1549343008601258240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_22
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 464
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e07652c4e9ac1fd0800000000000000
+      internalID: -2369832503925640985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_23
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 432
+        width: 64
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 453c336842d2d0420800000000000000
+      internalID: 2597782194956256084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_24
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 416
+        width: 64
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54f3512b8dbbc8750800000000000000
+      internalID: 6308623717414289221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 367
+        width: 61
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c66eeabba9ab71e0800000000000000
+      internalID: -2198977437999667512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_26
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 384
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3bb3d8b7ebcf2450800000000000000
+      internalID: 6066291419190115133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_27
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2fad0e872e03a750800000000000000
+      internalID: 6314906665553342255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 335
+        width: 61
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6948f7ac8dd9e8c0800000000000000
+      internalID: -3969398000367154836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_29
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 327
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17aef7c10d995da70800000000000000
+      internalID: 8851149761776970353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_30
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 327
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ceb4d5a3ccca2840800000000000000
+      internalID: 5200193860425531081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_31
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 191
+        width: 61
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 226c62daf8f6a02b0800000000000000
+      internalID: -5617554922315266526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_32
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 294
+        width: 64
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 840e273ab620c5a30800000000000000
+      internalID: 4205238813384171592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_33
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 275
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 648de83ec4c516f10800000000000000
+      internalID: 2261189973221759046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_34
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 259
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd77bdaaa55406cc0800000000000000
+      internalID: -3719897036492146724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_35
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 245
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6dd8bbefb2289f6f0800000000000000
+      internalID: -650345545709417002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_36
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 228
+        width: 12
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b874e25a874334a0800000000000000
+      internalID: -6614864768255362888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_37
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 228
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 091385efafbef1410800000000000000
+      internalID: 1450137068278133136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_38
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 212
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0431edec9f707a920800000000000000
+      internalID: 3001376446164636480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_39
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 212
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80e3e6a1aa00b3ba0800000000000000
+      internalID: -6108287739010073080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_40
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 194
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42d9ad67f780822e0800000000000000
+      internalID: -2150459478521504476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_41
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 194
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9d409bffa55d4710800000000000000
+      internalID: 1679092450407239070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_42
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 194
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bd9358f83c68c390800000000000000
+      internalID: -7797863762851816009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_43
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 194
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f04c11af9f280d420800000000000000
+      internalID: 2652764190675158031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_44
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 194
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2cb8a162a236b280800000000000000
+      internalID: -9027972730013041621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_45
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 194
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27feeee56845f38c0800000000000000
+      internalID: -4017399406496125070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_46
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 194
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a12e144822996d3e0800000000000000
+      internalID: -2029266208556981734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_47
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d5553a377f8ebf80800000000000000
+      internalID: -8088870138470378025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_48
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 830d696feb13d36a0800000000000000
+      internalID: -6467958793583538120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_49
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 193
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e7399af652275650800000000000000
+      internalID: 6221479167202506729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_50
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 193
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e308a7c82b8e13b60800000000000000
+      internalID: 7724210689475772478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_51
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 176
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c7c68dccbccdacc0800000000000000
+      internalID: -3698074607727228991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_52
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 176
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56599b741d927ce60800000000000000
+      internalID: 7982394843365741925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_53
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 176
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 748e3f5e2f826e5d0800000000000000
+      internalID: -3033692275282286521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_54
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 179
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb0acd16bc47bb0e0800000000000000
+      internalID: -2253078771699769153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_55
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 179
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23f0409310c7593e0800000000000000
+      internalID: -2047594110876643534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_56
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 179
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6a2df0c790458e40800000000000000
+      internalID: 5657999527382952555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_57
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 179
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e69f868c36ead3d00800000000000000
+      internalID: 954110439659731310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_58
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 177
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3355b7073cc88080800000000000000
+      internalID: -9184866903297535172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_59
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 177
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ca374969bc5bdaa0800000000000000
+      internalID: -6135208115957187898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_60
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 177
+        width: 17
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 798846f7ed3cd2fc0800000000000000
+      internalID: -3517940373519038313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_61
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66fe658919d2a9c10800000000000000
+      internalID: 2061009882824765286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_62
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 162
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f106261cbb0a1e830800000000000000
+      internalID: 4098733864147640351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_63
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 162
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20369a4284a407360800000000000000
+      internalID: 7165308680859640578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_64
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 162
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bda062046a2bc3c0800000000000000
+      internalID: -4338327207016354375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_65
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 164
+        width: 25
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac09d97ec3aede4f0800000000000000
+      internalID: -797724011669909302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_66
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 163
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62c802e8db8222790800000000000000
+      internalID: -7556432430175843290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_67
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 111
+        width: 61
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 699412b221fb30b10800000000000000
+      internalID: 1946609548708104598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_68
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 132
+        width: 13
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a9233f60f318fc00800000000000000
+      internalID: 934518846058080675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_69
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 115
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 069edb596a8f4b310800000000000000
+      internalID: 1420033176889059680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_70
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 115
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 781de969002b5c770800000000000000
+      internalID: 8630499976522158471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_71
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 115
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bf746e8e232d2bb0800000000000000
+      internalID: -4959268931800629323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_72
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 115
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4da9917e15f9dce90800000000000000
+      internalID: -7003766671372870956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_73
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 99
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2eea79f89dfcae410800000000000000
+      internalID: 1507245558632787682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_74
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 99
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b813ddfec801c7e0800000000000000
+      internalID: -1747105495328286543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_75
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 99
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d30b2c3f79da21090800000000000000
+      internalID: -8065193114525847491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_76
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 99
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f4d149fbb1a8a480800000000000000
+      internalID: -8887676035902876426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_77
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 82
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 553af0d4a8debb5a0800000000000000
+      internalID: -6504344058552409259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_78
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 82
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53d117b1e7647aef0800000000000000
+      internalID: -97031359524954827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_79
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 82
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d7eb5c9c4d25e440800000000000000
+      internalID: 4964423971309873113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_80
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 82
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb21839d719f55590800000000000000
+      internalID: -7685963308213988676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_81
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 67
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fc748287c238d6c0800000000000000
+      internalID: -4118486026760717065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_82
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 67
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 284223397dd2c5840800000000000000
+      internalID: 5214092872498947202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_83
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 67
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 750b17c8ff3066800800000000000000
+      internalID: 605175596035715159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_84
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 67
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edcdde73986d1e190800000000000000
+      internalID: -7934825183612904226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_85
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 35
+        width: 11
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c916ce68aa686b590800000000000000
+      internalID: -7658786049330749028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_86
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 34
+        width: 11
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5167c8b004ba22e60800000000000000
+      internalID: 7936093784940246549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_87
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 51
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b25e56be019ab0c0800000000000000
+      internalID: -4559172180384001354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TravelBookLite-export_88
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 33
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 078b07c52f2abc200800000000000000
+      internalID: 201433770164795504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      TravelBookLite-export_0: 1282828478787015563
+      TravelBookLite-export_1: -1656228333494003310
+      TravelBookLite-export_10: -6411142086531302450
+      TravelBookLite-export_11: -3511752012816036008
+      TravelBookLite-export_12: -1487144366456853213
+      TravelBookLite-export_13: -3178465962824120357
+      TravelBookLite-export_14: -1954488360844698054
+      TravelBookLite-export_15: -217153856799277333
+      TravelBookLite-export_16: 8532522400810313876
+      TravelBookLite-export_17: -6725930679805599354
+      TravelBookLite-export_18: -1929012628985402516
+      TravelBookLite-export_19: 4828079001112158162
+      TravelBookLite-export_2: -698762007454472803
+      TravelBookLite-export_20: 5759246868702552764
+      TravelBookLite-export_21: 1549343008601258240
+      TravelBookLite-export_22: -2369832503925640985
+      TravelBookLite-export_23: 2597782194956256084
+      TravelBookLite-export_24: 6308623717414289221
+      TravelBookLite-export_25: -2198977437999667512
+      TravelBookLite-export_26: 6066291419190115133
+      TravelBookLite-export_27: 6314906665553342255
+      TravelBookLite-export_28: -3969398000367154836
+      TravelBookLite-export_29: 8851149761776970353
+      TravelBookLite-export_3: 6429763616301555541
+      TravelBookLite-export_30: 5200193860425531081
+      TravelBookLite-export_31: -5617554922315266526
+      TravelBookLite-export_32: 4205238813384171592
+      TravelBookLite-export_33: 2261189973221759046
+      TravelBookLite-export_34: -3719897036492146724
+      TravelBookLite-export_35: -650345545709417002
+      TravelBookLite-export_36: -6614864768255362888
+      TravelBookLite-export_37: 1450137068278133136
+      TravelBookLite-export_38: 3001376446164636480
+      TravelBookLite-export_39: -6108287739010073080
+      TravelBookLite-export_4: -2515153354533248222
+      TravelBookLite-export_40: -2150459478521504476
+      TravelBookLite-export_41: 1679092450407239070
+      TravelBookLite-export_42: -7797863762851816009
+      TravelBookLite-export_43: 2652764190675158031
+      TravelBookLite-export_44: -9027972730013041621
+      TravelBookLite-export_45: -4017399406496125070
+      TravelBookLite-export_46: -2029266208556981734
+      TravelBookLite-export_47: -8088870138470378025
+      TravelBookLite-export_48: -6467958793583538120
+      TravelBookLite-export_49: 6221479167202506729
+      TravelBookLite-export_5: 600164533523201383
+      TravelBookLite-export_50: 7724210689475772478
+      TravelBookLite-export_51: -3698074607727228991
+      TravelBookLite-export_52: 7982394843365741925
+      TravelBookLite-export_53: -3033692275282286521
+      TravelBookLite-export_54: -2253078771699769153
+      TravelBookLite-export_55: -2047594110876643534
+      TravelBookLite-export_56: 5657999527382952555
+      TravelBookLite-export_57: 954110439659731310
+      TravelBookLite-export_58: -9184866903297535172
+      TravelBookLite-export_59: -6135208115957187898
+      TravelBookLite-export_6: -4040712833598500888
+      TravelBookLite-export_60: -3517940373519038313
+      TravelBookLite-export_61: 2061009882824765286
+      TravelBookLite-export_62: 4098733864147640351
+      TravelBookLite-export_63: 7165308680859640578
+      TravelBookLite-export_64: -4338327207016354375
+      TravelBookLite-export_65: -797724011669909302
+      TravelBookLite-export_66: -7556432430175843290
+      TravelBookLite-export_67: 1946609548708104598
+      TravelBookLite-export_68: 934518846058080675
+      TravelBookLite-export_69: 1420033176889059680
+      TravelBookLite-export_7: -6899653233161030628
+      TravelBookLite-export_70: 8630499976522158471
+      TravelBookLite-export_71: -4959268931800629323
+      TravelBookLite-export_72: -7003766671372870956
+      TravelBookLite-export_73: 1507245558632787682
+      TravelBookLite-export_74: -1747105495328286543
+      TravelBookLite-export_75: -8065193114525847491
+      TravelBookLite-export_76: -8887676035902876426
+      TravelBookLite-export_77: -6504344058552409259
+      TravelBookLite-export_78: -97031359524954827
+      TravelBookLite-export_79: 4964423971309873113
+      TravelBookLite-export_8: 5802759157687375612
+      TravelBookLite-export_80: -7685963308213988676
+      TravelBookLite-export_81: -4118486026760717065
+      TravelBookLite-export_82: 5214092872498947202
+      TravelBookLite-export_83: 605175596035715159
+      TravelBookLite-export_84: -7934825183612904226
+      TravelBookLite-export_85: -7658786049330749028
+      TravelBookLite-export_86: 7936093784940246549
+      TravelBookLite-export_87: -4559172180384001354
+      TravelBookLite-export_88: 201433770164795504
+      TravelBookLite-export_9: 968423337643492552
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
