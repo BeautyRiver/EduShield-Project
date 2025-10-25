@@ -135,8 +135,14 @@ MonoBehaviour:
         - colorIndex: 9
           iconNameOrGuid: 
     - goDatas_byGlobalId:
-        keys: []
-        values: []
+        keys:
+        - globalObjectIdString: GlobalObjectId_V1-2-33f63c941e57e1a469cedbf8a5631e24-1391296758-0
+        - globalObjectIdString: GlobalObjectId_V1-2-33f63c941e57e1a469cedbf8a5631e24-1619103625-0
+        values:
+        - colorIndex: 0
+          iconNameOrGuid: Settings Icon
+        - colorIndex: 0
+          iconNameOrGuid: Settings Icon
     - goDatas_byGlobalId:
         keys:
         - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-519420028-0
@@ -151,8 +157,11 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-1500370351-0
         - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-976826186-0
         - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-1651666725-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-675576076-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-1821367308-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-263845359-0
         values:
-        - colorIndex: 0
+        - colorIndex: 7
           iconNameOrGuid: Camera Icon
         - colorIndex: 0
           iconNameOrGuid: Camera Icon
@@ -176,3 +185,9 @@ MonoBehaviour:
           iconNameOrGuid: Settings Icon
         - colorIndex: 0
           iconNameOrGuid: Settings Icon
+        - colorIndex: 0
+          iconNameOrGuid: Camera Icon
+        - colorIndex: 0
+          iconNameOrGuid: Favorite
+        - colorIndex: 0
+          iconNameOrGuid: Favorite

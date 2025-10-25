@@ -1,11 +1,10 @@
 using UnityEngine;
 using Firebase;
 using Firebase.Auth;
-using Firebase.Firestore; // Firestore 데이터베이스 사용을 위해 추가!
-using System.Threading.Tasks; // async/await를 위해 필수!
-using System.Collections.Generic; // Dictionary를 사용하기 위해 추가!
+using Firebase.Firestore;
+using System.Threading.Tasks; 
+using System.Collections.Generic; 
 
-// 유니티 오브젝트의 생명주기를 사용하면서, 싱글톤으로 존재하도록 MonoBehaviour 상속
 public class FirebaseManager : MonoBehaviour
 {
     // 1. 싱글톤 패턴 구현
@@ -128,6 +127,17 @@ public class FirebaseManager : MonoBehaviour
 
             await auth.SignInWithEmailAndPasswordAsync(email, password);
             Debug.Log("로그인 성공!");
+            var userData = await LoadUserData();
+            if (userData != null)
+            {
+                DataManager.instance.InitializedData(userData);
+            }
+            else
+            {
+                DataManager.instance.InitializedData(null);
+                await DataManager.instance.SaveGameData(); // 기본 데이터 저장
+                Debug.Log("기본 유저 데이터가 생성되었습니다.");
+            }
             return null; // 성공 시 null 반환
         }
         catch (FirebaseException e)
@@ -160,7 +170,7 @@ public class FirebaseManager : MonoBehaviour
 
 
     // 6. [가장 중요!] 데이터 저장 및 불러오기 함수
-    public async Task SaveUserData(int gold, bool isCharacterUnlocked)
+    public async Task SaveUserData(Dictionary<string, object> userData)
     {
         if (user == null)
         {
@@ -168,17 +178,10 @@ public class FirebaseManager : MonoBehaviour
             return;
         }
 
-        // Firestore는 Dictionary 형태로 데이터를 저장해.
-        var userData = new Dictionary<string, object>
-        {
-            { "gold", gold },
-            { "character_unlocked", isCharacterUnlocked }
-            // 나중에 여기에 다이아, 스테이지 레벨 등 계속 추가하면 돼!
-        };
-
-        // 'users'라는 컬렉션(폴더) 안에, 현재 유저의 UID로 된 문서(파일)를 만들고 데이터를 덮어쓰기
+        // 'users' 컬렉션 안에 현재 유저의 UID로 된 문서를 가져옴
         DocumentReference docRef = db.Collection("users").Document(user.UserId);
-        // SetOptions.MergeAll을 사용하면 기존 다른 데이터는 놔두고 gold, character_unlocked 필드만 업데이트/추가해줘. (아주 중요!)
+
+        // SetOptions.MergeAll을 사용하면 userData에 있는 필드만 덮어쓰거나 추가해줌. (아주 중요!)
         await docRef.SetAsync(userData, SetOptions.MergeAll);
         Debug.Log("유저 데이터 저장 완료!");
     }

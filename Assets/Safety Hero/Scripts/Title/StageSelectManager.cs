@@ -33,7 +33,7 @@ public class StageSelectManager : MonoBehaviour
     // 다음 버튼
     public void PressNextButton()
     {
-        if (idx >= stageImageRects.Length - 1 || DataManager.instance.IsUnlockStages[idx + 1] == false)
+        if (idx >= stageImageRects.Length - 1 || DataManager.instance.unlockedStages[idx + 1] == false)
             return;
 
         // 맨 앞에 이미지 왼편으로 치워 버리기

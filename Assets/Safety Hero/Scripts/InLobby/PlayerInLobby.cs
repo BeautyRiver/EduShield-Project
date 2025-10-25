@@ -12,10 +12,8 @@ public class PlayerInLobby : MonoBehaviour
     [HideInInspector]
     private PlayerMove playerMove;
     private TargetScanner scanner;
-    private SpriteRenderer spriter;
     private Animator anim;
-    private CapsuleCollider2D col;
-    private Rigidbody2D rigid;
+
 
     // 최근 가장 가까운 npc
     [SerializeField] private Npc recentlyNearestNpc;
@@ -23,15 +21,31 @@ public class PlayerInLobby : MonoBehaviour
     {
         playerMove = GetComponent<PlayerMove>();
         scanner = GetComponent<TargetScanner>();
-        rigid = GetComponent<Rigidbody2D>();
-        col = GetComponent<CapsuleCollider2D>();
-
-        spriter = GetComponentInChildren<SpriteRenderer>();
         anim = GetComponentInChildren<Animator>();
 
     }
 
     private void Update()
+    {
+        UpdateNearestNpc();
+    }
+
+    // 플레이어 초기화
+    public void PlayerInit(PlayerData playerData)
+    {
+        SetLobbyState();
+        this.playerId = playerData.characterId; // 플레이어 ID 설정
+        health = maxHealth;
+        anim.runtimeAnimatorController = playerData.animCon;
+    }
+
+    // 로비 상태 설정
+    public void SetLobbyState()
+    {
+        playerMove.SetCurretSpeed(playerMove.baseSpeed);
+    }
+
+    private void UpdateNearestNpc()
     {
         Transform nearstTarget = scanner.nearestTarget;
 
@@ -50,11 +64,6 @@ public class PlayerInLobby : MonoBehaviour
             }
 
             recentlyNearestNpc.LookAtPlayer(transform.position);
-
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                recentlyNearestNpc.Interaction();
-            }
         }
         else
         {
@@ -64,31 +73,11 @@ public class PlayerInLobby : MonoBehaviour
                 recentlyNearestNpc = null;
             }
         }
-
-
-    }
-
-    // 플레이어 초기화
-    public void PlayerInit(PlayerData playerData)
+    }  
+    public Npc GetCurrentTargetNpc()
     {
-        SetLobbyState();
-        this.playerId = playerData.characterId; // 플레이어 ID 설정
-        health = maxHealth;
-        anim.runtimeAnimatorController = playerData.animCon;
+        return recentlyNearestNpc;
     }
-
-    // 로비 상태 설정
-    public void SetLobbyState()
-    {
-        playerMove.SetCurretSpeed(playerMove.baseSpeed);
-        playerMove.SetCanMoveState(true); // 이동 가능 상태로 설정
-    }
-
-
-
-
-
-
 }
 
 

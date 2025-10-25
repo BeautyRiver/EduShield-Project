@@ -29,20 +29,22 @@ public class GameManager : MonoBehaviour
     public int maxItemCount = 1; // 최대 장착 가능한 무기/기어 개수
     public float nowTimeScale = 1f; // 현재 타임 스케일
     public float gameOverDelay; // 죽는 메시지 나올 텀
-    private bool isGamestart; // 게임 시작된 상태인지(Ai 메시지 재활용 때문)
     public int[] nextExp = { 3, 5, 10, 100, 150, 210, 280, 360, 450, 600 }; // 다음 레벨업에 필요한 경험치    
 
     [Header("# 플레이어 정보")]
     public int playerLevel; // 현재 레벨
     public int playerKill; // 처치한 적 수
     public int playerExp; // 현재 경험치
- 
+
+    [Header("플레이어 참조")]
+    public PlayerInGame player;
+    private PlayerInputController playerInputController;
+
     [Foldout("# 참조")]
     public UIManager uiManager;
     public HUDManager hudManager;
     public SpawnManager spawner;
     public LevelUp uiLevelUp;
-    public PlayerInGame player;
     public Result result;
     [EndFoldout]
     [field: SerializeField] public PlayerData playerData { get; private set; } // 복사본
@@ -55,6 +57,8 @@ public class GameManager : MonoBehaviour
         // 원본 훼손 안시키기 위함 (데이터 복사)
         if (playerData == null)
             playerData = Instantiate(orignalPlayerData);
+
+        playerInputController = player.GetComponent<PlayerInputController>();
     }
 
     private void Start()
@@ -87,34 +91,34 @@ public class GameManager : MonoBehaviour
         switch (currentState)
         {
             case GameState.Ready:
-                Time.timeScale = 1f; // 여기서 nowTimeScale을 사용해도 됨
-                player.playerMove.SetCanMoveState(false);
+                playerInputController.SwitchActionMap("Empty"); // 입력 비활성화
+                Time.timeScale = 1f; // 여기서 nowTimeScale을 사용해도 됨                
                 break;
 
             case GameState.Playing:
+                playerInputController.SwitchActionMap("InGame"); // 인게임 움직임 활성화
                 Time.timeScale = nowTimeScale;
-                player.playerMove.SetCanMoveState(true);
                 break;
 
             case GameState.Paused:
+                playerInputController.SwitchActionMap("UI"); // UI 입력 활성화
                 Time.timeScale = 0f;
-                player.playerMove.SetCanMoveState(false);
                 break;
 
             case GameState.LevelUp:
+                playerInputController.SwitchActionMap("UI"); // UI 입력 활성화
                 Time.timeScale = 0f;
-                player.playerMove.SetCanMoveState(false);
                 break;
 
             case GameState.GameOver:
+                playerInputController.SwitchActionMap("Empty"); // 입력 비활성화
                 Time.timeScale = 0f;
-                player.playerMove.SetCanMoveState(false);
                 StartCoroutine(GameOverRoutine());
                 break;
 
             case GameState.Victory:
+                playerInputController.SwitchActionMap("Empty"); // 입력 비활성화
                 Time.timeScale = 1f; // 승리 연출을 위해 시간을 다시 흐르게 할 수도 있음
-                player.playerMove.SetCanMoveState(false);
                 StartCoroutine(GameVictoryRoutine());
                 break;
         }

@@ -97,7 +97,6 @@ public class PlayerInGame : MonoBehaviour, IDamageable
     // 플레이어 초기화
     public void PlayerInit(PlayerData playerData)
     {
-        playerMove.SetCanMoveState(true);
         this.playerId = playerData.characterId; // 플레이어 ID 설정
         health = maxHealth;
         RecalculateStats();

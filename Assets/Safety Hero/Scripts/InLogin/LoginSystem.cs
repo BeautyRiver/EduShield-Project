@@ -18,7 +18,7 @@ public class LoginSystem : MonoBehaviour
 
         if (string.IsNullOrEmpty(errorMessage))
         {
-            Debug.Log("회원가입 성공! 로그인도 자동으로 완료되었습니다.");
+            Debug.Log("회원가입 성공!");
             alert.color = Color.black;
             alert.text = "회원가입 성공!";
             SceneManager.LoadScene("Title Scene"); 
@@ -35,14 +35,14 @@ public class LoginSystem : MonoBehaviour
         string e = email.text;
         string p = password.text;
 
-        string errorMessage = await FirebaseManager.Instance.CreateAccount(e, p);
+        string errorMessage = await FirebaseManager.Instance.Login(e, p);
 
         if (string.IsNullOrEmpty(errorMessage))
         {
             Debug.Log("로그인 성공!");
             alert.color = Color.black;
             alert.text = "로그인 성공!";
-            SceneManager.LoadScene("Title Scene");
+            SceneManager.LoadScene("Lobby Scene");
         }
         else
         {
