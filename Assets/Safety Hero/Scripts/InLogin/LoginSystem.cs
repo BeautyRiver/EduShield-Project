@@ -21,7 +21,6 @@ public class LoginSystem : MonoBehaviour
             Debug.Log("회원가입 성공!");
             alert.color = Color.black;
             alert.text = "회원가입 성공!";
-            SceneManager.LoadScene("Title Scene"); 
         }
         else
         {

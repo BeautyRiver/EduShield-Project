@@ -4065,8 +4065,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d55adc73b9d0d244a0d24a435335100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CurrentPlayerData>k__BackingField: {fileID: 0}
-  <IsUnlockStages>k__BackingField: 010101
+  <selectedCharacterId>k__BackingField: 0
+  <gold>k__BackingField: 0
+  unlockedStages: 
+  <totalStageCount>k__BackingField: 3
 --- !u!4 &489286686
 Transform:
   m_ObjectHideFlags: 0
@@ -4423,7 +4425,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &714611615
 RectTransform:
   m_ObjectHideFlags: 0

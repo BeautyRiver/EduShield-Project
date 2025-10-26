@@ -33,13 +33,18 @@ public class PlayerInputController : MonoBehaviour
 
     public void SwitchActionMap(string mapName)
     {
-        playerInput.SwitchCurrentActionMap(mapName);
+        playerInput.SwitchCurrentActionMap(mapName);             
         Debug.Log(mapName + " 액션 맵으로 전환되었습니다.");
     }
 
     public void StopMovement()
     {
         playerMove.SetMoveDirection(Vector2.zero);
+    }
+
+    public string GetCurrentActionMap()
+    {
+        return playerInput.currentActionMap.name;
     }
 
 }

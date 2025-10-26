@@ -47773,14 +47773,14 @@ MonoBehaviour:
   playerLevel: 0
   playerKill: 0
   playerExp: 0
+  player: {fileID: 5443779457429002911}
   uiManager: {fileID: 0}
   hudManager: {fileID: 0}
   spawner: {fileID: 2063408837}
   uiLevelUp: {fileID: 259957426}
-  player: {fileID: 5443779457429002911}
   result: {fileID: 927738641}
   <playerData>k__BackingField: {fileID: 0}
-  orignalPlayerData: {fileID: 11400000, guid: e46da10fa0948124ab17ebcceb64080c, type: 2}
+  orignalPlayerData: {fileID: 11400000, guid: b3349040a9547d64d943fd0cb8908d15, type: 2}
   enemyCleaner: {fileID: 1980168891846161889}
 --- !u!4 &1358241787
 Transform:
@@ -157402,7 +157402,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b847cb7d05bfc154ea7b2cf610443a43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInput: {fileID: 6844426877119181120}
 --- !u!1 &6845723186216629811
 GameObject:
   m_ObjectHideFlags: 0

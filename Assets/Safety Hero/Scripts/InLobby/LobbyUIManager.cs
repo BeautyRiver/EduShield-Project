@@ -4,12 +4,31 @@ using UnityEngine;
 
 public class LobbyUIManager : MonoBehaviour
 {
-    [SerializeField] private GameObject selectMapUi;      
+    public static LobbyUIManager instance;
+
+    [SerializeField] private GameObject stageSelectUi;
 
 
-    public void OpenSelectMapUi()
+    private void Awake()
     {
-        selectMapUi.SetActive(!selectMapUi.activeSelf);
+        if (instance == null)
+            instance = this;
+
+        else
+            Destroy(this.gameObject);
+    }
+    public void SwitchStageSelectUi()
+    {
+        bool isActive = stageSelectUi.activeSelf;
+        if (isActive == true)
+        {
+            stageSelectUi.SetActive(false);
+            LobbyManager.instance.ChangeState(LobbyState.FreeMoving);
+        }
+        else
+        {
+            stageSelectUi.SetActive(true);
+        }
     }
 
 }

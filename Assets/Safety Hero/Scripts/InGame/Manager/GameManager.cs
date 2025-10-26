@@ -171,14 +171,11 @@ public class GameManager : MonoBehaviour
 
     private static void SetupAudio()
     {
-        if (TitleManager.playlistController == null)
-            return;
-
-        // BGM 설정
+/*        // BGM 설정
         if (TitleManager.playlistController.CurrentPlaylist.playlistName != "Game Bgm")
             MasterAudio.ChangePlaylistByName("Game Bgm");
-        else
-            MasterAudio.StartPlaylist("Game Bgm");        
+        else*/
+           MasterAudio.StartPlaylist("Game Bgm");        
     } 
 
     private IEnumerator GameOverRoutine()

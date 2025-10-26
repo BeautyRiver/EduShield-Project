@@ -14,14 +14,17 @@ public class LobbyManager : MonoBehaviour
     public PlayerInLobby player;
     public LobbyState currentState;
     [SerializeField] private PlayerData playerData; // 원본
-    [SerializeField] protected LobbyUIManager uiManager;
 
     [Header("플레이어 참조")]
     [SerializeField] private PlayerInputController playerInputController;
 
     [Header("카메라 참조")]
+    [SerializeField] private Camera mainCamera;
     [SerializeField] private CinemachineCamera vcamGameplay;
     [SerializeField] private CinemachineCamera vcamInteract;
+    private LayerMask viewOrignalLayer;
+    [SerializeField] private LayerMask viewExceptionLayer;
+
 
     private void Awake()
     {
@@ -33,8 +36,6 @@ public class LobbyManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-
     }
 
     private void Start()
@@ -42,6 +43,7 @@ public class LobbyManager : MonoBehaviour
         player.PlayerInit(playerData);
         ChangeState(LobbyState.FreeMoving);
         playerInputController = player.GetComponent<PlayerInputController>();
+        viewOrignalLayer = mainCamera.cullingMask;
     }
 
     public void RequestInteraction()
@@ -55,6 +57,7 @@ public class LobbyManager : MonoBehaviour
         {
             ChangeState(LobbyState.Interacting);
             targetNpc.Interaction(); // Npc 상호작용 시작
+            InteractingCamera();
         }
         else
         {
@@ -63,32 +66,36 @@ public class LobbyManager : MonoBehaviour
     }
     public void ChangeState(LobbyState newState)
     {
+        if (currentState == LobbyState.Interacting && newState != LobbyState.Interacting)
+            DeInteractingCamera();
+
         currentState = newState;
         switch (currentState)
         {
-            case LobbyState.FreeMoving:
-                // "Lobby" 맵 활성화 (OnMove, OnInteract 사용 가능)
-                playerInputController.SwitchActionMap("InLobby");
+            case LobbyState.FreeMoving:                
                 Debug.Log("로비에서 자유 이동 모드로 전환되었습니다.");
+                playerInputController.SwitchActionMap("InLobby");
+
                 break;
 
             case LobbyState.Interacting:                
+                Debug.Log("로비에서 상호작용 모드로 전환되었습니다.");
                 playerInputController.SwitchActionMap("UI");
                 playerInputController.StopMovement(); // 플레이어 강제 정지
-                
+
                 break;
         }
     }
-
-    public void EndInteraction()
-    {
-        vcamInteract.Priority = 5;
-        ChangeState(LobbyState.FreeMoving);
-    }
-
-    public void OpenMapSelectUI()
+    
+    public void InteractingCamera()
     {
         vcamInteract.Priority = 20;
-        uiManager.OpenSelectMapUi();
+        mainCamera.cullingMask = viewOrignalLayer & ~viewExceptionLayer;
     }
+
+    public void DeInteractingCamera()
+    {
+        vcamInteract.Priority = 5;
+        mainCamera.cullingMask = viewOrignalLayer;
+    }   
 }

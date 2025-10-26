@@ -160,6 +160,18 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-675576076-0
         - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-1821367308-0
         - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-263845359-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-4163765-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-2117255709-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-1874894986-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-544690329-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-1262244515-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-286017873-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-2127230576-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-1558144313-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-350576561-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-98493698-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-1231658412-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-566101302-0
         values:
         - colorIndex: 7
           iconNameOrGuid: Camera Icon
@@ -191,3 +203,27 @@ MonoBehaviour:
           iconNameOrGuid: Favorite
         - colorIndex: 0
           iconNameOrGuid: Favorite
+        - colorIndex: 0
+          iconNameOrGuid: AudioClip Icon
+        - colorIndex: 0
+          iconNameOrGuid: AudioClip Icon
+        - colorIndex: 0
+          iconNameOrGuid: PreMatQuad
+        - colorIndex: 0
+          iconNameOrGuid: PreMatQuad
+        - colorIndex: 0
+          iconNameOrGuid: PreMatQuad
+        - colorIndex: 0
+          iconNameOrGuid: PreMatQuad
+        - colorIndex: 0
+          iconNameOrGuid: PreMatQuad
+        - colorIndex: 0
+          iconNameOrGuid: StandaloneInputModule Icon
+        - colorIndex: 8
+          iconNameOrGuid: MeshCollider Icon
+        - colorIndex: 0
+          iconNameOrGuid: Camera Icon
+        - colorIndex: 0
+          iconNameOrGuid: Camera Icon
+        - colorIndex: 0
+          iconNameOrGuid: Settings Icon

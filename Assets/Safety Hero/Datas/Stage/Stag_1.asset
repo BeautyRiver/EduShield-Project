@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c48b69cdbaebd44a428d71edb61b1c, type: 3}
+  m_Name: Stag_1
+  m_EditorClassIdentifier: 
+  stageId: 0
+  sceneName: Game Scene
+  stageImage: {fileID: -15640400, guid: 33f78f8f8d3aee14f98adbe11d20b21f, type: 3}
+  stageName: "\uACF5\uD5C8\uD55C \uC232"
+  stageDesc: "\uC2B5\uD558\uC9C0\uB9CC \uD3C9\uD654\uB85C\uC6CC \uBCF4\uC774\uB294
+    \uCD08\uB85D \uC138\uC0C1. \uADFC\uB370 \uBAA8\uB4E0 \uAC8C \uB110 \uD574\uCE58\uB824\uACE0
+    \uD560 \uAC70\uC57C!"
+  difficulty: 0
+  difficultyColor: {r: 0.20784315, g: 0.8431373, b: 0, a: 1}
+  difficultyImage: {fileID: -1825370391, guid: e0c61570a8ecddd4aa114aa9dfbbf6e1, type: 3}
