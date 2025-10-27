@@ -44,7 +44,7 @@ public class PlayerMove : MonoBehaviour
     public void SetCurretSpeed(float speed)
     {
         currentSpeed = speed;
-        Debug.Log($"currentSpeed: {speed}");
+        //Debug.Log($"currentSpeed: {speed}");
     }
 
     // 입력 벡터 업데이트

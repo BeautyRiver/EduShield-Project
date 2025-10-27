@@ -73,13 +73,13 @@ public class LobbyManager : MonoBehaviour
         switch (currentState)
         {
             case LobbyState.FreeMoving:                
-                Debug.Log("로비에서 자유 이동 모드로 전환되었습니다.");
+                //Debug.Log("로비에서 자유 이동 모드로 전환되었습니다.");
                 playerInputController.SwitchActionMap("InLobby");
 
                 break;
 
             case LobbyState.Interacting:                
-                Debug.Log("로비에서 상호작용 모드로 전환되었습니다.");
+                //Debug.Log("로비에서 상호작용 모드로 전환되었습니다.");
                 playerInputController.SwitchActionMap("UI");
                 playerInputController.StopMovement(); // 플레이어 강제 정지
 
