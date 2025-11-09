@@ -3,22 +3,38 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TargetScanner : MonoBehaviour
 {
     [Header("# 스캔 (범위 : 사거리)")]
-    public float scanRange; 
-    public LayerMask targetLayer;
+    public float scanRange;
+    [SerializeField] private Color scanColor;
+    [SerializeField] private LayerMask targetLayer;
     public RaycastHit2D[] targets;
-    public Transform nearestTarget;    
+    public Transform nearestTarget { get; private set; }
 
-    private void FixedUpdate()
-    {        
-        targets = Physics2D.CircleCastAll(transform.position, scanRange, Vector2.zero, 0, targetLayer);        
-        nearestTarget = GetNearest();      
+    private void Start()
+    {
+        StartCoroutine(FindNearstTarget());
     }
 
+    IEnumerator FindNearstTarget()
+    {
+        while (true)
+        {
+            if (GameManager.instance.currentState == GameState.Playing)
+            {
+                targets = Physics2D.CircleCastAll(transform.position, scanRange, Vector2.zero, 0, targetLayer);
+                nearestTarget = GetNearest();
+                yield return null;
+            }
+            else
+                yield return null;
+        }
+        
+    }
     // 가장 가까운 대상 반환 함수
     public Transform GetNearest()
     {
@@ -40,11 +56,10 @@ public class TargetScanner : MonoBehaviour
 
         return result;
     }
-  
-   
+    
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
+        Gizmos.color = scanColor;
         Gizmos.DrawWireSphere(transform.position, scanRange);
     }
 }

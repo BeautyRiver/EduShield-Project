@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
         {
             case GameState.Ready:
                 playerInputController.SwitchActionMap("Empty"); // 입력 비활성화
-                Time.timeScale = 1f; // 여기서 nowTimeScale을 사용해도 됨                
+                Time.timeScale = nowTimeScale; // 여기서 nowTimeScale을 사용해도 됨                
                 break;
 
             case GameState.Playing:
@@ -171,11 +171,7 @@ public class GameManager : MonoBehaviour
 
     private static void SetupAudio()
     {
-/*        // BGM 설정
-        if (TitleManager.playlistController.CurrentPlaylist.playlistName != "Game Bgm")
-            MasterAudio.ChangePlaylistByName("Game Bgm");
-        else*/
-           MasterAudio.StartPlaylist("Game Bgm");        
+        MasterAudio.StartPlaylist("Game Bgm");        
     } 
 
     private IEnumerator GameOverRoutine()

@@ -28,7 +28,7 @@ public abstract class Weapon : MonoBehaviour
     {
         gm = GameManager.instance;
         poolManager = PoolManager.instance;
-        playerMove = gm.player.playerMove;
+        playerMove = gm.player.GetComponent<PlayerMove>();
         targetScanner = gm.player.GetComponent<TargetScanner>();
         playerStatMultipliers = gm.playerData;
     }

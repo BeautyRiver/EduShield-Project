@@ -3,7 +3,7 @@ using UnityEngine;
 // NPC 공통사항:
 // 상호작용 E 키, E키 UI 
 // 항상 플레이어를 바라보게
-public abstract class Npc : MonoBehaviour
+public abstract class Npc : MonoBehaviour, IInteractable
 {    
     private SpriteRenderer spriter;
     private GameObject speechBubble;
@@ -24,15 +24,14 @@ public abstract class Npc : MonoBehaviour
     }
 
     // 대화 UI 보여주기 
-    public void ShowSpeechBubble(bool show)
+    public void ShowPrompt(bool show)
     {
-        // 상호작용 중일 때또는 이미 상태가 같으면 return
-        if (LobbyManager.instance.currentState == LobbyState.Interacting || speechBubble.activeSelf == show)
+        if (speechBubble.activeSelf == show)
             return;       
 
-        speechBubble.SetActive(show);
+        speechBubble.SetActive(show);        
     }
 
     // 상호작용 
-    public abstract void Interaction();
+    public abstract void Interact();
 }

@@ -9,34 +9,30 @@ public class PlayerInGame : MonoBehaviour, IDamageable
     public float health; // 현재 체력
     public float maxHealth = 100; // 최대 체력  
 
-    [Header("# 게임 오브젝트 참조")]
-    public TargetScanner scanner; // 적 탐색기        
-
 
     [Header("# 이펙트 관리")]
     [ColorUsage(true, true)]
     [SerializeField] private Color hitColor; // 피격 시 색상
     [SerializeField] private GameObject playerEffect;
-
     private Color normalColor; // 기본 색상
-
     private WaitForSeconds hitingTime; // 피격 지속 시간
     private bool isHiting; // 피격 중 여부
 
     // 기타 컴포넌트
-    [HideInInspector]
+    [Header("# 게임 오브젝트 참조")]
     public PlayerMove playerMove;
-
+    public TargetScanner scanner; // 적 탐색기        
     private SpriteRenderer spriter;
     private Rigidbody2D rigid;
     private Animator anim;
     private GameManager gm; // 게임 매니저 참조
     private CapsuleCollider2D col;
-    
+
     [Header("# For Debug")]
     [Foldout("Debugging용")]
     public bool isInvincible;
     [EndFoldout]
+
 
     private void Awake()
     {
@@ -107,22 +103,17 @@ public class PlayerInGame : MonoBehaviour, IDamageable
     {           
         // 체력
         float oldMaxHealth = maxHealth;
-        //maxHealth = 100 * gm.playerData.maxHpMult; // 100은 기본체력
+        maxHealth = 100 * gm.playerData.maxHpMult; // 100은 기본체력
         if (maxHealth > oldMaxHealth) // 최대 체력이 증가했다면
         {
             health += maxHealth - oldMaxHealth; // 그만큼 체력 회복도 시켜주고..
         }
         health = Mathf.Min(health, maxHealth);
 
-        // 이동 속도
-        RecalculateSpeed();
-    }
-
-    // 속도 재계산
-    public void RecalculateSpeed()
-    {
+        // 이동 속도 재계산
         playerMove.SetCurretSpeed(playerMove.baseSpeed * gm.playerData.speedMult);
     }
+
     public void PlayerDead()
     {
         col.enabled = false;
@@ -150,9 +141,6 @@ public class PlayerInGame : MonoBehaviour, IDamageable
         effect.transform.parent = transform;
         effect.transform.localPosition = Vector3.zero;        
     }
-
-  
-
 }
 
 

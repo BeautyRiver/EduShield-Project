@@ -37,16 +37,16 @@ public class ForDebug : MonoBehaviour
                 debugText.text = "무적 해제";
             }
         }
-        if (Input.GetKeyDown(KeyCode.F2))
-        {
-            GameManager.instance.player.playerMove.SetCurretSpeed(GameManager.instance.player.playerMove.currentSpeed + 1f);
-            debugText.text = "스피드 증가 => " + GameManager.instance.player.playerMove.currentSpeed;
-        }
-        if (Input.GetKeyDown(KeyCode.F3))
-        {
-            GameManager.instance.player.playerMove.SetCurretSpeed(GameManager.instance.player.playerMove.currentSpeed - 1f);
-            debugText.text = "스피드 감소 => " + GameManager.instance.player.playerMove.currentSpeed;
-        }
+        //if (Input.GetKeyDown(KeyCode.F2))
+        //{
+        //    GameManager.instance.player.playerMove.SetCurretSpeed(GameManager.instance.player.playerMove.currentSpeed + 1f);
+        //    debugText.text = "스피드 증가 => " + GameManager.instance.player.playerMove.currentSpeed;
+        //}
+        //if (Input.GetKeyDown(KeyCode.F3))
+        //{
+        //    GameManager.instance.player.playerMove.SetCurretSpeed(GameManager.instance.player.playerMove.currentSpeed - 1f);
+        //    debugText.text = "스피드 감소 => " + GameManager.instance.player.playerMove.currentSpeed;
+        //}
         if (Input.GetKeyDown(KeyCode.F4))
         {
             //is2xSpeed = true;

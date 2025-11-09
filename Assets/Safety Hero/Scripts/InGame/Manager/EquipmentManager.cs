@@ -86,7 +86,7 @@ public class EquipmentManager : MonoBehaviour
         }
 
         // 현재 장착(먹은 아이템)의 이미지와 레벨 텍스트 컴포넌트 설정
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < transform.childCount-1; i++)
         {
             Image[] images = transform.GetChild(i).GetComponentsInChildren<Image>();
             equipLevelTexts.Add(images[0].gameObject.GetComponentInChildren<TextMeshProUGUI>(true));

@@ -7,7 +7,7 @@ public class MagnetItem : Item
     [SerializeField] private float duration;
     public override void Use()
     {
-        ExpScanner expScanner = gm.player.GetComponent<ExpScanner>();
+        PlayerExpScanner expScanner = gm.player.GetComponent<PlayerExpScanner>();
         if (expScanner != null)
             expScanner.ActivateMagnet(magnetRange, duration);
 

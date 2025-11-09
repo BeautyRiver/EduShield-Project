@@ -29,8 +29,8 @@ TagManager:
   - GroundPhyscis
   - UniqueEnemy
   - Box
-  - Npc
-  - Npc_UI
+  - Interactable
+  - Interactable_UI
   - 
   - 
   - 

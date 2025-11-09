@@ -5,7 +5,6 @@ using UnityEngine;
 public class LobbyUIManager : MonoBehaviour
 {
     public static LobbyUIManager instance;
-
     [SerializeField] private GameObject stageSelectUi;
 
 
@@ -20,14 +19,12 @@ public class LobbyUIManager : MonoBehaviour
     public void SwitchStageSelectUi()
     {
         bool isActive = stageSelectUi.activeSelf;
-        if (isActive == true)
+        stageSelectUi.SetActive(!isActive);
+
+        if (isActive == true) // UI가 닫힐 때
         {
-            stageSelectUi.SetActive(false);
-            LobbyManager.instance.ChangeState(LobbyState.FreeMoving);
-        }
-        else
-        {
-            stageSelectUi.SetActive(true);
+            LobbyManager.instance.player.GetComponent<PlayerInputController>().ChangeState(PlayerState.FreeMove);
+            LobbyManager.instance.DeInteractingCamera();
         }
     }
 

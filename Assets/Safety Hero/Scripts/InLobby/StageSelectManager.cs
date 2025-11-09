@@ -51,7 +51,7 @@ public class StageSelectManager : MonoBehaviour
             right_stageDifficultText.text = data.difficulty.ToString();
             right_stageDifficultImage.sprite = data.difficultyImage;
             right_stageDifficultBackGround.color = data.difficultyColor;
-            Debug.Log($"Selected Stage: {data.stageName}");
+            //Debug.Log($"Selected Stage: {data.stageName}");
         }
     }
 

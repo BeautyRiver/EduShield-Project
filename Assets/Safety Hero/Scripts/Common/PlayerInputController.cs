@@ -1,17 +1,51 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public enum PlayerState
+{
+    FreeMove,
+    InUI
+}
 [RequireComponent(typeof(PlayerMove))]
 [RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(PlayerInteraction))]
 
 public class PlayerInputController : MonoBehaviour
 {
-    private PlayerMove playerMove;
-    private PlayerInput playerInput;
+    [HideInInspector] public PlayerMove playerMove;
+    [HideInInspector] public PlayerInput playerInput;
+    [HideInInspector] public PlayerInteraction playerInteraction;
+    public PlayerState currentState { get; private set; } // 현재 플레이어 상태
+
     private void Awake()
     {
         playerMove = GetComponent<PlayerMove>();
         playerInput = GetComponent<PlayerInput>();
+        playerInteraction = GetComponent<PlayerInteraction>();
+    }
+    private void Start()
+    {
+        ChangeState(PlayerState.FreeMove);
+    }
+
+    public void ChangeState(PlayerState newState)
+    {
+        if (newState == PlayerState.InUI)
+        {
+            StopMovement();
+        }
+
+        currentState = newState;
+        switch (currentState)
+        {
+            case PlayerState.FreeMove:
+                // TODO: 씬에 따라 "InLobby" 또는 "InGame" 맵을 선택해야 함
+                SwitchActionMap("InLobby");
+                break;
+            case PlayerState.InUI:
+                SwitchActionMap("UI");
+                break;
+        }
     }
 
     // InGame or Lobby
@@ -24,11 +58,11 @@ public class PlayerInputController : MonoBehaviour
 
     private void OnInteract(InputValue value)
     {
-        if (LobbyManager.instance == null) return;
+        if (playerInteraction == null) return;
+        if (currentState != PlayerState.FreeMove) return; // 자유 이동 상태에서만 상호작용 가능
 
         Debug.Log("상호작용 입력 감지됨.");
-
-        LobbyManager.instance.RequestInteraction();
+        playerInteraction.RequestInteraction();
     }
 
     public void SwitchActionMap(string mapName)

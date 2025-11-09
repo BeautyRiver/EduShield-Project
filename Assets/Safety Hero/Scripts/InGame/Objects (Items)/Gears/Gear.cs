@@ -14,7 +14,7 @@ public abstract class Gear : MonoBehaviour
     protected virtual void Awake()
     {
         gm = GameManager.instance;
-        playerMove = gm.player.playerMove;
+        playerMove = gm.player.GetComponent<PlayerMove>();
     }
 
     public virtual void Init(GearData newData)
