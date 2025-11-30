@@ -12,7 +12,7 @@ public abstract class InteractableObject : MonoBehaviour, IInteractable
     }
 
     // 상호작용 UI 보여주기 
-    public void ShowInteractUi(bool show)
+    public virtual void ShowInteractUi(bool show)
     {
         if (interactionUI.activeSelf == show)
             return;       
@@ -22,4 +22,5 @@ public abstract class InteractableObject : MonoBehaviour, IInteractable
 
     // 상호작용 
     public abstract void Interact();
+
 }

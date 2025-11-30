@@ -34,6 +34,7 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GlobalManager.instance.playerState != PlayerState.FreeMove) return;
         Move();
     }
     public void SetMoveDirection(Vector2 direction)

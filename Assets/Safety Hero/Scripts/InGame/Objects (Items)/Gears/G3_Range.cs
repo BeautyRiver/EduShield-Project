@@ -19,6 +19,5 @@ public class G3_Range : Gear
         {
             batchableWeapon.Batch();
         }
-        Debug.Log($"{name}현재 배율: {gm.playerData.attackRangeMult}배");
     }
 }

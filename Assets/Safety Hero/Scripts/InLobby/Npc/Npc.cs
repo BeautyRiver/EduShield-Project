@@ -11,6 +11,7 @@ public class Npc : InteractableObject
     }
     public override void Interact()
     {
+        GlobalManager.instance.ChangePlayerState(PlayerState.InUI);
         LobbyManager.instance.InteractingCamera();
     }
 

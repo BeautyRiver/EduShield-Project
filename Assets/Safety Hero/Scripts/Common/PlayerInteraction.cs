@@ -16,7 +16,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (GlobalManager.instance.playerState == PlayerState.FreeMove)
         {
-            UpdateNearestNpc();
+            UpdateNearestObject();
         }
         else
         {
@@ -25,7 +25,7 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    private void UpdateNearestNpc()
+    private void UpdateNearestObject()
     {
         Transform nearstTarget = scanner.nearestTarget;
 
@@ -39,8 +39,13 @@ public class PlayerInteraction : MonoBehaviour
                     lastNearObj.ShowInteractUi(false);
                 }
 
-                lastNearObj = nearstTarget.GetComponent<IInteractable>();
-                lastNearObj.ShowInteractUi(true);
+                IInteractable newObj = nearstTarget.GetComponent<IInteractable>();
+
+                if (newObj != null)
+                {
+                    lastNearObj = newObj;
+                    lastNearObj.ShowInteractUi(true);
+                }
             }
 
             // Npc종류면 플레이어를 바라보게 하기
@@ -72,7 +77,7 @@ public class PlayerInteraction : MonoBehaviour
         // 상호작용 시작
         if (lastNearObj != null)
         {
-            playerInputController.ChangeState(PlayerState.InUI);
+            //playerInputController.ChangePlayerState(PlayerState.InUI);
             lastNearObj.Interact(); // 상호작용 시작
         }
         else

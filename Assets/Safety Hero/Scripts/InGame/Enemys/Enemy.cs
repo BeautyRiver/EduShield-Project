@@ -83,8 +83,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     // 데미지 받는 로직
     public void DamagedLogic(Collider2D collision, float damage)
-    {
-        Debug.Log("DamagedLogic");
+    {        
         Bullet bulletInfo = collision.GetComponent<Bullet>();
         Vector2 hitPos;
 
@@ -112,7 +111,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
             coll.enabled = false;
             rigid.simulated = false;
             anim.SetBool("isDead", true);
-            gm.IncreasePlayerKill();
+            gm.player.IncreasePlayerKill();
             MasterAudio.PlaySound("Dead");
         }
     }
@@ -122,10 +121,10 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         GameObject expObj = PoolManager.instance.Get(myData.dropExpPrefab); // exp 생성
         expObj.transform.position = transform.position;
         expObj.GetComponent<Exp>().exp = this.exp;
-        // 50% 확률로 골드 증가
+        // 85% 확률로 골드 증가
         int rand = Random.Range(0, 100);
-        if (rand < 50)
-            gm.IncreaseGold(this.gold); // 골드 증가
+        if (rand < 85)
+            gm.player.IncreaseGold(this.gold); // 골드 증가
     }
     private void Damaged(float damage, Vector2 hitPos, Color color, bool isPlusDamage, float fontSize)
     {

@@ -16,7 +16,6 @@ public class LevelUp : MonoBehaviour
     public float showLeveUpDuration;
     [SerializeField] private List<LevelUpItemSetting> items;
     public List<LevelUpItemSetting> availableItems;
-    private GameManager gm;
     private void Awake()
     {     
         rect = GetComponent<RectTransform>();
@@ -25,7 +24,7 @@ public class LevelUp : MonoBehaviour
 
     public void Show()
     {
-        GameManager.instance.ChangeState(GameState.LevelUp); // 레벨업 중
+        GlobalManager.instance.ChangeState(GameState.LevelUp); // 레벨업 중
         gameObject.SetActive(true);
         uiManager.BlackWindowFadeIn(); // 검은 배경 On
         Next(); // 섞기
@@ -43,7 +42,7 @@ public class LevelUp : MonoBehaviour
     }
     public void Hide()
     {
-        GameManager.instance.ChangeState(GameState.Playing); // 레벨업 완료
+        GlobalManager.instance.ChangeState(GameState.Playing); // 레벨업 완료
         MasterAudio.PlaySound("Select");
         uiManager.BlackWindowFadeOut(); // 검은 배경 Off
         Button[] buttons = transform.GetComponentsInChildren<Button>();
@@ -116,7 +115,7 @@ public class LevelUp : MonoBehaviour
         }
 
         // 활성화할 아이템 수를 결정 (최대 4개)
-        int itemsToActivate = Mathf.Min(4, availableItems.Count);
+        int itemsToActivate = Mathf.Min(3, availableItems.Count);
 
         // 랜덤으로 아이템 선택
         List<int> selectedItems = new List<int>();

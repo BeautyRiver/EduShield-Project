@@ -38,7 +38,7 @@ public class LobbyManager : MonoBehaviour
     }
 
   
-    //public void ChangeState(LobbyState newState)
+    //public void ChangePlayerState(LobbyState newState)
     //{
     //    if (playerState == LobbyState.Interacting && newState != LobbyState.Interacting)
     //        DeInteractingCamera();

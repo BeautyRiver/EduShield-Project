@@ -1,11 +1,7 @@
 using DarkTonic.MasterAudio;
 using DG.Tweening;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,53 +9,136 @@ using VInspector;
 
 public class UIManager : MonoBehaviour
 {
-    [Foldout("UI Active 관리")]
-    [SerializeField] private GameObject winUI;
-    [SerializeField] private GameObject loseUI;
+    public static UIManager instance;
 
-    [SerializeField] private GameObject pauseUI;
-    [SerializeField] private GameObject optionUI;
+    [Foldout("UI Active 관리")]
+    [Header("팝업 UI 모음")]
+    public GameObject winUI; 
+    public GameObject loseUI; 
+    
+    public LevelUp uiLevelUp;
+    public Result resultUI;
+
+    public GameObject pauseUI;
+    public GameObject optionUI;
+    public GameObject rewardBoxOpenUI;
+    public GameObject rewardBoxOkUI;
+
     private bool isPause;
     private bool isOption;
     [EndFoldout]
 
     [Foldout("Status Text % 관리")]
-    [SerializeField] private TextMeshProUGUI hpText; // 체력
-    [SerializeField] private TextMeshProUGUI damageText; // 데미지
-    [SerializeField] private TextMeshProUGUI attackSpeedText; // 공격 속도    
+    [SerializeField] private TextMeshProUGUI hpText;
+    [SerializeField] private TextMeshProUGUI damageText;
+    [SerializeField] private TextMeshProUGUI attackSpeedText;
     [SerializeField] private TextMeshProUGUI attackRangeText;
-    [SerializeField] private TextMeshProUGUI speedText; // 이동 속도
+    [SerializeField] private TextMeshProUGUI speedText;
     [EndFoldout]
 
-    [Foldout("처음 선택되는 버튼들")]
-    [SerializeField] private Selectable pauseFirstSelectedButton; // 일시정지 씬에서 처음 선택되는 버튼    
-    [SerializeField] private Selectable pauseOptionButton; // option button in pause ui\
-    [SerializeField] private Selectable optionFirstSelectedButton; // 옵션 씬에서 처음 선택되는 버튼
-    [EndFoldout]
-    
-    
-    [SerializeField] private Image blackWindow; // 레벨업, esc 뒤의 배경 검게
+    [SerializeField] private Image blackWindow;
     [SerializeField] private Image[] swapCoolDownImages;
-
     [SerializeField] private float fadeTime;
 
-    private GameManager gm;        
+    private GlobalManager globalManager;
+    private GameManager gameManager;
+
+    private void Awake()
+    {        
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+    }
+
     private void Start()
     {
-        gm = GameManager.instance;
+        globalManager = GlobalManager.instance;
+        gameManager = GameManager.instance;
     }
 
     private void Update()
     {
-        if (GlobalManager.instance.gameState == GameState.LevelUp)
+        if (globalManager.gameState == GameState.LevelUp)
             return;
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePauseScreen();
         }
+    } 
+
+    // 레벨업 UI 띄우기
+    public void ShowLevelUp()
+    {
+        uiLevelUp.Show();
     }
-    // 일시정지 화면 On/Off
+
+    // 초기 무기 선택
+    public void InitFirstWeaponSelection(int characterId)
+    {
+        uiLevelUp.FirstGiveWeapon(characterId);
+    }
+
+    // 보상 상자 UI 띄우기
+    public void ShowRewardBox()
+    {
+        BlackWindowFadeIn();
+        globalManager.ChangeState(GameState.Paused);
+        rewardBoxOpenUI.SetActive(true);
+        Vector3 localScale = rewardBoxOpenUI.transform.localScale;
+        rewardBoxOpenUI.transform.localScale = Vector3.zero;
+        rewardBoxOpenUI.transform.DOScale(localScale, 0.5f).SetEase(Ease.OutBack).SetUpdate(true);
+    }
+
+    // 보상 상자 열기 애니메이션 재생
+    public void OpenRewardBox()
+    {
+        StartCoroutine(OpenRoutine());
+    }    
+    IEnumerator OpenRoutine() // 코루틴 함수
+    {
+        Animator anim = rewardBoxOpenUI.GetComponentInChildren<Animator>();
+        anim.SetBool("IsOpen", true);
+
+        yield return new WaitForSecondsRealtime(0.8f);
+
+        // 기다림이 끝나면 실행
+        ShowRewardBoxOK();
+    }
+
+    // 보상 상자 확인 UI 띄우기
+    public void ShowRewardBoxOK()
+    {
+        rewardBoxOkUI.SetActive(true);
+        Vector3 localScale = rewardBoxOkUI.transform.localScale;
+        rewardBoxOkUI.transform.localScale = Vector3.zero;
+        rewardBoxOkUI.transform.DOScale(localScale, 0.5f).SetEase(Ease.OutBack).SetUpdate(true);
+    }
+
+    public void RewardOkButton()
+    {
+        Animator anim = rewardBoxOpenUI.GetComponentInChildren<Animator>();
+        anim.SetBool("IsOpen", false);
+        MasterAudio.PlaySound("BtnClick");
+        rewardBoxOkUI.SetActive(false);
+        rewardBoxOpenUI.SetActive(false);
+        BlackWindowFadeOut();
+        globalManager.ChangeState(GameState.Playing);
+    }
+
+    // 결과창(승리/패배) 띄우기
+    public void ShowResult(bool isWin)
+    {
+        resultUI.gameObject.SetActive(true);
+        if (isWin)
+            resultUI.Win();
+        else
+            resultUI.Lose();
+    }
+
+    // ------------------------------------------
+
     public void TogglePauseScreen()
     {
         if (isOption)
@@ -72,9 +151,8 @@ public class UIManager : MonoBehaviour
         {
             MasterAudio.PlaySound("BtnClick");
             BlackWindowFadeIn();
-            isPause = true;            
-            gm.ChangeState(GameState.Paused);
-            pauseFirstSelectedButton.Select();
+            isPause = true;
+            globalManager.ChangeState(GameState.Paused);
             UpdatePlayerStatusText();
         }
         else
@@ -82,72 +160,54 @@ public class UIManager : MonoBehaviour
             MasterAudio.PlaySound("BtnClick");
             BlackWindowFadeOut();
             isPause = false;
-            gm.ChangeState(GameState.Playing);
+            globalManager.ChangeState(GameState.Playing);
         }
         pauseUI.SetActive(isPause);
     }
 
-    // 옵션 화면 On/Off
     public void ToggleOptionScreen()
     {
         if (!isOption && isPause)
         {
             MasterAudio.PlaySound("BtnClick");
             isOption = true;
-            optionFirstSelectedButton.Select();
         }
         else
         {
             MasterAudio.PlaySound("BtnClick");
             isOption = false;
-            pauseOptionButton.Select();
         }
         optionUI.SetActive(isOption);
     }
 
-    // 플레이어 스탯 텍스트 업데이트
     private void UpdatePlayerStatusText()
     {
-        hpText.text = (gm.playerData.maxHpMult * 100f).ToString() + "%";
-        damageText.text = (gm.playerData.damageMult * 100f).ToString() + "%";
-        attackSpeedText.text = (gm.playerData.attackSpeedMult * 100f).ToString() + "%";
-        attackRangeText.text = (gm.playerData.attackRangeMult * 100f).ToString() + "%";
-        speedText.text = (gm.playerData.speedMult * 100f).ToString() + "%";
+        if (gameManager.playerData == null) return;
+
+        hpText.text = (gameManager.playerData.maxHpMult * 100f).ToString() + "%";
+        damageText.text = (gameManager.playerData.damageMult * 100f).ToString() + "%";
+        attackSpeedText.text = (gameManager.playerData.attackSpeedMult * 100f).ToString() + "%";
+        attackRangeText.text = (gameManager.playerData.attackRangeMult * 100f).ToString() + "%";
+        speedText.text = (gameManager.playerData.speedMult * 100f).ToString() + "%";
     }
 
-    public void Lose()
-    {
-        loseUI.SetActive(true);
-    }
+    // (기존 Win/Lose 함수는 ShowResult로 대체 가능하지만, 호환성을 위해 남겨둠)
+    public void Lose() => loseUI.SetActive(true);
+    public void Win() => winUI.SetActive(true);
 
-    public void Win()
-    {
-        winUI.SetActive(true);
-    }
-
-    // 게임 재시작
     public void GameRetry()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    // 타이틀로 이동
     public void GoTitle()
     {
-        MasterAudio.PlaylistsMuted = false; // 배경음악 On         
-        gm.ChangeState(GameState.Playing);
+        MasterAudio.PlaylistsMuted = false;
+        globalManager.ChangeState(GameState.Playing);
         LoadingSceneController.LoadScene("Title Scene");
-    }    
-
-    // 검은 배경 On
-    public void BlackWindowFadeIn()
-    {
-        blackWindow.gameObject.SetActive(true);
-    }
-    // 검은 배경 Off
-    public void BlackWindowFadeOut()
-    {
-        blackWindow.gameObject.SetActive(false);
     }
 
+    public void BlackWindowFadeIn() => blackWindow.gameObject.SetActive(true);
+    public void BlackWindowFadeOut() => blackWindow.gameObject.SetActive(false);
+    
 }

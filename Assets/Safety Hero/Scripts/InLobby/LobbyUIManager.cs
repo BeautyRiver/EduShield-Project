@@ -23,7 +23,7 @@ public class LobbyUIManager : MonoBehaviour
 
         if (isActive == true) // UI가 닫힐 때
         {
-            LobbyManager.instance.player.GetComponent<PlayerInputController>().ChangeState(PlayerState.FreeMove);
+            GlobalManager.instance.ChangePlayerState(PlayerState.FreeMove);
             LobbyManager.instance.DeInteractingCamera();
         }
     }

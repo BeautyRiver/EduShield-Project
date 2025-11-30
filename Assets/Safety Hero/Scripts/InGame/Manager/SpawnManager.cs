@@ -16,9 +16,7 @@ public class SpawnManager : MonoBehaviour
     [Header("# 박스 소환")]
     [SerializeField] private LayerMask collisionMask; // 충돌을 감지할 레이어 (필요에 맞게 설정)
     [SerializeField] private LayerMask groundMask;
-    [SerializeField] private GameObject boxPrefab;
-    [SerializeField] private float boxTimer;
-    [SerializeField] private Vector2 boxSpawnTime;
+
     private GameManager gm;
 
     private void Start()
@@ -52,17 +50,8 @@ public class SpawnManager : MonoBehaviour
                 profile.timer += Time.deltaTime;
         }
 
-        // # Box Spawn
-        boxTimer += Time.deltaTime;
         level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / levelTime), 10); // 최대 레벨 제한 (예시)   
-
-        
-
-        if (boxTimer > Random.Range(boxSpawnTime.x, boxSpawnTime.y))
-        {
-            boxTimer = 0f;
-            SpawnBox();
-        }
+      
     }
 
     // 초기 설정
@@ -111,45 +100,5 @@ public class SpawnManager : MonoBehaviour
             enemy.transform.position = spawnPoint[Random.Range(0, spawnPoint.Length)].position;
             enemy.GetComponent<Enemy>().Init(profile.enemyData);
         }
-    }
-
-    void SpawnBox()
-    {
-        Vector3 spawnPosition = Vector3.zero;
-        bool isSafePosition = false; // 충돌 없는 안전한 위치인지 확인하는 변수
-        float boxRadius = 0.5f; // 박스의 크기에 맞는 반지름으로 설정
-
-        Transform parentTransform = transform;
-
-        int loopNo = 0;
-        // 충돌 없는 위치를 찾을 때까지 반복
-        while (!isSafePosition)
-        {
-            if (loopNo >= 1000)
-            {
-                Debug.LogError("안전한 박스 스폰 위치를 찾지 못했습니다. (무한루프 방지)");
-                return;
-            }
-            spawnPosition = spawnPoint[Random.Range(0, spawnPoint.Length)].position;
-
-            // 1. 해당 위치에 장애물이 있는가?
-            bool isObstacleFree = Physics2D.OverlapCircle(spawnPosition, boxRadius, collisionMask) == null;
-
-            // 2. 해당 위치에 땅이 있는가?
-            Collider2D groundCollider = Physics2D.OverlapCircle(spawnPosition, boxRadius, groundMask);
-
-            if (isObstacleFree && groundCollider != null)
-            {
-                isSafePosition = true; // 충돌이 없으면 안전한 위치로 설정
-                parentTransform = Physics2D.OverlapCircle(spawnPosition, boxRadius, groundMask).transform;
-            }            
-            loopNo++;
-        }
-
-        // 안전한 위치가 확인되면 박스 생성
-        Debug.Log("Box 생성 완료");
-        GameObject box = PoolManager.instance.Get(boxPrefab); // Box 생성
-        box.transform.parent = parentTransform;
-        box.transform.position = spawnPosition;
-    }
+    }   
 }

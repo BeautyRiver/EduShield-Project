@@ -42,7 +42,7 @@ public class Exp : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             MasterAudio.PlaySound("Coin"); // Coin 사운드 재생
-            GameManager.instance.GetExp(exp);
+            GameManager.instance.player.GetExp(exp);
             gameObject.SetActive(false);
             IsMoving = false;
         }

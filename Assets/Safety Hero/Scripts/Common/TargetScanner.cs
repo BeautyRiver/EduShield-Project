@@ -13,7 +13,7 @@ public class TargetScanner : MonoBehaviour
     [SerializeField] private Color scanColor;
     [SerializeField] private LayerMask targetLayer;
     public RaycastHit2D[] targets;
-    public Transform nearestTarget { get; private set; }
+    [field: SerializeField] public Transform nearestTarget { get; private set; }
 
     private void Start()
     {

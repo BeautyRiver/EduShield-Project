@@ -29,7 +29,7 @@ public abstract class Weapon : MonoBehaviour
         gm = GameManager.instance;
         poolManager = PoolManager.instance;
         playerMove = gm.player.GetComponent<PlayerMove>();
-        targetScanner = gm.player.GetComponent<TargetScanner>();
+        targetScanner = gm.player.scanner;
         playerStatMultipliers = gm.playerData;
     }
 
@@ -63,31 +63,6 @@ public abstract class Weapon : MonoBehaviour
         speedTimer = finalStats.weaponAttackSpeed; // 타이머 초기화
         transform.localPosition = Vector3.zero;    // 플레이어 안에서 위치 초기화
         ownerTag = transform.parent.tag;           // 무기 소유자 태그 설정
-
-       /* damage = data.baseDamage;                 // 기본 공격력
-        bulletDelay = data.baseDelay;             // 기본 딜레이
-        count = data.baseCount;                   // 기본 개수
-        bulletMoveSpeed = data.baseBulletMoveSpeed;       // 기본 총알 이동속도
-        weaponAttackSpeed = data.baseWeaponAttackSpeed;       // 기본 공격속도
-        weaponDuration = data.baseWeaponDuration; // 무기 지속시간 설정  (*현재 ONLY 회전무기)
-        rotationSpeed = data.baseRotationSpeed;   // 기본 회전속도       (*현재 ONLY 회전무기)
-        attackRange = data.baseRange;             // 기본 범위 
-        bulletSize = data.baseScale;              // 기본 사이즈 
-        damageInterval = data.baseDamageInterval; // 기본 공격 텀  (*자기장 무기 때문)
-        per = data.basePer;                       // 기본 관통력 
-        knockBackAmout = data.baseKnockback;                    // 기본 넉벡량        
-        bulletPrefab = data.bulletPrefab;
-
-        // 플레이어의 기본 능력치에 따른 설정
-        damage = data.baseDamage * gameManager.playerData.damageMult;
-        attackRange = data.baseRange * gameManager.playerData.attackRangeMult;
-        bulletSize = data.baseScale * gameManager.playerData.attackRangeMult;
-
-        // 공격속도 설정
-        damageInterval = data.baseDamageInterval * gameManager.playerData.attackSpeedMult;               // 데미지 간격
-        weaponAttackSpeed = (float)System.Math.Round(weaponAttackSpeed / gameManager.playerData.attackSpeedMult, 2); // 무기 속도
-        bulletDelay = (float)System.Math.Round(bulletDelay / gameManager.playerData.attackSpeedMult, 2); // 총알 사이 딜레이
-        rotationSpeed = (float)System.Math.Round(rotationSpeed / gameManager.playerData.attackSpeedMult, 2); // 회전 속도*/
 
     }
 

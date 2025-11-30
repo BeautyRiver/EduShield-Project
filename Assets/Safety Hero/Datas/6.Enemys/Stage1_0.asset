@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Stage1_0
   m_EditorClassIdentifier: 
   id: 1000
-  health: 5
+  health: 3
   speed: 3
-  damage: 10
+  damage: 5
   exp: 1
   gold: 1
   animCon: {fileID: 22100000, guid: 8d1d920724ffb8a409ce0e458dc4b7a9, type: 2}
