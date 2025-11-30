@@ -13,7 +13,7 @@ public class W2_MagneticFieldWeapon : Weapon, IBatchable
     // 자기장
     protected IEnumerator M2_Bullet()
     {
-        while (gm.currentState != GameState.Playing)
+        while (GlobalManager.instance.gameState != GameState.Playing)
         {
             yield return null;
             Transform bullet;

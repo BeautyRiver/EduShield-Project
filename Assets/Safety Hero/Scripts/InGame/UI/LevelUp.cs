@@ -14,13 +14,13 @@ public class LevelUp : MonoBehaviour
     private RectTransform rect;
     public Image blackWindow;
     public float showLeveUpDuration;
-    [SerializeField] private List<ItemSetting> items;
-    public List<ItemSetting> availableItems;
+    [SerializeField] private List<LevelUpItemSetting> items;
+    public List<LevelUpItemSetting> availableItems;
     private GameManager gm;
     private void Awake()
     {     
         rect = GetComponent<RectTransform>();
-        items = GetComponentsInChildren<ItemSetting>(true).ToList();
+        items = GetComponentsInChildren<LevelUpItemSetting>(true).ToList();
     }
 
     public void Show()
@@ -59,42 +59,42 @@ public class LevelUp : MonoBehaviour
 
     public void FirstGiveWeapon(int index)
     {
-        GetComponentsInChildren<ItemSetting>(true)[index].OnClick();
+        GetComponentsInChildren<LevelUpItemSetting>(true)[index].OnClick();
     }
 
     private void Next()
     {
         // 모든 아이템 비활성화
-        foreach (ItemSetting item in items)
+        foreach (LevelUpItemSetting item in items)
         {
             item.gameObject.SetActive(false);
         }
 
         // 활성화 가능한 아이템을 담는 리스트
-        availableItems = new List<ItemSetting>();
+        availableItems = new List<LevelUpItemSetting>();
 
         bool allMaxLevel = true;
 
-        foreach (ItemSetting item in items)
+        foreach (LevelUpItemSetting item in items)
         {
-            if (item.itemData is BulletData)
+            if (item.data is BulletData)
             {
                 // 이미 획득한 무기이거나, 새로운 무기를 획득할 수 있는 경우
                 if (item.level > 0 || GameManager.instance.weaponCount < GameManager.instance.maxItemCount)
                 {
-                    if (item.level < item.itemData.maxLevel)
+                    if (item.level < item.data.maxLevel)
                     {
                         availableItems.Add(item);
                         allMaxLevel = false;
                     }
                 }
             }
-            else if (item.itemData is GearData)
+            else if (item.data is GearData)
             {
                 // 이미 획득한 기어이거나, 새로운 기어를 획득할 수 있는 경우
                 if (item.level > 0 || GameManager.instance.gearCount < GameManager.instance.maxItemCount)
                 {
-                    if (item.level < item.itemData.maxLevel)
+                    if (item.level < item.data.maxLevel)
                     {
                         availableItems.Add(item);
                         allMaxLevel = false;
@@ -106,9 +106,9 @@ public class LevelUp : MonoBehaviour
         // 모든 무기와 기어가 최대 레벨에 도달했다면 Etc 아이템만 활성화
         if (allMaxLevel)
         {
-            foreach (ItemSetting item in items)
+            foreach (LevelUpItemSetting item in items)
             {
-                if (item.itemData is EtcData)
+                if (item.data is EtcData)
                 {
                     availableItems.Add(item);
                 }

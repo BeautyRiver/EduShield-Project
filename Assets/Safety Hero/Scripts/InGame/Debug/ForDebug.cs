@@ -9,8 +9,8 @@ public class ForDebug : MonoBehaviour
     public Transform itemParent;
     public GameObject sampleItem;
     public Sprite[] uiPanelImages;
-    public ItemSetting[] items;
-    public ItemDataGuide[] itemData;
+    public LevelUpItemSetting[] items;
+    public Data[] itemData;
 
     public TextMeshProUGUI debugText;
     private bool isInvinsible;
@@ -19,7 +19,7 @@ public class ForDebug : MonoBehaviour
     private void Update()
     {
 #if UNITY_EDITOR
-        if (GameManager.instance.currentState != GameState.Playing)
+        if (GlobalManager.instance.gameState != GameState.Playing)
             return;
 
         if (Input.GetKeyDown(KeyCode.F1))
@@ -81,25 +81,25 @@ public class ForDebug : MonoBehaviour
                 GameObject newItem = Instantiate(sampleItem, itemParent);                         
             }
         }
-        items = itemParent.GetComponentsInChildren<ItemSetting>();
+        items = itemParent.GetComponentsInChildren<LevelUpItemSetting>();
         int idx = 0;
 
-        foreach (ItemSetting item in items)
+        foreach (LevelUpItemSetting item in items)
         {
-            item.itemData = itemData[idx];
+            item.data = itemData[idx];
             item.gameObject.name = itemData[idx].name;
             item.transform.GetChild(1).GetComponent<Image>().sprite = itemData[idx].itemIcon;
-            if (item.itemData is BulletData)
+            if (item.data is BulletData)
             {
                 item.GetComponent<Image>().sprite = uiPanelImages[0];
 
             }
-            else if (item.itemData is GearData)
+            else if (item.data is GearData)
             {
                 item.GetComponent<Image>().sprite = uiPanelImages[1];
 
             }
-            else if (item.itemData is EtcData)
+            else if (item.data is EtcData)
             {
                 item.GetComponent<Image>().sprite = uiPanelImages[2];
             }         

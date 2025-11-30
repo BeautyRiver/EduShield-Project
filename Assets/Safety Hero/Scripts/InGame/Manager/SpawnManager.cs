@@ -29,7 +29,7 @@ public class SpawnManager : MonoBehaviour
 
     private void Update()
     {
-        if (gm.currentState != GameState.Playing) return;
+        if (GlobalManager.instance.gameState != GameState.Playing) return;
 
         transform.position = GameManager.instance.player.transform.position;
 

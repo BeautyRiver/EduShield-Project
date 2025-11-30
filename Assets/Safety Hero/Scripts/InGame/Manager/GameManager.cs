@@ -4,16 +4,6 @@ using System.Collections;
 using UnityEngine;
 using VInspector;
 
-public enum GameState
-{
-    Ready,      // 게임 시작 전 준비 상태
-    Playing,    // 게임 플레이 중
-    Paused,     // 일시정지
-    LevelUp,    // 레벨업 선택 중
-    GameOver,   // 게임 오버
-    Victory     // 게임 승리
-}
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -22,7 +12,6 @@ public class GameManager : MonoBehaviour
     public float gameTime; // 현재 게임 시간
     public float maxGameTime; // 최대 게임 시간
 
-    public GameState currentState { get; private set; }
 
     public int weaponCount = 0;  // 획득한 무기 개수
     public int gearCount = 0;    // 획득한 기어 개수
@@ -35,14 +24,15 @@ public class GameManager : MonoBehaviour
     public int playerLevel; // 현재 레벨
     public int playerKill; // 처치한 적 수
     public int playerExp; // 현재 경험치
+    public int gold; // 현재 골드
 
     [Header("플레이어 참조")]
     public PlayerInGame player;
     private PlayerInputController playerInputController;
 
     [Foldout("# 참조")]
-    public UIManager uiManager;
-    public HUDManager hudManager;
+    private GlobalManager glM;
+    private HUDManager hud;
     public SpawnManager spawner;
     public LevelUp uiLevelUp;
     public Result result;
@@ -63,13 +53,15 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        glM = GlobalManager.instance;
+        hud = HUDManager.instance;
         ChangeState(GameState.Ready);
         GameStart();
     }
       
     private void Update()
     {
-        if (currentState != GameState.Playing)
+        if (glM.gameState != GameState.Playing)
             return;
 
         // 게임 시간 계산
@@ -79,16 +71,17 @@ public class GameManager : MonoBehaviour
             gameTime = maxGameTime;
             ChangeState(GameState.Victory); // 상태 변경으로 승리 처리
         }
+        hud.UpdateTime(gameTime, maxGameTime);
     }
 
     // 상태 변경 처리
     public void ChangeState(GameState newState)
     {
-        if (currentState == newState) return;
+        if (glM.gameState == newState) return;
 
-        currentState = newState;
+        glM.gameState = newState;
 
-        switch (currentState)
+        switch (glM.gameState)
         {
             case GameState.Ready:
                 playerInputController.SwitchActionMap("Empty"); // 입력 비활성화
@@ -139,29 +132,50 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
-        if (currentState == GameState.Playing)
+        if (glM.gameState == GameState.Playing)
             ChangeState(GameState.Paused);
     }
 
     public void ResumeGame()
     {
-        if (currentState == GameState.Paused)
+        if (glM.gameState == GameState.Paused)
             ChangeState(GameState.Playing);
     }
 
     public void GetExp(int getExp)
     {
-        if (currentState != GameState.Playing) return;
+        if (glM.gameState != GameState.Playing) return;
 
         playerExp += getExp;
-        if (playerExp >= nextExp[Mathf.Min(playerLevel, nextExp.Length - 1)])
+        int maxExp = nextExp[Mathf.Min(playerLevel, nextExp.Length - 1)];
+
+        if (playerExp >= maxExp)
         {
-            playerLevel++;
-            playerExp = 0;
-            ChangeState(GameState.LevelUp); // 레벨업 상태로 변경
-            uiLevelUp.Show();
+            hud.UpdateExp(maxExp, maxExp, LevelUp);
         }
+
+        else
+        {
+            hud.UpdateExp(playerExp, maxExp);
+        }
+
     }
+
+    private void LevelUp()
+    {
+        playerLevel++;
+
+        // 경험치 이월
+        int maxExp = nextExp[Mathf.Min(playerLevel - 1, nextExp.Length - 1)];
+        playerExp = playerExp - maxExp;
+
+        ChangeState(GameState.LevelUp); // 레벨업 상태로 변경
+        uiLevelUp.Show();
+
+        maxExp = nextExp[Mathf.Min(playerLevel, nextExp.Length - 1)];
+        hud.UpdateExp(playerExp, maxExp);
+    }
+
 
     // LevelUp UI가 닫힐 때 호출
     public void EndLevelUp()
@@ -193,5 +207,17 @@ public class GameManager : MonoBehaviour
         MasterAudio.PlaylistsMuted = true;
         MasterAudio.PlaySound("Win");
     }
-   
+
+    // 플레이어 처치 수 증가
+    public void IncreasePlayerKill()
+    {
+        playerKill++;
+        hud.UpdateKill(playerKill);
+    }
+
+    public void IncreaseGold(int amount)
+    {
+        gold += amount;
+        hud.UpdateGold(gold);
+    }
 }

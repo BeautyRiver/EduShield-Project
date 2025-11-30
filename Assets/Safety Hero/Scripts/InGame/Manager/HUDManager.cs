@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class HUDManager : MonoBehaviour
     public Slider expSlider;
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI killText;
+    public TextMeshProUGUI goldText;
     public TextMeshProUGUI timeText;
 
     [Header("DOTween Settings")]
@@ -33,6 +35,21 @@ public class HUDManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        Init();
+    }
+
+    private void Init()
+    {
+        UpdateHealth(1f, 1f);
+        UpdateExp(0f, 1f);
+        UpdateLevel(1);
+        UpdateKill(0);
+        UpdateGold(0);
+        UpdateTime(0f, GameManager.instance.maxGameTime); // 예시로 5분 게임 시간 설정
+    }
+
     public void UpdateHealth(float curHealth, float maxHealth)
     {
         float targetValue = curHealth / maxHealth;
@@ -40,11 +57,19 @@ public class HUDManager : MonoBehaviour
         healthTween = healthSlider.DOValue(targetValue, barTweenDuration).SetEase(Ease.OutQuad);
     }
 
-    public void UpdateExp(float curExp, float maxExp)
+    public void UpdateExp(float curExp, float maxExp, Action onComplete = null)
     {
         float targetValue = curExp / maxExp;
         expTween?.Kill();
-        expTween = expSlider.DOValue(targetValue, barTweenDuration).SetEase(Ease.Linear);
+        expTween = expSlider.DOValue(targetValue, barTweenDuration).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            onComplete?.Invoke();
+        });     
+    }
+
+    public float GetExpBarValue()
+    {
+        return expSlider.value;
     }
 
     public void UpdateLevel(int level)
@@ -55,6 +80,11 @@ public class HUDManager : MonoBehaviour
     public void UpdateKill(int killCount)
     {
         killText.text = string.Format("{0:F0}", killCount);
+    }
+
+    public void UpdateGold(int gold)
+    {
+        goldText.text = string.Format("{0:N0}", gold);
     }
 
     public void UpdateTime(float gameTime, float maxGameTime)

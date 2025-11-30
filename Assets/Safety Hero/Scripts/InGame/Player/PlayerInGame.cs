@@ -26,6 +26,7 @@ public class PlayerInGame : MonoBehaviour, IDamageable
     private Rigidbody2D rigid;
     private Animator anim;
     private GameManager gm; // 게임 매니저 참조
+    private HUDManager hud; // HUD 매니저 참조
     private CapsuleCollider2D col;
 
     [Header("# For Debug")]
@@ -48,21 +49,21 @@ public class PlayerInGame : MonoBehaviour, IDamageable
         hitingTime = new WaitForSeconds(0.2f);
 
         gm = GameManager.instance;
-
+        hud = HUDManager.instance;
     }
 
     // 물리 충돌 일어날 때
     private void OnCollisionStay2D(Collision2D collision)
     {
         // 플레이어가 생존중이 아니라면 실행 X
-        if (gm.currentState != GameState.Playing)
+        if (GlobalManager.instance.gameState != GameState.Playing)
             return;
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
             if (collision.gameObject.TryGetComponent(out Enemy enemy))
             {
-                DamagedLogic(collision.collider, enemy.damage);
+                DamagedLogic(collision.collider, enemy.GetDamage());
                 if (!isHiting)
                 {
                     isHiting = true;
@@ -76,7 +77,7 @@ public class PlayerInGame : MonoBehaviour, IDamageable
     private void OnCollisionExit2D(Collision2D collision)
     {
         // 플레이어가 생존중이 아니라면 실행 X
-        if (gm.currentState != GameState.Playing)
+        if (GlobalManager.instance.gameState != GameState.Playing)
             return;
 
         if (collision.gameObject.CompareTag("Enemy"))
@@ -132,6 +133,7 @@ public class PlayerInGame : MonoBehaviour, IDamageable
             }
             PlayerDead();
         }
+       hud.UpdateHealth(health, maxHealth);
     }
 
     // 이펙트 생성시키기

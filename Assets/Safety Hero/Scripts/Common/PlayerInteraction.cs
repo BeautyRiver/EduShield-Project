@@ -14,14 +14,14 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Update()
     {
-        if (playerInputController.currentState == PlayerState.FreeMove)
+        if (GlobalManager.instance.playerState == PlayerState.FreeMove)
         {
             UpdateNearestNpc();
         }
         else
         {
             // 상호작용 중일 때는 스캔 중지 및 말풍선 숨기기
-            HideLastPrompt();
+            HideLastInteractUi();
         }
     }
 
@@ -33,16 +33,17 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (lastNearObj == null || (lastNearObj as MonoBehaviour).transform != nearstTarget)
             {
-                // (가장 가까운 npc가 바뀌었음) 이전 npc의 말풍선 숨기기 
+                // (가장 가까운 object가 바뀌었음) 이전 object의 UI 숨기기 
                 if (lastNearObj != null)
                 {
-                    lastNearObj.ShowPrompt(false);
+                    lastNearObj.ShowInteractUi(false);
                 }
 
                 lastNearObj = nearstTarget.GetComponent<IInteractable>();
-                lastNearObj.ShowPrompt(true);
+                lastNearObj.ShowInteractUi(true);
             }
-            
+
+            // Npc종류면 플레이어를 바라보게 하기
             if (lastNearObj is Npc npc)
                 npc.LookAtPlayer(transform.position);
         }
@@ -50,17 +51,18 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (lastNearObj != null)
             {
-                lastNearObj.ShowPrompt(false);
+                lastNearObj.ShowInteractUi(false);
                 lastNearObj = null;
             }
         }
     }
 
-    private void HideLastPrompt()
+    // 마지막으로 상호작용 UI를 보여주던 오브젝트의 UI 숨기기
+    private void HideLastInteractUi()
     {
         if (lastNearObj != null)
         {
-            lastNearObj.ShowPrompt(false);
+            lastNearObj.ShowInteractUi(false);
             lastNearObj = null;
         }
     }
@@ -72,7 +74,6 @@ public class PlayerInteraction : MonoBehaviour
         {
             playerInputController.ChangeState(PlayerState.InUI);
             lastNearObj.Interact(); // 상호작용 시작
-            //InteractingCamera();
         }
         else
         {

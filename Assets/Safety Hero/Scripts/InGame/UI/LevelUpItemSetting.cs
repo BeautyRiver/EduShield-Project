@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Mono.Cecil.Cil;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static ItemDataGuide;
+using static Data;
 
 [System.Serializable]
 public class S_int
@@ -13,10 +14,10 @@ public class S_int
 }
 
 [System.Serializable]
-public class ItemSetting : MonoBehaviour
+public class LevelUpItemSetting : MonoBehaviour
 {
     [Header("# 아이템 데이터")]
-    public ItemDataGuide itemData;
+    public Data data;
     public Weapon weapon;
     public Gear gear;
     public int level;
@@ -49,39 +50,40 @@ public class ItemSetting : MonoBehaviour
 
     private void Awake()
     {
-        _maxLevel = itemData.maxLevel;
+        _maxLevel = data.maxLevel;
         // 아이콘 설정
         icon = GetComponentsInChildren<Image>(true)[2]; // icon 
         newIcon = GetComponentsInChildren<Image>(true)[3]; // newIcon
 
-        icon.sprite = itemData.itemIcon;
+        icon.sprite = data.itemIcon;
 
         // 공통 텍스트 필드 설정
         TextMeshProUGUI[] texts = GetComponentsInChildren<TextMeshProUGUI>();
         textName = texts[0];
         textDesc = texts[1];
         textLevel = texts[2];
-        textName.text = itemData.itemName;
+        textName.text = data.itemName;
 
         // 아이템 데이터 클래스의 초기화 메서드 호출
-        itemData.InitializeItemSetting(this);
+        data.InitializeItemSetting(this);
     }
 
     private void OnEnable()
     {
         // 아이템 데이터 클래스의 OnEnableSetting 메서드 호출
-        itemData.OnEnableSetting(this);
+        data.OnEnableSetting(this);
     }
 
+ 
     // 아이템 클릭 시
     public void OnClick()
     {
         // 아이템 데이터 클래스의 OnClickSetting 메서드 호출
-        itemData.OnClickSetting(this);
+        data.OnClickSetting(this);
 
         //EquipmentManager.onItemCurrentState?.Invoke(); // 이벤트 호출
 
-        if (level == itemData.maxLevel)
+        if (level == data.maxLevel)
         {
             GetComponent<Button>().interactable = false;
         }

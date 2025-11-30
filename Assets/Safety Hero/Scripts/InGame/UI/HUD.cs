@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
 {
-    public enum InfoType { Exp, Level, Kill, Time, Helath }
+    public enum InfoType { Exp, Level, Kill, Gold, Time, Helath }
     public InfoType type;
 
     private TextMeshProUGUI myText;
@@ -47,6 +47,7 @@ public class HUD : MonoBehaviour
     {
         switch (type)
         {
+
             case InfoType.Level:
                 myText.text = string.Format("Lv.{0:F0}", GameManager.instance.playerLevel);
                 break;

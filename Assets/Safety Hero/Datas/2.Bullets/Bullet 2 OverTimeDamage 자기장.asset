@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d1bd397b1903a34ba35468b05a5746b, type: 3}
-  m_Name: Bullet 2 OverTimeDamage
+  m_Name: "Bullet 2 OverTimeDamage \uC790\uAE30\uC7A5"
   m_EditorClassIdentifier: 
   itemId: 2
   itemName: "\uC790\uAE30\uC7A5"

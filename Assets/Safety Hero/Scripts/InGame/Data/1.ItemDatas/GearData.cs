@@ -4,7 +4,7 @@ using UnityEngine;
 using VInspector;
 
 [CreateAssetMenu(fileName = "Gear", menuName = "Scriptable Objects/GearData")]
-public class GearData : ItemDataGuide
+public class GearData : Data
 {    
     [Tab("# 기어 능력치")]
     [Header("배율방식 / 50 = 50%증가")]
@@ -19,12 +19,12 @@ public class GearData : ItemDataGuide
         maxLevel = gearRates.Length;        
     }
 
-    public override void InitializeItemSetting(ItemSetting itemSetting)
+    public override void InitializeItemSetting(LevelUpItemSetting itemSetting)
     {
         // 기어의 경우 특별한 초기화가 필요하지 않음
     }
 
-    public override void OnEnableSetting(ItemSetting itemSetting)
+    public override void OnEnableSetting(LevelUpItemSetting itemSetting)
     {
 
         if (itemSetting.level == 0)
@@ -42,7 +42,7 @@ public class GearData : ItemDataGuide
         }
     }
 
-    public override void OnClickSetting(ItemSetting itemSetting)
+    public override void OnClickSetting(LevelUpItemSetting itemSetting)
     {
         if (itemSetting.level == 0)
         {

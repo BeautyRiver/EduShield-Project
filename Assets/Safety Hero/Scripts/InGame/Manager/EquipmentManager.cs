@@ -21,8 +21,8 @@ public class EquipmentManager : MonoBehaviour
     public List<Image> equipImages;
     public List<TextMeshProUGUI> equipLevelTexts;
 
-    private List<ItemSetting> _data;
-    private List<ItemSetting> _sortData;
+    private List<LevelUpItemSetting> _data;
+    private List<LevelUpItemSetting> _sortData;
     private void Awake()
     {
         // 초기화        
@@ -42,7 +42,7 @@ public class EquipmentManager : MonoBehaviour
     public void UpdateCurrentData()
     {
         // 모든 아이템을 순회하며 레벨이 0보다 크고 아직 정렬 리스트에 없는 아이템을 추가
-        foreach (ItemSetting item in _data)
+        foreach (LevelUpItemSetting item in _data)
         {
             if (item.level > 0 && !_sortData.Contains(item))
             {
@@ -54,7 +54,7 @@ public class EquipmentManager : MonoBehaviour
         for (int i = 0; i < _sortData.Count && i < rowCount; i++)
         {
             // 아이템 아이콘 & 텍스트 설정
-            equipImages[i].sprite = _sortData[i].itemData.itemIcon;
+            equipImages[i].sprite = _sortData[i].data.itemIcon;
             equipLevelTexts[i].text = $"Lv{_sortData[i].level}";
             // 만렙일때            
             if (_sortData[i].level == _sortData[i]._maxLevel)
@@ -67,21 +67,21 @@ public class EquipmentManager : MonoBehaviour
     private void InitialSettings()
     {
         // 데이터 구조 초기화
-        _data = new List<ItemSetting>();
-        _sortData = new List<ItemSetting>();
+        _data = new List<LevelUpItemSetting>();
+        _sortData = new List<LevelUpItemSetting>();
         equipImages = new List<Image>();
         equipLevelTexts = new List<TextMeshProUGUI>();
 
         // 아이템 그룹에서 모든 ItemSetting 컴포넌트 가져오기
-        ItemSetting[] items = itemGroup.GetComponentsInChildren<ItemSetting>(true);
+        LevelUpItemSetting[] items = itemGroup.GetComponentsInChildren<LevelUpItemSetting>(true);
 
         // 현재 아이템 그룹에서 무기와 기어 데이터를 분류하여 추가
-        foreach (ItemSetting item in items)
+        foreach (LevelUpItemSetting item in items)
         {
-            if (item.itemData is BulletData && category == Category.Weapon)
+            if (item.data is BulletData && category == Category.Weapon)
                 _data.Add(item);
 
-            if (item.itemData is GearData && category == Category.Gear)
+            if (item.data is GearData && category == Category.Gear)
                 _data.Add(item);
         }
 

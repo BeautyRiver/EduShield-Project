@@ -10,32 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d1bd397b1903a34ba35468b05a5746b, type: 3}
-  m_Name: Bullet 52
+  m_Name: "Bullet 50 \uCD1D"
   m_EditorClassIdentifier: 
-  itemId: 52
-  itemName: "\uD22C\uCC99\uC6A9 \uC18C\uD654"
-  itemIcon: {fileID: 21300000, guid: ed2877ccf16aafa49a6e63bef3cbe0e0, type: 3}
-  maxLevel: 6
+  itemId: 50
+  itemName: "\uC218\uD638\uC758 \uCD1D"
+  itemIcon: {fileID: 21300000, guid: 3236fd3e42c52314f87c10ced889104d, type: 3}
+  maxLevel: 8
   itemDesc:
-  - "\uBC14\uB77C\uBCF4\uB294 \uBC29\uD5A5\uC73C\uB85C \uACF5\uACA9"
+  - "\uAC00\uC7A5 \uAC00\uAE4C\uC6B4 \uC801 \uACF5\uACA9"
   - "<b><color=yellow>\uAE30\uBCF8 \uB370\uBBF8\uC9C0 {0}</color> \uC99D\uAC00</b>"
   - "<b><color=yellow>\uAC1C\uC218 {0}\uAC1C</color> \uC99D\uAC00</b>"
   - "<b><color=yellow>\uAD00\uD1B5\uB825 {0}</color> \uC99D\uAC00</b>"
-  baseDamage: 4
+  baseDamage: 5
   baseDamageInterval: 2
   baseKnockback: 1.5
-  baseCount: 3
-  basePer: 2
+  baseCount: 2
+  basePer: 0
   baseDelay: 0.2
   baseBulletMoveSpeed: 15
   baseWeaponAttackSpeed: 1
   baseWeaponDuration: 0
   baseRange: 1
   baseRotationSpeed: 0
-  baseScale: {x: 0.6, y: 0.6, z: 0.6}
-  damages: 0200000002000000
-  counts: 0100000001000000
+  baseScale: {x: 1, y: 1, z: 1}
+  damages: 02000000030000000300000003000000
+  counts: 0200000002000000
   pers: 01000000
   sizes: 
-  bulletPrefab: {fileID: 8191457858479555690, guid: 054894a582249144fa8669ad0e7893e6, type: 3}
-  weaponType: {fileID: 6833137080016569779, guid: 5aa9ad98a6f4e4045b9af6ce2c04121e, type: 3}
+  bulletPrefab: {fileID: 8191457858479555690, guid: fb9b18fe80588aa42851c78eab484920, type: 3}
+  weaponType: {fileID: 6670291896573575422, guid: 855a93598336db44aaf4ccd032078f62, type: 3}

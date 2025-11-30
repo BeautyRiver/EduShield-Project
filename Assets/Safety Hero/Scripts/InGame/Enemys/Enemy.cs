@@ -10,12 +10,13 @@ using Unity.VisualScripting;
 public abstract class Enemy : MonoBehaviour, IDamageable
 {
     protected EnemyData myData;
-    public int id;
-    public float damage;
-    public float currentHealth;
-    public float maxHealth;
-    public float speed;
-    public int exp;
+    protected int id;
+    protected float damage;
+    [SerializeField] protected float currentHealth;
+    protected float maxHealth;
+    protected float speed;
+    protected int exp;
+    protected int gold;
     public bool isLive;
     [SerializeField] protected Vector2 nextVec;
     protected Vector2 dirVec;
@@ -44,7 +45,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     protected virtual void FixedUpdate()
     {
-        if (gm.currentState != GameState.Playing || !isLive)
+        if (GlobalManager.instance.gameState != GameState.Playing || !isLive)
             return;
 
         rigid.linearVelocity = Vector2.zero;
@@ -76,6 +77,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         animCon = myData.animCon;
         maxHealth = myData.health;
         anim.runtimeAnimatorController = animCon;
+        gold = myData.gold;
     }
 
 
@@ -93,32 +95,8 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
         float fontSize = 7f;
         // 기본 데미지 표시 
-        Damaged(damage, hitPos, Color.white, false, fontSize);
-
-        /*
-        // 기본 타입일 때
-        if (gm.typeControll.TypeIndex == -1)
-        {
-            // 기본 데미지 표시 
-            Damaged(damage, hitPos, Color.white, false, fontSize);
-        }
-        // 기본 타입이 아닐 때
-        else
-        {
-            if (gm.typeControll.TypeIndex == id)
-            {
-                // 기본 데미지 표시 + 추가 데미지
-                Damaged(damage, hitPos, Color.white, true, fontSize);
-            }
-            else
-            {
-                // 데미지 반감
-                damage = damage * 0.5f;
-                // 기본 데미지 표시 
-                Damaged(damage, hitPos, Color.gray, false, fontSize);
-            }
-        }*/
-
+        Damaged(damage, hitPos, Color.white, false, fontSize);       
+        
         MasterAudio.PlaySound("Hit"); // 사운드 재생
         anim.SetTrigger("doHit"); // 맞는 애니메이션 재생
 
@@ -128,13 +106,13 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
         // 체력 0 이하 사망
         if (currentHealth <= 0)
-        {
+        {           
             DropReward(); // 보상
             isLive = false;
             coll.enabled = false;
             rigid.simulated = false;
             anim.SetBool("isDead", true);
-            gm.playerKill++;
+            gm.IncreasePlayerKill();
             MasterAudio.PlaySound("Dead");
         }
     }
@@ -144,6 +122,10 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         GameObject expObj = PoolManager.instance.Get(myData.dropExpPrefab); // exp 생성
         expObj.transform.position = transform.position;
         expObj.GetComponent<Exp>().exp = this.exp;
+        // 50% 확률로 골드 증가
+        int rand = Random.Range(0, 100);
+        if (rand < 50)
+            gm.IncreaseGold(this.gold); // 골드 증가
     }
     private void Damaged(float damage, Vector2 hitPos, Color color, bool isPlusDamage, float fontSize)
     {
@@ -194,4 +176,6 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     {
         gameObject.SetActive(false);
     }
+
+    public float GetDamage() { return damage; }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using VInspector;
 
 [CreateAssetMenu(fileName = "Bullet", menuName = "Scriptable Objects/BulletData")]
-public class BulletData : ItemDataGuide
+public class BulletData : Data
 {  
     [Tab("# 기본 스탯")]
     public float baseDamage;
@@ -47,7 +47,7 @@ public class BulletData : ItemDataGuide
             bulletPrefab.transform.localScale = baseScale;
     }
 
-    public override void InitializeItemSetting(ItemSetting itemSetting)
+    public override void InitializeItemSetting(LevelUpItemSetting itemSetting)
     {
         // 무기와 기어의 데이터 세팅 (길이가 0 이상인 경우만 추가)
         if (damages.Length > 0)
@@ -76,7 +76,7 @@ public class BulletData : ItemDataGuide
             itemSetting.maxmumInsideIdx = Mathf.Max(itemSetting.maxmumInsideIdx, item.values.Length);
     }
 
-    public override void OnEnableSetting(ItemSetting itemSetting)
+    public override void OnEnableSetting(LevelUpItemSetting itemSetting)
     {
 
         if (itemSetting.level == 0)
@@ -115,7 +115,7 @@ public class BulletData : ItemDataGuide
         }
     }
 
-    public override void OnClickSetting(ItemSetting itemSetting)
+    public override void OnClickSetting(LevelUpItemSetting itemSetting)
     {
         if (itemSetting.level == 0)
         {

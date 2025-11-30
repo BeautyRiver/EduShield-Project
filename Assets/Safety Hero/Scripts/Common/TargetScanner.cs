@@ -23,15 +23,16 @@ public class TargetScanner : MonoBehaviour
     IEnumerator FindNearstTarget()
     {
         while (true)
-        {
-            if (GameManager.instance.currentState == GameState.Playing)
+        {            
+            if (GlobalManager.instance.playerState != PlayerState.FreeMove)
             {
-                targets = Physics2D.CircleCastAll(transform.position, scanRange, Vector2.zero, 0, targetLayer);
-                nearestTarget = GetNearest();
+                nearestTarget = null;
                 yield return null;
+                continue;
             }
-            else
-                yield return null;
+            targets = Physics2D.CircleCastAll(transform.position, scanRange, Vector2.zero, 0, targetLayer);
+            nearestTarget = GetNearest();
+            yield return null;           
         }
         
     }

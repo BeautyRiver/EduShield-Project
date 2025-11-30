@@ -178,6 +178,7 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-98493698-0
         - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-1231658412-0
         - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-566101302-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-1021949954-0
         values:
         - colorIndex: 7
           iconNameOrGuid: Camera Icon
@@ -189,7 +190,7 @@ MonoBehaviour:
           iconNameOrGuid: AudioClip Icon
         - colorIndex: 0
           iconNameOrGuid: Canvas Icon
-        - colorIndex: 0
+        - colorIndex: 1
           iconNameOrGuid: Settings Icon
         - colorIndex: 0
           iconNameOrGuid: Settings Icon
@@ -201,7 +202,7 @@ MonoBehaviour:
           iconNameOrGuid: 
         - colorIndex: 0
           iconNameOrGuid: Settings Icon
-        - colorIndex: 0
+        - colorIndex: 1
           iconNameOrGuid: Settings Icon
         - colorIndex: 0
           iconNameOrGuid: Camera Icon
@@ -231,5 +232,7 @@ MonoBehaviour:
           iconNameOrGuid: Camera Icon
         - colorIndex: 0
           iconNameOrGuid: Camera Icon
-        - colorIndex: 0
+        - colorIndex: 1
+          iconNameOrGuid: Settings Icon
+        - colorIndex: 1
           iconNameOrGuid: Settings Icon

@@ -51,7 +51,7 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if (gm.currentState == GameState.LevelUp)
+        if (GlobalManager.instance.gameState == GameState.LevelUp)
             return;
 
         if (Input.GetKeyDown(KeyCode.Escape))

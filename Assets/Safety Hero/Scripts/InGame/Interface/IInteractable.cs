@@ -2,5 +2,5 @@
 public interface IInteractable
 {
     void Interact();
-    void ShowPrompt(bool show);
+    void ShowInteractUi(bool show);
 }

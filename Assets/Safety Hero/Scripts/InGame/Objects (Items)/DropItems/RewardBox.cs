@@ -32,7 +32,6 @@ public class RewardBox : MonoBehaviour
             }
             arrowAni.gameObject.SetActive(false);
             anim.SetBool("Open", true);
-            Debug.Log("상자 오픈~");
             StartCoroutine(ShowExpReward());
         }
     }

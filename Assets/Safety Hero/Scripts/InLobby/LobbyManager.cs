@@ -40,11 +40,11 @@ public class LobbyManager : MonoBehaviour
   
     //public void ChangeState(LobbyState newState)
     //{
-    //    if (currentState == LobbyState.Interacting && newState != LobbyState.Interacting)
+    //    if (playerState == LobbyState.Interacting && newState != LobbyState.Interacting)
     //        DeInteractingCamera();
 
-    //    currentState = newState;
-    //    switch (currentState)
+    //    playerState = newState;
+    //    switch (playerState)
     //    {
     //        case LobbyState.FreeMoving:                
     //            //Debug.Log("로비에서 자유 이동 모드로 전환되었습니다.");

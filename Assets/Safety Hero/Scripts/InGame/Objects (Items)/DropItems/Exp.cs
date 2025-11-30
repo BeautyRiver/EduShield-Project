@@ -36,7 +36,7 @@ public class Exp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (GameManager.instance.currentState != GameState.Playing)
+        if (GlobalManager.instance.gameState != GameState.Playing)
             return;
 
         if (collision.CompareTag("Player"))

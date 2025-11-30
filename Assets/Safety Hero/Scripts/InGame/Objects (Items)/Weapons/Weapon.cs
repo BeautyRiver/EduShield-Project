@@ -35,7 +35,7 @@ public abstract class Weapon : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (gm.currentState != GameState.Playing || finalStats.weaponAttackSpeed < 0)
+        if (GlobalManager.instance.gameState != GameState.Playing || finalStats.weaponAttackSpeed < 0)
             return;
 
         UpdateTimer();
@@ -175,7 +175,7 @@ public abstract class Weapon : MonoBehaviour
                              finalStats.damageInterval);
 
         // 총알 크기도 최종 크기로 설정
-        bullet.localScale = finalStats.bulletSize;
+        //bullet.localScale = finalStats.bulletSize;
     }
     [System.Serializable]
     public class WeaponStats

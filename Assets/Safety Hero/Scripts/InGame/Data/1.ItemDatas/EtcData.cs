@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "Etc", menuName = "Scriptable Objects/EtcData")]
 // EtcData.cs
-public class EtcData : ItemDataGuide
+public class EtcData : Data
 {
     public enum EtcType
     {
@@ -20,12 +20,12 @@ public class EtcData : ItemDataGuide
         // 기타 아이템의 경우 특별한 검증이 필요하지 않음
     }
 
-    public override void InitializeItemSetting(ItemSetting itemSetting)
+    public override void InitializeItemSetting(LevelUpItemSetting itemSetting)
     {
         // 기타 아이템의 경우 특별한 초기화가 필요하지 않음
     }
 
-    public override void OnEnableSetting(ItemSetting itemSetting)
+    public override void OnEnableSetting(LevelUpItemSetting itemSetting)
     {
         itemSetting.NewIcon.gameObject.SetActive(false);
         itemSetting.TextDesc.text = itemDesc[0];
@@ -45,7 +45,7 @@ public class EtcData : ItemDataGuide
         }
     }
 
-    public override void OnClickSetting(ItemSetting itemSetting)
+    public override void OnClickSetting(LevelUpItemSetting itemSetting)
     {
         switch (eType)
         {

@@ -9,6 +9,7 @@ public class EnemyData : ScriptableObject
     public float speed;
     public float damage;
     public int exp;
+    public int gold;
     public RuntimeAnimatorController animCon; // 애니메이터도 데이터에 포함
     // --- 여기부터 추가 ---
     [Header("# 사용할 프리팹")]
