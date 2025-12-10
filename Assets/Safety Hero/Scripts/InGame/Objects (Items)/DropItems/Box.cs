@@ -70,6 +70,7 @@ public class Box : InteractableObject
 
             Debug.Log($"박스 오픈! 소모 골드: {cost}");
             UIManager.instance.ShowRewardBox();
+            gameObject.SetActive(false);
         }
         else
         {

@@ -59,8 +59,7 @@ public class StageSelectManager : MonoBehaviour
     {
         if (currentSelectedStage != null)
         {
-            Debug.Log($"Starting game with stage: {currentSelectedStage.stageName}");
-            SceneManager.LoadScene(currentSelectedStage.sceneName);
+            LoadingSceneController.LoadScene("Game Scene");
         }
         else
         {

@@ -13,9 +13,9 @@ public class SpawnManager : MonoBehaviour
     [Header("# 스폰 위치")]
     public Transform[] spawnPoint; // 공용 스폰 위치 배열
 
-    [Header("# 박스 소환")]
-    [SerializeField] private LayerMask collisionMask; // 충돌을 감지할 레이어 (필요에 맞게 설정)
-    [SerializeField] private LayerMask groundMask;
+    //[Header("# 박스 소환")]
+    //[SerializeField] private LayerMask collisionMask; // 충돌을 감지할 레이어 (필요에 맞게 설정)
+    //[SerializeField] private LayerMask groundMask;
 
     private GameManager gm;
 

@@ -80,24 +80,30 @@ public class UIManager : MonoBehaviour
         uiLevelUp.FirstGiveWeapon(characterId);
     }
 
+    private bool isOpening = false;
+
     // 보상 상자 UI 띄우기
     public void ShowRewardBox()
     {
         BlackWindowFadeIn();
         globalManager.ChangeState(GameState.Paused);
         rewardBoxOpenUI.SetActive(true);
-        Vector3 localScale = rewardBoxOpenUI.transform.localScale;
         rewardBoxOpenUI.transform.localScale = Vector3.zero;
-        rewardBoxOpenUI.transform.DOScale(localScale, 0.5f).SetEase(Ease.OutBack).SetUpdate(true);
+        rewardBoxOpenUI.transform.DOScale(1f, 0.5f).SetEase(Ease.OutBack).SetUpdate(true);
     }
 
     // 보상 상자 열기 애니메이션 재생
     public void OpenRewardBox()
     {
+        if (isOpening || rewardBoxOkUI.activeSelf)
+            return;
+
         StartCoroutine(OpenRoutine());
     }    
     IEnumerator OpenRoutine() // 코루틴 함수
     {
+        isOpening = true;
+
         Animator anim = rewardBoxOpenUI.GetComponentInChildren<Animator>();
         anim.SetBool("IsOpen", true);
 
@@ -111,19 +117,23 @@ public class UIManager : MonoBehaviour
     public void ShowRewardBoxOK()
     {
         rewardBoxOkUI.SetActive(true);
-        Vector3 localScale = rewardBoxOkUI.transform.localScale;
         rewardBoxOkUI.transform.localScale = Vector3.zero;
-        rewardBoxOkUI.transform.DOScale(localScale, 0.5f).SetEase(Ease.OutBack).SetUpdate(true);
+        rewardBoxOkUI.transform.DOScale(1f, 0.25f).SetEase(Ease.OutBack).SetUpdate(true);
     }
 
     public void RewardOkButton()
     {
         Animator anim = rewardBoxOpenUI.GetComponentInChildren<Animator>();
         anim.SetBool("IsOpen", false);
+
         MasterAudio.PlaySound("BtnClick");
+
         rewardBoxOkUI.SetActive(false);
         rewardBoxOpenUI.SetActive(false);
+
         BlackWindowFadeOut();
+
+        isOpening = false;
         globalManager.ChangeState(GameState.Playing);
     }
 

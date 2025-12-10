@@ -121,6 +121,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         GameObject expObj = PoolManager.instance.Get(myData.dropExpPrefab); // exp 생성
         expObj.transform.position = transform.position;
         expObj.GetComponent<Exp>().exp = this.exp;
+
         // 85% 확률로 골드 증가
         int rand = Random.Range(0, 100);
         if (rand < 85)
