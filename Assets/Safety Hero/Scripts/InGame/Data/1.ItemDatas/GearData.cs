@@ -29,16 +29,16 @@ public class GearData : Data
 
         if (itemSetting.level == 0)
         {
-            itemSetting.NewIcon.gameObject.SetActive(true);
-            itemSetting.TextDesc.text = "<color=#99FF8A>새로운 강화!</color>\n\n<size=90%>" +
+            itemSetting.newIcon.gameObject.SetActive(true);
+            itemSetting.textDesc.text = "<color=#99FF8A>새로운 강화!</color>\n\n<size=90%>" +
                 string.Format(itemDesc[0], gearRates[itemSetting.level]) + "</size>";
-            itemSetting.TextLevel.text = "New Gear!";
+            itemSetting.textLevel.text = "New Gear!";
         }
         else if (itemSetting.level < maxLevel)
         {
-            itemSetting.TextLevel.text = string.Format($"Lv.{itemSetting.level} → Lv.{itemSetting.level + 1}");
-            itemSetting.NewIcon.gameObject.SetActive(false);
-            itemSetting.TextDesc.text = string.Format(itemDesc[0], gearRates[itemSetting.level]); // 기어 설명글
+            itemSetting.textLevel.text = string.Format($"Lv.{itemSetting.level} → Lv.{itemSetting.level + 1}");
+            itemSetting.newIcon.gameObject.SetActive(false);
+            itemSetting.textDesc.text = string.Format(itemDesc[0], gearRates[itemSetting.level]); // 기어 설명글
         }
     }
 

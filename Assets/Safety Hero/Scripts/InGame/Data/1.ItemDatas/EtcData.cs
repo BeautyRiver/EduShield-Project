@@ -27,20 +27,20 @@ public class EtcData : Data
 
     public override void OnEnableSetting(LevelUpItemSetting itemSetting)
     {
-        itemSetting.NewIcon.gameObject.SetActive(false);
-        itemSetting.TextDesc.text = itemDesc[0];
-        itemSetting.TextLevel.fontSize = 40;
+        itemSetting.newIcon.gameObject.SetActive(false);
+        itemSetting.textDesc.text = itemDesc[0];
+        itemSetting.textLevel.fontSize = 40;
 
         switch (eType)
         {
             case EtcType.E0_Heal:
-                itemSetting.TextLevel.text = "특별한 맛";
+                itemSetting.textLevel.text = "특별한 맛";
                 break;
             case EtcType.E1_Gold:
-                itemSetting.TextLevel.text = "부자가 되보자";
+                itemSetting.textLevel.text = "부자가 되보자";
                 break;
             default:
-                itemSetting.TextLevel.text = "아이템";
+                itemSetting.textLevel.text = "아이템";
                 break;
         }
     }

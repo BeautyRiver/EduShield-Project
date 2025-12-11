@@ -13,7 +13,8 @@ public class W52_ThrowWeapon : Weapon
     // 창
     private IEnumerator R52_Bullet()
     {
-        for (int i = 0; i < finalStats.count; i++)
+        int realCount = (int)finalStats.count;
+        for (int i = 0; i < realCount; i++)
         {
             Vector3 dir = new Vector3(playerMove.lastInputVec.x, playerMove.lastInputVec.y, 0).normalized;
             Transform bullet = poolManager.Get(currentBulletData.bulletPrefab).transform; // Bullet52 가져오기

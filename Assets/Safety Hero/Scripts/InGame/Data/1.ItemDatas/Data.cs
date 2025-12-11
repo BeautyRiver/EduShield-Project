@@ -14,7 +14,7 @@ public abstract class Data : ScriptableObject
     public int itemId;
     public string itemName;
     public Sprite itemIcon;
-    public int maxLevel;
+    //public int maxLevel;
 
     [TextArea]
     public string[] itemDesc;

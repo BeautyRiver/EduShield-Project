@@ -15,7 +15,8 @@ public class W51_CannonWeapon : Weapon
     private IEnumerator R51_Bullet()
     {
         bool isReverse = false;
-        for (int i = 0; i < finalStats.count; i++)
+        int realCount = (int)finalStats.count;
+        for (int i = 0; i < realCount; i++)
         {
             // isReverse 플래그에 따라 발사 방향 결정 (true면 정방향, false면 반대 방향)
             Vector3 dir = isReverse ? playerMove.lastInputVec.normalized : -playerMove.lastInputVec.normalized;

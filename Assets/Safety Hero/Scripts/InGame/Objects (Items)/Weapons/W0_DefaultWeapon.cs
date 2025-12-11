@@ -13,8 +13,9 @@ public class W0_DefaultWeapon : Weapon
     protected IEnumerator M0_Bullet()
     {
         float xDir = Mathf.Sign(playerMove.lastInputX);
+        int realCount = (int)finalStats.count;
         // 첫 번째 공격은 플레이어가 바라보는 방향, 두 번째는 반대 방향으로 발사
-        for (int i = 0; i < finalStats.count; i++)
+        for (int i = 0; i < realCount; i++)
         {
             // 첫 번째 발사 방향: 플레이어가 바라보는 방향
             float currentFireDirX = (i % 2 == 0) ? (xDir) : -(xDir);

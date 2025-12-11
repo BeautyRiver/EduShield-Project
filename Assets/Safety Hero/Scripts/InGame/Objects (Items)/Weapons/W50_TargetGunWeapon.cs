@@ -13,7 +13,8 @@ public class W50_TargetGunWeapon : Weapon
     // 총
     private IEnumerator R50_Bullet()
     {
-        for (int i = 0; i < finalStats.count; i++)
+        int realCount = (int)finalStats.count;
+        for (int i = 0; i < realCount; i++)
         {
             if (targetScanner.nearestTarget == null)
                 break;

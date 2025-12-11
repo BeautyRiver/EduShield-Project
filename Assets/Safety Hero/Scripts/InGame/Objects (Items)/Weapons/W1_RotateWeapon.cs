@@ -41,7 +41,8 @@ public class W1_RotateWeapon : Weapon, IBatchable, IRotatingable
     // 불릿 배치 함수 (회전 무기)
     public void Batch()
     {
-        for (int index = 0; index < finalStats.count; index++) // 불릿 수만큼 반복
+        int realCount = (int)finalStats.count;
+        for (int index = 0; index < realCount; index++) // 불릿 수만큼 반복
         {
             Transform bullet;
             if (index < transform.childCount) // 자식 존재 시

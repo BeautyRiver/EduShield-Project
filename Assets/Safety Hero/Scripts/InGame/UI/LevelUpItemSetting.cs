@@ -22,6 +22,9 @@ public class LevelUpItemSetting : MonoBehaviour
     public Gear gear;
     public int level;
 
+    [Header("# 등급 시스템")]
+    public Rarity rarity; // 이번에 뽑힌 등급 저장용 변수
+
     [Header("# 현재 강화Index")]
     public int outsideRateIdx = 0;
     public int insideRateIdx = 0;
@@ -29,28 +32,18 @@ public class LevelUpItemSetting : MonoBehaviour
     public float increaseRate = 0;
 
     public int _currentLevel;
-    public int _maxLevel;
-
-    public List<S_int> statusRateList = new List<S_int>();
-    public List<int> rateIdx = new List<int>();
 
     // UI 요소들
-    private Image icon;
-    private Image newIcon;
-    private TextMeshProUGUI textName;
-    private TextMeshProUGUI textDesc;
-    private TextMeshProUGUI textLevel;
+    public Image icon { get; private set; }
+    public Image newIcon { get; private set; }
+    public TextMeshProUGUI textName { get; private set; }
+    public TextMeshProUGUI textDesc { get; private set; }
+    public TextMeshProUGUI textLevel { get; private set; }
 
     // 프로퍼티를 통해 외부에서 접근 가능하도록 설정
-    public Image Icon => icon;
-    public Image NewIcon => newIcon;
-    public TextMeshProUGUI TextName => textName;
-    public TextMeshProUGUI TextDesc => textDesc;
-    public TextMeshProUGUI TextLevel => textLevel;
 
     private void Awake()
     {
-        _maxLevel = data.maxLevel;
         // 아이콘 설정
         icon = GetComponentsInChildren<Image>(true)[2]; // icon 
         newIcon = GetComponentsInChildren<Image>(true)[3]; // newIcon
@@ -80,13 +73,6 @@ public class LevelUpItemSetting : MonoBehaviour
     {
         // 아이템 데이터 클래스의 OnClickSetting 메서드 호출
         data.OnClickSetting(this);
-
-        //EquipmentManager.onItemCurrentState?.Invoke(); // 이벤트 호출
-
-        if (level == data.maxLevel)
-        {
-            GetComponent<Button>().interactable = false;
-        }
     }
    
 }

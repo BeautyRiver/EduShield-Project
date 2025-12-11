@@ -5,34 +5,27 @@ using VInspector;
 
 [CreateAssetMenu(fileName = "Bullet", menuName = "Scriptable Objects/BulletData")]
 public class BulletData : Data
-{  
-    [Tab("# 기본 스탯")]
+{
+    [Tab("# 기본 스탯 (초기값)")]
     public float baseDamage;
-    [Header("baseDamageInterval: 데미지 간격 x초당 때림")]
     public float baseDamageInterval = 2f;
-    public float baseKnockback = 1.5f; 
-    public int baseCount;
-    public int basePer;
-    public float baseDelay;
+    public float baseKnockback = 1.5f;
+    public float baseCount;
+    public float basePer;
+    public float baseDelay; // TODO: 나중에 딜레이는 곱연산으로 처리하기
     public float baseBulletMoveSpeed;
     public float baseWeaponAttackSpeed;
-    public float baseWeaponDuration; // 무기 지속시간 
+    public float baseWeaponDuration;
     public float baseRange;
     public float baseRotationSpeed;
     public Vector3 baseScale;
 
-    [Tab("# 레벨별 스탯")]
-    [Header("데미지")]
-    public int[] damages; // 데미지
-
-    [Header("개수")]
-    public int[] counts; // 개수
-
-    [Header("관통력")]
-    public int[] pers; // 관통력    
-
-    [Header("크기 [10 = 10%]")]
-    public int[] sizes;
+    [Tab("# 무한 성장 스탯 (레벨업 당 증가량)")]
+    [Header("기본 증가량 (여기에 등급 배율이 곱해짐)")]
+    public float damageGrowth;      // 예: 5
+    public float countGrowth;       // 예: 0.1 (10번 찍으면 1발 추가)
+    public float perGrowth;         // 예: 0
+    public float scaleGrowth;       // 예: 0.05 (5%)   
 
     [Tab("# 무기 관련")]
     public GameObject bulletPrefab;
@@ -41,7 +34,7 @@ public class BulletData : Data
     // 에디터에서 값이 변경될 때 자동으로 호출
     protected override void OnValidate()
     {
-        maxLevel = damages.Length + counts.Length + pers.Length + sizes.Length + 1;
+        //maxLevel = damages.Length + counts.Length + pers.Length + sizes.Length + 1;
 
         if (bulletPrefab != null)
             bulletPrefab.transform.localScale = baseScale;
@@ -49,111 +42,57 @@ public class BulletData : Data
 
     public override void InitializeItemSetting(LevelUpItemSetting itemSetting)
     {
-        // 무기와 기어의 데이터 세팅 (길이가 0 이상인 경우만 추가)
-        if (damages.Length > 0)
-        {
-            itemSetting.statusRateList.Add(new S_int { values = damages });
-            itemSetting.rateIdx.Add(0);
-        }
-        if (counts.Length > 0)
-        {
-            itemSetting.statusRateList.Add(new S_int { values = counts });
-            itemSetting.rateIdx.Add(1);
-        }
-        if (pers.Length > 0)
-        {
-            itemSetting.statusRateList.Add(new S_int { values = pers });
-            itemSetting.rateIdx.Add(2);
-        }
-        if (sizes.Length > 0)
-        {
-            itemSetting.statusRateList.Add(new S_int { values = sizes });
-            itemSetting.rateIdx.Add(3);
-        }
-
-        // 최대 인덱스 구하기
-        foreach (var item in itemSetting.statusRateList)
-            itemSetting.maxmumInsideIdx = Mathf.Max(itemSetting.maxmumInsideIdx, item.values.Length);
+        
     }
 
     public override void OnEnableSetting(LevelUpItemSetting itemSetting)
     {
+        // 1. 랜덤 등급 뽑기 & 배율 가져오기
+        itemSetting.rarity = Utils.GetRandomRarity();
+        float multiplier = Utils.GetRarityMultiplier(itemSetting.rarity);
+        Color color = Utils.GetRarityColor(itemSetting.rarity);
 
-        if (itemSetting.level == 0)
-        {
-            itemSetting.NewIcon.gameObject.SetActive(true);
-            itemSetting.TextDesc.text = "<color=#99FF8A>새로운 무기!</color>\n\n<size=90%>" + itemDesc[0] + "</size>";
-            itemSetting.TextLevel.text = "New Weapon!";
-        }
+        // 2. 텍스트 & 색상 설정
+        itemSetting.textName.color = color; // 이름 색깔 변경 (전설은 금색!)
+        itemSetting.textLevel.text = itemSetting.rarity.ToString(); // 레벨 대신 등급 표시 (또는 Lv.{level} + 등급)
 
-        else if (itemSetting.level < maxLevel)
-        {
-            itemSetting.TextLevel.text = string.Format($"Lv.{itemSetting.level} → Lv.{itemSetting.level + 1}");
+        // 3. 증가량 계산 및 설명글 작성
+        // 예: "Damage +5" (Common) / "Damage +10" (Legendary)
+        string desc = "";
 
-            itemSetting.NewIcon.gameObject.SetActive(false);
+        if (damageGrowth > 0)
+            desc += $"Damage +{damageGrowth * multiplier:F1}\n"; // 소수점 1자리까지
 
-            // 비어있는 배열을 건너뛰기 위해 증가
-            while (itemSetting.outsideRateIdx < itemSetting.statusRateList.Count &&
-                   itemSetting.statusRateList[itemSetting.outsideRateIdx].values.Length == 0)
-            {
-                itemSetting.outsideRateIdx++;
-            }
+        if (countGrowth > 0)
+            desc += $"Count +{countGrowth * multiplier:F1}\n";
 
-            if (itemSetting.outsideRateIdx < itemSetting.statusRateList.Count)
-            {
-                // 인덱스 범위 체크: insideRateIdx가 현재 배열 길이보다 크면 초기화
-                if (itemSetting.insideRateIdx >= itemSetting.statusRateList[itemSetting.outsideRateIdx].values.Length)
-                {
-                    itemSetting.insideRateIdx = 0;
-                }
+        if (perGrowth > 0)
+            desc += $"Per +{perGrowth * multiplier:F1}\n";
 
-                itemSetting.increaseRate = itemSetting.statusRateList[itemSetting.outsideRateIdx].values[itemSetting.insideRateIdx];
-
-                itemSetting.TextDesc.text = string.Format(itemDesc[itemSetting.outsideRateIdx + 1], itemSetting.increaseRate);
-
-            }
-        }
+        // 설명 텍스트 적용
+        itemSetting.textDesc.text = desc;
     }
 
     public override void OnClickSetting(LevelUpItemSetting itemSetting)
     {
         if (itemSetting.level == 0)
         {
-            // 새로운 무기 객체를 생성            
-            var weapon = Instantiate(weaponType);
-            itemSetting.weapon = weapon.GetComponent<Weapon>();
-            itemSetting.weapon.transform.parent = GameManager.instance.player.transform;
+            // 새 무기 얻기 (기존 코드 유지)
+            var weaponObj = Instantiate(weaponType, GameManager.instance.player.transform);
+            itemSetting.weapon = weaponObj.GetComponent<Weapon>();
             itemSetting.weapon.Init(this);
-            GameManager.instance.weaponCount++;   
+            GameManager.instance.weaponCount++;
         }
         else
         {
-            // 기존 무기의 레벨을 올림
-            itemSetting.weapon.WeaponLevelUp(itemSetting.increaseRate, itemSetting.rateIdx[itemSetting.outsideRateIdx], itemSetting.level);
+            // [중요] 무기 레벨업 (등급 정보를 함께 넘겨줌)
+            // 아직 Weapon에 LevelUp 함수를 안 만들어서 여기서 빨간 줄이 뜰 거예요!
+            // 일단 주석 처리해두거나, 다음 단계에서 Weapon.cs를 고치면 해결됩니다.
 
-            itemSetting.outsideRateIdx++; // 다음 적용할 인덱스를 증가시킴
-
-            // 인덱스 값이 설정 범위를 넘어가는 경우 계속 조정해주는 로직
-            while (itemSetting.outsideRateIdx >= itemSetting.statusRateList.Count ||
-                   itemSetting.insideRateIdx >= itemSetting.statusRateList[itemSetting.outsideRateIdx].values.Length)
-            {
-                if (itemSetting.outsideRateIdx >= itemSetting.statusRateList.Count)
-                {
-                    itemSetting.outsideRateIdx = 0;
-                    itemSetting.insideRateIdx++;
-                }
-
-                if (itemSetting.insideRateIdx >= itemSetting.maxmumInsideIdx)
-                    break;
-
-                if (itemSetting.insideRateIdx >= itemSetting.statusRateList[itemSetting.outsideRateIdx].values.Length)
-                    itemSetting.outsideRateIdx++;
-            }
+            // itemSetting.weapon.LevelUp(itemSetting.rarity); 
         }
 
         itemSetting.level++;
-        itemSetting._currentLevel = itemSetting.level;
-    }
 
-}
+    }
 

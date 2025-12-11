@@ -3,7 +3,22 @@ using UnityEditor;
 using UnityEngine;
 using VInspector;
 
-
+[System.Serializable]
+public class WeaponStats
+{
+    public float damage;                // 무기 데미지    
+    public float count;                   // 무기 개수
+    public float per;                     // 관통력
+    public float bulletMoveSpeed;       // 총알 이동 속도
+    public float weaponAttackSpeed;     // 무기 속도    
+    public float rotationSpeed;         // 회전속도       (*현재 ONLY 회전무기)
+    public float bulletDelay;           // 총알 사이 딜레이 (Range)   
+    public float damageInterval;        // 데미지 줄 수 있는 텀
+    public float weaponDuration;        // 지속 시간(회전 무기만 일단)
+    public float attackRange;           // 공격 범위
+    public float knockBackAmout;        // 몬스터 넉백량
+    public Vector3 bulletSize;          // 총알(무기) 크기
+}
 public abstract class Weapon : MonoBehaviour
 {    
     public string ownerTag;      // 무기 소유자 태그
@@ -151,21 +166,5 @@ public abstract class Weapon : MonoBehaviour
 
         // 총알 크기도 최종 크기로 설정
         //bullet.localScale = finalStats.bulletSize;
-    }
-    [System.Serializable]
-    public class WeaponStats
-    {
-        public float damage;                // 무기 데미지    
-        public int count;                   // 무기 개수
-        public int per;                     // 관통력
-        public float bulletMoveSpeed;       // 총알 이동 속도
-        public float weaponAttackSpeed;     // 무기 속도    
-        public float rotationSpeed;         // 회전속도       (*현재 ONLY 회전무기)
-        public float bulletDelay;           // 총알 사이 딜레이 (Range)   
-        public float damageInterval;        // 데미지 줄 수 있는 텀
-        public float weaponDuration;        // 지속 시간(회전 무기만 일단)
-        public float attackRange;           // 공격 범위
-        public float knockBackAmout;        // 몬스터 넉백량
-        public Vector3 bulletSize;          // 총알(무기) 크기
-    }
+    }   
 }
