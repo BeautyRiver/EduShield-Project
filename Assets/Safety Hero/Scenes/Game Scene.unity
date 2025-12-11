@@ -86460,7 +86460,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &306683453
 RectTransform:
   m_ObjectHideFlags: 0
@@ -186177,8 +186177,8 @@ RectTransform:
   - {fileID: 927738640}
   - {fileID: 607511329}
   - {fileID: 7157562888262857468}
-  - {fileID: 808597844}
   - {fileID: 1711181254}
+  - {fileID: 808597844}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -471460,12 +471460,6 @@ MonoBehaviour:
   - {fileID: 1310752003}
   - {fileID: 702389830}
   - {fileID: 669427137}
-  collisionMask:
-    serializedVersion: 2
-    m_Bits: 10240
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 1024
 --- !u!1 &2064115268
 GameObject:
   m_ObjectHideFlags: 0

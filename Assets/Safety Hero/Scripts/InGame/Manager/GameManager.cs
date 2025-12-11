@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
 
         spawner.gameObject.SetActive(true);
 
-        Box.openCount = 0;
+        Box.openCount = 0;        
 
         globalManager.ChangeState(GameState.Playing);
     }
