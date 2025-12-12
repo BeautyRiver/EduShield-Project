@@ -1968,9 +1968,9 @@ RectTransform:
   - {fileID: 550987412}
   m_Father: {fileID: 1152832279}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 253.41101, y: -90.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &108021837
@@ -83094,9 +83094,9 @@ RectTransform:
   - {fileID: 1300857180}
   m_Father: {fileID: 1062020153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 438.41098, y: -90.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &202209269
@@ -83655,9 +83655,9 @@ RectTransform:
   - {fileID: 1578516605}
   m_Father: {fileID: 1062020153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 560.68494, y: -90.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &227609252
@@ -83746,7 +83746,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &259957423
 RectTransform:
   m_ObjectHideFlags: 0
@@ -103617,9 +103617,9 @@ RectTransform:
   - {fileID: 1287903440}
   m_Father: {fileID: 1062020153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 316.137, y: -90.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &397944653
@@ -185400,9 +185400,9 @@ RectTransform:
   - {fileID: 988454446}
   m_Father: {fileID: 1062020153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 682.959, y: -90.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &546052763
@@ -186968,9 +186968,9 @@ RectTransform:
   - {fileID: 1271369904}
   m_Father: {fileID: 2139165607}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 457, y: -718.49994}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 607}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &641607605
@@ -187122,14 +187122,12 @@ MonoBehaviour:
   weapon: {fileID: 0}
   gear: {fileID: 0}
   level: 0
+  rarity: 0
   outsideRateIdx: 0
   insideRateIdx: 0
   maxmumInsideIdx: 0
   increaseRate: 0
   _currentLevel: 0
-  _maxLevel: 0
-  statusRateList: []
-  rateIdx: 
 --- !u!1 &653472401
 GameObject:
   m_ObjectHideFlags: 0
@@ -188316,9 +188314,9 @@ RectTransform:
   - {fileID: 102312760}
   m_Father: {fileID: 1152832279}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 131.13696, y: -90.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &714001975
@@ -188666,7 +188664,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &757183829
 RectTransform:
   m_ObjectHideFlags: 0
@@ -188687,9 +188685,9 @@ RectTransform:
   - {fileID: 1160061971}
   m_Father: {fileID: 2139165607}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1663.3998, y: -689.49994}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 607}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &757183831
@@ -188841,14 +188839,12 @@ MonoBehaviour:
   weapon: {fileID: 0}
   gear: {fileID: 0}
   level: 0
+  rarity: 0
   outsideRateIdx: 0
   insideRateIdx: 0
   maxmumInsideIdx: 0
   increaseRate: 0
   _currentLevel: 0
-  _maxLevel: 0
-  statusRateList: []
-  rateIdx: 
 --- !u!1 &758104245
 GameObject:
   m_ObjectHideFlags: 0
@@ -188870,7 +188866,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &758104246
 RectTransform:
   m_ObjectHideFlags: 0
@@ -188891,9 +188887,9 @@ RectTransform:
   - {fileID: 943120930}
   m_Father: {fileID: 2139165607}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1520.0598, y: -689.49994}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 607}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &758104248
@@ -189045,14 +189041,12 @@ MonoBehaviour:
   weapon: {fileID: 0}
   gear: {fileID: 0}
   level: 0
+  rarity: 0
   outsideRateIdx: 0
   insideRateIdx: 0
   maxmumInsideIdx: 0
   increaseRate: 0
   _currentLevel: 0
-  _maxLevel: 0
-  statusRateList: []
-  rateIdx: 
 --- !u!1 &762004759
 GameObject:
   m_ObjectHideFlags: 0
@@ -189789,7 +189783,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &771970792
 RectTransform:
   m_ObjectHideFlags: 0
@@ -189810,9 +189804,9 @@ RectTransform:
   - {fileID: 1339354671}
   m_Father: {fileID: 2139165607}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1376.7198, y: -689.49994}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 607}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &771970794
@@ -189964,14 +189958,12 @@ MonoBehaviour:
   weapon: {fileID: 0}
   gear: {fileID: 0}
   level: 0
+  rarity: 0
   outsideRateIdx: 0
   insideRateIdx: 0
   maxmumInsideIdx: 0
   increaseRate: 0
   _currentLevel: 0
-  _maxLevel: 0
-  statusRateList: []
-  rateIdx: 
 --- !u!1 &772217394
 GameObject:
   m_ObjectHideFlags: 0
@@ -191891,9 +191883,9 @@ RectTransform:
   - {fileID: 1868986386}
   m_Father: {fileID: 1152832279}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 497.95895, y: -90.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &888407949
@@ -202810,9 +202802,9 @@ RectTransform:
   - {fileID: 1711212724}
   m_Father: {fileID: 2139165607}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1463, y: -718.49994}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 607}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1160020414
@@ -202964,14 +202956,12 @@ MonoBehaviour:
   weapon: {fileID: 0}
   gear: {fileID: 0}
   level: 0
+  rarity: 0
   outsideRateIdx: 0
   insideRateIdx: 0
   maxmumInsideIdx: 0
   increaseRate: 0
   _currentLevel: 0
-  _maxLevel: 0
-  statusRateList: []
-  rateIdx: 
 --- !u!1 &1160061970
 GameObject:
   m_ObjectHideFlags: 0
@@ -283873,9 +283863,9 @@ RectTransform:
   - {fileID: 952499022}
   m_Father: {fileID: 1062020153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 805.2329, y: -90.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1219938896
@@ -285826,7 +285816,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1243845241
 RectTransform:
   m_ObjectHideFlags: 0
@@ -285847,9 +285837,9 @@ RectTransform:
   - {fileID: 1386800914}
   m_Father: {fileID: 2139165607}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 803.36, y: -689.49994}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 607}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1243845243
@@ -286001,14 +285991,12 @@ MonoBehaviour:
   weapon: {fileID: 0}
   gear: {fileID: 0}
   level: 0
+  rarity: 0
   outsideRateIdx: 0
   insideRateIdx: 0
   maxmumInsideIdx: 0
   increaseRate: 0
   _currentLevel: 0
-  _maxLevel: 0
-  statusRateList: []
-  rateIdx: 
 --- !u!1 &1244199266
 GameObject:
   m_ObjectHideFlags: 0
@@ -291466,9 +291454,9 @@ RectTransform:
   - {fileID: 1576284019}
   m_Father: {fileID: 1152832279}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 620.2329, y: -90.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1357532897
@@ -295843,7 +295831,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1660410111
 RectTransform:
   m_ObjectHideFlags: 0
@@ -295864,9 +295852,9 @@ RectTransform:
   - {fileID: 88096690}
   m_Father: {fileID: 2139165607}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 946.69995, y: -689.49994}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 607}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1660410113
@@ -296018,14 +296006,12 @@ MonoBehaviour:
   weapon: {fileID: 0}
   gear: {fileID: 0}
   level: 0
+  rarity: 0
   outsideRateIdx: 0
   insideRateIdx: 0
   maxmumInsideIdx: 0
   increaseRate: 0
   _currentLevel: 0
-  _maxLevel: 0
-  statusRateList: []
-  rateIdx: 
 --- !u!1 &1670618239
 GameObject:
   m_ObjectHideFlags: 0
@@ -296607,7 +296593,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1687413905
 RectTransform:
   m_ObjectHideFlags: 0
@@ -296628,9 +296614,9 @@ RectTransform:
   - {fileID: 1255898804}
   m_Father: {fileID: 2139165607}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1806.7397, y: -689.49994}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 607}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1687413907
@@ -296782,14 +296768,12 @@ MonoBehaviour:
   weapon: {fileID: 0}
   gear: {fileID: 0}
   level: 0
+  rarity: 0
   outsideRateIdx: 0
   insideRateIdx: 0
   maxmumInsideIdx: 0
   increaseRate: 0
   _currentLevel: 0
-  _maxLevel: 0
-  statusRateList: []
-  rateIdx: 
 --- !u!1 &1687459589
 GameObject:
   m_ObjectHideFlags: 0
@@ -298484,7 +298468,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1783131728
 RectTransform:
   m_ObjectHideFlags: 0
@@ -298505,9 +298489,9 @@ RectTransform:
   - {fileID: 1443381131}
   m_Father: {fileID: 2139165607}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1644.4125, y: -689.49994}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 607}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1783131730
@@ -298659,14 +298643,12 @@ MonoBehaviour:
   weapon: {fileID: 0}
   gear: {fileID: 0}
   level: 0
+  rarity: 0
   outsideRateIdx: 0
   insideRateIdx: 0
   maxmumInsideIdx: 0
   increaseRate: 0
   _currentLevel: 0
-  _maxLevel: 0
-  statusRateList: []
-  rateIdx: 
 --- !u!1 &1789855340
 GameObject:
   m_ObjectHideFlags: 0
@@ -298732,9 +298714,9 @@ RectTransform:
   - {fileID: 1515438551}
   m_Father: {fileID: 1152832279}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 375.68494, y: -90.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1800423202
@@ -299157,7 +299139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1820933481
 RectTransform:
   m_ObjectHideFlags: 0
@@ -299178,9 +299160,9 @@ RectTransform:
   - {fileID: 665652690}
   m_Father: {fileID: 2139165607}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1090.0399, y: -689.49994}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 607}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1820933483
@@ -299332,14 +299314,12 @@ MonoBehaviour:
   weapon: {fileID: 0}
   gear: {fileID: 0}
   level: 0
+  rarity: 0
   outsideRateIdx: 0
   insideRateIdx: 0
   maxmumInsideIdx: 0
   increaseRate: 0
   _currentLevel: 0
-  _maxLevel: 0
-  statusRateList: []
-  rateIdx: 
 --- !u!1 &1821206364
 GameObject:
   m_ObjectHideFlags: 0
@@ -300407,7 +300387,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1872802666
 RectTransform:
   m_ObjectHideFlags: 0
@@ -300428,9 +300408,9 @@ RectTransform:
   - {fileID: 475222242}
   m_Father: {fileID: 2139165607}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1233.3799, y: -689.49994}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 607}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1872802668
@@ -300582,14 +300562,12 @@ MonoBehaviour:
   weapon: {fileID: 0}
   gear: {fileID: 0}
   level: 0
+  rarity: 0
   outsideRateIdx: 0
   insideRateIdx: 0
   maxmumInsideIdx: 0
   increaseRate: 0
   _currentLevel: 0
-  _maxLevel: 0
-  statusRateList: []
-  rateIdx: 
 --- !u!1 &1880026196
 GameObject:
   m_ObjectHideFlags: 0
@@ -317767,9 +317745,9 @@ RectTransform:
   - {fileID: 6384318}
   m_Father: {fileID: 2139165607}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -718.49994}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 607}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1922276727
@@ -317921,14 +317899,12 @@ MonoBehaviour:
   weapon: {fileID: 0}
   gear: {fileID: 0}
   level: 0
+  rarity: 0
   outsideRateIdx: 0
   insideRateIdx: 0
   maxmumInsideIdx: 0
   increaseRate: 0
   _currentLevel: 0
-  _maxLevel: 0
-  statusRateList: []
-  rateIdx: 
 --- !u!1 &1929126662
 GameObject:
   m_ObjectHideFlags: 0

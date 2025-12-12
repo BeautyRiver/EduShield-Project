@@ -9,7 +9,7 @@ public class BulletOverTimeDamage : Bullet
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag(OwnerTag))
+        if (collision.CompareTag(ownerTag))
             return;
 
         if (collision.TryGetComponent(out IDamageable damageAble))
@@ -20,13 +20,13 @@ public class BulletOverTimeDamage : Bullet
             if (!damageTimers.ContainsKey(enemyId))
             {
                 damageTimers[enemyId] = Time.time;
-                damageAble.DamagedLogic(bulletCol, Damage);
+                damageAble.DamagedLogic(bulletCol, damage);
                 PerDown();
             }
-            else if (Time.time - damageTimers[enemyId] >= DamageInterval)
+            else if (Time.time - damageTimers[enemyId] >= damageInterval)
             {
                 damageTimers[enemyId] = Time.time;
-                damageAble.DamagedLogic(bulletCol, Damage);
+                damageAble.DamagedLogic(bulletCol, damage);
                 PerDown();
             }
         }

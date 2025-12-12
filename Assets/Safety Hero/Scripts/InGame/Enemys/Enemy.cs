@@ -101,7 +101,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
         // 보스는 넉백 X
         if (this is IKnockBackable)
-            StartCoroutine(KnockBack(bulletInfo.KnockBackDistance)); // 넉백
+            StartCoroutine(KnockBack(bulletInfo.knockBackDistance)); // 넉백
 
         // 체력 0 이하 사망
         if (currentHealth <= 0)

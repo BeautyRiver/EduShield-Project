@@ -17,10 +17,12 @@ public abstract class Data : ScriptableObject
     //public int maxLevel;
 
     [TextArea]
-    public string[] itemDesc;
+    public string defalutDesc;
+
+    [TextArea]
+    public string[] growthDesc;
 
     // 추상 메서드 선언
-    protected abstract void OnValidate();
     public abstract void InitializeItemSetting(LevelUpItemSetting itemSetting);
     public abstract void OnEnableSetting(LevelUpItemSetting itemSetting);
     public abstract void OnClickSetting(LevelUpItemSetting itemSetting);

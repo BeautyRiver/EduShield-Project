@@ -1,16 +1,16 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Gear : MonoBehaviour
 {
     public GearData gearData;
-    public float rate; // 공격 속도 증가율
-    public int level;
-    [SerializeField] protected float accumulatedRate = 1f; // 누적 증가율
+    public float rate;
+    public int level; // 레벨 표시는 UI에서 하므로, 내부 로직용으로만 관리
+
+    [SerializeField] protected float accumulatedRate = 0f; // 누적 증가율 (기본값 0에서 시작)
+
     protected GameManager gm;
     protected PlayerMove playerMove;
+
     protected virtual void Awake()
     {
         gm = GameManager.instance;
@@ -19,43 +19,30 @@ public abstract class Gear : MonoBehaviour
 
     public virtual void Init(GearData newData)
     {
-        // 기본 세팅
+        // 1. 기본 세팅
         gearData = newData;
         transform.parent = playerMove.transform;
-        transform.localPosition = Vector3.zero; // 플레이어 안에서 위치 초기화
-
-        rate = newData.gearRates[0];
-        GearLevelUp(newData.gearRates[0]);
+        transform.localPosition = Vector3.zero;
     }
 
     public virtual void GearLevelUp(float newRate)
     {
-        rate = newRate * 0.01f; // 기어 단위  수정
-        accumulatedRate +=  rate;
+        // newRate: 10 (10%) 등이 들어옴 -> 0.1로 변환
+        rate = newRate * 0.01f;
+        accumulatedRate += rate;
+
         ApplyPlayerData();
     }
 
-    /// <summary>
-    /// 모든 무기에 무기에 영향을 끼치는 기어 적용
-    /// </summary>
     protected virtual void ApplyToAllWeapons()
     {
         Weapon[] weapons = transform.parent.GetComponentsInChildren<Weapon>();
         foreach (Weapon weapon in weapons)
         {
             ApplyGearToWeapon(weapon);
-        }        
+        }
     }
 
-
-    /// <summary>
-    /// 플레이어 데이터에 기어 수치 적용하기
-    /// </summary>
-    protected abstract void ApplyPlayerData();    
-    /// <summary>
-    /// 무기에 영향이 가는 기어들 적용
-    /// </summary>
-    protected abstract void ApplyGearToWeapon(Weapon weapon);    
-  
+    protected abstract void ApplyPlayerData();
+    protected abstract void ApplyGearToWeapon(Weapon weapon);
 }
-

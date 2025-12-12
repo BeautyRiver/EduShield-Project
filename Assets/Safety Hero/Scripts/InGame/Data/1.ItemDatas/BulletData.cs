@@ -32,7 +32,7 @@ public class BulletData : Data
     public GameObject weaponType;
 
     // 에디터에서 값이 변경될 때 자동으로 호출
-    protected override void OnValidate()
+    protected void OnValidate()
     {
         //maxLevel = damages.Length + counts.Length + pers.Length + sizes.Length + 1;
 
@@ -42,7 +42,7 @@ public class BulletData : Data
 
     public override void InitializeItemSetting(LevelUpItemSetting itemSetting)
     {
-        
+
     }
 
     public override void OnEnableSetting(LevelUpItemSetting itemSetting)
@@ -54,23 +54,34 @@ public class BulletData : Data
 
         // 2. 텍스트 & 색상 설정
         itemSetting.textName.color = color; // 이름 색깔 변경 (전설은 금색!)
-        itemSetting.textLevel.text = itemSetting.rarity.ToString(); // 레벨 대신 등급 표시 (또는 Lv.{level} + 등급)
 
-        // 3. 증가량 계산 및 설명글 작성
-        // 예: "Damage +5" (Common) / "Damage +10" (Legendary)
-        string desc = "";
+        if (itemSetting.level == 0)
+        {
+            itemSetting.textLevel.text = "New!";
+            itemSetting.newIcon.gameObject.SetActive(true);
 
-        if (damageGrowth > 0)
-            desc += $"Damage +{damageGrowth * multiplier:F1}\n"; // 소수점 1자리까지
+            itemSetting.textDesc.text = defalutDesc;
+        }
+        else
+        {
+            itemSetting.textLevel.text = itemSetting.rarity.ToString();
+            itemSetting.newIcon.gameObject.SetActive(false);
 
-        if (countGrowth > 0)
-            desc += $"Count +{countGrowth * multiplier:F1}\n";
+            // 3. 증가량 계산 및 설명글 작성            
+            string desc = "";
 
-        if (perGrowth > 0)
-            desc += $"Per +{perGrowth * multiplier:F1}\n";
+            if (damageGrowth > 0)
+                desc += $"Damage +{damageGrowth * multiplier:F1}\n"; // 소수점 1자리까지
 
-        // 설명 텍스트 적용
-        itemSetting.textDesc.text = desc;
+            if (countGrowth > 0)
+                desc += $"Count +{countGrowth * multiplier:F1}\n";
+
+            if (perGrowth > 0)
+                desc += $"Per +{perGrowth * multiplier:F1}\n";
+
+            // 설명 텍스트 적용
+            itemSetting.textDesc.text = desc;
+        }
     }
 
     public override void OnClickSetting(LevelUpItemSetting itemSetting)
@@ -96,3 +107,4 @@ public class BulletData : Data
 
     }
 
+}

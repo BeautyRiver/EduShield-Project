@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Bullet : MonoBehaviour
 {
-    [field: SerializeField] public float Damage { get; private set; }
-    [field: SerializeField] public int Per { get; private set; }
-    [field: SerializeField] public float BulletSpeed { get; private set; }
-    [field: SerializeField] public int Id { get; private set; }
-    [field: SerializeField] public float KnockBackDistance { get; private set; }
-    [field: SerializeField] public float DamageInterval { get; private set; }
-    [field: SerializeField] public  string OwnerTag { get; set; } // 총알을 발사한 오브젝트
+    [field: SerializeField] public float damage { get; private set; }
+    [field: SerializeField] public float per { get; private set; }
+    [field: SerializeField] public float bulletSpeed { get; private set; }
+    [field: SerializeField] public int id { get; private set; }
+    [field: SerializeField] public float knockBackDistance { get; private set; }
+    [field: SerializeField] public float damageInterval { get; private set; }
+    [field: SerializeField] public  string ownerTag { get; set; } // 총알을 발사한 오브젝트
     protected Rigidbody2D rigid;
     protected Collider2D bulletCol;
     protected virtual void Awake()
@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
 
     protected virtual void OnTriggerExit2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Area") || Per == -100)
+        if (!collision.CompareTag("Area") || per == -100)
             return;
 
         gameObject.SetActive(false);
@@ -29,29 +29,29 @@ public class Bullet : MonoBehaviour
     /// <summary>
     /// Bullet Init Method
     /// </summary>    
-    public virtual void Init(Vector3 dir, string ownerTag, int per, float damage, float bulletSpeed, float knockBack, float interval)
+    public virtual void Init(Vector3 dir, string ownerTag, float per, float damage, float bulletSpeed, float knockBack, float interval)
     {
-        OwnerTag = ownerTag;
-        Damage = damage;
-        Per = per;
-        BulletSpeed = bulletSpeed;
-        KnockBackDistance = knockBack;
-        DamageInterval = interval;
+        this.ownerTag = ownerTag;
+        this.damage = damage;
+        this.per = per;
+        this.bulletSpeed = bulletSpeed;
+        knockBackDistance = knockBack;
+        damageInterval = interval;
 
         // 관통력이 있는 무기일 때 Bullet Move
         if (per >= 0)
         {
-            rigid.linearVelocity = dir * BulletSpeed;
+            rigid.linearVelocity = dir * this.bulletSpeed;
         }
     }
 
     protected virtual void PerDown()
     {
-        if (Per == -100)
+        if (per == -100)
             return;
 
-        Per--;
-        if (Per < 0)
+        per--;
+        if (per < 0)
         {
             rigid.linearVelocity = Vector2.zero;
             ActiveFalse();

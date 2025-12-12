@@ -1,61 +1,78 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using VInspector;
 
 [CreateAssetMenu(fileName = "Gear", menuName = "Scriptable Objects/GearData")]
 public class GearData : Data
-{    
-    [Tab("# 기어 능력치")]
-    [Header("배율방식 / 50 = 50%증가")]
-    public int[] gearRates;
-    
+{
+    [Tab("# 기어 능력치 (무한 성장)")]
+    [Header("레벨업 당 기본 증가량 (단위: %)")]
+    // 예: 10 이라고 적으면 10% 증가 (Common 기준)
+    public float rateGrowth;
+
     [Tab("# 기어 관련")]
     public GameObject gearType;
-
-    // 에디터에서 값이 변경될 때 자동으로 호출
-    protected override void OnValidate()
-    {
-        maxLevel = gearRates.Length;        
-    }
+    
 
     public override void InitializeItemSetting(LevelUpItemSetting itemSetting)
     {
-        // 기어의 경우 특별한 초기화가 필요하지 않음
+        // 초기화 로직 없음
     }
 
+    // [핵심] 등급 뽑기 & 텍스트 설정
     public override void OnEnableSetting(LevelUpItemSetting itemSetting)
     {
+        // 1. 랜덤 등급 뽑기 & 배율 가져오기
+        itemSetting.rarity = Utils.GetRandomRarity();
+        float multiplier = Utils.GetRarityMultiplier(itemSetting.rarity);
+        Color color = Utils.GetRarityColor(itemSetting.rarity);
+
+        // 2. 텍스트 & 색상 설정
+        itemSetting.textName.color = color; // 이름 색깔 변경 (전설은 금색!)
 
         if (itemSetting.level == 0)
         {
+            itemSetting.textLevel.text = "New!";
             itemSetting.newIcon.gameObject.SetActive(true);
-            itemSetting.textDesc.text = "<color=#99FF8A>새로운 강화!</color>\n\n<size=90%>" +
-                string.Format(itemDesc[0], gearRates[itemSetting.level]) + "</size>";
-            itemSetting.textLevel.text = "New Gear!";
-        }
-        else if (itemSetting.level < maxLevel)
-        {
-            itemSetting.textLevel.text = string.Format($"Lv.{itemSetting.level} → Lv.{itemSetting.level + 1}");
-            itemSetting.newIcon.gameObject.SetActive(false);
-            itemSetting.textDesc.text = string.Format(itemDesc[0], gearRates[itemSetting.level]); // 기어 설명글
-        }
-    }
 
-    public override void OnClickSetting(LevelUpItemSetting itemSetting)
-    {
-        if (itemSetting.level == 0)
-        {
-            GameObject newGear = Instantiate(gearType);
-            itemSetting.gear = newGear.GetComponent<Gear>();
-            itemSetting.gear.Init(this);
-            GameManager.instance.gearCount++;
+            itemSetting.textDesc.text = defalutDesc;
         }
         else
         {
-            float newRate = gearRates[itemSetting.level];
-            itemSetting.gear.GearLevelUp(newRate);
-            itemSetting.gear.level = itemSetting.level;
+            itemSetting.textLevel.text = itemSetting.rarity.ToString();
+            itemSetting.newIcon.gameObject.SetActive(false);
+
+            // 3. 증가량 계산 및 설명글 작성            
+            string desc = "";
+
+            if (rateGrowth > 0)
+            {
+                float finalRate = rateGrowth * multiplier;
+                itemSetting.textDesc.text = $"Stat +{finalRate:F1}%";
+            }
+
+            // 설명 텍스트 적용
+            itemSetting.textDesc.text = desc;
+        }     
+    }
+
+    // [클릭] 실제 적용
+    public override void OnClickSetting(LevelUpItemSetting itemSetting)
+    {
+        float multiplier = Utils.GetRarityMultiplier(itemSetting.rarity);
+        float finalIncrease = rateGrowth * multiplier;
+
+        if (itemSetting.level == 0)
+        {
+            // 새 기어 장착
+            GameObject newGear = Instantiate(gearType, GameManager.instance.player.transform);
+            itemSetting.gear = newGear.GetComponent<Gear>();
+            itemSetting.gear.Init(this); // Init 안에서도 초기 수치 적용 필요
+            GameManager.instance.gearCount++;
+            itemSetting.gear.GearLevelUp(finalIncrease);
+        }
+        else
+        {
+            itemSetting.gear.GearLevelUp(finalIncrease);
         }
 
         itemSetting.level++;

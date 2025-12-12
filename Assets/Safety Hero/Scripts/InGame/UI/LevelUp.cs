@@ -63,62 +63,46 @@ public class LevelUp : MonoBehaviour
 
     private void Next()
     {
-        // 모든 아이템 비활성화
+        // 1. 모든 아이템 일단 비활성화 (초기화)
         foreach (LevelUpItemSetting item in items)
         {
             item.gameObject.SetActive(false);
         }
 
-        // 활성화 가능한 아이템을 담는 리스트
+        // 2. 등장 가능한 아이템 추리기
         availableItems = new List<LevelUpItemSetting>();
-
-        bool allMaxLevel = true;
 
         foreach (LevelUpItemSetting item in items)
         {
+            // [무기 처리]
             if (item.data is BulletData)
             {
-                // 이미 획득한 무기이거나, 새로운 무기를 획득할 수 있는 경우
+                // 조건: 이미 가지고 있거나(Level>0) OR 새 무기 슬롯이 남아있으면 OK
                 if (item.level > 0 || GameManager.instance.weaponCount < GameManager.instance.maxItemCount)
-                {
-                    if (item.level < item.data.maxLevel)
-                    {
-                        availableItems.Add(item);
-                        allMaxLevel = false;
-                    }
-                }
-            }
-            else if (item.data is GearData)
-            {
-                // 이미 획득한 기어이거나, 새로운 기어를 획득할 수 있는 경우
-                if (item.level > 0 || GameManager.instance.gearCount < GameManager.instance.maxItemCount)
-                {
-                    if (item.level < item.data.maxLevel)
-                    {
-                        availableItems.Add(item);
-                        allMaxLevel = false;
-                    }
-                }
-            }        
-        }
-
-        // 모든 무기와 기어가 최대 레벨에 도달했다면 Etc 아이템만 활성화
-        if (allMaxLevel)
-        {
-            foreach (LevelUpItemSetting item in items)
-            {
-                if (item.data is EtcData)
                 {
                     availableItems.Add(item);
                 }
-            }            
+            }
+            // [기어 처리] - ※ 주의: GearData도 무한 성장으로 리팩토링해야 완벽히 작동합니다!
+            else if (item.data is GearData)
+            {
+                // 조건: 이미 가지고 있거나(Level>0) OR 새 기어 슬롯이 남아있으면 OK
+                if (item.level > 0 || GameManager.instance.gearCount < GameManager.instance.maxItemCount)
+                {
+                    availableItems.Add(item);
+                }
+            }
+            // [회복/기타 아이템]
+            else if (item.data is EtcData)
+            {
+                availableItems.Add(item);
+            }
         }
 
-        // 활성화할 아이템 수를 결정 (최대 4개)
+        // 3. 랜덤으로 3개(혹은 4개) 뽑기
         int itemsToActivate = Mathf.Min(3, availableItems.Count);
-
-        // 랜덤으로 아이템 선택
         List<int> selectedItems = new List<int>();
+
         while (selectedItems.Count < itemsToActivate)
         {
             int randIndex = Random.Range(0, availableItems.Count);
@@ -128,7 +112,7 @@ public class LevelUp : MonoBehaviour
             }
         }
 
-        // 선택된 아이템 활성화
+        // 4. 선택된 아이템 화면에 켜주기
         foreach (int index in selectedItems)
         {
             availableItems[index].gameObject.SetActive(true);

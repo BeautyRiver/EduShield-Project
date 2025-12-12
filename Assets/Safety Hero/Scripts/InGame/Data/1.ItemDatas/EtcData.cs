@@ -15,10 +15,6 @@ public class EtcData : Data
 
     // 기타 필요한 필드...
 
-    protected override void OnValidate()
-    {
-        // 기타 아이템의 경우 특별한 검증이 필요하지 않음
-    }
 
     public override void InitializeItemSetting(LevelUpItemSetting itemSetting)
     {
@@ -28,7 +24,7 @@ public class EtcData : Data
     public override void OnEnableSetting(LevelUpItemSetting itemSetting)
     {
         itemSetting.newIcon.gameObject.SetActive(false);
-        itemSetting.textDesc.text = itemDesc[0];
+        itemSetting.textDesc.text = growthDesc[0];
         itemSetting.textLevel.fontSize = 40;
 
         switch (eType)

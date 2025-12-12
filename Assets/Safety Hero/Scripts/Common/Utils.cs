@@ -56,7 +56,10 @@ public static class Utils
 
         // 안전 장치: 인덱스 범위 체크
         if (index < 0 || index >= Rates.Length)
+        {
+            Debug.LogError("인덱스 범위 오류");
             return 1.0f;
+        }
 
         return Rates[index];
     }
