@@ -15344,6 +15344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdfbf2f996539c34c9b63b606c6fdbe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nowTimeScale: 1
   playerState: 0
   gameState: 0
 --- !u!1 &1102808608
@@ -22818,6 +22819,7 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 16384
+  <nearestTarget>k__BackingField: {fileID: 0}
 --- !u!114 &2071362365
 MonoBehaviour:
   m_ObjectHideFlags: 0

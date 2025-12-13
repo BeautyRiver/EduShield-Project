@@ -15,13 +15,7 @@ MonoBehaviour:
   itemId: 51
   itemName: "\uC5D0\uB108\uC9C0 \uD30C"
   itemIcon: {fileID: -223521553757574368, guid: 2eec06e34141a104490a5018b350d8ac, type: 3}
-  maxLevel: 6
-  itemDesc:
-  - "\uBC18\uB300 \uBC29\uD5A5\uC73C\uB85C \uAC15\uB825\uD55C \uAD00\uD1B5 \uACF5\uACA9"
-  - "<b><color=yellow>\uAE30\uBCF8 \uB370\uBBF8\uC9C0 {0}</color> \uC99D\uAC00</b>"
-  - "<b><color=yellow>\uAC1C\uC218 {0}\uAC1C</color> \uC99D\uAC00</b>\n\n\uC591 \uBC29\uD5A5
-    \uBC1C\uC0AC"
-  - "<b><color=yellow>\uAD00\uD1B5\uB825 {0}</color> \uC99D\uAC00</b>"
+  defalutDesc: 
   baseDamage: 8
   baseDamageInterval: 2
   baseKnockback: 1.5
@@ -34,9 +28,9 @@ MonoBehaviour:
   baseRange: 1
   baseRotationSpeed: 0
   baseScale: {x: 1, y: 1, z: 1}
-  damages: 020000000300000004000000
-  counts: 01000000
-  pers: 05000000
-  sizes: 
+  damageGrowth: 1
+  countGrowth: 0.5
+  perGrowth: 0.4
+  scaleGrowth: 0.5
   bulletPrefab: {fileID: 8191457858479555690, guid: 321abbc004976c84d993cf8d03f989a7, type: 3}
   weaponType: {fileID: 2884803771570671738, guid: 7d3b956266d9d164ab00de900c762df7, type: 3}

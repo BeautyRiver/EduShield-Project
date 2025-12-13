@@ -41,6 +41,15 @@ public class PlayerInputController : MonoBehaviour
         playerInteraction.RequestInteraction();
     }
 
+    private void OnPause(InputValue value)
+    {
+        
+        if (UIManager.instance != null)
+        {
+            UIManager.instance.TogglePauseUI();
+        }
+    }
+ 
 
     public string GetCurrentActionMap()
     {

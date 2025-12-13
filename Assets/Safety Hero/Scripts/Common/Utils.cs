@@ -1,7 +1,7 @@
 using UnityEngine;
 
 // 1. 등급(Rarity) 정의
-// 순서대로 정렬해두면 나중에 비교하기도 편해요 (Common < Legendary)
+
 public enum Rarity
 {
     Common,
@@ -9,6 +9,14 @@ public enum Rarity
     Rare,
     Epic,
     Legendary
+}
+
+public enum StatType
+{
+    Damage, // 데미지
+    Count,  // 개수
+    Per,    // 관통
+    Size    // 크기
 }
 
 // 2. 확률 및 계산 로직을 담당할 정적 클래스
@@ -20,7 +28,7 @@ public static class Utils
 
     // 각 등급별 강화 배율 (기획하신 내용 반영)
     // Common(1배) ~ Legendary(2배)
-    private static readonly float[] Rates = { 1.0f, 1.2f, 1.4f, 1.6f, 2.0f };
+    private static readonly float[] Rates = { 1.0f, 1.15f, 1.3f, 1.7f, 2.3f };
 
     /// <summary>
     /// 확률에 따라 랜덤한 등급을 뽑아주는 함수

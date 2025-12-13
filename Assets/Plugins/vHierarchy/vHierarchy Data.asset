@@ -46,6 +46,9 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-186228094-0
         - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-1548688661-0
         - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-581264722-0
+        - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-1311416991-0
+        - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-1331988400-0
+        - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-1616296088-0
         values:
         - colorIndex: 3
           iconNameOrGuid: Canvas Icon
@@ -95,6 +98,12 @@ MonoBehaviour:
           iconNameOrGuid: Camera Icon
         - colorIndex: 0
           iconNameOrGuid: Settings Icon
+        - colorIndex: 9
+          iconNameOrGuid: AvatarMask On Icon
+        - colorIndex: 0
+          iconNameOrGuid: Favorite
+        - colorIndex: 0
+          iconNameOrGuid: Favorite
     - goDatas_byGlobalId:
         keys:
         - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-1070279105-0

@@ -41,7 +41,7 @@ public class GlobalManager : MonoBehaviour
     }
 
 
-    public void ChangeState(GameState newState)
+    public void ChangeGameState(GameState newState)
     {
         if (gameState == newState) return;
 
