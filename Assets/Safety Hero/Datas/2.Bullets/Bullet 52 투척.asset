@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: "Bullet 52 \uD22C\uCC99"
   m_EditorClassIdentifier: 
   itemId: 52
-  itemName: "\uD22C\uCC99\uC6A9 \uC18C\uD654"
+  itemName: "\uC5D0\uB108\uC9C0 \uC2A4\uD53C\uC5B4"
   itemIcon: {fileID: 21300000, guid: ed2877ccf16aafa49a6e63bef3cbe0e0, type: 3}
-  defalutDesc: 
+  defalutDesc: "\uBC14\uB77C\uBCF4\uB294 \uBC29\uD5A5\uC73C\uB85C \uC5D0\uB108\uC9C0
+    \uCC3D\uC744 \uD22C\uCC99\uD574 \uC801\uC744 \uAFF0\uB6AB\uB294 \uBBF8\uB798\uD615
+    \uBB34\uAE30."
   baseDamage: 4
   baseDamageInterval: 2
   baseKnockback: 1.5
@@ -31,6 +33,6 @@ MonoBehaviour:
   damageGrowth: 1
   countGrowth: 0.5
   perGrowth: 0.4
-  scaleGrowth: 0.5
+  scaleGrowth: 0
   bulletPrefab: {fileID: 8191457858479555690, guid: 054894a582249144fa8669ad0e7893e6, type: 3}
   weaponType: {fileID: 6833137080016569779, guid: 5aa9ad98a6f4e4045b9af6ce2c04121e, type: 3}

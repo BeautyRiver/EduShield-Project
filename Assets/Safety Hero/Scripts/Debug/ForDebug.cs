@@ -17,19 +17,40 @@ public class ForDebug : MonoBehaviour
     public TextMeshProUGUI debugText;
 
 
-    private bool isInvinsible;
+    private bool isInvincible;
     private bool is2xSpeed;
 
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F1))
+        if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             var player = GameManager.instance.player;
-            int maxExp = player.nextExp[Mathf.Min(player.level, player.nextExp.Length - 1)];
+            int maxExp = GameManager.instance.nextExp[Mathf.Min(player.level, GameManager.instance.nextExp.Count - 1)];
             player.GetExp(maxExp);
         }
+
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            isInvincible = !isInvincible;
+            GameManager.instance.player.isInvincible = isInvincible;
+            debugText.text = isInvincible ? "무적 ON" : "무적 OFF";
+        }
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            GlobalManager.instance.nowTimeScale += 0.5f;
+            Time.timeScale = GlobalManager.instance.nowTimeScale;
+            debugText.text = "시간속도: " + GlobalManager.instance.nowTimeScale + "X";
+        }
+
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            GlobalManager.instance.nowTimeScale = Mathf.Max(0.5f, GlobalManager.instance.nowTimeScale - 0.5f);
+            Time.timeScale = GlobalManager.instance.nowTimeScale;
+            debugText.text = "시간속도: " + GlobalManager.instance.nowTimeScale + "X";
+        }
     }
+    
     [Button]
     public void InitializeItems()
     {

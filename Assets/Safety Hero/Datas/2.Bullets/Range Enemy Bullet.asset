@@ -31,6 +31,6 @@ MonoBehaviour:
   damageGrowth: 1
   countGrowth: 0.5
   perGrowth: 0.4
-  scaleGrowth: 0.5
+  scaleGrowth: 0
   bulletPrefab: {fileID: 8887909641685150018, guid: 9220c9ef59eb40a4d944c0446be23f90, type: 3}
   weaponType: {fileID: 6670291896573575422, guid: 855a93598336db44aaf4ccd032078f62, type: 3}

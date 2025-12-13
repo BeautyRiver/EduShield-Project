@@ -1,11 +1,11 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using VInspector;
 
 public class PlayerInGame : MonoBehaviour, IDamageable
 {
     [Header("# 플레이어 정보")]
-    public int[] nextExp = { 3, 5, 10, 100, 150, 210, 280, 360, 450, 600 }; // 다음 레벨업에 필요한 경험치    
     [ReadOnly] public int playerId; // 플레이어 ID
     public float health; // 현재 체력
     public float maxHealth = 100; // 최대 체력  
@@ -25,7 +25,6 @@ public class PlayerInGame : MonoBehaviour, IDamageable
     // 기타 컴포넌트
     [Header("# 게임 오브젝트 참조")]
     public TargetScanner enemyScanner; // 적 탐색기        
-    [SerializeField] private LevelUp levelUp;
     private PlayerMove playerMove;
     private SpriteRenderer spriter;
     private Animator anim;
@@ -54,7 +53,10 @@ public class PlayerInGame : MonoBehaviour, IDamageable
 
         globalManager = GlobalManager.instance;
         hud = HUDManager.instance;
+
+        
     }
+    
 
     // 물리 충돌 일어날 때
     private void OnCollisionStay2D(Collision2D collision)
@@ -67,7 +69,7 @@ public class PlayerInGame : MonoBehaviour, IDamageable
         {
             if (collision.gameObject.TryGetComponent(out Enemy enemy))
             {
-                DamagedLogic(collision.collider, enemy.GetDamage());
+                DamagedLogic(enemy.GetDamage());
                 if (!isHiting)
                 {
                     isHiting = true;
@@ -126,8 +128,10 @@ public class PlayerInGame : MonoBehaviour, IDamageable
         globalManager.ChangeGameState(GameState.GameOver);
     }
 
-    public void DamagedLogic(Collider2D collision, float damage)
+    public void DamagedLogic(float damage, Collider2D collision = null)
     {
+        if (isInvincible) return;
+
         health -= Time.deltaTime * damage;
         if (health < 0)
         {
@@ -138,6 +142,14 @@ public class PlayerInGame : MonoBehaviour, IDamageable
             PlayerDead();
         }
        hud.UpdateHealth(health, maxHealth);
+    }
+
+    public void SetHiting(bool isHit)
+    {
+        if (isHiting == isHit) return;
+
+        isHiting = isHit;
+        spriter.color = isHit ? hitColor : normalColor;
     }
 
     // 이펙트 생성시키기
@@ -166,7 +178,7 @@ public class PlayerInGame : MonoBehaviour, IDamageable
         if (GlobalManager.instance.gameState != GameState.Playing) return;
 
         exp += getExp;
-        int maxExp = nextExp[Mathf.Min(level, nextExp.Length - 1)];
+        int maxExp = GameManager.instance.nextExp[Mathf.Min(level, GameManager.instance.nextExp.Count - 1)];
 
         if (exp >= maxExp)
         {
@@ -184,13 +196,13 @@ public class PlayerInGame : MonoBehaviour, IDamageable
         level++;
 
         // 경험치 이월
-        int maxExp = nextExp[Mathf.Min(level - 1, nextExp.Length - 1)];
+        int maxExp = GameManager.instance.nextExp[Mathf.Min(level - 1, GameManager.instance.nextExp.Count - 1)];
         exp = exp - maxExp;
 
         globalManager.ChangeGameState(GameState.LevelUp); // 레벨업 상태로 변경
-        levelUp.Show();
+        UIManager.instance.levelUp.Show();
 
-        maxExp = nextExp[Mathf.Min(level, nextExp.Length - 1)];
+        maxExp = GameManager.instance.nextExp[Mathf.Min(level, GameManager.instance.nextExp.Count - 1)];
         hud.UpdateExp(exp, maxExp);
     }
 

@@ -21,8 +21,7 @@ public class SpawnProfile
     public Type type;              // 몬스터 타입 (노말, 유니크 등 구분용)
     public float spawnInterval;    // 스폰 간격 (초)
     public int spawnCount;         // 한 번에 스폰할 개수
-    [ReadOnly]
-    public float timer;
+    [ReadOnly] public float timer;
     [Header("# 몬스터 스탯")]
     public EnemyData enemyData;    // 몬스터의 체력, 속도 등 데이터
 }

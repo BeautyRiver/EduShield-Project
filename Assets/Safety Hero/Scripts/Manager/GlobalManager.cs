@@ -21,7 +21,7 @@ public class GlobalManager : MonoBehaviour
 {
     public static GlobalManager instance;
     private PlayerInput playerInput;
-    public int nowTimeScale = 1;
+    public float nowTimeScale = 1;
     public PlayerState playerState;
     public GameState gameState;
 

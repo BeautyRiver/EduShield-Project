@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 3463266244272027030}
   - component: {fileID: 1922909100429749290}
   m_Layer: 14
-  m_Name: Box Field
+  m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

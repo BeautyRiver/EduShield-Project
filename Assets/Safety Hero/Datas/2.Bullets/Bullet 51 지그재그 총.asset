@@ -15,7 +15,9 @@ MonoBehaviour:
   itemId: 51
   itemName: "\uC5D0\uB108\uC9C0 \uD30C"
   itemIcon: {fileID: -223521553757574368, guid: 2eec06e34141a104490a5018b350d8ac, type: 3}
-  defalutDesc: 
+  defalutDesc: "\uBC14\uB77C\uBCF4\uB294 \uBC29\uD5A5\uC73C\uB85C \uC5D0\uB108\uC9C0
+    \uD30C\uB3D9 \uACF5\uACA9, \uAC1C\uC218 \uC99D\uAC00 \uC2DC \uBC18\uB300\uD3B8\uB3C4
+    \uB3D9\uC2DC \uD0C0\uACA9."
   baseDamage: 8
   baseDamageInterval: 2
   baseKnockback: 1.5
@@ -31,6 +33,6 @@ MonoBehaviour:
   damageGrowth: 1
   countGrowth: 0.5
   perGrowth: 0.4
-  scaleGrowth: 0.5
+  scaleGrowth: 0
   bulletPrefab: {fileID: 8191457858479555690, guid: 321abbc004976c84d993cf8d03f989a7, type: 3}
   weaponType: {fileID: 2884803771570671738, guid: 7d3b956266d9d164ab00de900c762df7, type: 3}

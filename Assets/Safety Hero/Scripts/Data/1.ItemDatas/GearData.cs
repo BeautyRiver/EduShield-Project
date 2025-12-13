@@ -28,13 +28,13 @@ public class GearData : Data
 
         itemSetting.icon.sprite = itemSetting.data.itemIcon;
         itemSetting.textName.text = itemSetting.data.itemName;
-        itemSetting.textRairty.color = color;
-        itemSetting.textRairty.text = itemSetting.rarity.ToString();
+        
         string desc = "";
 
         // Case 1: New -> "0%에서 시작"
         if (itemSetting.level == 0)
         {
+            itemSetting.textRairty.text = "New Gear";
             itemSetting.textLevel.text = "New!";            
 
             // 처음 획득 시 적용될 수치 계산
@@ -46,7 +46,9 @@ public class GearData : Data
         // Case 2: Upgrade -> "현재%에서 증가"
         else
         {
-            itemSetting.textLevel.text = itemSetting.rarity.ToString();
+            itemSetting.textRairty.color = color;
+            itemSetting.textRairty.text = itemSetting.rarity.ToString();
+            itemSetting.textLevel.text = $"Lv. {itemSetting.level}";
 
             float currentRate = itemSetting.gear.accumulatedRate * 100f;
             float addedRate = (rateGrowth * multiplier);

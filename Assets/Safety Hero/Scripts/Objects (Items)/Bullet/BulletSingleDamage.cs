@@ -13,7 +13,7 @@ public class BulletSingleDamage : Bullet
         if (collision.TryGetComponent(out IDamageable damageAble))
         {
             //Debug.Log("BulletSingleDamage: OnTriggerEnter2D: DamagedLogic");
-            damageAble.DamagedLogic(bulletCol, damage);
+            damageAble.DamagedLogic(damage, bulletCol);
             PerDown();
         }
     }    

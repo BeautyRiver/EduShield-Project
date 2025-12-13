@@ -15,8 +15,6 @@ MonoBehaviour:
   itemId: 100
   itemName: "\uACF5\uACA9\uC18D\uB3C4 \uAE30\uC5B4"
   itemIcon: {fileID: 21300000, guid: a4b44bf3be8fb4d4393b50a0ae6d4f1a, type: 3}
-  maxLevel: 5
-  itemDesc:
-  - "<b><color=yellow>\uACF5\uACA9\uC18D\uB3C4 {0}%</color> \uC99D\uAC00</b>"
-  gearRates: 0a0000000a0000000a0000000a00000014000000
+  defalutDesc: 
+  rateGrowth: 0.2
   gearType: {fileID: 1627284956276193133, guid: a6f1aff824cf0e84b9177c6934563198, type: 3}

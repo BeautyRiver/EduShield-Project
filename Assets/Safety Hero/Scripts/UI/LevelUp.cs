@@ -8,17 +8,10 @@ using static TMPro.TMP_InputField;
 
 public class LevelUp : MonoBehaviour
 {
-    [Header("# UI manager")]
-    public UIManager uiManager;
-    [Header("# ---------------------")]
-    private RectTransform rect;
-    public Image blackWindow;
-    public float showLeveUpDuration;
-    [SerializeField] private List<LevelUpItemSetting> items;
-    public List<LevelUpItemSetting> availableItems;
+    private List<LevelUpItemSetting> items;
+    private List<LevelUpItemSetting> availableItems;
     private void Awake()
     {     
-        rect = GetComponent<RectTransform>();
         items = GetComponentsInChildren<LevelUpItemSetting>(true).ToList();
     }
 

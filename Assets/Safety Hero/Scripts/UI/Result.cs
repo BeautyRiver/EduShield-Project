@@ -1,36 +1,42 @@
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using VInspector;
 
 public class Result : MonoBehaviour
 {
-    public Image[] titles;
+    public GameObject[] resultUI;
+    private TextMeshProUGUI[] resultTexts;
+    private Image[] resultImage;
+
+    private void Awake()
+    {
+        for(int i = 0; i < resultUI.Length; i++)
+        {
+            resultImage[i] = resultUI[i].GetComponentInChildren<Image>();
+            resultTexts[i] = resultUI[i].GetComponentInChildren<TextMeshProUGUI>();            
+        }
+    }
 
     private void OnEnable()
     {
-        titles = GetComponentsInChildren<Image>(true);
+        for (int i = 0; i < resultUI.Length; i++)
+        {
+            resultImage[i].color = new Color(1, 1, 1, 0);
+            resultTexts[i].color = new Color(1, 1, 1, 0);
+        }
     }
+
     public void Lose()
     {
-        titles[0].DOFade(1, 1f).SetUpdate(true).OnComplete(() =>
-        {
-            for (int i = 2; i < titles.Length; i++)
-            {
-                titles[i].gameObject.SetActive(true);
-            }
-        });
+        resultImage[0].DOFade(1, 1f).SetUpdate(true);
+        resultTexts[0].DOFade(1, 1f).SetUpdate(true);
     }
 
     public void Win()
     {
-        titles[1].DOFade(1, 1f).SetUpdate(true).OnComplete(() =>
-        {
-            for (int i = 2; i < titles.Length; i++)
-            {
-                titles[i].gameObject.SetActive(true);
-            }
-        });
+        resultImage[1].DOFade(1, 1f).SetUpdate(true);
+        resultTexts[1].DOFade(1, 1f).SetUpdate(true);
     }
 }

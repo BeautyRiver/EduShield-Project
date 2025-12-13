@@ -20,13 +20,13 @@ public class BulletOverTimeDamage : Bullet
             if (!damageTimers.ContainsKey(enemyId))
             {
                 damageTimers[enemyId] = Time.time;
-                damageAble.DamagedLogic(bulletCol, damage);
+                damageAble.DamagedLogic(damage, bulletCol);
                 PerDown();
             }
             else if (Time.time - damageTimers[enemyId] >= damageInterval)
             {
                 damageTimers[enemyId] = Time.time;
-                damageAble.DamagedLogic(bulletCol, damage);
+                damageAble.DamagedLogic(damage, bulletCol);
                 PerDown();
             }
         }

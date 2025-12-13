@@ -54,8 +54,7 @@ public class BulletData : Data
 
         itemSetting.icon.sprite = itemSetting.data.itemIcon;
         itemSetting.textName.text = itemSetting.data.itemName;
-        itemSetting.textRairty.color = color;
-        itemSetting.textRairty.text = itemSetting.rarity.ToString();
+        
 
         itemSetting.selectedOptions.Clear(); // 초기화
 
@@ -64,15 +63,19 @@ public class BulletData : Data
         // Case 1: 새로운 무기 (Level 0) -> "0에서 시작!"
        if (itemSetting.level == 0)
         {
+            itemSetting.textRairty.text = "New Weapon";
             itemSetting.textLevel.text = "New!";
-            if (baseDamage > 0) desc += $"Dmg: 0 <color=#00FF00>→ {baseDamage}</color>\n";
-            if (baseCount > 0) desc += $"Count: 0 <color=#00FF00>→ {baseCount}</color>\n";
-            if (basePer != 0) desc += $"Per: 0 <color=#00FF00>→ {basePer}</color>\n";
+            desc += defalutDesc;
+            //if (baseDamage > 0) desc += $"Dmg: 0 <color=#00FF00>→ {baseDamage}</color>\n";
+            //if (baseCount > 0) desc += $"Count: 0 <color=#00FF00>→ {baseCount}</color>\n";
+            //if (basePer > 0) desc += $"Per: 0 <color=#00FF00>→ {basePer}</color>\n";
         }
 
         // Case 2: 강화 (Level > 0) -> "현재에서 더하기!"
         else
         {
+            itemSetting.textRairty.color = color;
+            itemSetting.textRairty.text = itemSetting.rarity.ToString();
             itemSetting.textLevel.text = $"Lv. {itemSetting.level}";
             Weapon myWeapon = itemSetting.weapon;
 

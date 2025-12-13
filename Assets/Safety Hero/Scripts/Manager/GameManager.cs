@@ -1,6 +1,7 @@
 using DarkTonic.MasterAudio;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using VInspector;
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [Header("# 게임 컨트롤")]
+    public List<int> nextExp = new List<int>();
     public float gameTime;
     public float maxGameTime;
 
@@ -77,18 +79,6 @@ public class GameManager : MonoBehaviour
         globalManager.ChangePlayerState(PlayerState.FreeMove);
     }
 
-    public void PauseGame()
-    {
-        if (globalManager.gameState == GameState.Playing)
-            globalManager.ChangeGameState(GameState.Paused);
-    }
-
-    public void ResumeGame()
-    {
-        if (globalManager.gameState == GameState.Paused)
-            globalManager.ChangeGameState(GameState.Playing);
-    }
-
     private static void SetupAudio()
     {
         MasterAudio.StartPlaylist("Game Bgm");
@@ -98,9 +88,22 @@ public class GameManager : MonoBehaviour
     // 초기 무기 선택
     public void InitFirstWeaponSelection(int characterId)
     {
-        // UIManager.instance.levelUp.FirstGiveWeapon(characterId);
+        UIManager.instance.levelUp.FirstGiveWeapon(characterId);
     }
 
+    [Button]
+    public void SetNextExp()
+    {
+        nextExp.Clear();
+        float currentMaxExp = 7f;
+        float growthRate = 1.4f;
+        for (int i = 0; i < 25; i++)
+        {
+            nextExp.Add(Mathf.RoundToInt(currentMaxExp));
+            currentMaxExp *= growthRate;
+            growthRate = Mathf.Max(1.01f, growthRate - 0.0135f);
+        }
+    }
 
     public IEnumerator GameOverRoutine()
     {

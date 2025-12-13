@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 using Unity.VisualScripting;
+using static DG.DemiLib.External.DeHierarchyComponent;
 
 public abstract class Enemy : MonoBehaviour, IDamageable
 {
@@ -65,6 +66,36 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         anim.SetBool("isDead", false);
         currentHealth = maxHealth;
     }
+
+    // 물리 충돌 일어날 때
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Player"))
+            return;
+        
+        if (GlobalManager.instance.gameState != GameState.Playing)
+            return;
+
+        if (collision.gameObject.TryGetComponent(out PlayerInGame player))
+        {
+            player.DamagedLogic(GetDamage());
+            player.SetHiting(true);
+        }
+    }
+
+    // 물리 충돌 벗어날 때
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Player"))
+            return;
+
+        if (GlobalManager.instance.gameState != GameState.Playing)
+            return;
+
+        var player = collision.gameObject.GetComponent<PlayerInGame>();
+        player.SetHiting(false);
+    }
+
     public virtual void Init(EnemyData data)
     {
         myData = data;
@@ -82,7 +113,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
 
     // 데미지 받는 로직
-    public void DamagedLogic(Collider2D collision, float damage)
+    public void DamagedLogic(float damage, Collider2D collision)
     {        
         Bullet bulletInfo = collision.GetComponent<Bullet>();
         Vector2 hitPos;
