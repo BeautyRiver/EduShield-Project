@@ -619,7 +619,7 @@ Transform:
   m_GameObject: {fileID: 98493698}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -4.449, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2353,7 +2353,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.6969562, g: 0.7735849, b: 0.71763134, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2403,7 +2403,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -4.449, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3037,11 +3037,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f4ee7115b640244862d9869d6214e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Data>k__BackingField: {fileID: 11400000, guid: 915cfcf7dd44ba244809bd44f112d8a1, type: 2}
-  stageImage: {fileID: 1020436815}
-  stageDescText: {fileID: 1522499614}
-  lockIcon: {fileID: 258549914}
-  itemToggle: {fileID: 610210387}
 --- !u!114 &610210387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12730,11 +12725,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f4ee7115b640244862d9869d6214e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Data>k__BackingField: {fileID: 11400000, guid: 862815dd3ab38da4aa302c566f65eb63, type: 2}
-  stageImage: {fileID: 298200016}
-  stageDescText: {fileID: 1485944477}
-  lockIcon: {fileID: 1883794286}
-  itemToggle: {fileID: 793898728}
 --- !u!114 &793898728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15800,7 +15790,7 @@ Transform:
   m_GameObject: {fileID: 1231658412}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -4.449, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18626,11 +18616,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f4ee7115b640244862d9869d6214e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Data>k__BackingField: {fileID: 11400000, guid: 862815dd3ab38da4aa302c566f65eb63, type: 2}
-  stageImage: {fileID: 1847215606}
-  stageDescText: {fileID: 1948040057}
-  lockIcon: {fileID: 498958277}
-  itemToggle: {fileID: 1558144317}
 --- !u!114 &1558144317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22780,7 +22765,7 @@ Transform:
   m_GameObject: {fileID: 2071362355}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -4.449, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:

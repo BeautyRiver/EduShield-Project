@@ -333,7 +333,7 @@ namespace CartoonFX
 
 			//Separator
 			GUISeparator();
-			//GUILayout.Box("",GUILayout.Width(this.position.width - 12), GUILayout.Height(3));
+			//GUILayout.Chest("",GUILayout.Width(this.position.width - 12), GUILayout.Height(3));
 
 			basicFoldout = EditorGUILayout.Foldout(basicFoldout, "QUICK EDIT", true);
 			if (basicFoldout)
@@ -430,7 +430,7 @@ namespace CartoonFX
 
 			//Separator
 			GUISeparator();
-			//GUILayout.Box("",GUILayout.Width(this.position.width - 12), GUILayout.Height(3));
+			//GUILayout.Chest("",GUILayout.Width(this.position.width - 12), GUILayout.Height(3));
 
 			EditorGUI.BeginChangeCheck();
 			colorFoldout = EditorGUILayout.Foldout(colorFoldout, "COLOR EDIT", true);

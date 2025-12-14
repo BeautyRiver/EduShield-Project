@@ -13,11 +13,11 @@ public class UIManager : MonoBehaviour
 
     [Foldout("UI Active 관리")]
     [Header("팝업 UI 모음")]
+    public GameObject resultUI;
     public GameObject winUI; 
     public GameObject loseUI; 
-    
     public LevelUp levelUp;
-    public Result resultUI;
+    
 
     public GameObject pauseUI;
     public GameObject optionUI;
@@ -116,16 +116,6 @@ public class UIManager : MonoBehaviour
         globalManager.ChangeGameState(GameState.Playing);
     }
 
-    // 결과창(승리/패배) 띄우기
-    public void ShowResult(bool isWin)
-    {
-        resultUI.gameObject.SetActive(true);
-        if (isWin)
-            resultUI.Win();
-        else
-            resultUI.Lose();
-    }
-
     // ------------------------------------------
   
     public void TogglePauseUI()
@@ -178,9 +168,16 @@ public class UIManager : MonoBehaviour
         speedText.text = (gameManager.playerData.speedMult * 100f).ToString() + "%";
     }
 
-    // (기존 Win/Lose 함수는 ShowResult로 대체 가능하지만, 호환성을 위해 남겨둠)
-    public void Lose() => loseUI.SetActive(true);
-    public void Win() => winUI.SetActive(true);
+    public void Lose()
+    {
+        resultUI.SetActive(true);
+        loseUI.SetActive(true);
+    }
+    public void Win() 
+    {
+        resultUI.SetActive(true);
+        winUI.SetActive(true); 
+    }
 
     public void GameRetry()
     {

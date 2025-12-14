@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
 
         spawner.gameObject.SetActive(true);
 
-        Box.openCount = 0;        
+        Chest.openCount = 0;        
 
         globalManager.ChangeGameState(GameState.Playing);
         globalManager.ChangePlayerState(PlayerState.FreeMove);
@@ -110,21 +110,18 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(gameOverDelay);
 
         // UIManager에게 패배 UI 요청
-        UIManager.instance.ShowResult(false);
-
+        UIManager.instance.Lose();
         MasterAudio.PlaylistsMuted = true;
         MasterAudio.PlaySound("Lose");
     }
 
     public IEnumerator GameVictoryRoutine()
     {
-        player.GetComponent<Animator>().SetFloat("Speed", 0f);
-        enemyCleaner.SetActive(true); // 적 청소는 게임 로직이므로 여기서 유지
+        player.GetComponentInChildren<Animator>().SetFloat("Speed", 0f);
         yield return new WaitForSeconds(0.5f);
 
         // UIManager에게 승리 UI 요청
-        UIManager.instance.ShowResult(true);
-
+        UIManager.instance.Win();
         MasterAudio.PlaylistsMuted = true;
         MasterAudio.PlaySound("Win");
     }
