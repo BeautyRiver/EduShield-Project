@@ -49,6 +49,11 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-1311416991-0
         - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-1331988400-0
         - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-1616296088-0
+        - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-99509349-0
+        - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-1335597186-0
+        - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-4163765-0
+        - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-3584681192649697616-1847751733
+        - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-2943062480110421640-935105974
         values:
         - colorIndex: 3
           iconNameOrGuid: Canvas Icon
@@ -104,6 +109,16 @@ MonoBehaviour:
           iconNameOrGuid: Favorite
         - colorIndex: 0
           iconNameOrGuid: Favorite
+        - colorIndex: 0
+          iconNameOrGuid: AudioListener Icon
+        - colorIndex: 0
+          iconNameOrGuid: AudioListener Icon
+        - colorIndex: 0
+          iconNameOrGuid: AudioListener Icon
+        - colorIndex: 0
+          iconNameOrGuid: AudioListener Icon
+        - colorIndex: 0
+          iconNameOrGuid: AudioListener Icon
     - goDatas_byGlobalId:
         keys:
         - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-1070279105-0
@@ -116,6 +131,9 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-714611614-0
         - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-1644771605-0
         - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-2239625936038384549-1888447008
+        - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-1788774648-0
+        - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-1726641354-0
+        - globalObjectIdString: GlobalObjectId_V1-2-27758ba6213884d4b8ee85cce072b6f5-957626498-0
         values:
         - colorIndex: 0
           iconNameOrGuid: Settings Icon
@@ -137,6 +155,12 @@ MonoBehaviour:
           iconNameOrGuid: Settings Icon
         - colorIndex: 0
           iconNameOrGuid: Settings Icon
+        - colorIndex: 0
+          iconNameOrGuid: AudioListener Icon
+        - colorIndex: 0
+          iconNameOrGuid: AudioListener Icon
+        - colorIndex: 0
+          iconNameOrGuid: AudioListener Icon
     - goDatas_byGlobalId:
         keys:
         - globalObjectIdString: GlobalObjectId_V1-2-9cb6d5a023c53e94d9459b6ea1a41779-1220471502-0
@@ -191,6 +215,10 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-1231658412-0
         - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-566101302-0
         - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-1021949954-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-1293678815-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-1715518665-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-3584681192649697616-190769069
+        - globalObjectIdString: GlobalObjectId_V1-2-9d6c2601b746e884fa1dcf4ce69c163a-2943062480110421640-1526114663
         values:
         - colorIndex: 7
           iconNameOrGuid: Camera Icon
@@ -223,7 +251,7 @@ MonoBehaviour:
         - colorIndex: 0
           iconNameOrGuid: Favorite
         - colorIndex: 0
-          iconNameOrGuid: AudioClip Icon
+          iconNameOrGuid: AudioListener Icon
         - colorIndex: 0
           iconNameOrGuid: AudioClip Icon
         - colorIndex: 0
@@ -248,3 +276,11 @@ MonoBehaviour:
           iconNameOrGuid: Settings Icon
         - colorIndex: 1
           iconNameOrGuid: Settings Icon
+        - colorIndex: 0
+          iconNameOrGuid: Camera Icon
+        - colorIndex: 0
+          iconNameOrGuid: Camera Icon
+        - colorIndex: 0
+          iconNameOrGuid: AudioListener Icon
+        - colorIndex: 0
+          iconNameOrGuid: AudioListener Icon

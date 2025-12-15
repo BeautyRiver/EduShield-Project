@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageId: 0
   sceneName: Game Scene
-  stageImage: {fileID: -15640400, guid: 33f78f8f8d3aee14f98adbe11d20b21f, type: 3}
-  stageName: "\uACF5\uD5C8\uD55C \uC232"
-  stageDesc: "\uC2B5\uD558\uC9C0\uB9CC \uD3C9\uD654\uB85C\uC6CC \uBCF4\uC774\uB294
-    \uCD08\uB85D \uC138\uC0C1. \uADFC\uB370 \uBAA8\uB4E0 \uAC8C \uB110 \uD574\uCE58\uB824\uACE0
-    \uD560 \uAC70\uC57C!"
+  stageImage: {fileID: -393672568197353540, guid: ff4c4f0a57717ae47bf853c58b57a1d9, type: 3}
+  stageName: "\uC1FC\uD551\uBAB0 \uD478\uB4DC\uCF54\uB4DC"
+  stageDesc: "\uB300\uD615 \uC1FC\uD551\uBAB0\uC758 \uD478\uB4DC\uCF54\uD2B8\uC5D0
+    \uC6D0\uC778\uBAA8\uB97C \uD654\uC7AC\uAC00 \uBC1C\uC0DD\uD588\uB2E4."
   difficulty: 0
   difficultyColor: {r: 0.20784315, g: 0.8431373, b: 0, a: 1}
   difficultyImage: {fileID: -1825370391, guid: e0c61570a8ecddd4aa114aa9dfbbf6e1, type: 3}

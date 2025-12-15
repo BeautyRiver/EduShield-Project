@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Safety Hero/Scenes/Login.unity
     guid: 33f63c941e57e1a469cedbf8a5631e24
   - enabled: 1
+    path: Assets/Safety Hero/Scenes/Title Scene.unity
+    guid: 27758ba6213884d4b8ee85cce072b6f5
+  - enabled: 1
     path: Assets/Safety Hero/Scenes/Lobby Scene.unity
     guid: 9d6c2601b746e884fa1dcf4ce69c163a
   - enabled: 1

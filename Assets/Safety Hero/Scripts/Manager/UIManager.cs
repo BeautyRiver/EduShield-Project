@@ -107,8 +107,6 @@ public class UIManager : MonoBehaviour
         Animator anim = rewardBoxOpenUI.GetComponentInChildren<Animator>();
         anim.SetBool("IsOpen", false);
 
-        MasterAudio.PlaySound("BtnClick");
-
         rewardBoxOkUI.SetActive(false);
         rewardBoxOpenUI.SetActive(false);
 
@@ -129,14 +127,14 @@ public class UIManager : MonoBehaviour
         if (!isPause)
         {
             globalManager.ChangeGameState(GameState.Paused);
-            MasterAudio.PlaySound("BtnClick");
+            MasterAudio.PlaySound("UI_Toggle");
             isPause = true;
             UpdatePlayerStatusText();
         }
         else
         {
             globalManager.ChangeGameState(GameState.Playing);
-            MasterAudio.PlaySound("BtnClick");
+            MasterAudio.PlaySound("UI_Toggle");
             isPause = false;
         }
         pauseUI.SetActive(isPause);
@@ -146,12 +144,12 @@ public class UIManager : MonoBehaviour
     {
         if (!isOption && isPause)
         {
-            MasterAudio.PlaySound("BtnClick");
+            MasterAudio.PlaySound("UI_Toggle");
             isOption = true;
         }
         else
         {
-            MasterAudio.PlaySound("BtnClick");
+            MasterAudio.PlaySound("UI_Toggle");
             isOption = false;
         }
         optionUI.SetActive(isOption);

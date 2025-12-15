@@ -14,9 +14,8 @@ public class SelectionProtector : MonoBehaviour
     void Update()
     {
         // UI 액션 맵이 아닐 경우 처리하지 않음        
-        if (playerInputController.GetCurrentActionMap() != "UI")                    
-            return;
-        
+
+        if (playerInputController != null && playerInputController.GetCurrentActionMap() != "UI") return;
 
         GameObject selectedObject = EventSystem.current.currentSelectedGameObject;
 

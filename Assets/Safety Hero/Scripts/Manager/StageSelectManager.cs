@@ -55,7 +55,7 @@ public class StageSelectManager : MonoBehaviour
         }
     }
 
-    public void OnStartGameButton()
+    public void StartGameButton()
     {
         if (currentSelectedStage != null)
         {

@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
     {
         globalManager = GlobalManager.instance;
         hud = HUDManager.instance;
+        
         GameStart();
     }
 
@@ -81,7 +82,7 @@ public class GameManager : MonoBehaviour
 
     private static void SetupAudio()
     {
-        MasterAudio.StartPlaylist("Game Bgm");
+        MasterAudio.StartPlaylist("Game");
     }
 
 

@@ -1,3 +1,4 @@
+using DarkTonic.MasterAudio;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -32,6 +33,7 @@ public class LobbyManager : MonoBehaviour
 
     private void Start()
     {
+        MasterAudio.StartPlaylist("Lobby");
         player.PlayerInit(playerData);
         playerInputController = player.GetComponent<PlayerInputController>();
         viewOrignalLayer = mainCamera.cullingMask;

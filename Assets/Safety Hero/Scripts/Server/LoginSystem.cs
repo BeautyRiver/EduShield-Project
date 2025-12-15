@@ -41,7 +41,7 @@ public class LoginSystem : MonoBehaviour
             Debug.Log("로그인 성공!");
             alert.color = Color.black;
             alert.text = "로그인 성공!";
-            SceneManager.LoadScene("Lobby Scene");
+            LoadingSceneController.LoadScene("Title Scene");            
         }
         else
         {
@@ -53,6 +53,6 @@ public class LoginSystem : MonoBehaviour
     public void Logout()
     {
         FirebaseManager.Instance.Logout();
-        SceneManager.LoadScene("Login"); 
+        LoadingSceneController.LoadScene("Login");
     }
 }

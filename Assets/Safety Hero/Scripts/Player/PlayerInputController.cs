@@ -22,6 +22,7 @@ public class PlayerInputController : MonoBehaviour
     private void Start()
     {
         globalManager = GlobalManager.instance;
+        globalManager.SetPlayerInput(this);
         globalManager.ChangePlayerState(PlayerState.FreeMove);
     }     
 

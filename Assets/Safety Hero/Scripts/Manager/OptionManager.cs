@@ -34,6 +34,7 @@ public class OptionManager : MonoBehaviour
     // BGM 볼륨 조절
     public void OnBgmVolumeChanged(float value)
     {
+        
         // 슬라이더 값에 따라 BGM 볼륨 조절
         MasterAudio.PlaylistMasterVolume = value;
         PlayerPrefs.SetFloat("BGM", value);

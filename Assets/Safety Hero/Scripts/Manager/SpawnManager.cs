@@ -35,11 +35,11 @@ public class SpawnManager : MonoBehaviour
     public LayerMask obstacleMask;          // 장애물 레이어 마스크
 
     private GameManager gm;
-
+    private Transform playerTransform;
     private void Start()
     {
         gm = GameManager.instance;
-
+        playerTransform = gm.player.transform;
         // 설정된 레벨 디자인의 개수가 곧 최대 레벨
         maxLevelCount = levelDesigns.Count;
 
@@ -60,6 +60,7 @@ public class SpawnManager : MonoBehaviour
     {
         if (GlobalManager.instance.gameState != GameState.Playing) return;
 
+        transform.position = playerTransform.position;
         // 1. 현재 시간 기반 레벨 인덱스 계산      
         int calculatedIndex = Mathf.FloorToInt(GameManager.instance.gameTime / levelTime);
         currentLevelIndex = Mathf.Min(calculatedIndex, maxLevelCount - 1);

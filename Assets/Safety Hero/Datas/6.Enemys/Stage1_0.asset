@@ -16,7 +16,7 @@ MonoBehaviour:
   health: 3
   speed: 3
   damage: 5
-  exp: 1
+  exp: 3
   gold: 1
   animCon: {fileID: 9100000, guid: f2855d618fc8d9c499189d3f39b9cbbc, type: 2}
   enemyPrefab: {fileID: 6506317341284564746, guid: 1cda2a9794b8f9747871322b3030b36e, type: 3}
