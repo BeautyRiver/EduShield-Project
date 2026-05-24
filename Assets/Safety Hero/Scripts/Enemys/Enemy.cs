@@ -113,8 +113,8 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
 
     // 데미지 받는 로직
-    public void DamagedLogic(float damage, Collider2D collision)
-    {        
+    public void DamagedLogic(float damage, Collider2D collision = null, bool isCrit = false)
+    {
         Bullet bulletInfo = collision.GetComponent<Bullet>();
         Vector2 hitPos;
 
@@ -123,10 +123,11 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         GameObject effect = PoolManager.instance.Get(myData.hitEffectPrefab); // Enemy 이팩트 생성
         effect.transform.position = hitPos;
 
-        float fontSize = 7f;
-        // 기본 데미지 표시 
-        Damaged(damage, hitPos, Color.white, false, fontSize);       
-        
+        // 크리티컬이면 노란색 + 큰 폰트
+        float fontSize = isCrit ? 10f : 7f;
+        Color textColor = isCrit ? Color.yellow : Color.white;
+        Damaged(damage, hitPos, textColor, false, fontSize);
+
         MasterAudio.PlaySound("Hit"); // 사운드 재생
         anim.SetTrigger("doHit"); // 맞는 애니메이션 재생
 

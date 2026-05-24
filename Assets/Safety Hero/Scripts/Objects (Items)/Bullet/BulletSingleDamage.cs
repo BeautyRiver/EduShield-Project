@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletSingleDamage : Bullet
@@ -12,9 +10,9 @@ public class BulletSingleDamage : Bullet
 
         if (collision.TryGetComponent(out IDamageable damageAble))
         {
-            //Debug.Log("BulletSingleDamage: OnTriggerEnter2D: DamagedLogic");
-            damageAble.DamagedLogic(damage, bulletCol);
+            float finalDamage = RollCritDamage(out bool isCrit);
+            damageAble.DamagedLogic(finalDamage, bulletCol, isCrit);
             PerDown();
         }
-    }    
+    }
 }

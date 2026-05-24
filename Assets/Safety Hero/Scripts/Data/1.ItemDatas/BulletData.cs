@@ -15,9 +15,6 @@ public class BulletData : Data
     public float baseDelay; // TODO: 나중에 딜레이는 곱연산으로 처리하기
     public float baseBulletMoveSpeed;
     public float baseWeaponAttackSpeed;
-    public float baseWeaponDuration;
-    public float baseRange;
-    public float baseRotationSpeed;
     public Vector3 baseScale;
 
     [Tab("# 무한 성장 스탯 (레벨업 당 증가량)")]

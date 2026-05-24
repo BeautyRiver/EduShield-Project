@@ -128,8 +128,9 @@ public class PlayerInGame : MonoBehaviour, IDamageable
         globalManager.ChangeGameState(GameState.GameOver);
     }
 
-    public void DamagedLogic(float damage, Collider2D collision = null)
+    public void DamagedLogic(float damage, Collider2D collision = null, bool isCrit = false)
     {
+        // 플레이어는 크리 피격 없음 (isCrit 무시)
         if (isInvincible) return;
 
         health -= Time.deltaTime * damage;

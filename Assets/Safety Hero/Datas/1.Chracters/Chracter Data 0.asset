@@ -17,5 +17,8 @@ MonoBehaviour:
   damageMult: 1
   attackSpeedMult: 1
   attackRangeMult: 1
+  sizeMult: 1
   speedMult: 1
+  critChance: 0.5
+  critMultiplier: 2
   animCon: {fileID: 9100000, guid: ac75cee4ef94f034eabc7261945a4b55, type: 2}

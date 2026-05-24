@@ -62,4 +62,22 @@ public class Bullet : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
+    // 매 히트마다 크리 판정. 플레이어 무기에만 적용 (적 공격은 크리 없음).
+    // out으로 isCrit 플래그를 받아 데미지 텍스트 표시에 사용.
+    protected float RollCritDamage(out bool isCrit)
+    {
+        isCrit = false;
+        if (ownerTag != "Player") return damage;
+
+        PlayerData pData = GameManager.instance?.playerData;
+        if (pData == null) return damage;
+
+        if (Random.value < pData.critChance)
+        {
+            isCrit = true;
+            return damage * pData.critDamageMult;
+        }
+        return damage;
+    }
 }

@@ -19,16 +19,15 @@ public class AudioManager : MonoBehaviour
     private int channelIndex;
     private AudioSource[] sfxPlayers;
 
-    public enum Sfx { Dead, Hit, LevelUp = 3, Lose, Melee, Range = 7, Select, Win }
-
+    public enum Sfx { Dead, Hit, LevelUp = 3, Lose, Melee, Range = 7, Select, Win }    
     private void Awake()
     {
         instance = this;
-        Init();
+        Init();        
     }
 
     private void Init()
-    {
+    {        
         // 배경음 플레이어 초기화
         GameObject bgmObject = new GameObject("BgmPlayer");
         bgmObject.transform.parent = this.transform;

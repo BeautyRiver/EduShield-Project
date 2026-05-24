@@ -15265,6 +15265,7 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 4672
+  applyAttackRangeMultiplier: 1
   <nearestTarget>k__BackingField: {fileID: 0}
 --- !u!1 &289629409
 GameObject:
@@ -20228,6 +20229,7 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 16384
+  applyAttackRangeMultiplier: 0
   <nearestTarget>k__BackingField: {fileID: 0}
 --- !u!1 &353552803
 GameObject:
@@ -195433,11 +195435,8 @@ MonoBehaviour:
     per: 0
     bulletMoveSpeed: 0
     weaponAttackSpeed: 0
-    rotationSpeed: 0
     bulletDelay: 0
     damageInterval: 0
-    weaponDuration: 0
-    attackRange: 0
     knockBackAmout: 0
     bulletSize: {x: 0, y: 0, z: 0}
   isAttacking: 0
@@ -195463,11 +195462,8 @@ MonoBehaviour:
     per: 0
     bulletMoveSpeed: 0
     weaponAttackSpeed: 0
-    rotationSpeed: 0
     bulletDelay: 0
     damageInterval: 0
-    weaponDuration: 0
-    attackRange: 0
     knockBackAmout: 0
     bulletSize: {x: 0, y: 0, z: 0}
   isAttacking: 0
@@ -195493,11 +195489,8 @@ MonoBehaviour:
     per: 0
     bulletMoveSpeed: 0
     weaponAttackSpeed: 0
-    rotationSpeed: 0
     bulletDelay: 0
     damageInterval: 0
-    weaponDuration: 0
-    attackRange: 0
     knockBackAmout: 0
     bulletSize: {x: 0, y: 0, z: 0}
   isAttacking: 0
@@ -195523,11 +195516,8 @@ MonoBehaviour:
     per: 0
     bulletMoveSpeed: 0
     weaponAttackSpeed: 0
-    rotationSpeed: 0
     bulletDelay: 0
     damageInterval: 0
-    weaponDuration: 0
-    attackRange: 0
     knockBackAmout: 0
     bulletSize: {x: 0, y: 0, z: 0}
   isAttacking: 0
@@ -195553,15 +195543,15 @@ MonoBehaviour:
     per: 0
     bulletMoveSpeed: 0
     weaponAttackSpeed: 0
-    rotationSpeed: 0
     bulletDelay: 0
     damageInterval: 0
-    weaponDuration: 0
-    attackRange: 0
     knockBackAmout: 0
     bulletSize: {x: 0, y: 0, z: 0}
   isAttacking: 0
   speedTimer: 0
+  baseRotationSpeed: 180
+  baseWeaponDuration: 0
+  baseOrbitRadius: 2
 --- !u!114 &762004766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195583,11 +195573,8 @@ MonoBehaviour:
     per: 0
     bulletMoveSpeed: 0
     weaponAttackSpeed: 0
-    rotationSpeed: 0
     bulletDelay: 0
     damageInterval: 0
-    weaponDuration: 0
-    attackRange: 0
     knockBackAmout: 0
     bulletSize: {x: 0, y: 0, z: 0}
   isAttacking: 0
@@ -416165,6 +416152,7 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
+  applyAttackRangeMultiplier: 0
   <nearestTarget>k__BackingField: {fileID: 0}
 --- !u!1 &2079106688
 GameObject:
